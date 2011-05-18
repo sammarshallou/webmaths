@@ -1,0 +1,39 @@
+<project name="webmaths" default="wsdlgen" basedir=".">
+
+	<description>
+		Builds web maths services and related items.
+	</description>
+	
+	<!-- Location of VLE project root -->
+	<property name="vleproject" location="../ou-moodle2"/>
+	
+	<property name="jaxws.home" location="c:/program files/jaxws2.1-ri"/>
+	
+	<path id="jaxws.classpath">
+      <fileset dir="${jaxws.home}/lib" includes="jaxws-tools.jar"/>
+  </path>
+	
+	<taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+		<classpath refid="jaxws.classpath"/>
+	</taskdef>
+	
+	<target name="wsdlgen">
+		<delete dir="gen/uk/ac/open/lts/webmaths/image"/>
+		<delete dir="gen/uk/ac/open/lts/webmaths/english"/>
+		<delete dir="gen/uk/ac/open/lts/webmaths/tex"/>
+		<wsimport
+			sourcedestdir="gen"
+			package="uk.ac.open.lts.webmaths.image"
+			wsdl="${vleproject}/filter/maths/maths.image.wsdl"/>
+		<wsimport
+			sourcedestdir="gen"
+			package="uk.ac.open.lts.webmaths.english"
+			wsdl="${vleproject}/filter/maths/maths.english.wsdl"/>
+		<wsimport
+			sourcedestdir="gen"
+			verbose="true"
+			package="uk.ac.open.lts.webmaths.tex"
+			wsdl="${vleproject}/filter/maths/maths.tex.wsdl"/>
+	</target>
+
+</project>
