@@ -2,14 +2,12 @@ package uk.ac.open.lts.webmaths;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
-import java.util.*;
 import java.util.regex.*;
 
 import javax.imageio.ImageIO;
 import javax.jws.WebService;
-import javax.xml.parsers.*;
 
 import net.sourceforge.jeuclid.DOMBuilder;
 import net.sourceforge.jeuclid.context.*;
@@ -17,15 +15,21 @@ import net.sourceforge.jeuclid.elements.generic.DocumentElement;
 import net.sourceforge.jeuclid.layout.JEuclidView;
 
 import org.w3c.dom.Document;
-import org.xml.sax.*;
+import org.xml.sax.SAXParseException;
 
 import uk.ac.open.lts.webmaths.image.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort")
-public class WebMathsImage implements MathsImagePort
+public class WebMathsImage extends WebMathsService implements MathsImagePort
 {
-	private MathmlEntityFixer fixer;
-	
+	/**
+	 * @param fixer Entity fixer
+	 */
+	public WebMathsImage(MathmlEntityFixer fixer)
+	{
+		super(fixer);
+	}
+
 	private static Graphics2D context;
 	static
 	{
@@ -38,11 +42,6 @@ public class WebMathsImage implements MathsImagePort
 		"^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$");
 	
 	private final static byte[] EMPTY = new byte[0];
-	
-	public WebMathsImage() throws IOException
-	{
-		fixer = new MathmlEntityFixer();
-	}
 	
 	@Override
 	public MathsImageReturn getImage(MathsImageParams params)
@@ -66,21 +65,13 @@ public class WebMathsImage implements MathsImagePort
 			Color fg = new Color(Integer.parseInt(m.group(1), 16),
 				Integer.parseInt(m.group(2), 16), Integer.parseInt(m.group(3), 16));
 			
-			// Check MathML does not already contain doctype, and add special one
-			String mathml = params.getMathml();
-			if(mathml.contains("<!DOCTYPE"))
-			{
-				result.setError("MathML must not include doctype");
-				return result;
-			}
-	
 			System.err.println("Setup: " + (System.currentTimeMillis() - start));
 		
 			// Parse XML to JEuclid document
 			DocumentElement document;
 			try
 			{
-				Document doc = parseMathml(mathml);
+				Document doc = parseMathml(params.getMathml());
 				System.err.println("Parse DOM: " + (System.currentTimeMillis() - start));
 				document = DOMBuilder.getInstance().createJeuclidDom(doc);
 			}
@@ -132,66 +123,6 @@ public class WebMathsImage implements MathsImagePort
 			result.setError("MathML unexpected error - " + t.getMessage());
 			t.printStackTrace();
 			return result;
-		}
-	}
-	
-	private Document parseMathml(String xml) throws Exception
-	{
-		xml = fixer.fix(xml);
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		return builder.parse(new InputSource(new StringReader(xml)));
-	}
-	
-	private static class MathmlEntityFixer
-	{
-		private Map<String, String> map = new HashMap<String, String>();
-		
-		private final static Pattern REGEX_ENTITY = Pattern.compile("&([^#][^;]*);");
-		
-		private MathmlEntityFixer() throws IOException
-		{
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-				WebMathsImage.class.getResourceAsStream("mathml.entities.txt"), "UTF-8"));
-			while(true)
-			{
-				String line = reader.readLine();
-				if(line == null)
-				{
-					break;
-				}
-				if(line.trim().equals(""))
-				{
-					continue;
-				}
-				
-				int equals = line.indexOf('=');
-				map.put(line.substring(0, equals), line.substring(equals+1));
-			}
-			reader.close();
-		}
-		
-		/**
-		 * Fixes all the named entities in the source string.
-		 * @param original Original string
-		 * @return Fixed string with entities replaced by direct characters
-		 * @throws IllegalArgumentException Any unknown entities
-		 */
-		private String fix(String original) throws IllegalArgumentException
-		{
-			Matcher m = REGEX_ENTITY.matcher(original);
-			StringBuffer out = new StringBuffer();
-			while(m.find())
-			{
-				String replacement = map.get(m.group(1));
-				if(replacement == null)
-				{
-					throw new IllegalArgumentException("Unknown entity " + m.group(0));
-				}
-				m.appendReplacement(out, replacement);
-			}
-			m.appendTail(out);
-			return out.toString();
 		}
 	}
 }

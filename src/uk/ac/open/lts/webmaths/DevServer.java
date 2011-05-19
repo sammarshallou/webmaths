@@ -14,6 +14,8 @@ public class DevServer
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		Endpoint.publish("http://pclt1507.open.ac.uk:9999/", new WebMathsImage());
+		MathmlEntityFixer fixer = new MathmlEntityFixer();
+		Endpoint.publish("http://pclt1507.open.ac.uk:9998/", new WebMathsEnglish(fixer));
+		Endpoint.publish("http://pclt1507.open.ac.uk:9999/", new WebMathsImage(fixer));
 	}
 }
