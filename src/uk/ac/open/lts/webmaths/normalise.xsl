@@ -2,6 +2,12 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:m="http://www.w3.org/1998/Math/MathML">
 
+<!-- 
+  Indicates the type of operation being carried out. Current values:
+  english = converting to English text
+  -->
+<xsl:param name="TYPE"/>
+
 <!-- Copy everything -->
 <xsl:template match="node()|@*">
   <xsl:copy>
@@ -116,5 +122,57 @@
         </xsl:otherwise>
     </xsl:choose>
 </xsl:template>
+
+<!--
+  If converting to English, normalise msubsup into msub and then msup,
+  except when applied to an operator.
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.msubsup 
+ -->
+<xsl:template match="m:msubsup[not(*[1][self::mo]) and $TYPE='english']">
+    <m:msup>
+        <m:msub>
+            <xsl:apply-templates select="*[1]"/>
+            <xsl:apply-templates select="*[2]"/>
+        </m:msub>
+        <xsl:apply-templates select="*[3]"/>
+    </m:msup>
+</xsl:template>
+
+<!--
+  Normalise table rows/columns: anything inside mtable that doesn't have
+  an mtr and mtd gets one autoamtically. (This is for MathML 1 support.)  
+  -->
+<xsl:template match="m:mtable/*[not(self::mtr or self::mlabeledtr)]">
+  <xsl:choose>
+    <xsl:when test="self::m:mtd">
+      <!-- This is an mtd, so we only need to add the mtr -->
+      <m:mtr>
+        <xsl:copy>
+          <xsl:apply-templates select="@*"/>
+          <xsl:apply-templates/>
+        </xsl:copy>
+      </m:mtr>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- This is not even an mtd so we need to add both -->
+      <m:mtr><m:mtd>
+        <xsl:copy>
+          <xsl:apply-templates select="@*"/>
+          <xsl:apply-templates/>
+        </xsl:copy>
+      </m:mtd></m:mtr>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="m:mtr/*[not(self::mtd)] | m:mlabeledtr/*[position()&gt;1][not(self::mtd)]">
+  <m:mtd>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </m:mtd>
+</xsl:template>
+
 
 </xsl:stylesheet>

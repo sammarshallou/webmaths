@@ -34,10 +34,18 @@ public class WebMathsService
 		// Get rid of doctype if supplied
 		xml = REGEX_DOCTYPE.matcher(xml).replaceFirst("");
 		// Fix entities
-		xml = fixer.fix(xml);
+		xml = getFixer().fix(xml);
 		// Parse final string
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		return builder.parse(new InputSource(new StringReader(xml)));
+	}
+
+	/**
+	 * @return The fixer object
+	 */
+	protected MathmlEntityFixer getFixer()
+	{
+		return fixer;
 	}
 }

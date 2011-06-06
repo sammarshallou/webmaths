@@ -1,0 +1,2087 @@
+# Automatically generated. Do not edit; use override.descriptions.txt instead.
+237c=angle with down zig-zag arrow 
+2aef=circle, mid below 
+2938=left, curved, down arrow 
+2935=right, curved, down arrow 
+21b6=left curved arrow 
+293d=curved left arrow with plus 
+21b7=right curved arrow 
+293c=curved right arrow with minus 
+21a1=down two-headed arrow 
+21d3=down double arrow 
+21ca=two down arrows 
+2911=right arrow with dotted stem 
+297f=down fish tail 
+2965=down harpoon-left, down harpoon-right 
+21c3=down harpoon-left 
+21c2=down harpoon-right 
+21f5=down arrow, up arrow 
+296f=down harpoon, up harpoon 
+27ff=right long zig-zag arrow 
+2971=equal, right arrow below 
+21d4=left and right double arrow 
+2194=left and right arrow 
+2948=left and right arrow with a circle 
+21ad=left and right arrow-wavy 
+21ff=horizontal open arrow 
+22b7=image of 
+21da=left triple arrow 
+219e=
+291f=left arrow-bar, filled square 
+291d=left arrow, filled square 
+21a9=left arrow-hooked 
+21ab=left arrow-looped 
+2939=left arrow, plus 
+2973=left arrow, similar 
+21a2=left arrow-tailed 
+291b=left double arrow-tail 
+2919=left arrow-tail 
+290e=left doubly broken arrow 
+290c=left broken arrow 
+2936=left down curved arrow 
+2967=left harpoon-down over right harpoon-down 
+294b=left-down-right-up harpoon 
+21b2=left down angled arrow 
+297c=left fish tail 
+2962=left harpoon-up over left harpoon-down 
+21bd=l harpoon-down 
+21bc=left harpoon-up 
+296a=left harpoon-up over long dash 
+21c7=two left arrows 
+296b=left harpoon-down below long dash 
+21fd=left open arrow 
+21c6=l arrow over r arrow 
+21cb=l harpoon over r 
+296d=right harpoon-down below long dash 
+21b0=
+294a=left-up-right-down harpoon 
+2966=left harpoon-up over right harpoon-up 
+2905=twoheaded mapsto 
+21a6=
+2af0=mid, circle below  
+22b8=
+2924=northeast arrow-hooked 
+21d7=northeast pointing double arrow 
+2197=northeast pointing arrow 
+2928=northeast and southeast arrows 
+21ce=not left and right double arrow 
+21ae=not left and right arrow 
+21cd=not implied by 
+219a=not left arrow 
+21cf=not implies 
+219b=not right arrow 
+2933=not right arrow-curved 
+219d=not right arrow-wavy 
+2904=not, vert, left and right double arrow  
+2902=not, vert, left double arrow 
+2903=not, vert, right double arrow 
+2923=northwest arrow-hooked 
+21d6=northwest pointing double arrow 
+2196=northwest pointing arrow 
+2927=northwest and northeast arrows 
+21ba=l arrow in circle 
+21bb=r arrow in circle 
+22b6=original of 
+21db=right triple arrow 
+21a0=
+2975=approximate, right arrow above 
+2920=right arrow-bar, filled square 
+2933=right arrow-curved 
+291e=right arrow, filled square 
+21aa=right arrow-hooked 
+21ac=right arrow-looped 
+2945=right arrow, plus 
+2974=right arrow, similar 
+2916=right two-headed arrow with tail 
+21a3=right arrow-tailed 
+219d=right arrow-wavy 
+291c=right double arrow-tail 
+291a=right arrow-tail 
+2910=twoheaded right broken arrow 
+290f=right doubly broken arrow 
+290d=right broken arrow 
+2937=right down curved arrow 
+2969=right harpoon-down over left harpoon-down 
+21b3=right down angled arrow 
+297d=right fish tail 
+2964=right harpoon-up over right harpoon-down 
+21c1=right harpoon-down 
+21c0=right harpoon-up 
+296c=right harpoon-up over long dash 
+21c4=r arrow over l arrow 
+21cc=r harpoon over l 
+21fe=right open arrow 
+21c9=two right arrows 
+21b1=
+2968=right harpoon-up over left harpoon-up 
+2925=southeast arrow-hooken 
+21d8=southeast pointing double arrow 
+2198=southeast pointing arrow 
+2929=southeast and southwest arrows 
+2972=similar, right arrow below 
+2190=short left arrow 
+2192=short right arrow 
+2926=southwest arrow-hooked 
+21d9=southwest pointing double arrow 
+2199=southwest pointing arrow 
+292a=southwest and northwest arrows 
+219f=up two-headed arrow 
+21d1=up double arrow 
+2949=up two-headed arrow above circle 
+21c5=up arrow, down arrow 
+296e=up harpoon, down harpoon 
+297e=up fish tail 
+2963=up harpoon-left, up harpoon-right 
+21bf=up harpoon-left 
+21be=up harpoon-r 
+21c8=two up arrows 
+21d5=up&down double arrow 
+2195=up&down arrow 
+27fa=long left and right double arrow 
+27f7=long left and right arrow 
+27f8=long l double arrow 
+27f5=long left arrow 
+27fc=
+27f9=long right double arrow 
+27f6=long right arrow 
+21dd=right zig-zag arrow 
+223e=most positive 
+223e=most positive, two lines below 
+2a3f=amalgamation or coproduct 
+22bd=bar, vee 
+2306=log and, double bar above 
+2305=logical and, bar above 
+29c5=reverse solidus in square 
+22d2=double intersection 
+2a44=intersection, and 
+2a49=intersection, bar, union 
+2a4b=intersection, intersection, joined 
+2a47=intersection above union 
+2a40=intersection, with dot 
+2229=intersection, serifs 
+2a4d=closed intersection, serifs 
+2a4c=closed union, serifs 
+2a50=closed union, serifs, smash product 
+2210=coproduct operator 
+22d3=double union 
+2a48=union, bar, intersection 
+2a46=union above intersection 
+2a4a=union, union, joined 
+228d=union, with dot 
+2a45=union, or 
+222a=union, serifs 
+22ce=curly logical or 
+22cf=curly logical and 
+2021==double dagger 
+2020==dagger 
+22c4=open diamond 
+22c7=division on times 
+2a71=equal, plus 
+22b9=hermitian conjugate matrix 
+22ba=intercal 
+2a3c=
+2a2d=plus sign in left half circle 
+2a34=multiply sign in left half circle  
+22cb=
+22c9=times sign, left closed 
+2a=asterisk 
+229f=minus sign in box 
+2238=minus sign, dot above 
+2a2a=minus sign, dot below 
+2a43=bar, intersection 
+2a42=bar, union 
+229b=asterisk in circle 
+229a=small circle in circle 
+229d=hyphen in circle 
+2a38=divide in circle 
+2299=middle dot in circle 
+29bc=dot, solidus, dot in circle 
+29bf=filled circle in circle 
+29c1=greater-than in circle 
+29b5=circle with horizontal bar 
+29be=large circle in circle 
+29c0=less-than in circle 
+29b6=vertical bar in circle 
+2296=minus sign in circle 
+29b7=parallel in circle 
+29b9=perpendicular in circle 
+2295=plus sign in circle 
+2298=solidus in circle 
+2a37=multiply sign in double circle 
+2297=multiply sign in circle 
+2a36=multiply sign in circle, circumflex accent 
+233d=circle with vertical bar 
+2a23=plus, circumflex accent above 
+229e=plus sign in box 
+2a22=plus, small circle above 
+2214=plus sign, dot above 
+2a25=plus sign, dot below 
+2a72=plus, equals 
+2a26=plus, similar below 
+2a27=plus, two; Nim-addition 
+220f=product operator 
+29da=reverse most positive, line below 
+2a2e=plus sign in right half circle 
+2a35=multiply sign in right half circle 
+22cc=
+22ca=times sign, right closed 
+22c5=small middle dot 
+22a1=small dot in box 
+2216=reverse solidus 
+2a24=plus, similar above 
+2a33=smash product 
+29c4=solidus in square 
+2293=square intersection 
+2293=square intersection, serifs 
+2294=square union 
+2294=square union, serifs 
+2216=sm reverse solidus 
+22c6=small star, filled 
+2abd=subset, with dot 
+2211=summation operator 
+2abe=superset, with dot 
+22a0=multiply sign in box 
+2a31=multiply sign, bar below 
+2a30=times, dot 
+25ec=dot in triangle 
+2a3a=minus in triangle 
+2a39=plus in triangle 
+29cd=triangle, serifs at bottom 
+2a3b=multiply in triangle 
+228e=plus sign in union 
+22bb=logical or, bar below 
+2a5f=wedge, bar below 
+2240=wreath product 
+22c2=intersection operator 
+25ef=large circle 
+22c3=union operator 
+25bd=big down tri, open 
+2a00=circle dot operator 
+2a01=circle plus operator 
+2a02=circle times operator 
+2a06=square union operator 
+2a04=
+25b3=big up tri, open 
+22c1=logical and operator 
+22c0=logical or operator 
+231e=lower left corner 
+231f=lower right corner 
+2995=double left parenthesis, greater 
+2991=left angle, dot 
+298b=left bracket, equal 
+298f=left bracket, solidus bottom corner 
+298d=left bracket, solidus top corner 
+2308=left ceiling 
+230a=left floor 
+23b0=
+2993=O: left parenthesis, lt 
+2996=double right parenthesis, less 
+2992=right angle, dot 
+298c=right bracket, equal 
+298e=right bracket, solidus bottom corner 
+2990=right bracket, solidus top corner 
+2309=right ceiling 
+230b=right floor 
+23b1=
+2994=C: right paren, gt 
+231c=upper left corner 
+231d=upper right corner 
+2a8a=greater, not approximate 
+2269=greater, not double equals 
+2a88=greater, not equals 
+22e7=greater, not similar 
+2269=gt, vert, not double eq 
+2a89=less, not approximate 
+2268=less, not double equals 
+2a87=less, not equals 
+22e6=less, not similar 
+2268=less, vert, not double eq 
+2249=not approximate 
+2a70=not approximately equal or equal to 
+224b=not approximately identical to 
+2247=not congruent with 
+2a6d=not congruent, dot 
+2262=not identical with 
+2267=not greater, double equals 
+2271=not greater-than-or-equal 
+2a7e=not greater-than-or-equal, slanted 
+22d9=not triple greater than 
+2275=not greater, similar 
+226b=not, vert, much greater than 
+226f=not greater-than 
+226b=not much greater than, variant 
+2266=not less, double equals 
+2270=not less-than-or-equal 
+2a7d=not less-than-or-equal, slant 
+22d8=not triple less than 
+2274=not less, similar 
+226a=not, vert, much less than 
+226e=not less-than 
+22ea=not left triangle 
+22ec=not l tri, eq 
+226a=not much less than, variant 
+2224=
+2226=not parallel 
+2280=not precedes 
+22e0=not curly precedes, eq 
+2aaf=not precedes, equals 
+22eb=not right triangle 
+22ed=not r tri, eq 
+2281=not succeeds 
+22e1=not succeeds, curly eq 
+2ab0=not succeeds, equals 
+2241=not similar 
+2244=not similar, equals 
+2224=
+2226=not short par 
+22e2=not, square subset, equals 
+22e3=not, square superset, equals 
+2284=not subset 
+2ac5=not subset, double eq 
+2288=not subset, equals 
+2285=not superset 
+2ac6=not superset, double eq 
+2289=not superset, equals 
+2279=not greater, less 
+2278=not less, greater 
+224d=not, vert, approximate 
+22af=not double vert, double dash 
+22ae=not double vertical, dash 
+22ad=not vertical, double dash 
+22ac=not vertical, dash 
+2265=not, vert, greater-than-or-equal 
+3e=not, vert, greater-than 
+2264=not, vert, less-than-or-equal 
+26=not, vert, less-than 
+22b4=not, vert, left triangle, equals 
+22b5=not, vert, right triangle, equals 
+223c=not, vert, similar 
+2af3=parallel, similar 
+2ab9=precedes, not approx 
+2ab5=precedes, not double eq 
+22e8=precedes, not similar 
+2aee=reverse /nmid 
+2aba=succeeds, not approx 
+2ab6=succeeds, not double eq 
+22e9=succeeds, not similar 
+2246=similar, not equals 
+233f=solidus, bar through 
+2acb=subset, not double eq 
+228a=subset, not equals 
+2acc=superset, not double eq 
+228b=superset, not equals 
+2282=not subset, var 
+2283=not superset, var 
+2acb=subset not double eq, var 
+228a=subset, not eq, var 
+2acc=super not double eq, var 
+228b=superset, not eq, var 
+2220=angle 
+29a4=angle, equal 
+2221=angle-measured 
+29a8=angle-measured, arrow, up, right 
+29a9=angle-measured, arrow, up, left 
+29aa=angle-measured, arrow, down, right 
+29ab=angle-measured, arrow, down, left 
+29ac=angle-measured, arrow, right, up 
+29ad=angle-measured, arrow, left, up 
+29ae=angle-measured, arrow, right, down 
+29af=angle-measured, arrow, left, down 
+22be=right angle-measured 
+299d=right angle-measured, dot 
+23b5=bottom square bracket 
+23b6=bottom above top square bracket 
+29b0=reversed circle, slash 
+2136=beth, Hebrew 
+29c9=two joined squares 
+2035=reverse prime 
+204f=reverse semi-colon 
+29b2=circle, slash, small circle above 
+29c3=circle, two horizontal stroked to the right 
+29c2=circle, small circle to the right 
+2201=complement sign 
+2138=daleth, Hebrew 
+29b1=circle, slash, bar above 
+2113=cursive small l 
+2205=zero, slash 
+2205=circle, slash 
+2137=gimel, Hebrew 
+2129=inverted iota 
+2111=imaginary   
+131=small i, no dot 
+6a=small j, no dot 
+29b4=circle, slash, left arrow above 
+25fa=lower left triangle 
+22bf=lower right triangle 
+2127=conductance 
+2220=not, vert, angle 
+2204=negated exists 
+24c8=capital S in circle 
+210f=Planck's over 2pi 
+210f=variant Planck's over 2pi 
+29b3=circle, slash, right arrow above 
+29a5=reverse angle, equal 
+211c=real 
+23b4=top square bracket 
+fffd=trapezium 
+25f8=upper left triangle 
+25f9=upper right triangle 
+299a=vertical zig-zag line 
+2118=Weierstrass p 
+2a70=approximately equal or equal to 
+224a=approximate, equals 
+224b=approximately identical to 
+2248=asymptotically equal to 
+2ae7=vert, double bar (over) 
+224c=reverse congruent 
+3f6=such that 
+22c8=
+223d=reverse similar 
+22cd=reverse similar, eq 
+5c=reverse solidus, subset 
+224e=bumpy equals 
+2aae=bump, equals 
+224f=bumpy equals, equals 
+2257=circle, equals 
+2237=two colons 
+2a74=double colon, equals 
+2254=colon, equals 
+2a6d=congruent, dot 
+2acf=subset, closed 
+2ad1=subset, closed, equals 
+2ad0=superset, closed 
+2ad2=superset, closed, equals 
+22de=curly eq, precedes 
+22df=curly eq, succeeds 
+2ae4=double dash, vertical 
+22a3=dash, vertical 
+2a6e=equal, asterisk above 
+2256=circle on equals sign 
+2255=equals, colon 
+2a77=equal with four dots 
+2251=eq, even dots 
+2252=eq, falling dots 
+2a9a=equal-or-greater 
+2a96=equal-or-gtr, slanted 
+2a98=equal-or-greater, slanted, dot inside 
+2a99=equal-or-less 
+2a95=eq-or-less, slanted 
+2a97=equal-or-less, slanted, dot inside 
+225f=equal with questionmark 
+2a78=equivalent, four dots above 
+2253=eq, rising dots 
+2250=equals, single dot above 
+2a73=equal, similar 
+2242=equals, similar 
+22d4=pitchfork 
+2ad9=fork, variant 
+2322=down curve 
+2a86=greater, approximate 
+2267=greater, double equals 
+2a8c=gt, double equals, less 
+22db=greater, equals, less 
+2a7e=gt-or-equal, slanted 
+2aa9=greater than, closed by curve, equal, slanted 
+2a80=greater-than-or-equal, slanted, dot inside 
+2a82=greater-than-or-equal, slanted, dot above 
+2a84=greater-than-or-equal, slanted, dot above left 
+22db=greater, equal, slanted, less 
+2a94=greater, equal, slanted, less, equal, slanted 
+22d9=triple gtr-than 
+2277=greater, less 
+2aa5=greater, less, apart 
+2a92=greater, less, equal 
+2aa4=greater, less, overlapping 
+2273=greater, similar 
+2a8e=greater, similar, equal 
+2a90=greater, similar, less 
+226b=double greater-than sign 
+2aa7=greater than, closed by curve 
+2a7a=greater than, circle inside 
+22d7=greater than, with dot 
+2a7c=greater than, questionmark above 
+2978=greater than, right arrow 
+223b=homothetic 
+2a85=less, approximate 
+2aab=larger than 
+2aad=larger than or equal 
+2aad=larger than or equal, slanted 
+2266=less, double equals 
+2a8b=less, double eq, greater 
+22da=less, eq, greater 
+2a7d=less-than-or-eq, slant 
+2aa8=less than, closed by curve, equal, slanted 
+2a7f=less-than-or-equal, slanted, dot inside 
+2a81=less-than-or-equal, slanted, dot above 
+2a83=less-than-or-equal, slanted, dot above right 
+22da=less, equal, slanted, greater 
+2a93=less, equal, slanted, greater, equal, slanted 
+2276=less, greater 
+2a91=less, greater, equal 
+22d8=triple less-than 
+2272=less, similar 
+2a8d=less, similar, equal 
+2a8f=less, similar, greater 
+226a=double less-than sign 
+2aa6=less than, closed by curve 
+2a79=less than, circle inside 
+22d6=less than, with dot 
+2976=less than, left arrow 
+2a7b=less than, questionmark above 
+22b4=left triangle, eq 
+2a29=minus, comma above 
+223a=minus with four dots, geometric properties 
+2223=
+2adb=
+22a7=
+223e=most positive 
+2abb=double precedes 
+227a=precedes 
+2ab7=precedes, approximate 
+227c=precedes, curly eq 
+2ab3=precedes, double equals 
+2aaf=precedes, equals 
+227e=precedes, similar 
+22b0=element precedes under relation 
+2236=
+22b5=right tri, eq 
+29ce=right triangle above left triangle 
+2abc=double succeeds 
+227b=succeeds 
+2ab8=succeeds, approximate 
+227d=succeeds, curly eq 
+2ab4=succeeds, double equals 
+2ab0=succeeds, equals 
+227f=succeeds, similar 
+2a66=equal, dot below 
+2322=small down curve 
+2a9e=similar, greater 
+2aa0=similar, greater, equal 
+2a9d=similar, less 
+2a9f=similar, less, equal 
+2223=
+2323=up curve 
+2aaa=smaller than 
+2aac=smaller than or equal 
+2aac=smaller than or equal, slanted 
+2225=short parallel 
+228f=square subset 
+2291=square subset, equals 
+2290=square superset 
+2292=square superset, eq 
+2323=small up curve 
+22d0=double subset 
+2ac5=subset, double equals 
+2ac3=subset, equals, dot 
+2ac1=subset, multiply 
+2abf=subset, plus 
+2979=subset, right arrow 
+2ac7=subset, similar 
+2ad5=subset above subset 
+2ad3=subset above superset 
+22d1=double superset 
+2ad8=superset, subset, dash joining them 
+2ac6=superset, double equals 
+2ac4=superset, equals, dot 
+2283=superset, solidus 
+2ad7=superset, subset 
+297b=superset, left arrow 
+2ac2=superset, multiply 
+2ac0=superset, plus 
+2ac8=superset, similar 
+2ad4=superset above subset 
+2ad6=superset above superset 
+2248=thick approximate 
+223c=thick similar 
+2ada=fork with top 
+225c=triangle, equals 
+226c=between 
+2aeb=double vert, bar (under) 
+2ae8=vert, double bar (under) 
+2ae9=double bar, vert over and under 
+22ab=double vert, double dash 
+22a9=double vertical, dash 
+22a8=vertical, double dash 
+22a2=vertical, dash 
+2ae6=vertical, dash (long) 
+22b2=l tri, open, var 
+221d=proportional, variant 
+22b3=r tri, open, var 
+22aa=triple vertical, dash 
+3b1=small alpha, Greek 
+3b2=small beta, Greek 
+3c7=small chi, Greek 
+394=capital Delta, Greek 
+3b4=small delta, Greek 
+3f5=small epsilon, Greek 
+3b5=
+3b7=small eta, Greek 
+393=capital Gamma, Greek 
+3b3=small gamma, Greek 
+3dc=capital digamma 
+3dd=
+3b9=small iota, Greek 
+3ba=small kappa, Greek 
+3f0=
+39b=capital Lambda, Greek 
+3bb=small lambda, Greek 
+3bc=small mu, Greek 
+3bd=small nu, Greek 
+3a9=capital Omega, Greek 
+3c9=small omega, Greek 
+3a6=capital Phi, Greek 
+3d5=small phi, Greek 
+3c6=curly or open phi 
+3a0=capital Pi, Greek 
+3c0=small pi, Greek 
+3d6=
+3a8=capital Psi, Greek 
+3c8=small psi, Greek 
+3c1=small rho, Greek 
+3f1=
+3a3=capital Sigma, Greek 
+3c3=small sigma, Greek 
+3c2=
+3c4=small tau, Greek 
+398=capital Theta, Greek 
+3b8=straight theta, small theta, Greek 
+3d1=curly or open theta 
+3d2=capital Upsilon, Greek 
+3c5=small upsilon, Greek 
+39e=capital Xi, Greek 
+3be=small xi, Greek 
+3b6=small zeta, Greek 
+1d504=A, upper case a 
+1d51e=a, lower case a 
+1d505=B, upper case b 
+1d51f=b, lower case b 
+212d=C, upper case c 
+1d520=c, lower case c 
+1d507=D, upper case d 
+1d521=d, lower case d 
+1d508=E, upper case e 
+1d522=e, lower case e 
+1d509=F, upper case f 
+1d523=f, lower case f 
+1d50a=G, upper case g 
+1d524=g, lower case g 
+210c=H, upper case h 
+1d525=h, lower case h 
+2111=I, upper case i 
+1d526=i, lower case i 
+1d50d=J, upper case j 
+1d527=j, lower case j 
+1d50e=K, upper case k 
+1d528=k, lower case k 
+1d50f=L, upper case l 
+1d529=l, lower case l 
+1d510=M, upper case m 
+1d52a=m, lower case m 
+1d511=N, upper case n 
+1d52b=n, lower case n 
+1d512=O, upper case o 
+1d52c=o, lower case o 
+1d513=P, upper case p 
+1d52d=p, lower case p 
+1d514=Q, upper case q 
+1d52e=q, lower case q 
+211c=R, upper case r 
+1d52f=r, lower case r 
+1d516=S, upper case s 
+1d530=s, lower case s 
+1d517=T, upper case t 
+1d531=t, lower case t 
+1d518=U, upper case u 
+1d532=u, lower case u 
+1d519=V, upper case v 
+1d533=v, lower case v 
+1d51a=W, upper case w 
+1d534=w, lower case w 
+1d51b=X, upper case x 
+1d535=x, lower case x 
+1d51c=Y, upper case y 
+1d536=y, lower case y 
+2128=Z, upper case z  
+1d537=z, lower case z 
+1d538=A, open face A 
+1d539=B, open face B 
+2102=C, open face C 
+1d53b=D, open face D 
+1d53c=E, open face E 
+1d53d=F, open face F 
+1d53e=G, open face G 
+210d=H, open face H 
+1d540=I, open face I 
+1d541=J, open face J 
+1d542=K, open face K  
+1d543=L, open face L  
+1d544=M, open face M  
+2115=N, open face N 
+1d546=O, open face O 
+2119=P, open face P 
+211a=Q, open face Q 
+211d=R, open face R 
+1d54a=S, open face S 
+1d54b=T, open face T 
+1d54c=U, open face U 
+1d54d=V, open face V 
+1d54e=W, open face W 
+1d54f=X, open face X 
+1d550=Y, open face Y 
+2124=Z, open face Z 
+1d49c=A, script letter A 
+1d4b6=a, script letter a 
+212c=B, script letter B 
+1d4b7=b, script letter b 
+1d49e=C, script letter C 
+1d4b8=c, script letter c 
+1d49f=D, script letter D 
+1d4b9=d, script letter d 
+2130=E, script letter E 
+212f=e, script letter e 
+2131=F, script letter F 
+1d4bb=f, script letter f 
+1d4a2=G, script letter G 
+210a=g, script letter g 
+210b=H, script letter H 
+1d4bd=h, script letter h 
+2110=I, script letter I 
+1d4be=i, script letter i 
+1d4a5=J, script letter J 
+1d4bf=j, script letter j 
+1d4a6=K, script letter K 
+1d4c0=k, script letter k 
+2112=L, script letter L 
+1d4c1=l, script letter l 
+2133=M, script letter M 
+1d4c2=m, script letter m 
+1d4a9=N, script letter N 
+1d4c3=n, script letter n 
+1d4aa=O, script letter O 
+2134=o, script letter o 
+1d4ab=P, script letter P 
+1d4c5=p, script letter p 
+1d4ac=Q, script letter Q 
+1d4c6=q, script letter q 
+211b=R, script letter R 
+1d4c7=r, script letter r 
+1d4ae=S, script letter S 
+1d4c8=s, script letter s 
+1d4af=T, script letter T 
+1d4c9=t, script letter t 
+1d4b0=U, script letter U 
+1d4ca=u, script letter u 
+1d4b1=V, script letter V 
+1d4cb=v, script letter v 
+1d4b2=W, script letter W 
+1d4cc=w, script letter w 
+1d4b3=X, script letter X 
+1d4cd=x, script letter x 
+1d4b4=Y, script letter Y 
+1d4ce=y, script letter y 
+1d4b5=Z, script letter Z 
+1d4cf=z, script letter z 
+223f=ac current 
+2135=aleph, Hebrew 
+2a53=double logical and 
+2227=logical and 
+2a55=two logical and 
+2a5c=and, horizontal dash 
+2a58=sloping large and 
+2a5a=and with middle stem 
+221f=right (90 degree) angle 
+2222=spherical 
+212b=Angstrom capital A, ring 
+2248=approximate 
+2a6f=approximate, circumflex accent 
+2233=contour integral, anti-clockwise 
+2a11=anti clock-wise integration 
+2235=because 
+212c=Bernoulli function (script capital B)  
+3d=reverse not equal 
+2261=reverse not equivalent 
+2aed=reverse not with two horizontal strokes 
+2310=reverse not 
+22a5=bottom 
+2229=intersection 
+2230=triple contour integral operator 
+2a10=circulation function 
+2218=composite function (small circle) 
+2245=congruent with 
+222f=double contour integral operator 
+222e=contour integral operator 
+22ef=three dots, centered 
+222a=union or logical sum 
+2232=contour integral, clockwise 
+2231=clockwise integral 
+232d=cylindricity 
+22f2=set membership, long horizontal stroke 
+a8=dieresis or umlaut mark 
+20=four dots above 
+29f6=solidus, bar above 
+22f1=three dots, descending 
+29a6=large downward pointing angle 
+fffd=electrical intersection 
+22d5=parallel, equal; equal or parallel 
+29e3=parallel, slanted, equal; homothetically congruent to 
+2261=identical with 
+29e5=equivalent, equal; congruent and parallel 
+2203=at least one exists 
+25b1=flatness 
+192=function of (italic small f) 
+2200=for all 
+2a0d=finite part integral 
+2265=greater-than-or-equal 
+210b=Hamiltonian (script capital H)  
+21d4=if and only if  
+29dc=infinity sign, incomplete 
+1b5=impedance 
+221e=infinity 
+29dd=tie, infinity 
+222c=double integral operator 
+222b=integral operator 
+2a17=integral, left arrow with hook 
+2208=set membership  
+22f5=set membership, dot above 
+22f9=set membership, two horizontal strokes 
+22f4=set membership, vertical bar on horizontal stroke 
+22f3=large set membership, vertical bar on horizontal stroke 
+2208=set membership, variant 
+2112=Lagrangian (script capital L)  
+300a=left angle bracket, double 
+2329=left angle bracket 
+21d0=is implied by 
+3014=left broken bracket 
+2264=less-than-or-equal 
+3018=left open angular bracket 
+301a=left open bracket 
+2985=left open parenthesis 
+2217=low asterisk 
+2212=B: minus sign 
+2213=minus-or-plus sign 
+2207=del, Hamilton operator 
+2260=not equal 
+2250=not equal, dot 
+2af2=not, horizontal, parallel 
+220b=contains 
+22fc=contains, vertical bar on horizontal stroke 
+22fa=contains, long horizontal stroke 
+220b=contains, variant 
+2aec=not with two horizontal strokes 
+2209=negated set membership 
+22f5=negated set membership, dot above 
+22f9=negated set membership, two horizontal strokes 
+2209=negated set membership, variant 
+22f7=negated set membership, variant 
+22f6=negated set membership, variant 
+220c=negated contains 
+220c=negated contains, variant 
+22fe=contains, variant 
+22fd=contains, variant 
+2afd=not parallel, slanted 
+2202=not partial differential 
+2a14=line integration, not including the pole 
+29de=not, vert, infinity 
+29bb=circle, cross 
+2a54=double logical or 
+2228=logical or 
+2a5d=or, horizontal dash 
+2134=order of (script small o)  
+2a56=two logical or 
+2a57=sloping large or 
+2a5b=or with middle stem 
+2225=parallel 
+2afd=parallel, slanted 
+2202=partial differential 
+2030=per thousand 
+22a5=perpendicular 
+2031=per 10 thousand 
+2133=physics M-matrix (script capital M)  
+2a15=integral around a point operator 
+2033=double prime or second 
+2032=prime or minute 
+232e=all-around profile 
+2312=profile of a line 
+2313=profile of a surface 
+221d=is proportional to 
+2a0c=quadruple integral operator 
+2057=quadruple prime 
+2a16=quaternion integral operator 
+221a=radical 
+300b=right angle bracket, double 
+232a=right angle bracket 
+21d2=implies 
+3015=right broken bracket 
+3019=right open angular bracket 
+301b=right open bracket 
+2986=right open parenthesis 
+2a12=line integration, rectangular path around pole 
+2a13=line integration, semi-circular path around pole 
+223c=similar 
+2a6a=similar, dot 
+2243=similar, equals 
+29e4=similar, parallel, slanted, equal 
+25a1=square 
+25aa=square, filled  
+af=straightness 
+2282=subset or is implied by 
+2286=subset, equals 
+2283=superset or implies 
+2287=superset, equals 
+20=three dots above 
+2234=therefore 
+222d=triple integral operator 
+22a4=top 
+2336=top and bottom 
+2af1=top, circle below 
+2034=triple prime 
+22f0=three dots, ascending 
+29a7=large upward pointing angle 
+299c=right angle, variant 
+225a=logical or, equals 
+2016=double vertical bar 
+2259=corresponds to (wedge, equals) 
+22fb=large contains, vertical bar on horizontal stroke 
+2557=lower left quadrant 
+2556=lower left quadrant 
+2555=lower left quadrant 
+2510=lower left quadrant 
+2554=lower right quadrant 
+2553=lower right quadrant 
+2552=lower right quadrant 
+250c=lower right quadrant 
+2550=horizontal line 
+2500=horizontal line  
+2566=lower left and right quadrants 
+2564=lower left and right quadrants 
+2565=lower left and right quadrants 
+252c=lower left and right quadrants 
+2569=upper left and right quadrants 
+2567=upper left and right quadrants 
+2568=upper left and right quadrants 
+2534=upper left and right quadrants 
+255d=upper left quadrant 
+255c=upper left quadrant 
+255b=upper left quadrant 
+2518=upper left quadrant 
+255a=upper right quadrant 
+2559=upper right quadrant 
+2558=upper right quadrant 
+2514=upper right quadrant 
+2551=vertical line 
+2502=vertical line 
+256c=all four quadrants 
+256b=all four quadrants 
+256a=all four quadrants 
+253c=all four quadrants 
+2563=upper and lower left quadrants 
+2562=upper and lower left quadrants 
+2561=upper and lower left quadrants 
+2524=upper and lower left quadrants 
+2560=upper and lower right quadrants 
+255f=upper and lower right quadrants 
+255e=upper and lower right quadrants 
+251c=upper and lower right quadrants 
+410==capital A, Cyrillic 
+430==small a, Cyrillic 
+411==capital BE, Cyrillic 
+431==small be, Cyrillic 
+427==capital CHE, Cyrillic 
+447==small che, Cyrillic 
+414==capital DE, Cyrillic 
+434==small de, Cyrillic 
+42d==capital E, Cyrillic 
+44d==small e, Cyrillic 
+424==capital EF, Cyrillic 
+444==small ef, Cyrillic 
+413==capital GHE, Cyrillic 
+433==small ghe, Cyrillic 
+42a==capital HARD sign, Cyrillic 
+44a==small hard sign, Cyrillic 
+418==capital I, Cyrillic 
+438==small i, Cyrillic 
+415==capital IE, Cyrillic 
+435==small ie, Cyrillic 
+401==capital IO, Russian 
+451==small io, Russian 
+419==capital short I, Cyrillic 
+439==small short i, Cyrillic 
+41a==capital KA, Cyrillic 
+43a==small ka, Cyrillic 
+425==capital HA, Cyrillic 
+445==small ha, Cyrillic 
+41b==capital EL, Cyrillic 
+43b==small el, Cyrillic 
+41c==capital EM, Cyrillic 
+43c==small em, Cyrillic 
+41d==capital EN, Cyrillic 
+43d==small en, Cyrillic 
+2116==numero sign 
+41e==capital O, Cyrillic 
+43e==small o, Cyrillic 
+41f==capital PE, Cyrillic 
+43f==small pe, Cyrillic 
+420==capital ER, Cyrillic 
+440==small er, Cyrillic 
+421==capital ES, Cyrillic 
+441==small es, Cyrillic 
+429==capital SHCHA, Cyrillic 
+449==small shcha, Cyrillic 
+428==capital SHA, Cyrillic 
+448==small sha, Cyrillic 
+42c==capital SOFT sign, Cyrillic 
+44c==small soft sign, Cyrillic 
+422==capital TE, Cyrillic 
+442==small te, Cyrillic 
+426==capital TSE, Cyrillic 
+446==small tse, Cyrillic 
+423==capital U, Cyrillic 
+443==small u, Cyrillic 
+412==capital VE, Cyrillic 
+432==small ve, Cyrillic 
+42f==capital YA, Cyrillic 
+44f==small ya, Cyrillic 
+42b==capital YERU, Cyrillic 
+44b==small yeru, Cyrillic 
+42e==capital YU, Cyrillic 
+44e==small yu, Cyrillic 
+417==capital ZE, Cyrillic 
+437==small ze, Cyrillic 
+416==capital ZHE, Cyrillic 
+436==small zhe, Cyrillic 
+402==capital DJE, Serbian 
+452==small dje, Serbian 
+405==capital DSE, Macedonian 
+455==small dse, Macedonian 
+40f==capital dze, Serbian 
+45f==small dze, Serbian 
+403==capital GJE Macedonian 
+453==small gje, Macedonian 
+406==capital I, Ukrainian 
+456==small i, Ukrainian 
+408==capital JE, Serbian 
+458==small je, Serbian 
+404==capital JE, Ukrainian 
+454==small je, Ukrainian 
+40c==capital KJE, Macedonian 
+45c==small kje Macedonian 
+409==capital LJE, Serbian 
+459==small lje, Serbian 
+40a==capital NJE, Serbian 
+45a==small nje, Serbian 
+40b==capital TSHE, Serbian 
+45b==small tshe, Serbian 
+40e==capital U, Byelorussian 
+45e==small u, Byelorussian 
+407==capital YI, Ukrainian 
+457==small yi, Ukrainian 
+b4==acute accent 
+2d8==breve 
+2c7==caron 
+b8==cedilla 
+2c6=circumflex accent 
+2dd==double acute accent 
+a8==dieresis 
+2d9==dot above 
+60==grave accent 
+af==macron 
+2db==ogonek 
+2da==ring 
+2dc==tilde 
+a8==umlaut mark 
+c1==capital A, acute accent 
+e1==small a, acute accent 
+c2==capital A, circumflex accent 
+e2==small a, circumflex accent 
+c6==capital AE diphthong (ligature) 
+e6==small ae diphthong (ligature) 
+c0==capital A, grave accent 
+e0==small a, grave accent 
+c5==capital A, ring 
+e5==small a, ring 
+c3==capital A, tilde 
+e3==small a, tilde 
+c4==capital A, dieresis or umlaut mark 
+e4==small a, dieresis or umlaut mark 
+c7==capital C, cedilla 
+e7==small c, cedilla 
+c9==capital E, acute accent 
+e9==small e, acute accent 
+ca==capital E, circumflex accent 
+ea==small e, circumflex accent 
+c8==capital E, grave accent 
+e8==small e, grave accent 
+d0==capital Eth, Icelandic 
+f0==small eth, Icelandic 
+cb==capital E, dieresis or umlaut mark 
+eb==small e, dieresis or umlaut mark 
+cd==capital I, acute accent 
+ed==small i, acute accent 
+ce==capital I, circumflex accent 
+ee==small i, circumflex accent 
+cc==capital I, grave accent 
+ec==small i, grave accent 
+cf==capital I, dieresis or umlaut mark 
+ef==small i, dieresis or umlaut mark 
+d1==capital N, tilde 
+f1==small n, tilde 
+d3==capital O, acute accent 
+f3==small o, acute accent 
+d4==capital O, circumflex accent 
+f4==small o, circumflex accent 
+d2==capital O, grave accent 
+f2==small o, grave accent 
+d8==capital O, slash 
+f8=latin small letter o with stroke 
+d5==capital O, tilde 
+f5==small o, tilde 
+d6==capital O, dieresis or umlaut mark 
+f6==small o, dieresis or umlaut mark 
+df==small sharp s, German (sz ligature) 
+de==capital THORN, Icelandic 
+fe==small thorn, Icelandic 
+da==capital U, acute accent 
+fa==small u, acute accent 
+db==capital U, circumflex accent 
+fb==small u, circumflex accent 
+d9==capital U, grave accent 
+f9==small u, grave accent 
+dc==capital U, dieresis or umlaut mark 
+fc==small u, dieresis or umlaut mark 
+dd==capital Y, acute accent 
+fd==small y, acute accent 
+ff==small y, dieresis or umlaut mark 
+102==capital A, breve 
+103==small a, breve 
+100==capital A, macron 
+101==small a, macron 
+104==capital A, ogonek 
+105==small a, ogonek 
+106==capital C, acute accent 
+107==small c, acute accent 
+10c==capital C, caron 
+10d==small c, caron 
+108==capital C, circumflex accent 
+109==small c, circumflex accent 
+10a==capital C, dot above 
+10b==small c, dot above 
+10e==capital D, caron 
+10f==small d, caron 
+110==capital D, stroke 
+111==small d, stroke 
+11a==capital E, caron 
+11b==small e, caron 
+116==capital E, dot above 
+117==small e, dot above 
+112==capital E, macron 
+113==small e, macron 
+14a==capital ENG, Lapp 
+14b==small eng, Lapp 
+118==capital E, ogonek 
+119==small e, ogonek 
+1f5==small g, acute accent 
+11e==capital G, breve 
+11f==small g, breve 
+122==capital G, cedilla 
+11c==capital G, circumflex accent 
+11d==small g, circumflex accent 
+120==capital G, dot above 
+121==small g, dot above 
+124==capital H, circumflex accent 
+125==small h, circumflex accent 
+126==capital H, stroke 
+127==small h, stroke 
+130==capital I, dot above 
+132==capital IJ ligature 
+133==small ij ligature 
+12a==capital I, macron 
+12b==small i, macron 
+131==small i without dot 
+12e==capital I, ogonek 
+12f==small i, ogonek 
+128==capital I, tilde 
+129==small i, tilde 
+134==capital J, circumflex accent 
+135==small j, circumflex accent 
+136==capital K, cedilla 
+137==small k, cedilla 
+138==small k, Greenlandic 
+139==capital L, acute accent 
+13a==small l, acute accent 
+13d==capital L, caron 
+13e==small l, caron 
+13b==capital L, cedilla 
+13c==small l, cedilla 
+13f==capital L, middle dot 
+140==small l, middle dot 
+141==capital L, stroke 
+142==small l, stroke 
+143==capital N, acute accent 
+144==small n, acute accent 
+149==small n, apostrophe 
+147==capital N, caron 
+148==small n, caron 
+145==capital N, cedilla 
+146==small n, cedilla 
+150==capital O, double acute accent 
+151==small o, double acute accent 
+152==capital OE ligature 
+153==small oe ligature 
+14c==capital O, macron 
+14d==small o, macron 
+154==capital R, acute accent 
+155==small r, acute accent 
+158==capital R, caron 
+159==small r, caron 
+156==capital R, cedilla 
+157==small r, cedilla 
+15a==capital S, acute accent 
+15b==small s, acute accent 
+160==capital S, caron 
+161==small s, caron 
+15e==capital S, cedilla 
+15f==small s, cedilla 
+15c==capital S, circumflex accent 
+15d==small s, circumflex accent 
+164==capital T, caron 
+165==small t, caron 
+162==capital T, cedilla 
+163==small t, cedilla 
+166==capital T, stroke 
+167==small t, stroke 
+16c==capital U, breve 
+16d==small u, breve 
+170==capital U, double acute accent 
+171==small u, double acute accent 
+16a==capital U, macron 
+16b==small u, macron 
+172==capital U, ogonek 
+173==small u, ogonek 
+16e==capital U, ring 
+16f==small u, ring 
+168==capital U, tilde 
+169==small u, tilde 
+174==capital W, circumflex accent 
+175==small w, circumflex accent 
+176==capital Y, circumflex accent 
+177==small y, circumflex accent 
+178==capital Y, dieresis or umlaut mark 
+179==capital Z, acute accent 
+17a==small z, acute accent 
+17d==capital Z, caron 
+17e==small z, caron 
+17b==capital Z, dot above 
+17c==small z, dot above 
+26==ampersand 
+27==apostrophe 
+2a==asterisk 
+a6==broken (vertical) bar 
+5c=reverse solidus 
+a2==cent sign 
+3a=
+2c=P: =comma 
+40==commercial at 
+a9==copyright sign 
+a4==general currency sign 
+2193==downward arrow 
+b0==degree sign 
+f7==divide sign 
+24==dollar sign 
+3d==equals sign R: 
+21==exclamation mark 
+bd==fraction one-half 
+bc==fraction one-quarter 
+215b==fraction one-eighth 
+be==fraction three-quarters 
+215c==fraction three-eighths 
+215d==fraction five-eighths 
+215e==fraction seven-eighths 
+3e==greater-than sign R: 
+bd==fraction one-half 
+2015==horizontal bar 
+2010==hyphen 
+a1==inverted exclamation mark 
+bf==inverted question mark 
+ab==angle quotation mark, left 
+2190==leftward arrow 
+7b==left curly bracket 
+201c==double quotation mark, left 
+5f==low line 
+28=O: =left parenthesis 
+5b==left square bracket 
+2018==single quotation mark, left 
+26==less-than sign R: 
+b5==micro sign 
+b7==middle dot 
+a0==no break (required) space 
+ac=not sign 
+23==number sign 
+2126==ohm sign 
+aa==ordinal indicator, feminine 
+ba==ordinal indicator, masculine 
+b6==pilcrow (paragraph sign) 
+25==percent sign 
+2e==full stop, period 
+2b==plus sign B: 
+b1==plus-or-minus sign 
+a3==pound sign 
+3f==question mark 
+22==quotation mark 
+bb==angle quotation mark, right 
+2192==rightward arrow 
+7d==right curly bracket 
+201d==double quotation mark, right 
+ae=registered sign 
+29=C: =right parenthesis 
+5d==right square bracket 
+2019==single quotation mark, right 
+a7==section sign 
+3b==semicolon P: 
+ad==soft hyphen 
+2f==solidus 
+266a==music note (sung text sign) 
+b9==superscript one 
+b2==superscript two 
+b3==superscript three 
+d7==multiply sign 
+2122==trade mark sign 
+2191==upward arrow 
+7c=vertical bar 
+a5=yen sign 
+2423==significant blank symbol 
+2592==50% shaded block 
+2591==25% shaded block 
+2593==75% shaded block 
+2588==full block 
+2022==round bullet, filled 
+2041==caret (insertion mark) 
+2713=tick, check mark 
+25cb==circle, open 
+2663=club suit symbol  
+2117==sound recording copyright sign 
+2717==ballot cross 
+2010==hyphen (true graphic) 
+2666=diamond suit symbol  
+230d=downward left crop mark  
+230c=downward right crop mark  
+25bf=down triangle, open 
+25be=down tri, filled 
+2003==em space 
+2004==1/3-em space 
+2005==1/4-em space 
+2002==en space (1/2-em) 
+2640==female symbol 
+fb03=small ffi ligature 
+fb00=small ff ligature 
+fb04=small ffl ligature 
+fb01=small fi ligature 
+266d=musical flat 
+fb02=small fl ligature 
+2153==fraction one-third 
+2155==fraction one-fifth 
+2159==fraction one-sixth 
+2154==fraction two-thirds 
+2156==fraction two-fifths 
+2157==fraction three-fifths 
+2158==fraction four-fifths 
+215a==fraction five-sixths 
+200a==hair space 
+2665=heart suit symbol 
+2026==ellipsis (horizontal) 
+2043=rectangle, filled (hyphen bullet) 
+2105==in-care-of symbol 
+201e==rising double quote, left (low) 
+2584==lower half block 
+25ca=lozenge or total mark 
+29eb=lozenge, filled 
+201a==rising single quote, left (low) 
+25c3=l triangle, open 
+25c2==l tri, filled 
+2642==male symbol 
+2720=maltese cross 
+25ae==histogram marker 
+2014==em dash  
+2026=em leader 
+266e=music natural 
+2013==en dash 
+2025==double baseline dot (en leader) 
+2007==digit space (width of a number) 
+260e==telephone symbol  
+2008==punctuation space (width of comma) 
+201d=rising double quote, right (high) 
+25ad==rectangle, open 
+2019=rising single quote, right (high) 
+25b9=r triangle, open 
+25b8==r tri, filled 
+211e=pharmaceutical prescription (Rx) 
+2736=sextile (6-pointed star) 
+266f=musical sharp 
+2660=spades suit symbol  
+25a1==square, open 
+25aa=sq bullet, filled 
+2606==star, open 
+2605=star, filled  
+2316=register mark or target 
+2315==telephone recorder symbol 
+2009==thin space (1/6-em) 
+2580==upper half block 
+230f=upward left crop mark  
+230e=upward right crop mark  
+25b5=up triangle, open 
+25b4=up tri, filled 
+22ee=vertical ellipsis 
+2061=character showing function application in presentation tagging 
+1d552= 
+224d=Old ISOAMSR asymp (for HTML compatibility) 
+1d553= 
+1d554= 
+2a2f=cross or vector product 
+2145=D for use in differentials, e.g., within integrals 
+2146=d for use in differentials, e.g., within integrals 
+1d555= 
+2913=down arrow to bar 
+20=breve, inverted (non-spacing) 
+2950=left-down-right-down harpoon 
+295e=left-down harpoon from bar 
+2956=left-down harpoon to bar 
+295f=right-down harpoon from bar 
+2957=right-down harpoon to bar 
+2147=e use for the exponential base of the natural logarithms 
+25fb=empty small square 
+25ab=empty small square 
+1d556= 
+2a75=two consecutive equal signs 
+25fc=filled small square 
+25aa=filled very small square 
+1d557= 
+1d558= 
+2aa2=alias for GT 
+5e=circumflex accent 
+1d559= 
+2500=short horizontal line  
+2063=short form of  &InvisibleComma; 
+2148=i for use as a square root of -1 
+1d55a= 
+2062=marks multiplication when it is understood without a mark 
+1d55b= 
+1d55c= 
+21e4=leftwards arrow to bar 
+2961=down-left harpoon from bar 
+2959=down-left harpoon to bar 
+294e=left-up-right-up harpoon 
+295a=left-up harpoon from bar 
+29cf=left triangle, vertical bar 
+2951=up-left-down-left harpoon 
+2960=up-left harpoon from bar 
+2958=up-left harpoon to bar 
+2952=left-up harpoon to bar 
+2aa1=double less-than sign 
+1d55d= 
+21a7=downwards arrow from bar 
+21a4=leftwards arrow from bar 
+21a5=upwards arrow from bar 
+205f=space of width 4/18 em 
+1d55e= 
+224e=not bumpy equals 
+224f=not bumpy single equals 
+2242=not equal or similar 
+a=force a line break; line feed 
+2060=never break line here 
+1d55f= 
+226d=alias for &nasymp; 
+224f=not bumpy single equals 
+29cf=not left triangle, vertical bar 
+2aa2=not double greater-than sign 
+2aa1=not double less-than sign 
+29d0=not vertical bar, right triangle 
+228f=square not subset 
+2290=negated set-like partial order operator 
+227f=not succeeds or similar 
+1d560= 
+af=over bar 
+fe37=over brace  
+23b4=over bracket 
+fe35=over parenthesis 
+210e=the ring (skew field) of quaternions 
+1d561= 
+220f=product operator 
+1d562= 
+21e5=leftwards arrow to bar 
+295d=down-right harpoon from bar 
+2955=down-right harpoon to bar 
+295b=right-up harpoon from bar 
+29d0=vertical bar, right triangle 
+294f=up-right-down-right harpoon 
+295c=up-right harpoon from bar 
+2954=up-right harpoon to bar 
+2953=up-right harpoon to bar 
+1d563= 
+2970=round implies 
+29f4=rule-delayed (colon right arrow) 
+1d564= 
+9=tabulator stop; horizontal tabulation 
+2009=space of width 5/18 em 
+1d565= 
+20=combining low line 
+fe38=under brace  
+23b5=under bracket 
+fe36=under parenthesis 
+1d566= 
+2912=up arrow to bar 
+3a5=ISOGRK1 Ugr, HTML4 Upsilon 
+7c=vertical bar 
+2758=vertical separating operator 
+1d567= 
+1d568= 
+1d569= 
+1d56a= 
+200b=zero width space 
+1d56b= 
+2220=angle 
+2061=character showing function application in presentation tagging 
+2248=approximate 
+224a=approximate, equals 
+2254=assignment operator, alias ISOAMSR colone 
+224c=reverse congruent 
+3f6=such that 
+2035=reverse prime 
+223d=reverse similar 
+22cd=reverse similar, eq 
+2216=reverse solidus 
+2305=logical and, bar above 
+2235=because 
+2235=because 
+212c=Bernoulli function (script capital B)  
+226c=between 
+22c2=intersection operator 
+25ef=large circle 
+22c3=union operator 
+2a00=circle dot operator 
+2a01=circle plus operator 
+2a02=circle times operator 
+2a06=square union operator 
+2605=star, filled  
+25bd=big down tri, open 
+25b3=big up tri, open 
+2a04=
+22c1=logical and operator 
+22c0=logical or operator 
+290d=right broken arrow 
+29eb=lozenge, filled 
+25aa=square, filled  
+25b4=up tri, filled 
+25be=down tri, filled 
+25c2==l tri, filled 
+25b8==r tri, filled 
+22a5=bottom 
+229f=minus sign in box 
+229e=plus sign in box 
+22a0=multiply sign in box 
+2d8==breve 
+2022==round bullet, filled 
+224e=bumpy equals 
+224f=bumpy equals, equals 
+2145=D for use in differentials, e.g., within integrals 
+212d=the non-associative ring of octonions or Cayley numbers 
+b8==cedilla 
+b7==middle dot 
+b7==middle dot 
+2713=tick, check mark 
+2257=circle, equals 
+21ba=l arrow in circle 
+21bb=r arrow in circle 
+229b=asterisk in circle 
+229a=small circle in circle 
+229d=hyphen in circle 
+2299=middle dot in circle 
+ae=registered sign 
+24c8=capital S in circle 
+2296=minus sign in circle 
+2295=plus sign in circle 
+2297=multiply sign in circle 
+2232=contour integral, clockwise 
+201d==double quotation mark, right 
+2019==single quotation mark, right 
+2663=club suit symbol  
+2254=colon, equals 
+2201=complement sign 
+2102=the field of complex numbers 
+2261=identical with 
+222e=contour integral operator 
+2210=coproduct operator 
+2233=contour integral, anti-clockwise 
+224d=alias asympeq 
+22de=curly eq, precedes 
+22df=curly eq, succeeds 
+22ce=curly logical or 
+22cf=curly logical and 
+21b6=left curved arrow 
+21b7=right curved arrow 
+290f=right doubly broken arrow 
+2021==double dagger 
+2a77=equal with four dots 
+2207=del, Hamilton operator 
+b4==acute accent 
+2d9==dot above 
+2dd==double acute accent 
+60==grave accent 
+2dc==tilde 
+22c4=open diamond 
+22c4=open diamond 
+2666=diamond suit symbol  
+2146=d for use in differentials, e.g., within integrals 
+3dd=
+f7==divide sign 
+22c7=division on times 
+2250=equals, single dot above 
+2251=eq, even dots 
+2250=equals, single dot above 
+2238=minus sign, dot above 
+2214=plus sign, dot above 
+22a1=small dot in box 
+2306=log and, double bar above 
+222f=double contour integral operator 
+a8==dieresis 
+21d3=down double arrow 
+21d0=is implied by 
+21d4=left and right double arrow 
+2ae4=double dash, vertical 
+27f8=long l double arrow 
+27fa=long left and right double arrow 
+27f9=long right double arrow 
+21d2=implies 
+22a8=vertical, double dash 
+21d1=up double arrow 
+21d5=up&down double arrow 
+2225=parallel 
+2193==downward arrow 
+21d3=down double arrow 
+2193==downward arrow 
+21f5=down arrow, up arrow 
+21ca=two down arrows 
+21c3=down harpoon-left 
+21c2=down harpoon-right 
+21bd=l harpoon-down 
+21c1=right harpoon-down 
+22a4=top 
+21a7=downwards arrow from bar 
+2910=twoheaded right broken arrow 
+2208=set membership, variant 
+2205=zero, slash 
+2256=circle on equals sign 
+2255=equals, colon 
+2242=equals, similar 
+2a96=equal-or-gtr, slanted 
+2a95=eq-or-less, slanted 
+2242=equals, similar 
+21cc=r harpoon over l 
+2203=at least one exists 
+2130=expectation (operator) 
+2147=e use for the exponential base of the natural logarithms 
+2147=base of the Napierian logarithms 
+2252=eq, falling dots 
+2200=for all 
+2131=Fourier transform 
+2265=greater-than-or-equal 
+2267=greater, double equals 
+2a7e=gt-or-equal, slanted 
+226b=double greater-than sign 
+22d9=triple gtr-than 
+2a8a=greater, not approximate 
+2a88=greater, not equals 
+2269=greater, not double equals 
+2265=greater-than-or-equal 
+22db=greater, equals, less 
+2267=greater, double equals 
+2277=greater, less 
+2a7e=gt-or-equal, slanted 
+2273=greater, similar 
+2a86=greater, approximate 
+22d7=greater than, with dot 
+22db=greater, equals, less 
+2a8c=gt, double equals, less 
+2277=greater, less 
+2273=greater, similar 
+2269=gt, vert, not double eq 
+2c7==caron 
+210f=alias ISOAMSO plank 
+2665=heart suit symbol 
+210b=Hilbert space 
+2925=southeast arrow-hooken 
+2926=southwest arrow-hooked 
+21a9=left arrow-hooked 
+21aa=right arrow-hooked 
+210f=variant Planck's over 2pi 
+224e=bumpy equals 
+224f=bumpy equals, equals 
+2a0c=quadruple integral operator 
+222d=triple integral operator 
+2111=imaginary   
+2148=i for use as a square root of -1 
+2110=the geometric imaginary line 
+2111=imaginary   
+21d2=implies 
+2208=set membership  
+2124=the ring of integers 
+222b=integral operator 
+22ba=intercal 
+22c2=intersection operator 
+2a3c=
+2063=used as a separator, e.g., in indices 
+2062=marks multiplication when it is understood without a mark 
+2329=left angle bracket 
+2112=Laplace transform 
+7b==left curly bracket 
+5b==left square bracket 
+2329=left angle bracket 
+2190==leftward arrow 
+21d0=is implied by 
+2190==leftward arrow 
+21e4=leftwards arrow to bar 
+21c6=l arrow over r arrow 
+21a2=left arrow-tailed 
+2308=left ceiling 
+301a=left double bracket delimiter 
+21c3=down harpoon-left 
+230a=left floor 
+21bd=l harpoon-down 
+21bc=left harpoon-up 
+21c7=two left arrows 
+2194=left and right arrow 
+21d4=left and right double arrow 
+2194=left and right arrow 
+21c6=l arrow over r arrow 
+21cb=l harpoon over r 
+21ad=left and right arrow-wavy 
+22a3=dash, vertical 
+21a4=leftwards arrow from bar 
+22cb=
+22b2=l tri, open, var 
+22b4=left triangle, eq 
+21bf=up harpoon-left 
+21bc=left harpoon-up 
+2264=less-than-or-equal 
+2266=less, double equals 
+2a7d=less-than-or-eq, slant 
+2a85=less, approximate 
+22d6=less than, with dot 
+22da=less, eq, greater 
+2a8b=less, double eq, greater 
+22da=less, eq, greater 
+2266=less, double equals 
+2276=less, greater 
+2276=less, greater 
+2272=less, similar 
+2a7d=less-than-or-eq, slant 
+2272=less, similar 
+226a=double less-than sign 
+231e=lower left corner 
+21da=left triple arrow 
+23b0=
+2a89=less, not approximate 
+2a87=less, not equals 
+2268=less, not double equals 
+27f5=long left arrow 
+27f8=long l double arrow 
+27f5=long left arrow 
+27f7=long left and right arrow 
+27fa=long left and right double arrow 
+27f7=long left and right arrow 
+27fc=
+27f6=long right arrow 
+27f9=long right double arrow 
+27f6=long right arrow 
+21ab=left arrow-looped 
+21ac=right arrow-looped 
+2199=southwest pointing arrow 
+2198=southeast pointing arrow 
+25ca=lozenge or total mark 
+231f=lower right corner 
+21b0=
+2268=less, vert, not double eq 
+2720=maltese cross 
+21a6=
+2221=angle-measured 
+2133=Mellin transform 
+2213=minus-or-plus sign 
+2213=minus-or-plus sign 
+22b8=
+2249=not approximate 
+266e=music natural 
+2115=the semi-ring of natural numbers 
+2197=northeast pointing arrow 
+200b=space of width -4/18 em 
+200b=space of width -5/18 em 
+200b=space of width -3/18 em 
+200b=space of width -1/18 em 
+226b=double greater-than sign 
+226a=double less-than sign 
+2204=negated exists 
+2271=not greater-than-or-equal 
+2267=not greater, double equals 
+2a7e=not greater-than-or-equal, slanted 
+226f=not greater-than 
+21cd=not implied by 
+219a=not left arrow 
+21ce=not left and right double arrow 
+21ae=not left and right arrow 
+2270=not less-than-or-equal 
+2266=not less, double equals 
+2a7d=not less-than-or-equal, slant 
+226e=not less-than 
+a0==no break (required) space 
+2262=not identical with 
+2226=not parallel 
+2209=negated set membership 
+2260=not equal 
+2242=not equal or similar 
+2204=negated exists 
+226f=not greater-than 
+2271=not greater-than-or-equal 
+2266=not less, double equals 
+226b=not much greater than, variant 
+2279=alias ISOAMSN ntvgl 
+2a7e=not greater-than-or-equal, slanted 
+2275=not greater, similar 
+224e=not bumpy equals 
+22ea=not left triangle 
+22ec=not l tri, eq 
+226e=not less-than 
+2270=not less-than-or-equal 
+2278=alias ISOAMSN ntvlg 
+226a=not much less than, variant 
+2a7d=not less-than-or-equal, slant 
+2274=not less, similar 
+2280=not precedes 
+2aaf=not precedes, equals 
+22e0=not curly precedes, eq 
+220c=negated contains, variant 
+22eb=not right triangle 
+22ed=not r tri, eq 
+22e2=not, square subset, equals 
+22e3=not, square superset, equals 
+2282=not subset, var 
+2288=not subset, equals 
+2281=not succeeds 
+2ab0=not succeeds, equals 
+22e1=not succeeds, curly eq 
+2283=not superset, var 
+2289=not superset, equals 
+2241=not similar 
+2244=not similar, equals 
+2247=not congruent with 
+2249=not approximate 
+2224=
+2226=not parallel 
+2280=not precedes 
+2aaf=not precedes, equals 
+21cf=not implies 
+219b=not right arrow 
+2224=
+2226=not short par 
+2244=not similar, equals 
+2282=not subset, var 
+2288=not subset, equals 
+2ac5=not subset, double eq 
+2281=not succeeds 
+2ab0=not succeeds, equals 
+2283=not superset, var 
+2289=not superset, equals 
+2ac6=not superset, double eq 
+22ea=not left triangle 
+22ec=not l tri, eq 
+22eb=not right triangle 
+22ed=not r tri, eq 
+2196=northwest pointing arrow 
+222e=contour integral operator 
+201c==double quotation mark, left 
+2018==single quotation mark, left 
+2134=order of (script small o)  
+2225=parallel 
+2202=partial differential 
+22d4=pitchfork 
+b1==plus-or-minus sign 
+b1==plus-or-minus sign 
+210c=the Poincare upper half-plane 
+227a=precedes 
+2ab7=precedes, approximate 
+227c=precedes, curly eq 
+227a=precedes 
+2aaf=precedes, equals 
+227c=precedes, curly eq 
+227e=precedes, similar 
+2aaf=precedes, equals 
+2ab9=precedes, not approx 
+2ab5=precedes, not double eq 
+22e8=precedes, not similar 
+227e=precedes, similar 
+2119=the prime natural numbers 
+2237=two colons 
+221d=is proportional to 
+221d=is proportional to 
+210d=the ring (skew field) of quaternions 
+225f=equal with questionmark 
+232a=right angle bracket 
+211a=the field of rational numbers 
+7d==right curly bracket 
+5d==right square bracket 
+211c=real 
+211b=the geometric real line 
+211c=real 
+211d=the field of real numbers 
+220b=contains, variant 
+21cb=l harpoon over r 
+296f=down harpoon, up harpoon 
+232a=right angle bracket 
+2192==rightward arrow 
+21d2=implies 
+2192==rightward arrow 
+21e5=leftwards arrow to bar 
+21c4=r arrow over l arrow 
+21a3=right arrow-tailed 
+2309=right ceiling 
+301b=right double bracket delimiter 
+21c2=down harpoon-right 
+230b=right floor 
+21c1=right harpoon-down 
+21c0=right harpoon-up 
+21c4=r arrow over l arrow 
+21cc=r harpoon over l 
+21c9=two right arrows 
+219d=right arrow-wavy 
+22a2=vertical, dash 
+21a6=
+22cc=
+22b3=r tri, open, var 
+22b5=right tri, eq 
+21be=up harpoon-r 
+21c0=right harpoon-up 
+2253=eq, rising dots 
+23b1=
+21db=right triple arrow 
+21b1=
+2198=southeast pointing arrow 
+2216=reverse solidus 
+2193=short down arrow 
+2190=short left arrow 
+2223=
+2225=short parallel 
+2192=short right arrow 
+2191=short up arrow  
+2243=similar, equals 
+2218=composite function (small circle) 
+2216=sm reverse solidus 
+2660=spades suit symbol  
+221a=radical 
+228f=square subset 
+2291=square subset, equals 
+2290=square superset 
+2292=square superset, eq 
+25a1=square 
+2293=square intersection 
+228f=square subset 
+2291=square subset, equals 
+2290=square superset 
+2292=square superset, eq 
+2294=square union 
+22c6=small star, filled 
+3f5=small epsilon, Greek 
+3d5=small phi, Greek 
+22d0=double subset 
+2282=subset or is implied by 
+2286=subset, equals 
+2ac5=subset, double equals 
+2286=subset, equals 
+228a=subset, not equals 
+2acb=subset, not double eq 
+227b=succeeds 
+2ab8=succeeds, approximate 
+227d=succeeds, curly eq 
+227b=succeeds 
+2ab0=succeeds, equals 
+227d=succeeds, curly eq 
+227f=succeeds, similar 
+2ab0=succeeds, equals 
+2aba=succeeds, not approx 
+2ab6=succeeds, not double eq 
+22e9=succeeds, not similar 
+227f=succeeds, similar 
+220b=contains 
+2211=summation operator 
+2283=superset or implies 
+2287=superset, equals 
+22d1=double superset 
+2283=superset or implies 
+2287=superset, equals 
+2ac6=superset, double equals 
+228b=superset, not equals 
+2acc=superset, not double eq 
+2199=southwest pointing arrow 
+2234=therefore 
+2234=therefore 
+2248=thick approximate 
+223c=thick similar 
+2009=space of width 3/18 em alias ISOPUB thinsp 
+223c=similar 
+2243=similar, equals 
+2245=congruent with 
+2248=approximate 
+2928=northeast and southeast arrows 
+2929=southeast and southwest arrows 
+25b5=up triangle, open 
+25bf=down triangle, open 
+25c3=l triangle, open 
+22b4=left triangle, eq 
+225c=triangle, equals 
+25b9=r triangle, open 
+22b5=right tri, eq 
+20=three dots above 
+219e=
+21a0=
+231c=upper left corner 
+22c3=union operator 
+228e=plus sign in union 
+2191==upward arrow 
+21d1=up double arrow 
+2191==upward arrow 
+21c5=up arrow, down arrow 
+2195=up&down arrow 
+21d5=up&down double arrow 
+2195=up&down arrow 
+296e=up harpoon, down harpoon 
+21bf=up harpoon-left 
+21be=up harpoon-r 
+2196=northwest pointing arrow 
+2197=northeast pointing arrow 
+3c5=small upsilon, Greek 
+22a5=perpendicular 
+21a5=Alias mapstoup 
+21c8=two up arrows 
+231d=upper right corner 
+3b5=
+3f0=
+2205=circle, slash 
+3c6=curly or open phi 
+3d6=
+221d=proportional, variant 
+3f1=
+3c2=
+228a=subset, not eq, var 
+2acb=subset not double eq, var 
+228b=superset, not eq, var 
+2acc=super not double eq, var 
+3d1=curly or open theta 
+22b2=l tri, open, var 
+22b3=r tri, open, var 
+22c1=logical and operator 
+2228=logical or 
+2016=double vertical bar 
+7c=vertical bar 
+2223=
+2240=wreath product 
+200a=space of width 1/18 em alias ISOPUB hairsp 
+22c0=logical or operator 
+2227=logical and 
+2118=Weierstrass p 
+2240=wreath product 
+2128=zee transform 

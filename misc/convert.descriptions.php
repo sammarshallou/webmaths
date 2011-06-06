@@ -35,6 +35,7 @@ $split = split("\n", $files);
 
 
 $start = 'http://www.w3.org/Math/DTD/mathml2/';
+$results = array();
 
 foreach ($split as $ent) {
     $url = $start . $ent;
@@ -61,17 +62,20 @@ foreach ($split as $ent) {
         }
         if (preg_match('~^<!ENTITY(?! % plane1D )~', $line)) {
             $matches = array();
-            if (preg_match('~^[^ ]+ [^ ]+ +"([^"]+)" ><!--(.*?)-->$~', $line, $matches)) {
-                $value = $matches[1];
+            if (preg_match('~^[^ ]+ ([^ ]+) +"([^"]+)" ><!--(.*?)-->$~', $line, $matches)) {
+                $ref = $matches[1];
+
+                $value = $matches[2];
                 $value = str_replace('%plane1D;', '&#38;#38;#x1D', $value);
                 $value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
                 $value = str_replace('&#38;', '&', $value);
                 
-                $desc = $matches[2];
-                $desc = preg_replace('~^/[^:]+: ~', '', $desc);
+                $desc = $matches[3];
+                $desc = preg_replace('~^/[^:=-]+[:=-]\s*~', '', $desc);
+                $desc = preg_replace('~^/[^:= -]+ \s*~', '', $desc);
                 $desc = preg_replace('~\bdbl\b~', 'double', $desc);
                 $desc = preg_replace('~\bdn\b~', 'down', $desc);
-//                $desc = preg_replace('~\bl\b~', 'left', $desc);
+//                    $desc = preg_replace('~\bl\b~', 'left', $desc);
                 $desc = preg_replace('~\brt\b~', 'right', $desc);
                 $desc = preg_replace('~\bl&r\b~', 'left and right', $desc);
                 $desc = preg_replace('~\barr\b~', 'arrow', $desc);
@@ -81,11 +85,39 @@ foreach ($split as $ent) {
                 $desc = preg_replace('~\bNE\b~', 'northeast', $desc);
                 $desc = preg_replace('~\bSW\b~', 'southwest', $desc);
                 $desc = preg_replace('~\bSE\b~', 'southeast', $desc);
+                $desc = preg_replace('~\bgt-or-eq\b~', 'greater-than-or-equal', $desc);
+                $desc = preg_replace('~\bless-or-eq\b~', 'less-than-or-equal', $desc);
                 
-                print $value . '=' . $desc . "\n"; 
+                $results[$ref] = array('d'=>$desc, 'v'=>$value);
+//                print $ref . " - $desc - $ent\n"; 
             } else {
                 print "ARGH! Invalid line $line"; exit;
             }
         }
     }
 }
+require_once('utf8.inc');
+$outfile = '';
+foreach ($results as $key=>$value) {
+    if (preg_match('~^((alias\s+[^ ]+\s+)|(ISO[A-Z]+\s+))([^ ]+)~', $value['d'], $matches)) {
+        $from = $matches[4];
+        $from = preg_replace('~^&(.*);$~', '$1', $from);
+        if (array_key_exists($from, $results)) {
+            $value['d'] = $results[$from]['d'];
+          } else {
+//            print "\n\nUNKNOWN REF: $from ({$value['d']})\n";
+        }
+     }
+     $matches = array();
+     if (preg_match('~^&#x([A-Za-z0-9]*);$~', $value['v'], $matches)) {
+         $ent = ltrim(strtolower($matches[1]), '0');
+     } else {
+         $what = utf8ToUnicode($value['v']);
+         $what = $what[0];
+         $ent = dechex($what);
+     }
+     $line = $ent . '=' . $value['d'] . "\n";
+     print $line;
+     $outfile .= $line;
+}
+file_put_contents($CFG->dataroot . '/mml/mathml.descriptions.txt', $outfile);

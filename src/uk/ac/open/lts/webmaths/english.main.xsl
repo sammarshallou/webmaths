@@ -11,6 +11,50 @@
 </result>
 </xsl:template>
 
+<!--
+  TOKEN ELEMENTS (3.1.6.1)
+  ***************************************************************************
+ -->
+
+<!--
+  <mglyph> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mglyph
+  Uses alt attribute.
+  -->
+<template match="m:mglyph">
+  <xsl:text> </xsl:text><xsl:value-of select="@alt"/><xsl:text> </xsl:text>
+</template>
+
+<!--
+  <ms> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.ms
+  Puts quotes around content.
+  -->
+<template match="m:ms">
+  <xsl:text>"</xsl:text><xsl:apply-templates/><xsl:text>"</xsl:text>
+</template>
+
+<!--
+  <mspace> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mspace
+  -->
+<template match="m:mspace">
+  <xsl:text> </xsl:text>
+</template>
+
+<!--
+  The following elements have no special handling:
+  <mi>
+  <mn>
+  <mo>
+  <mtext>
+  -->
+
+<!--
+  GENERAL LAYOUT SCHEMATA (3.1.6.2)
+  ***************************************************************************
+ -->
+
 <!-- 
   <mrow> (with more than one item, and not the one directly inside <math>)
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mrow
@@ -37,9 +81,26 @@
   <msqrt>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot 
   -->
-<xsl:template match="m:msqrt or m:mroot[child::*[position()=2 and self::m:mn and normalize-space(.) = '2']]">
+<xsl:template match="m:msqrt">
     square root of
     <xsl:apply-templates/>
+</xsl:template>
+
+<!--
+  <mroot> - numeric root 
+  -->
+<xsl:template match="m:mroot[child::*[position()=2 and self::m:mn]]">
+    <xsl:value-of select="child::*[position()=2 and self::m:mn]"/>th root of
+    <xsl:apply-templates select="*[1]"/>
+</xsl:template>
+
+<!--
+  <mroot> - square root
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot 
+  -->
+<xsl:template match="m:mroot[child::*[position()=2 and self::m:mn and normalize-space(.) = '2']]">
+    square root of
+    <xsl:apply-templates select="*[1]"/>
 </xsl:template>
 
 <!--
@@ -52,14 +113,6 @@
 </xsl:template>
 
 <!--
-  <mroot> - numeric root 
-  -->
-<xsl:template match="m:mroot[child::*[position()=2 and self::m:mn]]">
-    <xsl:value-of select="child::*[position()=2 and self::m:mn]"/>th root of
-    <xsl:apply-templates select="*[1]"/>
-</xsl:template>
-
-<!--
   <mroot> - textual root 
   -->
 <xsl:template match="m:mroot">
@@ -67,8 +120,6 @@
     -th root of
     <xsl:apply-templates select="*[1]"/>
 </xsl:template>
-
-<!-- Skipped <mstyle>: style only -->
 
 <!--
   <merror>
@@ -80,8 +131,6 @@
     ]
 </xsl:template>
 
-<!-- Skipped <mpadded>: style only -->
-
 <!--
   <mphantom>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mphantom 
@@ -89,8 +138,6 @@
 <xsl:template match="m:mphantom">
     <!-- mphantom is not rendered -->
 </xsl:template>
-
-<!-- Skipped mfenced: removed by normalise script -->
 
 <!--
   <menclose> 
@@ -208,6 +255,20 @@
     </xsl:if>
 </xsl:template>
 
+<!-- 
+  The following elements have no special handling:
+  <mstyle>
+  <mpadded>
+  
+  The <mfenced> element will not be present as it is removed by the normalise
+  XSL.
+ -->
+
+<!--
+  SCRIPT AND LIMIT SCHEMATA (3.1.6.3)
+  ***************************************************************************
+ -->
+
 <!--
   <msub>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.msub 
@@ -244,48 +305,217 @@
     cubed
 </xsl:template> 
 
-
-<!--
-  <mo>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mo
-  TODO I am probably going to change this to handle all the character names
-  separately outside the xsl as postprocess.
+<!-- 
+  <msubsup> - limits on operator
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.msubsup
+  When not applied to an operator, this is normalised to <msup><msub> in
+  normalise.xsl so that the usual 'squared' etc can work.
   -->
-<xsl:template match="m:mo[normalize-space() = '&InvisibleTimes;']">
-    <xsl:variable name="O" select="normalize-space(.)"/>
-    <xsl:choose>
-        <xsl:when test="$O = '&CapitalDifferentialD;'">
-            <xsl:text> D </xsl:text>
-        </xsl:when>
-        <xsl:when test="$O = '&InvisibleTimes;'">
-            <xsl:text> times </xsl:text>
-        </xsl:when>
-        <xsl:when test="$O = '&InvisibleTimes;'">
-            <xsl:text> times </xsl:text>
-        </xsl:when>
-        <xsl:when test="$O = '&InvisibleTimes;'">
-            <xsl:text> times </xsl:text>
-        </xsl:when>
-
-
-        <xsl:when test="$O = '&InvisibleTimes;'">
-            <xsl:text> times </xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-            <!-- Output characters directly -->
-            <xsl:text> </xsl:text><xsl:value-of select="$O"/><xsl:text> </xsl:text>
-        </xsl:otherwise>
-    </xsl:choose>
+<xsl:template match="m:msubsup">
+  <xsl:apply-templates select="*[1]"/>
+  subscript <xsl:apply-templates select="*[2]"/>
+  superscript <xsl:apply-templates select="*[3]"/> 
 </xsl:template>
 
+<!--
+  <msubsup> - integral, etc
+  -->
+<xsl:template match="m:msubsup[*[1][m:mo]]">
+  <xsl:apply-templates select="*[1]"/>
+  from <xsl:apply-templates select="*[2]"/>
+  to <xsl:apply-templates select="*[3]"/> 
+</xsl:template>
 
+<!--
+  <munder>
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.munder 
+  -->
+<xsl:template match="m:munder">
+  <xsl:apply-templates select="*[2]"/>
+  below <xsl:apply-templates select="*[1]"/>
+</xsl:template>
 
+<!--
+  <mover>
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mover 
+  -->
+<xsl:template match="m:mover">
+  <xsl:apply-templates select="*[2]"/>
+  above <xsl:apply-templates select="*[1]"/>
+</xsl:template>
+
+<!--
+  <munderover>
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.munderover 
+  -->
+<xsl:template match="m:munderover">
+  <xsl:apply-templates select="*[1]"/>
+  (<xsl:apply-templates select="*[2]"/> below,
+  <xsl:apply-templates select="*[3]"/> above) 
+</xsl:template>
+
+<!--
+  <munderover> - sum, etc
+  -->
+<xsl:template match="m:munderover[*[1][self::mo]]">
+  <xsl:apply-templates select="*[1]"/>
+  from <xsl:apply-templates select="*[2]"/>
+  to <xsl:apply-templates select="*[3]"/> 
+</xsl:template>
+
+<!--
+  <mmultiscripts> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mmultiscripts
+  -->
+<xsl:template match="m:mmultiscripts">
+  <!-- Base -->
+  <xsl:apply-templates select="*[1]"/>
+  
+  (  
+  
+  <!-- Output all the super/subscript pairs that go BEFORE the base -->
+  <xsl:if test="mprescripts">
+    preceded by
+    <xsl:for-each select="*[preceding-sibling::mprescripts]">
+      <xsl:if test="not(self::none)">
+        <xsl:choose>
+          <xsl:when test="(count(preceding-sibling::*[preceding-sibling::mprescripts]) mod 2) = 0">
+            subscript
+          </xsl:when>
+          <xsl:otherwise>
+            superscript
+          </xsl:otherwise> 
+        </xsl:choose>
+        <xsl:apply-templates select="."/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:if>
+
+  <!-- Output all the super/subscript pairs that go AFTER the base -->  
+  <xsl:for-each select="*[not(self::mprescripts) and not(preceding-sibling::mprescripts)]">
+    <xsl:if test="not(self::none)">
+      <xsl:choose>
+        <xsl:when test="(count(preceding-sibling::*) mod 2) = 1">
+          subscript
+        </xsl:when>
+        <xsl:otherwise>
+          superscript
+        </xsl:otherwise> 
+      </xsl:choose>
+      <xsl:apply-templates select="."/>
+    </xsl:if>
+  </xsl:for-each>
+  
+  }
+
+</xsl:template>
+
+<!--
+  TABLES AND MATRICES (3.1.6.4)
+  ***************************************************************************
+ -->
+
+<!--
+  <mtable> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mtable
+  Relies on additional x_* attributes added in WebMathsEnglish class to
+  resolve column and row indices.
+  -->
+<xsl:template match="m:mtable">
+  <xsl:value-of select="@x_cols"/>
+  by
+  <xsl:value-of select="@x_rows"/>
+  grid.
+  
+  <xsl:for-each select="*">
+    <xsl:call-template name="output-mtr">
+      <xsl:with-param name="COLS" select="../@x_cols"/>
+    </xsl:call-template>  
+  </xsl:for-each>
+
+</xsl:template>
+
+<xsl:template name="output-mtr">
+  <xsl:param name="COLS"/>
+  
+  Row
+  <xsl:value-of select="@x_row"/>
+  <xsl:if test="self::m:mlabeledtr">
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates select="*[1]"/>
+  </xsl:if>
+  :
+  
+  <xsl:for-each select="m:mtd">
+    <!-- Do extra blanks if there were missing columns before this one -->
+    <xsl:choose>
+      <xsl:when test="position()=1">
+        <!-- For first one, do all blanks before 1 -->
+        <xsl:call-template name="output-mtr-extra-blanks">
+          <xsl:with-param name="NUM" select="number(@x_col) - 1"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- For other columns, do all blanks between columns -->
+        <xsl:call-template name="output-mtr-extra-blanks">
+          <xsl:with-param name="NUM" select="number(@x_col) - 
+            number(preceding-sibling::m:mtd[1]/@x_col) - 1"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+    
+    <!-- Do column itself -->
+    <xsl:apply-templates/>
+  </xsl:for-each>
+
+  <!-- Do extra blanks if there weren't enough columns -->
+  <xsl:variable name="LASTCOL" select="m:mtd[last()]/@x_col"/>
+  <xsl:call-template name="output-mtr-extra-blanks">
+    <xsl:with-param name="NUM" select="number($COLS) - number($LASTCOL)"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="output-mtr-extra-blanks">
+  <xsl:param name="NUM"/>
+  <xsl:choose>
+    <xsl:when test="number($NUM) &lt;= 0">
+      <!-- Already done enough columns -->
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- Do extra column -->
+      <xsl:text> blank </xsl:text>
+      <!-- Recurse -->
+      <xsl:call-template name="output-mtr-extra-blanks">
+        <xsl:with-param name="NUM" select="number($NUM) - 1"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!--
+  ENLIVENING EXPRESSIONS (3.1.6.5)
+  ***************************************************************************
+ -->
+
+<!--
+  <maction> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.maction
+  Applies default behaviour to render only selected element.
+  -->
+<template match="m:maction">
+  <xsl:variable name="SELECTION">
+    <xsl:choose>
+      <xsl:when test="@selection"><xsl:value-of select="@selection"/></xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:apply-templates select="*[position()=number($SELECTION)]"/>
+</template>
 
 <!--
   UTILITY TEMPLATES 
   ***************************************************************************
  -->
-
 
 <!--
   Tidies whitespace to standard form.
@@ -332,7 +562,49 @@
     
 </xsl:template>
 
+<!--
+  Outputs an 'x' character a specified number of times.
+  COUNT - number of x characters to output
+  -->
+<xsl:template name="output-x">
+  <xsl:param name="COUNT"/>
+  <xsl:text>x</xsl:text>
+  <xsl:if test="$COUNT &gt; 1">
+    <xsl:call-template name="output-x">
+      <xsl:with-param name="COUNT" select="$COUNT - 1"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
 
-
+<!--
+  Outputs the length of the largest string in the input.
+  STRINGS - a comma-separated list of strings
+  -->
+<xsl:template name="largest-string">
+  <xsl:param name="STRINGS"/>
+  <xsl:choose>
+    <xsl:when test="contains($STRINGS, ',')">
+      <xsl:variable name="FIRST">
+        <xsl:value-of select="string-length(substring-before($STRINGS, ','))"/>
+      </xsl:variable>
+      <xsl:variable name="OTHER">
+        <xsl:call-template name="largest-string">
+          <xsl:with-param name="STRINGS" select="substring-after($STRINGS, ',')"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="number($FIRST) >= number($OTHER)">
+          <xsl:value-of select="$FIRST"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$OTHER"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="string-length($STRINGS)"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 </xsl:stylesheet>

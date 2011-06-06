@@ -1,0 +1,10 @@
+# Overrides for descriptions can be placed here.
+
+# This file is in the same format as mathml.descriptions.txt:
+# <characters>=<description>
+#   <characters> = one or more hexadecimal unicode character codes, in
+#     lower-case and without leading zeros
+#   <description> = text description in ASCII without any special characters
+
+2a01=circle plus   
+ 

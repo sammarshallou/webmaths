@@ -14,8 +14,25 @@ public class TransformerPool
 {
 	private List<Transformer> transformerPool = new LinkedList<Transformer>();
 	private Class<?> refClass;
-	private String fileName;
+	private String fileName, typeParam;
 	private MathmlEntityFixer fixer;
+	
+	/**
+	 * Constructs a transformer pool for returning instances of a certain
+	 * XSL file.
+	 * @param fixer Fixer used to replace entities in the XSL file
+	 * @param refClass Class that file is stored relative to
+	 * @param fileName Filename
+	 * @param typeParam Value of TYPE parameter in xsl
+	 */
+	public TransformerPool(MathmlEntityFixer fixer,
+		Class<?> refClass, String fileName, String typeParam)
+	{
+		this.refClass = refClass;
+		this.fileName = fileName;
+		this.typeParam = typeParam;
+		this.fixer = fixer;
+	}
 	
 	/**
 	 * Constructs a transformer pool for returning instances of a certain
@@ -27,9 +44,7 @@ public class TransformerPool
 	public TransformerPool(MathmlEntityFixer fixer,
 		Class<?> refClass, String fileName)
 	{
-		this.refClass = refClass;
-		this.fileName = fileName;
-		this.fixer = fixer;
+		this(fixer, refClass, fileName, null);
 	}
 	
 	/**
@@ -58,13 +73,19 @@ public class TransformerPool
 				writer.write(line);
 				writer.write('\n');
 			}
-			
+			reader.close();
+
 			// Get string and fix entities
 			String xml = fixer.fix(writer.toString());
 			
 			// Create transformer
-			return TransformerFactory.newInstance().newTransformer(
+			Transformer t = TransformerFactory.newInstance().newTransformer(
 				new StreamSource(new StringReader(xml)));
+			if(typeParam != null)
+			{
+				t.setParameter("TYPE", typeParam);
+			}
+			return t;
 		}
 		else
 		{
