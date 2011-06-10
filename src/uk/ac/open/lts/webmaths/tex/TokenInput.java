@@ -69,6 +69,7 @@ public class TokenInput
 		this.source = tex;
 		this.tokens = new LinkedList<String>();
 		tokenizeLatexMath(tex);
+		postTokenize();
 		tokensIterator = tokens.listIterator();
 	}
   
@@ -328,6 +329,41 @@ public class TokenInput
   				txt = txt.replace('~', '\u00a0');
 //      self.tokens.append(txt)
   				tokens.add(txt);
+  			}
+  		}
+  	}
+  }
+  
+  /**
+   * Additional step after tokenising to deal with annoying \frac syntax.
+   * (This wasn't in the Python version, I added it.)
+   */
+  private void postTokenize()
+  {
+  	ListIterator<String> i = tokens.listIterator();
+  	while(i.hasNext())
+  	{
+  		String token = i.next();
+  		// Look for any of the frac commands
+  		if(i.hasNext() && (token.equals("\\frac") || token.equals("\\dfrac") 
+  			|| token.equals("\\tfrac")))
+  		{
+  			// Followed by a number with at least 2 digits
+  			String next = i.next();
+  			if(next.matches("[0-9]{2,}"))
+  			{
+  				// Get rid of the number
+  				i.remove();
+  				
+  				// Replace it with two individual digits
+  				i.add(next.substring(0, 1));
+  				i.add(next.substring(1, 2));
+  				
+  				// Any spare digits? Add them too
+  				if(next.length() > 2)
+  				{
+  					i.add(next.substring(2));
+  				}
   			}
   		}
   	}

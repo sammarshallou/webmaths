@@ -50,6 +50,18 @@ public class TestLatexToMathml extends TestCase
 	{
 		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "\\frac 12"); 
 	}
+
+	@Test
+	public void testFailure2()
+	{
+		// TODO Find out why this one's failing and make a smaller testcase
+		String fail = " \\int _0^1 \\frac1{\\sqrt {x}}\\, dx = \\int _0^1 x^{-\\tfrac 12}\\,  dx = \\left. \\frac{x^{1/2}}{\\tfrac 12} \\right|_{0}^1 =\\left. 2x^{1/2} \\right|_{0}^1 =2(1-0) = 2. ";
+		TokenInput tokens = new TokenInput(fail);
+		String result = tokens.toMathml();
+		System.err.println(fail);
+		System.err.println(result);
+		assertFalse(result.contains("</merror>"));
+	}
 	
 	private final static Pattern SAMPLES_REGEX = 
 		Pattern.compile("^([^,]+),(.*)$");
@@ -66,6 +78,7 @@ public class TestLatexToMathml extends TestCase
 		// file so that's slightly under 1ms to convert one; not too bad.
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 			TestLatexToMathml.class.getResourceAsStream("tex.samples"), "UTF-8"));
+		int errors = 0;
 		while(true)
 		{
 			String line = reader.readLine();
@@ -81,9 +94,13 @@ public class TestLatexToMathml extends TestCase
 			
 			String tex = m.group(2);
 			String result = new TokenInput(tex).toMathml();
-			assertFalse("Error in sample: " + tex,
-				result.contains("</merror>"));
+			if(result.contains("</merror>"))
+			{
+				System.err.println(tex);
+				errors++;
+			}
 		}		
+		assertEquals(0, errors);
 	}
 	
 	private void assertMath(String expected, String input)
