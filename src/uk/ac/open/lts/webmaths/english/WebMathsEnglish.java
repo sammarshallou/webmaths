@@ -1,4 +1,4 @@
-package uk.ac.open.lts.webmaths;
+package uk.ac.open.lts.webmaths.english;
 
 import javax.jws.WebService;
 import javax.xml.transform.*;
@@ -7,8 +7,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.*;
 
-import uk.ac.open.lts.webmaths.english.*;
-
+import uk.ac.open.lts.webmaths.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.english.MathsEnglishPort")
 public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
@@ -22,7 +21,7 @@ public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 	{
 		super(fixer);
 		normaliseXsl = new TransformerPool(fixer,
-			WebMathsEnglish.class, "normalise.xsl", "english");
+			WebMathsService.class, "normalise.xsl", "english");
 		mainXsl = new TransformerPool(fixer, 
 			WebMathsEnglish.class, "english.main.xsl"); 
 	}

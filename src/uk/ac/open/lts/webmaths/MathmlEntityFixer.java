@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
+import uk.ac.open.lts.webmaths.english.WebMathsEnglish;
+
 /**
  * Fixes all the MathML entities into actual characters or numeric entities
  * so that there is no need to include the MathML DTD when parsing MathML.
@@ -27,7 +29,7 @@ public class MathmlEntityFixer
 	public MathmlEntityFixer() throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
-			WebMathsImage.class.getResourceAsStream("mathml.entities.txt"), "UTF-8"));
+			MathmlEntityFixer.class.getResourceAsStream("mathml.entities.txt"), "UTF-8"));
 		while(true)
 		{
 			String line = reader.readLine();
@@ -45,8 +47,8 @@ public class MathmlEntityFixer
 		}
 		reader.close();
 
-		readDescriptions(WebMathsImage.class.getResourceAsStream("mathml.descriptions.txt"));
-		readDescriptions(WebMathsImage.class.getResourceAsStream("override.descriptions.txt"));
+		readDescriptions(WebMathsEnglish.class.getResourceAsStream("mathml.descriptions.txt"));
+		readDescriptions(WebMathsEnglish.class.getResourceAsStream("override.descriptions.txt"));
 	}
 
 	/**

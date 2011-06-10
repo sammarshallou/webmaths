@@ -1,4 +1,4 @@
-package uk.ac.open.lts.webmaths;
+package uk.ac.open.lts.webmaths.image;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,7 +17,7 @@ import net.sourceforge.jeuclid.layout.JEuclidView;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXParseException;
 
-import uk.ac.open.lts.webmaths.image.*;
+import uk.ac.open.lts.webmaths.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort")
 public class WebMathsImage extends WebMathsService implements MathsImagePort

@@ -1,10 +1,15 @@
-package uk.ac.open.lts.webmaths;
+package uk.ac.open.lts.webmaths.tex;
 
 import java.util.*;
 import java.util.regex.*;
 
+import org.w3c.dom.*;
+import org.w3c.dom.ls.*;
+
 public class TokenInput
 {
+	private boolean debug;
+	
 //  #the unicode character 2019 is character the plastex replaces the ' character with
 //  #the unicode character 201d is character the plastex replaces the '' character with
 //  tokenize_re = re.compile(ur"""(\\begin|\\operatorname|\\mathrm|\\mathop|\\end)\s*\{\s*([A-Z a-z]+)\s*\}|(\\[a-zA-Z]+|\\[\\#\%\{\},:;!])|(\s+)|((?:[0-9\.\s]|(?:\\,))+)|([\$!"#%&'\u2019\u201d()*+,-.\/:;<=>?\[\]^_`\{\|\}~])|([a-zA-Z@])""")
@@ -64,7 +69,6 @@ public class TokenInput
 		this.source = tex;
 		this.tokens = new LinkedList<String>();
 		tokenizeLatexMath(tex);
-		tokens.add(null);
 		tokensIterator = tokens.listIterator();
 	}
   
@@ -346,13 +350,28 @@ public class TokenInput
   	// tokens can be set to none/null (that I can see).
   	try
   	{
-  		throw new Exception("hmm"); // TODO
+  		LatexToMathml converter = new LatexToMathml();
+			return saveXml(converter.convert(this));
   	}
   	catch(Exception e) // TODO What kind of exception?
   	{
+  		e.printStackTrace();
   		return "<merror><mtext>Could not translate " + source
   			+ " to MathML</mtext></merror>"; 
   	}
+  }
+
+  /**
+   * Utility method: converts DOM element to string. 
+   * @param e Element to convert
+   * @return String
+   */
+  static String saveXml(Element e)
+  {
+		Document document = e.getOwnerDocument();
+		DOMImplementationLS domImplLS = (DOMImplementationLS)document.getImplementation();
+		LSSerializer serializer = domImplLS.createLSSerializer();
+		return serializer.writeToString(e).replaceFirst("^<\\?xml.*\n", "");
   }
   
   /**
@@ -364,7 +383,16 @@ public class TokenInput
    */
   public String nextToken()
   {
-  	return tokensIterator.next();
+  	if(!tokensIterator.hasNext())
+  	{
+  		return null;
+  	}
+  	String result = tokensIterator.next();
+  	if(debug)
+  	{
+  		System.err.println("TOKEN [" + result + "]");
+  	}
+  	return result;
   }
   
   /**
@@ -375,6 +403,10 @@ public class TokenInput
    */
   public String peekToken()
   {
+  	if(!tokensIterator.hasNext())
+  	{
+  		return null;
+  	}
   	String result = tokensIterator.next();
   	tokensIterator.previous();
   	return result;
@@ -389,21 +421,25 @@ public class TokenInput
    */
   public String peekToken(int offset)
   {
+  	if(!tokensIterator.hasNext())
+  	{
+  		return null;
+  	}
   	String result = tokensIterator.next();
   	for(int i=1; i<=offset; i++)
   	{
-  		result = tokensIterator.next();
-  		if(result == null)
+  		if(!tokensIterator.hasNext())
   		{
   			// If we find a null at any point, we reached end of list, so stop and
   			// rewind the same amount...
-  			for(int j=0; j<=i; j++)
+  			for(int j=0; j<i; j++)
   			{
   				tokensIterator.previous();
   			}
   			// ...then return the null
   			return null;
   		}
+  		result = tokensIterator.next();
   	}
   	for(int i=0; i<=offset; i++)
   	{
@@ -421,5 +457,21 @@ public class TokenInput
   {
   	tokensIterator.previous();
   	tokensIterator.set(value);
+  	if(debug)
+  	{
+  		System.err.println("TOKEN [" + value + "] back");
+  	}
+  }
+  
+  /**
+   * Sets debugging flag, which causes tokens to be displayed to standard
+   * error as they are consumed.
+   * <p>
+   * This function was not in the Python version.
+   * @param debug Debugging flag (true = display)
+   */
+  public void setDebug(boolean debug)
+  {
+  	this.debug = debug;
   }
 }

@@ -1,4 +1,4 @@
-package uk.ac.open.lts.webmaths;
+package uk.ac.open.lts.webmaths.tex;
 
 import java.util.*;
 
@@ -2037,6 +2037,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				// emit error if other delimiter
 				resultElementAppend(mtr,resultElement("merror", 0,
 					resultElement("mtext", 0, "Invalid delimiter: " + token)));
+				slf.nextToken();
 			}
 // else:
 //	  result_element_append(v_mtd, v_subexpr_chain_to_mathml(slf, g_hard_stop_tokens))
@@ -2071,24 +2072,24 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	}
 
 //def v_delimiter_to_mathml(slf, v_end_command, v_min_size, v_max_size):
+	Element delimiterToMathml(TokenInput slf, String endCommand, String minSize, String maxSize)
+	{
 //v_mrow = result_element(u"mrow", 0)
 //result_element_append(v_mrow, result_element(u"mo", 2, u"minsize", v_min_size, u"maxsize", v_max_size, v_read_delimiter(slf)))
 //result_element_append(v_mrow, v_subexpr_chain_to_mathml(slf, g_hard_stop_tokens))
-//if (slf.tokens[slf.tokens_index] != v_end_command):
-// return v_mrow
-//slf.tokens_index += 1
-//result_element_append(v_mrow, result_element(u"mo", 2, u"minsize", v_min_size, u"maxsize", v_max_size, v_read_delimiter(slf)))
-//return v_mrow
-	Element delimiterToMathml(TokenInput slf, String endCommand, String minSize, String maxSize)
-	{
 		Element mrow = resultElement("mrow", 0);
 		resultElementAppend(mrow, resultElement("mo", 2, "minsize", minSize,
 			"maxsize", maxSize, readDelimiter(slf)));
 		resultElementAppend(mrow, subExprChainToMathml(slf, HARD_STOP_TOKENS));
-		if(slf.peekToken().equals(endCommand))
+//if (slf.tokens[slf.tokens_index] != v_end_command):
+// return v_mrow
+		if(slf.peekToken() != null && slf.peekToken().equals(endCommand))
 		{
 			return mrow;
 		}
+//slf.tokens_index += 1
+//result_element_append(v_mrow, result_element(u"mo", 2, u"minsize", v_min_size, u"maxsize", v_max_size, v_read_delimiter(slf)))
+//return v_mrow
 		slf.nextToken();
 		resultElementAppend(mrow, resultElement("mo", 2, "minsize", minSize,
 			"maxsize", maxSize, readDelimiter(slf)));
@@ -2100,7 +2101,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	{
 //v_token = slf.tokens[slf.tokens_index]
 //slf.tokens_index += 1
-		String token = slf.nextToken();
+		String token = slf.peekToken();
+		slf.nextToken();
 	//if (v_token is None):
 	// return result_element(u"merror", 0, result_element(u"mtext", 0, 'Unexpected end of math mode'))
 		if(token == null)
@@ -2436,15 +2438,16 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	{
 //v_token = slf.tokens[slf.tokens_index]
 //v_result = None
-		String token = slf.nextToken();
+		String token = slf.peekToken();
 		Element result;
 //if (v_token == u"{"):
 // slf.tokens_index += 1
 // v_result = v_subexpr_chain_to_mathml(slf, g_hard_stop_tokens)
 // if (slf.tokens[slf.tokens_index] == u"}"):
 //  slf.tokens_index += 1
-		if(token.equals("{"))
+		if("{".equals(token))
 		{
+			slf.nextToken();
 			result = subExprChainToMathml(slf, HARD_STOP_TOKENS);
 			if("}".equals(slf.peekToken()))
 			{
@@ -2457,6 +2460,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(RELATION_SYMBOLS.containsKey(token))
 		{
 			result = resultElement("mo", 0, RELATION_SYMBOLS.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_operator_symbols):
 // v_result = result_element(u"mo", 0, g_operator_symbols[v_token])
@@ -2464,6 +2468,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(OPERATOR_SYMBOLS.containsKey(token))
 		{
 			result = resultElement("mo", 0, OPERATOR_SYMBOLS.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_left_delimiters):
 // v_result = result_element(u"mo", 0, g_left_delimiters[v_token])
@@ -2471,6 +2476,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(LEFT_DELIMITERS.containsKey(token))
 		{
 			result = resultElement("mo", 0, LEFT_DELIMITERS.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_right_delimiters):
 // v_result = result_element(u"mo", 0, g_right_delimiters[v_token])
@@ -2478,6 +2484,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(RIGHT_DELIMITERS.containsKey(token))
 		{
 			result = resultElement("mo", 0, RIGHT_DELIMITERS.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_word_operators):
 // v_result = result_element(u"mi", 1, u"mathvariant", u"normal", g_word_operators[v_token])
@@ -2485,6 +2492,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(WORD_OPERATORS.containsKey(token))
 		{
 			result = resultElement("mi", 1, "mathvariant", "normal", WORD_OPERATORS.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_greek_letters):
 // v_result = result_element(u"mi", 1, u"fontstyle", u"normal", g_greek_letters[v_token])
@@ -2492,6 +2500,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(GREEK_LETTERS.containsKey(token))
 		{
 			result = resultElement("mi", 1, "fontstyle", "normal", GREEK_LETTERS.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_named_identifiers):
 // v_result = result_element(u"mi", 0, g_named_identifiers[v_token])
@@ -2499,6 +2508,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(NAMED_IDENTIFIERS.containsKey(token))
 		{
 			result = resultElement("mi", 0, NAMED_IDENTIFIERS.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_punct_and_space):
 // v_result = result_element(u"mtext", 0, g_punct_and_space[v_token])
@@ -2506,6 +2516,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(PUNCT_AND_SPACE.containsKey(token))
 		{
 			result = resultElement("mtext", 0, PUNCT_AND_SPACE.get(token));
+			slf.nextToken();
 		}
 //elif (v_token in g_tex_commands):
 // slf.tokens_index += 1
@@ -2521,6 +2532,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else
 		{
 			result = resultElement("mn", 0, token);
+			slf.nextToken();
 		}
 //return v_result
 		return result;
@@ -2820,7 +2832,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // v_wrapped_result = None
 		Element result = null, mrow = null, mfrac = null, wrappedResult = null;
 // while ((slf.tokens[slf.tokens_index] is not None) and not ((slf.tokens[slf.tokens_index] in v_stop_tokens))):
-		while(!stopTokens.containsKey(slf.peekToken()))
+		while(slf.peekToken() != null && !stopTokens.containsKey(slf.peekToken()))
 		{
 //  if (slf.tokens[slf.tokens_index] == u"\\over"):
 //   slf.tokens_index += 1
@@ -2934,7 +2946,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	{
 // if (slf.tokens[slf.tokens_index] != u"["):
 //  return None
-		if(!"{".equals(slf.peekToken()))
+		if(!"[".equals(slf.peekToken()))
 		{
 			return null;
 		}
@@ -3056,5 +3068,35 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 // return v_result
 		return result;
+	}
+	
+	/**
+	 * Converts an entire equation into MathML.
+	 * <p>
+	 * This method wasn't in the Python version.
+	 * @param tokens Tokens
+	 * @return MathML result element (always a &lt;math&gt; tag)
+	 */
+	public Element convert(TokenInput tokens)
+	{
+		Element root = subExprChainToMathml(tokens, new HashMap<String, String>());
+		Element math = resultElement("math", 0);
+		// If the root is an mrow with no attributes, chuck it away and use the <math>
+		// instead to make the result shorter
+		if(root.getTagName().equals("mrow") 
+			&& root.getAttributes().getLength() == 0)
+		{
+			while(root.getFirstChild() != null)
+			{
+				Node child = root.getFirstChild();
+				root.removeChild(child);
+				math.appendChild(child);
+			}
+		}
+		else
+		{
+			math.appendChild(root);
+		}
+		return math;
 	}
 }	

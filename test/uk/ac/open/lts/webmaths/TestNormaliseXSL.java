@@ -9,6 +9,8 @@ import junit.framework.TestCase;
 
 import org.junit.*;
 
+import uk.ac.open.lts.webmaths.english.WebMathsEnglish;
+
 public class TestNormaliseXSL extends TestCase
 {
 	private TransformerPool pool;
