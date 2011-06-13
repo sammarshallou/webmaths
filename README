@@ -15,7 +15,7 @@ version 3 (see LICENSE), except:
   http://jeuclid.sourceforge.net/
   Released under Apache Software License version 2.
   
-* TeX to MathML conversion code (two Java files)
+* TeX to MathML conversion code (two Java files in uk.ac.open.lts.webmaths.tex)
   Modified and ported-to-Java version of code by Steve Cheng:
   http://www.gold-saucer.org/mathml/greasemonkey/dist/display-latex
   Released under custom license (see relevant source files).
@@ -24,7 +24,7 @@ version 3 (see LICENSE), except:
   Henri Sivonen, Netscape Communications Corporation
   http://iki.fi/hsivonen/php-utf8/
 
-* MathML data files (text files)
+* MathML entity data files (text files)
   Based on entity files provided by W3C as part of MathML 2, with note:
   (C) International Organization for Standardization 1991
       Permission to copy in any form is granted for use with
