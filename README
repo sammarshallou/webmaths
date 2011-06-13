@@ -1,11 +1,35 @@
+IMPORTANT
+---------
+
 This is work in progress. I would not advise using it.
 
-All contents of this repository are copyright 2011 The Open University, except
-the bits that came from some other project (currently JEuclid and various
-Apache stuff).
 
-Proper licensing information to follow. (Once it is finished this project
-will be available under an open source license.)
+Licensing
+---------
+
+All contents of this repository including code and data are copyright
+2011 The Open University and are released under the GNU Public License
+version 3 (see LICENSE), except:
+
+* JEuclid and dependencies in lib/jeuclid folder:
+  http://jeuclid.sourceforge.net/
+  Released under Apache Software License version 2.
+  
+* TeX to MathML conversion code (two Java files)
+  Modified and ported-to-Java version of code by Steve Cheng:
+  http://www.gold-saucer.org/mathml/greasemonkey/dist/display-latex
+  Released under custom license (see relevant source files).
+
+* UTF-8 converter (misc/utf8.inc)
+  Henri Sivonen, Netscape Communications Corporation
+  http://iki.fi/hsivonen/php-utf8/
+
+* MathML data files (text files)
+  Based on entity files provided by W3C as part of MathML 2, with note:
+  (C) International Organization for Standardization 1991
+      Permission to copy in any form is granted for use with
+      conforming SGML systems and applications as defined in
+      ISO 8879, provided this notice is included in all copies.
 
 
 Basic build/setup instructions for testing

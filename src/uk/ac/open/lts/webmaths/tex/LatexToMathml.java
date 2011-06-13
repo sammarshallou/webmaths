@@ -1,5 +1,10 @@
 /*
- * Original version on which this code is based:
+ * Unlike most of this project, this files is based on code from another system
+ * and is therefore NOT licensed under the GPL. I believe this license is
+ * compatible with the GPL (it is also 'weaker', so you may be able to use
+ * this specific code more widely).  
+ * 
+ * Original license:
  * 
  * Copyright (C) 2006 Steve Cheng <stevecheng@users.sourceforge.net>
  *
@@ -23,9 +28,6 @@
  * Modified Java port:
  * 
  * Copyright 2011 The Open University.
- * 
- * Modifications: Dr. Robert Hassom
- * Java port: sam marshall
  */
 package uk.ac.open.lts.webmaths.tex;
 

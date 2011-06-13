@@ -1,6 +1,26 @@
+/*
+This file is part of OU webmaths
+
+OU webmaths is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+OU webmaths is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
+
+Copyright 2011 The Open University
+*/
 package uk.ac.open.lts.webmaths.tex;
 
-import java.io.*;
+import static uk.ac.open.lts.webmaths.tex.LatexToMathml.NS;
+
+import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -9,9 +29,6 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
-
-import uk.ac.open.lts.webmaths.*;
-import static uk.ac.open.lts.webmaths.tex.LatexToMathml.NS;
 
 public class TestTokenInput extends TestCase
 {
@@ -101,15 +118,6 @@ public class TestTokenInput extends TestCase
 		assertEquals("}", tokens.nextToken());
 		assertEquals("}", tokens.nextToken());
 		assertEquals("\\,", tokens.nextToken());
-	}
-	
-	private TokenInput getTokenInputForSave() throws IOException
-	{
-		MathmlEntityFixer fixer = new MathmlEntityFixer();
-		TransformerPool postProcess = new TransformerPool(
-			fixer, WebMathsTex.class, "postprocess.xsl");
-		TokenInput tokens = new TokenInput("");
-		return tokens;
 	}
 	
 	private Element parse(String xml) throws Exception
