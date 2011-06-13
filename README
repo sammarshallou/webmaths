@@ -6,3 +6,23 @@ Apache stuff).
 
 Proper licensing information to follow. (Once it is finished this project
 will be available under an open source license.)
+
+
+Basic build/setup instructions for testing
+------------------------------------------
+
+Using Eclipse (it should also work in NetBeans but I dunno the details for
+that), you can set it up as follows:
+
+1) put all the code into eclipse project
+2) right-click on build.xml and 'run ant build' (this creates the 'gen' folder)
+3) right-click on project and choose 'refresh' (this makes eclipse notice it)
+4) right-click on 'gen' folder and choose 'add to source path'
+
+after that it should work, to run it right-click on DevServer.java and choose 
+'run as... java application' (I think I hard-coded in my own machine's name so 
+maybe need to change that first); that will run the services in the built-in 
+Java 6 test server.
+
+Or, you can run unit tests by right-click on the 'test' folder and choose 
+'Run as... JUnit test'.

@@ -5,21 +5,10 @@ import java.util.regex.*;
 
 import junit.framework.TestCase;
 
-import org.junit.*;
-
-import uk.ac.open.lts.webmaths.*;
+import org.junit.Test;
 
 public class TestLatexToMathml extends TestCase
 {
-	private TransformerPool postProcess;
-	
-	@Before
-	public void setUp() throws Exception
-	{
-		MathmlEntityFixer fixer = new MathmlEntityFixer();
-		postProcess = new TransformerPool(fixer, WebMathsTex.class, "postprocess.xsl");
-	}
-	
 	@Test
 	public void testSimpleExample()
 	{

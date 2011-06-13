@@ -2082,7 +2082,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		resultElementAppend(mrow, subExprChainToMathml(slf, HARD_STOP_TOKENS));
 //if (slf.tokens[slf.tokens_index] != v_end_command):
 // return v_mrow
-		if(slf.peekToken() != null && slf.peekToken().equals(endCommand))
+		if(slf.peekToken() != null && !slf.peekToken().equals(endCommand))
 		{
 			return mrow;
 		}
