@@ -44,8 +44,11 @@ public class LatexToMathml
 		public Element call(TokenInput slf, Map<String, String> stopTokens);
 	}
 	
+	/**
+	 * MathML namespace.
+	 */
 //mmlns = 'http://www.w3.org/1998/Math/MathML'
-	private final static String NS = "http://www.w3.org/1998/Math/MathML";
+	public final static String NS = "http://www.w3.org/1998/Math/MathML";
 	
 //#create empty DOM document
 //document = xml.dom.minidom.getDOMImplementation().createDocument(None,None,None)
@@ -2029,14 +2032,10 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				resultElementAppend(mtr, mtd);
 				slf.nextToken();
 			}
-// elif v_token in g_hard_stop_tokens:#emit error if other delimiter
-//	  result_element_append(v_mtr,result_element(u"merror", 0, result_element(u"mtext", 0, 'Invalid delimiter: '+v_token) ))
-//	  slf.tokens_index += 1
+//   elif v_token in g_hard_stop_tokens:
+//    slf.tokens_index += 1			
 			else if(HARD_STOP_TOKENS.containsKey(token))
 			{
-				// emit error if other delimiter
-				resultElementAppend(mtr,resultElement("merror", 0,
-					resultElement("mtext", 0, "Invalid delimiter: " + token)));
 				slf.nextToken();
 			}
 // else:

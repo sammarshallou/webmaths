@@ -19,7 +19,7 @@ public class TestNormaliseXSL extends TestCase
 	public void setUp() throws Exception
 	{
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
-		pool = new TransformerPool(fixer, WebMathsEnglish.class, "normalise.xsl");
+		pool = new TransformerPool(fixer, WebMathsService.class, "normalise.xsl");
 	}
 	
 	@Test

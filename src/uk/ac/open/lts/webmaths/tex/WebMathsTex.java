@@ -7,12 +7,16 @@ import uk.ac.open.lts.webmaths.*;
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.tex.MathsTexPort")
 public class WebMathsTex extends WebMathsService implements MathsTexPort
 {
+	private TransformerPool postProcess;
+
 	/**
 	 * @param fixer Entity fixer (not used)
 	 */
 	public WebMathsTex(MathmlEntityFixer fixer)
 	{
 		super(fixer);
+		postProcess = new TransformerPool(
+			fixer, WebMathsTex.class, "postprocess.xsl");
 	}
 
 	@Override
@@ -30,7 +34,7 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 		try
 		{
 			// Convert TeX to MathML
-			TokenInput input = new TokenInput(params.getTex());
+			TokenInput input = new TokenInput(params.getTex(), postProcess);
 			result.setMathml(input.toMathml());
 			result.setOk(true);
 		}

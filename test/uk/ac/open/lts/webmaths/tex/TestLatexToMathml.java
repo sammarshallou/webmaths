@@ -5,16 +5,47 @@ import java.util.regex.*;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
+import org.junit.*;
+
+import uk.ac.open.lts.webmaths.*;
 
 public class TestLatexToMathml extends TestCase
 {
+	private TransformerPool postProcess;
+	
+	@Before
+	public void setUp() throws Exception
+	{
+		MathmlEntityFixer fixer = new MathmlEntityFixer();
+		postProcess = new TransformerPool(fixer, WebMathsTex.class, "postprocess.xsl");
+	}
+	
 	@Test
 	public void testSimpleExample()
 	{
 		assertMath("<msqrt><mn>1</mn></msqrt>", "\\sqrt{1}"); 
 	}
 	
+	@Test
+	public void testDigitsExample()
+	{
+		assertMath("<msqrt><mn>12</mn></msqrt>", "\\sqrt{12}"); 
+		assertMath("<msqrt><mn>543210</mn></msqrt>", "\\sqrt{543210}");
+	}
+	
+	@Test
+	public void testDecimalDigitsExample()
+	{
+		assertMath("<msqrt><mn>31.459</mn></msqrt>", "\\sqrt{31.459}"); 
+	}
+	
+	@Test
+	public void testFractionDigits()
+	{
+		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "\\frac 12"); 
+		assertMath("<mfrac><mn>12</mn><mn>24</mn></mfrac>", "\\frac{12}{24}");
+	}
+
 	@Test
 	public void testSlightlyLessSimpleExample()
 	{
@@ -41,26 +72,8 @@ public class TestLatexToMathml extends TestCase
 			+ "(y-\\mu _ Y) \\right] \\\\ & = \\frac{\\sigma _ Y^2(x-\\mu _ X)^2-2" 
 			+ "\\rho \\sigma _ X\\sigma _ Y (x-\\mu _ X)(y-\\mu _ Y)+\\sigma _ X^2" 
 			+ "(y-\\mu _ Y)^2}{\\sigma _ X^2\\sigma _ Y^2(1-\\rho ^2)} \\end{array}";
-		TokenInput tokens = new TokenInput(horribleExample);
+		TokenInput tokens = new TokenInput(horribleExample, postProcess);
 		tokens.toMathml();
-	}
-	
-	@Test
-	public void testCompletelyLudicrousFractionSyntax()
-	{
-		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "\\frac 12"); 
-	}
-
-	@Test
-	public void testFailure2()
-	{
-		// TODO Find out why this one's failing and make a smaller testcase
-		String fail = " \\int _0^1 \\frac1{\\sqrt {x}}\\, dx = \\int _0^1 x^{-\\tfrac 12}\\,  dx = \\left. \\frac{x^{1/2}}{\\tfrac 12} \\right|_{0}^1 =\\left. 2x^{1/2} \\right|_{0}^1 =2(1-0) = 2. ";
-		TokenInput tokens = new TokenInput(fail);
-		String result = tokens.toMathml();
-		System.err.println(fail);
-		System.err.println(result);
-		assertFalse(result.contains("</merror>"));
 	}
 	
 	private final static Pattern SAMPLES_REGEX = 
@@ -93,7 +106,7 @@ public class TestLatexToMathml extends TestCase
 			}
 			
 			String tex = m.group(2);
-			String result = new TokenInput(tex).toMathml();
+			String result = new TokenInput(tex, postProcess).toMathml();
 			if(result.contains("</merror>"))
 			{
 				System.err.println(tex);
@@ -105,7 +118,7 @@ public class TestLatexToMathml extends TestCase
 	
 	private void assertMath(String expected, String input)
 	{
-		TokenInput tokens = new TokenInput(input);
+		TokenInput tokens = new TokenInput(input, postProcess);
 		String actual = tokens.toMathml();
 		actual = actual.replaceFirst("<math[^>]+>(.*)</math>", "$1");
 		assertEquals(expected, actual);

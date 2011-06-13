@@ -1,23 +1,24 @@
 package uk.ac.open.lts.webmaths.tex;
 
+import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import org.w3c.dom.*;
-import org.w3c.dom.ls.*;
+
+import uk.ac.open.lts.webmaths.TransformerPool;
 
 public class TokenInput
 {
 	private boolean debug;
+	private TransformerPool postProcess;
 	
 //  #the unicode character 2019 is character the plastex replaces the ' character with
 //  #the unicode character 201d is character the plastex replaces the '' character with
-//  tokenize_re = re.compile(ur"""(\\begin|\\operatorname|\\mathrm|\\mathop|\\end)\s*\{\s*([A-Z a-z]+)\s*\}|(\\[a-zA-Z]+|\\[\\#\%\{\},:;!])|(\s+)|((?:[0-9\.\s]|(?:\\,))+)|([\$!"#%&'\u2019\u201d()*+,-.\/:;<=>?\[\]^_`\{\|\}~])|([a-zA-Z@])""")
-	private final static Pattern RE = Pattern.compile(
-		"(\\\\begin|\\\\operatorname|\\\\mathrm|\\\\mathop|\\\\end)\\s*" +
-		"\\{\\s*([A-Z a-z]+)\\s*\\}|(\\\\[a-zA-Z]+|\\\\[\\\\#\\%\\{\\},:;!])|(\\s+)|" +
-		"((?:[0-9\\.\\s]|(?:\\,))+)|([\\$!\"#%&'\u2019\u201d()*+,-.\\/:;<=>?\\[\\]" +
-		"^_`\\{\\|\\}~])|([a-zA-Z@])");
 	
 //  tokenize_strict_re = re.compile(ur"""(\\begin|\\operatorname|\\mathrm|\\mathop|\\end)\s*\{\s*([A-Z a-z]+)\s*\}|(\\[a-zA-Z]+|\\[\\#\%\{\},:;!])|(\s+)|([0-9\.])|([\$!"#%&'\u2019\u201d()*+,-.\/:;<=>?\[\]^_`\{\|\}~])|([a-zA-Z@])""")
 	private final static Pattern STRICT_RE = Pattern.compile(
@@ -37,19 +38,6 @@ public class TokenInput
 		"\\\\text", "\\\\textnormal", "\\\\hbox", "\\\\mbox"
 	}));
 
-//  tokenize_arg_commands = {u'\\frac':2,u'\\dfrac':2,u'\\tfrac':2,u'\\binom':2,u'\\dbinom':2,u'\\tbinom':2,u'\\sqrt':2}
-	private final static Map<String,Integer> ARG_COMMANDS = new HashMap<String, Integer>();
-	static
-	{
-		ARG_COMMANDS.put("\\\\frac", 2); 
-		ARG_COMMANDS.put("\\\\dfrac", 2); 
-		ARG_COMMANDS.put("\\\\tfrac", 2); 
-		ARG_COMMANDS.put("\\\\binom", 2); 
-		ARG_COMMANDS.put("\\\\dbinom", 2); 
-		ARG_COMMANDS.put("\\\\tbinom", 2); 
-		ARG_COMMANDS.put("\\\\sqrt", 2);
-	}
-	
 	private String source;
 	private LinkedList<String> tokens;
 	private ListIterator<String> tokensIterator;
@@ -57,8 +45,9 @@ public class TokenInput
 	/**
 	 * Constructs with given TeX string.
 	 * @param tex TeX input string
+	 * @param postProcess Post-processing XSLT
 	 */
-  public TokenInput(String tex)
+  public TokenInput(String tex, TransformerPool postProcess)
 	{
 //  def __init__(self, tex):
 //  self.source=tex
@@ -68,8 +57,8 @@ public class TokenInput
 //  self.tokens.append(None)
 		this.source = tex;
 		this.tokens = new LinkedList<String>();
+		this.postProcess = postProcess;
 		tokenizeLatexMath(tex);
-		postTokenize();
 		tokensIterator = tokens.listIterator();
 	}
   
@@ -82,7 +71,6 @@ public class TokenInput
   	int inTextMode = 0;
   	LinkedList<Integer> braceLevel = new LinkedList<Integer>();
   	int pos = 0;
-  	int nArgs = 0;
   	
 //    tex = unicode(tex)
 //    if len(tex)>2 and tex[0] == u'$' and tex[-1] == u'$':
@@ -102,22 +90,9 @@ public class TokenInput
   			Matcher m;
   			boolean matched;
   			
-//        if nargs>0:
-//          m = self.tokenize_strict_re.match(tex, pos)
-//          nargs-=1
-//        else:
-//          m = self.tokenize_re.match(tex, pos)
-  			if(nArgs > 0)
-  			{
-  				m = STRICT_RE.matcher(tex);
-  				matched = m.find(pos);
-  				nArgs--;
-  			}
-  			else
-  			{
-  				m = RE.matcher(tex);
-  				matched = m.find(pos);
-  			}
+//        m = self.tokenize_strict_re.match(tex, pos)
+ 				m = STRICT_RE.matcher(tex);
+ 				matched = m.find(pos);
   			
 //        #if no match then pass through as a single char token
 //        if m is None:
@@ -223,14 +198,6 @@ public class TokenInput
   					inTextMode = 2;
   					braceLevel.add(0);
   				}
-//      elif m.group(3) in self.tokenize_arg_commands:
-//        self.tokens.append(m.group(0))
-//        nargs = self.tokenize_arg_commands[m.group(3)]
-  				else if(ARG_COMMANDS.containsKey(m.group(3)))
-  				{
-  					tokens.add(m.group(0));
-  					nArgs = ARG_COMMANDS.get(m.group(3));
-  				}
 //      else:
 //        self.tokens.append(m.group(0))
   				else
@@ -335,41 +302,6 @@ public class TokenInput
   }
   
   /**
-   * Additional step after tokenising to deal with annoying \frac syntax.
-   * (This wasn't in the Python version, I added it.)
-   */
-  private void postTokenize()
-  {
-  	ListIterator<String> i = tokens.listIterator();
-  	while(i.hasNext())
-  	{
-  		String token = i.next();
-  		// Look for any of the frac commands
-  		if(i.hasNext() && (token.equals("\\frac") || token.equals("\\dfrac") 
-  			|| token.equals("\\tfrac")))
-  		{
-  			// Followed by a number with at least 2 digits
-  			String next = i.next();
-  			if(next.matches("[0-9]{2,}"))
-  			{
-  				// Get rid of the number
-  				i.remove();
-  				
-  				// Replace it with two individual digits
-  				i.add(next.substring(0, 1));
-  				i.add(next.substring(1, 2));
-  				
-  				// Any spare digits? Add them too
-  				if(next.length() > 2)
-  				{
-  					i.add(next.substring(2));
-  				}
-  			}
-  		}
-  	}
-  }
-
-  /**
    * Converts tokenised data to MathML. 
    * @return String containing MathML text
    */
@@ -387,27 +319,56 @@ public class TokenInput
   	try
   	{
   		LatexToMathml converter = new LatexToMathml();
-			return saveXml(converter.convert(this));
+  		Element root = converter.convert(this);  		
+  		return saveXml(root);
   	}
-  	catch(Exception e) // TODO What kind of exception?
+  	catch(Throwable t)
   	{
-  		e.printStackTrace();
+  		t.printStackTrace(); // TODO
   		return "<merror><mtext>Could not translate " + source
   			+ " to MathML</mtext></merror>"; 
   	}
   }
 
   /**
-   * Utility method: converts DOM element to string. 
+   * Utility method: converts DOM element (in empty document) to string.
+   * Also applies post-processing XSL. 
    * @param e Element to convert
    * @return String
+   * @throws IOException 
+   * @throws TransformerException 
    */
-  static String saveXml(Element e)
+  String saveXml(Element root) throws IOException, TransformerException
   {
-		Document document = e.getOwnerDocument();
-		DOMImplementationLS domImplLS = (DOMImplementationLS)document.getImplementation();
-		LSSerializer serializer = domImplLS.createLSSerializer();
-		return serializer.writeToString(e).replaceFirst("^<\\?xml.*\n", "");
+  	Document doc = root.getOwnerDocument();
+		while(doc.getFirstChild() != null)
+  	{
+			doc.removeChild(doc.getFirstChild());
+  	}
+		doc.appendChild(root);
+		DOMSource in = new DOMSource(doc);
+		StringWriter w = new StringWriter();
+		StreamResult out = new StreamResult(w); 
+		Transformer t = postProcess.reserve();
+		try
+		{
+			t.transform(in, out);
+		}
+		finally
+		{
+			postProcess.release(t);
+		}
+		String result = w.toString();
+		// Add namespace if not present. (Namespace handling is a bit of a
+		// nightmare; I set the stylesheet not to add namespaces to anything, in
+		// order to avoid all the tags having m: prefix, but now I have to make
+		// sure there's an xmlns tag at the root.)
+		if(!result.matches(".*?<[^>]* xmlns=.*"))
+		{
+			result = result.replaceFirst("(<[a-z]+)([ >])", "$1 xmlns=\"" 
+				+ LatexToMathml.NS + "\"$2");
+		}
+		return result;
   }
   
   /**
