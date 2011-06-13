@@ -1,6 +1,6 @@
 package uk.ac.open.lts.webmaths.tex;
 
-import java.io.IOException;
+import java.io.*;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.w3c.dom.*;
+import org.xml.sax.InputSource;
 
 import uk.ac.open.lts.webmaths.*;
 import static uk.ac.open.lts.webmaths.tex.LatexToMathml.NS;
@@ -17,7 +18,7 @@ public class TestTokenInput extends TestCase
 	@Test
 	public void testSimple()
 	{
-		TokenInput tokens = new TokenInput("*", null);
+		TokenInput tokens = new TokenInput("*");
 		assertEquals("*", tokens.nextToken());
 		assertEquals(null, tokens.nextToken());
 	}
@@ -25,7 +26,7 @@ public class TestTokenInput extends TestCase
 	@Test
 	public void testOverrun()
 	{
-		TokenInput tokens = new TokenInput("*", null);
+		TokenInput tokens = new TokenInput("*");
 		tokens.nextToken();
 		tokens.nextToken();
 		assertEquals(null, tokens.nextToken());
@@ -35,7 +36,7 @@ public class TestTokenInput extends TestCase
 	@Test
 	public void testPeek()
 	{
-		TokenInput tokens = new TokenInput("*", null);
+		TokenInput tokens = new TokenInput("*");
 		assertEquals("*", tokens.peekToken());
 		assertEquals("*", tokens.peekToken());
 		tokens.nextToken();
@@ -46,7 +47,7 @@ public class TestTokenInput extends TestCase
 	@Test
 	public void testPeekAhead()
 	{
-		TokenInput tokens = new TokenInput("1*2", null);
+		TokenInput tokens = new TokenInput("1*2");
 		assertEquals("1", tokens.peekToken(0));
 		assertEquals("*", tokens.peekToken(1));
 		assertEquals("2", tokens.peekToken(2));
@@ -59,7 +60,7 @@ public class TestTokenInput extends TestCase
 	@Test
 	public void testBackAndOverwrite()
 	{
-		TokenInput tokens = new TokenInput("1*", null);
+		TokenInput tokens = new TokenInput("1*");
 		assertEquals("1", tokens.nextToken());
 		tokens.backAndOverwriteToken("q");
 		assertEquals("q", tokens.nextToken());
@@ -71,7 +72,7 @@ public class TestTokenInput extends TestCase
 	public void testReal()
 	{
 		TokenInput tokens = new TokenInput(
-			"\\displaystyle {\\frac{11^{3}\\times 11^{4}}{11^{5}}}\\,", null);
+			"\\displaystyle {\\frac{11^{3}\\times 11^{4}}{11^{5}}}\\,");
 		assertEquals("\\displaystyle", tokens.nextToken());
 		assertEquals("{", tokens.nextToken());
 		assertEquals("\\frac", tokens.nextToken());
@@ -107,50 +108,62 @@ public class TestTokenInput extends TestCase
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
 		TransformerPool postProcess = new TransformerPool(
 			fixer, WebMathsTex.class, "postprocess.xsl");
-		TokenInput tokens = new TokenInput("", postProcess);
+		TokenInput tokens = new TokenInput("");
 		return tokens;
 	}
 	
-	@Test
-	public void testSaveXml() throws Exception
+	private Element parse(String xml) throws Exception
 	{
-		TokenInput tokens = getTokenInputForSave();
-		
-		Document doc = 
-			DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-		String ns = " xmlns=\"" + NS + "\"";
-		Element frog = doc.createElement("frog");
-		Element tadpole = doc.createElement("tadpole");
-		frog.setAttribute("sound", "ribbit");
-		frog.appendChild(tadpole);
-		frog.appendChild(doc.createTextNode("Ribbit!"));
-		
-		assertEquals("<frog" + ns + " sound=\"ribbit\"><tadpole/>Ribbit!</frog>", 
-			tokens.saveXml(frog));
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true);
+		Document d = factory.newDocumentBuilder().
+			parse(new InputSource(new StringReader(xml)));
+		return d.getDocumentElement();
 	}
 
 	@Test
-	public void testSaveXmlPost() throws Exception
+	public void testSaveXml() throws Exception
 	{
-		TokenInput tokens = getTokenInputForSave();
-		
-		Document doc = 
-			DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-		String ns = " xmlns=\"" + NS + "\"";
-		Element mrow = doc.createElementNS(NS, "mrow");
-		Element mn = doc.createElementNS(NS, "mn");
-		mn.appendChild(doc.createTextNode("1"));
-		mrow.appendChild(mn);
-		mn = doc.createElementNS(NS, "mn");
-		mn.appendChild(doc.createTextNode("2"));
-		mrow.appendChild(mn);
-		
-		assertEquals("<mn" + ns + ">12</mn>", tokens.saveXml(mrow));
-		
-		Element grr = doc.createElementNS(NS, "grr");
-		mrow.appendChild(grr);
-		assertEquals("<mrow" + ns + "><mn>1</mn><mn>2</mn><grr/></mrow>",
-			tokens.saveXml(mrow));
+		Element frog = parse("<frog sound='ribbit'><tadpole/>Ribbit!</frog>"); 
+		assertEquals("<frog sound=\"ribbit\"><tadpole/>Ribbit!</frog>", 
+			TokenInput.saveXml(frog));
 	}
 	
+	public void testPostProcess() throws Exception
+	{
+		// Two MN in root math tag
+		assertPostProcess("<mn>12</mn>", "<mn>1</mn><mn>2</mn>");
+		
+		// Two MN in mrow - the mrow disappears
+		assertPostProcess("<mn>12</mn>", "<mrow><mn>1</mn><mn>2</mn></mrow>");
+		
+		// Two MN plus something else in mrow
+		assertPostProcess("<mrow><grr/><mn>12</mn></mrow>",
+			"<mrow><grr/><mn>1</mn><mn>2</mn></mrow>");
+		
+		// Three MN in mrow
+		assertPostProcess("<mn>123</mn>",
+			"<mrow><mn>1</mn><mn>2</mn><mn>3</mn></mrow>");
+		
+		// MN with a dot
+		assertPostProcess("<mn>1.3</mn>",
+			"<mrow><mn>1</mn><mtext>.</mtext><mn>3</mn></mrow>");
+
+		// MN with TWO dots (it won't accept the second)
+		assertPostProcess("<mrow><mn>1.3</mn><mtext>.</mtext><mn>4</mn></mrow>",
+			"<mrow><mn>1</mn><mtext>.</mtext><mn>3</mn><mtext>.</mtext><mn>4</mn></mrow>");
+		
+		// Two things to change in one (root)
+		assertPostProcess("<mn>12</mn><mo>+</mo><mn>13</mn>",
+			"<mn>1</mn><mn>2</mn><mo>+</mo><mn>1</mn><mn>3</mn>");
+	}
+	
+	private void assertPostProcess(String expected, String input) throws Exception
+	{
+		String ns = " xmlns=\"" + NS +"\"";
+		Element root = parse("<math" + ns + ">" + input + "</math>");
+		TokenInput.postProcess(root);
+		assertEquals("<math" + ns + ">" + expected + "</math>", 
+			TokenInput.saveXml(root));
+	}
 }

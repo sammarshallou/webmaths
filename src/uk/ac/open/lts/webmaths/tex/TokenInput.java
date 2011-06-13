@@ -1,21 +1,14 @@
 package uk.ac.open.lts.webmaths.tex;
 
-import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.w3c.dom.*;
-
-import uk.ac.open.lts.webmaths.TransformerPool;
+import org.w3c.dom.ls.*;
 
 public class TokenInput
 {
 	private boolean debug;
-	private TransformerPool postProcess;
 	
 //  #the unicode character 2019 is character the plastex replaces the ' character with
 //  #the unicode character 201d is character the plastex replaces the '' character with
@@ -45,9 +38,8 @@ public class TokenInput
 	/**
 	 * Constructs with given TeX string.
 	 * @param tex TeX input string
-	 * @param postProcess Post-processing XSLT
 	 */
-  public TokenInput(String tex, TransformerPool postProcess)
+  public TokenInput(String tex)
 	{
 //  def __init__(self, tex):
 //  self.source=tex
@@ -57,7 +49,6 @@ public class TokenInput
 //  self.tokens.append(None)
 		this.source = tex;
 		this.tokens = new LinkedList<String>();
-		this.postProcess = postProcess;
 		tokenizeLatexMath(tex);
 		tokensIterator = tokens.listIterator();
 	}
@@ -319,7 +310,8 @@ public class TokenInput
   	try
   	{
   		LatexToMathml converter = new LatexToMathml();
-  		Element root = converter.convert(this);  		
+  		Element root = converter.convert(this);
+  		postProcess(root);
   		return saveXml(root);
   	}
   	catch(Throwable t)
@@ -329,47 +321,172 @@ public class TokenInput
   			+ " to MathML</mtext></merror>"; 
   	}
   }
+  
+  /**
+   * Applies post-processing to the MathML result.
+   * <p>
+   * Currently this gloops together &lt;mn&gt; tags for digits into single
+   * ones.
+   * @param e Root element
+   */
+  static void postProcess(Element e)
+  {
+  	// Apply this processing to all <mrow> plus to root <math> element.
+  	NodeList list = e.getElementsByTagNameNS(LatexToMathml.NS, "mrow");
+  	Element[] targets = new Element[list.getLength() + 1];
+  	for(int i=0; i<list.getLength(); i++)
+  	{
+  		targets[i] = (Element)list.item(i);
+  	}
+  	targets[targets.length - 1] = e;
+  	
+  	// Loop through target elements...
+  	for(Element target : targets)
+  	{
+  		// Go through the children
+  		for(Node child = target.getFirstChild(); child!=null; 
+  			child = child.getNextSibling())
+  		{
+  			// Skip nodes that aren't digits
+  			if(!isMnDigit(child))
+  			{
+  				continue;
+  			}
+  			
+  			// We found an mn - see if it has any following nodes to gloop
+  			String extra = "";
+  			boolean alreadyGotDot = false;
+  			Node stop = null;
+  			for(Node following = child.getNextSibling(); following != null;
+  				following = following.getNextSibling())
+  			{
+  				if(isMnDigit(following))
+  				{
+  					extra += following.getFirstChild().getNodeValue();
+  				}
+  				else if(isMtextDot(following) && !alreadyGotDot)
+  				{
+  					extra += following.getFirstChild().getNodeValue();
+  					alreadyGotDot = true;
+  				}
+  				else
+  				{
+  					stop = following;
+  					break;
+  				}
+  			}
+  			
+  			if(extra.length() > 0)
+  			{
+	  			// Add the extra text to this node
+	  			String newText = child.getFirstChild().getNodeValue() + extra;
+	  			child.removeChild(child.getFirstChild());
+	  			child.appendChild(child.getOwnerDocument().createTextNode(newText));
+	  			
+	  			// Remove the following nodes
+  				Node following = child.getNextSibling();
+	  			while(following != stop)
+	  			{
+	  				Node next = following.getNextSibling();
+	  				target.removeChild(following);
+	  				following = next;
+	  			}
+	  			
+	  			// If the target was an <mrow> and it now only has one thing in,
+	  			// can we replace it with this <mn>
+	  			if(target.getLocalName().equals("mrow") &&
+	  				target.getFirstChild() == child && target.getLastChild() == child)
+	  			{
+	  				target.removeChild(child);
+	  				target.getParentNode().insertBefore(child, target);
+	  				target.getParentNode().removeChild(target);
+	  			}
+  			}
+  		}
+  	}
+  }
+  
+  /**
+   * Returns true if an XML node is an <mn> element with a single digit in it.
+   * @param n Node
+   * @return True if it is
+   */
+  private static boolean isMnDigit(Node n)
+  {
+		if(!(n instanceof Element))
+		{
+			return false;
+		}
+		if(!n.getLocalName().equals("mn"))
+		{
+			return false;
+		}
+		if(n.getChildNodes().getLength() != 1)
+		{
+			return false;
+		}
+		if(!(n.getFirstChild() instanceof Text))
+		{
+			return false;
+		}
+		Text text = (Text)n.getFirstChild();
+		if(!text.getNodeValue().matches("[0-9]"))
+		{
+			return false;
+		}
+		return true;
+  }
+  
+  /**
+   * Checks is a node is an &lt;mtext&gt; element containing a single dot / 
+   * decimal point.
+   * @param n
+   * @return True if it is
+   */
+  private static boolean isMtextDot(Node n)
+  {
+		if(!(n instanceof Element))
+		{
+			return false;
+		}
+		if(!n.getLocalName().equals("mtext"))
+		{
+			return false;
+		}
+		if(n.getChildNodes().getLength() != 1)
+		{
+			return false;
+		}
+		if(!(n.getFirstChild() instanceof Text))
+		{
+			return false;
+		}
+		Text text = (Text)n.getFirstChild();
+		String val = text.getNodeValue();
+		if(val.length() != 1)
+		{
+			return false;
+		}
+		// Allow full stop or middle dot
+		if(!".\u00b7".contains(val))
+		{
+			return false;
+		}
+		return true;
+  }
 
   /**
-   * Utility method: converts DOM element (in empty document) to string.
-   * Also applies post-processing XSL. 
+   * Utility method: converts DOM element to string.
    * @param e Element to convert
    * @return String
-   * @throws IOException 
-   * @throws TransformerException 
    */
-  String saveXml(Element root) throws IOException, TransformerException
+  static String saveXml(Element e)
   {
-  	Document doc = root.getOwnerDocument();
-		while(doc.getFirstChild() != null)
-  	{
-			doc.removeChild(doc.getFirstChild());
-  	}
-		doc.appendChild(root);
-		DOMSource in = new DOMSource(doc);
-		StringWriter w = new StringWriter();
-		StreamResult out = new StreamResult(w); 
-		Transformer t = postProcess.reserve();
-		try
-		{
-			t.transform(in, out);
-		}
-		finally
-		{
-			postProcess.release(t);
-		}
-		String result = w.toString();
-		// Add namespace if not present. (Namespace handling is a bit of a
-		// nightmare; I set the stylesheet not to add namespaces to anything, in
-		// order to avoid all the tags having m: prefix, but now I have to make
-		// sure there's an xmlns tag at the root.)
-		if(!result.matches(".*?<[^>]* xmlns=.*"))
-		{
-			result = result.replaceFirst("(<[a-z]+)([ >])", "$1 xmlns=\"" 
-				+ LatexToMathml.NS + "\"$2");
-		}
-		return result;
-  }
+		Document document = e.getOwnerDocument();
+		DOMImplementationLS domImplLS = (DOMImplementationLS)document.getImplementation();
+		LSSerializer serializer = domImplLS.createLSSerializer();
+		return serializer.writeToString(e).replaceFirst("^<\\?xml.*\n", "");
+  }  
   
   /**
    * Returns the next token and increments the position.

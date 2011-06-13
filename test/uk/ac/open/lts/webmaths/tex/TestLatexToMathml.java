@@ -44,6 +44,8 @@ public class TestLatexToMathml extends TestCase
 	{
 		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "\\frac 12"); 
 		assertMath("<mfrac><mn>12</mn><mn>24</mn></mfrac>", "\\frac{12}{24}");
+		assertMath("<mfrac><mrow><mi>x</mi><mo>\u2212</mo><mn>1</mn></mrow>" 
+			+ "<mn>2</mn></mfrac><mn>12</mn>", "\\frac{x-1}212");
 	}
 
 	@Test
@@ -72,7 +74,7 @@ public class TestLatexToMathml extends TestCase
 			+ "(y-\\mu _ Y) \\right] \\\\ & = \\frac{\\sigma _ Y^2(x-\\mu _ X)^2-2" 
 			+ "\\rho \\sigma _ X\\sigma _ Y (x-\\mu _ X)(y-\\mu _ Y)+\\sigma _ X^2" 
 			+ "(y-\\mu _ Y)^2}{\\sigma _ X^2\\sigma _ Y^2(1-\\rho ^2)} \\end{array}";
-		TokenInput tokens = new TokenInput(horribleExample, postProcess);
+		TokenInput tokens = new TokenInput(horribleExample);
 		tokens.toMathml();
 	}
 	
@@ -106,7 +108,7 @@ public class TestLatexToMathml extends TestCase
 			}
 			
 			String tex = m.group(2);
-			String result = new TokenInput(tex, postProcess).toMathml();
+			String result = new TokenInput(tex).toMathml();
 			if(result.contains("</merror>"))
 			{
 				System.err.println(tex);
@@ -118,7 +120,7 @@ public class TestLatexToMathml extends TestCase
 	
 	private void assertMath(String expected, String input)
 	{
-		TokenInput tokens = new TokenInput(input, postProcess);
+		TokenInput tokens = new TokenInput(input);
 		String actual = tokens.toMathml();
 		actual = actual.replaceFirst("<math[^>]+>(.*)</math>", "$1");
 		assertEquals(expected, actual);

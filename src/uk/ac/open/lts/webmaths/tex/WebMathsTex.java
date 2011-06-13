@@ -34,7 +34,7 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 		try
 		{
 			// Convert TeX to MathML
-			TokenInput input = new TokenInput(params.getTex(), postProcess);
+			TokenInput input = new TokenInput(params.getTex());
 			result.setMathml(input.toMathml());
 			result.setOk(true);
 		}
