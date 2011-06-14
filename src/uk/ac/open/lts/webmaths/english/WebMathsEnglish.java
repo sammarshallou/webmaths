@@ -72,7 +72,6 @@ public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 			// Add table column attributes
 			Document intermediate = (Document)out.getNode();
 			addTableAttributes(intermediate);
-			display(intermediate);
 			
 			// Do conversion to English
 			in = new DOMSource(intermediate);
@@ -81,7 +80,6 @@ public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 			try
 			{
 				t.transform(in, out);
-				display(out.getNode());
 			}
 			finally
 			{
@@ -103,7 +101,6 @@ public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 			speech = getFixer().toSpeech(speech);
 			
 			// Set the result 
-			System.out.println("<<\n" + speech + "\n>>");
 			result.setEnglish(speech);
 			result.setOk(true);
 			return result;
@@ -256,5 +253,4 @@ public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 			new StreamResult(System.out));
 		System.out.println();
 	}
-
 }

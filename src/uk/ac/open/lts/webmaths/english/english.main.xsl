@@ -21,33 +21,37 @@
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mglyph
   Uses alt attribute.
   -->
-<template match="m:mglyph">
+<xsl:template match="m:mglyph">
   <xsl:text> </xsl:text><xsl:value-of select="@alt"/><xsl:text> </xsl:text>
-</template>
+</xsl:template>
 
 <!--
   <ms> 
   http://www.w3.org/TR/MathML2/chapter3.html#presm.ms
   Puts quotes around content.
   -->
-<template match="m:ms">
+<xsl:template match="m:ms">
   <xsl:text>"</xsl:text><xsl:apply-templates/><xsl:text>"</xsl:text>
-</template>
+</xsl:template>
 
 <!--
   <mspace> 
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mspace
   -->
-<template match="m:mspace">
+<xsl:template match="m:mspace">
   <xsl:text> </xsl:text>
-</template>
+</xsl:template>
 
 <!--
-  The following elements have no special handling:
-  <mi>
-  <mn>
-  <mo>
-  <mtext>
+  <mo> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mo
+  -->
+<xsl:template match="m:mo" priority="+10">
+  <xsl:text> </xsl:text><xsl:value-of select="."/><xsl:text> </xsl:text>
+</xsl:template>
+
+<!--
+  <mi>, <mn>, <mtext> no special handling 
   -->
 
 <!--
@@ -57,12 +61,36 @@
 
 <!-- 
   <mrow> (with more than one item, and not the one directly inside <math>)
+  gets brackets added
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mrow
   -->
-<xsl:template match="m:mrow[count(*) > 1 and not(parent::m:math)]">
-    (
-    <xsl:apply-templates/>
-    )
+<xsl:template match="m:mrow">
+    <xsl:choose>
+        <!-- Root one doesn't get brackets -->
+        <xsl:when test="parent::m:math">
+            <xsl:apply-templates/>
+        </xsl:when>
+        <!-- Only one child, no brackets -->
+        <xsl:when test="count(*) = 1">
+            <xsl:apply-templates/>
+        </xsl:when>
+        <!-- Children already include displayed brackets, no brackets -->
+        <xsl:when test="*[1][self::m:mo[string(.)='(']] and 
+            *[position()=last()][self::m:mo[string(.)=')']]">
+            <xsl:apply-templates/>
+        </xsl:when>
+        <!-- Siblings are displayed brackets, no brackets -->
+        <xsl:when test="preceding-sibling::*[1][self::m:mo[string(.)='(']] and 
+            following-sibling::*[1][self::m:mo[string(.)=')']]">
+            <xsl:apply-templates/>
+        </xsl:when>
+        <xsl:otherwise>
+            <!-- Add brackets! -->
+            <xsl:text> ( </xsl:text>
+            <xsl:apply-templates/>
+            <xsl:text> ) </xsl:text>
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 <!--
