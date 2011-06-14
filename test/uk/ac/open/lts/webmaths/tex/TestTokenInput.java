@@ -135,43 +135,5 @@ public class TestTokenInput extends TestCase
 		Element frog = parse("<frog sound='ribbit'><tadpole/>Ribbit!</frog>"); 
 		assertEquals("<frog sound=\"ribbit\"><tadpole/>Ribbit!</frog>", 
 			TokenInput.saveXml(frog));
-	}
-	
-	public void testPostProcess() throws Exception
-	{
-		// Two MN in root math tag
-		assertPostProcess("<mn>12</mn>", "<mn>1</mn><mn>2</mn>");
-		
-		// Two MN in mrow - the mrow disappears
-		assertPostProcess("<mn>12</mn>", "<mrow><mn>1</mn><mn>2</mn></mrow>");
-		
-		// Two MN plus something else in mrow
-		assertPostProcess("<mrow><grr/><mn>12</mn></mrow>",
-			"<mrow><grr/><mn>1</mn><mn>2</mn></mrow>");
-		
-		// Three MN in mrow
-		assertPostProcess("<mn>123</mn>",
-			"<mrow><mn>1</mn><mn>2</mn><mn>3</mn></mrow>");
-		
-		// MN with a dot
-		assertPostProcess("<mn>1.3</mn>",
-			"<mrow><mn>1</mn><mtext>.</mtext><mn>3</mn></mrow>");
-
-		// MN with TWO dots (it won't accept the second)
-		assertPostProcess("<mrow><mn>1.3</mn><mtext>.</mtext><mn>4</mn></mrow>",
-			"<mrow><mn>1</mn><mtext>.</mtext><mn>3</mn><mtext>.</mtext><mn>4</mn></mrow>");
-		
-		// Two things to change in one (root)
-		assertPostProcess("<mn>12</mn><mo>+</mo><mn>13</mn>",
-			"<mn>1</mn><mn>2</mn><mo>+</mo><mn>1</mn><mn>3</mn>");
-	}
-	
-	private void assertPostProcess(String expected, String input) throws Exception
-	{
-		String ns = " xmlns=\"" + NS +"\"";
-		Element root = parse("<math" + ns + ">" + input + "</math>");
-		TokenInput.postProcess(root);
-		assertEquals("<math" + ns + ">" + expected + "</math>", 
-			TokenInput.saveXml(root));
-	}
+	}	
 }

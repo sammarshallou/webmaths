@@ -3026,6 +3026,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			}
 //  result_element_append(v_mrow, v_piece_to_mathml(slf))
 			resultElementAppend(mrow, pieceToMathml(slf));
+			
 //  if ((slf.tokens[slf.tokens_index] is not None) and (slf.tokens[slf.tokens_index] in v_stop_tokens)):
 //   return v_result
 			if(slf.peekToken() != null && stopTokens.containsKey(slf.peekToken()))
@@ -3050,6 +3051,40 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // v_mrow = None
 		Element result = subExprToMathml(slf);
 		Element mrow = null;
+		
+		// If the piece starts with a digit, gloop them together...
+		if(result != null && result.getTagName().equals("mn") &&
+			result.getFirstChild().getNodeValue().matches("[0-9]"))
+		{
+			// Inspect next tokens. Gloop any more digits/point
+			StringBuilder extra = new StringBuilder();
+			boolean gotDot = false;
+			while(true)
+			{
+				String token = slf.peekToken();
+				if(token != null && token.matches("[0-9]"))
+				{
+					extra.append(token);
+					slf.nextToken();
+				}
+				else if(token != null && !gotDot && token.equals("."))
+				{
+					extra.append(token);
+					slf.nextToken();
+					gotDot = true;
+				}
+				else
+				{
+					break;
+				}
+			}
+			
+			if(extra.length() > 0)
+			{
+				result = resultElement("mn", 0,
+					result.getFirstChild().getNodeValue() + extra.toString());
+			}
+		}
 		
 // while ((slf.tokens[slf.tokens_index] is not None) and not ((slf.tokens[slf.tokens_index] in v_stop_tokens)) and ((slf.tokens[slf.tokens_index] in g_named_identifiers) or (slf.tokens[slf.tokens_index] in g_left_delimiters))):
 		while(slf.peekToken() != null && !stopTokens.containsKey(slf.peekToken()) &&

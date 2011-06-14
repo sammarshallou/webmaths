@@ -53,6 +53,13 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mfrac><mn>12</mn><mn>24</mn></mfrac>", "\\frac{12}{24}");
 		assertMath("<mfrac><mrow><mi>x</mi><mo>\u2212</mo><mn>1</mn></mrow>" 
 			+ "<mn>2</mn></mfrac><mn>12</mn>", "\\frac{x-1}212");
+		assertMath("<msqrt><mn>1</mn></msqrt><mn>2</mn>", "\\sqrt 12"); 
+	}
+	
+	@Test
+	public void testDigitGrouping()
+	{
+		assertMath("<mn>1</mn><mo>−</mo><mn>0.498</mn>", "1-0.498");
 	}
 	
 	@Test
