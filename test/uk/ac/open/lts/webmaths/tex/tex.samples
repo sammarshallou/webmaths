@@ -1,3 +1,4 @@
+# Real equations from OU course use
 display, (1-\hat p)^2 = (1-0.498)^2 = 0.502^2 = 0.25
 display, (\beta _{1}-\beta _{0})\sum _{i=1}^ n{\log {x_{i}}}> d-n\log (\beta _{1}/\beta _{0}) . 
 display, (\hat\theta - \theta _0) \simeq -\frac{\ell '(\theta _0)}{E\{ \ell ''(\theta )\} \vert _{\theta _0}}= \frac{\ell '(\theta _0)}{E\{ -\ell ''(\theta )\} \vert _{\theta _0}}.  
@@ -4500,4 +4501,67 @@ display, \begin{array}{l} x\geq 0,\, \\ y\geq 0,\, \\ x+2\, y\leq 2\,  \end{arra
 display, \begin{array}{l} x\geq 0,\, \\ y\geq 0,\, \\ 2\leq 2\, x+y\,  \end{array} 
 display, \begin{array}{l} x\geq 0,\, \\ y\geq 0,\, \\ 2\leq x+2\, y\,  \end{array} 
 display, \begin{array}{l} x\geq 0,\, \\ y\geq 0,\, \\ x+y\leq 1\,  \end{array} 
-display, \begin{array}{l} 4\times 5+6\times 7\\ =20+42\\ =62 \end{array} 
+display, \begin{array}{l} 4\times 5+6\times 7\\ =20+42\\ =62 \end{array}
+
+# Examples added by me from around the web so as to improve code coverage
+# in a few cases I had to make them up by reference to an existing one because
+# I didn't find an existing example. 
+inline,\dsum\limits_{i=0}^{n-1}x_{i}^{2}
+display,\tsum\limits_{i=0}^{n-1}x_{i}^{2}
+display,\tint_a^b \! f(x) \, \mathrm{d}x.
+inline,\dbinom{9}{3}
+display,\tbinom{9}{3}
+display,\[ \operatorname{foo}(bar) \]
+display,9\equiv 3 \pod{6} 
+display,9\equiv 3 \pmod{6}
+display,\boldsymbol{\Gamma} = 3.
+display,\bold{\Gamma} = 3.
+display,\Bbb{R}
+display,\mathbbmss{ABCdef12}
+display,\mathbf{R}
+display,\mathop{\sum \sum}_{i,j=1}^{N} a_i a_j
+display,\mathfrak{ABCdef123}
+display,\mathit{ABCdef123}
+display,\mathscr{ABC}
+display,\mathsf{ABCDEFGHIJKLM}
+display,\mathtt{ABCDEFGHIJKLM}
+display,\EuScript{A}
+display,\big\lfloor \Big\lfloor \bigg\lfloor \Bigg\lfloor \dots \Bigg\rceil \bigg\rceil \Big\rceil \big\rceil
+display,\Big(2\sqrt{\frac{a}{b}}\Big)^m + \Big(2\sqrt{\frac{b}{a}}\Big)^m \ge 2^{m+1}
+display,\Bigg\{ 2- \bigg( x^2 \bigg) \Bigg\}
+display,\acute{a}, \grave{a}
+display,\check{a}, \breve{a}, \tilde{a}, \bar{a}
+display,\hat{a}, \widehat{a}, \vec{a}
+display,\prime, \backprime, f^\prime, f', f'', f^{(3)}, \dot y, \ddot y
+inline,\dddot{a}
+display,\underbrace{n(n-1)(n-2)\dots(n-m+1)}_{\mbox{total of $m$ factors}}
+display,\bar{T} = \overline{T}, \widetilde{xyz}, \overbrace{a+\underbrace{b+c}+d}
+display,\overline{\overline{a}^2+\underline{xy}+\overline{\overline{z}}}
+inline,\widetilde{xyz}
+inline,\not<
+display,\bigl[ \times \bigr]
+display,\Bigl[ \times \Bigr]
+display,\sin\biggl(\frac12\biggr)
+display,\displaystyle\Biggl[\biggl((1-k^{i+1})^2-(1-k^{i})^2)\biggr)\cdot\biggl(-k^{P_L(i+1)}ln(i+1)+E_{RX}\biggr)\Biggr]=\displaystyle\Biggl[\biggl((1-k^{P_L(i+1)})+(1-k^{P_L})(i-1)\frac{E_{RX}}{P_0\tau}\biggr)\cdot\biggl((1-k^{i+1})(k^{i+1}ln(i+1))-(1-k^i)(k^iln(i)\biggl)\Biggr]
+inline,y \! = \! m \! x \! + \! c
+inline,\textnormal{this is textnormal}
+inline,\textsl{text}
+inline,\textit{text}
+inline,\texttt{text}
+display,\eqalignno{x&=y+z\cr\noalign{\hbox{and}}x^2&=y^2+z^2.\cr}
+# Amusing fact: the only character escape code supported is 93. hmmm.
+inline,\char93
+inline,\text Q
+display,{}^4_5^6_7
+display,{}_4^5_6^7
+display,{}^5^7
+display,{}_4_6
+display,{}_4_6a^3
+display,{}_4_6a_5
+display,{}_4_6a_5{}^9_1
+display,a_5{}^9_1
+display,a^5{}_9^1
+display,a^5{}_9
+display,a^5{}^1
+display,{n+1\choose k} = {n\choose k} + {n \choose k-1}
+

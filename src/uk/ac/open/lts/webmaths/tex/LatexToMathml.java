@@ -155,25 +155,6 @@ public class LatexToMathml
 		return node;
 	}
 	
-//def result_element_append(parent, child):
-//if (parent is not None) and (child is not None):
-//  if isinstance(child, unicode):
-//    parent.appendChild(document.createTextNode(child))
-//  else:
-//    parent.appendChild(child)
-	/**
-	 * Appends a string (as text node) to the parent node.
-	 * Note: This appears never to be used.
-	 * @param parent Parent node
-	 * @param child Child text
-	 */
-	private void resultElementAppend(Node parent, String child)
-	{
-		if(parent != null && child != null)
-		{
-			parent.appendChild(document.createTextNode(child));
-		}
-	}
 	/**
 	 * Appends a DOM node to the parent node.
 	 * @param parent Parent node
@@ -889,23 +870,6 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\sinh", "sinh\u2009",
 		"\\tan", "tan\u2009",
 		"\\tanh", "tanh\u2009"
-  });
-
-	/**
-	 * Note: This is never used in the original Python either.
-	 */
-	private final static Map<String, String> BIG_WORD_OPERATORS =
-		makeMap(new String[] 
-  {
-		"\\inf", "inf\u2009",
-		"\\injlim", "inj lim\u2009",
-		"\\lim", "lim\u2009",
-		"\\liminf", "lim inf\u2009",
-		"\\limsup", "lum sup\u2009",
-		"\\max", "max\u2009",
-		"\\min", "min\u2009",
-		"\\projlim", "proj lim\u2009",
-		"\\sup", "sup\u2009"
   });
 
 	private final static Map<String, String> GREEK_LETTERS =
@@ -2352,14 +2316,32 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //return v_result
 	private Element charEscapeToMathml(TokenInput slf)
 	{
-		String token = slf.nextToken();
-		if(CHAR_ESCAPE_CODES.containsKey(token))
+		// I have modified this function because of the change to tokenise digits
+		// individually. Now this escape looks until it stops finding digits.
+		StringBuilder digits = new StringBuilder();
+		int count;
+		for(count=0; true; count++)
 		{
-			return resultElement("mtext", 0, CHAR_ESCAPE_CODES.get(token));
+			String digit = slf.peekToken(count);
+			if(digit == null || !digit.matches("[0-9]"))
+			{
+				break;
+			}
+			digits.append(digit);
+		}
+		for(int i=0; i<count; i++)
+		{
+			slf.nextToken();
+		}
+
+		String digitString = digits.toString();
+		if(CHAR_ESCAPE_CODES.containsKey(digitString))
+		{
+			return resultElement("mtext", 0, CHAR_ESCAPE_CODES.get(digitString));
 		}
 		else
 		{
-			return resultElement("merror", 0, "\\char", token);
+			return resultElement("merror", 0, "Unsupported \\char ", digitString);
 		}
 	}
 
@@ -3090,6 +3072,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //   return v_result
 			if(slf.peekToken() != null && stopTokens.containsKey(slf.peekToken()))
 			{
+				// This code can never be called because the while loop would
+				// have exited if stopTokens was hit.
 				return result;
 			}
 //  else:

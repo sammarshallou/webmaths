@@ -54,6 +54,13 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mfrac><mrow><mi>x</mi><mo>\u2212</mo><mn>1</mn></mrow>" 
 			+ "<mn>2</mn></mfrac><mn>12</mn>", "\\frac{x-1}212");
 	}
+	
+	@Test
+	public void testCharFunctionThatNobodyWillEverUse()
+	{
+		assertMath("<mtext>#</mtext><mo>+</mo><mn>1</mn>", "\\char93+1");
+		assertMath("<merror>Unsupported \\char 93333</merror>", "\\char93333");
+	}
 
 	@Test
 	public void testSlightlyLessSimpleExample()
@@ -107,6 +114,10 @@ public class TestLatexToMathml extends TestCase
 			if(line == null)
 			{
 				break;
+			}
+			if(line.equals("") || line.startsWith("#"))
+			{
+				continue;
 			}
 			Matcher m = SAMPLES_REGEX.matcher(line);
 			if(!m.matches())
