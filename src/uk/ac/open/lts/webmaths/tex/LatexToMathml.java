@@ -1427,7 +1427,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0302");
+				// This used to return 0302, but MathML uses the basic circumfle3x 005e
+				// as its &Hat; so I figure that is right.
+				return accentToMathml(slf, "\u005e");
 			}
 		});
 //u"\\vec": lambda slf: v_accent_to_mathml(slf, u"\u20d7"), \
