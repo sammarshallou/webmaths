@@ -68,38 +68,9 @@
  -->
 
 <!-- 
-  <mrow> (with more than one item, and not the one directly inside <math>)
-  gets brackets added
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mrow
+  <mrow> no special treatment (it used to add brackets but this didn't really
+  help)
   -->
-<xsl:template match="m:mrow">
-    <xsl:choose>
-        <!-- Root one doesn't get brackets -->
-        <xsl:when test="parent::m:math">
-            <xsl:apply-templates/>
-        </xsl:when>
-        <!-- Only one child, no brackets -->
-        <xsl:when test="count(*) = 1">
-            <xsl:apply-templates/>
-        </xsl:when>
-        <!-- Children already include displayed brackets, no brackets -->
-        <xsl:when test="*[1][self::m:mo[string(.)='(']] and 
-            *[position()=last()][self::m:mo[string(.)=')']]">
-            <xsl:apply-templates/>
-        </xsl:when>
-        <!-- Siblings are displayed brackets, no brackets -->
-        <xsl:when test="preceding-sibling::*[1][self::m:mo[string(.)='(']] and 
-            following-sibling::*[1][self::m:mo[string(.)=')']]">
-            <xsl:apply-templates/>
-        </xsl:when>
-        <xsl:otherwise>
-            <!-- Add brackets! -->
-            <xsl:text> ( </xsl:text>
-            <xsl:apply-templates/>
-            <xsl:text> ) </xsl:text>
-        </xsl:otherwise>
-    </xsl:choose>
-</xsl:template>
 
 <!--
   <mfrac>
@@ -386,7 +357,7 @@
 <xsl:template match="m:mover[@accent='true' and 
     string-length(normalize-space(*[1])) = 1 and
     *[2][self::m:mo and string(.)='&Hat;']]">
-  <xsl:apply-templates select="*[1]"/>-hat
+  <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-hat<xsl:text> </xsl:text>
 </xsl:template>
 
 

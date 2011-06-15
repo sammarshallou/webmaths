@@ -49,10 +49,20 @@
 3c3=sigma 
 3c4=tau 
 398=capital Theta 
-3b8=straight theta, theta 
-3d1=curly or open theta 
+3b8=theta 
+3d1=curly theta 
 3d2=capital Upsilon 
 3c5=upsilon 
 39e=capital Xi 
 3be=xi 
 3b6=zeta 
+
+# Other letters; remove word 'small'
+2113=cursive l 
+
+# Remove annoying commas
+2243=similar equals 
+
+
+# Guess at specific meanings
+2032=prime

@@ -102,7 +102,7 @@ public class MathmlEntityFixer
 
 			// Store in map
 			String hexes = line.substring(0, equals);
-			String desc = line.substring(equals+1);
+			String desc = line.substring(equals+1).trim();
 			hexesToDesc.put(hexes, desc);
 
 			// Work out which has the longest sequence of codepoints (= the number
@@ -247,9 +247,7 @@ public class MathmlEntityFixer
 					String desc = hexesToDesc.get(combined.toString());
 					if(desc != null)
 					{
-						replacement.append(' ');
 						replacement.append(desc);
-						replacement.append(' ');
 						entity += length;
 						continue entityLoop;
 					}
