@@ -46,12 +46,20 @@
   <mo> 
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mo
   -->
-<xsl:template match="m:mo" priority="+10">
+<xsl:template match="m:mo">
   <xsl:text> </xsl:text><xsl:value-of select="."/><xsl:text> </xsl:text>
 </xsl:template>
 
 <!--
-  <mi>, <mn>, <mtext> no special handling 
+  <mi> 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mi
+  -->
+<xsl:template match="m:mi">
+  <xsl:text> </xsl:text><xsl:value-of select="."/><xsl:text> </xsl:text>
+</xsl:template>
+
+<!--
+  <mn>, <mtext> no special handling yet 
   -->
 
 <!--
@@ -395,7 +403,7 @@
 <!--
   <munderover> - sum, etc   
   -->
-<xsl:template match="m:munderover[*[1][self::mo]]">
+<xsl:template match="m:munderover[*[1][self::m:mo]]">
   <xsl:apply-templates select="*[1]"/>
   from <xsl:apply-templates select="*[2]"/>
   to <xsl:apply-templates select="*[3]"/> 
