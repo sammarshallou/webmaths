@@ -147,7 +147,11 @@ public class TestLatexToMathml extends TestCase
 	{
 		TokenInput tokens = new TokenInput(input);
 		String actual = tokens.toMathml();
-		actual = actual.replaceFirst("<math[^>]+>(.*)</math>", "$1");
+		// Get rid of math tag, semantics, annotation
+		actual = actual.replaceFirst(
+			"<math[^>]+><semantics>(.*?)<annotation[^>]+>.*</semantics></math>", "$1");
+		// Get rid of outer mrow if included
+		actual = actual.replaceFirst("^<mrow>(.*)</mrow>$", "$1");
 		assertEquals(expected, actual);
 	}
 }

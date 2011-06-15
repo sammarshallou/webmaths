@@ -72,6 +72,6 @@ public class TestMathmlEntityFixer extends TestCase
 	public void testToSpeech() throws Exception
 	{
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
-		assertEquals("and therefore", fixer.toSpeech("and\u2234"));
+		assertEquals("and therefore", fixer.toSpeech("and \u2234"));
 	}
 }

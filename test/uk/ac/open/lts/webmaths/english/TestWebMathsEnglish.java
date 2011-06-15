@@ -20,7 +20,7 @@ public class TestWebMathsEnglish extends TestCase
 	@Test
 	public void testExcessiveBrackets() throws Exception
 	{
-		assertEnglish("( ( 1 minus 0 ) .498 ) squared", 
+		assertEnglish("( 1 minus 0.498 ) squared", 
 			"<msup>" +
 				"<mrow>" +
 					"<mo>(</mo>" +
