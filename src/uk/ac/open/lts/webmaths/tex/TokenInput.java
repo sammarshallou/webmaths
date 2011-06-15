@@ -471,4 +471,12 @@ public class TokenInput
   {
   	this.debug = debug;
   }
+  
+  /**
+   * @return Original TeX source
+   */
+  public String getSource()
+	{
+		return source;
+	}
 }

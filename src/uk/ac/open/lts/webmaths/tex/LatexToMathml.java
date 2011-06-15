@@ -3125,7 +3125,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	}
 	
 	/**
-	 * Converts an entire equation into MathML.
+	 * Converts an entire equation into MathML, including adding an annotation
+	 * that contains the original TeX source.
 	 * <p>
 	 * This method wasn't in the Python version.
 	 * @param tokens Tokens
@@ -3134,23 +3135,10 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	public Element convert(TokenInput tokens)
 	{
 		Element root = subExprChainToMathml(tokens, new HashMap<String, String>());
-		Element math = resultElement("math", 0);
-		// If the root is an mrow with no attributes, chuck it away and use the <math>
-		// instead to make the result shorter
-		if(root.getTagName().equals("mrow") 
-			&& root.getAttributes().getLength() == 0)
-		{
-			while(root.getFirstChild() != null)
-			{
-				Node child = root.getFirstChild();
-				root.removeChild(child);
-				math.appendChild(child);
-			}
-		}
-		else
-		{
-			math.appendChild(root);
-		}
+		Element annotation = resultElement("annotation", 1, "encoding", "application/x-tex",
+			tokens.getSource());
+		Element semantics = resultElement("semantics", 0, root, annotation);
+		Element math = resultElement("math", 0, semantics);
 		return math;
 	}
 }	
