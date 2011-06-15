@@ -40,6 +40,8 @@ import uk.ac.open.lts.webmaths.*;
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort")
 public class WebMathsImage extends WebMathsService implements MathsImagePort
 {
+	private static boolean SHOWPERFORMANCE = false;
+	
 	/**
 	 * @param fixer Entity fixer
 	 */
@@ -83,14 +85,20 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			Color fg = new Color(Integer.parseInt(m.group(1), 16),
 				Integer.parseInt(m.group(2), 16), Integer.parseInt(m.group(3), 16));
 			
-			System.err.println("Setup: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Setup: " + (System.currentTimeMillis() - start));
+			}
 		
 			// Parse XML to JEuclid document
 			DocumentElement document;
 			try
 			{
 				Document doc = parseMathml(params.getMathml());
-				System.err.println("Parse DOM: " + (System.currentTimeMillis() - start));
+				if(SHOWPERFORMANCE)
+				{
+					System.err.println("Parse DOM: " + (System.currentTimeMillis() - start));
+				}
 				document = DOMBuilder.getInstance().createJeuclidDom(doc);
 			}
 			catch(SAXParseException e)
@@ -100,7 +108,10 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 					+ e.getMessage());
 				return result;
 			}
-			System.err.println("Parse: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Parse: " + (System.currentTimeMillis() - start));
+			}
 			
 			// Set layout options
 			LayoutContextImpl layout = new LayoutContextImpl(
@@ -108,24 +119,39 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			layout.setParameter(Parameter.ANTIALIAS, Boolean.TRUE);
 			layout.setParameter(Parameter.MATHSIZE, params.getSize() * 16.8f);
 			layout.setParameter(Parameter.MATHCOLOR, fg);
-			System.err.println("Layout: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Layout: " + (System.currentTimeMillis() - start));
+			}
 		
 			// Layout equation
 			JEuclidView view = new JEuclidView(document, layout, context);
 			float ascent = view.getAscentHeight();
 			float descent = view.getDescentHeight();
 			float width = view.getWidth();
-			System.err.println("View: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("View: " + (System.currentTimeMillis() - start));
+			}
 		
 			// Create new image to hold it
 			BufferedImage image = new BufferedImage((int)Math.ceil(width),
 				(int)Math.ceil(ascent + descent), BufferedImage.TYPE_INT_ARGB);
-			System.err.println("Image: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Image: " + (System.currentTimeMillis() - start));
+			}
 			view.draw(image.createGraphics(), 0, ascent);
-			System.err.println("Draw: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Draw: " + (System.currentTimeMillis() - start));
+			}
 			ByteArrayOutputStream output = new ByteArrayOutputStream();
 			ImageIO.write(image, "png", output);
-			System.err.println("PNG: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("PNG: " + (System.currentTimeMillis() - start));
+			}
 			
 			// Save results
 			result.setImage(output.toByteArray());
@@ -133,7 +159,10 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 				- (int)Math.round(ascent)));
 			result.setOk(true);
 
-			System.err.println("End: " + (System.currentTimeMillis() - start));
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("End: " + (System.currentTimeMillis() - start));
+			}
 			return result;
 		}
 		catch(Throwable t)
