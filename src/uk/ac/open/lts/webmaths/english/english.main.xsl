@@ -373,6 +373,16 @@
 </xsl:template>
 
 <!--
+  <mover> for 'hat'
+  -->
+<xsl:template match="m:mover[@accent='true' and 
+    string-length(normalize-space(*[1])) = 1 and
+    *[2][self::m:mo and string(.)='&Hat;']]">
+  <xsl:apply-templates select="*[1]"/>-hat
+</xsl:template>
+
+
+<!--
   <munderover>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.munderover 
   -->
@@ -383,7 +393,7 @@
 </xsl:template>
 
 <!--
-  <munderover> - sum, etc
+  <munderover> - sum, etc   
   -->
 <xsl:template match="m:munderover[*[1][self::mo]]">
   <xsl:apply-templates select="*[1]"/>
