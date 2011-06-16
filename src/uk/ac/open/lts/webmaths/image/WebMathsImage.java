@@ -121,6 +121,12 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			layout.setParameter(Parameter.ANTIALIAS, Boolean.TRUE);
 			layout.setParameter(Parameter.MATHSIZE, params.getSize() * 16.8f);
 			layout.setParameter(Parameter.MATHCOLOR, fg);
+			
+			// These fonts are included with the JEuclid build so ought to work
+			layout.setParameter(Parameter.FONTS_SERIF, "DejaVu Serif"); 
+			layout.setParameter(Parameter.FONTS_SANSSERIF, "DejaVu Sans"); 
+			layout.setParameter(Parameter.FONTS_MONOSPACED, "DejaVu Sans Mono"); 
+			
 			if(SHOWPERFORMANCE)
 			{
 				System.err.println("Layout: " + (System.currentTimeMillis() - start));

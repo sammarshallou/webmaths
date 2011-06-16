@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+    <endpoint
+        name="WebMathsEnglish"
+        service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsEnglish"
+        wsdl="WEB-INF/wsdl/maths.english.wsdl"
+        implementation="uk.ac.open.lts.webmaths.english.WebMathsEnglish"
+        url-pattern="/english"/>
+    <endpoint
+        name="WebMathsImage"
+        service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsImage"
+        wsdl="WEB-INF/wsdl/maths.image.wsdl"
+        implementation="uk.ac.open.lts.webmaths.image.WebMathsImage"
+        url-pattern="/image"/>
+    <endpoint
+        name="WebMathsTex"
+        service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsTex"
+        wsdl="WEB-INF/wsdl/maths.tex.wsdl"
+        implementation="uk.ac.open.lts.webmaths.tex.WebMathsTex"
+        url-pattern="/tex"/>
+</endpoints> 
