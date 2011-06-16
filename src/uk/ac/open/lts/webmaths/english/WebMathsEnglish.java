@@ -96,8 +96,16 @@ public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 				}
 			}
 			
-			// Fix entities and whitespace
+			// Remove outer brackets if any
 			String speech = text.toString();
+			String last = "";
+			while(!speech.equals(last))
+			{
+				last = speech;
+				speech = speech.replaceAll("^\\s*\\(((X|[^X])*)\\)\\s*$", "$1");
+			}
+			
+			// Fix entities and whitespace
 			speech = getFixer().toSpeech(speech);
 			
 			// Set the result 

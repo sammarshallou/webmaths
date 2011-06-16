@@ -11,6 +11,10 @@
 </result>
 </xsl:template>
 
+<!-- Skip elements -->
+<xsl:template match="m:annotation"/>
+<xsl:template match="m:annotation-xml"/>
+
 <!--
   TOKEN ELEMENTS (3.1.6.1)
   ***************************************************************************

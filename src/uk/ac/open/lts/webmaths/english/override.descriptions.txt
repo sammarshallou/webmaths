@@ -66,3 +66,6 @@
 
 # Guess at specific meanings
 2032=prime
+
+# Stupid explanations
+2062=times

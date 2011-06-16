@@ -39,6 +39,12 @@ public class TestWebMathsEnglish extends TestCase
 			"</msup>");
 	}
 	
+	@Test
+	public void testOuterBrackets() throws Exception
+	{
+		assertEnglish("1 over z", "<mfrac><mn>1</mn><mi>z</mi></mfrac>");
+	}
+	
 	private void assertEnglish(String expected, String mathml) throws Exception
 	{
 		MathsEnglishParams params = new MathsEnglishParams();
