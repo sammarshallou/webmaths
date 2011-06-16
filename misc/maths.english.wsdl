@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="MathsEnglish"
+    targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:t="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+
+    <types>
+        <schema targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+            xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+            <element name="MathsEnglishParams">
+                <complexType>
+                    <sequence>
+                        <element name="mathml" type="xsd:string">
+                            <annotation><documentation>Complete MathML content to convert, as
+                                    string. Should begin with &lt;math... and end with &lt;/math>,
+                                    omitting XML prolog and doctype. The namespace is required but
+                                    must be set using xmlns= on the math element. Namespace prefixes
+                                    must not be used.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="MathsEnglishReturn">
+                <complexType>
+                    <sequence>
+                        <element name="ok" type="xsd:boolean">
+                            <annotation><documentation>True if the request was ok, false if
+                                    not.</documentation></annotation>
+                        </element>
+                        <element name="error" type="xsd:string">
+                            <annotation><documentation>Error message string (blank if no
+                                    error; can also set for warning).</documentation></annotation>
+                        </element>
+                        <element name="english" type="xsd:string">
+                            <annotation><documentation>English equivalent for given equation.
+                                    Should be a normal string of text, suitable for use in an
+                                    alt attribute.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+        </schema>
+    </types>
+
+    <message name="getEnglishRequest">
+        <part name="params" element="t:MathsEnglishParams"/>
+    </message>
+
+    <message name="getEnglishResponse">
+        <part name="result" element="t:MathsEnglishReturn"/>
+    </message>
+
+    <portType name="MathsEnglishPort">
+        <operation name="getEnglish">
+            <input message="tns:getEnglishRequest"></input>
+            <output message="tns:getEnglishResponse"></output>
+        </operation>
+    </portType>
+
+    <binding name="MathsEnglishBinding" type="tns:MathsEnglishPort">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="getEnglish">
+            <soap:operation soapAction="getEnglish"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+
+    <service name="MathsEnglish">
+        <port name="MathsEnglishPort" binding="tns:MathsEnglishBinding">
+            <soap:address location="http://www.example.org/" />
+        </port>
+    </service>
+</definitions>

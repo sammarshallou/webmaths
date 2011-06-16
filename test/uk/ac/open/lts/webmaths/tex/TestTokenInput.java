@@ -18,8 +18,6 @@ Copyright 2011 The Open University
 */
 package uk.ac.open.lts.webmaths.tex;
 
-import static uk.ac.open.lts.webmaths.tex.LatexToMathml.NS;
-
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilderFactory;

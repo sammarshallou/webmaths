@@ -1,10 +1,8 @@
 package uk.ac.open.lts.webmaths.english;
 
-import org.junit.*;
-
-import uk.ac.open.lts.webmaths.MathmlEntityFixer;
-
 import junit.framework.TestCase;
+
+import org.junit.*;
 
 public class TestWebMathsEnglish extends TestCase
 {
@@ -13,8 +11,7 @@ public class TestWebMathsEnglish extends TestCase
 	@Before
 	public void setUp() throws Exception
 	{
-		MathmlEntityFixer fixer = new MathmlEntityFixer();
-		english = new WebMathsEnglish(fixer);
+		english = new WebMathsEnglish();
 	}
 	
 	@Test

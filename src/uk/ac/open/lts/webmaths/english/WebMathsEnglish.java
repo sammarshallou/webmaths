@@ -27,26 +27,32 @@ import org.w3c.dom.*;
 
 import uk.ac.open.lts.webmaths.*;
 
-@WebService(endpointInterface="uk.ac.open.lts.webmaths.english.MathsEnglishPort")
+@WebService(endpointInterface="uk.ac.open.lts.webmaths.english.MathsEnglishPort",
+	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
+	serviceName="MathsEnglish", portName="MathsEnglishPort")
 public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 {
 	private TransformerPool normaliseXsl, mainXsl;
 	
 	/**
-	 * @param fixer Entity fixer
+	 * Initialises XSL data based on web service context if supplied.
 	 */
-	public WebMathsEnglish(MathmlEntityFixer fixer)
+	private void initXsl()
 	{
-		super(fixer);
-		normaliseXsl = new TransformerPool(fixer,
-			WebMathsService.class, "normalise.xsl", "english");
-		mainXsl = new TransformerPool(fixer, 
-			WebMathsEnglish.class, "english.main.xsl"); 
+		if(normaliseXsl == null)
+		{
+			MathmlEntityFixer fixer = getFixer();
+			normaliseXsl = new TransformerPool(fixer,
+				WebMathsService.class, "normalise.xsl", "english");
+			mainXsl = new TransformerPool(fixer, 
+				WebMathsEnglish.class, "english.main.xsl"); 
+		}
 	}
 	
 	@Override
 	public MathsEnglishReturn getEnglish(MathsEnglishParams params)
 	{
+		initXsl();
 		MathsEnglishReturn result = new MathsEnglishReturn();
 		result.setOk(false);
 		result.setError("");

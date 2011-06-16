@@ -22,17 +22,11 @@ import javax.jws.WebService;
 
 import uk.ac.open.lts.webmaths.*;
 
-@WebService(endpointInterface="uk.ac.open.lts.webmaths.tex.MathsTexPort")
+@WebService(endpointInterface="uk.ac.open.lts.webmaths.tex.MathsTexPort",
+	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
+	serviceName="MathsTex", portName="MathsTexPort")
 public class WebMathsTex extends WebMathsService implements MathsTexPort
 {
-	/**
-	 * @param fixer Entity fixer (not used)
-	 */
-	public WebMathsTex(MathmlEntityFixer fixer)
-	{
-		super(fixer);
-	}
-
 	@Override
 	public MathsTexReturn getMathml(MathsTexParams params)
 	{

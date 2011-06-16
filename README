@@ -35,18 +35,35 @@ version 3 (see LICENSE), except:
 Basic build/setup instructions for testing
 ------------------------------------------
 
-Using Eclipse (it should also work in NetBeans but I dunno the details for
-that), you can set it up as follows:
+1) Run the ant build script with the 'wsdlgen' target. This will create the
+   'gen' folder based on the WSDL files. 
+   
+   In order for this to work you will need to set the Ant property
+   jaxws.home to point to the folder of JAX-WS 2.1 install; get this from
+   Oracle if you don't already have it.
 
-1) put all the code into eclipse project
-2) right-click on build.xml and 'run ant build' (this creates the 'gen' folder)
-3) right-click on project and choose 'refresh' (this makes eclipse notice it)
-4) right-click on 'gen' folder and choose 'add to source path'
+2) If you want your IDE to compile the project:
+   a) Refresh the project if necessary to see the 'gen' folder.
+      -> In Eclipse, right-click the project root and choose Refresh. 
+   b) Add the 'gen' and 'test' folders to your IDE's source path. (The 'src'
+      folder has probably been included by default, but if not, add that too.)
+      -> In Eclipse, right-click the folder and choose Build path /
+         Use as source folder.
+   c) Add all the library .jar files in 'lib' to the IDE's build path.
+      -> In Eclipse, right-click and choose Build path / Add to build path.
 
-after that it should work, to run it right-click on DevServer.java and choose 
-'run as... java application' (I think I hard-coded in my own machine's name so 
-maybe need to change that first); that will run the services in the built-in 
-Java 6 test server.
+3) You can now run the services locally on the built-in Java 6 test server
+   by running uk.ac.open.lts.webmaths.DevServer 
+   -> In Eclipse, right-click this file and choose Run as / Java application.
 
-Or, you can run unit tests by right-click on the 'test' folder and choose 
-'Run as... JUnit test'.
+4) You can also run unit tests by running JUnit on the 'test' folder.
+   -> In Eclipse, right-click this folder and choose Run as / JUnit test. 
+   
+5) To build the web application, run the ant script with the 'webinf' target.
+   This will create a WEB-INF folder. You will need to set the Ant property
+   webinf.location to the folder where you want to put the WEB-INF folder.
+   Any existing WEB-INF folder at that location will be deleted.
+
+6) To build the web application as a .war file, run ant script with the 'war'
+   target. Again, you can set the Ant property war.location to the folder
+   where you want to put the .war file.

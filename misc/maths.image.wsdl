@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="MathsImage"
+    targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:t="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+
+    <types>
+        <schema targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+            xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+            <simpleType name="Rgb">
+                <restriction base="xsd:string">
+                    <pattern value="#[a-z0-9]{6}"/>
+                </restriction>
+            </simpleType>
+
+            <element name="MathsImageParams">
+                <complexType>
+                    <sequence>
+                        <element name="mathml" type="xsd:string">
+                            <annotation><documentation>Complete MathML content to render, as
+                                    string. Should begin with &lt;math... and end with &lt;/math>,
+                                    omitting XML prolog and doctype. The namespace is required but
+                                    must be set using xmlns= on the math element. Namespace prefixes
+                                    must not be used.</documentation></annotation>
+                        </element>
+                        <element name="size" type="xsd:float">
+                            <annotation><documentation>Size to render at. Values to be used
+                                    initially, are 1.0, 1.5, and 2.0. The service may (or may
+                                    not) support other values.</documentation></annotation>
+                        </element>
+                        <element name="rgb" type="t:Rgb">
+                            <annotation><documentation>Colour of item as lower-case hex
+                                    string #rrggbb.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="MathsImageReturn">
+                <complexType>
+                    <sequence>
+                        <element name="ok" type="xsd:boolean">
+                            <annotation><documentation>True if the request was ok, false if
+                                    not.</documentation></annotation>
+                        </element>
+                        <element name="error" type="xsd:string">
+                            <annotation><documentation>Error message string (blank if no
+                                    error; can also set for warning).</documentation></annotation>
+                        </element>
+                        <element name="image" type="xsd:base64Binary">
+                            <annotation><documentation>Image data in PNG format. Service will
+                                    return empty data if error.</documentation></annotation>
+                        </element>
+                        <element name="baseline" type="xsd:integer">
+                            <annotation><documentation>Baseline position within image, in pixels
+                                    measured from the BOTTOM of the image. 0 = the bottom pixel of
+                                    the image should line up with the bottom of the text.
+                                    0 if error. Negative values permitted.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+        </schema>
+    </types>
+
+    <message name="getImageRequest">
+        <part name="params" element="t:MathsImageParams"/>
+    </message>
+
+    <message name="getImageResponse">
+        <part name="result" element="t:MathsImageReturn"/>
+    </message>
+
+    <portType name="MathsImagePort">
+        <operation name="getImage">
+            <input message="tns:getImageRequest"></input>
+            <output message="tns:getImageResponse"></output>
+        </operation>
+    </portType>
+
+    <binding name="MathsImageBinding" type="tns:MathsImagePort">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="getImage">
+            <soap:operation soapAction="getImage"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+
+    <service name="MathsImage">
+        <port name="MathsImagePort" binding="tns:MathsImageBinding">
+            <soap:address location="http://www.example.org/" />
+        </port>
+    </service>
+</definitions>

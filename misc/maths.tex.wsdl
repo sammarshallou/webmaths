@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="MathsTex"
+    targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:t="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+
+    <types>
+        <schema targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+            xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+            <element name="MathsTexParams">
+                <complexType>
+                    <sequence>
+                        <element name="tex" type="xsd:string">
+                            <annotation><documentation>TeX input to
+                                    convert.</documentation></annotation>
+                        </element>
+                        <element name="display" type="xsd:boolean">
+                            <annotation><documentation>True if the input should be formatted as
+                                    a 'display' equation, false for
+                                    inline.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="MathsTexReturn">
+                <complexType>
+                    <sequence>
+                        <element name="ok" type="xsd:boolean">
+                            <annotation><documentation>True if the request was ok, false if
+                                    not.</documentation></annotation>
+                        </element>
+                        <element name="error" type="xsd:string">
+                            <annotation><documentation>Error message string (blank if no
+                                    error; can also set for warning).</documentation></annotation>
+                        </element>
+                        <element name="mathml" type="xsd:string">
+                            <annotation><documentation>Complete MathML content as
+                                    string. Should begin with &lt;math... and end with &lt;/math>,
+                                    omitting XML prolog and doctype. The namespace is required but
+                                    must be set using xmlns= on the math element. Namespace prefixes
+                                    must not be used.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+        </schema>
+    </types>
+
+    <message name="getMathmlRequest">
+        <part name="params" element="t:MathsTexParams"/>
+    </message>
+
+    <message name="getMathmlResponse">
+        <part name="result" element="t:MathsTexReturn"/>
+    </message>
+
+    <portType name="MathsTexPort">
+        <operation name="getMathml">
+            <input message="tns:getMathmlRequest"></input>
+            <output message="tns:getMathmlResponse"></output>
+        </operation>
+    </portType>
+
+    <binding name="MathsTexBinding" type="tns:MathsTexPort">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="getMathml">
+            <soap:operation soapAction="getMathml"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+
+    <service name="MathsTex">
+        <port name="MathsTexPort" binding="tns:MathsTexBinding">
+            <soap:address location="http://www.example.org/" />
+        </port>
+    </service>
+</definitions>

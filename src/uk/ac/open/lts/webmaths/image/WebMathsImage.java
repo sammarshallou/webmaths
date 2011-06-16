@@ -37,25 +37,26 @@ import org.xml.sax.SAXParseException;
 
 import uk.ac.open.lts.webmaths.*;
 
-@WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort")
+@WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort",
+	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
+	serviceName="MathsImage", portName="MathsImagePort")
 public class WebMathsImage extends WebMathsService implements MathsImagePort
 {
 	private static boolean SHOWPERFORMANCE = false;
 	
+	private Graphics2D context;
+	
 	/**
-	 * @param fixer Entity fixer
+	 * Initialises the graphics context (first time).
 	 */
-	public WebMathsImage(MathmlEntityFixer fixer)
+	private void initContext()
 	{
-		super(fixer);
-	}
-
-	private static Graphics2D context;
-	static
-	{
-		// Create graphics context used for laying out equation
-		BufferedImage silly = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-		context = silly.createGraphics();
+		if(context == null)
+		{
+			// Create graphics context used for laying out equation
+			BufferedImage silly = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+			context = silly.createGraphics();
+		}
 	}
 	
 	private static final Pattern REGEX_RGB = Pattern.compile(
@@ -66,6 +67,7 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 	@Override
 	public MathsImageReturn getImage(MathsImageParams params)
 	{
+		initContext();
 		long start = System.currentTimeMillis();
 		MathsImageReturn result = new MathsImageReturn();
 		result.setOk(false);

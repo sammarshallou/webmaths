@@ -19,6 +19,7 @@ Copyright 2011 The Open University
 package uk.ac.open.lts.webmaths;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 import javax.xml.ws.Endpoint;
 
@@ -36,10 +37,15 @@ public class DevServer
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		MathmlEntityFixer fixer = new MathmlEntityFixer();
-		Endpoint.publish("http://pclt1507.open.ac.uk:9997/", new WebMathsTex(fixer));
-		Endpoint.publish("http://pclt1507.open.ac.uk:9998/", new WebMathsEnglish(fixer));
-		Endpoint.publish("http://pclt1507.open.ac.uk:9999/", new WebMathsImage(fixer));
-		System.out.println("Services ready");
+		String local = InetAddress.getLocalHost().getHostAddress();
+		String mathsTex = "http://" + local + ":9997/";
+		Endpoint.publish(mathsTex, new WebMathsTex());
+		System.err.println("MathsTex service ready - " + mathsTex); 
+		String mathsEnglish = "http://" + local + ":9998/";
+		Endpoint.publish(mathsEnglish, new WebMathsEnglish());
+		System.err.println("MathsEnglish service ready - " + mathsEnglish); 
+		String mathsImage = "http://" + local + ":9999/";
+		Endpoint.publish(mathsImage, new WebMathsImage());
+		System.err.println("MathsImage service ready - " + mathsImage); 
 	}
 }

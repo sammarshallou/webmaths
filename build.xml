@@ -1,13 +1,24 @@
-<project name="webmaths" default="wsdlgen" basedir=".">
+<project name="webmaths" default="webinf" basedir=".">
 
 	<description>
-		Builds web maths services and related items.
+		Builds web maths services and related items. If your project doesn't have
+	  the 'gen' source folder, you need to run the wsdlgen target in here.
 	</description>
 	
-	<!-- Location of VLE project root -->
-	<property name="vleproject" location="../ou-moodle2"/>
-	
+	<!-- Build folder (will be deleted on run!) -->
+	<property name="build" location="${java.io.tmpdir}/build/webmaths" />
+
+	<!-- Version number -->
+	<property name="version" value="1.0.0"/>
+
+	<!-- Set location of JAX-WS 2.1 installation -->
 	<property name="jaxws.home" location="c:/program files/jaxws2.1-ri"/>
+		
+	<!-- Set location you want to build the WEB-INF folder inside -->
+	<property name="webinf.location" location="${user.home}/Desktop"/>
+
+	<!-- Set location you want to build the .war file inside -->
+	<property name="war.location" location="${user.home}/Desktop"/>
 	
 	<path id="jaxws.classpath">
       <fileset dir="${jaxws.home}/lib" includes="jaxws-tools.jar"/>
@@ -17,23 +28,126 @@
 		<classpath refid="jaxws.classpath"/>
 	</taskdef>
 	
-	<target name="wsdlgen">
+	<target name="wsdlgen" description="Create generated source (gen folder) based on WSDL">
 		<delete dir="gen/uk/ac/open/lts/webmaths/image"/>
 		<delete dir="gen/uk/ac/open/lts/webmaths/english"/>
 		<delete dir="gen/uk/ac/open/lts/webmaths/tex"/>
+		<mkdir dir="gen"/>
 		<wsimport
 			sourcedestdir="gen"
 			package="uk.ac.open.lts.webmaths.image"
-			wsdl="${vleproject}/filter/maths/maths.image.wsdl"/>
+			wsdl="misc/maths.image.wsdl"/>
 		<wsimport
 			sourcedestdir="gen"
 			package="uk.ac.open.lts.webmaths.english"
-			wsdl="${vleproject}/filter/maths/maths.english.wsdl"/>
+			wsdl="misc/maths.english.wsdl"/>
 		<wsimport
 			sourcedestdir="gen"
 			verbose="true"
 			package="uk.ac.open.lts.webmaths.tex"
-			wsdl="${vleproject}/filter/maths/maths.tex.wsdl"/>
+			wsdl="misc/maths.tex.wsdl"/>
 	</target>
 
+	<!-- Get date in format used for build version -->
+	<target name="timestamp">
+		<tstamp>
+			<format property="build-date" pattern="yyyy-MM-dd HH:mm"/>
+		</tstamp>
+	</target>
+
+	<!-- Init build folders -->
+	<target name="init" depends="timestamp">
+		<delete dir="${build}" />
+		<mkdir dir="${build}" />
+	</target>
+
+	<!-- Classpath -->
+	<path id="classpath">
+	  <fileset dir="lib">
+	    <include name="**/*.jar"/>
+	  </fileset>
+	</path>
+
+	<!-- Compile Java source -->
+	<target name="compile" depends="init">
+		<mkdir dir="${build}/classes" />
+		<javac destdir="${build}/classes"
+			source="1.6" target="1.6" encoding="UTF-8" debug="true">
+			<src>
+			  <pathelement path="gen"/>
+			</src>
+			<src>
+			  <pathelement path="src"/>
+			</src>
+			<classpath refid="classpath"/>
+		</javac>
+		<copy todir="${build}/classes">
+		  <fileset dir="src">
+		  	<exclude name="**/*.java" />
+		  </fileset>
+		</copy>
+	</target>
+
+	<!-- Build jar file -->
+	<target name="jar" depends="compile">
+		<jar jarfile="${build}/webmaths.jar" basedir="${build}/classes" level="9"/>
+	</target>
+
+	<!-- Create web-inf folder -->
+	<target name="buildwebinf" depends="jar">
+		<!-- Create web-inf -->
+		<mkdir dir="${build}/WEB-INF"/>
+		<mkdir dir="${build}/WEB-INF/lib"/>
+	  <copy todir="${build}/WEB-INF/lib">
+	  	<fileset dir="lib/jeuclid">
+	  		<include name="*.jar"/>
+	  	</fileset>
+	  	<fileset dir="${build}">
+	  	  <include name="webmaths.jar"/>
+	  	</fileset>
+	  	<fileset dir="${jaxws.home}/lib">
+		    <include name="jaxws-rt.jar"/>
+		    <include name="streambuffer.jar"/>
+		    <include name="stax-ex.jar"/>
+		    <include name="jaxb-impl.jar"/>
+	  	</fileset>
+		</copy>
+		<copy todir="${build}/WEB-INF">
+	  	<fileset dir="misc">
+	  	  <include name="web.xml"/>
+	  	  <include name="sun-jaxws.xml"/>
+	  	</fileset>
+		</copy>
+		<mkdir dir="${build}/WEB-INF/wsdl"/>
+	  <copy todir="${build}/WEB-INF/wsdl">
+	  	<fileset dir="misc">
+	  		<include name="*.wsdl"/>
+	  	</fileset>
+		</copy>
+		<echo message="${version} (${build-date})" file="${build}/WEB-INF/version.txt" />
+	</target>
+		
+	<target name="webinf" depends="buildwebinf" description="Build WEB-INF folder on desktop">
+		
+		<!-- Delete existing target -->
+		<delete dir="${webinf.location}}"/>
+		
+		<!-- Copy it to target location -->
+		<copy todir="${webinf.location}">
+			<fileset dir="${build}">
+				<include name="WEB-INF/**"/>
+			</fileset>
+		</copy>
+		
+	</target>
+	
+	<target name="war" depends="buildwebinf" description="Build .war file on desktop">
+		<delete file="${war.location}/webmaths.war"/>
+		<jar destfile="${war.location}/webmaths.war">
+			<fileset dir="${build}">
+				<include name="WEB-INF/**"/>
+			</fileset>
+		</jar>
+	</target>	
+	
 </project>

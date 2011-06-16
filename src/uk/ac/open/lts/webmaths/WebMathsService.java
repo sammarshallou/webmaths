@@ -18,10 +18,14 @@ Copyright 2011 The Open University
 */
 package uk.ac.open.lts.webmaths;
 
-import java.io.StringReader;
+import java.io.*;
 import java.util.regex.Pattern;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.xml.parsers.*;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
 
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
@@ -31,15 +35,13 @@ import org.xml.sax.InputSource;
  */
 public class WebMathsService
 {
+	@Resource
+	private WebServiceContext context;
+	
+	private static MathmlEntityFixer localFixer;
+	
 	private final static Pattern REGEX_DOCTYPE = Pattern.compile(
 		"^\\s*<!DOCTYPE[^>]+>");
-
-	private MathmlEntityFixer fixer;
-	
-	protected WebMathsService(MathmlEntityFixer fixer)
-	{
-		this.fixer = fixer;
-	}
 
 	/**
 	 * Parses a MathML string.
@@ -64,6 +66,53 @@ public class WebMathsService
 	 */
 	protected MathmlEntityFixer getFixer()
 	{
-		return fixer;
+		ServletContext servletContext = null;
+		if(context != null)
+		{
+			servletContext = (ServletContext)context.getMessageContext().get(
+				MessageContext.SERVLET_CONTEXT);
+		}
+		
+		if(servletContext != null)
+		{
+			synchronized(servletContext)
+			{
+				String key = "uk.ac.open.lts.webmaths.Fixer";
+				MathmlEntityFixer fixer = (MathmlEntityFixer)servletContext.getAttribute(key);
+				if(fixer == null)
+				{
+					try
+					{
+						fixer = new MathmlEntityFixer();
+					}
+					catch(IOException e)
+					{
+						throw new Error(e);
+					}
+					servletContext.setAttribute(key, fixer);
+				}
+				return fixer;
+			}
+		}
+		else
+		{
+			// If this isn't running as part of a servlet, we'll use a static - 
+			// I don't trust statics in webapps.
+			synchronized(WebMathsService.class)
+			{
+				if(localFixer == null)
+				{
+					try
+					{
+						localFixer = new MathmlEntityFixer();
+					}
+					catch(IOException e)
+					{
+						throw new Error(e);
+					}
+				}
+				return localFixer;
+			}
+		}
 	}
 }
