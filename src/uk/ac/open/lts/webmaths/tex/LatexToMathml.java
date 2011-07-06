@@ -3130,14 +3130,34 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	 * <p>
 	 * This method wasn't in the Python version.
 	 * @param tokens Tokens
+	 * @param display Display mode
 	 * @return MathML result element (always a &lt;math&gt; tag)
 	 */
-	public Element convert(TokenInput tokens)
+	public Element convert(TokenInput tokens, boolean display)
 	{
 		Element root = subExprChainToMathml(tokens, new HashMap<String, String>());
+		Element style = resultElement("mstyle", 1, "displaystyle",
+			display ? "true" : "false", root);
+		
+		// If root was an mrow, don't really need that now we have an mstyle
+		if(root.getTagName().equals("mrow") && root.getAttributes().getLength() == 0)
+		{
+			while(true)
+			{
+				Node child = root.getFirstChild();
+				if(child == null)
+				{
+					break;
+				}
+				root.removeChild(child);
+				style.appendChild(child);
+			}
+			style.removeChild(root);
+		}
+		
 		Element annotation = resultElement("annotation", 1, "encoding", "application/x-tex",
 			tokens.getSource());
-		Element semantics = resultElement("semantics", 0, root, annotation);
+		Element semantics = resultElement("semantics", 0, style, annotation);
 		Element math = resultElement("math", 0, semantics);
 		return math;
 	}

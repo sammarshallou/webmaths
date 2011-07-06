@@ -36,14 +36,13 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 		result.setError("");
 		result.setMathml("");
 		
-		// TODO The display parameter should be used somehow
-		// boolean display = params.isDisplay();
-		
 		try
 		{
 			// Convert TeX to MathML
 			TokenInput input = new TokenInput(params.getTex());
-			result.setMathml(input.toMathml());
+			String mathml = input.toMathml(params.isDisplay());
+			
+			result.setMathml(mathml);
 			result.setOk(true);
 		}
 		catch(Throwable t)

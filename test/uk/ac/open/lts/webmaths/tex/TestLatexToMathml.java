@@ -96,7 +96,7 @@ public class TestLatexToMathml extends TestCase
 			+ "\\rho \\sigma _ X\\sigma _ Y (x-\\mu _ X)(y-\\mu _ Y)+\\sigma _ X^2" 
 			+ "(y-\\mu _ Y)^2}{\\sigma _ X^2\\sigma _ Y^2(1-\\rho ^2)} \\end{array}";
 		TokenInput tokens = new TokenInput(horribleExample);
-		tokens.toMathml();
+		tokens.toMathml(true);
 	}
 	
 	private final static Pattern SAMPLES_REGEX = 
@@ -133,7 +133,7 @@ public class TestLatexToMathml extends TestCase
 			}
 			
 			String tex = m.group(2);
-			String result = new TokenInput(tex).toMathml();
+			String result = new TokenInput(tex).toMathml(true);
 			if(result.contains("</merror>"))
 			{
 				System.err.println(tex);
@@ -146,10 +146,11 @@ public class TestLatexToMathml extends TestCase
 	private void assertMath(String expected, String input)
 	{
 		TokenInput tokens = new TokenInput(input);
-		String actual = tokens.toMathml();
+		String actual = tokens.toMathml(true);
 		// Get rid of math tag, semantics, annotation
 		actual = actual.replaceFirst(
-			"<math[^>]+><semantics>(.*?)<annotation[^>]+>.*</semantics></math>", "$1");
+			"<math[^>]+><semantics><mstyle displaystyle=\"(?:true|false)\">(.*?)" 
+			+ "</mstyle><annotation[^>]+>.*</semantics></math>", "$1");
 		// Get rid of outer mrow if included
 		actual = actual.replaceFirst("^<mrow>(.*)</mrow>$", "$1");
 		assertEquals(expected, actual);

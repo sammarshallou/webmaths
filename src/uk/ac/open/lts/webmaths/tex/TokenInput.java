@@ -330,10 +330,11 @@ public class TokenInput
   }
   
   /**
-   * Converts tokenised data to MathML. 
+   * Converts tokenised data to MathML.
+   * @param display True if this is display equation 
    * @return String containing MathML text
    */
-  public String toMathml()
+  public String toMathml(boolean display)
   {
 //    def tomathML(self):
 //      if self.tokens is None:
@@ -347,7 +348,7 @@ public class TokenInput
   	try
   	{
   		LatexToMathml converter = new LatexToMathml();
-  		Element root = converter.convert(this);
+  		Element root = converter.convert(this, display);
   		return saveXml(root);
   	}
   	catch(Throwable t)
