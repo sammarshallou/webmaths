@@ -20,24 +20,22 @@ package uk.ac.open.lts.webmaths.image;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
 import java.util.regex.*;
 
 import javax.imageio.ImageIO;
 import javax.jws.WebService;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
 
 import net.sourceforge.jeuclid.DOMBuilder;
 import net.sourceforge.jeuclid.context.*;
 import net.sourceforge.jeuclid.elements.generic.DocumentElement;
 import net.sourceforge.jeuclid.layout.JEuclidView;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
 import org.xml.sax.SAXParseException;
 
-import uk.ac.open.lts.webmaths.*;
+import uk.ac.open.lts.webmaths.WebMathsService;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
@@ -45,7 +43,6 @@ import uk.ac.open.lts.webmaths.*;
 public class WebMathsImage extends WebMathsService implements MathsImagePort
 {
 	private static boolean SHOWPERFORMANCE = false;
-	private TransformerPool addSpaceXsl;
 	
 	private Graphics2D context;
 	
@@ -62,19 +59,6 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 		}
 	}
 
-	/**
-	 * Initialises XSL data based on web service context if supplied.
-	 */
-	private void initXsl()
-	{
-		if(addSpaceXsl == null)
-		{
-			MathmlEntityFixer fixer = getFixer();
-			addSpaceXsl = new TransformerPool(fixer,
-				WebMathsImage.class, "addspace.xsl");
-		}
-	}
-
 	private static final Pattern REGEX_RGB = Pattern.compile(
 		"^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$");
 	
@@ -84,7 +68,6 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 	public MathsImageReturn getImage(MathsImageParams params)
 	{
 		initContext();
-		initXsl();
 		long start = System.currentTimeMillis();
 		MathsImageReturn result = new MathsImageReturn();
 		result.setOk(false);
@@ -118,7 +101,6 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 				{
 					System.err.println("Parse DOM: " + (System.currentTimeMillis() - start));
 				}
-				doc = addLittleSpaces(doc);
 				document = DOMBuilder.getInstance().createJeuclidDom(doc);
 			}
 			catch(SAXParseException e)
@@ -198,23 +180,6 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			result.setError("MathML unexpected error - " + t.getMessage());
 			t.printStackTrace();
 			return result;
-		}
-	}
-	
-	private Document addLittleSpaces(Document doc)
-		throws TransformerException, IOException
-	{
-		DOMSource in = new DOMSource(doc);
-		DOMResult out = new DOMResult(); 
-		Transformer t = addSpaceXsl.reserve();
-		try
-		{
-			t.transform(in, out);
-			return (Document)out.getNode();
-		}
-		finally
-		{
-			addSpaceXsl.release(t);
 		}
 	}
 }
