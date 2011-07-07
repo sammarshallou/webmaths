@@ -364,6 +364,14 @@
   <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-hat<xsl:text> </xsl:text>
 </xsl:template>
 
+<!--
+  <mover> for 'bar'
+  -->
+<xsl:template match="m:mover[@accent='true' and 
+    string-length(normalize-space(*[1])) = 1 and
+    *[2][self::m:mo and string(.)='&OverBar;']]">
+  <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-bar<xsl:text> </xsl:text>
+</xsl:template>
 
 <!--
   <munderover>
