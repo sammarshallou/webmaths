@@ -1400,7 +1400,12 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0304");
+				// NOTE: This used to use U+0304, but that is a combining macron - 
+				// using it without a character to combine with results in unexpected
+				// (i.e. crap) results. U+0304 would be correct if it were written
+				// directly after the character it decorates, but as it's in a separate
+				// XML tag, this is not the case.
+				return accentToMathml(slf, "\u00af");
 			}
 		});
 //u"\\breve": lambda slf: v_accent_to_mathml(slf, u"\u0306"), \
