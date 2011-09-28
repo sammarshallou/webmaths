@@ -2,13 +2,13 @@
  * Unlike most of this project, this files is based on code from another system
  * and is therefore NOT licensed under the GPL. I believe this license is
  * compatible with the GPL (it is also 'weaker', so you may be able to use
- * this specific code more widely).  
- * 
+ * this specific code more widely).
+ *
  * Original license:
- * 
+ *
  * Copyright (C) 2006 Steve Cheng <stevecheng@users.sourceforge.net>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
@@ -26,7 +26,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALNGS IN THE SOFTWARE.
  *
  * Modified Java port:
- * 
+ *
  * Copyright 2011 The Open University.
  */
 package uk.ac.open.lts.webmaths.tex;
@@ -42,7 +42,7 @@ import org.w3c.dom.*;
  * Use via {@link TokenInput#toMathml()}.
  * <p>
  * This version of the source code contains the original Python code in
- * comments that begin at the first character of the line.  
+ * comments that begin at the first character of the line.
  * @author Steve Cheng
  * @author Robert Hassom
  * @authot sam marshall
@@ -60,9 +60,9 @@ public class LatexToMathml
 		 * @param slf Input parameter
 		 * @return Return value
 		 */
-		public Element call(TokenInput slf); 
+		public Element call(TokenInput slf);
 	}
-	
+
 	/**
 	 * Java interface equivalent for the lambda functions with two parameters
 	 * as shown.
@@ -77,17 +77,17 @@ public class LatexToMathml
 		 */
 		public Element call(TokenInput slf, Map<String, String> stopTokens);
 	}
-	
+
 	/**
 	 * MathML namespace.
 	 */
 //mmlns = 'http://www.w3.org/1998/Math/MathML'
 	public final static String NS = "http://www.w3.org/1998/Math/MathML";
-	
+
 //#create empty DOM document
 //document = xml.dom.minidom.getDOMImplementation().createDocument(None,None,None)
 	private Document document;
-	
+
 	/**
 	 * @throws ParserConfigurationException Any error creating DOM data
 	 */
@@ -136,7 +136,7 @@ public class LatexToMathml
 				node.setAttribute((String)args[2 * i], (String)args[2 * i + 1]);
 			}
 		}
-		
+
 		for(int i=numAttrs*2; i<args.length; i++)
 		{
 			if(args[i] != null)
@@ -151,10 +151,10 @@ public class LatexToMathml
 				}
 			}
 		}
-		
+
 		return node;
 	}
-	
+
 	/**
 	 * Appends a DOM node to the parent node.
 	 * @param parent Parent node
@@ -236,7 +236,7 @@ public class LatexToMathml
 			elem.setAttribute(attr, oldValue + value);
 		}
 	}
-	
+
 	private static Map<String, String> makeMap(String[] data)
 	{
 		Map<String, String> result = new HashMap<String, String>();
@@ -248,7 +248,7 @@ public class LatexToMathml
 	}
 
 	private final static Map<String, String> PUNCT_AND_SPACE =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		"\\quad", "\u2003",
 		"\\qquad", "\u2003\u2003",
@@ -267,7 +267,7 @@ public class LatexToMathml
 	});
 
 	private final static Map<String, String> LEFT_DELIMITERS =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		"(", "(",
 		"[", "[",
@@ -283,7 +283,7 @@ public class LatexToMathml
 	});
 
 	private final static Map<String, String> RIGHT_DELIMITERS =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		")", ")",
 		"]", "]",
@@ -299,7 +299,7 @@ public class LatexToMathml
   });
 
 	private final static Map<String, String> OPERATOR_SYMBOLS =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		"\\amalg", "\u2a3f",
 		"\\ast", "*",
@@ -471,7 +471,7 @@ public class LatexToMathml
 
 
 	private final static Map<String, String> RELATION_SYMBOLS =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		"=", "=",
 		"<", "<",
@@ -699,7 +699,7 @@ public class LatexToMathml
   });
 
 private final static Map<String, String> NAMED_IDENTIFIERS =
-	makeMap(new String[] 
+	makeMap(new String[]
   {
 		"\\arccos", "arccos\u2009",
 		"\\arcsin", "arcsin\u2009",
@@ -843,7 +843,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
   });
 
 	private final static Map<String, String> WORD_OPERATORS =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		"\\arccos", "arccos\u2009",
 		"\\arcsin", "arcsin\u2009",
@@ -873,7 +873,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
   });
 
 	private final static Map<String, String> GREEK_LETTERS =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		"\\alpha", "\u03b1",
 		"\\beta", "\u03b2",
@@ -920,7 +920,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
   });
 
 	private final static Map<String, String> LIMIT_COMMANDS =
-		makeMap(new String[] 
+		makeMap(new String[]
   {
 		"\\bigcap", "\u22c2",
 		"\\bigcup", "\u22c3",
@@ -949,7 +949,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\underline", null,
 		"\\overline", null
 	});
-		
+
 	private final static Map<String, String> OPTIONAL_ARG_STOP_TOKENS =
 		makeMap(new String[]
   {
@@ -967,7 +967,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\over", null,
 		"]", null
 	});
-		
+
 	private final static Map<String, String> HARD_STOP_TOKENS =
 		makeMap(new String[]
   {
@@ -984,7 +984,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\choose", null,
 		"\\over", null
 	});
-	
+
 	private final static Map<String, String> RIGHT_DELIMITER_STOP_TOKENS =
 		makeMap(new String[]
   {
@@ -1013,9 +1013,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\rangle", "\u232a"
 	});
 
-	private final static Map<String, String> RELATIONS_PRECEDENCE_GROUP = 
+	private final static Map<String, String> RELATIONS_PRECEDENCE_GROUP =
 		RELATION_SYMBOLS;
-	
+
 	private final static Map<String, String> ADDITION_PRECEDENCE_GROUP =
 		makeMap(new String[]
   {
@@ -1023,7 +1023,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"-", null,
 		"\\oplus", null,
 	});
-	
+
 	private final static Map<String, String> MULTIPLICATION_PRECEDENCE_GROUP =
 		makeMap(new String[]
   {
@@ -1032,7 +1032,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\cdot", null,
 		"/", null
 	});
-	
+
 	private final static Map<String, String> CHAR_ESCAPE_CODES =
 		makeMap(new String[]
   {
@@ -1040,7 +1040,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
   });
 
 //g_tex_commands = {
-	private Map<String, LambdaTokenInput> texCommands = 
+	private Map<String, LambdaTokenInput> texCommands =
 		new HashMap<String, LambdaTokenInput>();
 	{
 //u"\\frac": v_fraction_to_mathml, \
@@ -1400,7 +1400,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				// NOTE: This used to use U+0304, but that is a combining macron - 
+				// NOTE: This used to use U+0304, but that is a combining macron -
 				// using it without a character to combine with results in unexpected
 				// (i.e. crap) results. U+0304 would be correct if it were written
 				// directly after the character it decorates, but as it's in a separate
@@ -1691,7 +1691,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		});
 //}
 	}
-	
+
 //def v_fraction_to_mathml(slf):
 //v_numerator = v_piece_to_mathml(slf)
 //v_denominator = v_piece_to_mathml(slf)
@@ -1702,7 +1702,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		Element denominator = pieceToMathml(slf);
 		return resultElement("mfrac", 0, numerator, denominator);
 	}
-	
+
 //def v_binom_to_mathml(slf):
 //v_top = v_piece_to_mathml(slf)
 //v_bottom = v_piece_to_mathml(slf)
@@ -1753,7 +1753,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 		else
 		{
-			return resultElement("mrow", 0, resultElement("mo", 0, "("), obj, 
+			return resultElement("mrow", 0, resultElement("mo", 0, "("), obj,
 				resultElement("mo", 0, ")"));
 		}
 	}
@@ -1788,7 +1788,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		return resultElement("mstyle", 2, "displaystyle", "true",
 			"scriptlevel", "0", result);
 	}
-	
+
 //def v_font_to_mathml(slf, v_font_name):
 //if (slf.tokens[slf.tokens_index] != u"{"):
 // v_result = result_element(u"mi", 1, u"mathvariant", v_font_name, slf.tokens[slf.tokens_index])
@@ -1821,7 +1821,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 		return result;
 	}
-	
+
 //def v_old_font_to_mathml(slf, v_font_name):
 //return result_element(u"mstyle", 2, u"mathvariant", v_font_name, u"fontstyle", ((v_font_name == u"normal") and u"normal" or None), v_subexpr_chain_to_mathml(slf, g_hard_stop_tokens))
 	private Element oldFontToMathml(TokenInput slf, String fontName)
@@ -1856,7 +1856,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 	Element matrixToMathml(TokenInput slf, String openDelim, String closeDelim)
 	{
-//# ROBHACK skip OUTeX 'optional' arg if present 
+//# ROBHACK skip OUTeX 'optional' arg if present
 //if (slf.tokens[slf.tokens_index] == u"{"):
 //	  slf.tokens_index += 1
 //	  br=1
@@ -1871,7 +1871,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //	    slf.tokens_index += 1
 //#end of skip optional arg
 		skipOuOptional(slf);
-		
+
 //v_mtable = v_matrix_to_mtable(slf, result_element(u"mtable", 0))
 //if ((v_open_delim is not None) or (v_close_delim is not None)):
 // v_mrow = result_element(u"mrow", 0)
@@ -1935,14 +1935,14 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 		return "";
 	}
-	
+
 //def v_array_to_mathml(slf):
 	private Element arrayToMathml(TokenInput slf)
 	{
 //v_mtable = result_element(u"mtable", 0)
 		Element mtable = resultElement("mtable", 0);
-		
-//# ROBHACK skip OUTeX 'optional' arg if present 
+
+//# ROBHACK skip OUTeX 'optional' arg if present
 //if (slf.tokens[slf.tokens_index] == u"{"):
 // slf.tokens_index += 1
 // br=1
@@ -1956,7 +1956,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //	   s+=c
 //	   slf.tokens_index += 1
 		String s = skipOuOptional(slf);
-		
+
 // #loop over characters up to the end delimiter
 // for c in s[:-1]:
 //	  if c==u"c":
@@ -1992,7 +1992,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 		return matrixToMtable(slf, mtable);
 	}
-	
+
 //def v_matrix_to_mtable(slf, v_mtable):
 	Element matrixToMtable(TokenInput slf, Element mtable)
 	{
@@ -2038,7 +2038,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				slf.nextToken();
 			}
 //   elif v_token in g_hard_stop_tokens:
-//    slf.tokens_index += 1			
+//    slf.tokens_index += 1
 			else if(HARD_STOP_TOKENS.containsKey(token))
 			{
 				slf.nextToken();
@@ -2049,7 +2049,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			{
 				resultElementAppend(mtd, subExprChainToMathml(slf, HARD_STOP_TOKENS));
 			}
-			
+
 // v_token = slf.tokens[slf.tokens_index]
 			token = slf.peekToken();
 		}
@@ -2099,7 +2099,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			"maxsize", maxSize, readDelimiter(slf)));
 		return mrow;
 	}
-	
+
 //def v_read_delimiter(slf):
 	Object readDelimiter(TokenInput slf)
 	{
@@ -2164,11 +2164,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				"Invalid delimiter: " + token));
 		}
 	}
-	
+
 	/**
 	 * Map of TeX 'environment' handling functions.
 	 * <p>
-	 * Unfortunately Java currently has a rather ugly syntax for closures/lambda 
+	 * Unfortunately Java currently has a rather ugly syntax for closures/lambda
 	 * functions. (And map initialisers, come to that.) Frequently-delayed
 	 * improvements, currently planned to Java 8, would allow shorter syntax.
 	 * For amusement value, the first lambda function according to the current
@@ -2259,7 +2259,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			}
 		});
 	}
-	
+
 //def v_latex_block_to_mathml(slf):
 	private Element latexBlockToMathml(TokenInput slf)
 	{
@@ -2279,9 +2279,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		{
 			return resultElement("merror", 0, resultElement("mtext", 0,
 				"Invalid command: " + cmd));
-		}		
+		}
 	}
-	
+
 //def v_finish_latex_block(slf):
 //if (slf.tokens[slf.tokens_index] is None):
 // return result_element(u"merror", 0, result_element(u"mtext", 0, 'Unexpected end of math mode'))
@@ -2302,7 +2302,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 		return null;
 	}
-	
+
 //def v_combining_to_mathml(slf, v_char):
 //v_base = slf.tokens[slf.tokens_index]
 //slf.tokens_index += 1
@@ -2312,7 +2312,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		String base = slf.nextToken();
 		return resultElement("mo", 0, base, chr);
 	}
-	
+
 //def v_char_escape_to_mathml(slf):
 //v_result = None
 //if (slf.tokens[slf.tokens_index] in g_char_escape_codes):
@@ -2411,7 +2411,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			{
 				node = resultElement("mtext", 0, token);
 			}
-			
+
 // if (v_mrow is not None):
 //  result_element_append(v_mrow, v_node)
 // elif (v_result is not None):
@@ -2434,7 +2434,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				result = node;
 			}
 		}
-			
+
 		return result;
 	}
 
@@ -2567,8 +2567,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // v_mmultiscripts = None
 // v_mprescripts = None
 		Element result = null, mmultiscripts = null, mprescripts = null;
-		
-		// It seems that Python doesn't have a ternary operator. 
+
+		// It seems that Python doesn't have a ternary operator.
 		// GOOD response to that fact:
 		// 'Well, ternary operators are kind of hard to read anyway. I'll just
 		// go ahead and write out a full-length if statement, assigning the results
@@ -2582,36 +2582,36 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		// v_part1 = len(slf.tokens) > slf.tokens_index+0 and slf.tokens[slf.tokens_index+0] or None
 		// v_part2 = len(slf.tokens) > slf.tokens_index+1 and slf.tokens[slf.tokens_index+1] or None
 		// v_part3 = len(slf.tokens) > slf.tokens_index+2 and slf.tokens[slf.tokens_index+2] or None
-		// if ((v_part1 == u"{") 
+		// if ((v_part1 == u"{")
 		// and (v_part2 == u"}")
 		// and ((v_part3 == u"_") or (v_part3 == u"^"))):
-		// Oh look! Now it almost makes sense. Let's turn it into Java.		
+		// Oh look! Now it almost makes sense. Let's turn it into Java.
 		if("{".equals(slf.peekToken(0)) && "}".equals(slf.peekToken(1)) &&
 			("_".equals(slf.peekToken(2)) || "^".equals(slf.peekToken(2))))
 		{
-			
+
 //  v_mmultiscripts = result_element(u"mmultiscripts", 0)
 //  v_mprescripts = result_element(u"mprescripts", 0)
 //  result_element_append(v_mmultiscripts, v_mprescripts)
 			mmultiscripts = resultElement("mmultiscripts", 0);
 			mprescripts = resultElement("mprescripts", 0);
 			resultElementAppend(mmultiscripts, mprescripts);
-			
+
 			// I wrapped this monster and found out it's the same as the last one...
 //  while (((len(slf.tokens) > slf.tokens_index+0 and slf.tokens[slf.tokens_index+0] or None) == u"{") and ((len(slf.tokens) > slf.tokens_index+1 and slf.tokens[slf.tokens_index+1] or None) == u"}") and (((len(slf.tokens) > slf.tokens_index+2 and slf.tokens[slf.tokens_index+2] or None) == u"_") or ((len(slf.tokens) > slf.tokens_index+2 and slf.tokens[slf.tokens_index+2] or None) == u"^"))):
 			while("{".equals(slf.peekToken(0)) && "}".equals(slf.peekToken(1)) &&
 				("_".equals(slf.peekToken(2)) || "^".equals(slf.peekToken(2))))
 			{
-				
+
 //   v_subscript = None
 //   v_superscript = None
 				Element subScript = null, superScript = null;
-			
+
 //   slf.tokens_index += 1
 //   slf.tokens_index += 1
 				slf.nextToken();
 				slf.nextToken();
-				
+
 //   if (slf.tokens[slf.tokens_index] == u"_"):
 //    slf.tokens_index += 1
 //    v_subscript = v_piece_to_mathml(slf)
@@ -2644,21 +2644,21 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 					slf.nextToken();
 					superScript = pieceToMathml(slf);
 				}
-				
+
 				// Note: The above code kind of looks like it won't work if you have
 				// two superscripts or two subscripts in a row in this syntax. Hopefully
 				// that is disallowed.
-					
+
 //   result_element_append(v_mmultiscripts, ((v_subscript is not None) and v_subscript or result_element(u"none", 0)))
 				resultElementAppend(mmultiscripts, subScript != null ? subScript : resultElement("none", 0));
 //   result_element_append(v_mmultiscripts, ((v_superscript is not None) and v_superscript or result_element(u"none", 0)))
 				resultElementAppend(mmultiscripts, superScript != null ? superScript : resultElement("none", 0));
 			}
 		}
-		
+
 // v_limit_style = (slf.tokens[slf.tokens_index] in g_limit_commands)
 		boolean limitStyle = LIMIT_COMMANDS.containsKey(slf.peekToken());
-		
+
 // if (slf.tokens[slf.tokens_index] is None):
 		if(slf.peekToken() == null)
 		{
@@ -2688,13 +2688,47 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else
 		{
 			result = pieceToMathml(slf);
+			
+			// If the piece starts with a digit, gloop them together...
+			if(result != null && result.getTagName().equals("mn") &&
+				result.getFirstChild().getNodeValue().matches("[0-9]"))
+			{
+				// Inspect next tokens. Gloop any more digits/point
+				StringBuilder extra = new StringBuilder();
+				boolean gotDot = false;
+				while(true)
+				{
+					String token = slf.peekToken();
+					if(token != null && token.matches("[0-9]"))
+					{
+						extra.append(token);
+						slf.nextToken();
+					}
+					else if(token != null && !gotDot && token.equals("."))
+					{
+						extra.append(token);
+						slf.nextToken();
+						gotDot = true;
+					}
+					else
+					{
+						break;
+					}
+				}
+	
+				if(extra.length() > 0)
+				{
+					result = resultElement("mn", 0,
+						result.getFirstChild().getNodeValue() + extra.toString());
+				}
+			}
 		}
-		
+
 // v_base = v_result
 // v_subscript = None
 // v_superscript = None
 		Element base = result, subScript = null, superScript = null;
-		
+
 // if (slf.tokens[slf.tokens_index] == u"_"):
 //  slf.tokens_index += 1
 //  v_subscript = v_piece_to_mathml(slf)
@@ -2711,7 +2745,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			slf.nextToken();
 			superScript = pieceToMathml(slf);
 		}
-		
+
 // if (slf.tokens[slf.tokens_index] == u"_"):
 //  slf.tokens_index += 1
 //  v_subscript = v_piece_to_mathml(slf)
@@ -2728,7 +2762,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			slf.nextToken();
 			superScript = pieceToMathml(slf);
 		}
-		
+
 // if (v_mmultiscripts is not None):
 //  result_element_prepend(v_mmultiscripts, v_base, v_mprescripts)
 //  result_element_prepend(v_mmultiscripts, ((v_subscript is not None) and v_subscript or result_element(u"none", 0)), v_mprescripts)
@@ -2745,7 +2779,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		while("{".equals(slf.peekToken(0)) && "}".equals(slf.peekToken(1)) &&
 			("_".equals(slf.peekToken(2)) || "^".equals(slf.peekToken(2))))
 		{
-		
+
 //  if (v_mmultiscripts is None):
 //   v_mmultiscripts = result_element(u"mmultiscripts", 0, v_base)
 //   v_mprescripts = None
@@ -2771,7 +2805,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			superScript = null;
 			slf.nextToken();
 			slf.nextToken();
-			
+
 //  if (slf.tokens[slf.tokens_index] == u"_"):
 //   slf.tokens_index += 1
 //   v_subscript = v_piece_to_mathml(slf)
@@ -2788,7 +2822,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				slf.nextToken();
 				superScript = pieceToMathml(slf);
 			}
-			
+
 //  if (slf.tokens[slf.tokens_index] == u"_"):
 //   slf.tokens_index += 1
 //   v_subscript = v_piece_to_mathml(slf)
@@ -2805,15 +2839,15 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				slf.nextToken();
 				superScript = pieceToMathml(slf);
 			}
-			
+
 //  result_element_prepend(v_mmultiscripts, ((v_subscript is not None) and v_subscript or result_element(u"none", 0)), v_mprescripts)
 //  result_element_prepend(v_mmultiscripts, ((v_superscript is not None) and v_superscript or result_element(u"none", 0)), v_mprescripts)
-			resultElementPrepend(mmultiscripts, 
+			resultElementPrepend(mmultiscripts,
 				subScript != null ? subScript : resultElement("none", 0), mprescripts);
 			resultElementPrepend(mmultiscripts,
 				superScript != null ? superScript : resultElement("none", 0), mprescripts);
 		}
-			
+
 // if (v_mmultiscripts is not None):
 //  v_result = v_mmultiscripts
 		if(mmultiscripts != null)
@@ -2838,7 +2872,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //  v_result = result_element((v_limit_style and u"mover" or u"msup"), 0, v_base, v_superscript)
 		else if(superScript != null)
 		{
-			result = resultElement(limitStyle ? "mover" : "msup", 0, 
+			result = resultElement(limitStyle ? "mover" : "msup", 0,
 				base, superScript);
 		}
 // return v_result
@@ -2890,15 +2924,15 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			{
 				// Another horrific line
 //   v_node = v_collect_precedence_group(slf, g_relations_precedence_group, v_stop_tokens, lambda slf, v_stop_tokens: v_collect_precedence_group(slf, g_addition_precedence_group, v_stop_tokens, lambda slf, v_stop_tokens: v_collect_precedence_group(slf, g_multiplication_precedence_group, v_stop_tokens, v_collect_invisible_group)))
-				
-				// Here it is wrapped 
-				//   v_node = v_collect_precedence_group(slf, g_relations_precedence_group, v_stop_tokens, 
-				//	   lambda slf, v_stop_tokens: 
-				//       v_collect_precedence_group(slf, g_addition_precedence_group, v_stop_tokens, 
+
+				// Here it is wrapped
+				//   v_node = v_collect_precedence_group(slf, g_relations_precedence_group, v_stop_tokens,
+				//	   lambda slf, v_stop_tokens:
+				//       v_collect_precedence_group(slf, g_addition_precedence_group, v_stop_tokens,
 				//         lambda slf, v_stop_tokens:
-				//				   v_collect_precedence_group(slf, g_multiplication_precedence_group, 
+				//				   v_collect_precedence_group(slf, g_multiplication_precedence_group,
 				//				     v_stop_tokens, v_collect_invisible_group)))
-				
+
 				// Oh so that's what it's trying to do!
 				Element node = collectPrecedenceGroup(slf, RELATIONS_PRECEDENCE_GROUP,
 					stopTokens, new Lambda2()
@@ -2976,18 +3010,18 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // v_result = v_subexpr_chain_to_mathml(slf, g_optional_arg_stop_tokens)
 		slf.nextToken();
 		Element result = subExprChainToMathml(slf, OPTIONAL_ARG_STOP_TOKENS);
-		
+
 // if (slf.tokens[slf.tokens_index] == u"]"):
 //  slf.tokens_index += 1
 		if("]".equals(slf.peekToken()))
 		{
 			slf.nextToken();
 		}
-		
+
 // return v_result
 		return result;
 	}
-	
+
 //def v_heuristic_subexpression(slf):
 	Element heuristicSubExpression(TokenInput slf)
 	{
@@ -2996,16 +3030,16 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // result_element_append(v_result, v_subexpr_chain_to_mathml(slf, g_right_delimiter_stop_tokens))
 		Element result = resultElement("mrow", 0);
 		resultElementAppend(result, pieceToMathml(slf));
-		resultElementAppend(result, subExprChainToMathml(slf, 
+		resultElementAppend(result, subExprChainToMathml(slf,
 			RIGHT_DELIMITER_STOP_TOKENS));
-		
+
 // if ((slf.tokens[slf.tokens_index] is not None) and not ((slf.tokens[slf.tokens_index] in g_hard_stop_tokens))):
 //  result_element_append(v_result, v_piece_to_mathml(slf))
 		if(slf.peekToken() != null && !HARD_STOP_TOKENS.containsKey(slf.peekToken()))
 		{
 			resultElementAppend(result, pieceToMathml(slf));
 		}
-		
+
 // return v_result
 		return result;
 	}
@@ -3018,7 +3052,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // v_mrow = None
 		Element result = reader.call(slf, stopTokens);
 		Element mrow = null;
-		
+
 // while ((slf.tokens[slf.tokens_index] is not None) and not ((slf.tokens[slf.tokens_index] in v_stop_tokens)) and (slf.tokens[slf.tokens_index] in v_operators)):
 		while(slf.peekToken() != null && !stopTokens.containsKey(slf.peekToken())
 			&& operators.containsKey(slf.peekToken()))
@@ -3033,7 +3067,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			}
 //  result_element_append(v_mrow, v_piece_to_mathml(slf))
 			resultElementAppend(mrow, pieceToMathml(slf));
-			
+
 //  if ((slf.tokens[slf.tokens_index] is not None) and (slf.tokens[slf.tokens_index] in v_stop_tokens)):
 //   return v_result
 			if(slf.peekToken() != null && stopTokens.containsKey(slf.peekToken()))
@@ -3058,41 +3092,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // v_mrow = None
 		Element result = subExprToMathml(slf);
 		Element mrow = null;
-		
-		// If the piece starts with a digit, gloop them together...
-		if(result != null && result.getTagName().equals("mn") &&
-			result.getFirstChild().getNodeValue().matches("[0-9]"))
-		{
-			// Inspect next tokens. Gloop any more digits/point
-			StringBuilder extra = new StringBuilder();
-			boolean gotDot = false;
-			while(true)
-			{
-				String token = slf.peekToken();
-				if(token != null && token.matches("[0-9]"))
-				{
-					extra.append(token);
-					slf.nextToken();
-				}
-				else if(token != null && !gotDot && token.equals("."))
-				{
-					extra.append(token);
-					slf.nextToken();
-					gotDot = true;
-				}
-				else
-				{
-					break;
-				}
-			}
-			
-			if(extra.length() > 0)
-			{
-				result = resultElement("mn", 0,
-					result.getFirstChild().getNodeValue() + extra.toString());
-			}
-		}
-		
+
 // while ((slf.tokens[slf.tokens_index] is not None) and not ((slf.tokens[slf.tokens_index] in v_stop_tokens)) and ((slf.tokens[slf.tokens_index] in g_named_identifiers) or (slf.tokens[slf.tokens_index] in g_left_delimiters))):
 		while(slf.peekToken() != null && !stopTokens.containsKey(slf.peekToken()) &&
 			(NAMED_IDENTIFIERS.containsKey(slf.peekToken()) || LEFT_DELIMITERS.containsKey(slf.peekToken())))
@@ -3105,11 +3105,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				mrow = resultElement("mrow", 0, result);
 				result = mrow;
 			}
-			
+
 //  #The following line was an attempt to guess the semantics of the expression and insert "invisible times"
 //  #removed to simplify output
 //  #result_element_append(v_mrow, result_element(u"mo", 0, u"\u2062"))
-			
+
 //  if ((slf.tokens[slf.tokens_index] is not None) and (slf.tokens[slf.tokens_index] in v_stop_tokens)):
 //   return v_result
 			if(slf.peekToken() != null && stopTokens.containsKey(slf.peekToken()))
@@ -3128,7 +3128,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // return v_result
 		return result;
 	}
-	
+
 	/**
 	 * Converts an entire equation into MathML, including adding an annotation
 	 * that contains the original TeX source.
@@ -3143,7 +3143,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		Element root = subExprChainToMathml(tokens, new HashMap<String, String>());
 		Element style = resultElement("mstyle", 1, "displaystyle",
 			display ? "true" : "false", root);
-		
+
 		// If root was an mrow, don't really need that now we have an mstyle
 		if(root.getTagName().equals("mrow") && root.getAttributes().getLength() == 0)
 		{
@@ -3159,11 +3159,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			}
 			style.removeChild(root);
 		}
-		
+
 		Element annotation = resultElement("annotation", 1, "encoding", "application/x-tex",
 			tokens.getSource());
 		Element semantics = resultElement("semantics", 0, style, annotation);
 		Element math = resultElement("math", 0, semantics);
 		return math;
 	}
-}	
+}

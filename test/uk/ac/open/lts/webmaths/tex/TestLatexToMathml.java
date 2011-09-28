@@ -34,6 +34,14 @@ public class TestLatexToMathml extends TestCase
 	}
 	
 	@Test
+	public void testPowers()
+	{
+		assertMath("<msup><mn>10</mn><mn>3</mn></msup>", "10^3"); 
+		assertMath("<msup><mn>10</mn><mn>3.14</mn></msup>", "10^{3.14}");
+		assertMath("<msup><mn>10</mn><mn>3</mn></msup><mn>2</mn>", "10^32"); 
+	}
+	
+	@Test
 	public void testDigitsExample()
 	{
 		assertMath("<msqrt><mn>12</mn></msqrt>", "\\sqrt{12}"); 
