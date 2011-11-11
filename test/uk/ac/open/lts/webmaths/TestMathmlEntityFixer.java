@@ -67,7 +67,15 @@ public class TestMathmlEntityFixer extends TestCase
 		assertEquals("hey&#x1234a;you&#xabcde;&#xe9;&#x2a6d6;",
 			getWithHexEntities("hey&#x1234a;you&#xABCDE;\u00e9\ud869\uded6"));
 	}
-	
+
+	@Test
+	public void testXmlEntities() throws Exception
+	{
+		MathmlEntityFixer fixer = new MathmlEntityFixer();
+		String testString = "&amp;&lt;&gt;&apos;&quot;";
+		assertEquals(testString, fixer.fix(testString));
+	}
+
 	@Test
 	public void testToSpeech() throws Exception
 	{

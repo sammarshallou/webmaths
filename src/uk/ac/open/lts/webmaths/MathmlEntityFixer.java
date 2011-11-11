@@ -65,6 +65,13 @@ public class MathmlEntityFixer
 		}
 		reader.close();
 
+		// Overrides for XML built-in entities
+		entityToChar.put("amp", "&amp;");
+		entityToChar.put("lt", "&lt;");
+		entityToChar.put("gt", "&gt;");
+		entityToChar.put("apos", "&apos;");
+		entityToChar.put("quot", "&quot;");
+
 		readDescriptions(WebMathsEnglish.class.getResourceAsStream("mathml.descriptions.txt"));
 		readDescriptions(WebMathsEnglish.class.getResourceAsStream("override.descriptions.txt"));
 	}
