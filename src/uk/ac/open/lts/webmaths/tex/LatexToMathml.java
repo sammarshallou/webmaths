@@ -355,7 +355,7 @@ public class LatexToMathml
 		"\\rightthreetimes", "\u22cc",
 		"\\rtimes", "\u22ca",
 		"\\setminus", "\u2216",
-		"\\smallsetminus", "\u2216",
+		"\\smallsetminus", "\u2216", // See https://github.com/wspr/unicode-math/issues/181
 		"\\sqcap", "\u2293",
 		"\\sqcup", "\u2294",
 		"\\star", "\u22c6",
