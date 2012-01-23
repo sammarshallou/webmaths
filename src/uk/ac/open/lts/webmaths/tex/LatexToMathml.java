@@ -2691,6 +2691,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			
 			// If the piece starts with a digit, gloop them together...
 			if(result != null && result.getTagName().equals("mn") &&
+				result.getFirstChild() != null &&
 				result.getFirstChild().getNodeValue().matches("[0-9]"))
 			{
 				// Inspect next tokens. Gloop any more digits/point
@@ -2876,7 +2877,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				base, superScript);
 		}
 // return v_result
-			return result;
+		return result;
 	}
 
 //def v_subexpr_chain_to_mathml(slf, v_stop_tokens):
@@ -2899,7 +2900,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			if("\\over".equals(slf.peekToken()))
 			{
 				slf.nextToken();
-				mfrac = resultElement("mfrac", 0, result); // Um, this might be null
+				mfrac = resultElement("mfrac", 0, result);
 				wrappedResult = mfrac;
 				mrow = null;
 				result = null;
@@ -2991,6 +2992,13 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 // else:
 //  return v_result
+		else if(result == null)
+		{
+			// Original code didn't stop it returning null. This basically only
+			// happens if the equation is 'silly' TeX, but it causes exceptions and
+			// is generally problematic.
+			return document.createElement("mspace");
+		}
 		else
 		{
 			return result;

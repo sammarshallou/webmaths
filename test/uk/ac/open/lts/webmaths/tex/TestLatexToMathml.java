@@ -163,4 +163,11 @@ public class TestLatexToMathml extends TestCase
 		actual = actual.replaceFirst("^<mrow>(.*)</mrow>$", "$1");
 		assertEquals(expected, actual);
 	}
+
+	@Test
+	public void testAnnoying()
+	{
+		String result = new TokenInput("\\big").toMathml(true);
+		assertFalse(result.contains("</merror>"));
+	}
 }
