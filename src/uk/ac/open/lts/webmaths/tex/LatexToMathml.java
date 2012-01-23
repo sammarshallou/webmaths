@@ -1535,7 +1535,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return overToMathml(slf, "\u0303");
+				return overToMathml(slf, "\u02dc");
 			}
 		});
 //u"\\widehat": lambda slf: v_over_to_mathml(slf, u"\u0302"), \
@@ -1544,7 +1544,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return overToMathml(slf, "\u0302");
+				return overToMathml(slf, "\u005e");
 			}
 		});
 //u"\\not": lambda slf: v_combining_to_mathml(slf, u"\u0338"), \
