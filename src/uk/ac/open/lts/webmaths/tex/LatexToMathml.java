@@ -263,7 +263,7 @@ public class LatexToMathml
 		".", ".",
 		";", ";",
 		"?", "?",
-		"\\qedsymbol", "\u25a0"
+		"\\qedsymbol", "\u220e"
 	});
 
 	private final static Map<String, String> LEFT_DELIMITERS =
