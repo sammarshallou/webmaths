@@ -89,6 +89,26 @@ public class LatexToMathml
 	private Document document;
 
 	/**
+	 * Creates a document containing only an error message.
+	 * @param error Error message (unescaped text)
+	 * @return Document root
+	 * @throws ParserConfigurationException Any error creating DOM data
+	 */
+	public static Element createErrorElement(String error)
+		throws ParserConfigurationException
+	{
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true);
+		Document document = factory.newDocumentBuilder().newDocument();
+		Element root = document.createElementNS(NS, "math");
+		document.appendChild(root);
+		Element xerror = document.createElementNS(NS, "xerror");
+		root.appendChild(xerror);
+		xerror.appendChild(document.createTextNode(error));
+		return root;
+	}
+
+	/**
 	 * @throws ParserConfigurationException Any error creating DOM data
 	 */
 	public LatexToMathml() throws ParserConfigurationException
@@ -2111,8 +2131,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	// return result_element(u"merror", 0, result_element(u"mtext", 0, 'Unexpected end of math mode'))
 		if(token == null)
 		{
-			return resultElement("merror", 0, resultElement("mtext", 0,
-				"Unexpected end of math node"));
+			return resultElement("xerror", 0, "Missing delimiter");
 		}
 //elif (v_token == u"."):
 // return u""
@@ -2160,8 +2179,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // return result_element(u"merror", 0, result_element(u"mtext", 0, 'Invalid delimiter: '+v_token) )
 		else
 		{
-			return resultElement("merror", 0, resultElement("mtext", 0,
-				"Invalid delimiter: " + token));
+			return resultElement("xerror", 0, "Invalid delimiter: " + token);
 		}
 	}
 
@@ -2277,8 +2295,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // return result_element(u"merror", 0, result_element(u"mtext", 0, 'Invalid command: '+repr(v_cmd)) )
 		else
 		{
-			return resultElement("merror", 0, resultElement("mtext", 0,
-				"Invalid command: " + cmd));
+			return resultElement("xerror", 0, "Invalid command: " + cmd);
 		}
 	}
 
@@ -2295,8 +2312,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		{
 			if(slf.peekToken() == null)
 			{
-				return resultElement("merror", 0, resultElement("mtext", 0,
-					"Unexpected end of math node"));
+				return resultElement("xerror", 0, "Unexpected end of input");
 			}
 			slf.nextToken();
 		}
@@ -2348,7 +2364,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		}
 		else
 		{
-			return resultElement("merror", 0, "Unsupported \\char ", digitString);
+			return resultElement("xerror", 0, "Unsupported \\char ", digitString);
 		}
 	}
 

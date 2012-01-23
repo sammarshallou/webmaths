@@ -74,9 +74,18 @@ public class TestLatexToMathml extends TestCase
 	public void testCharFunctionThatNobodyWillEverUse()
 	{
 		assertMath("<mtext>#</mtext><mo>+</mo><mn>1</mn>", "\\char93+1");
-		assertMath("<merror>Unsupported \\char 93333</merror>", "\\char93333");
+		assertMath("<mspace/><!-- Unsupported \\char 93333 -->", "\\char93333");
 	}
 
+	@Test
+	public void testBogusDelimiters()
+	{
+		// This isn't sensible TeX
+		String result = new TokenInput("\\bigl").toMathml(true);
+		assertFalse(result.contains("</xerror>"));
+		assertTrue(result.contains("<!-- Missing delimiter -->"));
+	}
+	
 	@Test
 	public void testSlightlyLessSimpleExample()
 	{
@@ -142,7 +151,7 @@ public class TestLatexToMathml extends TestCase
 			
 			String tex = m.group(2);
 			String result = new TokenInput(tex).toMathml(true);
-			if(result.contains("</merror>"))
+			if(result.contains("</xerror>"))
 			{
 				System.err.println(tex);
 				errors++;
@@ -168,6 +177,6 @@ public class TestLatexToMathml extends TestCase
 	public void testAnnoying()
 	{
 		String result = new TokenInput("\\big").toMathml(true);
-		assertFalse(result.contains("</merror>"));
+		assertFalse(result.contains("</xerror>"));
 	}
 }
