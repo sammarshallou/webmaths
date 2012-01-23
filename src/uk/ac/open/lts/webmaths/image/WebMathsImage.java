@@ -143,10 +143,13 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			{
 				System.err.println("View: " + (System.currentTimeMillis() - start));
 			}
-		
+
 			// Create new image to hold it
-			BufferedImage image = new BufferedImage((int)Math.ceil(width),
-				(int)Math.ceil(ascent + descent), BufferedImage.TYPE_INT_ARGB);
+			int pixelWidth = Math.max(1, (int)Math.ceil(width)),
+				pixelHeight = Math.max(1, (int)Math.ceil(ascent + descent));
+
+			BufferedImage image = new BufferedImage(pixelWidth, pixelHeight,
+				BufferedImage.TYPE_INT_ARGB);
 			if(SHOWPERFORMANCE)
 			{
 				System.err.println("Image: " + (System.currentTimeMillis() - start));

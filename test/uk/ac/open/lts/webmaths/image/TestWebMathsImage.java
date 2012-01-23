@@ -24,4 +24,16 @@ public class TestWebMathsImage
 		params.size = 1.0f;
 		assertEquals("", image.getImage(params).error);
 	}
+	
+	@Test
+	public void testEmptyEquation() throws Exception
+	{
+		// Equations with no meaningful content gave error on rendering when it
+		// tried to make a zero-size image.
+		MathsImageParams params = new MathsImageParams();
+		params.mathml = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"></math>";
+		params.rgb = "#000000";
+		params.size = 1.0f;
+		assertEquals("", image.getImage(params).error);
+	}
 }
