@@ -1,6 +1,9 @@
 package uk.ac.open.lts.webmaths.image;
 
 import org.junit.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.ls.*;
+
 import static org.junit.Assert.*;
 
 public class TestWebMathsImage
@@ -35,5 +38,16 @@ public class TestWebMathsImage
 		params.rgb = "#000000";
 		params.size = 1.0f;
 		assertEquals("", image.getImage(params).error);
+	}
+
+	@Test
+	public void testPreprocessForJEuclid() throws Exception
+	{
+		Document doc = image.parseMathml("<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mstyle displaystyle=\"false\"><mstyle displaystyle=\"true\" scriptlevel=\"0\"><munder><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mo>&#xFE38;</mo></munder></mstyle></mstyle><annotation encoding=\"application/x-tex\">\\displaystyle \\underbrace{x+1}</annotation></semantics></math>");
+		WebMathsImage.preprocessForJEuclid(doc);
+		DOMImplementationLS domImplLS = (DOMImplementationLS)doc.getImplementation();
+		LSSerializer serializer = domImplLS.createLSSerializer();
+		String after = serializer.writeToString(doc);
+		assertFalse(after.contains("\ufe38"));
 	}
 }

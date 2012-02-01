@@ -37,7 +37,12 @@ public class WebMathsService
 {
 	@Resource
 	private WebServiceContext context;
-	
+
+	/**
+	 * MathML namespace.
+	 */
+	public final static String NS = "http://www.w3.org/1998/Math/MathML";
+
 	private static MathmlEntityFixer localFixer;
 	
 	private final static Pattern REGEX_DOCTYPE = Pattern.compile(
@@ -49,7 +54,7 @@ public class WebMathsService
 	 * @return XML document
 	 * @throws Exception Any error
 	 */
-	protected Document parseMathml(String xml) throws Exception
+	public Document parseMathml(String xml) throws Exception
 	{
 		// Get rid of doctype if supplied
 		xml = REGEX_DOCTYPE.matcher(xml).replaceFirst("");

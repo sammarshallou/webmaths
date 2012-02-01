@@ -32,7 +32,7 @@ import net.sourceforge.jeuclid.context.*;
 import net.sourceforge.jeuclid.elements.generic.DocumentElement;
 import net.sourceforge.jeuclid.layout.JEuclidView;
 
-import org.w3c.dom.Document;
+import org.w3c.dom.*;
 import org.xml.sax.SAXParseException;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
@@ -101,6 +101,7 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 				{
 					System.err.println("Parse DOM: " + (System.currentTimeMillis() - start));
 				}
+				preprocessForJEuclid(doc);
 				document = DOMBuilder.getInstance().createJeuclidDom(doc);
 			}
 			catch(SAXParseException e)
@@ -184,5 +185,51 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			t.printStackTrace();
 			return result;
 		}
+	}
+
+	/**
+	 * Carries out preprocessing that makes JEuclid handle the document better.
+	 * @param doc Document
+	 */
+	static void preprocessForJEuclid(Document doc)
+	{
+		// underbrace and overbrace
+		NodeList list = doc.getElementsByTagName("mo");
+		for(int i=0; i<list.getLength(); i++)
+		{
+			Element mo = (Element)list.item(i);
+			String parentName = ((Element)mo.getParentNode()).getTagName();
+			if(parentName == null)
+			{
+				continue;
+			}
+			if(parentName.equals("munder") && isTextChild(mo, "\ufe38"))
+			{
+				mo.setAttribute("stretchy", "true");
+				mo.removeChild(mo.getFirstChild());
+				mo.appendChild(doc.createTextNode("\u23df"));
+			}
+			else if(parentName.equals("mover") && isTextChild(mo, "\ufe37"))
+			{
+				mo.setAttribute("stretchy", "true");
+				mo.removeChild(mo.getFirstChild());
+				mo.appendChild(doc.createTextNode("\u23de"));
+			}
+		}
+	}
+
+	private static boolean isTextChild(Node parent, String text)
+	{
+		NodeList list = parent.getChildNodes();
+		if(list.getLength() != 1)
+		{
+			return false;
+		}
+		Node child = list.item(0);
+		if(child.getNodeType() != Node.TEXT_NODE)
+		{
+			return false;
+		}
+		return child.getNodeValue().equals(text);
 	}
 }

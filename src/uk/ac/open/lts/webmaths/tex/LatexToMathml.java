@@ -37,6 +37,8 @@ import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
 
+import uk.ac.open.lts.webmaths.WebMathsService;
+
 /**
  * Class ported from some Python code that converts LaTeX to MathML.
  * Use via {@link TokenInput#toMathml()}.
@@ -78,12 +80,7 @@ public class LatexToMathml
 		public Element call(TokenInput slf, Map<String, String> stopTokens);
 	}
 
-	/**
-	 * MathML namespace.
-	 */
 //mmlns = 'http://www.w3.org/1998/Math/MathML'
-	public final static String NS = "http://www.w3.org/1998/Math/MathML";
-
 //#create empty DOM document
 //document = xml.dom.minidom.getDOMImplementation().createDocument(None,None,None)
 	private Document document;
@@ -100,9 +97,9 @@ public class LatexToMathml
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
 		Document document = factory.newDocumentBuilder().newDocument();
-		Element root = document.createElementNS(NS, "math");
+		Element root = document.createElementNS(WebMathsService.NS, "math");
 		document.appendChild(root);
-		Element xerror = document.createElementNS(NS, "xerror");
+		Element xerror = document.createElementNS(WebMathsService.NS, "xerror");
 		root.appendChild(xerror);
 		xerror.appendChild(document.createTextNode(error));
 		return root;
@@ -148,7 +145,7 @@ public class LatexToMathml
 	 */
 	private Element resultElement(String tag, int numAttrs, Object... args)
 	{
-		Element node = document.createElementNS(NS, tag);
+		Element node = document.createElementNS(WebMathsService.NS, tag);
 		for(int i=0; i<numAttrs; i++)
 		{
 			if(args[2 * i + 1] != null)
