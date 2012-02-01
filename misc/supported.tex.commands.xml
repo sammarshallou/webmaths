@@ -1,0 +1,2938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Item TextType="BodyMatter" SchemaVersion="1.2" SessionStartNumber="1"
+    id="X-Supported-Tex-commands" ACSPageNumber="1" ACSTemplate="Generic_Print"
+    ACSCourseItem="SC" LastRendering="VLE Preview" DiscussionAlias="Discussion"
+    SessionAlias="" SecondColour="None" ThirdColour="None" FourthColour="None"
+    Logo="colour">
+    <CourseCode>ONLINE-SERVICES</CourseCode>
+    <CourseTitle />
+    <ItemID />
+    <ItemTitle>Supported TeX commands</ItemTitle>
+    <FrontMatter>
+        <ByLine>sam marshall</ByLine>
+        <Imprint>
+            <Standard>
+                <GeneralInfo>
+                    <Paragraph />
+                </GeneralInfo>
+                <Address>
+                    <AddressLine />
+                </Address>
+                <FirstPublished>
+                    <Paragraph />
+                </FirstPublished>
+                <Copyright>
+                    <Paragraph>© 2011 The Open University</Paragraph>
+                </Copyright>
+                <Rights>
+                    <Paragraph />
+                </Rights>
+                <Edited>
+                    <Paragraph />
+                </Edited>
+                <Printed>
+                    <Paragraph />
+                </Printed>
+                <ISBN />
+                <Edition />
+            </Standard>
+        </Imprint>
+        <Introduction>
+            <Title />
+            <Paragraph>The equation processing system used in Open
+                University module websites supports two equation languages:
+                MathML (version 2) and TeX.</Paragraph>
+            <Paragraph>For example, this is a MathML equation that you could
+                type into a forum post or wiki page:</Paragraph>
+            <ProgramDisplay>
+                &lt;math>&lt;mi>x&lt;/mi>&lt;mo>=&lt;/mo>&lt;msup>&lt;mi>y&lt;/mi>&lt;mn>2&lt;/mn>&lt;/msup>&lt;/math>
+            </ProgramDisplay>
+            <Paragraph>Alternatively, you could type this TeX equation:</Paragraph>
+            <ProgramDisplay>
+                $$ x=y^2 $$
+            </ProgramDisplay>
+            <Paragraph>Both display as:</Paragraph>
+            <Equation><TeX>\displaystyle x=y^2</TeX></Equation>
+            <Paragraph>
+                When copying and pasting equations from other applications,
+                MathML may be the most suitable choice. However, as the above
+                example demonstrates, it is usually easier to use TeX when
+                typing equations manually. 
+            </Paragraph>
+            <Paragraph>
+                While our system aims to support all commands and symbols in
+                the MathML version 2 specification, with regard to TeX, we support
+                only a subset of LaTeX commands. This document lists
+                them.
+            </Paragraph>
+        </Introduction>
+    </FrontMatter>
+    <Unit>
+        <UnitID />
+        <UnitTitle />
+        <ByLine />
+
+        <Session>
+            <Title>Symbols</Title>
+            
+            <Section>
+                <Title>Letters</Title>
+
+                <Table class="type 2">
+                    <Heading>Latin letters</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>a</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle a</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>b</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle b</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>c</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle c</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>d</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle d</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>e</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle e</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>f</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle f</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>g</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle g</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>h</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle h</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>i</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle i</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>j</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle j</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>k</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle k</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>l</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle l</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>m</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle m</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>n</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle n</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>o</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle o</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>p</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle p</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>q</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle q</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>r</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle r</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>s</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle s</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>t</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle t</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>u</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle u</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>v</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle v</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>w</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle w</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>x</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>z</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle z</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>A</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle A</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>B</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle B</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>C</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle C</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>D</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle D</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>E</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle E</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>F</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle F</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>G</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle G</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>H</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle H</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>I</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle I</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>J</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle J</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>K</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle K</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>L</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle L</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>M</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle M</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>N</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle N</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>O</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle O</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>P</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle P</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>Q</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle Q</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>R</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle R</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>S</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle S</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>T</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle T</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>U</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle U</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>V</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle V</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>W</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle W</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>X</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle X</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>Y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle Y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>Z</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle Z</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+    
+                <Table class="type 2">
+                    <Heading>Greek letters</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\alpha</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \alpha</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\beta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \beta</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\chi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \chi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\delta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \delta</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Delta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Delta</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\digamma</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \digamma</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\epsilon</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \epsilon</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\eta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \eta</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gamma</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gamma</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Gamma</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Gamma</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\iota</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \iota</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\kappa</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \kappa</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lambda</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lambda</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Lambda</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Lambda</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mu</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mu</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nu</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nu</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\omega</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \omega</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Omega</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Omega</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\phi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \phi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Phi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Phi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\pi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \pi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Pi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Pi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\psi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \psi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Psi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Psi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rho</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rho</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sigma</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sigma</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Sigma</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Sigma</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tau</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tau</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\theta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \theta</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Theta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Theta</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\upsilon</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \upsilon</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Upsilon</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Upsilon</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varepsilon</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varepsilon</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varkappa</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varkappa</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varphi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varphi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varpi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varpi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varrho</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varrho</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varsigma</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varsigma</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vartheta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vartheta</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\xi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \xi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Xi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Xi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\zeta</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \zeta</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+            </Section>
+            
+            <Section>
+                <Title>Operators</Title>
+
+                <Table class="type 2">
+                    <Heading>Delimiters</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Meaning</th>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Parentheses</td>
+                            <td class="TableLeft"><ComputerCode>(x)</ComputerCode> or <ComputerCode>\lgroup x \rgroup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle (x)</TeX></InlineEquation> or <InlineEquation><TeX>\displaystyle \lgroup x \rgroup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Square brackets</td>
+                            <td class="TableLeft"><ComputerCode>[x]</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle [x]</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Braces</td>
+                            <td class="TableLeft"><ComputerCode>\{x\}</ComputerCode> or <ComputerCode>\lbrace x \rbrace</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \{x\}</TeX></InlineEquation> or <InlineEquation><TeX>\displaystyle \lbrace x \rbrace</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Vertical bar</td>
+                            <td class="TableLeft"><ComputerCode>\lvert x \rvert</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lvert x \rvert</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Double vertical bar</td>
+                            <td class="TableLeft"><ComputerCode>\lVert x \rVert</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lVert x \rVert</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Ceiling</td>
+                            <td class="TableLeft"><ComputerCode>\lceil x \rceil</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lceil x \rceil</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Floor</td>
+                            <td class="TableLeft"><ComputerCode>\lfloor x \rfloor</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lfloor x \rfloor</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Moustache</td>
+                            <td class="TableLeft"><ComputerCode>\lmoustache x \rmoustache</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lmoustache x \rmoustache</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Angle brackets</td>
+                            <td class="TableLeft"><ComputerCode>\langle x \rangle</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \langle x \rangle</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Other operators</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\amalg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \amalg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ast</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ast</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\barwedge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \barwedge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigcirc</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigcirc</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigtriangledown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigtriangledown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigtriangleup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigtriangleup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\boxdot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boxdot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\boxminus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boxminus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\boxplus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boxplus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\boxtimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boxtimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bullet</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bullet</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cap</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cap</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\intersect</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \intersect</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Cap</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Cap</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cdot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cdot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\centerdot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \centerdot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\circ</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \circ</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\circledast</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \circledast</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\circledcirc</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \circledcirc</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\circleddash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \circleddash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\union</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \union</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Cup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Cup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\curlyvee</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \curlyvee</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\curlywedge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \curlywedge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dagger</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dagger</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ddagger</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ddagger</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\diamond</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \diamond</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\div</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \div</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\divideontimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \divideontimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dotplus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dotplus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\doublebarwedge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \doublebarwedge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\doublecap</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \doublecap</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\doublecup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \doublecup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gtrdot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gtrdot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\intercal</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \intercal</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\land</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \land</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftthreetimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftthreetimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lessdot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lessdot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lor</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lor</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ltimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ltimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mp</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mp</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\odot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \odot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ominus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ominus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\oplus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \oplus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\oslash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \oslash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\otimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \otimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\pm</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \pm</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightthreetimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightthreetimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rtimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rtimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\setminus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \setminus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\smallsetminus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \smallsetminus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sqcap</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqcap</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sqcup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqcup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\star</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \star</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\times</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \times</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\triangleleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \triangleleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\triangleright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \triangleright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\uplus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \uplus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vee</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vee</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\veebar</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \veebar</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\veebar</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \veebar</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\wedge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \wedge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\wr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \wr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>+</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle +</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>-</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle -</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>*</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle *</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>,</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle ,</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>/</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle /</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>:</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle :</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\colon</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \colon</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>|</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle |</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vert</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vert</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Vert</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Vert</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\|</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \|</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\backslash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \backslash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>'</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle '</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\#</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \#</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\%</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \%</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bmod</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bmod</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mod</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mod</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\downarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \downarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Downarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Downarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\uparrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \uparrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Uparrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Uparrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\updownarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \updownarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Updownarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Updownarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigcap</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigcap</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigcup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigcup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigodot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigodot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigoplus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigoplus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigotimes</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigotimes</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigsqcup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigsqcup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\biguplus</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \biguplus</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigvee</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigvee</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigwedge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigwedge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\coprod</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \coprod</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\prod</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \prod</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sum</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sum</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\doublesum</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \doublesum</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\int</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \int</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\smallint</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \smallint</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\oint</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \oint</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\angle</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \angle</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\backprime</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \backprime</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigstar</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigstar</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\blacklozenge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacklozenge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\blacksquare</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacksquare</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\blacksquare</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacksquare</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\blacktriangle</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacktriangle</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\blacktriangledown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacktriangledown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\clubsuit</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \clubsuit</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\diagdown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \diagdown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\diagup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \diagup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\diamondsuit</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \diamondsuit</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\emptyset</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \emptyset</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\exists</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \exists</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\flat</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \flat</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\forall</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \forall</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\heartsuit</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \heartsuit</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\infty</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \infty</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lnot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lnot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lozenge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lozenge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\measuredangle</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \measuredangle</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nabla</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nabla</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\natural</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \natural</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\neg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \neg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nexists</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nexists</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\prime</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \prime</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sharp</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sharp</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\spadesuit</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \spadesuit</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sphericalangle</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sphericalangle</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\square</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \square</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\surd</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \surd</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\top</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \top</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\triangle</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \triangle</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\triangledown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \triangledown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varnothing</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varnothing</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\aleph</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \aleph</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Bbbk</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Bbbk</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\beth</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \beth</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\circledS</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \circledS</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\complement</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \complement</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\daleth</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \daleth</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ell</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ell</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\eth</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \eth</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Finv</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Finv</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Game</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Game</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gimel</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gimel</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hbar</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hbar</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hslash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hslash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Im</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Im</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mho</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mho</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\partial</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \partial</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Re</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Re</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\wp</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \wp</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\degree</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \degree</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\R</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \R</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Q</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Q</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\N</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \N</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\C</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \C</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Z</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Z</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </Section>
+            
+            <Section>
+                <Title>Relations</Title>
+                <Table class="type 2">
+                    <Heading>Relations</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>=</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle =</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>&lt;</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle &lt;</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>></ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle ></TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\approx</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \approx</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\approxeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \approxeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\asymp</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \asymp</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\backsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \backsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\backsimeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \backsimeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bumpeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bumpeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Bumpeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Bumpeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\circeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \circeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cong</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cong</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\curlyeqprec</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \curlyeqprec</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\curlyeqsucc</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \curlyeqsucc</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\doteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \doteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\doteqdot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \doteqdot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\eqcirc</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \eqcirc</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\eqsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \eqsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\eqslantgtr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \eqslantgtr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\eqslantless</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \eqslantless</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\equiv</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \equiv</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\fallingdotseq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \fallingdotseq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ge</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ge</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\geq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \geq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\geqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \geqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\geqslant</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \geqslant</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ggg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ggg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gggtr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gggtr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gnapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gnapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gneq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gneq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gnsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gnsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gtrapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gtrapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gtreqless</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gtreqless</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gtreqqless</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gtreqqless</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gtrless</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gtrless</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gtrsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gtrsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gvertneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gvertneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\le</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \le</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leqslant</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leqslant</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lessapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lessapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lesseqgtr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lesseqgtr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lesseqqgtr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lesseqqgtr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lessgtr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lessgtr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lesssim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lesssim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ll</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ll</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\llless</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \llless</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lnapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lnapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lneq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lneq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lnsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lnsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lvertneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lvertneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ncong</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ncong</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ne</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ne</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\neq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \neq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ngeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ngeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ngeqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ngeqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ngeqslant</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ngeqslant</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ngtr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ngtr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nleq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nleq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nleqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nleqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nleqslant</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nleqslant</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nless</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nless</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nprec</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nprec</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\npreceq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \npreceq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsucc</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsucc</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsucceq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsucceq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\prec</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \prec</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\precapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \precapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\preccurlyeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \preccurlyeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\preceq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \preceq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\precnapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \precnapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\precneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \precneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\precnsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \precnsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\precsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \precsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\risingdotseq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \risingdotseq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\simeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \simeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succ</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succ</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succcurlyeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succcurlyeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succeq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succeq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succnapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succnapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succnsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succnsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\succsim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \succsim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\thickapprox</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \thickapprox</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\thicksim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \thicksim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\triangleq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \triangleq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\curvearrowleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \curvearrowleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\curvearrowright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \curvearrowright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\downdownarrows</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \downdownarrows</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\downharpoonleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \downharpoonleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\downharpoonright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \downharpoonright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gets</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gets</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hookleftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hookleftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hookrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hookrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Leftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Leftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftarrowtail</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftarrowtail</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftharpoondown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftharpoondown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftharpoonup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftharpoonup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftleftarrows</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftleftarrows</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftrightarrows</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftrightarrows</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftrightharpoons</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftrightharpoons</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\leftrightsquigarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftrightsquigarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Lleftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Lleftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\longleftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \longleftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Longleftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Longleftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\longleftrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \longleftrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Longleftrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Longleftrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\looparrowleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \looparrowleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\looparrowright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \looparrowright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Lsh</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Lsh</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mapsto</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mapsto</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\multimap</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \multimap</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nearrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nearrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nleftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nleftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nLeftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nLeftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nleftrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nleftrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nLeftrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nLeftrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nRightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nRightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nwarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nwarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\restriction</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \restriction</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Rightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Rightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightarrowtail</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightarrowtail</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightharpoondown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightharpoondown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightharpoonup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightharpoonup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightleftarrows</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightleftarrows</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightleftharpoons</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightleftharpoons</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightrightarrows</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightrightarrows</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rightsquigarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rightsquigarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Rrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Rrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Rsh</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Rsh</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\searrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \searrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\swarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \swarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\to</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \to</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\twoheadleftarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \twoheadleftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\twoheadrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \twoheadrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\upharpoonleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \upharpoonleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\upharpoonright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \upharpoonright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\upuparrows</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \upuparrows</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\backepsilon</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \backepsilon</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\because</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \because</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\between</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \between</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\blacktriangleleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacktriangleleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\blacktriangleright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacktriangleright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bowtie</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bowtie</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dashv</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dashv</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\frown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \frown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\in</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \in</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mid</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mid</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\models</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \models</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ni</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ni</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ni</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ni</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nmid</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nmid</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\notin</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \notin</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nparallel</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nparallel</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nshortmid</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nshortmid</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nshortparallel</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nshortparallel</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsubseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsubseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsubseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsubseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsubseteqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsubseteqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsupseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsupseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsupseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsupseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nsupseteqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nsupseteqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ntriangleleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ntriangleleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ntrianglelefteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ntrianglelefteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ntriangleright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ntriangleright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ntrianglerighteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ntrianglerighteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nvdash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nvdash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nvDash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nvDash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nVdash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nVdash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\nVDash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \nVDash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\owns</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \owns</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\parallel</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \parallel</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\perp</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \perp</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\pitchfork</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \pitchfork</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\propto</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \propto</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\shortmid</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \shortmid</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\shortparallel</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \shortparallel</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\smallfrown</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \smallfrown</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\smallsmile</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \smallsmile</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\smile</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \smile</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sqsubset</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqsubset</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sqsubseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqsubseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sqsupset</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqsupset</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sqsupseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqsupseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\subset</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \subset</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Subset</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Subset</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\subseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \subseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\subseteqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \subseteqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\subsetneq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \subsetneq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\subsetneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \subsetneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\supset</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \supset</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Supset</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Supset</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\supseteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \supseteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\supseteqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \supseteqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\supsetneq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \supsetneq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\supsetneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \supsetneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\therefore</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \therefore</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\trianglelefteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \trianglelefteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\trianglerighteq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \trianglerighteq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varpropto</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varpropto</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varsubsetneq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varsubsetneq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varsubsetneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varsubsetneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varsupsetneq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varsupsetneq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\varsupsetneqq</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \varsupsetneqq</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vartriangle</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vartriangle</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vartriangleleft</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vartriangleleft</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vartriangleright</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vartriangleright</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vdash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vdash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vDash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vDash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Vdash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Vdash</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Vvdash</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Vvdash</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </Section>
+            
+            <Section>
+                <Title>Functions and words</Title>
+                <Table class="type 2">
+                    <Heading>Named identifiers</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\arccos</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arccos</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\arcsin</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arcsin</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\arctan</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arctan</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\arg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cos</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cos</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cosh</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cosh</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cot</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\coth</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \coth</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\csc</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \csc</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\deg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \deg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\det</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \det</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\exp</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \exp</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\gcd</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gcd</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hom</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hom</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ker</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ker</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lg</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ln</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ln</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\log</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \log</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Pr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Pr</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sec</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sec</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sin</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sin</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sinh</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sinh</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tan</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tan</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tanh</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tanh</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\inf</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \inf</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\injlim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \injlim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\liminf</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \liminf</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\limsup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \limsup</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\max</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \max</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\min</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \min</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\projlim</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \projlim</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sup</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sup</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </Section>
+            
+            <Section>
+                <Title>Miscellaneous</Title>
+
+                <Table class="type 2">
+                    <Heading>Miscellaneous punctuation</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Meaning</th>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Dot</td>
+                            <td class="TableLeft"><ComputerCode>x . y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x . y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Semicolon</td>
+                            <td class="TableLeft"><ComputerCode>x ; y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x ; y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Question mark</td>
+                            <td class="TableLeft"><ComputerCode>x ? y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x ? y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">QED (end of proof)</td>
+                            <td class="TableLeft"><ComputerCode>x \qedsymbol</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \qedsymbol</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Dots</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vdots</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vdots</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hdots</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hdots</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ldots</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ldots</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dots</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dots</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cdots</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cdots</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dotsb</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dotsb</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dotsc</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dotsc</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dotsi</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dotsi</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dotsm</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dotsm</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dotso</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dotso</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ddots</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ddots</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Spaces</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Meaning</th>
+                            <th class="ColumnHeadLeft">TeX command</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Double quad space</td>
+                            <td class="TableLeft"><ComputerCode>x \qquad y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \qquad y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Quad space</td>
+                            <td class="TableLeft"><ComputerCode>x \quad y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \quad y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Thick space</td>
+                            <td class="TableLeft"><ComputerCode>x \thickspace y</ComputerCode> or <ComputerCode>x \; y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \thickspace y</TeX></InlineEquation> or <InlineEquation><TeX>\displaystyle x \; y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Medium space</td>
+                            <td class="TableLeft"><ComputerCode>x \medspace y</ComputerCode> or <ComputerCode>x \: y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \medspace y</TeX></InlineEquation> or <InlineEquation><TeX>\displaystyle x \: y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Thin space</td>
+                            <td class="TableLeft"><ComputerCode>x \thinspace y</ComputerCode> or <ComputerCode>x \, y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \thinspace y</TeX></InlineEquation> or <InlineEquation><TeX>\displaystyle x \, y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Non-breaking space</td>
+                            <td class="TableLeft"><ComputerCode>x ~ y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x ~ y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Zero-width space</td>
+                            <td class="TableLeft"><ComputerCode>x \! y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \! y</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </Section>
+
+        </Session>
+
+        <Session>
+            <Title>TeX commands</Title>
+            
+            <Section>
+                <Title>Mathematical structures</Title>
+
+                <Table class="type 2">
+                    <Heading>Common mathematical structures</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Command</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>_</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>x_i</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x_i</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>^</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>x^j</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x^j</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\frac</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\frac{1}{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \frac{1}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dfrac</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\dfrac{4}{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dfrac{4}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tfrac</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\tfrac{4}{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tfrac{4}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dsum</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\dsum_{i=1}^x X_i</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dsum_{i=1}^x X_i</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tsum</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\tsum_{i=1}^x X_i</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tsum_{i=1}^x X_i</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dint</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\dint_{i=1}^x X_i</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dint_{i=1}^x X_i</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tint</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\tint_{i=1}^x X_i</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tint_{i=1}^x X_i</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sqrt</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\sqrt{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqrt{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\binom</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\binom{4}{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \binom{4}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dbinom</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\dbinom{4}{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dbinom{4}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tbinom</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\tbinom{4}{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tbinom{4}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\operatorname</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\operatorname{rank}(x)</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \operatorname{rank}(x)</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\pod</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>3 \pod{6}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 3 \pod{6}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\pmod</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>3 \pmod{6}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 3 \pmod{6}</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Parentheses</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Command</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\big</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\big( X \big)</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \big( X \big)</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Big</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\Big( X \big)</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Big( X \Big)</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigg</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\bigg( X \bigg)</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigg( X \bigg)</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Bigg</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\Bigg( X \Bigg)</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Bigg( X \Bigg)</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\left</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\left( \frac{1}{x} \right\}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left( \frac{1}{x} \right\}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bigl</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\bigl( \frac{1}{x} \bigr\}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigl( \frac{1}{x} \bigr\}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Bigl</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\Bigl( \frac{1}{x} \Bigr\}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Bigl( \frac{1}{x} \Bigr\}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\biggl</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\biggl( \frac{1}{x} \biggr\}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \biggl( \frac{1}{x} \biggr\}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Biggl</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\Biggl( \frac{1}{x} \Biggr\}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Biggl( \frac{1}{x} \Biggr\}</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Miscellaneous</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Command</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\displaystyle</ComputerCode></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\displaystyle \frac{1}{x}</ComputerCode></Paragraph>
+                                <Paragraph><i>Note: Has no effect because equations created in collaborative tools use display style by default.</i></Paragraph></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \displaystyle \frac{1}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathop</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathop{XQX}_{i=1}^n</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathop{XQX}_{i=1}^n</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\not</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>X \not= Y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle X \not= Y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\char</ComputerCode></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\char93</ComputerCode></Paragraph>
+                                <Paragraph><i>Note: Only character 93 is currently supported.</i></Paragraph></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \char93</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </Section>
+
+            <Section>
+                <Title>Text and fonts</Title>
+                
+                <Table class="type 2">
+                    <Heading>Accents and decorations</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Command</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\acute</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\acute{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \acute{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\grave</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\grave{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \grave{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tilde</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\tilde{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tilde{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bar</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\bar{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bar{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\breve</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\breve{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \breve{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\check</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\check{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \check{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hat</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\hat{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hat{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\vec</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\vec{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vec{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dot</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\dot{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dot{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ddot</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\ddot{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ddot{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\dddot</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\dddot{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dddot{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\underbrace</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\underbrace{x+1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \underbrace{x+1}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\overbrace</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\overbrace{x+1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \overbrace{x+1}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\underline</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\underline{x+1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \underline{x+1}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\overline</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\overline{x+1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \overline{x+1}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\widetilde</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\widetilde{x+1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \widetilde{x+1}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\widehat</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\widehat{x+1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \widehat{x+1}</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Text inside equations</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Command</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\text</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\text{frog}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \text{frog}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\textnormal</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\textnormal{frog}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textnormal{frog}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\textrm</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\textrm{frog}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textrm{frog}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\textsl</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\textsl{frog}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textsl{frog}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\textit</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\textit{frog}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textit{frog}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\texttt</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\texttt{frog}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \texttt{frog}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\textbf</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\textbf{frog}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textbf{frog}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\hbox</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\sqrt{\hbox{frog}}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqrt{\hbox{frog}}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mbox</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\sqrt{\mbox{frog}}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqrt{\mbox{frog}}</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Paragraph><i>Note: Although the commands for different styles are
+                    supported, these don't actually do anything different at
+                    present.</i></Paragraph>
+
+                <Table class="type 2">
+                    <Heading>Font style</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Command</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\boldsymbol</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\boldsymbol{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boldsymbol{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bold</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\bold{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bold{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Bbb</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\Bbb{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Bbb{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathbb</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathbb{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathbb{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathbbmss</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathbbmss{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathbbmss{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathbf</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathbf{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathbf{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathrm</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathrm{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathrm{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathfrak</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathfrak{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathfrak{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathit</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathit{\Gamma}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathit{\Gamma}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathscr</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathscr{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathscr{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathcal</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathcal{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathcal{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathsf</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathsf{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathsf{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mathtt</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\mathtt{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathtt{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\EuScript</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\EuScript{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \EuScript{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bf</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\bf{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bf{X}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rm</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\rm{X}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rm{X}</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+            </Section>
+            
+            <Section>
+                <Title>Environments</Title>
+                <Table class="type 2">
+                    <Heading>Matrices</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Environment</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>smallmatrix</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{smallmatrix} a&amp;b \\ c&amp;d \end{smallmatrix}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{smallmatrix} a&amp;b \\ c&amp;d \end{smallmatrix}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>pmatrix</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{pmatrix} a&amp;b \\ c&amp;d \end{pmatrix}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{pmatrix} a&amp;b \\ c&amp;d \end{pmatrix}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>bmatrix</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{bmatrix} a&amp;b \\ c&amp;d \end{bmatrix}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{bmatrix} a&amp;b \\ c&amp;d \end{bmatrix}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>Bmatrix</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{Bmatrix} a&amp;b \\ c&amp;d \end{Bmatrix}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{Bmatrix} a&amp;b \\ c&amp;d \end{Bmatrix}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>vmatrix</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{vmatrix} a&amp;b \\ c&amp;d \end{vmatrix}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{vmatrix} a&amp;b \\ c&amp;d \end{vmatrix}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>Vmatrix</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{Vmatrix} a&amp;b \\ c&amp;d \end{Vmatrix}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{Vmatrix} a&amp;b \\ c&amp;d \end{Vmatrix}</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Other environments</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Environment</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>cases</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{cases} 1 &amp; x=4 \\ 17 &amp; x=5 \end{cases}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{cases} 1 &amp; x=4 \\ 17 &amp; x=5 \end{cases}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>array</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{array} a&amp;b \\ c&amp;d \end{array}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{array} a&amp;b \\ c&amp;d \end{array}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>displaymath</ComputerCode></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\begin{displaymath} \frac{1}{x}</ComputerCode></Paragraph>
+                                <Paragraph><i>Note: Has no effect because equations created in collaborative tools use display style by default.</i></Paragraph></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{displaymath} \frac{1}{x}</TeX></InlineEquation></td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+            </Section>
+            
+
+        </Session>
+
+    </Unit>
+    <settings>
+        <numbering>
+            <Session autonumber="true" />
+            <Section autonumber="true" />
+            <SubSection autonumber="true" />
+            <SubSubSection autonumber="false" />
+            <Activity autonumber="true" />
+            <Exercise autonumber="true" />
+            <Box autonumber="true" />
+            <CaseStudy autonumber="false" />
+            <Quote autonumber="false" />
+            <Extract autonumber="false" />
+            <Dialogue autonumber="false" />
+            <KeyPoints autonumber="false" />
+            <Reading autonumber="false" />
+            <StudyNote autonumber="false" />
+            <Example autonumber="true" />
+            <Verse autonumber="false" />
+            <SAQ autonumber="true" />
+            <ComputerDisplay autonumber="false" />
+            <Summary autonumber="false" />
+            <ProgramListing autonumber="false" />
+            <ITQ autonumber="false" />
+            <Tables autonumber="true" />
+            <Figures autonumber="true" />
+            <MediaContent autonumber="false" />
+            <Chemistry autonumber="false" />
+        </numbering>
+        <discussion_alias>Discussion</discussion_alias>
+        <session_prefix />
+    </settings>
+</Item>
