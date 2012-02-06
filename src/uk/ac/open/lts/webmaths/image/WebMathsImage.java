@@ -22,6 +22,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.regex.*;
 
 import javax.imageio.ImageIO;
@@ -126,7 +127,7 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			layout.setParameter(Parameter.MATHCOLOR, fg);
 
 			// These fonts are included with the JEuclid build so ought to work
-			layout.setParameter(Parameter.FONTS_SERIF, "DejaVu Serif"); 
+			layout.setParameter(Parameter.FONTS_SERIF, Arrays.asList(new String[] {"DejaVu Serif", "Quivira"})); 
 			layout.setParameter(Parameter.FONTS_SANSSERIF, "DejaVu Sans"); 
 			layout.setParameter(Parameter.FONTS_MONOSPACED, "DejaVu Sans Mono"); 
 			
