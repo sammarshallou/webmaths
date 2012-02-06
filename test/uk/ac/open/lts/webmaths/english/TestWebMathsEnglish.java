@@ -42,6 +42,34 @@ public class TestWebMathsEnglish extends TestCase
 		assertEnglish("1 over z", "<mfrac><mn>1</mn><mi>z</mi></mfrac>");
 	}
 	
+	public void testMenclose() throws Exception
+	{
+		assertEnglish("( upward diagonal strike through 2 to the power 1 over " +
+			"upward diagonal strike through 8 subscript 4 ) = ( 1 over 4 ) .",
+			"<math display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>" +
+				"<mfrac>" +
+					"<mrow>" +
+						"<msup>" +
+							"<menclose notation='updiagonalstrike'><mn>2</mn></menclose>" +
+							"<mn>1</mn>" +
+						"</msup>" +
+					"</mrow>" +
+					"<mrow>" +
+						"<msub>" +
+							"<menclose notation='updiagonalstrike'><mn>8</mn></menclose>" +
+							"<mn>4</mn>" +
+						"</msub>" +
+					"</mrow>" +
+				"</mfrac>" +
+				"<mo>=</mo>" +
+				"<mfrac>" +
+					"<mn>1</mn>" +
+					"<mn>4</mn>" +
+				"</mfrac>" +
+				"<mo>.</mo>" +
+			"</mrow></math>");
+	}
+
 	private void assertEnglish(String expected, String mathml) throws Exception
 	{
 		MathsEnglishParams params = new MathsEnglishParams();

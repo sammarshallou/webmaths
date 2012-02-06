@@ -565,6 +565,7 @@
     <xsl:param name="MODE"/>
 
     <xsl:choose>
+        <xsl:when test="string-length($TEXT) = 0"></xsl:when>
         <xsl:when test="normalize-space(substring($TEXT, 1, 1)) = ''">
             <!-- First character is whitespace. -->
             <xsl:if test="$MODE != 'white'">
@@ -578,7 +579,7 @@
             </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-            <!-- First chasracter is not whitespace. Output it. -->
+            <!-- First character is not whitespace. Output it. -->
             <xsl:value-of select="substring($TEXT, 1, 1)"/>
             
             <!-- Continue in text mode -->
