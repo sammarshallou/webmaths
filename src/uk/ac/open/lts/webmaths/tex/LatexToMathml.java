@@ -1871,7 +1871,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 //def v_matrix_to_mathml(slf, v_open_delim, v_close_delim):
 
-	Element matrixToMathml(TokenInput slf, String openDelim, String closeDelim)
+	Element matrixToMathml(TokenInput slf, String openDelim, String closeDelim, boolean stretchy)
 	{
 //# ROBHACK skip OUTeX 'optional' arg if present
 //if (slf.tokens[slf.tokens_index] == u"{"):
@@ -1906,12 +1906,30 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			Element mrow = resultElement("mrow", 0);
 			if(openDelim != null)
 			{
-				resultElementAppend(mrow, resultElement("mo", 0, openDelim));
+				if(stretchy)
+				{
+					// Stretchy is only needed when using a symbol that isn't included
+					// in the default stretch dictionary
+					resultElementAppend(mrow, resultElement("mo", 1, "stretchy", "true",
+						openDelim));
+				}
+				else
+				{
+					resultElementAppend(mrow, resultElement("mo", 0, openDelim));
+				}
 			}
 			resultElementAppend(mrow, mtable);
 			if(closeDelim != null)
 			{
-				resultElementAppend(mrow, resultElement("mo", 0, closeDelim));
+				if(stretchy)
+				{
+					resultElementAppend(mrow, resultElement("mo", 1, "stretchy", "true",
+						closeDelim));
+				}
+				else
+				{
+					resultElementAppend(mrow, resultElement("mo", 0, closeDelim));
+				}
 			}
 			return mrow;
 		}
@@ -2203,7 +2221,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "(", ")");
+				return matrixToMathml(slf, "(", ")", false);
 			}
 		});
 //u"pmatrix": lambda slf: v_matrix_to_mathml(slf, u"(", u")"), \
@@ -2215,7 +2233,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "[", "]");
+				return matrixToMathml(slf, "[", "]", false);
 			}
 		});
 //u"Bmatrix": lambda slf: v_matrix_to_mathml(slf, u"{", u"}"), \
@@ -2224,7 +2242,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "{", "}");
+				return matrixToMathml(slf, "{", "}", false);
 			}
 		});
 //u"vmatrix": lambda slf: v_matrix_to_mathml(slf, u"|", u"|"), \
@@ -2233,7 +2251,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "|", "|");
+				return matrixToMathml(slf, "|", "|", false);
 			}
 		});
 //u"Vmatrix": lambda slf: v_matrix_to_mathml(slf, u"\u2016", u"\u2016"), \
@@ -2242,7 +2260,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "\u2016", "\u2016");
+				return matrixToMathml(slf, "\u2016", "\u2016", true);
 			}
 		});
 //u"cases": lambda slf: v_matrix_to_mathml(slf, u"{", None), \
@@ -2251,7 +2269,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "{", null);
+				return matrixToMathml(slf, "{", null, false);
 			}
 		});
 //u"array": v_array_to_mathml, \
