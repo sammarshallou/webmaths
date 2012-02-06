@@ -122,7 +122,7 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			layout.setParameter(Parameter.ANTIALIAS, Boolean.TRUE);
 			// This size is hardcoded to go well with our default text size
 			// and be one of the sizes that doesn't look too horrible.
-			layout.setParameter(Parameter.MATHSIZE, params.getSize() * 13f);
+			layout.setParameter(Parameter.MATHSIZE, params.getSize() * 15f);
 			layout.setParameter(Parameter.MATHCOLOR, fg);
 
 			// These fonts are included with the JEuclid build so ought to work
