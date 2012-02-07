@@ -369,7 +369,8 @@ public class TokenInput
 		}
 
 		// Result may contain fake <xerror> tags. Convert these to mspace and comment.
-		result = result.replace("<xerror>", "<mspace/><!-- ").replace("</xerror>", " -->");
+		result = result.replace("<xerror>", "<mspace/><!-- ").replace(
+			"<xerror space=\"false\">", "<!--").replace("</xerror>", " -->");
 
 		return result;
 	}

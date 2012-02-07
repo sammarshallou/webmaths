@@ -2291,6 +2291,17 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				return displayMathToMathml(slf);
 			}
 		});
+		// Default (null) environment
+		texEnvironments.put(null, new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				Element result = subExprChainToMathml(slf, HARD_STOP_TOKENS);
+				finishLatexBlock(slf);
+				return result;
+			}
+		});
 	}
 
 //def v_latex_block_to_mathml(slf):
@@ -2310,7 +2321,13 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // return result_element(u"merror", 0, result_element(u"mtext", 0, 'Invalid command: '+repr(v_cmd)) )
 		else
 		{
-			return resultElement("xerror", 0, "Invalid command: " + cmd);
+			// For unknown environments, instead of failing horribly, insert an xerror
+			// (comment) and put the contents into an mrow.
+			slf.nextToken();
+			Element error = resultElement("xerror", 1, "space", "false",
+				"Unsupported environment: " + cmd);
+			Element result = texEnvironments.get(null).call(slf);
+			return resultElement("mrow", 0, error, result);
 		}
 	}
 
@@ -3028,7 +3045,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			// Original code didn't stop it returning null. This basically only
 			// happens if the equation is 'silly' TeX, but it causes exceptions and
 			// is generally problematic.
-			return document.createElement("mspace");
+			return document.createElementNS(WebMathsService.NS, "mspace");
 		}
 		else
 		{
@@ -3203,6 +3220,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			tokens.getSource());
 		Element semantics = resultElement("semantics", 0, style, annotation);
 		Element math = resultElement("math", 0, semantics);
+
 		return math;
 	}
 }

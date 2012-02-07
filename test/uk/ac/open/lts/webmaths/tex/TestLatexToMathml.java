@@ -87,6 +87,15 @@ public class TestLatexToMathml extends TestCase
 	}
 	
 	@Test
+	public void testBeginEnd()
+	{
+		// Unsupported begin/end should do nothing
+		assertMath("<!--Unsupported environment: frog --><mrow><mn>1</mn><mo>+</mo><mrow>"
+			+ "<!--Unsupported environment: zombie --><mn>2</mn></mrow></mrow>",
+			"\\begin{frog}1+\\begin{zombie}2\\end{zombie}\\end{frog}");
+	}
+
+	@Test
 	public void testSlightlyLessSimpleExample()
 	{
 		assertMath("<msqrt><mfrac><mn>1</mn><mi>x</mi></mfrac></msqrt>",
