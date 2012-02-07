@@ -1390,7 +1390,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0301");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u00b4");
 			}
 		});
 //u"\\grave": lambda slf: v_accent_to_mathml(slf, u"\u0300"), \
@@ -1399,7 +1400,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0300");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u0060");
 			}
 		});
 //u"\\tilde": lambda slf: v_accent_to_mathml(slf, u"\u0303"), \
@@ -1408,7 +1410,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0303");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u007e");
 			}
 		});
 //u"\\bar": lambda slf: v_accent_to_mathml(slf, u"\u0304"), \
@@ -1431,7 +1434,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0306");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u02d8");
 			}
 		});
 //u"\\check": lambda slf: v_accent_to_mathml(slf, u"\u030c"), \
@@ -1440,7 +1444,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u030c");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u02c7");
 			}
 		});
 //u"\\hat": lambda slf: v_accent_to_mathml(slf, u"\u0302"), \
@@ -1460,7 +1465,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u20d7");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u2192");
 			}
 		});
 //u"\\dot": lambda slf: v_accent_to_mathml(slf, u"\u0307"), \
@@ -1469,7 +1475,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0307");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u02d9");
 			}
 		});
 //u"\\ddot": lambda slf: v_accent_to_mathml(slf, u"\u0308"), \
@@ -1478,7 +1485,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return accentToMathml(slf, "\u0308");
+				// Note: Should not be a combining character; see comment under \bar.
+				return accentToMathml(slf, "\u00a8");
 			}
 		});
 //u"\\dddot": lambda slf: v_accent_to_mathml(slf, u"\u20db"), \
@@ -1487,6 +1495,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
+				// This is COMBINING THREE DOTS ABOVE but is correct because there is
+				// no non-combining character.
+				// http://lists.w3.org/Archives/Public/www-math/2011May/0001.html
 				return accentToMathml(slf, "\u20db");
 			}
 		});
