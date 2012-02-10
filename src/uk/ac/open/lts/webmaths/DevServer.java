@@ -28,6 +28,7 @@ import org.apache.xmlgraphics.util.ClasspathResource;
 
 import uk.ac.open.lts.webmaths.english.WebMathsEnglish;
 import uk.ac.open.lts.webmaths.image.*;
+import uk.ac.open.lts.webmaths.imagetex.WebMathsImageTex;
 import uk.ac.open.lts.webmaths.tex.WebMathsTex;
 
 /**
@@ -57,13 +58,16 @@ public class DevServer
 		String local = InetAddress.getLocalHost().getHostAddress();
 		String mathsTex = "http://" + local + ":9997/";
 		Endpoint.publish(mathsTex, new WebMathsTex());
-		System.err.println("MathsTex service ready - " + mathsTex); 
+		System.err.println("MathsTex service ready - " + mathsTex);
 		String mathsEnglish = "http://" + local + ":9998/";
 		Endpoint.publish(mathsEnglish, new WebMathsEnglish());
-		System.err.println("MathsEnglish service ready - " + mathsEnglish); 
+		System.err.println("MathsEnglish service ready - " + mathsEnglish);
 		String mathsImage = "http://" + local + ":9999/";
 		Endpoint.publish(mathsImage, new WebMathsImage());
-		System.err.println("MathsImage service ready - " + mathsImage); 
+		System.err.println("MathsImage service ready - " + mathsImage);
+		String mathsImageTex = "http://" + local + ":9996/";
+		Endpoint.publish(mathsImageTex, new WebMathsImageTex());
+		System.err.println("MathsImageTex service ready - " + mathsImageTex);
 	}
 
 	/**

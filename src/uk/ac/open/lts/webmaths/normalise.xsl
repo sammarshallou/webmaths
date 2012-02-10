@@ -5,6 +5,7 @@
 <!-- 
   Indicates the type of operation being carried out. Current values:
   english = converting to English text
+  latex = converting to LaTeX
   -->
 <xsl:param name="TYPE"/>
 
@@ -175,6 +176,5 @@
     </xsl:copy>
   </m:mtd>
 </xsl:template>
-
 
 </xsl:stylesheet>
