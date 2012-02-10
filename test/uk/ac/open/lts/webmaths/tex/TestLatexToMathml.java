@@ -28,9 +28,10 @@ import org.junit.Test;
 public class TestLatexToMathml extends TestCase
 {
 	@Test
-	public void testSimpleExample()
+	public void testSimpleExamples()
 	{
-		assertMath("<msqrt><mn>1</mn></msqrt>", "\\sqrt{1}"); 
+		assertMath("<msqrt><mn>1</mn></msqrt>", "\\sqrt{1}");
+		assertMath("<mfrac><mi>x</mi><mi>y</mi></mfrac>", "\\frac{x}{y}");
 	}
 	
 	@Test
