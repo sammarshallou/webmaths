@@ -53,7 +53,14 @@ public class TestLatexToMathml extends TestCase
 	{
 		assertMath("<msqrt><mn>31.459</mn></msqrt>", "\\sqrt{31.459}"); 
 	}
-	
+
+	@Test
+	public void testMathop()
+	{
+		assertMath("<munderover><mi fontstyle=\"normal\" mathvariant=\"normal\">Q"
+			+ "</mi><mn>1</mn><mi>N</mi></munderover>", "\\mathop{Q}_1^N");
+	}
+
 	@Test
 	public void testFractionDigits()
 	{

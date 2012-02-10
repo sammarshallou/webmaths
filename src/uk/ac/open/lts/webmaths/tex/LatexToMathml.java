@@ -946,7 +946,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\underbrace", null,
 		"\\overbrace", null,
 		"\\underline", null,
-		"\\overline", null
+		"\\overline", null,
+		"\\mathop", null,
 	});
 
 	private final static Map<String, String> OPTIONAL_ARG_STOP_TOKENS =
