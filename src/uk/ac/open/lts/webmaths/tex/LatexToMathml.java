@@ -38,6 +38,7 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
+import static uk.ac.open.lts.webmaths.MapUtil.*;
 
 /**
  * Class ported from some Python code that converts LaTeX to MathML.
@@ -254,16 +255,6 @@ public class LatexToMathml
 		}
 	}
 
-	private static Map<String, String> makeMap(String[] data)
-	{
-		Map<String, String> result = new HashMap<String, String>();
-		for(int i=0; i<data.length; i+=2)
-		{
-			result.put(data[i], data[i+1]);
-		}
-		return result;
-	}
-
 	private final static Map<String, String> PUNCT_AND_SPACE =
 		makeMap(new String[]
   {
@@ -319,9 +310,7 @@ public class LatexToMathml
 		makeMap(new String[]
   {
 		"\\amalg", "\u2a3f",
-		"\\ast", "*",
 		"\\ast", "\u2217",
-		"\\barwedge", "\u22bc",
 		"\\barwedge", "\u2305",
 		"\\bigcirc", "\u25cb",
 		"\\bigtriangledown", "\u25bd",
@@ -331,7 +320,6 @@ public class LatexToMathml
 		"\\boxplus", "\u229e",
 		"\\boxtimes", "\u22a0",
 		"\\bullet", "\u2022",
-		"\\bullet", "\u2219",
 		"\\cap", "\u2229",
 		"\\intersect", "\u2229",
 		"\\Cap", "\u22d2",
@@ -382,7 +370,6 @@ public class LatexToMathml
 		"\\uplus", "\u228e",
 		"\\vee", "\u2228",
 		"\\veebar", "\u22bb",
-		"\\veebar", "\u2a61",
 		"\\wedge", "\u2227",
 		"\\wr", "\u2240",
 		"+", "+",
@@ -428,7 +415,6 @@ public class LatexToMathml
 		"\\backprime", "\u2035",
 		"\\bigstar", "\u2605",
 		"\\blacklozenge", "\u29eb",
-		"\\blacksquare", "\u25a0",
 		"\\blacksquare", "\u25aa",
 		"\\blacktriangle", "\u25b4",
 		"\\blacktriangledown", "\u25be",
@@ -517,7 +503,6 @@ public class LatexToMathml
 		"\\geqq", "\u2267",
 		"\\geqslant", "\u2a7e",
 		"\\gg", "\u226b",
-		"\\gg", "\u2aa2",
 		"\\ggg", "\u22d9",
 		"\\gggtr", "\u22d9",
 		"\\gnapprox", "\u2a8a",
@@ -647,21 +632,18 @@ public class LatexToMathml
 		"\\blacktriangleright", "\u25b6",
 		"\\bowtie", "\u22c8",
 		"\\dashv", "\u22a3",
-		"\\frown", "\u2323",
+		"\\frown", "\u2322",
 		"\\in", "\u220a",
 		"\\mid", "\u2223",
 		"\\models", "\u22a7",
 		"\\ni", "\u220b",
-		"\\ni", "\u220d",
 		"\\nmid", "\u2224",
 		"\\notin", "\u2209",
 		"\\nparallel", "\u2226",
 		"\\nshortmid", "\u2224",
 		"\\nshortparallel", "\u2226",
-		"\\nsubseteq", "\u2286",
 		"\\nsubseteq", "\u2288",
 		"\\nsubseteqq", "\u2ac5",
-		"\\nsupseteq", "\u2287",
 		"\\nsupseteq", "\u2289",
 		"\\nsupseteqq", "\u2ac6",
 		"\\ntriangleleft", "\u22ea",
@@ -702,9 +684,9 @@ public class LatexToMathml
 		"\\trianglelefteq", "\u22b4",
 		"\\trianglerighteq", "\u22b5",
 		"\\varpropto", "\u221d",
-		"\\varsubsetneq", "\u228a",
+		"\\varsubsetneq", "\u228a\ufe00",
 		"\\varsubsetneqq", "\u2acb",
-		"\\varsupsetneq", "\u228b",
+		"\\varsupsetneq", "\u228b\ufe00",
 		"\\varsupsetneqq", "\u2acc",
 		"\\vartriangle", "\u25b5",
 		"\\vartriangleleft", "\u22b2",
