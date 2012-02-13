@@ -2483,6 +2483,11 @@
                             <td class="TableLeft"><ComputerCode>3 \pmod{6}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle 3 \pmod{6}</TeX></InlineEquation></td>
                         </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\substack</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\substack{ x &lt; 0 &lt; n \\ y &lt; 0 &lt; n }</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \substack{ x &lt; 0 &lt; n \\ y &lt; 0 &lt; n }</TeX></InlineEquation></td>
+                        </tr>
                     </tbody>
                 </Table>
 

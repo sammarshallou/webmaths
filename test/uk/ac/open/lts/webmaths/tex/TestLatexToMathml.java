@@ -125,6 +125,18 @@ public class TestLatexToMathml extends TestCase
 			+ "<mtd><mrow><mo>=</mo><mn>2</mn></mrow></mtd></mtr></mtable>",
 			"\\begin{align*}x&=1\\\\y&=2\\end{align*}"); 
 	}
+
+	@Test
+	public void testSubstack()
+	{
+		assertMath("<munder><mo>\u2211</mo><mtable>"
+			+ "<mtr><mtd><mn>0</mn><mo>&lt;</mo><mi>i</mi><mo>&lt;</mo><mi>m</mi></mtd></mtr>"
+			+ "<mtr><mtd><mn>0</mn><mo>&lt;</mo><mi>j</mi><mo>&lt;</mo><mi>n</mi></mtd></mtr>"
+			+ "</mtable></munder><mi>P</mi><mrow><mo>(</mo><mrow><mi>i</mi>"
+			+ "<mrow><mo>,</mo><mi>j</mi></mrow></mrow><mo>)</mo></mrow>",
+			"\\sum_{\\substack{ 0<i<m \\\\ 0<j<n }} P(i,j)");
+	}
+
 	@Test
 	public void testSlightlyLessSimpleExample()
 	{

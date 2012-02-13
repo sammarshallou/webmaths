@@ -1706,6 +1706,15 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				return latexBlockToMathml(slf);
 			}
 		});
+		// Add \substack command
+		texCommands.put("\\substack", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return substackToMathml(slf);
+			}
+		});
 //}
 	}
 
@@ -1718,6 +1727,75 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		Element numerator = pieceToMathml(slf);
 		Element denominator = pieceToMathml(slf);
 		return resultElement("mfrac", 0, numerator, denominator);
+	}
+
+	/**
+	 * Handles \substack expressions by converting to an mtable.
+	 * @param slf Token input
+	 * @return Converted mtable element
+	 */
+	private Element substackToMathml(TokenInput slf)
+	{
+		// Read open {
+		String token = slf.nextToken();
+		if(!token.equals("{"))
+		{
+			return resultElement("xerror", 0, "Expected {");
+		}
+
+		// Get all rows
+		List<Element> stackRows = new LinkedList<Element>();
+		while(true)
+		{
+			Element mtd = createWithoutMrow("mtd",
+				subExprChainToMathml(slf, HARD_STOP_TOKENS));
+			stackRows.add(resultElement("mtr", 0, mtd));
+			if(!slf.peekToken().equals("\\\\"))
+			{
+				break;
+			}
+			slf.nextToken();
+		}
+
+		// Skip close }
+		if(slf.peekToken().equals("}"))
+		{
+			slf.nextToken();
+		}
+
+		// Build mtable
+		Element[] stackRowsArray = stackRows.toArray(new Element[stackRows.size()]);
+		return resultElement("mtable", 0, (Object[])stackRowsArray);
+	}
+
+	/**
+	 * Creates an element containing a child element, but if the child is an
+	 * mrow, skips it and adds its children instead.
+	 * <p>
+	 * For use with elements which have 'inferred mrow'.
+	 * http://www.w3.org/TR/MathML2/chapter3.html#id.3.1.3.1
+	 * @param element Tag name for new element
+	 * @param child Child which might be an mrow
+	 * @return New element
+	 */
+	private Element createWithoutMrow(String element, Element child)
+	{
+		if(!child.getTagName().equals("mrow"))
+		{
+			return resultElement(element, 0, child);
+		}
+		List<Element> grandchildren = new LinkedList<Element>();
+		for(Node grandchild = child.getFirstChild(); grandchild != null;
+			grandchild = grandchild.getNextSibling())
+		{
+			if(grandchild.getNodeType() == Node.ELEMENT_NODE)
+			{
+				grandchildren.add((Element)grandchild);
+			}
+		}
+		Element[] grandchildrenArray =
+			grandchildren.toArray(new Element[grandchildren.size()]);
+		return resultElement(element, 0, (Object[])grandchildrenArray);
 	}
 
 //def v_binom_to_mathml(slf):
