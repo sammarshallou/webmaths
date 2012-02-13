@@ -257,7 +257,7 @@ public class LatexToMathml
 
 	private final static Map<String, String> PUNCT_AND_SPACE =
 		makeMap(new String[]
-  {
+	{
 		"\\quad", "\u2003",
 		"\\qquad", "\u2003\u2003",
 		"\\thickspace", "\u2002",
@@ -276,7 +276,7 @@ public class LatexToMathml
 
 	private final static Map<String, String> LEFT_DELIMITERS =
 		makeMap(new String[]
-  {
+	{
 		"(", "(",
 		"[", "[",
 		"\\{", "{",
@@ -292,7 +292,7 @@ public class LatexToMathml
 
 	private final static Map<String, String> RIGHT_DELIMITERS =
 		makeMap(new String[]
-  {
+	{
 		")", ")",
 		"]", "]",
 		"\\}", "}",
@@ -304,11 +304,11 @@ public class LatexToMathml
 		"\\rfloor", "\u230b",
 		"\\rmoustache", "\u23b1",
 		"\\rangle", "\u232a",
-  });
+	});
 
 	private final static Map<String, String> OPERATOR_SYMBOLS =
 		makeMap(new String[]
-  {
+	{
 		"\\amalg", "\u2a3f",
 		"\\ast", "\u2217",
 		"\\barwedge", "\u2305",
@@ -470,12 +470,12 @@ public class LatexToMathml
 		"\\N", "\u2115",
 		"\\C", "\u2102",
 		"\\Z", "\u2124"
-  });
+	});
 
 
 	private final static Map<String, String> RELATION_SYMBOLS =
 		makeMap(new String[]
-  {
+	{
 		"=", "=",
 		"<", "<",
 		">", ">",
@@ -695,11 +695,11 @@ public class LatexToMathml
 		"\\vDash", "\u22a8",
 		"\\Vdash", "\u22a9",
 		"\\Vvdash", "\u22aa",
-  });
+	});
 
 private final static Map<String, String> NAMED_IDENTIFIERS =
 	makeMap(new String[]
-  {
+	{
 		"\\arccos", "arccos\u2009",
 		"\\arcsin", "arcsin\u2009",
 		"\\arctan", "arctan\u2009",
@@ -839,11 +839,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\dotsm", "\u22c5\u22c5\u22c5",
 		"\\dotso", "\u2026",
 		"\\ddots", "\u22f1"
-  });
+	});
 
 	private final static Map<String, String> WORD_OPERATORS =
 		makeMap(new String[]
-  {
+	{
 		"\\arccos", "arccos\u2009",
 		"\\arcsin", "arcsin\u2009",
 		"\\arctan", "arctan\u2009",
@@ -869,11 +869,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\sinh", "sinh\u2009",
 		"\\tan", "tan\u2009",
 		"\\tanh", "tanh\u2009"
-  });
+	});
 
 	private final static Map<String, String> GREEK_LETTERS =
 		makeMap(new String[]
-  {
+	{
 		"\\alpha", "\u03b1",
 		"\\beta", "\u03b2",
 		"\\chi", "\u03c7",
@@ -916,11 +916,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\xi", "\u03be",
 		"\\Xi", "\u039e",
 		"\\zeta", "\u03b6",
-  });
+	});
 
 	private final static Map<String, String> LIMIT_COMMANDS =
 		makeMap(new String[]
-  {
+	{
 		"\\bigcap", "\u22c2",
 		"\\bigcup", "\u22c3",
 		"\\bigodot", "\u2a00",
@@ -952,7 +952,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 	private final static Map<String, String> OPTIONAL_ARG_STOP_TOKENS =
 		makeMap(new String[]
-  {
+	{
 		"&", null,
 		"\\\\", null,
 		"}", null,
@@ -970,7 +970,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 	private final static Map<String, String> HARD_STOP_TOKENS =
 		makeMap(new String[]
-  {
+	{
 		"&", null,
 		"\\\\", null,
 		"}", null,
@@ -985,9 +985,15 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\over", null
 	});
 
+	private final static Map<String, String> END_TOKENS =
+		makeMap(new String[]
+	{
+		"\\end", null,
+	});
+
 	private final static Map<String, String> RIGHT_DELIMITER_STOP_TOKENS =
 		makeMap(new String[]
-  {
+	{
 		"&", null,
 		"\\\\", null,
 		"}", null,
@@ -1018,7 +1024,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 	private final static Map<String, String> ADDITION_PRECEDENCE_GROUP =
 		makeMap(new String[]
-  {
+	{
 		"+", null,
 		"-", null,
 		"\\oplus", null,
@@ -1026,7 +1032,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 	private final static Map<String, String> MULTIPLICATION_PRECEDENCE_GROUP =
 		makeMap(new String[]
-  {
+	{
 		"*", null,
 		"\\times", null,
 		"\\cdot", null,
@@ -1035,9 +1041,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 	private final static Map<String, String> CHAR_ESCAPE_CODES =
 		makeMap(new String[]
-  {
-	  "93", "#"
-  });
+	{
+		"93", "#"
+	});
 
 //g_tex_commands = {
 	private Map<String, LambdaTokenInput> texCommands =
@@ -2291,7 +2297,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				Element result = subExprChainToMathml(slf, HARD_STOP_TOKENS);
+				// Keep going until we get to a \\end token
+				Element result = subExprChainToMathml(slf, END_TOKENS);
 				finishLatexBlock(slf);
 				return result;
 			}
@@ -2306,10 +2313,29 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // slf.tokens_index += 1
 // return g_tex_environments[v_cmd](slf)
 		String cmd = slf.peekToken();
+		Element result;
+
+		// Note: I added this code to support multi-token \begin (like \begin{align*})
+		if (cmd.equals("{"))
+		{
+			slf.nextToken();
+			cmd = "";
+			while(true)
+			{
+				String token = slf.peekToken();
+				if(token == null || token.equals("}"))
+				{
+					break;
+				}
+				slf.nextToken();
+				cmd += token;
+			}
+		}
+
 		if(texEnvironments.containsKey(cmd))
 		{
 			slf.nextToken();
-			return texEnvironments.get(cmd).call(slf);
+			result = texEnvironments.get(cmd).call(slf);
 		}
 //else:
 // return result_element(u"merror", 0, result_element(u"mtext", 0, 'Invalid command: '+repr(v_cmd)) )
@@ -2320,9 +2346,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			slf.nextToken();
 			Element error = resultElement("xerror", 1, "space", "false",
 				"Unsupported environment: " + cmd);
-			Element result = texEnvironments.get(null).call(slf);
-			return resultElement("mrow", 0, error, result);
+			result = texEnvironments.get(null).call(slf);
+			result = resultElement("mrow", 0, error, result);
 		}
+
+		return result;
 	}
 
 //def v_finish_latex_block(slf):
@@ -2332,16 +2360,39 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //slf.tokens_index += 1
 	private Element finishLatexBlock(TokenInput slf)
 	{
-		// Note: I rewrote this a bit. Didn't like the way it moved token twice
-		// but only checked for end-of-file once.
+		// This function handles \end. I rewrote this area of code to support
+		// multi-token end tags
+		String cmd = null;
 		for(int i=0; i<2; i++)
 		{
 			if(slf.peekToken() == null)
 			{
 				return resultElement("xerror", 0, "Unexpected end of input");
 			}
-			slf.nextToken();
+			cmd = slf.nextToken();
 		}
+
+		if (cmd.equals("{"))
+		{
+			cmd = slf.nextToken();
+			while(true)
+			{
+				String token = slf.nextToken();
+				if(token == null || token.equals("}"))
+				{
+					if(token == null)
+					{
+						return resultElement("xerror", 0, "Unexpected end of input");
+					}
+					break;
+				}
+				cmd += token;
+			}
+		}
+
+		// At this point we could check the cmd value (e.g. compare against a
+		// current stack) but at present are just ignoring it.
+
 		return null;
 	}
 

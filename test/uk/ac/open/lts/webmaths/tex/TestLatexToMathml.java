@@ -93,7 +93,7 @@ public class TestLatexToMathml extends TestCase
 		assertFalse(result.contains("</xerror>"));
 		assertTrue(result.contains("<!-- Missing delimiter -->"));
 	}
-	
+
 	@Test
 	public void testBeginEnd()
 	{
@@ -101,6 +101,19 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<!--Unsupported environment: frog --><mrow><mn>1</mn><mo>+</mo><mrow>"
 			+ "<!--Unsupported environment: zombie --><mn>2</mn></mrow></mrow>",
 			"\\begin{frog}1+\\begin{zombie}2\\end{zombie}\\end{frog}");
+	}
+
+	@Test
+	public void testBeginEndMultiToken()
+	{
+		// Unsupported begin/end should still do nothing even with several tokens
+		assertMath("<!--Unsupported environment: frog* --><mrow><mn>1</mn><mo>+</mo><mrow>"
+			+ "<!--Unsupported environment: frog zombie --><mn>2</mn></mrow></mrow>",
+			"\\begin{frog*}1+\\begin{frog zombie}2\\end{frog zombie}\\end{frog*}");
+		assertMath("<!--Unsupported environment: frog* --><mrow><mi>x</mi><mrow>"
+			+ "<mn>&amp;</mn><mo>=</mo><mn>1</mn></mrow><mrow><mn>\\\\</mn><mi>y</mi>"
+			+ "</mrow><mrow><mn>&amp;</mn><mo>=</mo><mn>2</mn></mrow></mrow>",
+			"\\begin{frog*}x&=1\\\\y&=2\\end{frog*}");
 	}
 
 	@Test
