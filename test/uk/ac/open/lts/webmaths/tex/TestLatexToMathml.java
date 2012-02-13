@@ -117,6 +117,15 @@ public class TestLatexToMathml extends TestCase
 	}
 
 	@Test
+	public void testAlign()
+	{
+		assertMath("<mtable><mtr><mtd><mi>x</mi></mtd>" 
+			+ "<mtd><mrow><mo>=</mo><mn>1</mn></mrow></mtd></mtr>" 
+			+ "<mtr><mtd><mi>y</mi></mtd>"
+			+ "<mtd><mrow><mo>=</mo><mn>2</mn></mrow></mtd></mtr></mtable>",
+			"\\begin{align*}x&=1\\\\y&=2\\end{align*}"); 
+	}
+	@Test
 	public void testSlightlyLessSimpleExample()
 	{
 		assertMath("<msqrt><mfrac><mn>1</mn><mi>x</mi></mfrac></msqrt>",

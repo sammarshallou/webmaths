@@ -2890,6 +2890,11 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{array} a&amp;b \\ c&amp;d \end{array}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>align</ComputerCode>, <ComputerCode>align*</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\begin{align*} x &amp; =1 \\ y &amp; =2 \end{align*}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{align*} x &amp; =1 \\ y &amp; =2 \end{align*}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>displaymath</ComputerCode></td>
                             <td class="TableLeft"><Paragraph><ComputerCode>\begin{displaymath} \frac{1}{x}</ComputerCode></Paragraph>
                                 <Paragraph><i>Note: Has no effect because equations created in collaborative tools use display style by default.</i></Paragraph></td>

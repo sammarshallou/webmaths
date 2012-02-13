@@ -2281,6 +2281,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				return arrayToMathml(slf);
 			}
 		});
+		// Add support for 'align' and 'align*' by treating as array
+		texEnvironments.put("align*", texEnvironments.get("array"));
+		texEnvironments.put("align", texEnvironments.get("array"));
 //u"displaymath": v_displaymath_to_mathml, \
 //}
 		texEnvironments.put("displaymath", new LambdaTokenInput()
