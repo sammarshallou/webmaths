@@ -39,11 +39,80 @@ public class TestMathmltoLatex
 
 	private static Map<String, String> NO_ROUND_TRIP = makeMap(new String[]
 	{
+		// Wrapper thingies
 		"\\displaystyle \\lgroup x \\rgroup", "\\displaystyle (x)",
 		"\\displaystyle \\lbrace x \\rbrace", "\\displaystyle \\{ x \\}",
 		"\\displaystyle \\lvert x \\rvert", "\\displaystyle |x|",
 		"\\displaystyle \\lVert x \\rVert", "\\displaystyle \\Vert x \\Vert",
+
+		// Whitespace difference
 		"\\displaystyle \\{x\\}", "\\displaystyle \\{ x \\}",
+
+		// \begin{displaymath} (which is weird and shouldn't really be supported
+		// anyhow)
+		"\\displaystyle \\begin{displaymath} \\frac{1}{x}", "\\displaystyle \\displaystyle \\frac{1}{x}",
+
+		// Symbols with multiple names
+		"\\displaystyle \\intersect", "\\displaystyle \\cap",
+		"\\displaystyle \\Cap", "\\displaystyle \\doublecap",
+		"\\displaystyle \\union", "\\displaystyle \\cup",
+		"\\displaystyle \\Cup", "\\displaystyle \\doublecup",
+		"\\displaystyle \\land", "\\displaystyle \\wedge",
+		"\\displaystyle \\lor", "\\displaystyle \\vee",
+		"\\displaystyle \\smallsetminus", "\\displaystyle \\setminus",
+		"\\displaystyle \\colon", "\\displaystyle :",
+		"\\displaystyle \\vert", "\\displaystyle |",
+		"\\displaystyle \\|", "\\displaystyle |",
+		"\\displaystyle '", "\\displaystyle \\prime",
+		"\\displaystyle \\bmod", "\\displaystyle mod",
+		"\\displaystyle \\mod", "\\displaystyle mod",
+		"\\displaystyle \\smallint", "\\displaystyle \\int",
+		"\\displaystyle \\bot", "\\displaystyle \\perp",
+		"\\displaystyle \\lnot", "\\displaystyle \\neg",
+		"\\displaystyle \\varnothing", "\\displaystyle \\emptyset",
+		"\\displaystyle \\hslash", "\\displaystyle \\hbar",
+		"\\displaystyle \\ge", "\\displaystyle \\geq",
+		"\\displaystyle \\gggtr", "\\displaystyle \\ggg",
+		"\\displaystyle \\gvertneqq", "\\displaystyle \\gneqq",
+		"\\displaystyle \\le", "\\displaystyle \\leq",
+		"\\displaystyle \\lvertneqq", "\\displaystyle \\lneqq",
+		"\\displaystyle \\ne", "\\displaystyle \\neq",
+		"\\displaystyle \\ngeqq", "\\displaystyle \\geqq",
+		"\\displaystyle \\ngeqslant", "\\displaystyle \\geqslant",
+		"\\displaystyle \\nleqq", "\\displaystyle \\leqq",
+		"\\displaystyle \\nleqslant", "\\displaystyle \\leqslant",
+		"\\displaystyle \\npreceq", "\\displaystyle \\preceq",
+		"\\displaystyle \\nsucceq", "\\displaystyle \\succeq",
+		"\\displaystyle \\thickapprox", "\\displaystyle \\approx",
+		"\\displaystyle \\thicksim", "\\displaystyle \\sim",
+		"\\displaystyle \\gets", "\\displaystyle \\leftarrow",
+		"\\displaystyle \\restriction", "\\displaystyle \\upharpoonright",
+		"\\displaystyle \\to", "\\displaystyle \\rightarrow",
+		"\\displaystyle \\nshortmid", "\\displaystyle \\nmid",
+		"\\displaystyle \\nshortparallel", "\\displaystyle \\nparallel",
+		"\\displaystyle \\nsubseteqq", "\\displaystyle \\subseteqq",
+		"\\displaystyle \\nsupseteqq", "\\displaystyle \\supseteqq",
+		"\\displaystyle \\shortmid", "\\displaystyle \\mid",
+		"\\displaystyle \\shortparallel", "\\displaystyle \\parallel",
+		"\\displaystyle \\smallfrown", "\\displaystyle \\frown",
+		"\\displaystyle \\smallsmile", "\\displaystyle \\smile",
+		"\\displaystyle \\varpropto", "\\displaystyle \\propto",
+		"\\displaystyle \\varsubsetneqq", "\\displaystyle \\subsetneqq",
+		"\\displaystyle \\varsupsetneqq", "\\displaystyle \\supsetneqq",
+		"\\displaystyle \\vartriangle", "\\displaystyle \\triangle",
+		
+		// Dot ambiguity
+		"\\displaystyle \\dots", "\\displaystyle \\ldots",
+		"\\displaystyle \\dotso", "\\displaystyle \\ldots",
+		"\\displaystyle \\dotsc", "\\displaystyle \\ldots",
+		"\\displaystyle \\hdots", "\\displaystyle \\cdots",
+		"\\displaystyle \\dotsb", "\\displaystyle \\cdots",
+		"\\displaystyle \\dotsi", "\\displaystyle \\cdots",
+
+		// Space ambiguity
+		"\\displaystyle x \\; y", "\\displaystyle x \\thickspace y",
+		"\\displaystyle x \\: y", "\\displaystyle x \\medspace y",
+		"\\displaystyle x \\, y", "\\displaystyle x \\thinspace y",
 	});
 
 	private void checkRoundTrip(StringBuilder out, String tex) throws Exception
@@ -67,6 +136,7 @@ public class TestMathmltoLatex
 		if(!expected.equals(round))
 		{
 			out.append(tex + " => " + round + "\n");
+			out.append("  " + mathml.replaceFirst("^.*<semantics>(.*?)<annotation .*$", "$1") + "\n");
 		}
 	}
 
@@ -74,6 +144,7 @@ public class TestMathmltoLatex
 	{
 		StringBuilder out = new StringBuilder();
 		checkRoundTrip(out, tex);
+		System.err.println(out);
 		assertTrue(out.length() == 0);
 	}
 
@@ -116,6 +187,7 @@ public class TestMathmltoLatex
 			checkRoundTrip(out, tex);
 		}
 		System.err.println(out);
+		System.err.println(out.toString().replaceAll("[^\n]", "").length() / 2 + " errors");
 		assertTrue(out.length() == 0);
 	}
 }

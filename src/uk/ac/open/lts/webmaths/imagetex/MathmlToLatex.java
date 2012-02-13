@@ -1,10 +1,11 @@
 package uk.ac.open.lts.webmaths.imagetex;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import javax.xml.transform.*;
 import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
 
 import org.w3c.dom.*;
 
@@ -33,7 +34,7 @@ public class MathmlToLatex
 	/**
 	 * Converts a MathML document to a LaTeX string.
 	 * @param mathml Input document
-	 * @return LaTeX string
+	 * @return LaTeX string suitable for use in display mode equation
 	 * @throws TransformerException Error with transformation
 	 * @throws IOException Error loading XSL
 	 * @throws UnsupportedMathmlException If equation cannot be converted
@@ -57,6 +58,8 @@ public class MathmlToLatex
 		Document intermediate = (Document)out.getNode();
 		escapeTex(intermediate.getDocumentElement());
 
+		//dumpXml(intermediate);
+		
 		// Now convert to LaTeX
 		in = new DOMSource(intermediate);
 		out = new DOMResult();
@@ -87,6 +90,20 @@ public class MathmlToLatex
 		result = result.replaceAll("([A-Za-z0-9])(\\\\)", "$1 $2");
 		return result.trim();
 	}
+	
+	private void dumpXml(Document doc) throws TransformerException
+	{
+		DOMSource in = new DOMSource(doc);
+		StringWriter writer = new StringWriter();
+		StreamResult outw = new StreamResult(writer);
+		Transformer t = TransformerFactory.newInstance().newTransformer();
+		t.transform(in, outw);
+		String result = writer.toString();
+		if(result.contains("arccos"))
+		{
+			System.err.println(result);
+		}
+	}
 
 	/**
 	 * Escapes all TeX special characters and replaces Unicode characters with
@@ -107,8 +124,13 @@ public class MathmlToLatex
 				n.getParentNode().removeChild(n);
 			}
 		}
-		else
+		else if(n instanceof Element)
 		{
+			// Don't do annotations
+			if(((Element)n).getTagName().equals("annotation"))
+			{
+				return;
+			}
 			for(Node child = n.getFirstChild(); child != null; child = child.getNextSibling())
 			{
 				escapeTex(child);
@@ -138,7 +160,7 @@ public class MathmlToLatex
 				else if(chars == 1)
 				{
 					char c = original.charAt(0);
-					if(c > 0x7f && c != 0x338) // Permit combining NOT
+					if(c > 0x7f && !ALLOWED_CHARACTERS.contains("" + c)) // Permit combining NOT
 					{
 						throw new UnsupportedMathmlException("MathML contains unknown special character: " + original);
 					}
@@ -148,6 +170,33 @@ public class MathmlToLatex
 		}
 		return out.toString();
 	}
+	
+	/**
+	 * Non-ASCII characters which are permitted through to the XSL stage (they
+	 * will be decoded into ASCII during the XSL). 
+	 */
+	private final static Set<String> ALLOWED_CHARACTERS = new HashSet<String>(
+		Arrays.asList(new String[]
+	{
+		// Combining NOT
+		"\u0338",
+		// Accents (all calls to accentToMathml in LatexToMathml.java)
+		"\u00b4",
+		"\u00af",
+		"\u02d8",
+		"\u02c7",
+		"\u2192",
+		"\u02d9",
+		"\u00a8",
+		"\u20db",
+		// Under or over characters (underToMathml, overToMathml)
+		"\ufe38",
+		"\ufe37",
+		"\u0332",
+		"\u00af",
+		"\u02dc",
+		
+	}));
 
 	private final static int MAX_REPLACE_CHARS = 3;
 	private final static Map<String, String> REPLACE_CHARS = makeMap(new String[]
@@ -514,7 +563,7 @@ public class MathmlToLatex
 		"\u22aa", "\\Vvdash ",
 		"\u22ee", "\\vdots ",
 		"\u2026", "\\ldots ",
-		"\u00b7\u00b7\u00b7", "\\cdots ",
+		"\u22ef", "\\cdots ",
 		"\u22c5\u22c5\u22c5", "\\dotsm ",
 		"\u22f1", "\\ddots ",
 		"\u03b1", "\\alpha ",
