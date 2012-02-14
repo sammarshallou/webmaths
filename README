@@ -32,6 +32,11 @@ version 3 (see LICENSE), except:
   it to be your own work'.
   (C) Alexander Lange
 
+* Allura font in lib/extrafonts
+  http://code.google.com/p/googlefontdirectory/source/browse/allura/
+  This Font Software is licensed under the SIL Open Font License, Version 1.1.
+  Copyright (c) 2011 TypeSETit, LLC (typesetit@att.net)
+
 Basic build/setup instructions for testing
 ------------------------------------------
 

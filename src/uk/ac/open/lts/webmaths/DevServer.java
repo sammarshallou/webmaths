@@ -18,13 +18,16 @@ Copyright 2011 The Open University
 */
 package uk.ac.open.lts.webmaths;
 
-import java.io.IOException;
-import java.net.InetAddress;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 import javax.xml.ws.Endpoint;
 
+import org.apache.xmlgraphics.util.ClasspathResource;
+
 import uk.ac.open.lts.webmaths.english.WebMathsEnglish;
-import uk.ac.open.lts.webmaths.image.WebMathsImage;
+import uk.ac.open.lts.webmaths.image.*;
 import uk.ac.open.lts.webmaths.tex.WebMathsTex;
 
 /**
@@ -32,11 +35,25 @@ import uk.ac.open.lts.webmaths.tex.WebMathsTex;
  */
 public class DevServer
 {
+	private static boolean CHECK_FONTS = false, WRITE_IMAGE = false;
+
 	/**
 	 * @param args Ignored
 	 */
 	public static void main(String[] args) throws IOException
 	{
+		// Run special test methods if needed
+		if(CHECK_FONTS)
+		{
+			checkFonts();
+			return;
+		}
+		if(WRITE_IMAGE)
+		{
+			writeImage();
+			return;
+		}
+
 		String local = InetAddress.getLocalHost().getHostAddress();
 		String mathsTex = "http://" + local + ":9997/";
 		Endpoint.publish(mathsTex, new WebMathsTex());
@@ -47,5 +64,49 @@ public class DevServer
 		String mathsImage = "http://" + local + ":9999/";
 		Endpoint.publish(mathsImage, new WebMathsImage());
 		System.err.println("MathsImage service ready - " + mathsImage); 
+	}
+
+	/**
+	 * Test method: Displays the list of available fonts so we can check
+	 * the font jar files are installed correctly.
+	 */
+	private static void checkFonts()
+	{
+		Set<String> fonts = new TreeSet<String>();
+		for(Object o : ClasspathResource.getInstance().listResourcesOfMimeType("application/x-font"))
+		{
+		URL url = (URL)o;
+		fonts.add(url.getPath().replaceFirst(".*/", ""));
+		}
+		System.err.println("Available fonts");
+		System.err.println("===============");
+		System.err.println();
+		for(String font : fonts)
+		{
+			System.err.println(font);
+		}
+		System.err.println();
+	}
+
+	/**
+	 * Test method: Writes an image directly to save having to call the service
+	 * when repeatedly testing.
+	 * @throws IOException Any error
+	 */
+	private static void writeImage() throws IOException
+	{
+		WebMathsImage image = new WebMathsImage();
+		MathsImageParams params = new MathsImageParams();
+		params.setRgb("#000000");
+		params.setSize(4.0f);
+		String input = "<math xmlns='http://www.w3.org/1998/Math/MathML'>"
+			+ "<mo>&#x2113;</mo></math>";
+		params.setMathml(input);
+		MathsImageReturn result = image.getImage(params);
+		File file = new File(new File(System.getProperty("user.home")), "out.png");
+		FileOutputStream stream = new FileOutputStream(file);
+		stream.write(result.getImage());
+		stream.close();
+		System.out.println("Image written to: " + file.getAbsolutePath());
 	}
 }
