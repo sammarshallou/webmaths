@@ -12,6 +12,27 @@
 </xsl:template>
 
 <!--
+  Basic elements passed through
+  -->
+<xsl:template match="m:semantics|m:mn|m:mi|m:mo|m:mrow">
+  <xsl:apply-templates select="@*|node()"/>
+</xsl:template>
+
+<!-- Detect constructs we do not support, and mark result equation. -->
+<xsl:template match="*">
+  <xsl:text>\UNSUPPORTED{element </xsl:text>
+  <xsl:value-of select="local-name(.)"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+<xsl:template match="@*">
+  <xsl:text>\UNSUPPORTED{attribute </xsl:text>
+  <xsl:value-of select="local-name(..)"/>
+  <xsl:text>/@</xsl:text>
+  <xsl:value-of select="local-name(.)"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<!--
   Include something without braces if it's a single character, otherwise
   use braces.
   -->

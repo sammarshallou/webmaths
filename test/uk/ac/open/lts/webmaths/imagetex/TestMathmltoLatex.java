@@ -13,6 +13,7 @@ import org.junit.*;
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 
+import uk.ac.open.lts.webmaths.WebMathsService;
 import uk.ac.open.lts.webmaths.tex.TokenInput;
 
 public class TestMathmltoLatex
@@ -31,10 +32,11 @@ public class TestMathmltoLatex
 		return tokens.toMathml(true);
 	}
 
-	private String convertToTex(String mathml) throws Exception
+	private String convertToTex(String mathml, boolean ignoreUnsupported)
+		throws Exception
 	{
 		return imageTexService.getMathmlToLatex().convert(
-			imageTexService.parseMathml(mathml));
+			imageTexService.parseMathml(mathml), ignoreUnsupported);
 	}
 
 	private static Map<String, String> NO_ROUND_TRIP = makeMap(new String[]
@@ -121,7 +123,7 @@ public class TestMathmltoLatex
 		String round;
 		try
 		{
-			round = convertToTex(mathml);
+			round = convertToTex(mathml, false);
 		}
 		catch(UnsupportedMathmlException e)
 		{
@@ -151,8 +153,41 @@ public class TestMathmltoLatex
 	@Test
 	public void testBasic() throws Exception
 	{
+		assertEquals("3", convertToTex(
+			"<math xmlns='" + WebMathsService.NS + "'><mn>3</mn></math>", false));
 		assertRoundTrip("x+1");
 		assertRoundTrip("\\frac{x}{y}");
+	}
+
+	@Test
+	public void testUnsupported() throws Exception
+	{
+		String unsupportedElement =
+			"<math xmlns='" + WebMathsService.NS + "'><q>3</q></math>";
+		String unsupportedAttribute =
+			"<math xmlns='" + WebMathsService.NS + "'><mn silly='x'>3</mn></math>";
+
+		try
+		{
+			convertToTex(
+				unsupportedElement, false);
+			fail();
+		}
+		catch(UnsupportedMathmlException e)
+		{
+			assertEquals("element q", e.getMessage());
+		}
+		try
+		{
+			convertToTex(unsupportedAttribute, false);
+			fail();
+		}
+		catch(UnsupportedMathmlException e)
+		{
+			assertEquals("attribute mn/@silly", e.getMessage());
+		}
+		assertEquals("", convertToTex(unsupportedElement, true));
+		assertEquals("3", convertToTex(unsupportedAttribute, true));
 	}
 
 	@Test

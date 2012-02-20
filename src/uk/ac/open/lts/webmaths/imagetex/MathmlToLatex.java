@@ -34,12 +34,14 @@ public class MathmlToLatex
 	/**
 	 * Converts a MathML document to a LaTeX string.
 	 * @param mathml Input document
+	 * @param ignoreUnsupported Set to silently ignore unsupported elements,
+	 *   attributes and characters instead of throwing an exception
 	 * @return LaTeX string suitable for use in display mode equation
 	 * @throws TransformerException Error with transformation
 	 * @throws IOException Error loading XSL
 	 * @throws UnsupportedMathmlException If equation cannot be converted
 	 */
-	public String convert(Document mathml)
+	public String convert(Document mathml, boolean ignoreUnsupported)
 		throws TransformerException, IOException, UnsupportedMathmlException {
 		// Normalise MathML
 		DOMSource in = new DOMSource(mathml);
@@ -56,7 +58,7 @@ public class MathmlToLatex
 
 		// Escape special characters and convert Unicode
 		Document intermediate = (Document)out.getNode();
-		escapeTex(intermediate.getDocumentElement());
+		escapeTex(intermediate.getDocumentElement(), ignoreUnsupported);
 
 		//dumpXml(intermediate);
 		
@@ -86,6 +88,19 @@ public class MathmlToLatex
 		}
 		String result = text.toString();
 
+		// If it contains any unsupported elements, either throw exception or
+		// else strip out
+		if (ignoreUnsupported)
+		{
+			result = result.replaceAll("\\\\UNSUPPORTED\\{[^}]*\\}", "");
+		}
+		else if(result.contains("\\UNSUPPORTED"))
+		{
+			String message = result.replaceAll(
+				"^.*?\\\\UNSUPPORTED\\{([^}]*)\\}.*$", "$1");
+			throw new UnsupportedMathmlException(message);
+		}
+
 		// Tidy text a bit
 		result = result.replaceAll("([A-Za-z0-9])(\\\\)", "$1 $2");
 		return result.trim();
@@ -109,14 +124,16 @@ public class MathmlToLatex
 	 * Escapes all TeX special characters and replaces Unicode characters with
 	 * TeX.
 	 * @param n Root node (recursive)
+	 * @param ignoreUnsupported If true, replaces unsupported chars with '?'
 	 * @throws UnsupportedMathmlException If any characters are not unknown
 	 */
-	private void escapeTex(Node n) throws UnsupportedMathmlException
+	private void escapeTex(Node n, boolean ignoreUnsupported)
+		throws UnsupportedMathmlException
 	{
 		if (n instanceof Text)
 		{
 			String before = n.getNodeValue();
-			String after = replaceChars(before);
+			String after = replaceChars(before, ignoreUnsupported);
 			if(!before.equals(after))
 			{
 				Node newText = n.getOwnerDocument().createTextNode(after);
@@ -133,12 +150,13 @@ public class MathmlToLatex
 			}
 			for(Node child = n.getFirstChild(); child != null; child = child.getNextSibling())
 			{
-				escapeTex(child);
+				escapeTex(child, ignoreUnsupported);
 			}
 		}
 	}
 
-	private String replaceChars(String in) throws UnsupportedMathmlException
+	private String replaceChars(String in, boolean ignoreUnsupported)
+		throws UnsupportedMathmlException
 	{
 		StringBuilder out = new StringBuilder();
 		outerloop: for(int i=0; i<in.length(); i++)
@@ -162,9 +180,21 @@ public class MathmlToLatex
 					char c = original.charAt(0);
 					if(c > 0x7f && !ALLOWED_CHARACTERS.contains("" + c)) // Permit combining NOT
 					{
-						throw new UnsupportedMathmlException("MathML contains unknown special character: " + original);
+						if(ignoreUnsupported)
+						{
+							// If unsupported, use ? character
+							out.append("?");
+						}
+						else
+						{
+							throw new UnsupportedMathmlException(
+								"MathML contains unknown special character: " + original);
+						}
 					}
-					out.append(original);
+					else
+					{
+						out.append(original);
+					}
 				}
 			}
 		}
