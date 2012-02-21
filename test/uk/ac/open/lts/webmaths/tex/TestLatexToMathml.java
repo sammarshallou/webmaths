@@ -127,6 +127,14 @@ public class TestLatexToMathml extends TestCase
 	}
 
 	@Test
+	public void testTfrac()
+	{
+		assertMath("<mstyle displaystyle=\"false\">" 
+			+ "<mfrac><mn>1</mn><mi>x</mi></mfrac></mstyle>",
+			"\\tfrac{1}{x}"); 
+	}
+	
+	@Test
 	public void testSubstack()
 	{
 		assertMath("<munder><mo>\u2211</mo><mtable>"

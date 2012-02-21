@@ -1118,7 +1118,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return resultElement("mstyle",1, "displaystyle", "true", fractionToMathml(slf));
+				return resultElement("mstyle", 1, "displaystyle", "true", fractionToMathml(slf));
 			}
 		});
 //u"\\tfrac": lambda slf: result_element(u"mstyle",2, u"displaystyle", u"false", u"scriptlevel", u"+1",v_fraction_to_mathml(slf)), \
@@ -1127,7 +1127,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return resultElement("mstyle",2, "displaystyle", "false", "scriptlevel", "+1",fractionToMathml(slf));
+				// I changed this because I think tfrac should just have displaystyle false, not scriptlevel +1 as well
+				return resultElement("mstyle", 1, "displaystyle", "false", fractionToMathml(slf));
 			}
 		});
 //u"\\binom": v_binom_to_mathml, \
