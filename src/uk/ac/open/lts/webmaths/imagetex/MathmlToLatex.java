@@ -15,6 +15,11 @@ import static uk.ac.open.lts.webmaths.MapUtil.*;
 /**
  * Converter from MathML code to LaTeX, so that it can be rendered using
  * latex and dvipng utilities.
+ * <p>
+ * This class is supposed to support the LaTeX code generated using the
+ * {@link uk.ac.open.lts.webmaths.tex.LatexToMathml} converter, producing
+ * round-trip results where possible or similar results otherwise. It may also
+ * work with some other simple MathML equations.
  */
 public class MathmlToLatex
 {

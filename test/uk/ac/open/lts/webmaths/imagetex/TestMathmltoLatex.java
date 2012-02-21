@@ -26,10 +26,10 @@ public class TestMathmltoLatex
 		imageTexService = new WebMathsImageTex();
 	}
 
-	private String convertToMathml(String tex)
+	private String convertToMathml(String tex, boolean display)
 	{
 		TokenInput tokens = new TokenInput(tex);
-		return tokens.toMathml(true);
+		return tokens.toMathml(display);
 	}
 
 	private String convertToTex(String mathml, boolean ignoreUnsupported)
@@ -42,84 +42,87 @@ public class TestMathmltoLatex
 	private static Map<String, String> NO_ROUND_TRIP = makeMap(new String[]
 	{
 		// Wrapper thingies
-		"\\displaystyle \\lgroup x \\rgroup", "\\displaystyle (x)",
-		"\\displaystyle \\lbrace x \\rbrace", "\\displaystyle \\{ x \\}",
-		"\\displaystyle \\lvert x \\rvert", "\\displaystyle |x|",
-		"\\displaystyle \\lVert x \\rVert", "\\displaystyle \\Vert x \\Vert",
+		"\\lgroup x \\rgroup", "(x)",
+		"\\lbrace x \\rbrace", "\\{ x \\}",
+		"\\lvert x \\rvert", "|x|",
+		"\\lVert x \\rVert", "\\Vert x \\Vert",
 
 		// Whitespace difference
-		"\\displaystyle \\{x\\}", "\\displaystyle \\{ x \\}",
+		"\\{x\\}", "\\{ x \\}",
 
 		// \begin{displaymath} (which is weird and shouldn't really be supported
 		// anyhow)
-		"\\displaystyle \\begin{displaymath} \\frac{1}{x}", "\\displaystyle \\displaystyle \\frac{1}{x}",
+		"\\begin{displaymath} \\frac{1}{x}", "\\displaystyle \\frac{1}{x}",
 
 		// Symbols with multiple names
-		"\\displaystyle \\intersect", "\\displaystyle \\cap",
-		"\\displaystyle \\Cap", "\\displaystyle \\doublecap",
-		"\\displaystyle \\union", "\\displaystyle \\cup",
-		"\\displaystyle \\Cup", "\\displaystyle \\doublecup",
-		"\\displaystyle \\land", "\\displaystyle \\wedge",
-		"\\displaystyle \\lor", "\\displaystyle \\vee",
-		"\\displaystyle \\smallsetminus", "\\displaystyle \\setminus",
-		"\\displaystyle \\colon", "\\displaystyle :",
-		"\\displaystyle \\vert", "\\displaystyle |",
-		"\\displaystyle \\|", "\\displaystyle |",
-		"\\displaystyle '", "\\displaystyle \\prime",
-		"\\displaystyle \\bmod", "\\displaystyle mod",
-		"\\displaystyle \\mod", "\\displaystyle mod",
-		"\\displaystyle \\smallint", "\\displaystyle \\int",
-		"\\displaystyle \\bot", "\\displaystyle \\perp",
-		"\\displaystyle \\lnot", "\\displaystyle \\neg",
-		"\\displaystyle \\varnothing", "\\displaystyle \\emptyset",
-		"\\displaystyle \\hslash", "\\displaystyle \\hbar",
-		"\\displaystyle \\ge", "\\displaystyle \\geq",
-		"\\displaystyle \\gggtr", "\\displaystyle \\ggg",
-		"\\displaystyle \\gvertneqq", "\\displaystyle \\gneqq",
-		"\\displaystyle \\le", "\\displaystyle \\leq",
-		"\\displaystyle \\lvertneqq", "\\displaystyle \\lneqq",
-		"\\displaystyle \\ne", "\\displaystyle \\neq",
-		"\\displaystyle \\ngeqq", "\\displaystyle \\geqq",
-		"\\displaystyle \\ngeqslant", "\\displaystyle \\geqslant",
-		"\\displaystyle \\nleqq", "\\displaystyle \\leqq",
-		"\\displaystyle \\nleqslant", "\\displaystyle \\leqslant",
-		"\\displaystyle \\npreceq", "\\displaystyle \\preceq",
-		"\\displaystyle \\nsucceq", "\\displaystyle \\succeq",
-		"\\displaystyle \\thickapprox", "\\displaystyle \\approx",
-		"\\displaystyle \\thicksim", "\\displaystyle \\sim",
-		"\\displaystyle \\gets", "\\displaystyle \\leftarrow",
-		"\\displaystyle \\restriction", "\\displaystyle \\upharpoonright",
-		"\\displaystyle \\to", "\\displaystyle \\rightarrow",
-		"\\displaystyle \\nshortmid", "\\displaystyle \\nmid",
-		"\\displaystyle \\nshortparallel", "\\displaystyle \\nparallel",
-		"\\displaystyle \\nsubseteqq", "\\displaystyle \\subseteqq",
-		"\\displaystyle \\nsupseteqq", "\\displaystyle \\supseteqq",
-		"\\displaystyle \\shortmid", "\\displaystyle \\mid",
-		"\\displaystyle \\shortparallel", "\\displaystyle \\parallel",
-		"\\displaystyle \\smallfrown", "\\displaystyle \\frown",
-		"\\displaystyle \\smallsmile", "\\displaystyle \\smile",
-		"\\displaystyle \\varpropto", "\\displaystyle \\propto",
-		"\\displaystyle \\varsubsetneqq", "\\displaystyle \\subsetneqq",
-		"\\displaystyle \\varsupsetneqq", "\\displaystyle \\supsetneqq",
-		"\\displaystyle \\vartriangle", "\\displaystyle \\triangle",
+		"\\intersect", "\\cap",
+		"\\Cap", "\\doublecap",
+		"\\union", "\\cup",
+		"\\Cup", "\\doublecup",
+		"\\land", "\\wedge",
+		"\\lor", "\\vee",
+		"\\smallsetminus", "\\setminus",
+		"\\colon", ":",
+		"\\vert", "|",
+		"\\|", "|",
+		"'", "\\prime",
+		"\\bmod", "mod",
+		"\\mod", "mod",
+		"\\smallint", "\\int",
+		"\\bot", "\\perp",
+		"\\lnot", "\\neg",
+		"\\varnothing", "\\emptyset",
+		"\\hslash", "\\hbar",
+		"\\ge", "\\geq",
+		"\\gggtr", "\\ggg",
+		"\\gvertneqq", "\\gneqq",
+		"\\le", "\\leq",
+		"\\lvertneqq", "\\lneqq",
+		"\\ne", "\\neq",
+		"\\ngeqq", "\\geqq",
+		"\\ngeqslant", "\\geqslant",
+		"\\nleqq", "\\leqq",
+		"\\nleqslant", "\\leqslant",
+		"\\npreceq", "\\preceq",
+		"\\nsucceq", "\\succeq",
+		"\\thickapprox", "\\approx",
+		"\\thicksim", "\\sim",
+		"\\gets", "\\leftarrow",
+		"\\restriction", "\\upharpoonright",
+		"\\to", "\\rightarrow",
+		"\\nshortmid", "\\nmid",
+		"\\nshortparallel", "\\nparallel",
+		"\\nsubseteqq", "\\subseteqq",
+		"\\nsupseteqq", "\\supseteqq",
+		"\\shortmid", "\\mid",
+		"\\shortparallel", "\\parallel",
+		"\\smallfrown", "\\frown",
+		"\\smallsmile", "\\smile",
+		"\\varpropto", "\\propto",
+		"\\varsubsetneqq", "\\subsetneqq",
+		"\\varsupsetneqq", "\\supsetneqq",
+		"\\vartriangle", "\\triangle",
 		
 		// Dot ambiguity
-		"\\displaystyle \\dots", "\\displaystyle \\ldots",
-		"\\displaystyle \\dotso", "\\displaystyle \\ldots",
-		"\\displaystyle \\dotsc", "\\displaystyle \\ldots",
-		"\\displaystyle \\hdots", "\\displaystyle \\cdots",
-		"\\displaystyle \\dotsb", "\\displaystyle \\cdots",
-		"\\displaystyle \\dotsi", "\\displaystyle \\cdots",
+		"\\dots", "\\ldots",
+		"\\dotso", "\\ldots",
+		"\\dotsc", "\\ldots",
+		"\\hdots", "\\cdots",
+		"\\dotsb", "\\cdots",
+		"\\dotsi", "\\cdots",
 
 		// Space ambiguity
-		"\\displaystyle x \\; y", "\\displaystyle x \\thickspace y",
-		"\\displaystyle x \\: y", "\\displaystyle x \\medspace y",
-		"\\displaystyle x \\, y", "\\displaystyle x \\thinspace y",
+		"x \\; y", "x \\thickspace y",
+		"x \\: y", "x \\medspace y",
+		"x \\, y", "x \\thinspace y",
+
+		// Unnecessary \dfrac
+		"\\dfrac{4}{x}", "\\frac{4}{x}",
 	});
 
-	private void checkRoundTrip(StringBuilder out, String tex) throws Exception
+	private String doRoundTrip(String tex) throws Exception
 	{
-		String mathml = convertToMathml(tex);
+		String mathml = convertToMathml(tex, true);
 		String round;
 		try
 		{
@@ -127,8 +130,22 @@ public class TestMathmltoLatex
 		}
 		catch(UnsupportedMathmlException e)
 		{
-			System.err.println(tex);
-			throw e;
+			round = "[Unsupported: " + e.getMessage() + "]";
+		}
+		return round;
+	}
+	
+	private void checkRoundTrip(StringBuilder out, String tex, boolean display) throws Exception
+	{
+		String mathml = convertToMathml(tex, display);
+		String round;
+		try
+		{
+			round = convertToTex(mathml, false);
+		}
+		catch(UnsupportedMathmlException e)
+		{
+			round = "[Unsupported: " + e.getMessage() + "]";
 		}
 		String expected = NO_ROUND_TRIP.get(tex);
 		if (expected == null)
@@ -145,7 +162,7 @@ public class TestMathmltoLatex
 	private void assertRoundTrip(String tex) throws Exception
 	{
 		StringBuilder out = new StringBuilder();
-		checkRoundTrip(out, tex);
+		checkRoundTrip(out, tex, true);
 		System.err.println(out);
 		assertTrue(out.length() == 0);
 	}
@@ -190,6 +207,20 @@ public class TestMathmltoLatex
 		assertEquals("3", convertToTex(unsupportedAttribute, true));
 	}
 
+	/**
+	 * Display style can be complicated becuase of multiple switching.
+	 * @throws Exception
+	 */
+	@Test
+	public void testDisplayStyle() throws Exception
+	{
+		String result = doRoundTrip("\\displaystyle \\tfrac{1}{x} + \\frac{1}{x}");
+		assertEquals("\\tfrac{1}{x} +\\frac{1}{x}", result);
+		String mathml = convertToMathml("1 + \\displaystyle 2", false);
+		result = convertToTex(mathml, false);
+		assertEquals("{ \\textstyle 1+{ \\displaystyle 2} }", result);
+	}
+
 	@Test
 	public void testSupported() throws Exception
 	{
@@ -219,7 +250,14 @@ public class TestMathmltoLatex
 			Element el = (Element)allTex.item(i);
 			String tex = ((Text)el.getFirstChild()).getNodeValue();
 
-			checkRoundTrip(out, tex);
+			// Strip \displaystyle as we aren't very good about round-tripping from
+			// that element - just treat as a display equation in the first place
+			if (tex.startsWith("\\displaystyle "))
+			{
+				tex = tex.substring("\\displaystyle ".length());
+			}
+
+			checkRoundTrip(out, tex, true);
 		}
 		System.err.println(out);
 		System.err.println(out.toString().replaceAll("[^\n]", "").length() / 2 + " errors");
