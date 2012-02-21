@@ -4,12 +4,11 @@
     ACSCourseItem="SC" LastRendering="VLE Preview" DiscussionAlias="Discussion"
     SessionAlias="" SecondColour="None" ThirdColour="None" FourthColour="None"
     Logo="colour">
-    <CourseCode>ONLINE-SERVICES</CourseCode>
-    <CourseTitle />
+    <CourseCode>COMPUTING-GUIDE</CourseCode>
+    <CourseTitle>COMPUTING-GUIDE</CourseTitle>
     <ItemID />
     <ItemTitle>Supported TeX commands</ItemTitle>
     <FrontMatter>
-        <ByLine>sam marshall</ByLine>
         <Imprint>
             <Standard>
                 <GeneralInfo>
@@ -21,9 +20,6 @@
                 <FirstPublished>
                     <Paragraph />
                 </FirstPublished>
-                <Copyright>
-                    <Paragraph>© 2011 The Open University</Paragraph>
-                </Copyright>
                 <Rights>
                     <Paragraph />
                 </Rights>
