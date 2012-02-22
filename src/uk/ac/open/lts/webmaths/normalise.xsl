@@ -141,7 +141,7 @@
 
 <!--
   Normalise table rows/columns: anything inside mtable that doesn't have
-  an mtr and mtd gets one autoamtically. (This is for MathML 1 support.)  
+  an mtr and mtd gets one automatically. (This is for MathML 1 support.)  
   -->
 <xsl:template match="m:mtable/*[not(self::m:mtr or self::m:mlabeledtr)]">
   <xsl:choose>
