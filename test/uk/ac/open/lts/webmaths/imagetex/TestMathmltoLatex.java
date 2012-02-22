@@ -120,6 +120,7 @@ public class TestMathmltoLatex
 		"\\dfrac{4}{x}", "\\frac{4}{x}",
 		"\\dsum_{i=1}^x X_i" , "\\sum_{i=1}^x X_i",
 		"\\dint_{i=1}^x X_i" , "\\int_{i=1}^x X_i",
+		"\\dbinom{4}{x}", "\\binom{4}{x}",
 	});
 
 	private String doRoundTrip(String tex) throws Exception

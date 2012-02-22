@@ -86,6 +86,40 @@
 <xsl:template match="m:annotation"/>
 <xsl:template match="m:annotation-xml"/>
 
+<!-- mrow as \binom -->
+<xsl:template match="m:mrow[count(*) = 3 and *[1][self::m:mo and string(.) = '('] and
+    *[3][self::m:mo and string(.) = ')'] and *[2][self::m:mfrac[@linethickness='0' and
+    count(@*)=1]]]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:for-each select="m:mo">
+      <xsl:apply-templates select="@*"/>
+  </xsl:for-each>
+
+  <xsl:variable name="TDFRAC">
+    <xsl:for-each select="parent::m:mstyle">
+      <xsl:call-template name="is-tdfrac"/>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:for-each select="m:mfrac">
+    <xsl:choose>
+      <xsl:when test="../parent::m:mstyle[@displaystyle='true'] and $TDFRAC = 'y'">
+        <xsl:text>\dbinom{</xsl:text>
+      </xsl:when>
+      <xsl:when test="../parent::m:mstyle[@displaystyle='false'] and $TDFRAC = 'y'">
+        <xsl:text>\tbinom{</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>\binom{</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:apply-templates select="*[1]"/>
+    <xsl:text>}{</xsl:text>
+    <xsl:apply-templates select="*[2]"/>
+    <xsl:text>} </xsl:text>
+  </xsl:for-each>
+</xsl:template>
+
 <!-- mfrac -->
 <xsl:template match="m:mfrac">
   <xsl:apply-templates select="@*"/>
@@ -319,7 +353,11 @@
   <xsl:if test="count(child::*)=1 and (m:mfrac or
       *[self::m:munderover or self::m:munder or self::m:mover or self::m:msub or
         self::m:msup or self::m:msubsup]/*[1][self::m:mo and
-        (string(.) = '\sum ' or string(.) = '\int ')]) and
+        (string(.) = '\sum ' or string(.) = '\int ')] or m:mrow[
+          count(*) = 3 and *[1][self::m:mo and string(.) = '('] and
+          *[3][self::m:mo and string(.) = ')'] and *[2][self::m:mfrac[@linethickness='0' and
+          count(@*)=1]]
+        ]) and
       @displaystyle and not(@scriptlevel)">
     <!-- Need to check if the displaystyle actually did anything! -->
     <xsl:variable name="PREVIOUSDISPLAYSTYLE">
