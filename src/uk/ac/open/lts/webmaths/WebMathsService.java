@@ -62,6 +62,7 @@ public class WebMathsService
 		xml = getFixer().fix(xml);
 		// Parse final string
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true);
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		return builder.parse(new InputSource(new StringReader(xml)));
 	}
