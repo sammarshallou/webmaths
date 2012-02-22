@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:m="http://www.w3.org/1998/Math/MathML">
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:w="http://ns.open.ac.uk/lts/webmaths">
 
 <!--
   List of characters with accent=true. Obtained from operator dictionary file 'dict'
   saved from http://www.w3.org/TR/MathML2/appendixf.html using following Unix
   command: 
-  grep accent= dict | awk '{print $1}' | awk '{printf("%s",$0);}' | sed -e 's/"//g;' 
+  grep accent= dict | awk '{print $1}' | awk '{printf("%s",$0);}' | sed -e 's/"//g;'
   -->
 <xsl:variable name="DICT_ACCENTS">
   &Breve;&Cedilla;&DiacriticalGrave;&DiacriticalDot;&DiacriticalDoubleAcute;&LeftArrow;&LeftRightArrow;&LeftRightVector;&LeftVector;&DiacriticalAcute;&RightArrow;&RightVector;&DiacriticalTilde;&DoubleDot;&DownBreve;&Hacek;&Hat;&OverBar;&OverBrace;&OverBracket;&OverParenthesis;&TripleDot;&UnderBar;&UnderBrace;&UnderBracket;&UnderParenthesis;
@@ -22,6 +23,13 @@
 </xsl:template>
 
 <!--
+  For escapes, output escaped content
+  -->
+<xsl:template match="w:esc">
+  <xsl:value-of select="@tex"/>
+</xsl:template>
+
+<!--
   Basic elements passed through
   -->
 <xsl:template match="m:semantics|m:mn|m:mi|m:mo|m:mrow">
@@ -33,13 +41,12 @@
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 <!-- And one-special-character mtext -->
-<xsl:template match="m:mtext[starts-with(normalize-space(.), '\') and
-    not(contains(normalize-space(.), ' '))]">
+<xsl:template match="m:mtext[count(node()) = 1 and w:esc]">
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
 <!-- mo for \sum, \int might need to change into \tsum, \dint, etc. -->
-<xsl:template match="m:mo[(string(.) = '\sum ' or string(.)='\int ') and
+<xsl:template match="m:mo[(string(.) = '&Sum;' or string(.)='&int;') and
     (parent::m:munder or parent::m:mover or parent::m:munderover or
     parent::m:msub or parent::m:msup or parent::m:msubsup) and
     not(preceding-sibling::*) and parent::*/parent::m:mstyle]">
@@ -49,7 +56,7 @@
       <xsl:call-template name="is-tdfrac"/>
     </xsl:for-each>
   </xsl:variable>
-  <xsl:variable name="THING" select="substring-after(string(.), '\')"/>
+  <xsl:variable name="THING" select="substring-after(string(w:esc/@tex), '\')"/>
   <xsl:choose>
     <xsl:when test="../parent::m:mstyle[@displaystyle='true'] and $TDFRAC = 'y'">
       <xsl:text>\d</xsl:text><xsl:value-of select="$THING"/>
@@ -62,6 +69,8 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<!-- TODO mo for anything with letters in should become \operatorname -->
 
 <!--
   fontstyle = normal on mi can be ignored (eh maybe) 
@@ -197,12 +206,12 @@
 </xsl:template>
 
 <!-- mi with function name -->
-<xsl:template match="m:mi[string-length(.) > 1 and not(starts-with(., '\'))]">
+<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc)]">
   <xsl:apply-templates select="@*"/>
   <xsl:variable name="FN">
     <xsl:choose>
-      <xsl:when test="contains(string(.), '\thinspace ') and substring-after(string(.), '\thinspace ')=''">
-        <xsl:value-of select="substring-before(string(.), '\thinspace ')"/>
+      <xsl:when test="contains(string(.), '&ThinSpace;') and substring-after(string(.), '&ThinSpace;')=''">
+        <xsl:value-of select="substring-before(string(.), '&ThinSpace;')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="string(.)"/>
@@ -213,40 +222,40 @@
     <xsl:text>\UNSUPPORTED{mi function missing @mathvariant=normal}</xsl:text>
   </xsl:if>
   <xsl:choose>
-    <xsl:when test="$FN = 'arccos'">\arccos</xsl:when>
-    <xsl:when test="$FN = 'arcsin'">\arcsin</xsl:when>
-    <xsl:when test="$FN = 'arctan'">\arctan</xsl:when>
-    <xsl:when test="$FN = 'arg'">\arg</xsl:when>
-    <xsl:when test="$FN = 'cos'">\cos</xsl:when>
-    <xsl:when test="$FN = 'cosh'">\cosh</xsl:when>
-    <xsl:when test="$FN = 'cot'">\cot</xsl:when>
-    <xsl:when test="$FN = 'coth'">\coth</xsl:when>
-    <xsl:when test="$FN = 'csc'">\csc</xsl:when>
-    <xsl:when test="$FN = 'deg'">\deg</xsl:when>
-    <xsl:when test="$FN = 'det'">\det</xsl:when>
-    <xsl:when test="$FN = 'dim'">\dim</xsl:when>
-    <xsl:when test="$FN = 'exp'">\exp</xsl:when>
-    <xsl:when test="$FN = 'gcd'">\gcd</xsl:when>
-    <xsl:when test="$FN = 'hom'">\hom</xsl:when>
-    <xsl:when test="$FN = 'ker'">\ker</xsl:when>
-    <xsl:when test="$FN = 'lg'">\lg</xsl:when>
-    <xsl:when test="$FN = 'ln'">\ln</xsl:when>
-    <xsl:when test="$FN = 'log'">\log</xsl:when>
-    <xsl:when test="$FN = 'Pr'">\Pr</xsl:when>
-    <xsl:when test="$FN = 'sec'">\sec</xsl:when>
-    <xsl:when test="$FN = 'sin'">\sin</xsl:when>
-    <xsl:when test="$FN = 'sinh'">\sinh</xsl:when>
-    <xsl:when test="$FN = 'tan'">\tan</xsl:when>
-    <xsl:when test="$FN = 'tanh'">\tanh</xsl:when>
-    <xsl:when test="$FN = 'inf'">\inf</xsl:when>
-    <xsl:when test="$FN = 'inj lim'">\injlim</xsl:when>
-    <xsl:when test="$FN = 'lim'">\lim</xsl:when>
-    <xsl:when test="$FN = 'lim inf'">\liminf</xsl:when>
-    <xsl:when test="$FN = 'lum sup'">\limsup</xsl:when>
-    <xsl:when test="$FN = 'max'">\max</xsl:when>
-    <xsl:when test="$FN = 'min'">\min</xsl:when>
-    <xsl:when test="$FN = 'proj lim'">\projlim</xsl:when>
-    <xsl:when test="$FN = 'sup'">\sup</xsl:when>
+    <xsl:when test="$FN = 'arccos'"><xsl:text>\arccos </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'arcsin'"><xsl:text>\arcsin </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'arctan'"><xsl:text>\arctan </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'arg'"><xsl:text>\arg </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'cos'"><xsl:text>\cos </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'cosh'"><xsl:text>\cosh </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'cot'"><xsl:text>\cot </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'coth'"><xsl:text>\coth </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'csc'"><xsl:text>\csc </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'deg'"><xsl:text>\deg </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'det'"><xsl:text>\det </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'dim'"><xsl:text>\dim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'exp'"><xsl:text>\exp </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'gcd'"><xsl:text>\gcd </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'hom'"><xsl:text>\hom </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'ker'"><xsl:text>\ker </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lg'"><xsl:text>\lg </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'ln'"><xsl:text>\ln </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'log'"><xsl:text>\log </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'Pr'"><xsl:text>\Pr </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sec'"><xsl:text>\sec </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sin'"><xsl:text>\sin </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sinh'"><xsl:text>\sinh </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'tan'"><xsl:text>\tan </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'tanh'"><xsl:text>\tanh </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'inf'"><xsl:text>\inf </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'inj lim'"><xsl:text>\injlim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lim'"><xsl:text>\lim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lim inf'"><xsl:text>\liminf </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lum sup'"><xsl:text>\limsup </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'max'"><xsl:text>\max </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'min'"><xsl:text>\min </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'proj lim'"><xsl:text>\projlim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sup'"><xsl:text>\sup </xsl:text></xsl:when>
 
     <!-- 
       If it isn't a known function, just pass the text through (there might
@@ -259,23 +268,18 @@
   </xsl:choose>
 
 </xsl:template>
-<xsl:template match="m:mi[string-length(.) > 1 and not(starts-with(., '\'))]/@mathvariant"/>
+<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc)]/@mathvariant"/>
 
 <!--
   Put spaces around some weird operators just to make it look nicer and match
   some of the input tests. 
   -->
-<xsl:template match="m:mtext[string(.) = '.']">
-  <xsl:text> . </xsl:text>
-</xsl:template>
-<xsl:template match="m:mtext[string(.) = ';']">
-  <xsl:text> ; </xsl:text>
-</xsl:template>
-<xsl:template match="m:mtext[string(.) = '?']">
-  <xsl:text> ? </xsl:text>
-</xsl:template>
-<xsl:template match="m:mtext[string(.) = '~']">
-  <xsl:text> ~ </xsl:text>
+<xsl:template match="m:mtext[string(.) = '.' or string(.) = ';' or
+    string(.) = '?' or string(.) = '&nbsp;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text> </xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text> </xsl:text>
 </xsl:template>
 
 
@@ -353,7 +357,7 @@
   <xsl:if test="count(child::*)=1 and (m:mfrac or
       *[self::m:munderover or self::m:munder or self::m:mover or self::m:msub or
         self::m:msup or self::m:msubsup]/*[1][self::m:mo and
-        (string(.) = '\sum ' or string(.) = '\int ')] or m:mrow[
+        (string(.) = '&Sum;' or string(.) = '&int;')] or m:mrow[
           count(*) = 3 and *[1][self::m:mo and string(.) = '('] and
           *[3][self::m:mo and string(.) = ')'] and *[2][self::m:mfrac[@linethickness='0' and
           count(@*)=1]]

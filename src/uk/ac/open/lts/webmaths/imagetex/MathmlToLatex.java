@@ -65,7 +65,7 @@ public class MathmlToLatex
 		Document intermediate = (Document)out.getNode();
 		escapeTex(intermediate.getDocumentElement(), ignoreUnsupported);
 
-		//dumpXml(intermediate);
+//		dumpXml(intermediate);
 
 		// Now convert to LaTeX
 		in = new DOMSource(intermediate);
@@ -137,11 +137,13 @@ public class MathmlToLatex
 		if (n instanceof Text)
 		{
 			String before = n.getNodeValue();
-			String after = replaceChars(before, ignoreUnsupported);
-			if(!before.equals(after))
+			Collection<Node> after = replaceChars(before, ignoreUnsupported, n.getOwnerDocument());
+			if(after != null)
 			{
-				Node newText = n.getOwnerDocument().createTextNode(after);
-				n.getParentNode().insertBefore(newText, n);
+				for(Node add : after)
+				{
+					n.getParentNode().insertBefore(add, n);
+				}
 				n.getParentNode().removeChild(n);
 			}
 		}
@@ -159,10 +161,13 @@ public class MathmlToLatex
 		}
 	}
 
-	private String replaceChars(String in, boolean ignoreUnsupported)
+	private Collection<Node> replaceChars(String in, boolean ignoreUnsupported, Document d)
 		throws UnsupportedMathmlException
 	{
+		LinkedList<Node> nodes = new LinkedList<Node>();
 		StringBuilder out = new StringBuilder();
+		boolean changed = false;
+
 		outerloop: for(int i=0; i<in.length(); i++)
 		{
 			for(int chars = MAX_REPLACE_CHARS; chars > 0; chars--)
@@ -175,19 +180,21 @@ public class MathmlToLatex
 				String replace = REPLACE_CHARS.get(original);
 				if(replace != null)
 				{
-					out.append(replace);
+					addEscape(original, replace, nodes, out, d);
+					changed = true;
 					i += (chars - 1);
 					continue outerloop;
 				}
 				else if(chars == 1)
 				{
 					char c = original.charAt(0);
-					if(c > 0x7f && !ALLOWED_CHARACTERS.contains("" + c)) // Permit combining NOT
+					if(c > 0x7f && !ALLOWED_CHARACTERS.contains(original)) // Permit combining NOT
 					{
 						if(ignoreUnsupported)
 						{
 							// If unsupported, use ? character
-							out.append("?");
+							addEscape(original, "?", nodes, out, d);
+							changed = true;
 						}
 						else
 						{
@@ -202,9 +209,39 @@ public class MathmlToLatex
 				}
 			}
 		}
-		return out.toString();
+
+		if(changed)
+		{
+			addEscape(null, null, nodes, out, d);
+			return nodes;
+		}
+		else
+		{
+			return null;
+		}
 	}
-	
+
+	private static void addEscape(String original, String escape,
+		LinkedList<Node> nodes, StringBuilder out, Document d)
+	{
+		// Add text node for previous text
+		if(out.length() > 0)
+		{
+			nodes.add(d.createTextNode(out.toString()));
+			out.setLength(0);
+		}
+
+		// Add escape (unless null == finishing off)
+		if(escape != null)
+		{
+			Element esc = d.createElementNS(
+				"http://ns.open.ac.uk/lts/webmaths", "esc");
+			esc.appendChild(d.createTextNode(original));
+			esc.setAttribute("tex", escape);
+			nodes.add(esc);
+		}
+	}
+
 	/**
 	 * Non-ASCII characters which are permitted through to the XSL stage (they
 	 * will be decoded into ASCII during the XSL). 
