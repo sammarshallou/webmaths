@@ -154,6 +154,14 @@
   <xsl:text> </xsl:text>
 </xsl:template>
 
+<!-- msqrt -->
+<xsl:template match="m:msqrt">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\sqrt{</xsl:text>
+  <xsl:apply-templates select="*"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <!-- mi with function name -->
 <xsl:template match="m:mi[string-length(.) > 1 and not(starts-with(., '\'))]">
   <xsl:apply-templates select="@*"/>
