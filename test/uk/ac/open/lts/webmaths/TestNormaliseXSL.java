@@ -47,7 +47,6 @@ public class TestNormaliseXSL extends TestCase
 	@Test
 	public void testMrowAdding() throws Exception
 	{
-		assertResult("<mrow><mi>x</mi></mrow>", "<mi>x</mi>");
 		innerTestMrowAdding("msqrt");
 		innerTestMrowAdding("mstyle");
 		innerTestMrowAdding("merror");
@@ -55,16 +54,15 @@ public class TestNormaliseXSL extends TestCase
 		innerTestMrowAdding("menclose");
 		innerTestMrowAdding("mtd");
 	}
-	
+
 	private void innerTestMrowAdding(String tag) throws Exception
 	{
-		assertResult("<mrow><" + tag + "><mrow><mi>x</mi></mrow></" + tag + "></mrow>",
+		assertResult("<" + tag + "><mrow><mi>x</mi><mi>y</mi></mrow></" + tag + ">",
+			"<" + tag + "><mi>x</mi><mi>y</mi></" + tag + ">");
+		assertResult("<" + tag + "><mi>x</mi></" + tag + ">",
 			"<" + tag + "><mi>x</mi></" + tag + ">"); 
-		assertResult("<mrow><" + tag + "><mrow><mi>x</mi></mrow></" + tag + "></mrow>",
-			"<" + tag + "><mrow><mi>x</mi></mrow></" + tag + ">"); 
 	}
 
-	
 	@Test
 	public void testFencedDefaults1() throws Exception
 	{

@@ -25,7 +25,7 @@
   -->
 <xsl:template match="*[(self::m:msqrt or self::m:mstyle or self::m:merror
     or self::m:mpadded or self::m:mphantom or self::m:menclose or self::m:mtd
-    or self::m:math) and count(*)=1 and not(child::m:mrow)]">
+    or self::m:math) and count(*) != 1]">
     <xsl:copy>
         <xsl:apply-templates select="@*"/>
         <mrow>
