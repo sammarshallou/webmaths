@@ -38,6 +38,30 @@
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
+<!-- mo for \sum, \int might need to change into \tsum, \dint, etc. -->
+<xsl:template match="m:mo[(string(.) = '\sum ' or string(.)='\int ') and
+    (parent::m:munder or parent::m:mover or parent::m:munderover or
+    parent::m:msub or parent::m:msup or parent::m:msubsup) and
+    not(preceding-sibling::*) and parent::*/parent::m:mstyle]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:variable name="TDFRAC">
+    <xsl:for-each select="parent::*/parent::m:mstyle">
+      <xsl:call-template name="is-tdfrac"/>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:variable name="THING" select="substring-after(string(.), '\')"/>
+  <xsl:choose>
+    <xsl:when test="../parent::m:mstyle[@displaystyle='true'] and $TDFRAC = 'y'">
+      <xsl:text>\d</xsl:text><xsl:value-of select="$THING"/>
+    </xsl:when>
+    <xsl:when test="../parent::m:mstyle[@displaystyle='false'] and $TDFRAC = 'y'">
+      <xsl:text>\t</xsl:text><xsl:value-of select="$THING"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="node()"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 <!--
   fontstyle = normal on mi can be ignored (eh maybe) 
@@ -58,32 +82,17 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
-<!--
-  Include something without braces if it's a single character, otherwise
-  use braces.
-  -->
-<xsl:template name="brace">
-  <xsl:param name="VAL"/>
-  <xsl:choose>
-    <xsl:when test="string-length(string($VAL)) > 1">
-      <xsl:text>{</xsl:text>
-      <xsl:value-of select="$VAL"/>
-      <xsl:text>}</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$VAL"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <!-- Skip elements -->
 <xsl:template match="m:annotation"/>
 <xsl:template match="m:annotation-xml"/>
 
 <!-- mfrac -->
 <xsl:template match="m:mfrac">
+  <xsl:apply-templates select="@*"/>
   <xsl:variable name="TDFRAC">
-    <xsl:call-template name="is-tdfrac"/>
+    <xsl:for-each select="parent::m:mstyle">
+      <xsl:call-template name="is-tdfrac"/>
+    </xsl:for-each>
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="parent::m:mstyle[@displaystyle='true'] and $TDFRAC = 'y'">
@@ -102,19 +111,9 @@
   <xsl:text>} </xsl:text>
 </xsl:template>
 
-<!-- msup -->
-<xsl:template match="m:msup">
-  <xsl:call-template name="brace"><xsl:with-param name="VAL">
-    <xsl:apply-templates select="*[1]"/>
-  </xsl:with-param></xsl:call-template>
-  <xsl:text>^</xsl:text>
-  <xsl:call-template name="brace"><xsl:with-param name="VAL">
-    <xsl:apply-templates select="*[2]"/>
-  </xsl:with-param></xsl:call-template>
-</xsl:template>
-
-<!-- msub -->
-<xsl:template match="m:msub">
+<!-- msub, under -->
+<xsl:template match="m:msub|m:munder">
+  <xsl:apply-templates select="@*"/>
   <xsl:call-template name="brace"><xsl:with-param name="VAL">
     <xsl:apply-templates select="*[1]"/>
   </xsl:with-param></xsl:call-template>
@@ -122,10 +121,42 @@
   <xsl:call-template name="brace"><xsl:with-param name="VAL">
     <xsl:apply-templates select="*[2]"/>
   </xsl:with-param></xsl:call-template>
+  <xsl:text> </xsl:text>
+</xsl:template>
+
+<!-- msup, mover -->
+<xsl:template match="m:msup|m:mover">
+  <xsl:apply-templates select="@*"/>
+  <xsl:call-template name="brace"><xsl:with-param name="VAL">
+    <xsl:apply-templates select="*[1]"/>
+  </xsl:with-param></xsl:call-template>
+  <xsl:text>^</xsl:text>
+  <xsl:call-template name="brace"><xsl:with-param name="VAL">
+    <xsl:apply-templates select="*[2]"/>
+  </xsl:with-param></xsl:call-template>
+  <xsl:text> </xsl:text>
+</xsl:template>
+
+<!-- msubsup, munderover -->
+<xsl:template match="m:msubsup|m:munderover">
+  <xsl:apply-templates select="@*"/>
+  <xsl:call-template name="brace"><xsl:with-param name="VAL">
+    <xsl:apply-templates select="*[1]"/>
+  </xsl:with-param></xsl:call-template>
+  <xsl:text>_</xsl:text>
+  <xsl:call-template name="brace"><xsl:with-param name="VAL">
+    <xsl:apply-templates select="*[2]"/>
+  </xsl:with-param></xsl:call-template>
+  <xsl:text>^</xsl:text>
+  <xsl:call-template name="brace"><xsl:with-param name="VAL">
+    <xsl:apply-templates select="*[3]"/>
+  </xsl:with-param></xsl:call-template>
+  <xsl:text> </xsl:text>
 </xsl:template>
 
 <!-- mi with function name -->
 <xsl:template match="m:mi[string-length(.) > 1 and not(starts-with(., '\'))]">
+  <xsl:apply-templates select="@*"/>
   <xsl:variable name="FN">
     <xsl:choose>
       <xsl:when test="contains(string(.), '\thinspace ') and substring-after(string(.), '\thinspace ')=''">
@@ -136,6 +167,9 @@
       </xsl:otherwise> 
     </xsl:choose>
   </xsl:variable>
+  <xsl:if test="@mathvariant != 'normal'">
+    <xsl:text>\UNSUPPORTED{mi function missing @mathvariant=normal}</xsl:text>
+  </xsl:if>
   <xsl:choose>
     <xsl:when test="$FN = 'arccos'">\arccos</xsl:when>
     <xsl:when test="$FN = 'arcsin'">\arcsin</xsl:when>
@@ -176,10 +210,14 @@
       If it isn't a known function, just pass the text through (there might
       be other reasons for having <mi> with several characters) 
       -->
-    <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+    <xsl:otherwise>
+      <xsl:text>\UNSUPPORTED{mi function unknown}</xsl:text>
+      <xsl:value-of select="."/>
+    </xsl:otherwise>
   </xsl:choose>
 
 </xsl:template>
+<xsl:template match="m:mi[string-length(.) > 1 and not(starts-with(., '\'))]/@mathvariant"/>
 
 <!--
   Put spaces around some weird operators just to make it look nicer and match
@@ -204,164 +242,6 @@
 <!-- Supported attributes -->
 <xsl:template match="m:mstyle/@displaystyle"/>
 <xsl:template match="m:mstyle/@scriptlevel"/>
-
-<!--
-  Gets the current in-effect value of displaystyle attribute. 
-  -->
-<xsl:template name="get-displaystyle">
-  <xsl:choose>
-    <!-- Explicitly specified -->
-    <xsl:when test="self::m:mstyle/@displaystyle or self::m:mtable/@displaystyle">
-      <xsl:value-of select="@displaystyle"/>
-    </xsl:when>
-    <!-- Tags defined to set value to false within second+ child -->
-    <xsl:when test="(parent::m:msub or parent::m:msup or parent::m:subsup or
-        parent::m:munder or parent::m:mover or parent::m:munderover or
-        parent::m:mmultiscripts or parent::m:mroot) and preceding-sibling::*">
-      <xsl:text>false</xsl:text>
-    </xsl:when>
-    <!-- Tags defined to set value to false within all children -->
-    <xsl:when test="parent::m:mfrac">
-      <xsl:text>false</xsl:text>
-    </xsl:when>
-    <!-- Root element (we default to true for this rendering) -->
-    <xsl:when test="not(parent::*)">
-      <xsl:text>true</xsl:text>
-    </xsl:when>
-    <!-- Default: as parent -->
-    <xsl:otherwise>
-      <xsl:for-each select="parent::*">
-        <xsl:call-template name="get-displaystyle"></xsl:call-template>
-      </xsl:for-each>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<!--
-  Gets current in-effect value of scriptlevel attribute. 
-  -->
-<xsl:template name="get-scriptlevel">
-  <!-- Get parent value -->
-  <xsl:variable name="PARENTVAL">
-    <xsl:for-each select="parent::*">
-      <xsl:call-template name="get-scriptlevel"></xsl:call-template>
-    </xsl:for-each>
-    <xsl:if test="not(parent::*)">
-      <xsl:text>0</xsl:text>
-    </xsl:if>
-  </xsl:variable>
-
-  <!-- Check specified option -->
-  <xsl:choose>
-    <!-- Increment -->
-    <xsl:when test="self::m:mstyle and starts-with(string(@scriptlevel), '+')">
-      <xsl:variable name="SHIFT" select="substring-after(@scriptlevel, '+')"/>
-      <xsl:value-of select="number($PARENTVAL) + number($SHIFT)"/>
-    </xsl:when>
-    
-    <!-- Decrement -->
-    <xsl:when test="self::m:mstyle and starts-with(@scriptlevel, '-')">
-      <xsl:variable name="SHIFT" select="substring-after(@scriptlevel, '-')"/>
-      <xsl:value-of select="number($PARENTVAL) - number($SHIFT)"/>
-    </xsl:when>
-    
-    <!-- Fixed value -->
-    <xsl:when test="self::m:mstyle and @scriptlevel">
-      <xsl:value-of select="@scriptlevel"/>
-    </xsl:when>
-    
-    <!-- Tags defined to increment within second+ child -->
-    <xsl:when test="(parent::m:msub or parent::m:msup or parent::m:subsup or
-        parent::m:mmultiscripts) and preceding-sibling::*">
-      <xsl:value-of select="number($PARENTVAL) + 1"/>
-    </xsl:when>
-
-    <!-- underscript on munder or munderover -->
-    <xsl:when test="(parent::m:munder and preceding-sibling::*) or
-        (parent::m:munderover and preceding-sibling::* and following-sibling::*)">
-      <xsl:variable name="ACCENTUNDER">
-        <xsl:choose>
-          <xsl:when test="parent::*[@accentunder]">
-            <xsl:value-of select="parent::*/@accentunder"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:variable name="ACCENT">
-              <xsl:call-template name="get-embellished-operator-info">#
-                <xsl:with-param name="TYPE">accent</xsl:with-param>
-              </xsl:call-template>
-            </xsl:variable>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:choose>
-        <xsl:when test="$ACCENTUNDER='true'">
-          <xsl:value-of select="$PARENTVAL"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="number($PARENTVAL) + 1"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-
-    <!-- overscript on mover or munderover -->
-    <xsl:when test="(parent::m:mover and preceding-sibling::*) or
-        (parent::m:munderover and preceding-sibling::* and not(following-sibling::*))">
-      <xsl:variable name="ACCENTOVER">
-        <xsl:choose>
-          <xsl:when test="parent::*[@accent]">
-            <xsl:value-of select="parent::*/@accent"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:variable name="ACCENT">
-              <xsl:call-template name="get-embellished-operator-info">
-                <xsl:with-param name="TYPE">accent</xsl:with-param>
-              </xsl:call-template>
-            </xsl:variable>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:choose>
-        <xsl:when test="$ACCENTOVER='true'">
-          <xsl:value-of select="$PARENTVAL"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="number($PARENTVAL) + 1"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-
-    <!--
-      Fractions are complicated; increment scriptlevel if displaystyle was
-      already false
-      -->
-    <xsl:when test="parent::m:mfrac">
-      <xsl:variable name="DISPLAYSTYLE">
-        <xsl:for-each select="parent::*">
-          <xsl:call-template name="get-displaystyle"/>
-        </xsl:for-each>
-      </xsl:variable>
-      <xsl:choose>
-        <xsl:when test="$DISPLAYSTYLE='true'">
-          <xsl:value-of select="$PARENTVAL"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="number($PARENTVAL) + 1"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-
-    <!-- mroot index -->
-    <xsl:when test="parent::m:mroot and preceding-sibling::*">
-      <xsl:value-of select="number($PARENTVAL) + 2"/>
-    </xsl:when>
-
-    <!-- Anything else, inherit -->
-    <xsl:otherwise>
-      <xsl:value-of select="$PARENTVAL"/>
-    </xsl:otherwise>
-
-  </xsl:choose>
-</xsl:template>
 
 <!-- Displaystyle true; exclude auto-added wrapper -->
 <xsl:template match="m:mstyle">
@@ -391,9 +271,7 @@
   </xsl:variable>
 
   <xsl:variable name="SKIP">
-    <xsl:for-each select="m:mfrac">
-      <xsl:call-template name="is-tdfrac"/>
-    </xsl:for-each>
+    <xsl:call-template name="is-tdfrac"/>
   </xsl:variable>
 
   <!-- Change display style -->
@@ -426,19 +304,22 @@
 </xsl:template>
 
 <!--
-  Must be called on mfrac node. Returns true if we are going to use tfrac/dfrac
+  Must be called on mstyle node. Returns true if we are going to use tfrac/dfrac
   to replace a parent mstyle.
  -->
 <xsl:template name="is-tdfrac">
-  <xsl:if test="parent::m:mstyle and count(parent::*/*) = 1 and
-      ../@displaystyle and not(../@scriptlevel)">
+  <xsl:if test="count(child::*)=1 and (m:mfrac or
+      *[self::m:munderover or self::m:munder or self::m:mover or self::m:msub or
+        self::m:msup or self::m:msubsup]/*[1][self::m:mo and
+        (string(.) = '\sum ' or string(.) = '\int ')]) and
+      @displaystyle and not(@scriptlevel)">
     <!-- Need to check if the displaystyle actually did anything! -->
     <xsl:variable name="PREVIOUSDISPLAYSTYLE">
-      <xsl:for-each select="parent::*/parent::*">
+      <xsl:for-each select="parent::*">
         <xsl:call-template name="get-displaystyle"/>
       </xsl:for-each>
     </xsl:variable>
-    <xsl:if test="$PREVIOUSDISPLAYSTYLE != ../@displaystyle">
+    <xsl:if test="$PREVIOUSDISPLAYSTYLE != @displaystyle">
       <xsl:text>y</xsl:text>
     </xsl:if>
   </xsl:if>
@@ -600,6 +481,197 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>n</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!--
+  Gets the current in-effect value of displaystyle attribute.
+  -->
+<xsl:template name="get-displaystyle">
+  <xsl:choose>
+    <!-- Explicitly specified -->
+    <xsl:when test="self::m:mstyle/@displaystyle or self::m:mtable/@displaystyle">
+      <xsl:value-of select="@displaystyle"/>
+    </xsl:when>
+    <!-- Tags defined to set value to false within second+ child -->
+    <xsl:when test="(parent::m:msub or parent::m:msup or parent::m:subsup or
+        parent::m:munder or parent::m:mover or parent::m:munderover or
+        parent::m:mmultiscripts or parent::m:mroot) and preceding-sibling::*">
+      <xsl:text>false</xsl:text>
+    </xsl:when>
+    <!-- Tags defined to set value to false within all children -->
+    <xsl:when test="parent::m:mfrac">
+      <xsl:text>false</xsl:text>
+    </xsl:when>
+    <!-- Root element (we default to true for this rendering) -->
+    <xsl:when test="not(parent::*)">
+      <xsl:text>true</xsl:text>
+    </xsl:when>
+    <!-- Default: as parent -->
+    <xsl:otherwise>
+      <xsl:for-each select="parent::*">
+        <xsl:call-template name="get-displaystyle"></xsl:call-template>
+      </xsl:for-each>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!--
+  Gets current in-effect value of scriptlevel attribute.
+  -->
+<xsl:template name="get-scriptlevel">
+  <!-- Get parent value -->
+  <xsl:variable name="PARENTVAL">
+    <xsl:for-each select="parent::*">
+      <xsl:call-template name="get-scriptlevel"></xsl:call-template>
+    </xsl:for-each>
+    <xsl:if test="not(parent::*)">
+      <xsl:text>0</xsl:text>
+    </xsl:if>
+  </xsl:variable>
+
+  <!-- Check specified option -->
+  <xsl:choose>
+    <!-- Increment -->
+    <xsl:when test="self::m:mstyle and starts-with(string(@scriptlevel), '+')">
+      <xsl:variable name="SHIFT" select="substring-after(@scriptlevel, '+')"/>
+      <xsl:value-of select="number($PARENTVAL) + number($SHIFT)"/>
+    </xsl:when>
+
+    <!-- Decrement -->
+    <xsl:when test="self::m:mstyle and starts-with(@scriptlevel, '-')">
+      <xsl:variable name="SHIFT" select="substring-after(@scriptlevel, '-')"/>
+      <xsl:value-of select="number($PARENTVAL) - number($SHIFT)"/>
+    </xsl:when>
+
+    <!-- Fixed value -->
+    <xsl:when test="self::m:mstyle and @scriptlevel">
+      <xsl:value-of select="@scriptlevel"/>
+    </xsl:when>
+
+    <!-- Tags defined to increment within second+ child -->
+    <xsl:when test="(parent::m:msub or parent::m:msup or parent::m:subsup or
+        parent::m:mmultiscripts) and preceding-sibling::*">
+      <xsl:value-of select="number($PARENTVAL) + 1"/>
+    </xsl:when>
+
+    <!-- underscript on munder or munderover -->
+    <xsl:when test="(parent::m:munder and preceding-sibling::*) or
+        (parent::m:munderover and preceding-sibling::* and following-sibling::*)">
+      <xsl:variable name="ACCENTUNDER">
+        <xsl:choose>
+          <xsl:when test="parent::*[@accentunder]">
+            <xsl:value-of select="parent::*/@accentunder"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="ACCENT">
+              <xsl:call-template name="get-embellished-operator-info">#
+                <xsl:with-param name="TYPE">accent</xsl:with-param>
+              </xsl:call-template>
+            </xsl:variable>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$ACCENTUNDER='true'">
+          <xsl:value-of select="$PARENTVAL"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="number($PARENTVAL) + 1"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
+    <!-- overscript on mover or munderover -->
+    <xsl:when test="(parent::m:mover and preceding-sibling::*) or
+        (parent::m:munderover and preceding-sibling::* and not(following-sibling::*))">
+      <xsl:variable name="ACCENTOVER">
+        <xsl:choose>
+          <xsl:when test="parent::*[@accent]">
+            <xsl:value-of select="parent::*/@accent"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="ACCENT">
+              <xsl:call-template name="get-embellished-operator-info">
+                <xsl:with-param name="TYPE">accent</xsl:with-param>
+              </xsl:call-template>
+            </xsl:variable>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$ACCENTOVER='true'">
+          <xsl:value-of select="$PARENTVAL"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="number($PARENTVAL) + 1"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
+    <!--
+      Fractions are complicated; increment scriptlevel if displaystyle was
+      already false
+      -->
+    <xsl:when test="parent::m:mfrac">
+      <xsl:variable name="DISPLAYSTYLE">
+        <xsl:for-each select="parent::*">
+          <xsl:call-template name="get-displaystyle"/>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="$DISPLAYSTYLE='true'">
+          <xsl:value-of select="$PARENTVAL"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="number($PARENTVAL) + 1"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
+    <!-- mroot index -->
+    <xsl:when test="parent::m:mroot and preceding-sibling::*">
+      <xsl:value-of select="number($PARENTVAL) + 2"/>
+    </xsl:when>
+
+    <!-- Anything else, inherit -->
+    <xsl:otherwise>
+      <xsl:value-of select="$PARENTVAL"/>
+    </xsl:otherwise>
+
+  </xsl:choose>
+</xsl:template>
+
+<!--
+  Characters which are permitted after a backslash \
+  -->
+<xsl:variable name="SLASHCHARS">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</xsl:variable>
+<!--
+  Include something without braces if it's a single character, otherwise
+  use braces.
+  -->
+<xsl:template name="brace">
+  <xsl:param name="VAL"/>
+  <xsl:choose>
+    <!-- Single characters don't need braces -->
+    <xsl:when test="string-length(string($VAL)) = 1">
+      <xsl:value-of select="$VAL"/>
+    </xsl:when>
+    <!-- Backslash followed by any single char -->
+    <xsl:when test="starts-with($VAL, '\') and string-length(normalize-space($VAL)=2)">
+      <xsl:value-of select="$VAL"/>
+    </xsl:when>
+    <!-- Backslash followed by letters -->
+    <xsl:when test="starts-with($VAL, '\') and
+      string-length(translate(substring($VAL, 2), $SLASHCHARS, '')) = 0">
+      <xsl:value-of select="$VAL"/>
+    </xsl:when>
+    <!-- Any other string - use braces -->
+    <xsl:otherwise>
+      <xsl:text>{</xsl:text>
+      <xsl:value-of select="$VAL"/>
+      <xsl:text>}</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

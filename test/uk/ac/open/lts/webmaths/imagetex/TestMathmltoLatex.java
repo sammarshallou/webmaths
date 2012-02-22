@@ -116,8 +116,10 @@ public class TestMathmltoLatex
 		"x \\: y", "x \\medspace y",
 		"x \\, y", "x \\thinspace y",
 
-		// Unnecessary \dfrac
+		// Unnecessary \dfrac, \dsum, \dint
 		"\\dfrac{4}{x}", "\\frac{4}{x}",
+		"\\dsum_{i=1}^x X_i" , "\\sum_{i=1}^x X_i",
+		"\\dint_{i=1}^x X_i" , "\\int_{i=1}^x X_i",
 	});
 
 	private String doRoundTrip(String tex) throws Exception

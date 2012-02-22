@@ -66,7 +66,7 @@ public class MathmlToLatex
 		escapeTex(intermediate.getDocumentElement(), ignoreUnsupported);
 
 		//dumpXml(intermediate);
-		
+
 		// Now convert to LaTeX
 		in = new DOMSource(intermediate);
 		out = new DOMResult();
@@ -108,6 +108,8 @@ public class MathmlToLatex
 
 		// Tidy text a bit
 		result = result.replaceAll("([A-Za-z0-9])(\\\\)", "$1 $2");
+		result = result.replaceAll("(\\\\[A-Za-z]+) ([_^])", "$1$2");
+
 		return result.trim();
 	}
 	
@@ -119,10 +121,7 @@ public class MathmlToLatex
 		Transformer t = TransformerFactory.newInstance().newTransformer();
 		t.transform(in, outw);
 		String result = writer.toString();
-		if(result.contains("arccos"))
-		{
-			System.err.println(result);
-		}
+		System.err.println(result);
 	}
 
 	/**
