@@ -32,7 +32,7 @@
 <!--
   Basic elements passed through
   -->
-<xsl:template match="m:semantics|m:mn|m:mi|m:mo|m:mrow">
+<xsl:template match="m:semantics|m:mn|m:mi|m:mrow">
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
@@ -49,7 +49,7 @@
 <xsl:template match="m:mo[(string(.) = '&Sum;' or string(.)='&int;') and
     (parent::m:munder or parent::m:mover or parent::m:munderover or
     parent::m:msub or parent::m:msup or parent::m:msubsup) and
-    not(preceding-sibling::*) and parent::*/parent::m:mstyle]">
+    not(preceding-sibling::*) and parent::*/parent::m:mstyle]" priority="+1">
   <xsl:apply-templates select="@*"/>
   <xsl:variable name="TDFRAC">
     <xsl:for-each select="parent::*/parent::m:mstyle">
@@ -70,7 +70,30 @@
   </xsl:choose>
 </xsl:template>
 
-<!-- TODO mo for anything with letters in should become \operatorname -->
+<!-- Direct passthrough for mo that is a single letter non-alpha, or TeX escape -->
+<xsl:template match="m:mo[w:esc and count(node()) = 1]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates/>
+</xsl:template>
+<xsl:template match="m:mo[string-length(normalize-space(.)) = 1]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates/>
+</xsl:template>
+<!-- Special-case for mod -->
+<xsl:template match="m:mo[normalize-space(.) = 'mod']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\mod </xsl:text>
+</xsl:template>
+
+<!-- Other mo uses operatorname -->
+<xsl:template match="m:mo">
+  <xsl:apply-templates select="@*"/>
+
+  <xsl:text>\operatorname{</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 
 <!--
   fontstyle = normal on mi can be ignored (eh maybe) 
