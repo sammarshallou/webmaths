@@ -118,6 +118,24 @@
 <xsl:template match="m:annotation"/>
 <xsl:template match="m:annotation-xml"/>
 
+<!-- mtable as \substack (single-column table within limits) -->
+<xsl:template match="m:mtable[count(m:mtr[count(m:mtd) != 1]) = 0 and
+    (parent::m:munder or parent::m:mover or parent::m:munderover or
+    parent::m:msub or parent::m:msup or parent::m:msubsup) and
+    preceding-sibling::* and count(m:mtr) &gt; 1]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\substack{</xsl:text>
+  <xsl:for-each select="m:mtr">
+    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates select="m:mtd/@*"/>
+    <xsl:if test="preceding-sibling::m:mtr">
+      <xsl:text> \\ </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates select="m:mtd/*"/>
+  </xsl:for-each>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <!-- mrow as \pmod -->
 <xsl:template match="m:mrow[count(*) = 4 and *[1][self::m:mo and string(.) = '('] and
     *[4][self::m:mo and string(.) = ')'] and *[2][self::m:mo[string(.) = 'mod']] and
