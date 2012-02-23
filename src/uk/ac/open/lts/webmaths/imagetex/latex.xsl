@@ -736,24 +736,25 @@
   -->
 <xsl:template name="brace">
   <xsl:param name="VAL"/>
+  <xsl:param name="NS" select="normalize-space($VAL)"/>
   <xsl:choose>
     <!-- Single characters don't need braces -->
-    <xsl:when test="string-length(string($VAL)) = 1">
-      <xsl:value-of select="$VAL"/>
+    <xsl:when test="string-length(string($NS)) = 1">
+      <xsl:value-of select="$NS"/>
     </xsl:when>
     <!-- Backslash followed by any single char -->
-    <xsl:when test="starts-with($VAL, '\') and string-length(normalize-space($VAL)=2)">
-      <xsl:value-of select="$VAL"/>
+    <xsl:when test="starts-with($NS, '\') and string-length(normalize-space($NS)) = 2">
+      <xsl:value-of select="$NS"/>
     </xsl:when>
     <!-- Backslash followed by letters -->
-    <xsl:when test="starts-with($VAL, '\') and
-      string-length(translate(substring($VAL, 2), $SLASHCHARS, '')) = 0">
-      <xsl:value-of select="$VAL"/>
+    <xsl:when test="starts-with($NS, '\') and
+      string-length(translate(substring($NS, 2), $SLASHCHARS, '')) = 0">
+      <xsl:value-of select="$NS"/>
     </xsl:when>
     <!-- Any other string - use braces -->
     <xsl:otherwise>
       <xsl:text>{</xsl:text>
-      <xsl:value-of select="$VAL"/>
+      <xsl:value-of select="$NS"/>
       <xsl:text>}</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
