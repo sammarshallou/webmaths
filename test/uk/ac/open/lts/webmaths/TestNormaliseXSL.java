@@ -135,6 +135,13 @@ public class TestNormaliseXSL extends TestCase
 			"<mrow><mfenced open='Q' close='Z' separators=''> <mi>x</mi> <mi>y</mi> <mi>z</mi> </mfenced></mrow>");
 	}
 
+	@Test
+	public void testTablesNotUtterlyBroken() throws Exception
+	{
+		assertResult(
+			"<mtable><mtr><mtd><mn>3</mn></mtd></mtr></mtable>",
+			"<mtable><mtr><mtd><mn>3</mn></mtd></mtr></mtable>");
+	}
 	
 	private void assertResult(String expected, String fragment) throws Exception
 	{

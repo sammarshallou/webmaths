@@ -142,7 +142,7 @@
   Normalise table rows/columns: anything inside mtable that doesn't have
   an mtr and mtd gets one autoamtically. (This is for MathML 1 support.)  
   -->
-<xsl:template match="m:mtable/*[not(self::mtr or self::mlabeledtr)]">
+<xsl:template match="m:mtable/*[not(self::m:mtr or self::m:mlabeledtr)]">
   <xsl:choose>
     <xsl:when test="self::m:mtd">
       <!-- This is an mtd, so we only need to add the mtr -->
@@ -165,7 +165,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="m:mtr/*[not(self::mtd)] | m:mlabeledtr/*[position()&gt;1][not(self::mtd)]">
+<xsl:template match="m:mtr/*[not(self::m:mtd)] | m:mlabeledtr/*[position()&gt;1][not(self::m:mtd)]">
   <m:mtd>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
