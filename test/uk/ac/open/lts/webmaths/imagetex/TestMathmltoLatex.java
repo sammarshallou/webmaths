@@ -156,7 +156,11 @@ public class TestMathmltoLatex
 		}
 		if(!expected.equals(round))
 		{
-			out.append(tex + " => " + round + "\n");
+			String extrabit = "";
+			if (!expected.equals(tex)) {
+				extrabit = " (expected " + expected + ")";
+			}
+			out.append(tex + " => " + round + extrabit + "\n");
 			out.append("  " + mathml.replaceFirst("^.*<semantics>(.*?)<annotation .*$", "$1") + "\n");
 		}
 	}
