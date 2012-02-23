@@ -118,6 +118,16 @@
 <xsl:template match="m:annotation"/>
 <xsl:template match="m:annotation-xml"/>
 
+<!-- mrow as \pmod -->
+<xsl:template match="m:mrow[count(*) = 4 and *[1][self::m:mo and string(.) = '('] and
+    *[4][self::m:mo and string(.) = ')'] and *[2][self::m:mo[string(.) = 'mod']] and
+    *[3][self::m:mn]]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\pmod{</xsl:text>
+  <xsl:apply-templates select="m:mn"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <!-- mrow as \binom -->
 <xsl:template match="m:mrow[count(*) = 3 and *[1][self::m:mo and string(.) = '('] and
     *[3][self::m:mo and string(.) = ')'] and *[2][self::m:mfrac[@linethickness='0' and

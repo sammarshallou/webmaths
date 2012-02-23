@@ -54,6 +54,9 @@ public class TestMathmltoLatex
 		// anyhow)
 		"\\begin{displaymath} \\frac{1}{x}", "\\displaystyle \\frac{1}{x}",
 
+		// \pod{n} is currently converted in a way that can't be distinguished
+		"3 \\pod{6}", "3(6)",
+
 		// Symbols with multiple names
 		"\\intersect", "\\cap",
 		"\\Cap", "\\doublecap",
