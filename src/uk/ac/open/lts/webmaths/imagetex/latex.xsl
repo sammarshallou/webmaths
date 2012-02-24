@@ -327,6 +327,69 @@
   <xsl:text> </xsl:text>
 </xsl:template>
 
+<!-- Accents -->
+<xsl:template match="m:mover[@accent='true' and count(*) = 2 and *[2][self::m:mo]]">
+  <xsl:apply-templates select="@*[local-name() != 'accent']"/>
+  <xsl:choose>
+    <xsl:when test="string(*[2]) = '&DiacriticalAcute;'"><xsl:text>\acute{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&DiacriticalGrave;'"><xsl:text>\grave{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '~'"><xsl:text>\tilde{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&OverBar;'"><xsl:text>\bar{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&Breve;'"><xsl:text>\breve{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&Hacek;'"><xsl:text>\check{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&Hat;'"><xsl:text>\hat{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&RightArrow;'"><xsl:text>\vec{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&DiacriticalDot;'"><xsl:text>\dot{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&DoubleDot;'"><xsl:text>\ddot{</xsl:text></xsl:when>
+    <xsl:when test="string(*[2]) = '&TripleDot;'"><xsl:text>\dddot{</xsl:text></xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\UNSUPPORTED{Unknown accent: </xsl:text>
+      <xsl:value-of select="string(*[2])"/>
+      <xsl:text>}</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<!-- Under/over thingies other than accents -->
+<xsl:template match="m:munder[*[2][self::m:mo and string(.) = '&#xfe38;']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\underbrace{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+<xsl:template match="m:mover[*[2][self::m:mo and string(.) = '&#xfe37;']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\overbrace{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+<xsl:template match="m:munder[*[2][self::m:mo and string(.) = '&#x0332;']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\underline{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+<xsl:template match="m:mover[not(@accent) and *[2][self::m:mo and string(.) = '&#x00af;']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\overline{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+<xsl:template match="m:mover[*[2][self::m:mo and string(.) = '&DiacriticalTilde;']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\widetilde{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+<xsl:template match="m:mover[not(@accent) and *[2][self::m:mo and string(.) = '&Hat;']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\widehat{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <!-- msqrt -->
 <xsl:template match="m:msqrt">
   <xsl:apply-templates select="@*"/>
