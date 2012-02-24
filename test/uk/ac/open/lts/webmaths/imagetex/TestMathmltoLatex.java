@@ -59,6 +59,9 @@ public class TestMathmltoLatex
 		// anyhow)
 		"\\begin{displaymath} \\frac{1}{x}", "\\displaystyle \\frac{1}{x}",
 
+		// Unnecessary \displaystyle
+		"\\displaystyle \\frac{1}{x}", "\\frac{1}{x}",
+
 		// \pod{n} is currently converted in a way that can't be distinguished
 		"3 \\pod{6}", "3(6)",
 
@@ -109,6 +112,7 @@ public class TestMathmltoLatex
 		"\\varsubsetneqq", "\\subsetneqq",
 		"\\varsupsetneqq", "\\supsetneqq",
 		"\\vartriangle", "\\triangle",
+		"\\char93", "\\#",
 		
 		// Dot ambiguity
 		"\\dots", "\\ldots",
