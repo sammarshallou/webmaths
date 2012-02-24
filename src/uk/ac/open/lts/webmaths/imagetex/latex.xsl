@@ -313,7 +313,8 @@
 </xsl:template>
 
 <!-- mi with function name -->
-<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc)]">
+<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc) and
+    (not(@fontstyle) or @fontstyle='normal')]">
   <xsl:apply-templates select="@*"/>
   <xsl:variable name="FN">
     <xsl:choose>
@@ -364,18 +365,19 @@
     <xsl:when test="$FN = 'proj lim'"><xsl:text>\projlim </xsl:text></xsl:when>
     <xsl:when test="$FN = 'sup'"><xsl:text>\sup </xsl:text></xsl:when>
 
-    <!-- 
-      If it isn't a known function, just pass the text through (there might
-      be other reasons for having <mi> with several characters) 
-      -->
+    <!-- Unknown characters like this may be \mathop -->
     <xsl:otherwise>
-      <xsl:text>\UNSUPPORTED{mi function unknown}</xsl:text>
+      <xsl:text>\mathop{</xsl:text>
       <xsl:value-of select="."/>
+      <xsl:text>}</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 
 </xsl:template>
-<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc)]/@mathvariant"/>
+<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc) and
+    (not(@fontstyle) or @fontstyle='normal')]/@mathvariant"/>
+<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc) and
+    (not(@fontstyle) or @fontstyle='normal')]/@fontstyle"/>
 
 <!--
   Put spaces around some weird operators just to make it look nicer and match

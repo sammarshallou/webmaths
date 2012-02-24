@@ -127,6 +127,9 @@ public class TestMathmltoLatex
 		"x \\: y", "x \\medspace y",
 		"x \\, y", "x \\thinspace y",
 
+		// Extra brackets
+		"\\mathop{XQX}_{i=1}^n", "{\\mathop{XQX}}_{i=1}^n",
+
 		// Unnecessary \dfrac, \dsum, \dint
 		"\\dfrac{4}{x}", "\\frac{4}{x}",
 		"\\dsum_{i=1}^x X_i" , "\\sum_{i=1}^x X_i",
