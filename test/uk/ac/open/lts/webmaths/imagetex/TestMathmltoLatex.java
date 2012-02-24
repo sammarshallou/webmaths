@@ -227,7 +227,7 @@ public class TestMathmltoLatex
 		assertEquals("\\tfrac{1}{x} +\\frac{1}{x}", result);
 		String mathml = convertToMathml("1 + \\displaystyle 2", false);
 		result = convertToTex(mathml, false);
-		assertEquals("{ \\textstyle 1+{ \\displaystyle 2} }", result);
+		assertEquals("\\textstyle 1+{ \\displaystyle 2}", result);
 	}
 
 	@Test

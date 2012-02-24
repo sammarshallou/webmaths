@@ -106,9 +106,17 @@ public class MathmlToLatex
 			throw new UnsupportedMathmlException(message);
 		}
 
-		// Tidy text a bit
+		// Add space before each \ command
 		result = result.replaceAll("([A-Za-z0-9])(\\\\)", "$1 $2");
+
+		// In situation like \symbol ^2 or \symbol _2, remove the space
 		result = result.replaceAll("(\\\\[A-Za-z]+) ([_^])", "$1$2");
+
+		// Whitespace at edges
+		result = result.trim();
+
+		// Get rid of surrounding { } if any
+		result = result.replaceFirst("^\\{\\s*(.*?)\\s*\\}$", "$1");
 
 		return result.trim();
 	}
