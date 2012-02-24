@@ -77,6 +77,14 @@ public class TestMathmlEntityFixer extends TestCase
 	}
 
 	@Test
+	public void testTripleDot() throws Exception
+	{
+		MathmlEntityFixer fixer = new MathmlEntityFixer();
+		String testString = "a&TripleDot;b";
+		assertEquals("a&#x20db;b", getWithHexEntities(fixer.fix(testString)));
+	}
+
+	@Test
 	public void testToSpeech() throws Exception
 	{
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
