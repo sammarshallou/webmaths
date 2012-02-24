@@ -3348,6 +3348,68 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		Element semantics = resultElement("semantics", 0, style, annotation);
 		Element math = resultElement("math", 0, semantics);
 
+		// Do some postprocessing to make it nicer
+		replaceMultipleMtexts(math);
+
 		return math;
+	}
+
+	/**
+	 * Things that count the same as mrow ('inferred mrow' elements).
+	 * http://www.w3.org/TR/MathML2/chapter3.html#id.3.1.3.2
+	 */
+	private static Set<String> MROW_EQUIVALENTS = new HashSet<String>(Arrays.asList(new String[] {
+		"mrow",
+		"msqrt",
+		"mstyle",
+		"merror",
+		"mpadded",
+		"mphantom",
+		"menclose",
+		"mtd",
+		"math"
+	}));
+	private static void replaceMultipleMtexts(Element parent)
+	{
+		// Which parents count as mrow? We can only combine in an mrow; other
+		// places, the number of arguments may be semantically significant
+		// so <mtext>a</mtext><mtext>b</mtext> is not the same as <mtext>ab</mtext>
+		boolean mrow = MROW_EQUIVALENTS.contains(parent.getLocalName());
+		Element last = null;
+		for(Node n = parent.getFirstChild(); n != null; n = n.getNextSibling())
+		{
+			if(n.getNodeType() != Node.ELEMENT_NODE)
+			{
+				continue;
+			}
+			Element e = (Element)n;
+			// Check if this is an mtext (and we are doing the replace thing)
+			if(e.getLocalName().equals("mtext") && mrow)
+			{
+				if(last != null)
+				{
+					// Great, combine this one with the last
+					String lastText = ((Text)last.getFirstChild()).getNodeValue();
+					String thisText = ((Text)e.getFirstChild()).getNodeValue();
+					parent.removeChild(e);
+					last.removeChild(last.getFirstChild());
+					last.appendChild(last.getOwnerDocument().createTextNode(lastText + thisText));
+
+					// So that the loop works
+					n = last;
+				}
+				else
+				{
+					last = e;
+				}
+			}
+			else
+			{
+				// Last element wasn't an mtext
+				last = null;
+				// Recurse
+				replaceMultipleMtexts(e);
+			}
+		}
 	}
 }

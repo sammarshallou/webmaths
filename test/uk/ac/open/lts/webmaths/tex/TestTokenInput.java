@@ -133,5 +133,5 @@ public class TestTokenInput extends TestCase
 		Element frog = parse("<frog sound='ribbit'><tadpole/>Ribbit!</frog>"); 
 		assertEquals("<frog sound=\"ribbit\"><tadpole/>Ribbit!</frog>", 
 			TokenInput.saveXml(frog));
-	}	
+	}
 }

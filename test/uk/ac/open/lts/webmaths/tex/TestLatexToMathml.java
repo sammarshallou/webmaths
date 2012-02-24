@@ -238,4 +238,11 @@ public class TestLatexToMathml extends TestCase
 		String result = new TokenInput("\\big").toMathml(true);
 		assertFalse(result.contains("</xerror>"));
 	}
+
+	@Test
+	public void testMultipleMtext() throws Exception
+	{
+		String result = new TokenInput("\\text{frog}").toMathml(true);
+		assertTrue(result.contains("<mstyle displaystyle=\"true\"><mtext>frog</mtext></mstyle>"));
+	}
 }
