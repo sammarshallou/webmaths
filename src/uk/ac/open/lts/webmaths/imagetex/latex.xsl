@@ -13,6 +13,9 @@
   &Breve;&Cedilla;&DiacriticalGrave;&DiacriticalDot;&DiacriticalDoubleAcute;&LeftArrow;&LeftRightArrow;&LeftRightVector;&LeftVector;&DiacriticalAcute;&RightArrow;&RightVector;&DiacriticalTilde;&DoubleDot;&DownBreve;&Hacek;&Hat;&OverBar;&OverBrace;&OverBracket;&OverParenthesis;&TripleDot;&UnderBar;&UnderBrace;&UnderBracket;&UnderParenthesis;
 </xsl:variable>
 
+<!-- Letters and numbers -->
+<xsl:variable name="LETTERSNUMBERS">abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</xsl:variable>
+
 <!--
   Root template 
   -->
@@ -139,6 +142,26 @@
 <xsl:template match="m:mo[normalize-space(.) = 'mod']">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\mod </xsl:text>
+</xsl:template>
+
+<!-- mo with combining 'not' operator -->
+<xsl:template match="m:mo[string-length(.) = 2 and substring(., 2) = '&#x0338;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\not</xsl:text>
+  <xsl:choose>
+    <!-- Just in case the first character needs escaping  -->
+    <xsl:when test="w:esc"><xsl:apply-templates select="w:esc"/></xsl:when>
+    <!-- Maybe it had a letter/number? Then unsupported -->
+    <xsl:when test="contains($LETTERSNUMBERS, substring(., 1, 1))">
+      <xsl:text>\UNSUPPORTED{Invalid \not character: </xsl:text>
+      <xsl:value-of select="substring(., 1, 1)"/>
+      <xsl:text>}</xsl:text>
+    </xsl:when>
+    <!-- Otherwise just output it -->
+    <xsl:otherwise><xsl:value-of select="substring(., 1, 1)"/></xsl:otherwise>
+  </xsl:choose>
+  <!-- Space after for niceness -->
+  <xsl:text> </xsl:text>
 </xsl:template>
 
 <!-- Other mo uses operatorname -->
