@@ -47,8 +47,13 @@ public class TestMathmltoLatex
 		"\\lvert x \\rvert", "|x|",
 		"\\lVert x \\rVert", "\\Vert x \\Vert",
 
-		// Whitespace difference
+		// Whitespace differences
 		"\\{x\\}", "\\{ x \\}",
+		"\\left( \\frac{1}{x} \\right\\}", "\\left( \\frac{1}{x} \\right \\}",
+		"\\bigl( \\frac{1}{x} \\bigr\\}", "\\bigl( \\frac{1}{x} \\bigr \\}",
+		"\\Bigl( \\frac{1}{x} \\Bigr\\}", "\\Bigl( \\frac{1}{x} \\Bigr \\}",
+		"\\biggl( \\frac{1}{x} \\biggr\\}", "\\biggl( \\frac{1}{x} \\biggr \\}",
+		"\\Biggl( \\frac{1}{x} \\Biggr\\}", "\\Biggl( \\frac{1}{x} \\Biggr \\}",
 
 		// \begin{displaymath} (which is weird and shouldn't really be supported
 		// anyhow)
