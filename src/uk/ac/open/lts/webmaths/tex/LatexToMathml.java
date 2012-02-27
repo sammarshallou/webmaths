@@ -1885,6 +1885,20 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			"scriptlevel", "0", result);
 	}
 
+	/**
+	 * Things that you can apply style elements to in MathML.
+	 * http://www.w3.org/TR/MathML2/chapter3.html#presm.commatt
+	 */
+	private static Set<String> MATHS_STYLE_ELEMENTS = new HashSet<String>(Arrays.asList(new String[] {
+		"mstyle",
+		"mi",
+		"mn",
+		"mo",
+		"mtext",
+		"ms",
+	}));
+
+	
 //def v_font_to_mathml(slf, v_font_name):
 //if (slf.tokens[slf.tokens_index] != u"{"):
 // v_result = result_element(u"mi", 1, u"mathvariant", v_font_name, slf.tokens[slf.tokens_index])
@@ -1909,7 +1923,16 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else
 		{
 			result = pieceToMathml(slf);
-			resultSetAttr(result, "mathvariant", fontName);
+			if (MATHS_STYLE_ELEMENTS.contains(result.getLocalName()))
+			{
+				resultSetAttr(result, "mathvariant", fontName);
+			}
+			else
+			{
+				// Only tokens are allowed to have mathvariant attribute; add an mstyle
+				// instead (the unnecessary mrow will be collapsed at end)
+				result = resultElement("mstyle", 1, "mathvariant", fontName, result);
+			}
 		}
 		if(fontName.equals("normal"))
 		{
@@ -3364,6 +3387,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 		// Do some postprocessing to make it nicer
 		replaceMultipleMtexts(math);
+		collapseUnnecessaryMrows(math);
 
 		return math;
 	}
@@ -3424,6 +3448,48 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				// Recurse
 				replaceMultipleMtexts(e);
 			}
+		}
+	}
+
+	private static void collapseUnnecessaryMrows(Element parent)
+	{
+		// Have we got something that acts like an mrow....
+		if(MROW_EQUIVALENTS.contains(parent.getLocalName()))
+		{
+			// ...with only one child...
+			if(parent.getChildNodes().getLength() == 1)
+			{
+				// ...where that child is an mrow with no attributes?
+				Element child = (Element)parent.getFirstChild();
+				if(child.getLocalName().equals("mrow") &&
+					child.getAttributes().getLength() == 0)
+				{
+					// Mrow is unnecessary. Remove all its children and add them to parent
+					for(Node sub = child.getFirstChild(); sub != null; )
+					{
+						Node next = sub.getNextSibling();
+						child.removeChild(sub);
+						parent.appendChild(sub);
+						sub = next;
+					}
+					parent.removeChild(child);
+
+					// Recurse to same parent again (in case there was ANOTHER mrow)
+					collapseUnnecessaryMrows(parent);
+					return;
+				}
+			}
+		}
+
+		// Nothing found, then just recurse normally
+		for(Node n = parent.getFirstChild(); n != null; n = n.getNextSibling())
+		{
+			if(n.getNodeType() != Node.ELEMENT_NODE)
+			{
+				continue;
+			}
+			Element e = (Element)n;
+			collapseUnnecessaryMrows(e);
 		}
 	}
 }

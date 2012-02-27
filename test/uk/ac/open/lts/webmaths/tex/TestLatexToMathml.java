@@ -119,11 +119,11 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testAlign()
 	{
-		assertMath("<mtable><mtr><mtd><mi>x</mi></mtd>" 
-			+ "<mtd><mrow><mo>=</mo><mn>1</mn></mrow></mtd></mtr>" 
+		assertMath("<mtable><mtr><mtd><mi>x</mi></mtd>"
+			+ "<mtd><mo>=</mo><mn>1</mn></mtd></mtr>"
 			+ "<mtr><mtd><mi>y</mi></mtd>"
-			+ "<mtd><mrow><mo>=</mo><mn>2</mn></mrow></mtd></mtr></mtable>",
-			"\\begin{align*}x&=1\\\\y&=2\\end{align*}"); 
+			+ "<mtd><mo>=</mo><mn>2</mn></mtd></mtr></mtable>",
+			"\\begin{align*}x&=1\\\\y&=2\\end{align*}");
 	}
 
 	@Test
@@ -256,5 +256,8 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mtext mathvariant=\"italic\">frog</mtext>", "\\textit{frog}");
 		assertMath("<mtext mathvariant=\"italic\">frog</mtext>", "\\textsl{frog}");
 		assertMath("<mtext mathvariant=\"monospace\">frog</mtext>", "\\texttt{frog}");
+
+		assertMath("<mi mathvariant=\"fraktur\">X</mi>", "\\mathfrak{X}");
+		assertMath("<mstyle mathvariant=\"bold\"><mi>X</mi><mi>Y</mi></mstyle>", "\\mathbf{XY}");
 	}
 }
