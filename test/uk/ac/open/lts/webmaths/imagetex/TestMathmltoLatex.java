@@ -140,6 +140,10 @@ public class TestMathmltoLatex
 		"\\textnormal{frog}", "\\text{frog}",
 		"\\textrm{frog}", "\\text{frog}",
 		"\\textsl{frog}", "\\textit{frog}",
+
+		// hbox, mbox are converted as text
+		"\\sqrt{\\hbox{frog}}", "\\sqrt{\\text{frog}}",
+		"\\sqrt{\\mbox{frog}}", "\\sqrt{\\text{frog}}",
 	});
 
 	private String doRoundTrip(String tex) throws Exception
