@@ -50,24 +50,24 @@
 <!-- Styled text -->
 <xsl:template match="m:mtext[@mathvariant]">
   <xsl:apply-templates select="@*[local-name() != 'mathvariant']"/>
+  <xsl:variable name="FONT"><xsl:call-template name="mathvariant-to-tex-font"/></xsl:variable>
   <xsl:choose>
-    <xsl:when test="@mathvariant='italic'">
-      <xsl:text>\textit{</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='bold'">
-      <xsl:text>\textbf{</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='monospace'">
-      <xsl:text>\texttt{</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
+    <xsl:when test="$FONT = ''">
       <xsl:text>\UNSUPPORTED{Unsupported mathvariant: {</xsl:text>
       <xsl:value-of select="@mathvariant"/>
       <xsl:text>}\text{</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>}</xsl:text>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\text</xsl:text>
+      <xsl:value-of select="$FONT"/>
+      <xsl:text>{</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>}</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:apply-templates/>
-  <xsl:text>}</xsl:text>
 </xsl:template>
 
 <!-- mtext special cases (PUNCT_AND_SPACE in LatexToMathml.java) -->
@@ -110,6 +110,60 @@
 <xsl:template match="m:mtext[string(.) = '#']">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\#</xsl:text>
+</xsl:template>
+
+<!-- styled mi -->
+<xsl:template match="m:mi[@mathvariant]">
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant']"/>
+  <xsl:variable name="FONT"><xsl:call-template name="mathvariant-to-tex-font"/></xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$FONT = ''">
+      <xsl:text>\UNSUPPORTED{Unsupported mathvariant: {</xsl:text>
+      <xsl:value-of select="@mathvariant"/>
+      <xsl:text>}</xsl:text>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\math</xsl:text>
+      <xsl:value-of select="$FONT"/>
+      <xsl:text>{</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>}</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!--
+  Using @mathvariant, returns a TeX type code e.g. 'frak' for fraktur' or
+  'rm' for normal. Returns blank if unknown.
+  -->
+<xsl:template name="mathvariant-to-tex-font">
+  <xsl:choose>
+    <xsl:when test="@mathvariant='double-struck'">
+      <xsl:text>bb</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='italic'">
+      <xsl:text>it</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='bold'">
+      <xsl:text>bf</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='monospace'">
+      <xsl:text>tt</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='fraktur'">
+      <xsl:text>frak</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='script'">
+      <xsl:text>scr</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='normal'">
+      <xsl:text>rm</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='sans-serif'">
+      <xsl:text>sf</xsl:text>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <!-- mo for \sum, \int might need to change into \tsum, \dint, etc. -->

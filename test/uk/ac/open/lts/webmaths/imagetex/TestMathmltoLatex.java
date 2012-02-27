@@ -54,6 +54,7 @@ public class TestMathmltoLatex
 		"\\Bigl( \\frac{1}{x} \\Bigr\\}", "\\Bigl( \\frac{1}{x} \\Bigr \\}",
 		"\\biggl( \\frac{1}{x} \\biggr\\}", "\\biggl( \\frac{1}{x} \\biggr \\}",
 		"\\Biggl( \\frac{1}{x} \\Biggr\\}", "\\Biggl( \\frac{1}{x} \\Biggr \\}",
+		"\\mathit{\\Gamma}", "\\mathit{\\Gamma }",
 
 		// \begin{displaymath} (which is weird and shouldn't really be supported
 		// anyhow)
@@ -140,6 +141,12 @@ public class TestMathmltoLatex
 		"\\textnormal{frog}", "\\text{frog}",
 		"\\textrm{frog}", "\\text{frog}",
 		"\\textsl{frog}", "\\textit{frog}",
+		"\\boldsymbol{X}", "\\mathbf{X}",
+		"\\bold{X}", "\\mathbf{X}",
+		"\\Bbb{X}", "\\mathbb{X}",
+		"\\mathbbmss{X}", "\\mathbb{X}",
+		"\\mathcal{X}", "\\mathscr{X}",
+		"\\EuScript{X}", "\\mathscr{X}",
 
 		// hbox, mbox are converted as text
 		"\\sqrt{\\hbox{frog}}", "\\sqrt{\\text{frog}}",
