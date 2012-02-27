@@ -135,6 +135,11 @@ public class TestMathmltoLatex
 		"\\dsum_{i=1}^x X_i" , "\\sum_{i=1}^x X_i",
 		"\\dint_{i=1}^x X_i" , "\\int_{i=1}^x X_i",
 		"\\dbinom{4}{x}", "\\binom{4}{x}",
+
+		// Font styles that are converted the same
+		"\\textnormal{frog}", "\\text{frog}",
+		"\\textrm{frog}", "\\text{frog}",
+		"\\textsl{frog}", "\\textit{frog}",
 	});
 
 	private String doRoundTrip(String tex) throws Exception

@@ -39,12 +39,84 @@
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
+<!-- mtext should turn into \text -->
+<xsl:template match="m:mtext">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\text{</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<xsl:template match="m:mtext[@mathvariant]">
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant']"/>
+  <xsl:choose>
+    <xsl:when test="@mathvariant='italic'">
+      <xsl:text>\textit{</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='bold'">
+      <xsl:text>\textbf{</xsl:text>
+    </xsl:when>
+    <xsl:when test="@mathvariant='monospace'">
+      <xsl:text>\texttt{</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\UNSUPPORTED{Unsupported mathvariant: {</xsl:text>
+      <xsl:value-of select="@mathvariant"/>
+      <xsl:text>}\text{</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:apply-templates/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<!-- Except for special cases (PUNCT_AND_SPACE in LatexToMathml.java) -->
+<xsl:template match="m:mtext[string(.) = '&emsp;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\quad </xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&emsp;&emsp;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\qquad </xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&ensp;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\thickspace </xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&emsp14;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\medspace </xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&ThinSpace;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\thinspace </xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&ZeroWidthSpace;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\! </xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&nbsp;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>~</xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '.' or string(.) = ';' or string(.) = '?']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:value-of select="."/>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&#x220e;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\qedsymbol</xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '#']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\#</xsl:text>
+</xsl:template>
+
 <!-- One-character mtext passed through -->
-<xsl:template match="m:mtext[string-length(normalize-space(.)) = 1]">
+<xsl:template match="m:xmtext[string-length(normalize-space(.)) = 1]">
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 <!-- And one-special-character mtext -->
-<xsl:template match="m:mtext[count(node()) = 1 and w:esc]">
+<xsl:template match="m:mxtext[count(node()) = 1 and w:esc]">
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
