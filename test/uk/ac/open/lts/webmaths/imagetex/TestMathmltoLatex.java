@@ -142,11 +142,15 @@ public class TestMathmltoLatex
 		"\\textrm{frog}", "\\text{frog}",
 		"\\textsl{frog}", "\\textit{frog}",
 		"\\boldsymbol{X}", "\\mathbf{X}",
-		"\\bold{X}", "\\mathbf{X}",
+		"\\bold{XY}", "\\mathbf{XY}",
 		"\\Bbb{X}", "\\mathbb{X}",
 		"\\mathbbmss{X}", "\\mathbb{X}",
 		"\\mathcal{X}", "\\mathscr{X}",
 		"\\EuScript{X}", "\\mathscr{X}",
+
+		// Obsolete \bf, \rm turn into the normal ones
+		"{\\bf X Y}", "\\mathbf{XY}",
+		"{\\bf X \\rm Y}", "\\mathbf{X \\mathrm{Y}}",
 
 		// hbox, mbox are converted as text
 		"\\sqrt{\\hbox{frog}}", "\\sqrt{\\text{frog}}",

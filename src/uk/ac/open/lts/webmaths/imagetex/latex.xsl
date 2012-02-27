@@ -49,25 +49,11 @@
 
 <!-- Styled text -->
 <xsl:template match="m:mtext[@mathvariant]">
-  <xsl:apply-templates select="@*[local-name() != 'mathvariant']"/>
-  <xsl:variable name="FONT"><xsl:call-template name="mathvariant-to-tex-font"/></xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$FONT = ''">
-      <xsl:text>\UNSUPPORTED{Unsupported mathvariant: {</xsl:text>
-      <xsl:value-of select="@mathvariant"/>
-      <xsl:text>}\text{</xsl:text>
-      <xsl:apply-templates/>
-      <xsl:text>}</xsl:text>
-      <xsl:apply-templates/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:text>\text</xsl:text>
-      <xsl:value-of select="$FONT"/>
-      <xsl:text>{</xsl:text>
-      <xsl:apply-templates/>
-      <xsl:text>}</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:call-template name="mathvariant-to-tex-font">
+    <xsl:with-param name="PREFIX">\text</xsl:with-param>
+    <xsl:with-param name="FAILCOMMAND">\text</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- mtext special cases (PUNCT_AND_SPACE in LatexToMathml.java) -->
@@ -114,55 +100,81 @@
 
 <!-- styled mi -->
 <xsl:template match="m:mi[@mathvariant]">
-  <xsl:apply-templates select="@*[local-name() != 'mathvariant']"/>
-  <xsl:variable name="FONT"><xsl:call-template name="mathvariant-to-tex-font"/></xsl:variable>
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:call-template name="mathvariant-to-tex-font">
+    <xsl:with-param name="PREFIX">\math</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- Font style using mstyle -->
+<xsl:template match="m:mstyle[@mathvariant]">
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:call-template name="mathvariant-to-tex-font">
+    <xsl:with-param name="PREFIX">\math</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<!--
+  Using @mathvariant, outputs TeX font code.
+  PREFIX - First part of TeX command e.g. \text, \math
+  FAILCOMMAND - Optional; if specified uses this command e.g. \text for
+    unrecognised fonts
+  -->
+<xsl:template name="mathvariant-to-tex-font">
+  <xsl:param name="PREFIX"/>
+  <xsl:param name="FAILCOMMAND"/>
+  <xsl:variable name="FONT">
+    <xsl:choose>
+      <xsl:when test="@mathvariant='double-struck'">
+        <xsl:text>bb</xsl:text>
+      </xsl:when>
+      <xsl:when test="@mathvariant='italic'">
+        <xsl:text>it</xsl:text>
+      </xsl:when>
+      <xsl:when test="@mathvariant='bold'">
+        <xsl:text>bf</xsl:text>
+      </xsl:when>
+      <xsl:when test="@mathvariant='monospace'">
+        <xsl:text>tt</xsl:text>
+      </xsl:when>
+      <xsl:when test="@mathvariant='fraktur'">
+        <xsl:text>frak</xsl:text>
+      </xsl:when>
+      <xsl:when test="@mathvariant='script'">
+        <xsl:text>scr</xsl:text>
+      </xsl:when>
+      <xsl:when test="@mathvariant='normal'">
+        <xsl:text>rm</xsl:text>
+      </xsl:when>
+      <xsl:when test="@mathvariant='sans-serif'">
+        <xsl:text>sf</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:choose>
     <xsl:when test="$FONT = ''">
       <xsl:text>\UNSUPPORTED{Unsupported mathvariant: {</xsl:text>
       <xsl:value-of select="@mathvariant"/>
       <xsl:text>}</xsl:text>
-      <xsl:apply-templates/>
+      <xsl:choose>
+        <xsl:when test="$FAILCOMMAND=''">
+          <xsl:apply-templates/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$FAILCOMMAND"/>
+          <xsl:text>{</xsl:text>
+          <xsl:apply-templates/>
+          <xsl:text>}</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>\math</xsl:text>
+      <xsl:value-of select="$PREFIX"/>
       <xsl:value-of select="$FONT"/>
       <xsl:text>{</xsl:text>
       <xsl:apply-templates/>
       <xsl:text>}</xsl:text>
     </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<!--
-  Using @mathvariant, returns a TeX type code e.g. 'frak' for fraktur' or
-  'rm' for normal. Returns blank if unknown.
-  -->
-<xsl:template name="mathvariant-to-tex-font">
-  <xsl:choose>
-    <xsl:when test="@mathvariant='double-struck'">
-      <xsl:text>bb</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='italic'">
-      <xsl:text>it</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='bold'">
-      <xsl:text>bf</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='monospace'">
-      <xsl:text>tt</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='fraktur'">
-      <xsl:text>frak</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='script'">
-      <xsl:text>scr</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='normal'">
-      <xsl:text>rm</xsl:text>
-    </xsl:when>
-    <xsl:when test="@mathvariant='sans-serif'">
-      <xsl:text>sf</xsl:text>
-    </xsl:when>
   </xsl:choose>
 </xsl:template>
 
