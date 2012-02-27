@@ -245,4 +245,16 @@ public class TestLatexToMathml extends TestCase
 		String result = new TokenInput("\\text{frog}").toMathml(true);
 		assertTrue(result.contains("<mstyle displaystyle=\"true\"><mtext>frog</mtext></mstyle>"));
 	}
+
+	@Test
+	public void testFonts() throws Exception
+	{
+		assertMath("<mtext>frog</mtext>", "\\text{frog}");
+		assertMath("<mtext>frog</mtext>", "\\textnormal{frog}");
+		assertMath("<mtext>frog</mtext>", "\\textrm{frog}");
+		assertMath("<mtext mathvariant=\"bold\">frog</mtext>", "\\textbf{frog}");
+		assertMath("<mtext mathvariant=\"italic\">frog</mtext>", "\\textit{frog}");
+		assertMath("<mtext mathvariant=\"italic\">frog</mtext>", "\\textsl{frog}");
+		assertMath("<mtext mathvariant=\"monospace\">frog</mtext>", "\\texttt{frog}");
+	}
 }

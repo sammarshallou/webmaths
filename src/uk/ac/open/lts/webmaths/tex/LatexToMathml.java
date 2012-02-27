@@ -1623,7 +1623,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, null);
 			}
 		});
 //u"\\textnormal": v_text_to_mathml, \
@@ -1632,7 +1632,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, null);
 			}
 		});
 //u"\\textrm": v_text_to_mathml, \
@@ -1641,7 +1641,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, null);
 			}
 		});
 //u"\\textsl": v_text_to_mathml, \
@@ -1650,7 +1650,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, "italic");
 			}
 		});
 //u"\\textit": v_text_to_mathml, \
@@ -1659,7 +1659,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, "italic");
 			}
 		});
 //u"\\texttt": v_text_to_mathml, \
@@ -1668,7 +1668,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, "monospace");
 			}
 		});
 //u"\\textbf": v_text_to_mathml, \
@@ -1677,7 +1677,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, "bold");
 			}
 		});
 //u"\\hbox": v_text_to_mathml, \
@@ -1686,7 +1686,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, null);
 			}
 		});
 //u"\\mbox": v_text_to_mathml, \
@@ -1695,7 +1695,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return textToMathml(slf);
+				return textToMathml(slf, null);
 			}
 		});
 //u"\\begin": v_latex_block_to_mathml, \
@@ -2528,7 +2528,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	}
 
 //def v_text_to_mathml(slf):
-	private Element textToMathml(TokenInput slf)
+	private Element textToMathml(TokenInput slf, String variant)
 	{
 //if (slf.tokens[slf.tokens_index] != u"{"):
 // v_result = result_element(u"mtext", 0, slf.tokens[slf.tokens_index])
@@ -2539,7 +2539,14 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		String token = slf.nextToken();
 		if(!token.equals("{"))
 		{
-			return resultElement("mtext", 0, token);
+			if(variant == null)
+			{
+				return resultElement("mtext", 0, token);
+			}
+			else
+			{
+				return resultElement("mtext", 1, "mathvariant", variant, token);
+			}
 		}
 		int braces = 0;
 //v_result = None
@@ -2584,7 +2591,14 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //  slf.tokens_index += 1
 			else
 			{
-				node = resultElement("mtext", 0, token);
+				if(variant == null)
+				{
+					node = resultElement("mtext", 0, token);
+				}
+				else
+				{
+					node = resultElement("mtext", 1, "mathvariant", variant, token);
+				}
 			}
 
 // if (v_mrow is not None):
