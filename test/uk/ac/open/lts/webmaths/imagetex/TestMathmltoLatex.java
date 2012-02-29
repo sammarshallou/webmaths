@@ -55,6 +55,11 @@ public class TestMathmltoLatex
 		"\\biggl( \\frac{1}{x} \\biggr\\}", "\\biggl( \\frac{1}{x} \\biggr \\}",
 		"\\Biggl( \\frac{1}{x} \\Biggr\\}", "\\Biggl( \\frac{1}{x} \\Biggr \\}",
 		"\\mathit{\\Gamma}", "\\mathit{\\Gamma }",
+		"\\begin{pmatrix} a&b \\\\ c&d \\end{pmatrix}", "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
+		"\\begin{bmatrix} a&b \\\\ c&d \\end{bmatrix}", "\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}",
+		"\\begin{Bmatrix} a&b \\\\ c&d \\end{Bmatrix}", "\\begin{Bmatrix} a & b \\\\ c & d \\end{Bmatrix}",
+		"\\begin{vmatrix} a&b \\\\ c&d \\end{vmatrix}", "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}",
+		"\\begin{Vmatrix} a&b \\\\ c&d \\end{Vmatrix}", "\\begin{Vmatrix} a & b \\\\ c & d \\end{Vmatrix}",
 
 		// \begin{displaymath} (which is weird and shouldn't really be supported
 		// anyhow)
@@ -155,6 +160,9 @@ public class TestMathmltoLatex
 		// hbox, mbox are converted as text
 		"\\sqrt{\\hbox{frog}}", "\\sqrt{\\text{frog}}",
 		"\\sqrt{\\mbox{frog}}", "\\sqrt{\\text{frog}}",
+
+		// smallmatrix = pmatrix
+		"\\begin{smallmatrix} a&b \\\\ c&d \\end{smallmatrix}", "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
 	});
 
 	private String doRoundTrip(String tex) throws Exception

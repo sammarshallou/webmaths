@@ -327,6 +327,68 @@
 <xsl:template match="m:annotation"/>
 <xsl:template match="m:annotation-xml"/>
 
+<!-- mtable as matrix -->
+<xsl:template match="m:mrow[count(*) = 3 and *[2][self::m:mtable] and
+    *[1][self::m:mo] and *[3][self::m:mo] and
+    ((string(*[1]) = '(' and string(*[3]) = ')') or
+    (string(*[1]) = '[' and string(*[3]) = ']') or
+    (string(*[1]) = '{' and string(*[3]) = '}') or
+    (string(*[1]) = '|' and string(*[3]) = '|') or
+    (string(*[1]) = '&Verbar;' and string(*[3]) = '&Verbar;')
+    )]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="m:mo/@*[local-name() != 'stretchy']"/>
+  <xsl:variable name="TYPE">
+    <xsl:choose>
+      <xsl:when test="string(*[1]) = '('">
+        <xsl:text>pmatrix</xsl:text>
+      </xsl:when>
+      <xsl:when test="string(*[1]) = '['">
+        <xsl:text>bmatrix</xsl:text>
+      </xsl:when>
+      <xsl:when test="string(*[1]) = '{'">
+        <xsl:text>Bmatrix</xsl:text>
+      </xsl:when>
+      <xsl:when test="string(*[1]) = '|'">
+        <xsl:text>vmatrix</xsl:text>
+      </xsl:when>
+      <xsl:when test="string(*[1]) = '&Verbar;'">
+        <xsl:text>Vmatrix</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:text>\begin{</xsl:text>
+  <xsl:value-of select="$TYPE"/>
+  <xsl:text>} </xsl:text>
+  <xsl:for-each select="m:mtable">
+    <xsl:call-template name="matrix"/>
+  </xsl:for-each>
+  <xsl:text>\end{</xsl:text>
+  <xsl:value-of select="$TYPE"/>
+  <xsl:text>} </xsl:text>
+</xsl:template>
+
+<!--
+  Converts an mtable (must be context node) into a matrix format like
+  a & b \\ c & d
+  -->
+<xsl:template name="matrix">
+  <xsl:apply-templates select="@*"/>
+  <xsl:for-each select="m:mtr">
+    <xsl:apply-templates select="@*"/>
+    <xsl:if test="preceding-sibling::*">
+      <xsl:text> \\ </xsl:text>
+    </xsl:if>
+    <xsl:for-each select="m:mtd">
+      <xsl:apply-templates select="@*"/>
+      <xsl:if test="preceding-sibling::*">
+        <xsl:text> &amp; </xsl:text>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </xsl:for-each>
+  </xsl:for-each>
+</xsl:template>
+
 <!-- mtable as \substack (single-column table within limits) -->
 <xsl:template match="m:mtable[count(m:mtr[count(m:mtd) != 1]) = 0 and
     (parent::m:munder or parent::m:mover or parent::m:munderover or
