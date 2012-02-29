@@ -64,7 +64,7 @@ public class TestMathmltoLatex
 
 		// \begin{displaymath} (which is weird and shouldn't really be supported
 		// anyhow)
-		"\\begin{displaymath} \\frac{1}{x}", "\\displaystyle \\frac{1}{x}",
+		"\\begin{displaymath} \\frac{1}{x}", "\\frac{1}{x}",
 
 		// Unnecessary \displaystyle
 		"\\displaystyle \\frac{1}{x}", "\\frac{1}{x}",
@@ -312,8 +312,11 @@ public class TestMathmltoLatex
 
 			checkRoundTrip(out, tex, true);
 		}
-		System.err.println(out);
-		System.err.println(out.toString().replaceAll("[^\n]", "").length() / 2 + " errors");
+		if(out.length() > 0)
+		{
+			System.err.println(out);
+			System.err.println(out.toString().replaceAll("[^\n]", "").length() / 2 + " errors");
+		}
 		assertTrue(out.length() == 0);
 	}
 }
