@@ -38,7 +38,9 @@ public class MathmlEntityFixer
 	private final static Pattern 
 		REGEX_ENTITY = Pattern.compile("&([^#][^;]*);"),	
 		REGEX_NUMERIC_ENTITY = Pattern.compile("&#([^;]*);"),
-		REGEX_HEX_ENTITIES = Pattern.compile("(?:&#x[^;]*;)+");
+		REGEX_HEX_ENTITIES = Pattern.compile("(?:&#x[^;]*;)+"),
+		REGEX_CDATA = Pattern.compile("<!\\[CDATA\\[.*?\\]\\]>", Pattern.DOTALL),
+		REGEX_COMMENT = Pattern.compile("<!--.*?-->", Pattern.DOTALL);
 	
 	/**
 	 * Constructs and initialises the fixer, loading in all the data it needs.
@@ -129,8 +131,37 @@ public class MathmlEntityFixer
 	 */
 	public String fix(String original) throws IllegalArgumentException
 	{
-		Matcher m = REGEX_ENTITY.matcher(original);
 		StringBuffer out = new StringBuffer();
+
+		// Do the same thing for cdata (first) then comment
+		for(Pattern ignoring : new Pattern[] { REGEX_CDATA, REGEX_COMMENT })
+		{
+			// Find CDATA/comment, split that out and recurse
+			Matcher m = ignoring.matcher(original);
+			boolean gotIgnoring = false;
+			while(m.find())
+			{
+				String cdata = m.group();
+				StringBuffer temp = new StringBuffer();
+				m.appendReplacement(temp, "");
+				// Fix the bit before the match
+				out.append(fix(temp.toString()));
+				// Add the cdata unchanged
+				out.append(cdata);
+				gotIgnoring = true;
+			}
+			// If there were any cdata/comment, recurse for last part and return result
+			if(gotIgnoring)
+			{
+				StringBuffer temp = new StringBuffer();
+				m.appendTail(temp);
+				out.append(fix(temp.toString()));
+				return out.toString();
+			}
+		}
+
+		// No cdata or comments, just do replace
+		Matcher m = REGEX_ENTITY.matcher(original);
 		while(m.find())
 		{
 			String replacement = entityToChar.get(m.group(1));

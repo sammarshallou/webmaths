@@ -90,4 +90,20 @@ public class TestMathmlEntityFixer extends TestCase
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
 		assertEquals("and therefore", fixer.toSpeech("and \u2234"));
 	}
+
+	@Test
+	public void testComments() throws Exception
+	{
+		MathmlEntityFixer fixer = new MathmlEntityFixer();
+		String testString = "&amp;<!-- \n\n&\n\n -->&amp;";
+		assertEquals(testString, fixer.fix(testString));
+	}
+
+	@Test
+	public void testCdata() throws Exception
+	{
+		MathmlEntityFixer fixer = new MathmlEntityFixer();
+		String testString = "&amp;<![CDATA[\n\n&\n\n]]>&amp;";
+		assertEquals(testString, fixer.fix(testString));
+	}
 }
