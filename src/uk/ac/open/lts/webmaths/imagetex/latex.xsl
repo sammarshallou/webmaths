@@ -368,6 +368,25 @@
   <xsl:text>} </xsl:text>
 </xsl:template>
 
+<!-- mtable as cases -->
+<xsl:template match="m:mrow[count(*) = 2 and *[2][self::m:mtable] and
+    *[1][self::m:mo] and string(*[1]) = '{']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="m:mo/@*"/>
+  <xsl:text>\begin{cases} </xsl:text>
+  <xsl:for-each select="m:mtable">
+    <xsl:call-template name="matrix"/>
+  </xsl:for-each>
+  <xsl:text>\end{cases} </xsl:text>
+</xsl:template>
+
+<!-- Default mtable treated as \begin{array} -->
+<xsl:template match="m:mtable">
+  <xsl:text>\begin{array} </xsl:text>
+  <xsl:call-template name="matrix"/>
+  <xsl:text>\end{array} </xsl:text>
+</xsl:template>
+
 <!--
   Converts an mtable (must be context node) into a matrix format like
   a & b \\ c & d
