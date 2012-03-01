@@ -272,6 +272,7 @@ public class LatexToMathml
 		".", ".",
 		";", ";",
 		"?", "?",
+		"\\pounds", "\u00a3",
 		"\\qedsymbol", "\u220e"
 	});
 
@@ -585,12 +586,16 @@ public class LatexToMathml
 		"\\leftharpoonup", "\u21bc",
 		"\\leftleftarrows", "\u21c7",
 		"\\leftrightarrow", "\u2194",
+		"\\Leftrightarrow", "\u21d4",
+		"\\iff", "\u21d4",
 		"\\leftrightarrows", "\u21c6",
 		"\\leftrightharpoons", "\u21cb",
 		"\\leftrightsquigarrow", "\u21ad",
 		"\\Lleftarrow", "\u21da",
 		"\\longleftarrow", "\u27f5",
 		"\\Longleftarrow", "\u27f8",
+		"\\longrightarrow", "\u27f6",
+		"\\Longrightarrow", "\u27f9",
 		"\\longleftrightarrow", "\u27f7",
 		"\\Longleftrightarrow", "\u27fa",
 		"\\looparrowleft", "\u21ab",
@@ -609,6 +614,7 @@ public class LatexToMathml
 		"\\restriction", "\u21be",
 		"\\rightarrow", "\u2192",
 		"\\Rightarrow", "\u21d2",
+		"\\implies", "\u21d2",
 		"\\rightarrowtail", "\u21a3",
 		"\\rightharpoondown", "\u21c1",
 		"\\rightharpoonup", "\u21c0",

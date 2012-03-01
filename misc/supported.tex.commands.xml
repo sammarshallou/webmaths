@@ -1640,6 +1640,14 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftrightarrow</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>\Leftrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Leftrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\iff</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \iff</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\leftrightarrows</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \leftrightarrows</TeX></InlineEquation></td>
                         </tr>
@@ -1662,6 +1670,14 @@
                         <tr>
                             <td class="TableLeft"><ComputerCode>\Longleftarrow</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Longleftarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\longrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \longrightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Longrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Longrightarrow</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\longleftrightarrow</ComputerCode></td>
@@ -1734,6 +1750,10 @@
                         <tr>
                             <td class="TableLeft"><ComputerCode>\Rightarrow</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Rightarrow</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\implies</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \implies</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\rightarrowtail</ComputerCode></td>
@@ -2283,6 +2303,11 @@
                             <td class="TableLeft">QED (end of proof)</td>
                             <td class="TableLeft"><ComputerCode>x \qedsymbol</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \qedsymbol</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Pound sign</td>
+                            <td class="TableLeft"><ComputerCode>\pounds 300</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \pounds 300</TeX></InlineEquation></td>
                         </tr>
                     </tbody>
                 </Table>
