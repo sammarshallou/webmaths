@@ -1,10 +1,10 @@
 package uk.ac.open.lts.webmaths.image;
 
+import static org.junit.Assert.*;
+
 import org.junit.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.ls.*;
-
-import static org.junit.Assert.*;
 
 public class TestWebMathsImage
 {

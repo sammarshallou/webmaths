@@ -13,6 +13,12 @@
         implementation="uk.ac.open.lts.webmaths.image.WebMathsImage"
         url-pattern="/image"/>
     <endpoint
+        name="WebMathsImageTex"
+        service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsImage"
+        wsdl="WEB-INF/wsdl/maths.image.wsdl"
+        implementation="uk.ac.open.lts.webmaths.imagetex.WebMathsImageTex"
+        url-pattern="/imagetex"/>
+    <endpoint
         name="WebMathsTex"
         service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsTex"
         wsdl="WEB-INF/wsdl/maths.tex.wsdl"
