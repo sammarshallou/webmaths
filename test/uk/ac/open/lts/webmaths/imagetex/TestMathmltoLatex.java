@@ -120,7 +120,9 @@ public class TestMathmltoLatex
 		"\\varsupsetneqq", "\\supsetneqq",
 		"\\vartriangle", "\\triangle",
 		"\\char93", "\\#",
-		
+		"\\iff", "\\Leftrightarrow",
+		"\\implies", "\\Rightarrow",
+
 		// Dot ambiguity
 		"\\dots", "\\ldots",
 		"\\dotso", "\\ldots",
@@ -153,6 +155,9 @@ public class TestMathmltoLatex
 		"\\mathbbmss{X}", "\\mathbb{X}",
 		"\\mathcal{X}", "\\mathscr{X}",
 		"\\EuScript{X}", "\\mathscr{X}",
+
+		// \over is same as \frac
+		"1 \\over x", "\\frac{1}{x}",
 
 		// Obsolete \bf, \rm turn into the normal ones
 		"{\\bf X Y}", "\\mathbf{XY}",
