@@ -2275,6 +2275,11 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x ? y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft">Ampersand</td>
+                            <td class="TableLeft"><ComputerCode>x \&amp; y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \&amp; y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft">QED (end of proof)</td>
                             <td class="TableLeft"><ComputerCode>x \qedsymbol</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \qedsymbol</TeX></InlineEquation></td>
@@ -2415,9 +2420,25 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x^j</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft">Multiple superscript/subscript</td>
+                            <td class="TableLeft"><ComputerCode>T_u{}^u</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle T_u{}^u</TeX></InlineEquation></td>
+                        </tr>
+
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\frac</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\frac{1}{x}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \frac{1}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\over</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>1 \over x</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 1 \over x</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\choose</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>2 \choose 3</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 2 \choose 3</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\dfrac</ComputerCode></td>
@@ -2571,6 +2592,11 @@
                             <td class="TableLeft"><ComputerCode>\not</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>X \not= Y</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle X \not= Y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\not</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\not Q</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \not Q</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\char</ComputerCode></td>
