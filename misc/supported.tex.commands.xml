@@ -2345,6 +2345,11 @@
                             <th class="ColumnHeadLeft">Output</th>
                         </tr>
                         <tr>
+                            <td class="TableLeft">Space</td>
+                            <td class="TableLeft"><ComputerCode>x \ &#xa0;y</ComputerCode> (backslash space)</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \  y</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft">Double quad space</td>
                             <td class="TableLeft"><ComputerCode>x \qquad y</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \qquad y</TeX></InlineEquation></td>

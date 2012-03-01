@@ -82,7 +82,17 @@ public class TestTokenInput extends TestCase
 		assertEquals("*", tokens.nextToken());
 		assertEquals(null, tokens.nextToken());
 	}
-	
+
+	@Test
+	public void testBackslashSpace()
+	{
+		TokenInput tokens = new TokenInput("x\\ y");
+		assertEquals("x", tokens.nextToken());
+		assertEquals("\\ ", tokens.nextToken());
+		assertEquals("y", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+	}
+
 	@Test
 	public void testReal()
 	{

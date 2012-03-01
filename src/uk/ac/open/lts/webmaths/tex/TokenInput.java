@@ -55,7 +55,7 @@ public class TokenInput
 //  tokenize_strict_re = re.compile(ur"""(\\begin|\\operatorname|\\mathrm|\\mathop|\\end)\s*\{\s*([A-Z a-z]+)\s*\}|(\\[a-zA-Z]+|\\[\\#\%\{\},:;!])|(\s+)|([0-9\.])|([\$!"#%&'\u2019\u201d()*+,-.\/:;<=>?\[\]^_`\{\|\}~])|([a-zA-Z@])""")
 	private final static Pattern STRICT_RE = Pattern.compile(
 		"(\\\\begin|\\\\operatorname|\\\\mathrm|\\\\mathop|\\\\end)\\s*" +
-		"\\{\\s*([A-Z a-z]+)\\s*\\}|(\\\\[a-zA-Z]+|\\\\[\\\\#\\%\\{\\},:;!])|(\\s+)|" +
+		"\\{\\s*([A-Z a-z]+)\\s*\\}|(\\\\[a-zA-Z]+|\\\\[ \\\\#\\%\\{\\},:;!])|(\\s+)|" +
 		"([0-9\\.])|([\\$!\"#%&'\u2019\u201d()*+,-.\\/:;<=>?\\[\\]" +
 		"^_`\\{\\|\\}~])|([a-zA-Z@])");
 

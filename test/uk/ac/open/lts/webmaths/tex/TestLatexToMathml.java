@@ -260,4 +260,10 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mi mathvariant=\"fraktur\">X</mi>", "\\mathfrak{X}");
 		assertMath("<mstyle mathvariant=\"bold\"><mi>X</mi><mi>Y</mi></mstyle>", "\\mathbf{XY}");
 	}
+
+	@Test
+	public void testSpace() throws Exception
+	{
+		assertMath("<mi>x</mi><mrow><mtext> </mtext><mi>y</mi></mrow>", "x\\ y");
+	}
 }
