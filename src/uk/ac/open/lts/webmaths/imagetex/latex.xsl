@@ -527,6 +527,25 @@
   </xsl:for-each>
 </xsl:template>
 
+<!-- mrow as \choose -->
+<xsl:template match="m:mrow[count(*) = 3 and *[1][self::m:mo and string(.) = '{'] and
+    *[3][self::m:mo and string(.) = '}'] and *[2][self::m:mfrac[@linethickness='0' and
+    count(@*)=1]]]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:for-each select="m:mo">
+      <xsl:apply-templates select="@*"/>
+  </xsl:for-each>
+
+  <xsl:for-each select="m:mfrac">
+    <xsl:apply-templates select="@*[local-name() != 'linethickness']"/>
+    <xsl:text>{</xsl:text>
+    <xsl:apply-templates select="*[1]"/>
+    <xsl:text> \choose </xsl:text>
+    <xsl:apply-templates select="*[2]"/>
+    <xsl:text>} </xsl:text>
+  </xsl:for-each>
+</xsl:template>
+
 <!-- mfrac -->
 <xsl:template match="m:mfrac">
   <xsl:apply-templates select="@*"/>
