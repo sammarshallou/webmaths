@@ -107,7 +107,15 @@ public class TransformerPool
 		}
 		else
 		{
-			return transformerPool.remove(0);
+			Transformer t = transformerPool.remove(0);
+			// This reset does not seem to actually be needed, but may be a
+			// good idea anyway.
+			t.reset();
+			if(typeParam != null)
+			{
+				t.setParameter("TYPE", typeParam);
+			}
+			return t;
 		}
 	}
 	

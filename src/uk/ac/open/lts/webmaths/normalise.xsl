@@ -165,7 +165,9 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="m:mtr/*[not(self::m:mtd)] | m:mlabeledtr/*[position()&gt;1][not(self::m:mtd)]">
+<xsl:template match="m:mtr/*[not(self::m:mtd)] | m:mlabeledtr/*[position()&gt;1 and not(self::m:mtd)]">
+  <!-- Note: In obscure cases, the XSLT system crashes if you use two lots of
+       square brackets in place of the 'and' above. See TestNormaliseXSL.java -->
   <m:mtd>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>

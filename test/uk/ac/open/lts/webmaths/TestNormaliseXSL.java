@@ -20,7 +20,7 @@ package uk.ac.open.lts.webmaths;
 
 import java.io.*;
 
-import javax.xml.transform.Transformer;
+import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 
 import junit.framework.TestCase;
@@ -172,5 +172,44 @@ public class TestNormaliseXSL extends TestCase
 			"Unexpected result:\n" + value + "\nExpecting:\n" + expected,
 			expected.replaceAll("\\s+", "").replace('"', '\'').equals(
 				value.replaceAll("\\s+", "").replace('"', '\'')));
+	}
+
+	@Test
+	public void testEvilBug() throws Exception
+	{
+		// This was a bug where processing the second document ONLY fails if another
+		// document has already been processed using the same transformer object.
+		// It doesn't matter what the content of the first document is. The
+		// transformer outputs to stderr as follows:
+		// ERROR:  ''
+
+		String maths1="<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mstyle displaystyle=\"true\"><mn>1</mn></mstyle><annotation encoding=\"application/x-tex\">1</annotation></semantics></math>";
+		// I have tried to reduce the content of this to see if the error still
+		// occurs but, at present, removing any single line causes the error to go
+		// away. Adding line breaks (\n) does not make any difference.
+		String maths2="<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mtable>" +
+				"<mtr><mtd/><mtd><mrow><mrow><mtext>Let</mtext></mrow><mi>f</mi></mrow><mo>:</mo><mrow><mrow><mtext> </mtext><mi>x</mi></mrow><mo>↦</mo><mrow><mtext> </mtext><mi>f</mi><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mrow></mrow><mrow><mtext>bethecubicgiven.</mtext></mrow></mtd></mtr>" +
+				"<mtr><mtd/><mtd><mrow><mrow><mi>f</mi><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow><mrow><mrow><mrow><mtext>hassolutions</mtext></mrow><mi>x</mi></mrow><mo>=</mo><mi>p</mi></mrow><mrow><mrow><mo>,</mo><mi>x</mi></mrow><mo>=</mo><mi>q</mi></mrow><mrow><mrow><mo>,</mo><mi>x</mi></mrow><mo>=</mo><mi>r</mi></mrow><mrow><mtext>therefore,</mtext></mrow></mtd></mtr><mtr><mtd/><mtd><mrow><mrow><mrow><mo>(</mo><mrow><mi>x</mi><mo>−</mo><mi>p</mi></mrow><mo>)</mo></mrow><mrow><mo>(</mo><mrow><mi>x</mi><mo>−</mo><mi>q</mi></mrow><mo>)</mo></mrow><mrow><mo>(</mo><mrow><mi>x</mi><mo>−</mo><mi>r</mi></mrow><mo>)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow><mo>,</mo></mtd></mtr>" +
+				"<mtr><mtd/><mtd><mo>⇒</mo><mrow><mrow><mrow><mtext> </mtext><msup><mi>x</mi><mn>3</mn></msup></mrow><mo>−</mo><mrow><msup><mi>x</mi><mn>2</mn></msup><mrow><mo>(</mo><mrow><mi>p</mi><mo>+</mo><mi>q</mi><mo>+</mo><mi>r</mi></mrow><mo>)</mo></mrow></mrow><mo>+</mo><mrow><mi>x</mi><mrow><mo>(</mo><mrow><mrow><mi>p</mi><mi>q</mi></mrow><mo>+</mo><mrow><mi>p</mi><mi>r</mi></mrow><mo>+</mo><mrow><mi>q</mi><mi>r</mi></mrow></mrow><mo>)</mo></mrow></mrow><mo>−</mo><mrow><mi>p</mi><mi>q</mi><mi>r</mi></mrow></mrow><mo>=</mo><mn>0</mn></mrow><mo>,</mo></mtd></mtr>" +
+				"<mtr><mtd/><mtd><mrow><mrow><mtext>Attheturningpoints</mtext></mrow><mi>f</mi></mrow><mrow><mrow><mo>′</mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow><mrow><mtext>so,</mtext></mrow></mtd></mtr>" +
+				"<mtr><mtd/><mtd><mrow><mrow><mrow><mn>3</mn><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>−</mo><mrow><mn>2</mn><mi>x</mi><mrow><mo>(</mo><mrow><mi>p</mi><mo>+</mo><mi>q</mi><mo>+</mo><mi>r</mi></mrow><mo>)</mo></mrow></mrow><mo>+</mo><mrow><mo>(</mo><mrow><mrow><mi>p</mi><mi>q</mi></mrow><mo>+</mo><mrow><mi>p</mi><mi>r</mi></mrow><mo>+</mo><mrow><mi>q</mi><mi>r</mi></mrow></mrow><mo>)</mo></mrow></mrow><mo>=</mo><mn>0</mn></mrow><mo>,</mo></mtd></mtr>" +
+				"n<mtr><mtd/><mtd><mrow><mrow><mo>⇒</mo><mrow><mo>(</mo><mrow><mrow><mi>p</mi><mi>q</mi></mrow><mo>+</mo><mrow><mi>p</mi><mi>r</mi></mrow><mo>+</mo><mrow><mi>q</mi><mi>r</mi></mrow></mrow><mo>)</mo></mrow></mrow><mo>=</mo><mo>−</mo></mrow><mrow><mrow><mrow><mn>3</mn><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo><mrow><mn>2</mn><mi>x</mi><mrow><mo>(</mo><mrow><mi>p</mi><mo>+</mo><mi>q</mi><mo>+</mo><mi>r</mi></mrow><mo>)</mo></mrow></mrow></mrow><mo>=</mo><mo>−</mo></mrow><mrow><mn>3</mn><mrow><mo>(</mo><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mrow><mstyle displaystyle=\"false\"><mfrac><mn>2</mn><mn>3</mn></mfrac></mstyle><mi>x</mi><mrow><mo>(</mo><mrow><mi>p</mi><mo>+</mo><mi>q</mi><mo>+</mo><mi>r</mi></mrow><mo>)</mo></mrow></mrow></mrow><mo>)</mo></mrow></mrow><mo>,</mo></mtd></mtr>" +
+				"<mtr><mtd/><mtd><mrow><mo>=</mo><mo>−</mo><mrow><mn>3</mn><mrow><mo>(</mo><mrow><msup><mrow><mo>(</mo><mrow><mi>x</mi><mo>−</mo><mrow><mstyle displaystyle=\"false\"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><mrow><mo>(</mo><mrow><mi>p</mi><mo>+</mo><mi>q</mi><mo>+</mo><mi>r</mi></mrow><mo>)</mo></mrow></mrow></mrow><mo>)</mo></mrow><mn>2</mn></msup><mo>−</mo><mfrac><msup><mrow><mo>(</mo><mrow><mi>p</mi><mo>+</mo><mi>q</mi><mo>+</mo><mi>r</mi></mrow><mo>)</mo></mrow><mn>2</mn></msup><mn>9</mn></mfrac></mrow><mo>)</mo></mrow></mrow></mrow><mrow><mtext>bycompletingthesquare.</mtext></mrow></mtd></mtr>" +
+				"</mtable></math>";
+
+		// The error was caused by the m:mtr template in normalise.xsl - see
+		// comment in that file. A slight change to the syntax fixed it. This looks
+		// to be a bug in the XSLT system rather than anything actually wrong with
+		// our code.
+		Transformer t = pool.reserve();
+		StringWriter out = new StringWriter();
+		t.transform(
+			new StreamSource(new StringReader(maths1)),
+			new StreamResult(out));
+		t.reset();
+		t.transform(
+			new StreamSource(new StringReader(maths2)),
+			new StreamResult(out));
+		pool.release(t);
 	}
 }
