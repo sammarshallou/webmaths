@@ -337,7 +337,7 @@
 <xsl:template match="m:annotation-xml"/>
 
 <!-- mtable as matrix -->
-<xsl:template match="m:mrow[count(*) = 3 and *[2][self::m:mtable] and
+<xsl:template match="m:mrow[count(*) = 3 and *[2][self::m:mtable and not(@columnalign)] and
     *[1][self::m:mo and not(@minsize)] and *[3][self::m:mo and not(@minsize)] and
     ((string(*[1]) = '(' and string(*[3]) = ')') or
     (string(*[1]) = '[' and string(*[3]) = ']') or
@@ -378,7 +378,7 @@
 </xsl:template>
 
 <!-- mtable as cases -->
-<xsl:template match="m:mrow[count(*) = 2 and *[2][self::m:mtable] and
+<xsl:template match="m:mrow[count(*) = 2 and *[2][self::m:mtable and not(@columnalign)] and
     *[1][self::m:mo] and string(*[1]) = '{']">
   <xsl:apply-templates select="@*"/>
   <xsl:apply-templates select="m:mo/@*"/>
@@ -391,9 +391,54 @@
 
 <!-- Default mtable treated as \begin{array} -->
 <xsl:template match="m:mtable">
-  <xsl:text>\begin{array} </xsl:text>
-  <xsl:call-template name="matrix"/>
+  <xsl:apply-templates select="@*[local-name() != 'columnalign']"/>
+  <xsl:text>\begin{array}</xsl:text>
+  <xsl:if test="@columnalign != ''">
+    <xsl:text>{</xsl:text>
+    <xsl:call-template name="column-align">
+      <xsl:with-param name="ALIGN" select="@columnalign"/>
+    </xsl:call-template>
+    <xsl:text>}</xsl:text>
+  </xsl:if>
+  <xsl:text> </xsl:text>
+
+  <xsl:call-template name="matrix">
+    <xsl:with-param name="DONEATTRIBUTES">y</xsl:with-param>
+  </xsl:call-template>
+
   <xsl:text>\end{array} </xsl:text>
+</xsl:template>
+
+<!--
+  $ALIGN - @columnalign value like 'left center right'
+  Returns - LaTeX value like 'lcr'
+ -->
+<xsl:template name="column-align">
+  <xsl:param name="ALIGN"/>
+
+  <xsl:variable name="START">
+    <xsl:choose>
+      <xsl:when test="contains($ALIGN, ' ')">
+        <xsl:value-of select="substring-before($ALIGN, ' ')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$ALIGN"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$START = 'left'"><xsl:text>l</xsl:text></xsl:when>
+    <xsl:when test="$START = 'center'"><xsl:text>c</xsl:text></xsl:when>
+    <xsl:when test="$START = 'right'"><xsl:text>r</xsl:text></xsl:when>
+  </xsl:choose>
+
+  <xsl:if test="contains($ALIGN, ' ')">
+    <xsl:call-template name="column-align">
+      <xsl:with-param name="ALIGN" select="substring-after($ALIGN, ' ')"/>
+    </xsl:call-template>
+  </xsl:if>
+
 </xsl:template>
 
 <!--
@@ -401,7 +446,10 @@
   a & b \\ c & d
   -->
 <xsl:template name="matrix">
-  <xsl:apply-templates select="@*"/>
+  <xsl:param name="DONEATTRIBUTES"/>
+  <xsl:if test="$DONEATTRIBUTES != 'y'">
+    <xsl:apply-templates select="@*"/>
+  </xsl:if>
   <xsl:for-each select="m:mtr">
     <xsl:apply-templates select="@*"/>
     <xsl:if test="preceding-sibling::*">
@@ -421,7 +469,7 @@
 <xsl:template match="m:mtable[count(m:mtr[count(m:mtd) != 1]) = 0 and
     (parent::m:munder or parent::m:mover or parent::m:munderover or
     parent::m:msub or parent::m:msup or parent::m:msubsup) and
-    preceding-sibling::* and count(m:mtr) &gt; 1]">
+    preceding-sibling::* and count(m:mtr) &gt; 1 and not(@columnalign)]">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\substack{</xsl:text>
   <xsl:for-each select="m:mtr">
