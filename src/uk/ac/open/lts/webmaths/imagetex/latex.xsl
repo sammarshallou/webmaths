@@ -702,6 +702,11 @@
   <xsl:text> </xsl:text>
 </xsl:template>
 
+<!-- For mspace, turn it into a space... -->
+<xsl:template match="m:mspace[count(*) = 0]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text> </xsl:text>
+</xsl:template>
 
 <!-- mstyle -->
 
