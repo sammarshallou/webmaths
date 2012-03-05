@@ -201,6 +201,7 @@ public class TestMathmltoLatex
 		catch(UnsupportedMathmlException e)
 		{
 			round = "[Unsupported: " + e.getMessage() + "]";
+			round += " - " + convertToTex(mathml, true);
 		}
 		String expected = NO_ROUND_TRIP.get(tex);
 		if (expected == null)
