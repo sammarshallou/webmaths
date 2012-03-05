@@ -613,6 +613,16 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
+<!-- mroot -->
+<xsl:template match="m:mroot[*[2][self::m:mn]]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\sqrt[</xsl:text>
+  <xsl:apply-templates select="*[2]"/>
+  <xsl:text>]{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <!-- mi with function name -->
 <xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc) and
     (not(@fontstyle) or @fontstyle='normal')]">
