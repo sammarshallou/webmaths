@@ -324,4 +324,55 @@ public class TestMathmltoLatex
 		}
 		assertTrue(out.length() == 0);
 	}
+
+	@Test
+	public void testForumSamples() throws Exception
+	{
+		// Checks all the equations from the 'supported' document. There is an
+		// assumption that this class is compiled to 'bin/uk/ac/etc' within the
+		// project folder where 'misc/forum.tex.samples' exists.
+
+		// Note that this is JUST a 'does-not-crash' test and doesn't actually
+		// check the results.
+
+		// Get a file in this folder
+		URL classUrl = getClass().getResource("placeholder.txt");
+		File localFile = new File(classUrl.toURI());
+
+		// Use it to navigate to samples
+		File samplesFile = new File(localFile.getParentFile().getParentFile().getParentFile().
+			getParentFile().getParentFile().getParentFile().getParentFile().getParentFile(),
+			"misc/forum.tex.samples");
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+			new FileInputStream(samplesFile), "UTF-8"));
+		int errors = 0;
+		while(true)
+		{
+			String line = reader.readLine();
+			if(line == null)
+			{
+				break;
+			}
+
+			// Do round trip, discarding results
+			try
+			{
+				StringBuilder out = new StringBuilder();
+				checkRoundTrip(out, line, true);
+				if(out.toString().contains("[Unsupported"))
+				{
+					System.err.println(out.toString());
+					throw new Exception("Unsupported");
+				}
+			}
+			catch(Throwable t)
+			{
+				System.err.println(line);
+				errors++;
+			}
+		}
+		reader.close();
+		assertEquals(0, errors);
+	}
 }
