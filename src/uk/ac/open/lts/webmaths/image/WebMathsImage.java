@@ -122,6 +122,25 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 	}
 
 	/**
+	 * Converts a colour from #rrggbb to Java Color object.
+	 * @param rgb String e.g. #ff00ee
+	 * @return Colour
+	 * @throws IllegalArgumentException If colour string is not valid
+	 */
+	protected Color convertRgb(String rgb) throws IllegalArgumentException
+	{
+		// Get colour parameter
+		Matcher m = REGEX_RGB.matcher(rgb);
+		if(!m.matches())
+		{
+			throw new IllegalArgumentException("MathML invalid colour '" + rgb +
+				"'; expected #rrggbb (lower-case)");
+		}
+		return new Color(Integer.parseInt(m.group(1), 16),
+			Integer.parseInt(m.group(2), 16), Integer.parseInt(m.group(3), 16));
+	}
+
+	/**
 	 * Does real work; separated out so it can be efficiently called from
 	 * subclass.
 	 * @param params Request parameters
@@ -136,16 +155,16 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 	{
 		initContext();
 
-		// Get colour parameter
-		Matcher m = REGEX_RGB.matcher(params.getRgb());
-		if(!m.matches())
+		Color fg;
+		try
 		{
-			result.setError("MathML invalid colour '" + params.getRgb()
-				+ "'; expected #rrggbb (lower-case)");
+			fg = convertRgb(params.getRgb());
+		}
+		catch(IllegalArgumentException e)
+		{
+			result.setError(e.getMessage());
 			return result;
 		}
-		Color fg = new Color(Integer.parseInt(m.group(1), 16),
-			Integer.parseInt(m.group(2), 16), Integer.parseInt(m.group(3), 16));
 
 		if(SHOWPERFORMANCE)
 		{

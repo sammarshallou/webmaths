@@ -18,6 +18,7 @@ Copyright 2011 The Open University
 */
 package uk.ac.open.lts.webmaths.imagetex;
 
+import java.awt.Color;
 import java.io.*;
 import java.math.BigInteger;
 import java.util.*;
@@ -43,7 +44,9 @@ public class WebMathsImageTex extends WebMathsImage
 
 	private final static int MAX_TEMP_FOLDER_ATTEMPTS = 10;
 
-	private static boolean SHOWPERFORMANCE = false;
+	private final static float BASE_PIXEL_SIZE = 18.0f;
+
+	private static boolean SHOWPERFORMANCE = true, SHOW_COMMANDS = false;
 	private final static byte[] EMPTY = new byte[0];
 
 	private MathmlToLatex converter;
@@ -177,7 +180,7 @@ public class WebMathsImageTex extends WebMathsImage
 	/**
 	 * @return Converter used to change MathML to LaTeX
 	 */
-	synchronized protected MathmlToLatex getMathmlToLatex()
+	synchronized public MathmlToLatex getMathmlToLatex()
 	{
 		if(converter == null)
 		{
@@ -196,7 +199,8 @@ public class WebMathsImageTex extends WebMathsImage
 	 * @throws IOException
 	 */
 	private void texToPng(String tex, String rgb, float size,
-		MathsImageReturn result) throws IOException, InterruptedException
+		MathsImageReturn result) throws IOException, InterruptedException,
+			IllegalArgumentException
 	{
 		// Get latex and dvipng executable paths, and temp folder
 		ServletContext servletContext = (ServletContext)context.getMessageContext().get(
@@ -246,16 +250,26 @@ public class WebMathsImageTex extends WebMathsImage
 			FileOutputStream out = new FileOutputStream(texFile);
 			out.write(fullTexBytes);
 			out.close();
-			System.err.println("[WEBMATHS] In folder: " + tempFolder);
-			System.err.println("[WEBMATHS] TeX file follows {{\n" + fullTex + "}}");
+
+			if (SHOW_COMMANDS)
+			{
+				System.err.println("[WEBMATHS] In folder: " + tempFolder);
+				System.err.println("[WEBMATHS] TeX file follows {{\n" + fullTex + "}}");
+			}
 
 			// Convert it to .dvi
 			runProcess(new String[] {latex, "--interaction=batchmode", "eq.tex"}, tempFolder);
 
-			// Convert .dvi to .png
-			// TODO Need to set colour, size parameters here
+			// Get colour, size parameters
+			int dpi = Math.round((float)(BASE_PIXEL_SIZE * 72.27 / 10.0) * size);
+			Color fg = convertRgb(rgb);
+			float[] components = fg.getRGBColorComponents(null);
+			String texFg = "rgb " + components[0] + " " + components[1] + " " + components[2];
+
+			// Convert DVI to PNG
 			String[] stdout = runProcess(
-				new String[] {dvipng, "-q", "--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
+				new String[] {dvipng, "-q", "-D", "" + dpi, "-fg", texFg,
+					"--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
 
 			// Get baseline from stdout value
 			if(stdout.length < 1)
@@ -276,7 +290,9 @@ public class WebMathsImageTex extends WebMathsImage
 			byte[] image = new byte[(int)pngFile.length()];
 			in.read(image);
 			in.close();
+
 			result.setImage(image);
+			result.setOk(true);
 		}
 		finally
 		{
@@ -284,18 +300,18 @@ public class WebMathsImageTex extends WebMathsImage
 		}
 	}
 
-	// TODO This prolog may not be complete - need to include LaTeX/AMS stuff
+	// TODO This prolog may not be complete - may need to include AMS stuff
 	private final static String TEX_PROLOG =
-		"\\documentclass{article}\n" +
+		"\\documentclass[10pt]{article}\n" +
 		"\\begin{document}\n";
 	private final static String TEX_PRE_ITEM =
-		"\\shipout\\hbox{\\begin{math}\n";
+		"\\setbox0\\hbox{\\begin{math}\n";
 	private final static String TEX_POST_ITEM =
-		"\n\\end{math}}\n";
+		"\n\\end{math}}\n\\ht 0 0pt\n\\shipout\\box 0\n";
 	private final static String TEX_EPILOG =
 		"\\end{document}\n";
 
-	private final static Pattern DVIPNG_DEPTH = Pattern.compile("dvipng reports depth is ([0-9]+)");
+	private final static Pattern DVIPNG_DEPTH = Pattern.compile("^ depth=([0-9]+)$");
 
 	/**
 	 * Deletes a folder within the temp folder, ignoring errors.
@@ -322,7 +338,10 @@ public class WebMathsImageTex extends WebMathsImage
 			commandString.append(param);
 			commandString.append(' ');
 		}
-		System.err.println("[WEBMATHS] Exec: " + commandString.toString().trim());
+		if(SHOW_COMMANDS)
+		{
+			System.err.println("[WEBMATHS] Exec: " + commandString.toString().trim());
+		}
 		Process process = Runtime.getRuntime().exec(command, null, cwd);
 		new EaterThread(process.getErrorStream());
 		EaterThread stdout = new EaterThread(process.getInputStream());
@@ -371,10 +390,16 @@ public class WebMathsImageTex extends WebMathsImage
 					String line = buffer.readLine();
 					if(line == null)
 					{
-					System.err.println("[WEBMATHS] (EOF)");
+						if(SHOW_COMMANDS)
+						{
+							System.err.println("[WEBMATHS] (EOF)");
+						}
 						return;
 					}
-					System.err.println("[WEBMATHS] " + line);
+					if(SHOW_COMMANDS)
+					{
+						System.err.println("[WEBMATHS] " + line);
+					}
 					lines.add(line);
 				}
 			}
