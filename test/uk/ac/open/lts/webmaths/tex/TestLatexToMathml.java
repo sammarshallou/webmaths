@@ -292,6 +292,13 @@ public class TestLatexToMathml extends TestCase
 	}
 
 	@Test
+	public void testBrokenDollar()
+	{
+		// This line used to crash the tokeniser because of $ sign
+		new TokenInput("1000\\int u^{-3}\\,du = $-500[u^{-2}]").toMathml(true);
+	}
+
+	@Test
 	public void testMultipleMtext() throws Exception
 	{
 		String result = new TokenInput("\\text{frog}").toMathml(true);

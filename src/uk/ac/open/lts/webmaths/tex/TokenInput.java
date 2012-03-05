@@ -189,6 +189,9 @@ public class TokenInput
 					else if("$".equals(m.group(0)))
 					{
 						inTextMode = 1;
+						// sam: I added this because when in text mode it expects a
+						// bracelevel
+						braceLevel.add(0);
 					}
 //      elif m.group(4) is not None:
 //        continue
