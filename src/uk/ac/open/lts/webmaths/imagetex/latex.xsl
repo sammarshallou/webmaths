@@ -39,10 +39,10 @@
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
-<!-- mtext should turn into \text -->
+<!-- mtext should turn into \textrm -->
 <xsl:template match="m:mtext">
   <xsl:apply-templates select="@*"/>
-  <xsl:text>\text{</xsl:text>
+  <xsl:text>\textrm{</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>}</xsl:text>
 </xsl:template>

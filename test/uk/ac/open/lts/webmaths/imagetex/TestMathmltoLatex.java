@@ -146,8 +146,8 @@ public class TestMathmltoLatex
 		"\\dbinom{4}{x}", "\\binom{4}{x}",
 
 		// Font styles that are converted the same
-		"\\textnormal{frog}", "\\text{frog}",
-		"\\textrm{frog}", "\\text{frog}",
+		"\\textnormal{frog}", "\\textrm{frog}",
+		"\\text{frog}", "\\textrm{frog}",
 		"\\textsl{frog}", "\\textit{frog}",
 		"\\boldsymbol{X}", "\\mathbf{X}",
 		"\\bold{XY}", "\\mathbf{XY}",
@@ -164,8 +164,8 @@ public class TestMathmltoLatex
 		"{\\bf X \\rm Y}", "\\mathbf{X \\mathrm{Y}}",
 
 		// hbox, mbox are converted as text
-		"\\sqrt{\\hbox{frog}}", "\\sqrt{\\text{frog}}",
-		"\\sqrt{\\mbox{frog}}", "\\sqrt{\\text{frog}}",
+		"\\sqrt{\\hbox{frog}}", "\\sqrt{\\textrm{frog}}",
+		"\\sqrt{\\mbox{frog}}", "\\sqrt{\\textrm{frog}}",
 
 		// smallmatrix = pmatrix
 		"\\begin{smallmatrix} a&b \\\\ c&d \\end{smallmatrix}", "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
