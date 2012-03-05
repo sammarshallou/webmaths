@@ -19,6 +19,7 @@ Copyright 2011 The Open University
 package uk.ac.open.lts.webmaths.tex;
 
 import java.io.*;
+import java.net.URL;
 import java.util.regex.*;
 
 import junit.framework.TestCase;
@@ -179,11 +180,12 @@ public class TestLatexToMathml extends TestCase
 		Pattern.compile("^([^,]+),(.*)$");
 	
 	/**
-	 * Loads all the sample equations and tests them. This test is basically
-	 * a 'does it crash' kind of test - we don't examine the results.
+	 * Loads all the sample equations from course content and tests them. This
+	 * test is basically a 'does it crash' kind of test - we don't examine the
+	 * results.
 	 */
 	@Test
-	public void testSampleLibrary() throws Exception
+	public void testSamplesContent() throws Exception
 	{
 		// Note: I thought this was kind of slow (on second run it takes about 3
 		// seconds) but then I realised there are 4,500 equations in the samples
@@ -218,7 +220,57 @@ public class TestLatexToMathml extends TestCase
 		}		
 		assertEquals(0, errors);
 	}
-	
+
+	/**
+	 * Loads all the sample equations from user forum entries and tests them.
+	 * This test is basically a 'does it crash' kind of test - we don't examine
+	 * the results.
+	 */
+	@Test
+	public void testSamplesForum() throws Exception
+	{
+		// Get local file and use it to navigate to samples
+		URL classUrl = getClass().getResource("tex.samples");
+		File localFile = new File(classUrl.toURI());
+		File samplesFile = new File(localFile.getParentFile().getParentFile().getParentFile().
+			getParentFile().getParentFile().getParentFile().getParentFile().getParentFile(),
+			"misc/forum.tex.samples");
+
+		// There are 10,000+ samples in the forum samples file, so it takes a while
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+			new FileInputStream(samplesFile), "UTF-8"));
+		int errors = 0;
+		while(true)
+		{
+			String line = reader.readLine();
+			if(line == null)
+			{
+				break;
+			}
+			if(line.equals("") || line.startsWith("#"))
+			{
+				continue;
+			}
+			String result;
+			try
+			{
+				result = new TokenInput(line).toMathml(true);
+				if(result.contains("</xerror>"))
+				{
+					System.err.println(line);
+					errors++;
+				}
+			}
+			catch(Throwable t)
+			{
+				System.err.println(line);
+				t.printStackTrace();
+				errors++;
+			}
+		}
+		assertEquals(0, errors);
+	}
+
 	private void assertMath(String expected, String input)
 	{
 		TokenInput tokens = new TokenInput(input);
