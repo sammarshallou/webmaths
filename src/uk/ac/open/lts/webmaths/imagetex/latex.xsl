@@ -277,7 +277,6 @@
 </xsl:template>
 
 
-
 <!-- Special-case for mod -->
 <xsl:template match="m:mo[normalize-space(.) = 'mod']">
   <xsl:apply-templates select="@*"/>
@@ -339,7 +338,7 @@
 
 <!-- mtable as matrix -->
 <xsl:template match="m:mrow[count(*) = 3 and *[2][self::m:mtable] and
-    *[1][self::m:mo] and *[3][self::m:mo] and
+    *[1][self::m:mo and not(@minsize)] and *[3][self::m:mo and not(@minsize)] and
     ((string(*[1]) = '(' and string(*[3]) = ')') or
     (string(*[1]) = '[' and string(*[3]) = ']') or
     (string(*[1]) = '{' and string(*[3]) = '}') or
