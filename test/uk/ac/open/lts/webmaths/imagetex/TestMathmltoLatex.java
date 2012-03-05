@@ -151,6 +151,7 @@ public class TestMathmltoLatex
 		"\\textsl{frog}", "\\textit{frog}",
 		"\\boldsymbol{X}", "\\mathbf{X}",
 		"\\bold{XY}", "\\mathbf{XY}",
+		"\\bold{1}", "\\mathbf{1}",
 		"\\Bbb{X}", "\\mathbb{X}",
 		"\\mathbbmss{X}", "\\mathbb{X}",
 		"\\mathcal{X}", "\\mathscr{X}",

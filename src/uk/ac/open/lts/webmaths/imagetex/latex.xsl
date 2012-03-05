@@ -102,8 +102,14 @@
   <xsl:text>\  </xsl:text>
 </xsl:template>
 
-<!-- styled mi -->
+<!-- styled mi/mn -->
 <xsl:template match="m:mi[@mathvariant]">
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:call-template name="mathvariant-to-tex-font">
+    <xsl:with-param name="PREFIX">\math</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+<xsl:template match="m:mn[@mathvariant]">
   <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
   <xsl:call-template name="mathvariant-to-tex-font">
     <xsl:with-param name="PREFIX">\math</xsl:with-param>
