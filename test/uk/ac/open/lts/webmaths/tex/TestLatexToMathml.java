@@ -72,7 +72,15 @@ public class TestLatexToMathml extends TestCase
 			+ "<mn>2</mn></mfrac><mn>12</mn>", "\\frac{x-1}212");
 		assertMath("<msqrt><mn>1</mn></msqrt><mn>2</mn>", "\\sqrt 12"); 
 	}
-	
+
+	@Test
+	public void testBoldSymbol()
+	{
+		assertMath("<mi mathvariant=\"bold\">\u0393</mi>", "\\boldsymbol \\Gamma");
+		assertMath("<mi mathvariant=\"bold\">?<!-- Unknown styled token: \\frog --></mi>",
+			"\\boldsymbol \\frog");
+	}
+
 	@Test
 	public void testDigitGrouping()
 	{

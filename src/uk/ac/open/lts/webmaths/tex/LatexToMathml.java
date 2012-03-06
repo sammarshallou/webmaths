@@ -1924,8 +1924,28 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		Element result;
 		if(!"{".equals(slf.peekToken()))
 		{
-			result = resultElement("mi", 1, "mathvariant", fontName,
-				slf.nextToken());
+			// Previous code that puts the token in place directly is incorrect
+			// as it may be a \character symbol
+			String token = slf.nextToken();
+			if(!token.startsWith("\\"))
+			{
+				// Use direct token
+				result = resultElement("mi", 1, "mathvariant", fontName, token);
+			}
+			else
+			{
+				// Look for identifier
+				String value = NAMED_IDENTIFIERS.get(token);
+				if(value == null)
+				{
+					result = resultElement("mi", 1, "mathvariant", fontName, "?",
+						resultElement("xerroronly", 0, "Unknown styled token: " + token));
+				}
+				else
+				{
+					result = resultElement("mi", 1, "mathvariant", fontName, value);
+				}
+			}
 		}
 		else
 		{

@@ -2806,6 +2806,11 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boldsymbol{X}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>\boldsymbol</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\boldsymbol \Gamma</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boldsymbol \Gamma</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\bold</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\bold{X}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bold{X}</TeX></InlineEquation></td>
