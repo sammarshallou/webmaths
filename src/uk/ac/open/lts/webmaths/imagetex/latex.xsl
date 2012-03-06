@@ -685,6 +685,34 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
+<!-- mmultiscripts -->
+<xsl:template match="m:mmultiscripts[not(mprescripts)]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:call-template name="brace"><xsl:with-param name="VAL">
+    <xsl:apply-templates select="*[1]"/>
+  </xsl:with-param></xsl:call-template>
+  <!-- Loop around all pairs of scripts -->
+  <xsl:for-each select="*[count(preceding-sibling::*) mod 2 = 1]">
+    <xsl:if test="count(preceding-sibling::*) &gt; 1">
+      <xsl:text>{}</xsl:text>
+    </xsl:if>
+    <xsl:if test="not(self::m:none)">
+      <xsl:text>_</xsl:text>
+      <xsl:call-template name="brace"><xsl:with-param name="VAL">
+        <xsl:apply-templates select="self::*"/>
+      </xsl:with-param></xsl:call-template>
+    </xsl:if>
+    <xsl:if test="not(following-sibling::*[1][self::m:none])">
+      <xsl:text>^</xsl:text>
+      <xsl:call-template name="brace"><xsl:with-param name="VAL">
+        <xsl:apply-templates select="following-sibling::*[1]"/>
+      </xsl:with-param></xsl:call-template>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
+
+
+
 <!-- msqrt -->
 <xsl:template match="m:msqrt">
   <xsl:apply-templates select="@*"/>
