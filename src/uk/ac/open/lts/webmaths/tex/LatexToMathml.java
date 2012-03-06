@@ -2255,7 +2255,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	// return result_element(u"merror", 0, result_element(u"mtext", 0, 'Unexpected end of math mode'))
 		if(token == null)
 		{
-			return resultElement("xerror", 0, "Missing delimiter");
+			return resultElement("xerroronly", 0, "Missing delimiter");
 		}
 //elif (v_token == u"."):
 // return u""
@@ -2303,7 +2303,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // return result_element(u"merror", 0, result_element(u"mtext", 0, 'Invalid delimiter: '+v_token) )
 		else
 		{
-			return resultElement("xerror", 0, "Invalid delimiter: " + token);
+			return resultElement("xerroronly", 0, "Invalid delimiter: " + token);
 		}
 	}
 

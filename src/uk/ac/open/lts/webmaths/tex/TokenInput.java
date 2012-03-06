@@ -375,6 +375,10 @@ public class TokenInput
 		result = result.replace("<xerror>", "<mspace/><!-- ").replace(
 			"<xerror space=\"false\">", "<!--").replace("</xerror>", " -->");
 
+		// And <xerroronly>. Same but no mspace needed.
+		result = result.replace("<xerroronly>", "<!-- ").replace(
+			"<xerror space=\"false\">", "<!--").replace("</xerroronly>", " -->");
+
 		return result;
 	}
 
