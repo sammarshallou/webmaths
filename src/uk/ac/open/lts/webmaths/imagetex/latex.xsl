@@ -219,6 +219,14 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+<!-- mo that has font style -->
+<xsl:template match="m:mo[@mathvariant]">
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:call-template name="mathvariant-to-tex-font">
+    <xsl:with-param name="PREFIX">\math</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 <!-- Skip <mo> that contains no content (generated due to buggy TeX) -->
 <xsl:template match="m:mo[string-length(normalize-space(.)) = 0]">
   <!-- Note: We don't care if it has attributes. -->
