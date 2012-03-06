@@ -219,6 +219,14 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+<!-- Skip <mo> that contains no content (generated due to buggy TeX) -->
+<xsl:template match="m:mo[string-length(normalize-space(.)) = 0]">
+  <!-- Note: We don't care if it has attributes. -->
+
+  <!-- Let's do a space just in case -->
+  <xsl:text> </xsl:text>
+</xsl:template>
+
 <!-- Things which can be handled as stretchy brackets with \left and \right -->
 <xsl:variable name="BRACKETS">([{&LeftAngleBracket;&LeftCeiling;&LeftFloor;\|&Vert;&RightFloor;&RightCeiling;&RightAngleBracket;}])</xsl:variable>
 
