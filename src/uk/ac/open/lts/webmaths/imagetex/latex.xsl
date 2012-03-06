@@ -306,11 +306,10 @@
   <xsl:choose>
     <!-- Just in case the first character needs escaping  -->
     <xsl:when test="w:esc"><xsl:apply-templates select="w:esc"/></xsl:when>
-    <!-- Maybe it had a letter/number? Then unsupported -->
+    <!-- Maybe it had a letter/number? Then we need a space -->
     <xsl:when test="contains($LETTERSNUMBERS, substring(., 1, 1))">
-      <xsl:text>\UNSUPPORTED{Invalid \not character: </xsl:text>
+      <xsl:text> </xsl:text>
       <xsl:value-of select="substring(., 1, 1)"/>
-      <xsl:text>}</xsl:text>
     </xsl:when>
     <!-- Otherwise just output it -->
     <xsl:otherwise><xsl:value-of select="substring(., 1, 1)"/></xsl:otherwise>
