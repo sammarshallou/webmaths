@@ -363,7 +363,6 @@ public class MathmlToLatex
 		"\u2227", "\\wedge ",
 		"\u2240", "\\wr ",
 		"\u2212", "-",
-		"\u2215", "/",
 		"\u2193", "\\downarrow ",
 		"\u21d3", "\\Downarrow ",
 		"\u2191", "\\uparrow ",
