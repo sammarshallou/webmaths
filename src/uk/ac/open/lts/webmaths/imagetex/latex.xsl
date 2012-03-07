@@ -101,6 +101,10 @@
   <xsl:apply-templates select="@*"/>
   <xsl:text>\  </xsl:text>
 </xsl:template>
+<xsl:template match="m:mtext[string(.) = '&#x00a3;']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\pounds </xsl:text>
+</xsl:template>
 
 <!-- styled mi/mn -->
 <xsl:template match="m:mi[@mathvariant]">

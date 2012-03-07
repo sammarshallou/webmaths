@@ -295,6 +295,7 @@ public class MathmlToLatex
 		"\u200b", "\\! ",
 		"\u00A0", "~",
 		"\u220e", "\\qedsymbol ",
+		"\u00a3", "\\pounds ",
 		"\u2308", "\\lceil ",
 		"\u230a", "\\lfloor ",
 		"\u23b0", "\\lmoustache ",
