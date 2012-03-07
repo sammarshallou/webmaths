@@ -244,6 +244,20 @@ public class TestMathmltoLatex
 	}
 
 	@Test
+	public void testMultiscripts() throws Exception
+	{
+		// Both
+		assertRoundTrip("{}^nC_r");
+		assertRoundTrip("{}^nC_r{}_q");
+
+		// Before only
+		assertRoundTrip("{}^nC");
+
+		// After only
+		assertRoundTrip("C^x{}^y");
+	}
+
+	@Test
 	public void testUnsupported() throws Exception
 	{
 		String unsupportedElement =

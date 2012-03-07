@@ -693,13 +693,37 @@
 </xsl:template>
 
 <!-- mmultiscripts -->
-<xsl:template match="m:mmultiscripts[not(mprescripts)]">
+<xsl:template match="m:mmultiscripts">
   <xsl:apply-templates select="@*"/>
+
+  <!-- Loop round all pairs of prescripts (if any) -->
+  <xsl:for-each select="*[not(self::m:mprescripts) and
+      count(preceding-sibling::*) mod 2 = 0 and
+      count(preceding-sibling::m:mprescripts) = 1]">
+    <xsl:text>{}</xsl:text>
+    <xsl:if test="not(self::m:none)">
+      <xsl:text>_</xsl:text>
+      <xsl:call-template name="brace"><xsl:with-param name="VAL">
+        <xsl:apply-templates select="self::*"/>
+      </xsl:with-param></xsl:call-template>
+    </xsl:if>
+    <xsl:if test="not(following-sibling::*[1][self::m:none])">
+      <xsl:text>^</xsl:text>
+      <xsl:call-template name="brace"><xsl:with-param name="VAL">
+        <xsl:apply-templates select="following-sibling::*[1]"/>
+      </xsl:with-param></xsl:call-template>
+    </xsl:if>
+  </xsl:for-each>
+
+  <!-- Do base -->
   <xsl:call-template name="brace"><xsl:with-param name="VAL">
     <xsl:apply-templates select="*[1]"/>
   </xsl:with-param></xsl:call-template>
-  <!-- Loop around all pairs of scripts -->
-  <xsl:for-each select="*[count(preceding-sibling::*) mod 2 = 1]">
+
+  <!-- Loop around all pairs of postscripts -->
+  <xsl:for-each select="*[not(self::m:mprescripts) and
+      count(preceding-sibling::*) mod 2 = 1 and
+      count(preceding-sibling::m:mprescripts) = 0]">
     <xsl:if test="count(preceding-sibling::*) &gt; 1">
       <xsl:text>{}</xsl:text>
     </xsl:if>
