@@ -238,6 +238,12 @@ public class TestMathmltoLatex
 	}
 
 	@Test
+	public void testNegativeRoot() throws Exception
+	{
+		assertRoundTrip("\\sqrt[-3]{x}");
+	}
+
+	@Test
 	public void testUnsupported() throws Exception
 	{
 		String unsupportedElement =

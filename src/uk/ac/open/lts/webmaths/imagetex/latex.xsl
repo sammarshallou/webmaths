@@ -729,7 +729,7 @@
 </xsl:template>
 
 <!-- mroot -->
-<xsl:template match="m:mroot[*[2][self::m:mn]]">
+<xsl:template match="m:mroot">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\sqrt[</xsl:text>
   <xsl:apply-templates select="*[2]"/>
