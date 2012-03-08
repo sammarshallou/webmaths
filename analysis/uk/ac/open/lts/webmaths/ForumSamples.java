@@ -28,6 +28,11 @@ public class ForumSamples
 	 */
 	private final static Pattern TEX_COMMANDS = Pattern.compile("\\\\([A-Za-z]+|[^A-Za-z0-9])");
 
+	/**
+	 * Set true to save round-trip differences into a file in the project folder.
+	 * Must run with current folder being the project.
+	 */
+	private static boolean SAVE_ROUND_TRIP_DIFFERENCES = false;
 
 	public ForumSamples() throws Exception
 	{
@@ -129,6 +134,7 @@ public class ForumSamples
 	public void showRoundTripStats() throws Exception
 	{
 		System.err.println("Check round trips:");
+		StringBuilder notRoundTrip = new StringBuilder();
 		WebMathsImageTex imageTexService = new WebMathsImageTex();
 
 		int skipped = 0, unsupported = 0, identical = 0, different = 0;
@@ -164,6 +170,7 @@ public class ForumSamples
 				else
 				{
 					different++;
+					notRoundTrip.append(sample+"\n");
 				}
 			}
 			catch(UnsupportedMathmlException e)
@@ -180,6 +187,15 @@ public class ForumSamples
 			showWithPercentage(different, samples.size()));
 		System.err.println("  Identical = " +
 			showWithPercentage(identical, samples.size()));
+
+		if(SAVE_ROUND_TRIP_DIFFERENCES)
+		{
+			File target = new File("misc/forum.tex.noroundtrip.samples");
+			OutputStreamWriter writer = new OutputStreamWriter(
+				new FileOutputStream(target), "UTF-8");
+			writer.write(notRoundTrip.toString());
+			writer.close();
+		}
 	}
 
 	private Set<String> getSupportedCommands()
