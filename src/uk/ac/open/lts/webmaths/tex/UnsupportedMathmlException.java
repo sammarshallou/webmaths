@@ -1,4 +1,4 @@
-package uk.ac.open.lts.webmaths.imagetex;
+package uk.ac.open.lts.webmaths.tex;
 
 /**
  * Exception thrown if we can't convert MathML to TeX for some reason.

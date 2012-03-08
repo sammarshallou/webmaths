@@ -20,6 +20,8 @@ package uk.ac.open.lts.webmaths.tex;
 
 import javax.jws.WebService;
 
+import org.w3c.dom.Document;
+
 import uk.ac.open.lts.webmaths.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.tex.MathsTexPort",
@@ -27,6 +29,8 @@ import uk.ac.open.lts.webmaths.*;
 	serviceName="MathsTex", portName="MathsTexPort")
 public class WebMathsTex extends WebMathsService implements MathsTexPort
 {
+	private MathmlToLatex texConverter;
+
 	@Override
 	public MathsTexReturn getMathml(MathsTexParams params)
 	{
@@ -51,6 +55,41 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 			result.setError(t.getMessage());
 		}
 		
+		return result;
+	}
+
+	@Override
+	public GetTexReturn getTex(GetTexParams params)
+	{
+		// Set up default return values
+		GetTexReturn result = new GetTexReturn();
+		result.setOk(false);
+		result.setError("");
+		result.setTex("");
+
+		// Set up the converter if we didn't already
+		synchronized(this)
+		{
+			if(texConverter == null)
+			{
+				texConverter = new MathmlToLatex(getFixer());
+			}
+		}
+
+		try
+		{
+			// Parse MathML
+			Document doc = parseMathml(params.getMathml());
+			// Convert MathML to TeX
+			result.setTex(texConverter.convert(doc, params.isLenient()));
+			result.setOk(true);
+		}
+		catch(Throwable t)
+		{
+			t.printStackTrace(); // TODO Get rid of this or log somehow
+			result.setError(t.getMessage());
+		}
+
 		return result;
 	}
 }

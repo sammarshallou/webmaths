@@ -1,4 +1,4 @@
-package uk.ac.open.lts.webmaths.imagetex;
+package uk.ac.open.lts.webmaths.tex;
 
 import java.io.*;
 import java.util.*;
@@ -24,6 +24,8 @@ import static uk.ac.open.lts.webmaths.MapUtil.*;
 public class MathmlToLatex
 {
 	private TransformerPool convertXsl, normaliseXsl;
+
+	private static boolean DEBUG_DUMP_XML = false;
 
 	/**
 	 * Constructs (requires entity fixer).
@@ -65,7 +67,10 @@ public class MathmlToLatex
 		Document intermediate = (Document)out.getNode();
 		escapeTex(intermediate.getDocumentElement(), ignoreUnsupported);
 
-//		dumpXml(intermediate);
+		if(DEBUG_DUMP_XML)
+		{
+			dumpXml(intermediate);
+		}
 
 		// Now convert to LaTeX
 		in = new DOMSource(intermediate);
@@ -120,7 +125,7 @@ public class MathmlToLatex
 
 		return result.trim();
 	}
-	
+
 	private void dumpXml(Document doc) throws TransformerException
 	{
 		DOMSource in = new DOMSource(doc);
@@ -252,7 +257,7 @@ public class MathmlToLatex
 
 	/**
 	 * Non-ASCII characters which are permitted through to the XSL stage (they
-	 * will be decoded into ASCII during the XSL). 
+	 * will be decoded into ASCII during the XSL).
 	 */
 	private final static Set<String> ALLOWED_CHARACTERS = new HashSet<String>(
 		Arrays.asList(new String[]
@@ -274,7 +279,7 @@ public class MathmlToLatex
 		"\u0332",
 		"\u00af",
 		"\u02dc",
-		
+
 	}));
 
 	private final static int MAX_REPLACE_CHARS = 3;

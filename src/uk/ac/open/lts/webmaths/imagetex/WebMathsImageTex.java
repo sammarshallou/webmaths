@@ -33,6 +33,7 @@ import javax.xml.ws.handler.MessageContext;
 import org.w3c.dom.*;
 
 import uk.ac.open.lts.webmaths.image.*;
+import uk.ac.open.lts.webmaths.tex.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
