@@ -87,7 +87,7 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 		catch(Throwable t)
 		{
 			t.printStackTrace(); // TODO Get rid of this or log somehow
-			result.setError(t.getMessage());
+			result.setError("Error converting MathML to TeX: " + t.getMessage());
 		}
 
 		return result;
