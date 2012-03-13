@@ -60,7 +60,10 @@ public class TestMathmltoLatex
 		"\\begin{Bmatrix} a&b \\\\ c&d \\end{Bmatrix}", "\\begin{Bmatrix} a & b \\\\ c & d \\end{Bmatrix}",
 		"\\begin{vmatrix} a&b \\\\ c&d \\end{vmatrix}", "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}",
 		"\\begin{Vmatrix} a&b \\\\ c&d \\end{Vmatrix}", "\\begin{Vmatrix} a & b \\\\ c & d \\end{Vmatrix}",
-		"\\begin{array} a&b \\\\ c&d \\end{array}", "\\begin{array} a & b \\\\ c & d \\end{array}",
+
+		// Array columns
+		"\\begin{array} a&b \\\\ c&d \\end{array}", "\\begin{array}{ll} a & b \\\\ c & d \\end{array}",
+		"\\left( \\begin{array} a \\\\ b \\end{array} \\right)", "\\left( \\begin{array}{l} a \\\\ b \\end{array} \\right)",
 
 		// \begin{displaymath} (which is weird and shouldn't really be supported
 		// anyhow)
@@ -173,7 +176,7 @@ public class TestMathmltoLatex
 		"\\begin{smallmatrix} a&b \\\\ c&d \\end{smallmatrix}", "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
 
 		// align* = array
-		"\\begin{align*} x & =1 \\\\ y & =2 \\end{align*}", "\\begin{array} x & =1 \\\\ y & =2 \\end{array}",
+		"\\begin{align*} x & =1 \\\\ y & =2 \\end{align*}", "\\begin{array}{ll} x & =1 \\\\ y & =2 \\end{array}",
 	});
 
 	private String doRoundTrip(String tex) throws Exception

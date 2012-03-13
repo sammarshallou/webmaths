@@ -409,17 +409,23 @@
 </xsl:template>
 
 <!-- Default mtable treated as \begin{array} -->
-<xsl:template match="m:mtable">
+<xsl:template match="m:mtable[m:mtr]">
   <xsl:apply-templates select="@*[local-name() != 'columnalign']"/>
-  <xsl:text>\begin{array}</xsl:text>
-  <xsl:if test="@columnalign != ''">
-    <xsl:text>{</xsl:text>
-    <xsl:call-template name="column-align">
-      <xsl:with-param name="ALIGN" select="@columnalign"/>
-    </xsl:call-template>
-    <xsl:text>}</xsl:text>
-  </xsl:if>
-  <xsl:text> </xsl:text>
+  <xsl:text>\begin{array}{</xsl:text>
+  <xsl:choose>
+    <xsl:when test="@columnalign != ''">
+      <xsl:call-template name="column-align">
+        <xsl:with-param name="ALIGN" select="@columnalign"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- By default we had better left-align everything -->
+      <xsl:for-each select="m:mtr[1]/m:mtd">
+        <xsl:text>l</xsl:text>
+      </xsl:for-each>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>} </xsl:text>
 
   <xsl:call-template name="matrix">
     <xsl:with-param name="DONEATTRIBUTES">y</xsl:with-param>
