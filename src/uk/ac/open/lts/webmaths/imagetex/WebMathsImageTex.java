@@ -47,7 +47,7 @@ public class WebMathsImageTex extends WebMathsImage
 
 	private final static float BASE_PIXEL_SIZE = 18.0f;
 
-	private static boolean SHOWPERFORMANCE = true, SHOW_COMMANDS = false;
+	private static boolean SHOWPERFORMANCE = true, SHOW_COMMANDS = true;
 	private final static byte[] EMPTY = new byte[0];
 
 	private MathmlToLatex converter;
