@@ -304,11 +304,12 @@ public class WebMathsImageTex extends WebMathsImage
 	// TODO This prolog may not be complete - may need to include AMS stuff
 	private final static String TEX_PROLOG =
 		"\\documentclass[10pt]{article}\n" +
+		"\\usepackage{amsmath,amssymb}\n" +
 		"\\begin{document}\n";
 	private final static String TEX_PRE_ITEM =
-		"\\setbox0\\hbox{\\begin{math}\n";
+		"\\setbox0\\hbox{\\begin{equation*}\n";
 	private final static String TEX_POST_ITEM =
-		"\n\\end{math}}\n\\ht 0 0pt\n\\shipout\\box 0\n";
+		"\n\\end{equation*}}\n\\ht 0 0pt\n\\shipout\\box 0\n";
 	private final static String TEX_EPILOG =
 		"\\end{document}\n";
 
