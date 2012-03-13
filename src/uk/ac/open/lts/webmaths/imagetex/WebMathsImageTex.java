@@ -313,7 +313,7 @@ public class WebMathsImageTex extends WebMathsImage
 	private final static String TEX_EPILOG =
 		"\\end{document}\n";
 
-	private final static Pattern DVIPNG_DEPTH = Pattern.compile("^ depth=([0-9]+)$");
+	private final static Pattern DVIPNG_DEPTH = Pattern.compile("^ depth=(-?[0-9]+)$");
 
 	/**
 	 * Deletes a folder within the temp folder, ignoring errors.
