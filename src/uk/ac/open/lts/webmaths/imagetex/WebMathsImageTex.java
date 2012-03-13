@@ -269,7 +269,7 @@ public class WebMathsImageTex extends WebMathsImage
 
 			// Convert DVI to PNG
 			String[] stdout = runProcess(
-				new String[] {dvipng, "-q", "-D", "" + dpi, "-fg", texFg,
+				new String[] {dvipng, "-q", "-D", "" + dpi, "-fg", texFg, "-bg", "Transparent",
 					"--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
 
 			// Get baseline from stdout value
