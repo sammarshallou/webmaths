@@ -75,6 +75,10 @@ public class TestMathmltoLatex
 		// \pod{n} is currently converted in a way that can't be distinguished
 		"3 \\pod{6}", "3(6)",
 
+		// \mod and \bmod are treated like operators
+		"13 \\mod{16}", "13 \\mod 16",
+		"13 \\bmod{16}", "13 \\mod 16",
+
 		// Symbols with multiple names
 		"\\intersect", "\\cap",
 		"\\Cap", "\\doublecap",
@@ -87,7 +91,6 @@ public class TestMathmltoLatex
 		"\\vert", "|",
 		"\\|", "|",
 		"'", "\\prime",
-		"\\bmod", "\\mod",
 		"\\smallint", "\\int",
 		"\\bot", "\\perp",
 		"\\lnot", "\\neg",
@@ -125,6 +128,9 @@ public class TestMathmltoLatex
 		"\\char93", "\\#",
 		"\\iff", "\\Leftrightarrow",
 		"\\implies", "\\Rightarrow",
+
+		// \doublesum not really supported
+		"\\doublesum", "\\operatorname{\\sum \\sum }",
 
 		// Dot ambiguity
 		"\\dots", "\\ldots",
@@ -177,6 +183,13 @@ public class TestMathmltoLatex
 
 		// align* = array
 		"\\begin{align*} x & =1 \\\\ y & =2 \\end{align*}", "\\begin{array}{ll} x & =1 \\\\ y & =2 \\end{array}",
+
+		// Evil letter things
+		"\\R", "\\mathbb{R}",
+		"\\Q", "\\mathbb{Q}",
+		"\\N", "\\mathbb{N}",
+		"\\C", "\\mathbb{C}",
+		"\\Z", "\\mathbb{Z}",
 	});
 
 	private String doRoundTrip(String tex) throws Exception
