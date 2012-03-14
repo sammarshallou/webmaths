@@ -274,6 +274,14 @@ public class TestMathmltoLatex
 	}
 
 	@Test
+	public void testWhitespace() throws Exception
+	{
+		String tex = convertToTex("<math xmlns='http://www.w3.org/1998/Math/MathML'>\n" +
+			"<mi>a</mi>\n<mo>+</mo>\n<mi>b</mi></math>", false);
+		assertEquals("a+b", tex);
+	}
+
+	@Test
 	public void testUnsupported() throws Exception
 	{
 		String unsupportedElement =

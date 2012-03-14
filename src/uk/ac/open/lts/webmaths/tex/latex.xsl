@@ -2,6 +2,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:m="http://www.w3.org/1998/Math/MathML"
     xmlns:w="http://ns.open.ac.uk/lts/webmaths">
+<xsl:strip-space elements="*"/>
+<xsl:preserve-space elements="m:mtext"/>
 
 <!--
   List of characters with accent=true. Obtained from operator dictionary file 'dict'
