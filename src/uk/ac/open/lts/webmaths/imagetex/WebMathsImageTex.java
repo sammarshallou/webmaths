@@ -270,7 +270,7 @@ public class WebMathsImageTex extends WebMathsImage
 			// Convert DVI to PNG
 			String[] stdout = runProcess(
 				new String[] {dvipng, "-q", "-D", "" + dpi, "-fg", texFg, "-bg", "Transparent",
-					"--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
+					"-l", "1", "--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
 
 			// Get baseline from stdout value
 			if(stdout.length < 1)
@@ -309,9 +309,9 @@ public class WebMathsImageTex extends WebMathsImage
 		"\\usepackage{amsmath,amssymb,amsthm,gensymb}\n" +
 		"\\begin{document}\n";
 	private final static String TEX_PRE_ITEM =
-		"\\setbox0\\hbox{\\begin{equation*}\n";
+		"\\begin{equation*}\n\\setbox0\n\\hbox{$\n";
 	private final static String TEX_POST_ITEM =
-		"\n\\end{equation*}}\n\\ht 0 0pt\n\\shipout\\box 0\n";
+		"\n$}\n\\ht 0 0pt\n\\shipout\\box 0\n\\end{equation*}\n";
 	private final static String TEX_EPILOG =
 		"\\end{document}\n";
 
