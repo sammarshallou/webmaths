@@ -304,7 +304,9 @@ public class WebMathsImageTex extends WebMathsImage
 	// TODO This prolog may not be complete - may need to include AMS stuff
 	private final static String TEX_PROLOG =
 		"\\documentclass[10pt]{article}\n" +
-		"\\usepackage{amsmath,amssymb}\n" +
+		// amsthm is needed only for \qedsymbol
+		// gensmyb is needed only for \degree
+		"\\usepackage{amsmath,amssymb,amsthm,gensymb}\n" +
 		"\\begin{document}\n";
 	private final static String TEX_PRE_ITEM =
 		"\\setbox0\\hbox{\\begin{equation*}\n";
