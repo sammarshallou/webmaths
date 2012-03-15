@@ -47,7 +47,7 @@ public class WebMathsImageTex extends WebMathsImage
 
 	private final static float BASE_PIXEL_SIZE = 18.0f;
 
-	private static boolean SHOWPERFORMANCE = true, SHOW_COMMANDS = true;
+	private static boolean SHOWPERFORMANCE = false, SHOW_COMMANDS = false;
 	private final static byte[] EMPTY = new byte[0];
 
 	private MathmlToLatex converter;
@@ -128,7 +128,27 @@ public class WebMathsImageTex extends WebMathsImage
 			// If rendering mode is not set, default it
 			if(renderingMode == null)
 			{
-				renderingMode = gotTex ? Mode.AUTOFALLBACK : Mode.MATHML;
+				if(gotTex)
+				{
+					renderingMode = Mode.AUTOFALLBACK;
+				}
+				else
+				{
+					String defaultMode = null;
+					ServletContext servletContext = getServletContext();
+					if(servletContext != null)
+					{
+						defaultMode = servletContext.getInitParameter("default-render-mode");
+					}
+					if(defaultMode == null)
+					{
+						renderingMode = Mode.MATHML;
+					}
+					else
+					{
+						renderingMode = Mode.fromType(defaultMode);
+					}
+				}
 			}
 			if(SHOWPERFORMANCE)
 			{
@@ -204,14 +224,17 @@ public class WebMathsImageTex extends WebMathsImage
 			IllegalArgumentException
 	{
 		// Get latex and dvipng executable paths, and temp folder
-		ServletContext servletContext = (ServletContext)context.getMessageContext().get(
-			MessageContext.SERVLET_CONTEXT);
+		ServletContext servletContext = getServletContext();
 		String latex = null, dvipng = null, temp = null;
 		if(servletContext != null)
 		{
 			latex = servletContext.getInitParameter("latex-executable");
 			dvipng = servletContext.getInitParameter("dvipng-executable");
+			temp = servletContext.getInitParameter("temp-directory");
 		}
+		// Note: Defaults are here because, although these values should always be
+		// set in web.xml, it's possible to run this from command line without
+		// context parameters.
 		if(latex == null)
 		{
 			latex = "latex";
@@ -301,7 +324,13 @@ public class WebMathsImageTex extends WebMathsImage
 		}
 	}
 
-	// TODO This prolog may not be complete - may need to include AMS stuff
+	private ServletContext getServletContext()
+	{
+		return (ServletContext)context.getMessageContext().get(
+			MessageContext.SERVLET_CONTEXT);
+	}
+
+	// TODO I'm not hugely satisfied by the way this ends up writing two pages
 	private final static String TEX_PROLOG =
 		"\\documentclass[10pt]{article}\n" +
 		// amsthm is needed only for \qedsymbol

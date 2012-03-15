@@ -19,7 +19,10 @@
 
 	<!-- Set location you want to build the .war file inside -->
 	<property name="war.location" location="${user.home}/Desktop"/>
-	
+
+	<!-- Set default temp directory (on server), will be placed into web.xml -->
+	<property name="temp.directory" value="/tmp"/>
+
 	<path id="jaxws.classpath">
       <fileset dir="${jaxws.home}/lib" includes="jaxws-tools.jar"/>
   </path>
@@ -117,9 +120,15 @@
 		</copy>
 		<copy todir="${build}/WEB-INF">
 	  	<fileset dir="misc">
-	  	  <include name="web.xml"/>
 	  	  <include name="sun-jaxws.xml"/>
 	  	</fileset>
+		</copy>
+		<copy file="misc/web.xml" tofile="${build}/WEB-INF/web.xml">
+			<filterchain>
+				<replacetokens>
+					<token key="TEMP" value="${temp.directory}"/>
+				</replacetokens>
+			</filterchain>
 		</copy>
 		<mkdir dir="${build}/WEB-INF/wsdl"/>
 	  <copy todir="${build}/WEB-INF/wsdl">
