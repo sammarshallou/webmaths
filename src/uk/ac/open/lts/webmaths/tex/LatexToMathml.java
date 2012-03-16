@@ -268,7 +268,7 @@ public class LatexToMathml
 		"\\,", "\u2009",
 		"\\!", "\u200b",
 		"\\ ", " ",
-		"~", "\u00A0",
+		"~", "\u00a0",
 		".", ".",
 		";", ";",
 		"?", "?",
@@ -2800,7 +2800,17 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // slf.tokens_index += 1
 		else if(PUNCT_AND_SPACE.containsKey(token))
 		{
-			result = resultElement("mtext", 0, PUNCT_AND_SPACE.get(token));
+			// <mtext> with only a space in it does not result in a space, so need
+			// to switch that to an mspace element
+			String value = PUNCT_AND_SPACE.get(token);
+			if(value.equals(" "))
+			{
+				result = resultElement("mspace", 1, "width", "mediummathspace");
+			}
+			else
+			{
+				result = resultElement("mtext", 0, value);
+			}
 			slf.nextToken();
 		}
 //elif (v_token in g_tex_commands):

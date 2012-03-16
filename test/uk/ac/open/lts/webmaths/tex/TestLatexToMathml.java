@@ -331,6 +331,6 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testSpace() throws Exception
 	{
-		assertMath("<mi>x</mi><mrow><mtext> </mtext><mi>y</mi></mrow>", "x\\ y");
+		assertMath("<mi>x</mi><mrow><mspace width=\"mediummathspace\"/><mi>y</mi></mrow>", "x\\ y");
 	}
 }
