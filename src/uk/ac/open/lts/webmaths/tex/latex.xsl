@@ -225,6 +225,13 @@
   <xsl:apply-templates/>
 </xsl:template>
 
+<!-- Special-case for prime symbol - only use \prime when in super/subscript -->
+<xsl:template match="m:mo[w:esc[@tex='\prime '] and not(
+    (parent::m:msup or parent::m:msubsup or parent::m:msub) and preceding-sibling::*)]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>'</xsl:text>
+</xsl:template>
+
 <!-- mo that has font style -->
 <xsl:template match="m:mo[@mathvariant]">
   <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>

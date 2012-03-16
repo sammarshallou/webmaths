@@ -91,7 +91,7 @@ public class TestMathmltoLatex
 		"\\colon", ":",
 		"\\vert", "|",
 		"\\|", "|",
-		"'", "\\prime",
+		"\\prime", "'",
 		"\\smallint", "\\int",
 		"\\bot", "\\perp",
 		"\\lnot", "\\neg",
@@ -325,6 +325,16 @@ public class TestMathmltoLatex
 		String mathml = convertToMathml("1 + \\displaystyle 2", false);
 		result = convertToTex(mathml, false);
 		assertEquals("\\textstyle 1+{ \\displaystyle 2}", result);
+	}
+	
+	@Test
+	public void testPrimes() throws Exception
+	{
+		// Check that a prime symbol, not in a subscript, uses ascii '
+		assertRoundTrip("f'(x)");
+		
+		// Check that a prime symbol in subscript/superscript uses \prime
+		assertRoundTrip("f_\\prime^\\prime");
 	}
 
 	@Test
