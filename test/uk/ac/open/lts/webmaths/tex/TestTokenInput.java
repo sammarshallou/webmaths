@@ -37,7 +37,29 @@ public class TestTokenInput extends TestCase
 		assertEquals("*", tokens.nextToken());
 		assertEquals(null, tokens.nextToken());
 	}
-	
+
+	@Test
+	public void testSpaceInNormalMode()
+	{
+		TokenInput tokens = new TokenInput("\\sqrt{ x }");
+		assertEquals("\\sqrt", tokens.nextToken());
+		assertEquals("{", tokens.nextToken());
+		assertEquals("x", tokens.nextToken());
+		assertEquals("}", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+	}
+
+	@Test
+	public void testSpaceInTextMode()
+	{
+		TokenInput tokens = new TokenInput("\\text{ x }");
+		assertEquals("\\text", tokens.nextToken());
+		assertEquals("{", tokens.nextToken());
+		assertEquals(" x ", tokens.nextToken());
+		assertEquals("}", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+	}
+
 	@Test
 	public void testOverrun()
 	{

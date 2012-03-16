@@ -37,8 +37,8 @@ import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
 
-import uk.ac.open.lts.webmaths.WebMathsService;
 import static uk.ac.open.lts.webmaths.MapUtil.*;
+import static uk.ac.open.lts.webmaths.WebMathsService.NS;
 
 /**
  * Class ported from some Python code that converts LaTeX to MathML.
@@ -98,9 +98,9 @@ public class LatexToMathml
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
 		Document document = factory.newDocumentBuilder().newDocument();
-		Element root = document.createElementNS(WebMathsService.NS, "math");
+		Element root = document.createElementNS(NS, "math");
 		document.appendChild(root);
-		Element xerror = document.createElementNS(WebMathsService.NS, "xerror");
+		Element xerror = document.createElementNS(NS, "xerror");
 		root.appendChild(xerror);
 		xerror.appendChild(document.createTextNode(error));
 		return root;
@@ -146,7 +146,7 @@ public class LatexToMathml
 	 */
 	private Element resultElement(String tag, int numAttrs, Object... args)
 	{
-		Element node = document.createElementNS(WebMathsService.NS, tag);
+		Element node = document.createElementNS(NS, tag);
 		for(int i=0; i<numAttrs; i++)
 		{
 			if(args[2 * i + 1] != null)
@@ -3270,7 +3270,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			// Original code didn't stop it returning null. This basically only
 			// happens if the equation is 'silly' TeX, but it causes exceptions and
 			// is generally problematic.
-			return document.createElementNS(WebMathsService.NS, "mspace");
+			return document.createElementNS(NS, "mspace");
 		}
 		else
 		{
@@ -3447,7 +3447,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		Element math = resultElement("math", 0, semantics);
 
 		// Do some postprocessing to make it nicer
-		replaceMultipleMtexts(math);
+		addRequiredWhitespace(math);
 		collapseUnnecessaryMrows(math);
 
 		return math;
@@ -3468,13 +3468,10 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"mtd",
 		"math"
 	}));
-	private static void replaceMultipleMtexts(Element parent)
+
+	private static void addRequiredWhitespace(Element parent)
 	{
-		// Which parents count as mrow? We can only combine in an mrow; other
-		// places, the number of arguments may be semantically significant
-		// so <mtext>a</mtext><mtext>b</mtext> is not the same as <mtext>ab</mtext>
-		boolean mrow = MROW_EQUIVALENTS.contains(parent.getLocalName());
-		Element last = null;
+		Document doc = parent.getOwnerDocument();
 		for(Node n = parent.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if(n.getNodeType() != Node.ELEMENT_NODE)
@@ -3482,32 +3479,53 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				continue;
 			}
 			Element e = (Element)n;
-			// Check if this is an mtext (and we are doing the replace thing)
-			if(e.getLocalName().equals("mtext") && mrow)
+			// Is this an mtext?
+			if(e.getLocalName().equals("mtext"))
 			{
-				if(last != null)
+				String thisText = ((Text)e.getFirstChild()).getNodeValue();
+				// Only deal with mtext that has space at start/end
+				if(thisText.startsWith(" ") || thisText.endsWith(" "))
 				{
-					// Great, combine this one with the last
-					String lastText = ((Text)last.getFirstChild()).getNodeValue();
-					String thisText = ((Text)e.getFirstChild()).getNodeValue();
-					parent.removeChild(e);
-					last.removeChild(last.getFirstChild());
-					last.appendChild(last.getOwnerDocument().createTextNode(lastText + thisText));
+					// See if parent is an mrow, if not then we are going to need one
+					if(!MROW_EQUIVALENTS.contains(parent.getLocalName()))
+					{
+						// Create row and stick this text in it
+						Element newRow = doc.createElementNS(NS, "mrow");
+						parent.insertBefore(newRow, e);
+						parent.removeChild(e);
+						newRow.appendChild(e);
 
-					// So that the loop works
-					n = last;
-				}
-				else
-				{
-					last = e;
+						// Update current node so the loop works
+						n = newRow;
+					}
+
+					// Now we are ready to insert mspaces before the text...
+					while(thisText.startsWith(" "))
+					{
+						thisText = thisText.substring(1);
+						Element newSpace = doc.createElementNS(NS, "mspace");
+						newSpace.setAttribute("width", "mediummathspace");
+						e.getParentNode().insertBefore(newSpace, e);
+					}
+
+					// ...and after it
+					while(thisText.endsWith(" "))
+					{
+						thisText = thisText.substring(0, thisText.length() - 1);
+						Element newSpace = doc.createElementNS(NS, "mspace");
+						newSpace.setAttribute("width", "mediummathspace");
+						e.getParentNode().insertBefore(newSpace, e.getNextSibling());
+					}
+
+					// Finally, update the actual mtext contents
+					e.removeChild(e.getFirstChild());
+					e.appendChild(doc.createTextNode(thisText));
 				}
 			}
 			else
 			{
-				// Last element wasn't an mtext
-				last = null;
 				// Recurse
-				replaceMultipleMtexts(e);
+				addRequiredWhitespace(e);
 			}
 		}
 	}

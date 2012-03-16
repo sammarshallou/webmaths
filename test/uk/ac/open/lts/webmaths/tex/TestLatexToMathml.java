@@ -331,6 +331,13 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testSpace() throws Exception
 	{
+		// Backslash-space
 		assertMath("<mi>x</mi><mrow><mspace width=\"mediummathspace\"/><mi>y</mi></mrow>", "x\\ y");
+		// \textrm with spaces either side (in something that is already mrow-equivalent)
+		assertMath("<mspace width=\"mediummathspace\"/><mtext>q</mtext><mspace width=\"mediummathspace\"/>",
+			"\\textrm{ q }");
+		// \textrm with a space on one side (in something that is not mrow-equivalent)
+		assertMath("<mfrac><mrow><mspace width=\"mediummathspace\"/><mtext>x</mtext></mrow><mn>2</mn></mfrac>",
+			"\\frac{\\textrm{ x}}{2}");
 	}
 }

@@ -66,8 +66,8 @@ public class TokenInput
 //  tokenize_text_commands = [u'\\textrm',u'\\textsl',u'\\textit',u'\\texttt',u'\\textbf',u'\\text',u'\\textnormal',u'\\hbox',u'\\mbox']
 	private final static Set<String> TEXT_COMMANDS = new HashSet<String>(
 		Arrays.asList(new String[] {
-		"\\\\textrm", "\\\\textsl", "\\\\textit", "\\\\texttt", "\\\\textbf",
-		"\\\\text", "\\\\textnormal", "\\\\hbox", "\\\\mbox"
+		"\\textrm", "\\textsl", "\\textit", "\\texttt", "\\textbf",
+		"\\text", "\\textnormal", "\\hbox", "\\mbox"
 	}));
 
 	private String source;
@@ -230,6 +230,9 @@ public class TokenInput
 					{
 						inTextMode = 2;
 						braceLevel.add(0);
+						// sam: It didn't add the token for the command before, but I think
+						// we need to?!
+						tokens.add(m.group(0));
 					}
 //      else:
 //        self.tokens.append(m.group(0))
@@ -320,9 +323,10 @@ public class TokenInput
 //      #replace significant spaces with something that won't
 //      #be swallowed by the SC XML eliminating whitespace
 //      txt=re.sub(' ',u'\u00A0',txt)
-					// replace significant spaces with something that won't
-					// be swallowed by the SC XML eliminating whitespace
-					txt = txt.replace(' ', '\u00a0');
+					// sam note: I removed the above logic because it's neater if we
+					// distinguish between space and ~, and can be handled later in
+					// conversion.
+
 //      #map tildes to unbreakable spaces
 //      txt=re.sub('~',u'\u00A0',txt)
 					// map tildes to unbreakable spaces
