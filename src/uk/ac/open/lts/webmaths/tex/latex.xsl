@@ -45,8 +45,43 @@
 <xsl:template match="m:mtext">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\textrm{</xsl:text>
+  <xsl:call-template name="collect-preceding-spaces"/>
   <xsl:apply-templates/>
+  <xsl:call-template name="collect-following-spaces"/>
   <xsl:text>}</xsl:text>
+</xsl:template>
+
+<xsl:template name="collect-preceding-spaces">
+  <!--
+    By precedence, it glues spaces to the END of a text not the start, so
+    check there isn't one before.
+    -->
+  <xsl:variable name="TEXTBEFORE">
+    <!-- Only check first time -->
+    <xsl:if test="self::m:mtext">
+      <xsl:for-each select="preceding-sibling::*[not(self::m:mspace and @width='mediummathspace')][1][self::m:mtext]">
+        <xsl:call-template name="is-this-a-normal-mtext"/>
+      </xsl:for-each>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:if test="$TEXTBEFORE = ''">
+    <xsl:for-each select="preceding-sibling::*[1]">
+      <xsl:if test="self::m:mspace[@width='mediummathspace']">
+        <xsl:call-template name="collect-preceding-spaces"/>
+        <xsl:text> </xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="collect-following-spaces">
+  <xsl:for-each select="following-sibling::*[1]">
+    <xsl:if test="self::m:mspace[@width='mediummathspace']">
+      <xsl:call-template name="collect-following-spaces"/>
+      <xsl:text> </xsl:text>
+    </xsl:if>
+  </xsl:for-each>
 </xsl:template>
 
 <!-- Styled text -->
@@ -58,7 +93,12 @@
   </xsl:call-template>
 </xsl:template>
 
-<!-- mtext special cases (PUNCT_AND_SPACE in LatexToMathml.java) -->
+<!--
+  mtext special cases (PUNCT_AND_SPACE in LatexToMathml.java)
+  NOTE: There is basically a copy of this list up above, take care to edit
+  both.
+  -->
+
 <xsl:template match="m:mtext[string(.) = '&emsp;']">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\quad </xsl:text>
@@ -98,10 +138,6 @@
 <xsl:template match="m:mtext[string(.) = '#']">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\#</xsl:text>
-</xsl:template>
-<xsl:template match="m:mtext[string(.) = ' ']">
-  <xsl:apply-templates select="@*"/>
-  <xsl:text>\  </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&#x00a3;']">
   <xsl:apply-templates select="@*"/>
@@ -188,7 +224,13 @@
       <xsl:value-of select="$PREFIX"/>
       <xsl:value-of select="$FONT"/>
       <xsl:text>{</xsl:text>
+      <xsl:if test="$PREFIX = '\text'">
+        <xsl:call-template name="collect-preceding-spaces"/>
+      </xsl:if>
       <xsl:apply-templates/>
+      <xsl:if test="$PREFIX = '\text'">
+        <xsl:call-template name="collect-following-spaces"/>
+      </xsl:if>
       <xsl:text>}</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
@@ -865,9 +907,33 @@
   <xsl:apply-templates select="@*"/>
   <xsl:text> </xsl:text>
 </xsl:template>
+<!-- Or a real (escaped) space if it has some width -->
 <xsl:template match="m:mspace[@width='mediummathspace']">
   <xsl:apply-templates select="@*[local-name() != 'width']"/>
-  <xsl:text>\ </xsl:text>
+  <!-- Special handling: if this immediately adjoins an mtext, we will output
+       it as part of the mtext -->
+  <xsl:variable name="GOTTEXT">
+    <xsl:for-each select="
+      preceding-sibling::*[not(self::m:mspace[@width='mediummathspace'])][1][self::m:mtext]
+      |
+      following-sibling::*[not(self::m:mspace[@width='mediummathspace'])][1][self::m:mtext]
+      ">
+      <xsl:call-template name="is-this-a-normal-mtext"/>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:if test="$GOTTEXT = ''">
+    <xsl:text>\ </xsl:text>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="is-this-a-normal-mtext">
+  <xsl:if test="not(string(.) = '.' or string(.) = ';' or string(.) = '?' or
+      string(.) = '&nbsp;' or string(.) = '&emsp;' or string(.) = '&emsp;&emsp;' or
+      string(.) = '&ensp;' or string(.) = '&emsp14;' or string(.) = '&ThinSpace;' or
+      string(.) = '&ZeroWidthSpace;' or string(.) = '&#x220e;' or
+      string(.) = '#' or string(.) =  '&#x00a3;')">
+    <xsl:text>y</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <!-- mstyle -->

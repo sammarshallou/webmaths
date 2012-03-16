@@ -352,6 +352,28 @@ public class TestMathmltoLatex
 	public void testTrimSurroundingBraces()
 	{
 		assertEquals("{1}+{x}", MathmlToLatex.trimSurroundingBraces("{{ {1}+{x} }} "));
+		assertEquals("ws", MathmlToLatex.trimSurroundingBraces("   ws   "));
+		assertEquals("ws", MathmlToLatex.trimSurroundingBraces(" {   ws   } "));
+		assertEquals("ws\\ ", MathmlToLatex.trimSurroundingBraces("ws\\ "));
+		assertEquals("ws\\ ", MathmlToLatex.trimSurroundingBraces("ws\\      "));
+		assertEquals("ws\\\\", MathmlToLatex.trimSurroundingBraces("ws\\\\    "));
+		assertEquals("ws\\\\\\ ", MathmlToLatex.trimSurroundingBraces("ws\\\\\\      "));
+		assertEquals("ws\\\\\\\\", MathmlToLatex.trimSurroundingBraces("ws\\\\\\\\    "));
+	}
+
+	@Test
+	public void testEvilSpaceHandling() throws Exception
+	{
+		// Becase of the way \textrm with spaces at the end is converted to MathML,
+		// without special processing it would turn into separate "\ " commands;
+		// for niceness, I want to ensure it gets put back inside the \textrm.
+		assertRoundTrip("z \\textrm{ frog }y");
+		assertRoundTrip("z \\textbf{ frog }y");
+		// Check it handles spaces that could be at end of one, or start of next
+		// (it is supposed to glue them to the end in that case)
+		assertRoundTrip("\\textbf{frog   }\\textrm{zombie}");
+		// A 'special' mtext that we don't glue things to
+		assertRoundTrip("\\ \\# \\ ");
 	}
 
 	@Test

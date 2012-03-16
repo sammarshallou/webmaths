@@ -2,6 +2,7 @@ package uk.ac.open.lts.webmaths.tex;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 
 import javax.xml.transform.*;
 import javax.xml.transform.dom.*;
@@ -123,13 +124,29 @@ public class MathmlToLatex
 		return result;
 	}
 
+	private final static Pattern TEX_TRIMMER = Pattern.compile(
+		"^ *(.*?(\\\\*))( *)$");
+
 	/**
 	 * @param tex Input string e.g. "{{ {1}+{x} }} "
 	 * @return Output string e.g. "{1}+{x}"
 	 */
 	static String trimSurroundingBraces(String tex)
 	{
-		tex = tex.trim();
+		Matcher m = TEX_TRIMMER.matcher(tex);
+		if(!m.matches())
+		{
+			throw new Error("This is expected to always match");
+		}
+		tex = m.group(1);
+		// Special case: if there are spaces at the end, immediately
+		// preceded by an odd number of backslashes, then we need to keep one of
+		// the spaces.
+		if(m.group(3).length() > 0 && ((m.group(2).length() & 1) == 1))
+		{
+			tex += " ";
+		}
+
 		// If it has surrounding brackets...
 		if(tex.matches("^\\{.*\\}$"))
 		{
