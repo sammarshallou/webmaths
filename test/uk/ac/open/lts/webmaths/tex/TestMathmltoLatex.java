@@ -1,4 +1,4 @@
-package uk.ac.open.lts.webmaths.imagetex;
+package uk.ac.open.lts.webmaths.tex;
 
 import static org.junit.Assert.*;
 import static uk.ac.open.lts.webmaths.MapUtil.*;
@@ -14,6 +14,7 @@ import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
+import uk.ac.open.lts.webmaths.imagetex.WebMathsImageTex;
 import uk.ac.open.lts.webmaths.tex.*;
 
 public class TestMathmltoLatex
