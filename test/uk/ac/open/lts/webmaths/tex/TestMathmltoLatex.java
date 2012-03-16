@@ -337,6 +337,22 @@ public class TestMathmltoLatex
 		assertRoundTrip("f_\\prime^\\prime");
 	}
 
+	/**
+	 * There was a case where we too-eagerly trimmed away brackets from the edge.
+	 * @throws Exception
+	 */
+	@Test
+	public void testBraces() throws Exception
+	{
+		assertRoundTrip("{10}^{-10}");
+	}
+
+	@Test
+	public void testTrimSurroundingBraces()
+	{
+		assertEquals("{1}+{x}", MathmlToLatex.trimSurroundingBraces("{{ {1}+{x} }} "));
+	}
+
 	@Test
 	public void testSupported() throws Exception
 	{

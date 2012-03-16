@@ -117,13 +117,53 @@ public class MathmlToLatex
 		// In situation like \symbol ^2 or \symbol _2, remove the space
 		result = result.replaceAll("(\\\\[A-Za-z]+) ([_^])", "$1$2");
 
-		// Whitespace at edges
-		result = result.trim();
+		// Whitespace at edges and surrounding brackets
+		result = trimSurroundingBraces(result);
 
-		// Get rid of surrounding { } if any
-		result = result.replaceFirst("^\\{\\s*(.*?)\\s*\\}$", "$1");
+		return result;
+	}
 
-		return result.trim();
+	/**
+	 * @param tex Input string e.g. "{{ {1}+{x} }} "
+	 * @return Output string e.g. "{1}+{x}"
+	 */
+	static String trimSurroundingBraces(String tex)
+	{
+		tex = tex.trim();
+		// If it has surrounding brackets...
+		if(tex.matches("^\\{.*\\}$"))
+		{
+			// Check to make sure the opening one is never closed before that final
+			// one.
+			int level = 0;
+			String inner = tex.substring(1, tex.length() - 1);
+			for(int pos=0; pos<inner.length(); pos++)
+			{
+				char c = inner.charAt(pos);
+				switch(c)
+				{
+				case '{' :
+					level++;
+					break;
+				case '}' :
+					level--;
+					if(level < 0)
+					{
+						// It got closed, cannot trim
+						return tex;
+					}
+					break;
+				case '\\' :
+					// Skip the next character - this will handle \{ and \} and also \\
+					pos++;
+					break;
+				}
+			}
+
+			// OK, it didn't get closed, so lose outer braces and recurse to the inner
+			return trimSurroundingBraces(inner);
+		}
+		return tex;
 	}
 
 	private void dumpXml(Document doc) throws TransformerException
