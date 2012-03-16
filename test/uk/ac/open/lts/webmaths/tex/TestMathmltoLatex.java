@@ -61,6 +61,7 @@ public class TestMathmltoLatex
 		"\\begin{Bmatrix} a&b \\\\ c&d \\end{Bmatrix}", "\\begin{Bmatrix} a & b \\\\ c & d \\end{Bmatrix}",
 		"\\begin{vmatrix} a&b \\\\ c&d \\end{vmatrix}", "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix}",
 		"\\begin{Vmatrix} a&b \\\\ c&d \\end{Vmatrix}", "\\begin{Vmatrix} a & b \\\\ c & d \\end{Vmatrix}",
+		"x \\  y", "x \\ y",
 
 		// Array columns
 		"\\begin{array} a&b \\\\ c&d \\end{array}", "\\begin{array}{ll} a & b \\\\ c & d \\end{array}",
