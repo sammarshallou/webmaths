@@ -338,7 +338,7 @@ public class WebMathsImageTex extends WebMathsImage
 		"\\usepackage{amsmath,amssymb,amsthm,gensymb}\n" +
 		"\\begin{document}\n";
 	private final static String TEX_PRE_ITEM =
-		"\\begin{equation*}\n\\setbox0\n\\hbox{$\n";
+		"\\begin{equation*}\n\\setbox0\n\\hbox{$\\displaystyle\n";
 	private final static String TEX_POST_ITEM =
 		"\n$}\n\\ht 0 0pt\n\\shipout\\box 0\n\\end{equation*}\n";
 	private final static String TEX_EPILOG =
