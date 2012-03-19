@@ -277,6 +277,45 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 				mo.appendChild(doc.createTextNode("\u23de"));
 			}
 		}
+
+		// menclose for long division doesn't allow enough top padding. Oh, and
+		// <mpadded> isn't implemented. And there isn't enough padding to left of
+		// the bar either. Solve by adding an <mover> with just an <mspace> over#
+		// the longdiv, contained within an mrow that adds a <mspace> before it.
+		list = doc.getElementsByTagName("menclose");
+		for(int i=0; i<list.getLength(); i++)
+		{
+			Element menclose = (Element)list.item(i);
+			// Only for longdiv
+			if(!"longdiv".equals(menclose.getAttribute("notation")))
+			{
+				continue;
+			}
+			Element mrow = doc.createElementNS(WebMathsService.NS, "mrow");
+			Element mover = doc.createElementNS(WebMathsService.NS, "mover");
+			Element mspace = doc.createElementNS(WebMathsService.NS, "mspace");
+			Element mspaceW = doc.createElementNS(WebMathsService.NS, "mspace");
+			boolean previousElement = false;
+			for(Node previous = menclose.getPreviousSibling(); previous != null;
+				previous = previous.getPreviousSibling())
+			{
+				if(previous.getNodeType() == Node.ELEMENT_NODE)
+				{
+					previousElement = true;
+					break;
+				}
+			}
+			if(previousElement)
+			{
+				mspaceW.setAttribute("width", "4px");
+			}
+			menclose.getParentNode().insertBefore(mrow, menclose);
+			menclose.getParentNode().removeChild(menclose);
+			mrow.appendChild(mspaceW);
+			mrow.appendChild(mover);
+			mover.appendChild(menclose);
+			mover.appendChild(mspace);
+		}
 	}
 
 	private static boolean isTextChild(Node parent, String text)
