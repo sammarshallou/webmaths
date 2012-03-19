@@ -15,7 +15,6 @@ import org.xml.sax.InputSource;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
 import uk.ac.open.lts.webmaths.imagetex.WebMathsImageTex;
-import uk.ac.open.lts.webmaths.tex.*;
 
 public class TestMathmltoLatex
 {
@@ -208,7 +207,7 @@ public class TestMathmltoLatex
 		}
 		return round;
 	}
-	
+
 	private void checkRoundTrip(StringBuilder out, String tex, boolean display) throws Exception
 	{
 		String mathml = convertToMathml(tex, display);
@@ -327,13 +326,13 @@ public class TestMathmltoLatex
 		result = convertToTex(mathml, false);
 		assertEquals("\\textstyle 1+{ \\displaystyle 2}", result);
 	}
-	
+
 	@Test
 	public void testPrimes() throws Exception
 	{
 		// Check that a prime symbol, not in a subscript, uses ascii '
 		assertRoundTrip("f'(x)");
-		
+
 		// Check that a prime symbol in subscript/superscript uses \prime
 		assertRoundTrip("f_\\prime^\\prime");
 	}

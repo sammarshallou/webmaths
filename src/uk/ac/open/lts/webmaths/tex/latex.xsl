@@ -8,7 +8,7 @@
 <!--
   List of characters with accent=true. Obtained from operator dictionary file 'dict'
   saved from http://www.w3.org/TR/MathML2/appendixf.html using following Unix
-  command: 
+  command:
   grep accent= dict | awk '{print $1}' | awk '{printf("%s",$0);}' | sed -e 's/"//g;'
   -->
 <xsl:variable name="DICT_ACCENTS">
@@ -19,7 +19,7 @@
 <xsl:variable name="LETTERSNUMBERS">abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</xsl:variable>
 
 <!--
-  Root template 
+  Root template
   -->
 <xsl:template match="/m:math">
   <result>
@@ -384,7 +384,7 @@
 
 
 <!--
-  fontstyle = normal on mi can be ignored (eh maybe) 
+  fontstyle = normal on mi can be ignored (eh maybe)
   -->
 <xsl:template match="m:mi/@fontstyle[string(.)='normal']"/>
 
@@ -834,7 +834,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="string(.)"/>
-      </xsl:otherwise> 
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
   <xsl:if test="@mathvariant != 'normal'">
@@ -892,7 +892,7 @@
 
 <!--
   Put spaces around some weird operators just to make it look nicer and match
-  some of the input tests. 
+  some of the input tests.
   -->
 <xsl:template match="m:mtext[string(.) = '.' or string(.) = ';' or
     string(.) = '?' or string(.) = '&nbsp;']">
@@ -945,7 +945,7 @@
 <!-- Displaystyle true; exclude auto-added wrapper -->
 <xsl:template match="m:mstyle">
   <xsl:apply-templates select="@*"/>
-  
+
   <xsl:variable name="DISPLAYSTYLE">
     <xsl:call-template name="get-displaystyle"/>
   </xsl:variable>
@@ -954,7 +954,7 @@
       <xsl:call-template name="get-displaystyle"/>
     </xsl:for-each>
   </xsl:variable>
-  
+
   <xsl:variable name="SCRIPTLEVEL">
     <xsl:call-template name="get-scriptlevel"/>
   </xsl:variable>
@@ -966,7 +966,7 @@
 
   <xsl:variable name="NOCHANGE">
     <xsl:if test="$SCRIPTLEVEL = $PARENTSCRIPTLEVEL and
-        $DISPLAYSTYLE = $PARENTDISPLAYSTYLE">y</xsl:if> 
+        $DISPLAYSTYLE = $PARENTDISPLAYSTYLE">y</xsl:if>
   </xsl:variable>
 
   <xsl:variable name="SKIP">
@@ -1036,7 +1036,7 @@
  Gets details for an embellished operator. Embellished operator logic is
  defined in http://www.w3.org/TR/MathML2/chapter3.html#id.3.2.5.7
  If context node is not an embellished operator, returns empty string.
- TYPE - type value 
+ TYPE - type value
 
  Type values:
  'accent': get value of accent setting or from dictionary (true/false)
@@ -1111,7 +1111,7 @@
 </xsl:template>
 
 <!--
-  Inner template used by get-embellished-operator-info. 
+  Inner template used by get-embellished-operator-info.
   -->
 <xsl:template name="get-embellished-operator-info-inner">
   <xsl:param name="TYPE"/>
@@ -1131,7 +1131,7 @@
       </xsl:choose>
     </xsl:when>
   </xsl:choose>
-  
+
 </xsl:template>
 
 <!--
@@ -1174,9 +1174,9 @@
       <xsl:for-each select="child::*[$SELECTION]">
         <xsl:call-template name="is-space-like"/>
       </xsl:for-each>
-      <!-- 
+      <!--
         I think usually there should be a selected element, but just in
-        case, if there is none, let's call it space-like? 
+        case, if there is none, let's call it space-like?
         -->
       <xsl:if test="not(child::*[$SELECTION])">
         <xsl:text>y</xsl:text>
