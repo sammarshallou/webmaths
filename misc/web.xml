@@ -10,14 +10,20 @@
             com.sun.xml.ws.transport.http.servlet.WSServletContextListener
         </listener-class>
     </listener>
-    
+
     <servlet>
         <servlet-name>WS</servlet-name>
         <servlet-class>
             com.sun.xml.ws.transport.http.servlet.WSServlet
         </servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>Redirect</servlet-name>
+        <servlet-class>
+            uk.ac.open.lts.webmaths.RedirectServlet
+        </servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>WS</servlet-name>
         <url-pattern>/english</url-pattern>
@@ -33,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>WS</servlet-name>
         <url-pattern>/imagetex</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Redirect</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <context-param>

@@ -81,17 +81,30 @@ Basic build/setup instructions for testing
 ------------------------------------------
 
 1) Run the ant build script with the 'wsdlgen' target. This will create the
-   'gen' folder based on the WSDL files. 
-   
+   'gen' folder based on the WSDL files.
+
    In order for this to work you will need to set the Ant property
    jaxws.home to point to the folder of JAX-WS 2.1 install; get this from
    Oracle if you don't already have it.
+
+   *** WARNING: YOU MUST USE JAX-WS 2.1 AND NOT ANY LATER VERSION ***
+
+   2.2 cannot be made to work with a standard Tomcat install because it is
+   not compatible with the built-in version included in Java 6. In order not
+   to require complex Tomcat configuration, I decided to use 2.1. (The
+   situation may be different if you are using Java 7.)
+
+   -> In Eclipse, right-click build.xml and choose 'Run as > Ant build...',
+      then select the wsdlgen target and deselect others. On the Properties
+      page, turn off 'use global properties' and click 'Add property' to
+      add jaxws.home, with the correct folder location.
 
 2) If you want your IDE to compile the project:
    a) Refresh the project if necessary to see the 'gen' folder.
       -> In Eclipse, right-click the project root and choose Refresh. 
    b) Add the 'gen' and 'test' folders to your IDE's source path. (The 'src'
       folder has probably been included by default, but if not, add that too.)
+      You can also add 'analysis' if you like.
       -> In Eclipse, right-click the folder and choose Build path /
          Use as source folder.
    c) Add all the library .jar files in 'lib' to the IDE's build path.
@@ -103,7 +116,7 @@ Basic build/setup instructions for testing
 
 4) You can also run unit tests by running JUnit on the 'test' folder.
    -> In Eclipse, right-click this folder and choose Run as / JUnit test. 
-   
+
 5) To build the web application, run the ant script with the 'webinf' target.
    This will create a WEB-INF folder. You will need to set the Ant property
    webinf.location to the folder where you want to put the WEB-INF folder.
@@ -113,14 +126,18 @@ Basic build/setup instructions for testing
    target. Again, you can set the Ant property war.location to the folder
    where you want to put the .war file.
 
+7) Whether you build a WEB-INF folder or a .war file, once you have installed
+   the application, you can test it is running by going to its root URL. If
+   the application is running, a list of services should appear (see below).
+
 
 How to write clients
 --------------------
 
 To get the JAX-WS information page for any service once you have installed it
-on your server, go to http://your.server.example.com/webmaths/tex; you'll get
-a list of all four services together with the WSDL file that should be all you
-need in order to write software that uses the services. The WSDL file contains
+on your server, go to http://your.server.example.com/webmaths/ - you'll get
+a list of all four services together with the WSDL files that should be all you
+need in order to write software that uses the services. The WSDL files contain
 documentation for all parameters and return values. 
 
 The WSDL files are WS-I compliant so should be usable from all programming
