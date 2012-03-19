@@ -1,8 +1,47 @@
+Overview
+--------
+
+This project is a collection of Web services that can be run in a Java
+application server to provide mathematical equation processing features.
+
+We have a filter (not yet publicly released) for the Moodle virtual learning
+environment platform which uses these services so that users can view equations
+as images in a user-selected size and colour, or directly to the browser as
+MathML if they have a supported browser, regardless of whether the equations
+were initially entered as TeX or MathML.
+
+
+Services
+--------
+
+The service names all begin with WebMaths. They are:
+
+Tex:       Converts a subset of AMS LaTeX to MathML 2.
+           Converts the same subset back from MathML 2 to AMS LaTeX.
+           (The subset is documented in misc/supported.tex.commands.xml.)
+
+English:   Converts MathML 2 into English text suitable for using as 'alt' text.
+           Warning: The results of this service are presently not very good.
+
+Image:     Renders MathML 2 using the JEuclid library. Size and colour can
+           be selected.
+
+ImageTex:  For MathML that was originally converted from TeX using the above
+           converter, renders it using latex and dvipng software. For other
+           MathML, uses JEuclid as above.
+
+Image and ImageTex are plug-in compatible (they use the same WSDL, so you can
+use a different one by changing the URL in your service client). ImageTeX can
+produce prettier images, but requires 'latex' and 'dvipng' to be installed on
+the server. Image is pure Java; it requires no extra installation, and also
+performs better, but the images can be a bit ugly.
+
+
 Licensing
 ---------
 
 All contents of this repository including code and data are copyright
-2011 The Open University and are released under the GNU Public License
+2012 The Open University and are released under the GNU Public License
 version 3 (see LICENSE), except:
 
 * JEuclid and dependencies in lib/jeuclid folder:
@@ -36,6 +75,7 @@ version 3 (see LICENSE), except:
   http://code.google.com/p/googlefontdirectory/source/browse/allura/
   This Font Software is licensed under the SIL Open Font License, Version 1.1.
   Copyright (c) 2011 TypeSETit, LLC (typesetit@att.net)
+
 
 Basic build/setup instructions for testing
 ------------------------------------------
@@ -72,3 +112,16 @@ Basic build/setup instructions for testing
 6) To build the web application as a .war file, run ant script with the 'war'
    target. Again, you can set the Ant property war.location to the folder
    where you want to put the .war file.
+
+
+How to write clients
+--------------------
+
+To get the JAX-WS information page for any service once you have installed it
+on your server, go to http://your.server.example.com/webmaths/tex; you'll get
+a list of all four services together with the WSDL file that should be all you
+need in order to write software that uses the services. The WSDL file contains
+documentation for all parameters and return values. 
+
+The WSDL files are WS-I compliant so should be usable from all programming
+languages.
