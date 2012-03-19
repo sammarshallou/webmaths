@@ -43,11 +43,13 @@
             <ProgramDisplay>
                 &lt;math>&lt;mi>x&lt;/mi>&lt;mo>=&lt;/mo>&lt;msup>&lt;mi>y&lt;/mi>&lt;mn>2&lt;/mn>&lt;/msup>&lt;/math>
             </ProgramDisplay>
-            <Paragraph>Alternatively, you could type this TeX equation:</Paragraph>
+            <Paragraph>Alternatively, you could type this LaTeX equation:</Paragraph>
             <ProgramDisplay>
                 $$ x=y^2 $$
             </ProgramDisplay>
-            <Paragraph>Both display as:</Paragraph>
+            <Paragraph>These give very similar results (or identical, if you are
+                viewing directly as MathML):</Paragraph>
+            <Equation><MathML>&lt;math>&lt;mi>x&lt;/mi>&lt;mo>=&lt;/mo>&lt;msup>&lt;mi>y&lt;/mi>&lt;mn>2&lt;/mn>&lt;/msup>&lt;/math></MathML></Equation>
             <Equation><TeX>\displaystyle x=y^2</TeX></Equation>
             <Paragraph>
                 When copying and pasting equations from other applications,
@@ -58,8 +60,14 @@
             <Paragraph>
                 While our system aims to support all commands and symbols in
                 the MathML version 2 specification, with regard to TeX, we support
-                only a subset of LaTeX commands. This document lists
+                only a subset of AMS LaTeX commands. This document lists
                 them.
+            </Paragraph>
+            <Paragraph>
+                <i>Note: We also use the equations in this document to test our
+                system. Some commands are included twice (demonstrating multiple
+                possible ways to use the command), in order to help
+                ensure that the system keeps working as expected.</i>
             </Paragraph>
         </Introduction>
     </FrontMatter>
@@ -855,14 +863,6 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \%</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\bmod</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bmod</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\mod</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mod</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\downarrow</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \downarrow</TeX></InlineEquation></td>
                         </tr>
@@ -1171,23 +1171,26 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \degree</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\R</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\R</ComputerCode> - <b>do not use</b>
+                                <footnote>This method of entering certain double-struck letters currently works
+                                 but is not supported in standard AMS LaTeX. Please use
+                                 <ComputerCode>\mathbb{R}</ComputerCode> instead.</footnote></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \R</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\Q</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\Q</ComputerCode> - <b>do not use</b></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Q</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\N</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\N</ComputerCode> - <b>do not use</b></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \N</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\C</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\C</ComputerCode> - <b>do not use</b></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \C</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\Z</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\Z</ComputerCode> - <b>do not use</b></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Z</TeX></InlineEquation></td>
                         </tr>
                     </tbody>
@@ -2449,6 +2452,16 @@
                             <td class="TableLeft"><ComputerCode>T_u{}^u</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle T_u{}^u</TeX></InlineEquation></td>
                         </tr>
+                        <tr>
+                            <td class="TableLeft">Multiple superscript/subscript before</td>
+                            <td class="TableLeft"><ComputerCode>{}^u{}_w^vX</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle {}^u{}_w^vX</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Multiple superscript/subscript before/after</td>
+                            <td class="TableLeft"><ComputerCode>{}^u{}_w^vX_a{}_b{}_c^d</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle {}^u{}_w^vX_a{}_b{}_c^d</TeX></InlineEquation></td>
+                        </tr>
 
                         <tr>
                             <td class="TableLeft"><ComputerCode>\frac</ComputerCode></td>
@@ -2456,14 +2469,11 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \frac{1}{x}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\over</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\over</ComputerCode> - <b>not recommended</b>
+                                <footnote>Our system does not always render <ComputerCode>\over</ComputerCode>
+                                consistently. Use <ComputerCode>\frac</ComputerCode> instead.</footnote></td>
                             <td class="TableLeft"><ComputerCode>1 \over x</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle 1 \over x</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\choose</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>2 \choose 3</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 2 \choose 3</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\dfrac</ComputerCode></td>
@@ -2501,9 +2511,21 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqrt{x}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>\sqrt[</ComputerCode><i>n</i><ComputerCode>]</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\sqrt[3]{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sqrt[3]{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\binom</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\binom{4}{x}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \binom{4}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\choose</ComputerCode> - <b>not recommended</b>
+                                <footnote>Our system does not always render <ComputerCode>\choose</ComputerCode>
+                                consistently. Use <ComputerCode>\binom</ComputerCode> instead.</footnote></td>
+                            <td class="TableLeft"><ComputerCode>2 \choose 3</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 2 \choose 3</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\dbinom</ComputerCode></td>
@@ -2520,6 +2542,18 @@
                             <td class="TableLeft"><ComputerCode>\operatorname{rank}(x)</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \operatorname{rank}(x)</TeX></InlineEquation></td>
                         </tr>
+                        <!-- Note: \mod and \bmod are treated as operators but I put them here
+                             because it makes more sense. -->
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\mod</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>13 \mod{16}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 13 \mod{16}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\bmod</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>13 \bmod{16}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 13 \bmod{16}</TeX></InlineEquation></td>
+                        </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\pod</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>3 \pod{6}</ComputerCode></td>
@@ -2532,8 +2566,8 @@
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\substack</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\substack{ x &lt; 0 &lt; n \\ y &lt; 0 &lt; n }</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \substack{ x &lt; 0 &lt; n \\ y &lt; 0 &lt; n }</TeX></InlineEquation></td>
+                            <td class="TableLeft"><ComputerCode>\sum_{\substack{x&lt;0&lt;n \\ y&lt;0&lt;n}}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sum_{\substack{x&lt;0&lt;n \\ y&lt;0&lt;n}}</TeX></InlineEquation></td>
                         </tr>
                     </tbody>
                 </Table>
@@ -2572,6 +2606,11 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left( \frac{1}{x} \right\}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>\left</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\left( \begin{array}{l} a \\ b \end{array} \right)</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left( \begin{array}{l} a \\ b \end{array} \right)</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\bigl</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\bigl( \frac{1}{x} \bigr\}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigl( \frac{1}{x} \bigr\}</TeX></InlineEquation></td>
@@ -2595,7 +2634,7 @@
                 </Table>
 
                 <Table class="type 2">
-                    <Heading>Miscellaneous</Heading>
+                    <Heading>Display style</Heading>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2623,18 +2662,31 @@
                             <td class="TableLeft"><Paragraph><ComputerCode>\scriptscriptstyle \frac{1}{x}</ComputerCode></Paragraph></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \scriptscriptstyle \frac{1}{x}</TeX></InlineEquation></td>
                         </tr>
+                    </tbody>
+                </Table>
+
+                <Table class="type 2">
+                    <Heading>Miscellaneous</Heading>
+                    <tbody>
+                        <tr>
+                            <th class="ColumnHeadLeft">Command</th>
+                            <th class="ColumnHeadLeft">Example</th>
+                            <th class="ColumnHeadLeft">Output</th>
+                        </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\mathop</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\mathop{XQX}_{i=1}^n</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathop{XQX}_{i=1}^n</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\not</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\not</ComputerCode> (with symbol)</td>
                             <td class="TableLeft"><ComputerCode>X \not= Y</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle X \not= Y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\not</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\not</ComputerCode> (with letter) - <b>not recommended</b>
+                                <footnote>You can use \not with a letter, but it usually looks bad; best to
+                                    restrict it to standard symbols which have a 'not' variant.</footnote></td>
                             <td class="TableLeft"><ComputerCode>\not Q</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \not Q</TeX></InlineEquation></td>
                         </tr>
@@ -2803,10 +2855,6 @@
                     </tbody>
                 </Table>
 
-                <Paragraph><i>Note: Although the commands for different styles are
-                    supported, these don't actually do anything different at
-                    present.</i></Paragraph>
-
                 <Table class="type 2">
                     <Heading>Font style</Heading>
                     <tbody>
@@ -2827,8 +2875,8 @@
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\bold</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\bold{X}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bold{X}</TeX></InlineEquation></td>
+                            <td class="TableLeft"><ComputerCode>\bold{XY}</ComputerCode>, <ComputerCode>\bold{1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bold{XY}</TeX></InlineEquation>, <InlineEquation><TeX>\displaystyle \bold{1}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\Bbb</ComputerCode></td>
@@ -2890,15 +2938,17 @@
                             <td class="TableLeft"><ComputerCode>\EuScript{X}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \EuScript{X}</TeX></InlineEquation></td>
                         </tr>
+                        <!-- Note: The \bf and \rm commands have been deprecated since 1994.
+                             http://www.tex.ac.uk/cgi-bin/texfaq2html?label=2letterfontcmd -->
                         <tr>
                             <td class="TableLeft"><ComputerCode>\bf</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\bf{X}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bf{X}</TeX></InlineEquation></td>
+                            <td class="TableLeft"><ComputerCode>{\bf X Y}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle {\bf X Y}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\rm</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\rm{X}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rm{X}</TeX></InlineEquation></td>
+                            <td class="TableLeft"><ComputerCode>{\bf X \rm Y}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle {\bf X \rm Y}</TeX></InlineEquation></td>
                         </tr>
                     </tbody>
                 </Table>
@@ -2962,9 +3012,15 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{cases} 1 &amp; x=4 \\ 17 &amp; x=5 \end{cases}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>array</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>array</ComputerCode> (not aligned) - <b>do not use</b>
+                            <footnote>The <ComputerCode>\begin{array}</ComputerCode> command, without any alignment parameters, is not supported in standard AMS LaTeX. Use the version with alignment parameters.</footnote></td>
                             <td class="TableLeft"><ComputerCode>\begin{array} a&amp;b \\ c&amp;d \end{array}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{array} a&amp;b \\ c&amp;d \end{array}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>array</ComputerCode> (aligned)</td>
+                            <td class="TableLeft"><ComputerCode>\begin{array}{lcr} a &amp; b &amp; c \\ AB &amp; CD &amp; EF \end{array}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{array}{lcr} a &amp; b &amp; c \\ AB &amp; CD &amp; EF \end{array}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>align</ComputerCode>, <ComputerCode>align*</ComputerCode></td>
@@ -2972,7 +3028,10 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{align*} x &amp; =1 \\ y &amp; =2 \end{align*}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>displaymath</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>displaymath</ComputerCode> - <b>do not use</b>
+                                <footnote>This environment doesn't really make sense as the equation is already
+                                within a suitable equation environment. To select display style, use
+                                <ComputerCode>\displaystyle</ComputerCode> instead.</footnote></td>
                             <td class="TableLeft"><Paragraph><ComputerCode>\begin{displaymath} \frac{1}{x}</ComputerCode></Paragraph>
                                 <Paragraph><i>Note: Has no effect because equations created in collaborative tools use display style by default.</i></Paragraph></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{displaymath} \frac{1}{x}</TeX></InlineEquation></td>
