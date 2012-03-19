@@ -30,5 +30,44 @@
         <servlet-name>WS</servlet-name>
         <url-pattern>/tex</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WS</servlet-name>
+        <url-pattern>/imagetex</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <description>Random subdirectories of this directory will be used
+            to store temporary files when generating images. (ImageTex
+            service only.)</description>
+        <param-name>temp-directory</param-name>
+        <param-value>@TEMP@</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Use to set path to latex (if it is on path, you can leave
+            default). (ImageTex service only.)</description>
+        <param-name>latex-executable</param-name>
+        <param-value>latex</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Use to set path to dvipng (if it is on path, you can leave
+            default). (ImageTex service only.)</description>
+        <param-name>dvipng-executable</param-name>
+        <param-value>dvipng</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Render mode used if there are no annotations that control
+            it. (If there is an application/x-tex annotation the system will
+            use 'autofallback'; an application/x-webmaths annotation can be used
+            to set a specific mode.) Values: 'mathml' = MathML renderer
+            (JEuclid), 'autofallback' = LaTeX renderer if the system thinks it
+            can successfully convert the MathML (it can be wrong about this!),
+            'latex' = always use LaTeX even if the conversion is known to
+            fail. (ImageTex service only.)</description>
+        <param-name>default-render-mode</param-name>
+        <param-value>mathml</param-value>
+    </context-param>
 
 </web-app>

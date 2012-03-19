@@ -1,0 +1,3779 @@
+%pi = 4
+& \frac{1}{{{R}_{AB}}}\frac{d{{R}_{AB}}}{dT}=-\frac{2}{3T}+\alpha {{T}^{-4/3}} \\
+& \frac{d\text{lo}{{\text{g}}_{e}}{{R}_{AB}}}{dT}=0-\frac{2}{3}\frac{d{{\log }_{e}}T}{dT}+\alpha {{T}^{-4/3}} \\
+& \frac{d{{R}_{AB}}}{dT}={{R}_{AB}}\left[ -\frac{2}{3T}+{{\left( \frac{{{E}_{G}}}{4k} \right)}^{1/3}}{{T}^{-4/3}} \right]=\frac{{{R}_{AB}}}{T}\left[ {{\left( \frac{{{E}_{G}}}{4kT} \right)}^{1/3}}-\frac{2}{3} \right] \\
+& \text{Differentiating wrt T} \\
+& \text{Let }\alpha \text{=}{{\left( \frac{{{E}_{G}}}{4k} \right)}^{1/3}} \\
+& \text{Taking logs} \\
+& \text{lo}{{\text{g}}_{e}}{{R}_{AB}}={{\log }_{e}}a{{\alpha }^{2}}-\frac{2}{3}{{\log }_{e}}T-3\alpha {{T}^{-1/3}} \\
+& {{R}_{AB}}=a{{\alpha }^{2}}{{T}^{-2/3}}\text{x}{{\text{e}}^{(-3\alpha {{T}^{-1/3}})}} \\
+& {{R}_{AB}}=a{{\left( \frac{{{E}_{G}}}{4kT} \right)}^{2/3}}\text{exp}\left[ \text{-3}{{\left( \frac{{{E}_{G}}}{4kT} \right)}^{1/3}} \right] \\
+&*%
+&=\frac{1}{x}.\left(1+\frac{ax}{1-ax}\right)
+((4x)^2)/2^e
+(-1)^0=+1
+(-1)^n/n
+(-1)^p=+1
+(-1)^p=-1
+(-2)^2
+(-2)^2=4
+(-2)^3=-8
+(-2)^6= 64\text{mod}(47)=17\text{mod}(47)
+(-3)^2 = 9
+(-3)^2 =9
+(-3)^2=-9
+(-35)^{n-1}
+(-5)^{n+1}=(-5)^{n-1+2}=(-5)^{n-1}*(-5)^2
+(-5)^{n-1}(7)^{n+1}=7^{n-1}(-5)^{n-1}*7^2
+(-\frac{1}{2}+\frac{1}{2}\sqrt{5})^2
+(-\frac{\sqrt3}{2}x+\frac{1}{2}y,\frac{1}{2}x+\frac{\sqrt3}{2}y)
+(-\infty,t_\text{max})
+(-i)^{1/2}=\left(i^3\right)^{1/2}
+(-x)^{2}=x^{2}
+(-x+3y)^{2}+(x-2y)^{2}=1
+(...)(...)(...)(...)...
+(0.20 - 1.5 \times 10^{-5}P_n)P_n\\\\= 0.20 P_n \left(\dfrac{0.20}{0.20} - \dfrac{1.5 \times 10^{-5}P_n}{0.20}\right)\\\textit{0.20 taken out as a common factor}\\\\= 0.20 P_n (1 - \frac{1.5}{0.20} \times 10^{-5}P_n)\\\textit{divide top and bottom of fraction by 0.20}\\\\= 0.20 P_n (1 - 7.5 \times 10^{-5}P_n)
+(0.85)(0.85)^n=(0.85)^{n+1}
+(1 \textrm{ cm})^2 =  (10^{-2} \textrm{ m})^2
+(1+2)^n \geq1+2n+\dfrac{n(n-1)}{2!}2^2
+(1+A)/2 \le x \le 1
+(1+i)^8
+(1+t^2)^{1/2}
+(1+x)^n >= 1 + nx
+(1+x)^n\ge 1+ nx \text { for } \mathbf{x\ge-1}
+(1,0)\in\mathbb{R}^2
+(1,1) * \Big((2,0) * (1,1)^{-1}\Big)
+(1-3x)^{-\frac{1}{3}}
+(1-x)^{-1}
+(1-x)^{-2}
+(1-x^3)^{-1}(1-x^4)^{-1}(1-x^5)^{-1}\ldots
+(2)(7)(-5)-(-5)^2-(7)^2
+(2)^2=(-2)^2=4
+(2)^{n-1} * (-3)^{n-1}
+(2-0)^2+(0-0)^2=2^2
+(2^{a}-1)(2^{a(b-1)}+2^{a(b-2)}+ \dotsb +2^{a}+1)
+(2a)^{2}
+(2k)^{2}+2k=4k^{2}+2k=2(2k^{2}+k)
+(2p+3)^2
+(2|U|/\epsilon_k)^s m_k^{1-s}
+(3-\lambda)(2-\lambda)(4-\lambda)-2(8-2\lambda)-2(4-2\lambda)\\ (6-5\lambda+\lambda^2)(4-\lambda)-16+4\lambda-8+4\lambda\\ 24-20\lambda+4\lambda^2-6\lambda+5\lambda^2-\lambda^3-24+8\lambda\\ -\lambda^3+9\lambda^2-18\lambda
+(3\text{~m})^2=9\text{~m}^2
+(3^{n}+4^{n})^{2}=(3^{n}+4^{n})(3^{n}+4^{n})=3^{n}\times3^{n}+3^{n}\times4^{n}+4^{n}\times3^{n}+4^{n}\times4^{n}=3^{n+n}+2(3^{n}\times4^{n})+4^{n+n}=3^{2n}+2(3^{n}\times4^{n})+4^{2n}
+(3x-4)^2=9x^2-8(3x-2)
+(4 - 2 \times 51) + (4 - 2 \times 52)\\\\= (4 - 102) + (4 - 104)\\\\= (-98) + (-100)\\\\=-198
+(4 \times 10^8 / \eta)
+(4,2)\in(\mathbb{R}^2,+),(4,2)^2=(4,2)+(4,2)=(8,4)
+(4^{n-1} * 3^{n-1}) = 12^{n-1}
+(5+\dfrac{4}{3})x-\dfrac{10}{3}=-16
+(5-x^2)^5
+(5^3(-x^2)^2)
+(5x+\dfrac{4x}{3})-\dfrac{10}{3}=-16
+(81^3)4 = 531441\times4 = 2125764
+(A=\sqrt{1+12\delta}+\sqrt{12\delta})^{1/3}
+(Av)^T
+(Av)^{-1}
+(C + D)^2 = C^2 + 2CD + D^2
+(C^{\perp})^{\perp}=C
+(De^{-(p+qi)x})^{-1}=e^{(p+qi)x}D^{-1}
+(G,\circ) \rightarrow (\mathbb{Z}_4,\times_4)
+(G\times(1.675\times 10^{-27})^2)/5.292\times 10^{-11}
+(Gx(1.675x10^{-27})^2)/5.292x10^{-11}
+(I - A)^{-1}
+(I-A)^{-1}
+(I-BA)[B(I-AB)^{-1}A + I] = BA + I- BA = I
+(X_{t})
+(\Lambda^{-1})^\nu_ \mu
+(\cos n\varphi+i\sin n\varphi)=(\cos\varphi+i\sin\varphi)^n.
+(\cos x)^2
+(\cos(x))^2
+(\cos\phi + i\sin\phi)^n=\cos n\phi + i\sin n\phi
+(\cos\theta+i\sin\theta)=(\cos \frac{\theta}{n}+i\sin \frac{\theta}{n})^n
+(\frac{-3}{2}+\frac{\sqrt3}{2})
+(\frac{1}{2}x-3)^5
+(\frac{1}{2}x^2-3)^5
+(\frac{1}{7} + \frac{1}{11} + \frac{1}{13} + ...) + (\frac{1}{7} + \frac{1}{11} + \frac{1}{13} + ...)^2 + ... + (\frac{1}{7} + \frac{1}{11} + \frac{1}{13} + ...)^t
+(\frac{3}{2}+\frac{\sqrt3}{2})
+(\frac{\sqrt3}{2}x-\frac{1}{2}y,\frac{1}{2}x+\frac{\sqrt3}{2}y)
+(\lambda f)(x) =\lambda f(x)),\quad\text{for }\lambda\in \mathbb{R}
+(\lambda-\lambda_1)(\lambda-\lambda_2)=(\lambda-2)^2=\lambda^2-4\lambda+4
+(\mathbb{R}^*, \times)
+(\mathbb{R}^2,+)
+(\mathbb{Z}^*_5,\times_5)
+(\mathbb{Z}_5,+_5)
+(\mathbb{Z}_n,+_n)
+(\pi^4+\pi^5)^{1/6}=2.718281809\dots
+(\sin x)^2
+(\sin x)^n
+(\sin x)^{-1}
+(\sqrt[4]{81})^3
+(\sqrt[7]10)^2
+(\sqrt{2})^{50} \approx 33
+(a+b)^2 = a^2 + 2ab + b^2
+(a+b)^3 = a^3+3a^2b+3ab^2+b^3
+(a+b)^{2}=(a+b)(a+b)
+(a+b)^{2}=(a+b)(a+b)=a\times a+a\times b+b\times a+b\times b=a^{2}+2ab+b^{2}
+(a+d)^2 = -4(ad -cb)
+(a+d)^2 = 4(ad-bc)
+(a+d)^2= 4(ad -bc)
+(a-b)^{2}=a^{2}-2ab+b^{2}
+(a\bold{x})H^T=a(\bold{x}H^T)=a\bold{0}=\bold{0}
+(a\ne-1)
+(a\times b)^{2}=a^{2}\times b^{2}
+(a\times b)^{2}=a^{2}\times b^{2}=(a\times b)(a\times b)=a\times b\times a\times b=a\times a\times b\times b
+(a^2+x^2)^{1/2}
+(a^m)^n = a^{mn}
+(ab)^x=a^xb^x,\forall a,b\in\mathbb{R^+},\forall x\in\mathbb{Q}
+(ax +b)^2 = (ax)^2 +2ab + b^2
+(cos(x))^2
+(d^2+c^2)x^2-2(ac+bd)xy+(a^2+b^2)y^2=(ad=bc)^2
+(e,r^1,r^2......r^N-1,s,r^1s,r^2s.....r^{N-1}s)
+(f'e^{2\eta})'=ae^{2\eta}+b
+(f^k)^{-1}([-2,2])=[-2,2]
+(f_{1}f_{2}f_{3}.....f_{n})'=f'_{1}f_{2}f_{3}...f_{n}+f_{1}f'_{2}f_{3}...f_{n}+...+f_{1}f_{2}f_{3}...f'_{n}
+(fg)' = f'g + fg'
+(fg)'=f'g+fg'
+(g \circ f)(a) \mapsto g(f(a)) \in C\quad \text{for}\quad a \in A
+(i_{1},\dots,i_{k-1})
+(ln x)^{2}
+(ln x)^{2}=ln^{2}x^{2}
+(m_1 \cdots m_{k-1}) \le 1
+(m_1...m_{k-1})m_k^s \epsilon_k^s
+(m_1...m_{k-1})m_k^s \epsilon_k^s < 1
+(m_1...m_{k-1})m_k^s \epsilon_k^s>1
+(n+1)^n+ \dfrac{1}{n^n}
+(n-1)p(q+ps)^{n-2}
+(n=0,1,2,...)
+(n=0???,1,2,...)
+(n=1,2,3,...)
+(n_{\rm p}/2) \left<\sigma_{\rm pp} v_{\rm r}\right> = n_{\rm d} \left<\sigma_{\rm pd} v_{\rm r} \right>
+(p-1)(p+1)=p^2-1=6k\text{ for some }k\in\mathbb{N}
+(pq+pr+qr)=\frac{(p+q+r)^2}{3}-3((x-\tfrac{1}{3}(p+q+r))^2)
+(pu')'-qu+\lambda wu=0
+(q+ps)^{n-1}
+(r - 1)! \times \lambda \times \frac{d}{dt}\frac{1}{(\lambda - t)^r}
+(r(\cos\phi + i\sin\phi))^n=r^n(\cos n\phi + i\sin n\phi)
+(r^1)^{-1} = r^3
+(r^j)^{-1}
+(r^j)^{-1}s
+(r^k)^{-1}
+(r^{1}r^{1})s
+(r^{n-2}+\dots+r^1+1)d
+(s.e.prev.)^2=(s.e.conf.)^2+s^2
+(t-3.5)^2
+(t-3.5)^2 - 12.25 = t^2 - 7t
+(t-3.5)^2 = t^2 - 7t + 12.25
+(t-[t])(\frac{logt}{t})' \le (\frac{logt}{t})' = t^{-2}(1-logt) \le t^{-2}
+(t-na)^n
+(t_{\rm em},\chi,0,0)
+(t_{\rm ob},0,0,0)
+(u)^{\frac{1}{2}
+(u, v)_w = \int_a^b dx\; w(x) u(x)^* v(x) .
+(u^{-1})^{-1}=u
+(x + \frac{b}{2a})^2
+(x +y)^4
+(x - a)^2 + (y - b)^2 = r^2
+(x', y')
+(x)^2=(-x)^2=x^2
+(x+1)^2
+(x+2)^3
+(x+27)^2
+(x+5)^2
+(x+5)^2-25+25=0
+(x+5)^2=0
+(x+\dfrac{b}{2a})^{2}=-\dfrac{c}{a}+\dfrac{b^{2}}{4a^{2}}
+(x+a)(x+b)(x+c)=x^{3}+(a+b+c)x^{2}+(a\cdot b+b\cdot c+c\cdot a)x+a\cdot b\cdot c
+(x+h)^4
+(x+p)^2-p^2
+(x+y)^{3}=x^{3}+3x^{2}y+3xy^{2}+y^{3}
+(x, 0)\in\mathbb{R}^2
+(x, 2x+3)\in\mathbb{R}^2
+(x-0)^2+(y-0)^2=2^2
+(x-1)^2+(y-7)^2=50
+(x-1)^{2}
+(x-2)^2+(y-0)^2=2^2
+(x-2)^2-4-(y-3)^2+9=0
+(x-2)^2-4-(y-3)^2+9=6
+(x-2)^2=x^2-4x+4
+(x-2)^{2}+(3+1)^{2}=25
+(x-2)^{2}+(4)^{2}=25
+(x-2)^{2}+16-16=25-16
+(x-2)^{2}+16=25
+(x-2)^{2}=9
+(x-5)^2+(y-7)^2=(\sqrt{2})^2
+(x-5)^2+(y-7)^2=2
+(x-5)^2+(y-7)^2=2^1
+(x-5)^2+(y-7)^2=2^{\frac{1}{2}\times2}
+(x-7)^2=\frac{1}{4}y+1
+(x-7)^2=\frac{y+4}{4}
+(x-7)^2=\frac{y}{4}+1
+(x-7)^2=\frac{y}{4}+\frac{4}{4}
+(x-\dfrac{5}{2})^{2}
+(x-\dfrac{5}{2})^{2}-\dfrac{25}{4}+6=0
+(x-\dfrac{5}{2})^{2}=x^{2}-5x+\dfrac{25}{4}
+(x-p)^2+(y-q)^2=r^2
+(x^2)^3 = x^6
+(x^2)^a
+(x^2+1)^{\frac{1}{256}}
+(x^2-3x+4)e^{x}
+(x^2-4)^{-1/2}
+(x^a)^b \ne x^a\times 1^b
+(x^a)^b=x^{ab}
+(x{^'}, y{^'})
+(y-1)^2=y^2-2y+1
+(y-3)^2=y^2-6y+9
+(y-4)^2+(x-4)^2=4\quad 2\le x\le 6
+(y-\dfrac{5}{2})^2=y^2-5y+\dfrac{25}{4}
+(y^{a})^{1/a}=x^{1/a}
+({\bf u}.\nabla)\rho
+({\bf u}.\nabla)\rho={\bf u}.(\nabla\rho)
+({\bf u}.{\bf\nabla})\omega=0
+({\rm squaws\ on\ hippopotimus}) = ({\rm squaws\ on\ tiger}) + ({\rm squaws\ on\ antelope})
++ (n-2)^2 + n^2
++ F_{n+1}(F_n - F_{n+1}) \implies -F_{n+1}(F_{n+1} - F_n)
++ x(y - x) \implies - x(-y + x) \implies -x(x - y)
++1\times \hbar \, Y_{lm}(\theta,\phi)
++\bf{k}
+-(y-3)^2=-y^2+6y-9
+-1 \le h(x) \le 1
+-1(1-x)^{-2}(-1)=(1-x)^{-2}
+-1+\cos(2x))=-2\sin^{2}x
+-2((x-1)^2-1+\frac{1}{2})
+-2((x-1)^2-\frac{1}{2})
+-2(x-1)^2+1
+-2(x-1)^2+\frac{2}{2}
+-2+\sqrt3
+-208 = 520r - \dfrac{10400r}{E}
+-208=520r-\dfrac{10400r}{E}\right)
+-2x^2+4x-1=-2(x-1)^2+1
+-70^\circ
+-8t_\text{max}
+-\bf{i}
+-\bf{i}\times-\bf{j}
+-\bf{i}\times\bf{j}
+-\bf{j}
+-\bf{j}\times-\bf{i}=-\bf{k}
+-\bf{k}
+-\dfrac {\sqrt 3}{4} -\dfrac {3 \sqrt 3}{4} = - \sqrt 3
+-\dfrac{1}{10^n}\left(2x_n+\dfrac{1}{10^n}\right)>-\dfrac{5}{10^n}
+-\dfrac{1}{3}x+\dfrac{13}{3}=-2x-4
+-\dfrac{1}{\sqrt{2}}\textbf{i}+\dfrac{1}{\sqrt{2}}\textbf{j}
+-\dfrac{1}{k}\int \dfrac{1}{(v-\sqrt{g/k})(v-(-\sqrt{g/k})}\ dv
+-\dfrac{1}{n^2}
+-\dfrac{1}{n^2}>M'
+-\dfrac{1}{n^2}>M'\iff -n^2>1/M'\iff n^2<-1/M'\iff n>\sqrt{-1/M'}
+-\dfrac{1}{n^2}>M'\iff \dfrac{1}{n^2}<-M'\iff n^2>-1/M'\iff n>\sqrt{-1/M'
+-\dfrac{1}{n^2}>M'\iff n>\sqrt{-1/M'}
+-\dfrac{e^{x/2}}{e^{x/2}}=-1
+-\dfrac{y-1}{x}=-\left(\dfrac{y}{x}-\dfrac{1}{x}\right)=-\dfrac{y}{x}+\dfrac{1}{x}
+-\frac i2 - \infty - i\infty
+-\frac{1}{2}(-x+a)^2
+-\frac{1}{2}(\frac{1-x+1+x}{1+x})^2
+-\frac{1}{2}(\frac{1-x}{1+x}+1)^2
+-\frac{1}{2}y F_{y'}+x \left( F - y' F_{y'} \right)
+-\frac{1}{2}{{q}_{0}}{{H}_{0}}^{2}{{(t-{{t}_{0}})}^{2}}\text{ and not }-\frac{1}{2}{{q}_{0}}{{H}_{0}}^{2}{{({{t}_{em}}-{{t}_{0}})}^{2}}
+-\frac{1}{8}(x-\frac{5}{2}x)^2+\frac{137}{32}
+-\frac{1}{8}[(x-\frac{5}{2}x)^2-\frac{137}{4})]
+-\frac{1}{8}x^{2}+\frac{5}{8}x+\frac{7}{2}=x
+-\frac{1}{n+1}[(t-(n+1)a)^{n+1}-(-1)^{n+1}(n+1)^{n+1}a^{n+1}]}
+-\frac{3}{2} \pm \dfrac{\sqrt{5}}{2}
+-\frac{E-Q_{n}}{E}=\frac{-\left(E-Q_{n}\right)}{E}=\frac{-E+Q_{n}}{E}
+-\frac{\pi+h}{h^2}\left(1+ih+\frac{(ih)^2}{2!}+...\right)\\=-\frac{\pi}{h^2}\left(1+ih-\frac{h^2}{2!}+...\right)-\frac{-1}{h}\left(1+ih-\frac{h^2}{2!}+...\right)
+-\frac{a^2}{2}\int\,e^u\,du
+-\frac{y^{2}}{4}=1-\frac{x^{2}}{9}
+-\lambda^{2}
+-\lambda^{2}cos(\lambda x)
+-\ln{x}
+-\sqrt(1-x^2)
+-\tfrac12
+-b \pm \sqrt{b^2 - 4ac} \over 2a
+-f'(\zeta)+g'(\phi)
+-f(x')=-a(x')^3-cx'
+-i \ne i
+-i \sin(\omega_{0} t)
+-r(E-Q_n)\left(\dfrac{Q_n}{E}\right)=-rQ_n\left(\dfrac{E}{E}-\dfrac{Q_n}{E}\right)
+-u_{n+1}+6u_n=12\times2^n+18\times\left(-3\right)^n
+-{1\over2}(y + 1)^2
+-{2\over(1+x)^2}
+...-5\pi,-3\pi,-\pi,\pi,3\pi,5\pi...
+....
+...r^{n-1}+r^{n-2}...
+.2987x10^{-21}x5.292x10^{-1}
+.  Now I need to brush up my rusty
+0 + 1(1) + (1/2!).0.1^2 + (1/3!).(-1).(1)^3
+0 \le x \le (1+A)/2
+0,1,2, ..., n-1
+0,1,2,...
+0,\dfrac{\pi}{2},\pi,\dfrac{3\pi}{2},2\pi,...
+0,\pi,e,i,\sqrt{2}\not\in\mathbb{Q}^*
+0.0001 = 1 * 10^{-4}
+0.0031415 = 3.14 * 10^{-3}
+0.0031415=3.1415 * 10^{-3}
+0.0031415=3.1415 * 10^{-3}= 3.14 * 10^{-3}
+0.20P_n (1 - \frac{1.5 \times 10^{-5}}{0.20}P_n)
+0.20P_n (\frac{0.20}{0.20} - \frac{1.5 \times 10^{-5}}{0.20}P_n)
+0.400\times\tan 30^{\circ}
+0.4^3s^3
+0.71 \times 10^{-50} ms^{-2}
+0.9, 0.99,\ldots,\dfrac{\text{a gazillion}-1}{\text{a gazillion}},\ldots
+0.\dot3 \times 3\equiv \dfrac{1}{3}
+0.\dot9
+0.\dot9 \equiv 1
+0.\dot9 \equiv 1.0
+0.\dot9=\displaystyle\sum_{N=1}^{\infty}{\frac{9}{10^{N}}
+0=f(0,1,1)=a_{000}+a_{010}+a_{001}+a_{011}=0+1+1+a_{011}\implies a_{011}=0
+0=f(1,0,0)=a_{000}+a_{100}=0+a_{100}\implies a_{100}=0
+0=f(1,0,1)=a_{000}+a_{100}+a_{001}+a_{101}=0+0+1+a_{101}\implies a_{101}=1
+0=f(1,1,1)=a_{000}+a_{100}+a_{010}+a_{001}+a_{110}+a_{101}+a_{011}+a_{111}=0+0+1+1+0+1+0+a_{111}\implies a_{111}=1
+0\le\lambda\le1
+0\le\theta+\phi<2\pi
+0\leq t<t_{\text{max}}
+0\leq\;b_n\leq\;a_n
+0\leq\cos n \leq 1,\,0\leq\sin{1/x^2}\leq1
+0^0=1\qquad(3)~~
+1 +n\left(-\dfrac{1}{2n}\right)=1-\dfrac{n}{2n}=1-\dfrac{1}{2}=\dfrac{1}{2}
+1 - \dfrac{\sin\phi}{\cos\phi}\times\dfrac{\sin\theta}{\cos\theta}
+1 = 10^0
+1 = \frac{1}{\sqrt{5}}(\phi^{2} + \psi^{2})
+1 \textrm{ cm} =  10^{-2} \textrm{ m}
+1 \textrm{ cm}^2 =  10^{-4} \textrm{ m}^2
+1 x10 ^ 3
+1+2/3\, \sqrt{3} \sqrt{\delta}+2/3\,\delta-{\frac {32}{27}}\, \sqrt{3}{\delta}^{3/2}-{\frac {70}{27}}\,{\delta}^{2}
+1+2n+\dfrac{n(n-1)}{2!}2^2 + \text{ lots of positive terms}&\geq 1+2n+\dfrac{n(n-1)}{2!}2^2
+1+A+\frac{A^2}{2}+...
+1+\frac{(-1)^n}{n}>\frac{1}{2},\text{ for } n>1
+1+\frac{(-1)^n}{n}\geqslant 0,\text{ for } n\geqslant 1
+1+\frac{1}{n}\to1
+1+\tan^2u = \sec^2u\qquad\qquad
+1+x+y=\exp{\left(C\frac{x+y}{x^2}\right)}
+1+z'^2+2z'^4
+1+z^2+2z^4 = \frac{1}{2^2}(1+z)^5 W_c \frac{1-z}{1+z}
+1,5,7,11\in\mathbb{Z}^{12}
+1,e^\frac{{2\pi}{i}}{3},e^\frac{{4\pi}{i}}{3}
+1,{\omega},{\omega^2}
+1-2/3\,\sqrt {3}\sqrt {\delta}+2/3\,\delta+{\frac {32}{27}}\,\sqrt {3}{\delta}^{3/2}-{\frac {70}{27}}\,{\delta}^{2}
+1-\cos(2x)=2\sin^{2}x
+1-\dfrac{1}{2n}=\dfrac{2n}{2n}-\dfrac{1}{2n}=\dfrac{2n}{2n-1}
+1-\dfrac{1}{\sqrt{2}}
+1-\dfrac{1}{n^2}>M'
+1-\dfrac{i-1}{n}=1-\dfrac{i}{n}+\dfrac{1}{n}=1+\dfrac{1}{n}-\dfrac{i}{n}
+1-\frac{1}{2}-\frac{1}{4}+\frac{1}{3}-\frac{1}{6}-\frac{1}{8}+\frac{1}{5}-\frac{1}{10}\dots
+1-\frac{1}{3}x+\frac{2}{9}x^2-\dots
+1-\frac{E-Q_{n}}{E}
+1-\frac{E}{E}+\frac{Q_{n}}{E}
+1-\frac{\delta}{\delta+\delta'}\ge 0
+1-\tan\phi\tan\theta}
+1-v^{2}\frac{m}{2kT}=0
+1.0 \times 10^{-47}
+1.1\dots 1.\dfrac{10}{n}
+1.1^x = \frac{200}{100}
+1.2164\times10^-31 m\times s^{-1}
+1.2164x10^-31 s^{-1}
+1.23^\gamma
+1.57 \times 10^{-4}
+1.57... \textrm{ radians} = 1.57... \times \frac{180}{\pi} = 90 \textrm{ degrees}
+1.6\times 10^{-19}
+1.8789 \times 10^{-26} h^2
+1.\bar{9}\leq\;y\leq2
+1.\dot9 \equiv 2.0
+1/2 = 0.100..
+1/20^6
+1/x \to \infty\ as\ x \to 0
+10 = 10^1
+10%
+100 = 10^2
+100 \times 1.1^x = 200
+100 \times 1.1^{7.272540897} =...
+100%=\frac{100}{100}=1
+1000 = 10^3
+1000\int u^{-3}\,du = $-500[u^{-2}]
+100=1.00 *10^{2}
+10253.040 = 1.025304 * 10^{4}
+10253.040 = 1.025304 * 10^{4}=1.03 * 10^{4}
+10253040 = 1.025304 * 10^{7}
+10253040 = 1.025304 * 10^{7} = 1.03 * 10^{7}
+10^0
+10^1
+10^2
+10^2 \times 10^{2.130333768}
+10^2=100
+10^3
+10^4
+10^5
+10^6
+10^n \times x_0.x_1x_2\ldots x_n=x_0x_1x_2\ldots x_n
+10^n\times a = a_0a_1a_2\ldots a_n.a_{n+1}\ldots>a_0a_1a_2\ldots a_n
+10^x=100
+10^{-100}
+10^{-10}
+10^{-14}
+10^{-24}
+10^{0.5}
+10^{1.301}
+10^{1.5}
+10^{1} = 10
+10^{2.130333768}
+10^{2/7}
+10^{24}
+10^{2} = 100
+10^{n^{n^{n^{n}}}}
+10a^{2}b^{3}=10\times5^{2}\times\left(-x^2\right)^{3}=-250x^6
+12\pi \: ^{\circ}C
+12\times2^n+18\times\left(-3\right)^n
+12\times2^n+18\times\left(-3\right)^n\neq12^{n}+18^n+216^n-216^n
+12^{n-1}
+12^{n}\geq 4n^{2}+3n+12
+144(-35)^{n-1}
+147{2\choose3}
+14\sin\left(\dfrac{s}{7}\right)+c
+14^5 - 3^{10}
+16000(0.85)-16000(0.85)(0.85)^n
+16000(0.85)-16000(0.85)^{n+1}=16000(0.85)\left(1-\left(0.85\right)^n\right)
+16000*0.85(1-(0.85)^n)
+180^{\circ}
+1=(x^2-4)^{-1/2}(x^2-4)^{1/2}
+1=0.999...
+1=f(0,0,1)=a_{000}+a_{001}=0+a_{001}\implies a_{001}=1
+1=f(0,1,0)=a_{000}+a_{010}=0+a_{010}\implies a_{010}=1
+1=f(1,1,0)=a_{000}+a_{100}+a_{010}+a_{110}=0+0+1+a_{110}\implies a_{110}=0
+1\% 10^{20} = 10^{20}/10^2 =10^{20-2} = 10^{18}
+1\geq\dfrac{1}{2-x^{99}}\geq\dfrac{1}{2}
+1\in\mathbb{R}^2
+1\leq \frac{e^{x}-1}{x}\leq 1+\frac{x}{1-x}
+1\leq \frac{e^{x}-1}{x}\leq \frac{1}{1-x}
+1\leq a^{1/n}\leq 1+\dfrac{c}{n}
+1\leq a^{1/n}\leq1+\dfrac{c}{n}
+1_{p}
+1x10^{12}W
+2 \, \mathrm{ m}
+2 \ge 1
+2 \times (-2)^2
+2 \times -(2)^2
+2 ^ {31} , 4 ^ {15} , 8 ^ {11}, 16 ^ {8}, 32 ^ {6}
+2((7^1)(7^{n-1})(-5)^1(-5)^{n-1}) = 2(7^{1+n-1}(-5)^{1+n-1})
+2(7^n(-5)^n)= 7^{n-1}(-5)^{n-1}*2(7)(-5)
+2+\dfrac{5}{(n+1)^2}<2+\dfrac{2}{n^2}
+2+\dfrac{5}{n^2}<m'\iff1-m'<\dfrac{5}{n^2}
+2.0 \times 10^2
+2.00 \times 10^2
+2.00352993040684646497907235156025575044782547556975... \times 10^{19728}
+2.1\times10^-^2 = 0.021
+2.1\times10^-^3 = 0.0021
+2.1\times10^2 = 210
+2.1\times10^3 = 2100
+2.2987\times10^-21 s^{-1}
+2.2987\times10^{-21}\times5.292\times10^{-1}
+2.2987x10^-21 s^{-1}
+2.592\times10^{13}m/c
+2.\dot9 \equiv 3.0
+2/\sqrt(\pi)
+20^\circ
+24 * (-6)^{n-1}
+29^4 - 4^8
+2\displaystyle\int7\cos u\;du
+2\displaystyle\int\cos\left(\frac{s}{7}\right)ds
+2\left(T_H^2\right)^{1/3}= \text{etc}.
+2\pi\,RB
+2\sqrt{1-0.9^2}
+2\times10^{-6}\mathrm{~m}
+2\times3^{n}\times4^{n}
+2\times_{17}16
+2^{-n}=\dfrac{1}{2^n},\ 2^{-n-1}=\dfrac{1}{2^{n+1}}
+2^{1}\equiv2(mod\,7)
+2^{2k}= (2^k)^2
+2^{2}\equiv4(mod\,7)
+2^{36}\equiv1(mod\,7)
+2^{38}\equiv2^{36}*2^{2}
+2^{38}\equiv2^{36}*2^{2}\equiv1*4\equiv4(mod\,7)
+2^{3}\equiv1(mod\,7)
+2^{4}\equiv2(mod\,7)
+2^{5}\equiv4(mod\,7)
+2^{6}\equiv1(mod\,7)
+2^{\frac{3}{2}}T_H=T_E\left(1 + \frac{T_H^{2/3}}{T_E^{2/3}}\right)^{3/2}
+2^{\frac{3}{2}}T_H=\left(T_E^{\frac{2}{3}} \times \frac{T_E^{\frac{2}{3}}}{T_E^{\frac{2}{3}}} + T_E^{\frac{2}{3}} \times \frac{T_H^{\frac{2}{3}}}{T_E^{\frac{2}{3}}}\right)^{\frac{3}{2}}
+2^{\frac{3}{2}}T_H=\left(T_E^{\frac{2}{3}}+T_M^{\frac{2}{3}}\right)^{3/2}
+2^{n}-1
+2a-\dfrac{2}{3}a=\dfrac{6}{3}a-\dfrac{2}{3}a=\dfrac{4}{3}a
+2ab\mathrm{Cov}(X,Y) \ge -a^2V(X)-b^2V(Y),
+2as=(v-v)^2+2v(v-v)+2aso
+2as=(v-v0)^2+2vo(v-vo)+2aso
+2as=(v-v_{0})^{2}+2v_{0}(v-v_{0})+2as_{0}
+2as=v^{2}-v_{0}^{2}+2as_{0}
+2k+1\to\infty
+2n=0\pmod{2\pi}}
+2p_1...p_k + 1 = 2.2.3.5 + 1 = 61
+2x+2yy'=0
+2x\frac{\partial}{\partial x}\left[f'(\zeta)+g'(\phi)\right]\\= 2x\left[2x\left(\frac{\partial}{\partial\zeta}\left[f'(\zeta)+g'(\phi)\right]+\frac{\partial}{\partial\phi}\left[f'(\zeta)+g'(\phi)\right]\right)\right]\\= 2x\times 2x\left[f''(\zeta)+g''(\phi)\right]\\=4x^2\left[f''(\zeta)+g''(\phi)\right].
+2x^{2}-10xy+13y^{2}=1
+2x_n+\dfrac{1}{10^n}<5
+2{\pi}
+2{\pi}{r}={C}
+3 H \dot{\phi} = - {\rm d}V/{\rm d}\phi
+3 \times \dfrac{1}{3} \equiv 1
+3(2)^{n+1} * 2(-3)^{n-1}
+3(2^{n+2})+2((-3)^{n+2})=3(2^2)(2^n) + 2((-3)^2)((-3)^n)
+3(2^{n+2})+2((-3)^{n+2})=3(2^2+2^n) + 2((-3)^2+(-3)^n)
+3.2-[\frac{6.4}{32}(21+\sqrt21)]
+3.3537\times 10^{-54} ms^{-1}
+3.3537x10^{-54} ms^{-2}
+3.539\times10^{-54} ms^{-2}
+3.6 \times 10^{-5} m^3
+360^{\circ}
+365^{24}
+3\sqrt x=3x^{+\frac{1}{2}}
+3\times 0.\dot3 \equiv 0.\dot9
+3\times 0.\dot3=1
+3\times(-\frac{1}{3})^{11}=-\frac{1}{3^{10}}
+3\times2^{n+2}+2\times(-3)^{n+2}=12\times2^{n}+18\times(-3)^{n}
+3\times3^{k}
+3^k 2^k 3^{-ks} 2^{s/2} = (3 \cdot 2 \cdot 3^{-s})^k 2^{s/2}
+3^k(3^{-k})^s
+3^{-\frac{1}{2}
+3^{1/n}\geq\dfrac{3n}{3n-2}
+3^{7625597484987^{7625597484987}}
+3^{\frac{1}{2}
+3^{k+1}=3\times3^{k} < 3\times k!
+3^{k}<k!
+3^{n-1}4^{n+1}+4^{n-1}3^{n+1}-2(3^{n}4^{n})=
+3^{n-1}4^{n+1}+4^{n-1}3^{n+1}-2(3^{n}4^{n})=3^{n-1}4^{n-1}(4^{2}+3^{2}-2\times3\times4)
+3^{n-1}4^{n+1}+4^{n-1}3^{n+1}-2.4^n3^n
+3^{n-1}4^{n+1}-4^{n-1}3^{n+1}-2.4^n3^n
+3^{n-1}4^{n+1}=3^{n-1}4^{n-1}(4^{2})=3^{n-1}(4^{n-1}\times4^{2})=3^{n-1}(4^{n}\times4^{-1}\times4^{2})=3^{n-1}(4^{n-1+2})=3^{n-1}4^{n+1}
+3^{n-1}4^{n-1}+4^{n-1}3^{n+1}-2.4^n3^n
+3c^2+3ch+h^2\to3c^2+0+0=3c^2
+3ch\to3c\times0=0
+4 \pi r^{2} \delta r
+4 \times 10^8 \times \eta/(1-\eta)
+4(\frac{1}{2}u)^{2}=4(\frac{1}{4}u^{2})=\frac{4}{4}u^{2}=u^{2}
+4(p+q+r)^2>4.3(pq+pr+qr)
+4(x-7)^2-4=y
+4(x-7)^2=y+4
+4+(-5)^n
+4.7 \times 10^7 \mathrm{T}
+45^{6} \text{mod(47)}
+4^{2}\times4^{n-1}=4^{n+1}
+4^{321}\equiv 1 \pmod 7
+4k^{2}
+5 N C^{-1}\mathbf{e_{x}}
+5(0.9)-5(0.9)^{n+1}=5\left(0.9-0.9^{n+1}\right)=5\times0.9\left(1-0.9^n\right)=4.5\left(1-0.9^n\right)
+50^\circ
+5\mathbf{e_{x}} N C^{-1}
+5\times 10^5 \mathrm{~N~C^{-1}}
+5^5(-x^2)^0
+5^5(-x^2)^0, 5^4(-x^2)^1, 5^3(-x^2)^2
+5^{2}
+5^{2}\equiv4\pmod{21}
+5x-\dfrac{10}{3}+\dfrac{4x}{3}=-16
+5x-\dfrac{2}{3}(5-2x)=-16
+6((2)^{n+1} * (-3)^{n-1})
+6(k+1)<(k+1)^2
+6*(2)^{n-1} * (-3)^{n-1}((2)^2 * 1)
+6*(2*(-3))^{n-1}*4
+600r-\dfrac{16800r}{E}=0
+600r=\dfrac{16800r}{E}
+6\times_{8}6=36\quad(\bmod\;8)=4
+6\times_{8}6\equiv36\quad(\bmod\;8)\equiv4
+7.5\times10^{-5}
+70^\circ
+71^{1000}
+71^{1000} \equiv (-1)^{1000}
+71^{1000} \equiv 1
+75&=1.25+50
+7^n-(-5)^n
+7^{n-1}(-5)^{n+1}=7^{n-1}(-5)^{n-1}*(-5)^2
+7^{n-1}(-5)^{n-1}
+8(x+2)^3
+8.3^{2n}
+8.\dot91
+81^{\frac{#3}{#4}}= (\sqrt[4]{81})^3 = 27
+81^{\frac{3}{4}}
+85% \leq n \leq 100%
+8\sqrt{1-0.6^2}=6.4 \mathrm{~s}
+8\times 2\sqrt x
+8^{-2/3}=(8^{1/3})^{-2}=2^{-2}=\frac{1}{2^2}=\frac{1}{4}
+8^{2}\equiv64\equiv2\times29+6(reminder)\equiv6\pmod{29}
+8y=\dfrac{8}{2x+3}+5x-1\\8y(2x+3)=8+(5x-1)(2x+3)\\16xy+24y=8+10x^2+13x-3\\16xy+24y=10x^2+13x+5\\10x^2+13x+5-16xy-24y=0\\10x^2+(13-16y)x+(5-24y)=0
+9.51x10^{11}W = 1x10^{12}W
+90 \textrm{ degrees} = 90 \times \frac{\pi}{180} = 1.57... \textrm{ radians}
+90^\circ
+90^{\circ}
+90^{\rm o}
+98&=3.85+26
+9\times\frac{1}{9}=9\times0.1111...
+9x = 8.\dot91
+9x(5-2x)\frac{(2-x)}{(3+x)^3}
+9x10^{4} km
+<90^{\circ}
+<v^2>=\int_0^\infty{v^2 f(v) \textrm{d}v}
+= (1 - \theta)^{3-1} \theta \times (1 - \theta)^{1-1} \theta \times (1 - \theta)^{2-1} \theta \times (1 - \theta)^{2-1} \theta
+= (1 - \theta)^{x_{1}-1} \theta \times (1 - \theta)^{x_{2}-1} \theta \times (1 - \theta)^{x_{3}-1} \theta \times (1 - \theta)^{x_{4}-1} \theta
+= - x^3 y^3 y' - x^4 y^2 y'^2
+= 0.20 P_n \left(\dfrac{0.20}{0.20} - \dfrac{1.5 \times 10^{-5}P_n}{0.20}\right)
+= 10^{-2}m
+= 10^{3}m
+= 2(3A^2 -1)\epsilon^2\int_0^1 dx h'^2 +O(\epsilon^3)
+= 2(7^n(-5)^n)-7^{n-1}(-5)^{n+1}-(-5)^{n-1}(7)^{n+1}
+= 360^{\circ}
+= 90^{\circ}
+= F^2_{n+1} + (-1)^{n+1}
+= G''(z) \left( \frac{d z}{d x} \right)^2+G'(z) \frac{d^2 z}{d x^2}
+= \displaystyle\frac{2n^3 + 3n^2 + n}{6}}
+= \displaystyle\frac{2n^3 - 3n^2 + n + 6n^2}{6}}
+= \displaystyle\frac{n(2n+1)(n+1)}{6}}
+= \displaystyle\frac{n(2n^2 + 3n + 1)}{6}}
+= \frac{-1}{2} 2 x^3 y^3 y' + x^4y^2 y'^2-2 x^4 y^2 y'^2
+= \frac{-1}{2} y 2x^3 y^2 y'+x \left( x^3y^2y'^2 - y' 2 x^3 y^2 y' \right)
+= \frac{d}{d x} G'(z) \frac{d z}{d x} + G'(z) \frac{d}{d x} \frac{d z}{d x}
+= \frac{d}{d x} \left( G'(z) \frac{d z}{d x} \right)
+= \frac{d}{d z} G'(z) \frac{d z}{d x} \frac{d z}{d x} + G'(z) \frac{d^2 z}{d x^2}
+= \int dx \alpha \alpha^3 x^3 \beta^2 y^2 \left( \alpha^{-1} \beta y' \right)^2
+= \int dx \frac{d\bar{x}}{dx} \alpha^3 x^3 \beta^2 y^2 \left( \frac{dx}{d\bar{x}} \frac{d}{dx} \beta y \right) ^2
+= \text{constant}
+= r (\lambda - t)^{-(r+1)}=\frac{r}{(\lambda - t)^{(r+1)}}
+= vt_0^{2/3} [ 3t^{1/3} ]^{t_0 +5}_{t_0} = 3vt_0^{2/3} ((t_0+5)^{1/3} - t_0^{1/3})
+=(-6)\times2^{n}+18\times2^{n}+6\times(-3)^{n}+12\times(-3)^{n}=
+=(-6)\times2^{n}+6\times(-3)^{n}+18\times2^{n}+12\times(-3)^{n}=
+=(-6+18)\times2^{n}+(6+12)\times(-3)^{n}=
+=(3)(4)(2^n) + (2)(9)(-3)^n
+=(\frac{1}{2}sin(2x))^2
+=(\tfrac{1}{2}^5*x^5)+(5\tfrac{1}{2}^4*x^4*(-3))+(10\tfrac{1}{2}^3*x^3*9)...
+=(\tfrac{1}{2}^5*x^{10})+(5*(\tfrac{1}{2})^4*x^8*(-3))+(10*(\tfrac{1}{2})^3*x^6*9)...
+=(\tfrac{1}{2}x)^5+(5*(\tfrac{1}{2}x)^4*(-3))+(10*(\tfrac{1}{2}x)^3*(-3)^2)...
+=(\tfrac{1}{2}x^2)^5+(5*(\tfrac{1}{2}x^2)^4*(-3))+(10*(\tfrac{1}{2}x^2)^3*(-3)^2)...
+=(\tfrac{1}{32}x^5)-(\tfrac{15}{16}x^4)+(\tfrac{90}{8}x^3)...
+=(\tfrac{1}{32}x^{10})-(\tfrac{15}{16}x^8)+(\tfrac{90}{8}x^6)...
+=- \left( x^3 y^3 y' + x^4 y^2 y'^2 \right)
+=-6\times2^n+6(-3)^n+18\times2^n+12\times(-3)^n
+=-6\times\left(-2\right)^{n}+6\times3^n+18\times12^n+12\times\left(-18\right)^n
+=-\Big(3\times2^{1}\times2^{n}+2\times(-3)^{1}\times(-3)^{n}\Big)+18\times2^{n}+12\times(-3)^{n}=
+=-\Big(3\times2^{n+1}+2\times(-3)^{n+1}\Big)+6\Big(3\times2^{n}+2\times(-3)^n\Big)=
+=-\Big(6\times2^{n}-6\times(-3)^{n}\Big)+18\times2^{n}+12\times(-3)^{n}=
+=-\dfrac{1}{k}\left(\dfrac{1}{2\sqrt{g/k}}\right)\ln\left(\dfrac{\sqrt{g/k}-v}{v+\sqrt{g/k}}\right)+C
+=-\left(3\times2\times2^n+2\times\left(-3\right)\times\left(-3\right)^n\right)+\left(18\times12^n+12\times\left(-18\right)^n\right)
+=-\left(3\times2^1\times2^n+2\times\left(-3\right)^{1}\times\left(-3\right)^n\right)+\left(18\times12^n+12\times\left(-18\right)^n\right)
+=-\left(3\times2^{n+1}+2\times\left(-3\right)^{n+1}\right)+\left(18\times12^n+12\times\left(-18\right)^n\right)
+=-\left(3\times2^{n+1}+2\times\left(-3\right)^{n+1}\right)+\left(6\left(3\times2^n+2\times\left(-3\right)^n\right)\right)
+=-\left(6\times2^n+2\times\left(-6\right)\times\left(-3\right)^n\right)+\left(18\times12^n+12\times\left(-18\right)^n\right)
+=-\pi\lim_{Z\to\infty}(\frac{1}{Z}-1)=\pi
+=-\pi\lim_{Z\to\infty}[\frac{1}{x}]_{1}^{Z}=
+=0+1(x-0)+(1/2!).0.(x-0)^2+(1/3!).(-1)(x-0)^3=x-x^3/3!
+=1 - 1/3! = 5/6 = 0.833..
+=12(2^n) + (18)(-3)^n
+=12\times2^n+18\times(-3)^n
+=12\times2^{n}+18\times(-3)^{n}
+=12^{n-1}
+=12^{n}+18^n+216^n-216^n
+=3\times2^n\times2^2+2\times(-3)^n\times(-3)^2
+=3^{n-1}4^{n-1}(4^{2}+3^{2}-2\times3\times4)=
+=3^{n-1}4^{n-1}4^{2}+4^{n-1}3^{n-1}3^{2}-2(3^{n-1}3^{1}4^{n-1}4^{1})=
+=3^{n-1}4^{n-1}4^{2}+4^{n-1}3^{n-1}3^{2}-3^{n-1}4^{n-1}2\times3\times4=
+=4\pi\left (\frac{m}{2\pi kT}\right )^{3/2}
+=F_n(F_{n+1}+F_n)-(F_n+F_{n-1})^2
+=\alpha^2 \beta^4 \int dx x^3 y^2 y'^2
+=\dfrac{1}{\left (c+h+1\right )\left (c+1\right )} \rightarrow \dfrac{1}{\left (c+1\right )^{2}}
+=\dfrac{3\sec^2u}{9\sec^2u}=\dfrac{1}{3}
+=\dfrac{6640}{(211440)}\times100\%
+=\dfrac{83}{2643}\times100\%
+=\frac{1}{4}(1+z)^3 (1+3(\frac{1-z}{1+z})^2)
+=\frac{1}{4}sin^{2}(2x)
+=\frac{1}{a+1} x^{a+1}P_n(x)-\frac{1}{a+1} \int x^a R_{n}dx
+=\frac{2\omega}{\pi}[\frac{1}{\omega}sin(\omega t)]_{0}^{\frac{\pi}{\omega}}=0
+=\hbar \, Y_{2,1}(\theta,\phi)
+=\int dx \alpha^4 \beta^2 x^3 y^2 \alpha^{-2} \beta^2 y'^2
+=\int_{0}^{2\pi}(ccos(t)+dsin(t))\times(asin(t)-bcos(t))dt=
+=\int_{0}^{2\pi}(ccos(t)+dsin(t))\times|-(asin(t)-bcos(t))|dt=
+=\int_{0}^{2\pi}(ccos(t)+dsin(t))\times|-asin(t)+bcos(t)|dt=
+=\int_{0}^{2\pi}acsin(t)cos(t)+adsin^{2}(t)-bccos^{2}(t)-bdsin(t)cos(t)dt=
+=\left (\dfrac{\left (c+1\right )\left (c+h\right )-\left c(c+h+1\right )}{\left (c+h+1\right )\left (c+1\right )} \right )\left (\dfrac {1}{h} \right )
+=\pi\lim_{Z\to\infty}\int_{1}^{Z}\frac{1}{x^{2}}dx=
+=ac\int_{0}^{2\pi}sin(t)cos(t)dt+ad\int_{0}^{2\pi}sin^{2}(t)dt-bc\int_{0}^{2\pi}cos^{2}(t)dt-bd\int_{0}^{2\pi}sin(t)cos(t)dt=
+=lim_{h\rightarrow 0}{[\frac{u(x+h,y)-u(x,y)}{h}+i\frac{v(x+h,y)-v(x,y)}{h}]}
+=r_{\frac{6\pi}{3}(mod\,2\pi)}=r_{2\pi(mod\,2\pi)}=r_{0}
+={a_i b_i}
+A = A\nu\sinh{\nu\Pi} + B\nu\cosh{\nu\Pi}
+A''(x)
+A=-\int_{-1}^0 x\,dx+\int_0^1 x\,dx=1
+A=1+\sqrt{2\delta/3}+...
+A=1+\sqrt{4\delta/3}+...
+A=\left\{\begin{pmatrix}2\alpha+\beta&-\alpha-2\gamma&2\alpha+\beta\\0&0&0\end{pmatrix}\colon \alpha,\beta,\gamma \in \mathbb{R}\right\}
+A=\left\{\begin{pmatrix}2\alpha+\beta&-\alpha-2\gamma&3\alpha+2\beta\\0&0&0\end{pmatrix}\colon \alpha,\beta,\gamma \in \mathbb{R}\right\}
+A={(x,y)\in\mathbb{R}^2\colon x^2+y^2\le1}
+AX\equiv1\pmod{b}
+A\approx (1+6\delta+\sqrt{12\delta})^{1/3}
+A\approx 1+\frac{2\delta}{3}+\sqrt{4\delta/3}-\frac{(12\delta)^{3/2}}{9}
+A\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}x\\y\end{pmatrix}
+A^{-1}A\begin{pmatrix}x'\\y'\end{pmatrix}=A^{-1}\begin{pmatrix}x\\y\end{pmatrix}
+A_{N}
+A_{\rm S} > A_{\rm RV}
+A_{i}
+A_{t}
+Arg(a-\frac1ni)
+B(I-AB)^{-1}A+ I = (I-BA)^{-1}
+B=4\pi \left ( \frac{m}{2\pi kT} \right )^{3/2}
+B=4\pi(\frac{m}{2\pi kT})^{\text {3/2}}
+B=\frac{2\left (\frac{m}{kT}\right )^{3/2}}{\sqrt{2\pi }}=2\left (\frac{m}{kT}\right )^{3/2}2\pi\left (\frac{1}{2\pi}\right )^{3/2}
+B=\left\{\begin{pmatrix}a&b&c\\0&0&0\end{pmatrix}\colon a,b,c \in \mathbb{R}\right\}
+B=\mathbb{Z}\cup \begin{Bmatrix}1/m:m\subset \mathbb{Z}, m\neq0 \end{Bmatrix}
+B\nu = -A\cosh{\nu\Pi} - B\sinh{\nu\Pi}
+B_{coil}=\frac{{\mu _{0}Ni}}{2RB_{local}}
+B_{t}
+C=\cup_{k=1}^{\infty}f^{-k}(z).
+C=\frac{2}{\sqrt\pi}(\frac{1}{kT})^{\text 3/2}
+C=\frac{g}{l}(\1-\cos{\phi_1})
+C[y] = \int^{v}_{0}dx\, xy' = c
+C[y] = \int_a^b dx \, w(x)y^2 = 1.
+C\int_0^b{bx-x^2\,\mathrm{d}x}
+C^{\perp}
+C_{2}H_{5}OH
+C_{9}H_{13}N
+Cos^{2}(\dfrac{\pi}{4})=\dfrac{1}{2}
+D*a_2u''+D*a_1u'+[D*(b(x)+C)+D*(\lambda-C)]u=0
+D\thickapprox N(0,\hat{p}(1-\hat{p})(\frac{1}{n_{M}}+\frac{1}{n_{F}}))
+D^{-k}g=\underbrace{\int...\int}_{k\: times} g(x)dx=\frac{1}{(k-1)!}\int_0^x(x-t)^{k-1}g(t)dt
+E-Q_{n+1}-E+Q_{n}
+E=\frac{1}{7.5\times10^{-5}}
+E=\frac{\sigma }{2\varepsilon _{0}}(1-\frac{z}{\sqrt{z^{2}-R^2}})
+E=\left\{-\dfrac{1}{n^2}\colon n=1,2,\ldots\right\}
+E=\left\{-\dfrac{1}{n}\colon n=1,2,\ldots\right\}
+E=\left\{1+\frac{1}{n}\colon\;n=1,2,\ldots\right\}
+E=\{1+\frac{1}{n}, n=1,2,3...\}.
+E_ \text{Total}
+E_\mathrm{Grav}=-\frac{Gm_1m_2}{r}\gamma\left ( 1-\frac{v\cos\theta}{c} \right )
+E_\mathrm{vib}=\frac{1}{2}mv^2+\frac{1}{2}k_sx^2
+E_\text{vib}=\frac{1}{2}k_sA^2\sin^2(\omega t + \phi) + \frac{1}{2}k_sA^2\cos^2(\omega t + \phi) = \frac{1}{2}k_sA^2
+E_{1}
+E_{\rm th}
+E_{\rm th} \ge  \gamma_2 m_2 c^2 / 2\sqrt{2}
+E_{\rm th} \ge \gamma_2 m_2 c^2 \left(1 - \frac{1}{\sqrt{2}} \right) \approx 0.29 \gamma_2 m_2 c^2
+F = ma = 10 \textrm{ kg} \times 2 \textrm{ m s}^ {-2}
+F = ma = \mathrm{10 \,kg \times 2\, m\, s^{-2}}
+F'
+F'(x_0)=f(x_0)=0
+F'(x_1)<0
+F'(x_2)>0
+F(x)=(x_1-x)^2\psi(x)
+F(x)=\frac{1}{3}x^{2}+3x
+F(x_1)=0, F'(x_1)<0
+F(x_1)=F'(x_1)
+F=1\text{~N}
+F=\int_{E_1}^{\infty}{g(E)\textrm{d}E}
+F\cdot c^2&=&F\cdot a^2+F\cdot b^2
+F^{11}=\Lambda^1_1\Lambda^1_1F^{11}+\Lambda^1_2\Lambda^1_1F^{21}+\Lambda^1_1\Lambda^1_2F^{12}+\Lambda^1_2\Lambda^1_2F^{22}
+F^{12}=\Lambda^1_1\Lambda^2_1F^{11}+\Lambda^1_2\Lambda^2_1F^{21}+\Lambda^1_1\Lambda^2_2F^{12}+\Lambda^1_2\Lambda^2_2F^{22}
+F^{21}=\Lambda^2_1\Lambda^1_1F^{11}+\Lambda^2_2\Lambda^1_1F^{21}+\Lambda^2_1\Lambda^1_2F^{12}+\Lambda^2_2\Lambda^1_2F^{22}
+F^{22}=\Lambda^2_1\Lambda^2_1F^{11}+\Lambda^2_2\Lambda^2_1F^{21}+\Lambda^2_1\Lambda^2_2F^{12}+\Lambda^2_2\Lambda^2_2F^{22}
+F^{\mu\nu}=\sum\Lambda^\mu_\alpha\Lambda^\nu_\beta F^{\alpha\beta}
+F^{\mu\nu}=\sum_{\alpha,\beta}\Lambda^\mu_\alpha\Lambda^\nu_\beta F^{\alpha\beta}
+F_1 + F_2 ... + F_n = F_{n+2} - 1
+F_1 + F_2 ... + F_n = \frac{1}{\sqrt{5}}(\phi^{n+2} + \psi^{n+2})-\frac{1}{\sqrt{5}}(\phi^{2} + \psi^{2})
+F_1 + F_3 ... + F_{2n-1}=F_{2n} \quad(n=1,2,3...)
+F_1^2+F_2^2+F_3^2...=F_nF_{n+1}
+F_1^2+F_2^2+F_3^2...=F_nF_{n+1}-F_0F_1
+F_3 &= F_4 - F_2
+F_5 &= F_6 - F_4
+F_7 &= F_8 - F_6
+F_x^{\text{drive}}=F_0 \cos(\Omega t)
+F_{0}
+F_{0} (x,y)
+F_{O}}
+F_{n's}
+F_{n+1}\big(F_{n+1}-F_{n}\big)
+F_{n+1}^2 = (F_n+F_{n-1})^2
+F_{n}
+F_{n} = \frac{1}{\sqrt{5}}(\phi^{n} - \psi^{n})
+F_{n}=F_{n+2}-F_{n+1}
+F_{n}\big(F_{n+1}+F_{n}\big)
+F_{n}\big(F_{n+1}+F_{n}\big)-F_{n+1}^2
+F_{n}^2
+F_{n}^2-F_{n+1}F_{n-1}
+F_{n}^2-F_{n+1}\big(F_{n+1}-F_{n}\big)
+F_{y'} = 0
+F_{y'}(v) = 0
+Formula&=65
+Formula&=8
+G \rightarrow \mathbb{Z}_4
+G'
+G'(z)
+G'(z)\left(z''G'(z)+G''(z)z'^2\right) = 0
+G(1, \chi)^{2}
+G(a, \chi) = \prod_{j=1}^{r} \left (\sum_{m_{j}=1}^{k_{j}}\chi_{j}(m_{j})e^{2 \pi m_{j} a_{j} g_{j} / k_{j}} \right )
+G(a, \chi) = \sum_{m=1}^{k}\chi(m)e^{2 \pi m a g_{1} / k_{1}}e^{2 \pi m a g_{2} / k_{2}}...e^{2 \pi m a g_{r} / k_{r}}
+G/\text{Ker}(\phi)\cong(\text{Im}(\phi),*)
+G/\text{Ker}(\phi)\cong(\text{Im}(\phi),\times)
+G=6.67384(80)\:x\:10^{-11}\: m^3\: kg\: s^{-2}
+H ( x,y,t ) =a ( t ) H_{{0}} ( x,y )
+H'\cong Z_6, +_6
+H=3\left({\left({\sqrt{26}+1}\right)+\sqrt{\left({\sqrt{26}+1}\right)\left({\sqrt{26}-3}\right)}}\right)
+H\ =\ 1$ then thanks to Pythagoras
+H\subseteq\,G
+H_{0}
+H_{1}:\mu=0
+H_{{0}}
+I = \frac{V}{R} = \mathrm{\frac{10\, V}{2\,\Omega}= 5 \,A}
+I=\displaystyle{\int_0^1{x^4(1-x)^4\over{1+x^2}}\,dx}
+I=\int_0^L r^2\frac{M}{L}\;\textrm{d}r
+I=\int_0^M r^2\;\rm{d}m
+I=\int_{-\frac{L}{2}}^{\frac{L}{2}}r^2\frac{M}{L}\;\textrm{d}r
+I=\sum_{n=1}^{\inf}{n^{-\sigma}}\sin{(-t\log{n})}
+I={22\over7}-\pi
+I_0\supseteq I_1\supseteq I_2\supseteq\dots\supseteq I_n\supseteq I_{n+1}\supseteq\dots
+J=\displaystyle{\int_0^1 x^4(1-x)^4 \,dx}
+J_{N}
+K=|{\bf K}|
+K_{x},K_{y},K_{z}
+L = \eta \frac{{\rm d}M_{\rm acc}}{{\rm d}t} c^2
+L = \frac{\eta}{1-\eta} \dot{M}_{\rm BH} c^2
+L \frac{\pi R^2}{4 \pi d^2
+L \propto (\Delta v)^{1.1} (\Delta v)^2 \propto (\Delta v)^{3.1}
+L \propto R (\Delta v)^2
+L'=L\sqrt{1-0.6^2}=4.8 \mathrm{~ls}
+L(\theta) = p(x_{1};\theta) \times p(x_{2};\theta) \times p(x_{3};\theta) \times p(x_{4};\theta)
+L(\theta) \times 10^{134}
+L(\theta)=\theta^{6}e^{-13.2\theta}
+L(\theta)=f(x_{1};\theta)\times f(x_{2};\theta)\times...\times f(x_{n};\theta)
+L(p)=\frac{8!}{7!1!}p^{7}(1-p)\times\frac{8!}{6!2!}p^{6}(1-p)^{2}\times\frac{8!}{5!3!}p^{5}(1-p)^{3}\times\frac{8!}{2!6!}p^{2}(1-p)^{6}
+L(p)=cp^{20}(1-p)^{12}
+LHS=12\times2^{n}+18\times(-3)^{n}
+LHS=u_{n+2}=3\times2^{n+2}+2\times(-3)^{n+2}
+L_{\rm E} = \eta \frac{{\rm d}M_{\rm acc}}{{\rm d}t} c^2
+L_{\rm E} = \frac{\eta}{(1 - \eta)} \frac{{\rm d}M_{\rm BH}}{{\rm d}t} c^2
+Let P(n) \text{be statement}\\ f\left ( n \right )=n^{2}\\ \text{P(0) is true as }f(0)=0^{0}=0\\ \text{see I2 pg 45 for induction part }\\ P(k)\Rightarrow P(k+1)\\ \text{is this ok - or as there is a special case for  }\\ \text{0 should we not start with showing P(1) holds  }\\ \text{Similarly, as there is a special case for e GTB2 pg 21  }\\ \text{should we not start with showing P(1) holds  }\\ \text{when proving property 2.3 GTB2 pg 25? }\\
+M = (0.72\pm0.04) \mathrm{M}_{\odot}
+M'>1
+M=\left(\dfrac{c(t_1+t_2)}{2},\dfrac{c(t_1+t_2)}{2t_1t_2}\right)
+M_m=M_r \times 10^\text{-3}kg = N_mm
+M_{\odot}
+M_{\rm BH} \propto \exp \left[ \left( \frac{1- \eta}{\eta} \right) \frac{t}{t_{\rm E}} \right]
+M_{m}
+M_{r}
+Mean=\frac{1}{\lambda}$ whilst $Variance=\frac{1}{\lambda^{2}}
+N > \frac{{Log|a-b|-Log(\delta)}}{Log2}
+N=\left ( \frac{1}{\varepsilon } \right )^{\frac{1}{4}}
+N=\left [\left ( \frac{1}{\varepsilon } \right )^{\frac{1}{4}}\right ]
+NLog(2)>Log|a-b|-Log{\delta}
+O \Big(\int_{2}^{\sqrt{x}} \frac{dt}{\ln^{2}{t}}\Big)= O \Big(\frac{1}{\ln^{2}{2}} \int_{2}^{\sqrt{x}} dt \Big) = O \Big(\frac{1}{\ln^{2}{2}} (\sqrt{x} - 2) \Big) = O \Big(\frac{1}{\ln^{2}{2}}\sqrt{x}\Big)
+O \Big(\int_{\sqrt{x}}^{x} \frac{dt}{\ln^{2}{t}}\Big)= O \Big(\frac{1}{\ln^{2}{\sqrt{x}}} \int_{\sqrt{x}}^{x} dt \Big) = O \Big(\frac{1}{\ln^{2}{\sqrt{x}}} (x - \sqrt{x}) \Big)
+O(1) = O \Big(\frac{\sqrt{x}}{\ln^{2}{2}}\Big)
+O(\frac{\sqrt x}{ln^2 2}) + O({\frac{x - \sqrt x}{ln^2 \sqrt x}) = O(\frac{x}{ln^2 x})
+O(\frac{x}{ln^2 \sqrt x})
+O(\int_{\sqrt{x}}^x{\frac{dt}{log^2{t}}})=O(\frac{x-\sqrt{x}}{log^2{\sqrt{x}}})
+O(\sqrt x}) + O(\frac{x}{ln^2 \sqrt x}) =
+O(\sqrt{x})=O(\frac{x}{\ln^{2}{x}})
+P = \boldsymbol{F}\cdot \boldsymbol v
+P'
+P(k)\Rightarrow P(k+1), \; for \: k = 1, 2, ...
+P(n+1): (8+1)3^{2n}-1=8.3^{2n}+3^{2n}-1
+P(n+1): 8.3^{2n}-8+3^{2n}-1=8(3^{2n}-1)+(3^{2n}-1)
+P=Fv=(1\text{~N})\times\left(10^6\text{~m~s^{-1}}\right)=1\text{~MW}
+P=Fv=(1\text{~N})\times\left(5\times10^{-7}\text{~m~s^{-1}}\right)=5\times 10^{-7} \text{~W}
+P=P(\mid D\mid\geq d)=P(\mid Z\mid\geq\frac{d}{\sqrt{\sigma^{2}}})
+P=\frac{2}{5}nE_\mathrm{F}
+P=\frac{W}{t}=\frac{0.5}{1}=0.5\text{~W}
+PF=\sqrt{(x-2)^{2}+y^{2}}
+PF=\sqrt{(x-ae)^{2}+y^{2}}
+P^{-1}AP = D\iff PP^{-1}AP = PD \iff IAP=PD\iff AP=PD
+P_n = c\; (n=0,1,2...)
+P_n(0.20 - 1.5 \times 10^{-5}P_n)
+P_{Daz}=P_{Toby},\quad\text{for }t=\text{30th March 2010}
+P_{n+1}(any\quad particular\quad year)=P_{n}(amount\quad of\quad previous\quad year)+2.2P_{n}(increase)=3.2P_{n}
+P_{n+1}-P_n=-80=200r\left(1-\dfrac{200}{E}\right)
+P_{n+1}-P_n=208=80r\left(1-\dfrac{80}{E}\right)
+Q(h)=\dfrac{f(c+h)-f(c)}{h}=\dfrac{\dfrac{c+h}{c+h+1}-\dfrac{c}{c+1}}{h}
+Q=\int_{0}^{R}4A\pi r^{3} {\rm dr} = A\pi R^{4}
+Q_{\phi }
+Q_{a}=\left(\begin{array}{cc}cos(2a)&sin(2a)\\sin(2a)&-cos(2a)\end{array}\right)
+Q_{n+1}-Q_n=-rQ_n\left(1-\dfrac{Q_n}{E}\right)
+Q{\scriptstyle |}_E
+R \propto (\Delta v)^{2/1.8} \propto (\Delta v)^{1.1}
+R=233\text{~m}
+R=\left|\frac{28.3^2+28.3\times\sqrt{28.3^2+2\times9.81\times100}}{9.81}\right|
+R=\{(r,0,0,0,...,0)\in\mathbb{R}^n\colon\,r\in\mathbb{R}\}
+RHS=-(6\times2^n-6(-3)^n)+6(3\times2^n+2\times(-3)^n)
+RHS=-\Bigl[6\times2^{n}-6(-3)^{n}\Bigr]+6\Bigl[3\times2^{n}+2\times(-3)^{n}\Bigr]
+RHS=-u_{n+1}+6u_{n}=
+R^{1.8} \propto (\Delta v)^2
+R^{2.8} \propto R (\Delta v)^2
+R_1/R_0 = (t_1/t_0)^{2/3} = ((t_0+5)/t_0)^{2/3} =  (14.32/9.32)^{2/3} = 1.33
+R_1/R_0 = (t_1/t_0)^{2/3} = ((t_0+5)/t_0)^{2/3} = (14.32/9.32)^{2/3} = 1.33
+R_\mathrm{eff} = \frac{R_1 \times R_2}{R_2 + R_1}
+R_{\mathrm{eff}}=\frac{R_1R_2}{R_1+R_2}
+R_{\rm AB} \propto T^\nu
+R_{\rm AB}=6.48 \times 10^{-24} \frac{n_{\rm A}n_{\rm B}}{A_{\rm r}Z_{\rm A}Z_{\rm B}} S(E_0) \left( \frac{E_{\rm G}}{4 kT}\right)^{2/3} \exp \left[-3\left(\frac{E_{\rm G}}{4 kT}\right)^{1/3}\right] {\rm m}^{-3}{\rm s}^{-1}
+R_{\rm WD} =  \left( \frac{729}{32 \pi^4} \right)^{1/3}\frac{(6.626 \times 10^{-34}~{\rm J~s})^2}{(5 \times 9.109 \times 10^{-31}~{\rm kg})} \frac{(0.5)^{5/3} \times (1.99 \times 10^{30}~{\rm kg})^{-1/3}}{(6.673 \times 10^{-11}~{\rm N~m}^2~{\rm kg}^{-2}) \times (1.673 \times 10^{-27}~{\rm kg})^{5/3}} \left( \frac{M}{{\rm M}_\odot}\right)^{-1/3}
+R_{\rm WD} = \left( \frac{729}{32 \pi^4} \right)^{1/3} \left( \frac{h^2}{5m_{\rm e}} \right) \frac{Y_{\rm e}^{5/3}}{G m_{\rm H}^{5/3}} M^{-1/3} \times (1.99 \times 10^{30}~{\rm kg~M}_{\odot}^{-1})^{-1/3}
+R_{\rm pp} = R_{\rm pd}
+R_{\theta }
+R_{\theta}Q_{\phi} = \begin{pmatrix}cos(\theta+2\phi) & sin(\theta+2\phi)\\sin(\theta+2\phi) & -cos(\theta+2\phi)\end{pmatrix}
+R_{\theta}Q_{\phi} = \begin{pmatrix}cos\theta & -sin\theta\\sin\theta & cos\theta\end{pmatrix}\begin{pmatrix}cos(2\phi) & sin(2\phi)\\sin(2\phi) & -cos(2\phi)\end{pmatrix}
+R_{kl}=\sum_i{{R^i}_{ikl}}={R^0}_{0kl}+{R^1}_{1kl}+{R^2}_{2kl}+{R^3}_{3kl}
+R_{u v} - \frac 1 2 R g_{u v} = -K T_{u v}
+S N R_{Tot}^{-1} = 2423.320^{-1} +1.6 \times \sqrt{81494.945}
+S'
+S(0)=\{\mathbf{v}\in\,V\colon\mathbf{v}\in\text{Ker }(t)\}
+S(\text{TET})
+S=\langle\,S\rangle
+S=\{(ka,kb,kc)\colon\;k\in\mathbb{R}\}
+S=\{(x)\colon\,x\in\mathbb{R}\}
+SE=\sqrt{\dfrac{\sigma^2}{n}}=\dfrac{2}{\sqrt{n}}
+SN{{R}_{K}}
+S[y] = \int^{v}_{0}dx\, (y'^2 - y^2) , y(0)=1
+S[y] = \int_0^1 dx (y'^2-1)^2
+S[y] = \int_0^{\pi/2} dx (y'^2 - 9 y^2)
+S[y] = \int_a^b dx (y'^2 - y^2)
+S[y_1+\epsilon h] - S[y_1] = \int_0^1 dx ( (y_1' + \epsilon h')^2- 1)^2- (y_1'^2- 1)^2 )
+S[y_1] = (A^2 - 1)^2.
+S[y_3] < \delta< (A^2 - 1)^2
+S\ (\text{TET})
+S\propto d_{L}^{-2}
+S^{-1}_{i_{1}}(x)=S_{i_2} \circ \dots \circ S_{i_{k-1}}(y)=f(x) \notin S_{k-1}[0,1]
+S^{-1}_{i_{1}}(x)=f(x) \notin S^{k-1}[0,1]
+S_{\nu} dN/dS_{\nu}
+T''(t)+T'(t)=c^2\mu T(t)
+T=\frac{(\overline{X}-\mu_{0})\sqrt{n}}{\sigma}
+T=\langle\,S\rangle
+T=\sqrt{\frac{l}{2g}}\int_{-\phi_1}^{\phi_1}\frac{d\phi}{\sqrt{\cos{\phi}-\cos{\phi_1}}}
+T=\{(\alpha,\alpha)\colon\alpha\in\mathbb{R}\}
+T_1(x) = f(0) + f'(0)(x-0) = 0 + 1.x = x
+T_2(x) = f(0) + f'(0)(x-0) + \frac{f''(0)}{2!}(x-0)^2 =0 + 1.x + \frac{0}{2}x^2= x
+T_E^{\frac{2}{3}}\left[1 + \left(\frac{T_M}{T_E}\right)^{\frac{2}{3}}\right]
+T_H^{\frac{2}{3}}= \frac{T_E^{\frac{2}{3}}}{2} \left[1 + \left(\frac{T_M}{T_E}\right)^{\frac{2}{3}}\right]
+T_{N}
+TeX{}
+U \rm{sgn}(a\cos\omega t)
+U=(7.5 \times 10^{-16} J m^{-3} K^{-4} ) VT^{4}
+U=\left\{\begin{pmatrix}a&b\\0&d\end{pmatrix}\colon\;a,d\in\mathbb{R}^*, b\in\mathbb{R}\right\}
+U\not=\langle\,U\rangle
+U_n=A\alpha^n+B\beta^n\quad\left(n=0,1,2,\ldots\right)\text{ for }\alpha\neq\beta\\U_n=\left(A+Bn\right)\alpha^n\quad\left(n=0,1,2,\ldots\right)\text{ for }\alpha=\beta\\\text{where }\alpha\text{ and }\beta\text{ are the solutions of the auxillary equation }r^2=pr+q.\\\text{ With constants } p,q\in\mathbb{R}}.
+V=-\frac{g}{l}\cos{\phi}-C has a minimum at
+V=\pi r^2L = \frac{4\pi^2 r^2L}{4\pi}=\frac{(2\pi r)^2L}{4\pi}= \frac{D^2L}{4\pi}
+V=\pi\int_{1}^{\infty}(\frac{1}{x})^{2}dx=
+V_{R}
+V_{R}=\sqrt{2(\frac{k}{R}+c)}
+V_{\mathrm{ind}}=-L\frac{\mathrm{d}i}{\mathrm{d}t}
+W-E_\mathrm{tot}
+W=Fs=1\text{~N}\times\frac{1}{2}\text{~m}=\frac{1}{2}\text{~J}
+W=\Delta E_\text{trans}=\frac{1}{2}mv^2-\frac{1}{2}mu^2
+W_C(z)=\frac{1}{2^2}(1+z)^{5}W_{C^{\perp}}(\frac{1-z}{1+z})
+W_c = \frac{1}{2^2}(1+z^5)[1+(\frac{1-z}{1+z})^2 + 2((\frac{1-z}{1+z})^4]
+W_{C^{\perp}}(\frac{1-z}{1+z})=1+(\frac{1-z}{1+z})^2+2(\frac{1-z}{1+z})^4
+W_{C^{\perp}}(z)=\frac{1}{4}(1+z)^3 W_C (\frac{1-z}{1+z})
+W_{C^{\perp}}=1+z^2+2z^4
+X''(x)=\mu X(x)
+X(s)=\frac{1}{s+\lambda}\left(\frac{1}{1-\epsilon\frac{e^{-sa}}{s+\lambda}\right)=\frac{1}{s+\lambda}\left(1+\sum_{n=1}^{\infty}\frac{\epsilon^n e^{-nas}}{(s+\lambda)^n}\right)=\frac{1}{s+\lambda}+\sum_{n=1}^{\infty}\frac{\epsilon^n e^{-nas}}{(s+\lambda)^{n+1}}
+X\sim B(n,p)$ then $p(x)=\binom{n}{x}p^{x}(1-p)^{n-x}
+X\sim\chi^{2}
+X\sim\chi^{2}(120)
+X_{i}
+X_{t}
+X_{t} = Y_{t} - Y_{t-1}
+Y\ge0
+Y_{t}
+Y_{t}=X_{t}-X_{t-1}
+Z^{+}
+Z_{b}
+Z_{t}
+Z_{t}=Y_{t}-Y_{t-1}
+[0,q^{-\alpha}], [\frac{1}{q}-q^{-\alpha},\frac{1}{q}+q^{-\alpha}], [\frac{2}{q}-q^{-\alpha},\frac{2}{q}+q^{-\alpha}], ..., [\frac{q-1}{q}-q^{-\alpha},\frac{q-1}{q}+q^{-\alpha}], [1-q^{-\alpha},1]
+[1\ \ -i]^T
+[1\: 1]^T
+[1\:-1]^T
+[B(I-AB)^{-1}A+ I](I-BA)=I
+[\!\![x]\!\!]
+[a\ \ \ b]^T
+[c\ \ \ d]^T
+[e^xx^n]_0^1 &= (e^1.1^n) - (e^0.0^n)
+[e^xx^n]_0^1 &= [e^1.1^n] - [e^0.0^n]
+[e^xx^n]_0^1 = e
+[f]^{\bold{r_2}}_{\bold{r_1}} = f(\bold{r_2})-f({\bold{r_1})
+[i\ \ -1]^T
+[i\ \ 1]^T
+[v_1\ v_3\ i_1\ i_2\ v_2\ i_3]^T
+[x,y]^T
+[x\ \ \ y]^T
+\ 0.3\times0.4\times s^2,\
+\ e^{5x}\sqrt{1+2x^2}\
+\,\delta
+\,\delta\,
+\Big( \sum\frac{1}{p_{m}} \Big)^{t}
+\Big((1,1) * (2,0)\Big) * (1,1)^{-1}
+\Big(\frac{x}{n}\Big)
+\Big[\Big((x+1)(x-1)\Big)^{2}+4x\Big]\sqrt{x}+5
+\Delta E=5\times 10^4 \mathrm{~N~C^{-1}}
+\Delta E=800\mathrm~{V}
+\Delta S = \frac{Q_{\text rev}}{T}
+\Delta \mathbf{H}_3
+\Delta \mathbf{H}_3 = -k_2(x_2-x_1)\mathbf{\hat{s}}
+\Delta \mathbf{w} = \eta\, (d_i-y_i)\,f'(netinput)\,\mathbf{x}
+\Delta w_i_h=\eta \delta_iy_h=0.5\cdot 0.145\cdot 0.61=0.0442
+\Delta w_i_j=05*0.77*-0.82=-0.316
+\Delta w_i_j=05*0.77*0.82=0.316
+\Delta w_j_h=\eta \delta_jy_h=0.5\cdot 0.028\cdot 0.61=0.0085
+\Delta w_{ij} = \eta e_i y_j \text{ rather than } \Delta w_{ij} = \eta_i y_j
+\Delta {E} \Delta {t} \geq \frac{h}{4\pi}
+\Delta\mathbf{P}_{1}+\Delta\mathbf{P}_{2}=0
+\Delta_{\Phi}^2 = \frac{d \sigma^2}{d{}ln{}k}
+\Gamma(1/2)=\sqrt\pi
+\Lambda^\mu_\nu
+\Lambda^j_i
+\Leftrightarrow \;\; {\left (x+\frac{b}{2a}  \right )^2 - \left ( \frac{b}{2a} \right )^2 + \frac{c}{a} = 0}
+\Leftrightarrow \;\; {\left (x+\frac{b}{2a}  \right )^2 = \left ( \frac{b}{2a} \right )^2 - \frac{c}{a}}
+\Leftrightarrow \;\; {x+\frac{b}{2a}=\pm \frac{\sqrt{b^2-4ac}}{2a}}
+\Leftrightarrow \;\; {x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}}
+\Leftrightarrow \;\; {x^2 + \frac{bx}{a} + \frac{c}{a} = 0}
+\Leftrightarrow f(p^a)=f(p)^a
+\Leftrightarrow f(p^{a}) = f(p)^{a}
+\Omega_\text{R}
+\Phi (t+ N T) = \Phi(t) = \bold{E}^N
+\Phi (t+ N T) = \Phi(t) \bold{E}^N
+\Phi_1(x,t_1)=\phi_1(x)\,\exp{\left(-\mathrm{i}\,\frac{\pi^2\hbar^2}{2mL^2}\,\frac{2mL^2}{\pi}\right)}=\phi_1(x)\,\mathrm{e}^{-\mathrm{i}\pi}=-\phi_1(x)
+\Phi_{\rm R}(x_{\rm c}) = - \frac{GM_1 M}{M_2 a} - \frac{GM_2 M}{M_1 a} - 0 = -\frac{GM}{a} \left( \frac{M_2^2 + M_1^2}{M_1M_2}\right)
+\Psi(x,t)=\frac{1}{\sqrt{2\pi}}\int^\infty_{-\infty} A(k)e^{i(kx-E_kt/\hbar)}dk
+\Psi(x,t)=\frac{1}{\sqrt{2\pi}}\int^\infty_{-infty} A(k)e^{i(kx-E_kt/\hbar)}dk
+\Psi_1(x,t_1)=\psi_1(x)\,\exp{\left(-\mathrm{i}\,\frac{\pi^2\hbar^2}{2mL^2}\,\frac{2mL^2}{\pi}\right)}=\phi_1(x)\,\mathrm{e}^{-\mathrm{i}\pi}=-\phi_1(x)
+\Rightarrow 1=m/2kT\left (v^{2}\right )
+\Rightarrow B=\frac{2\left (\frac{m}{kT}\right )^{3/2}}{\sqrt{2\pi }}
+\Rightarrow \int_{0}^{\infty }f(v)dv=\frac{\sqrt{2}\sqrt{\pi }B}{2\left (\frac{m}{Tk }\right )^{3/2}}
+\Rightarrow \left (2Bv\right )e^{-mv^{2}/2kT}=2vm/2kT\left (e^{-mv^{2}/2kT}\right )Bv^{2}
+\Rightarrow\dfrac{1}{4}\sin(2x)=\dfrac{1}{2}\sin(x)\cos(x)
+\Xi =\frac{1}{D-\frac{z}{a}}=\frac{D^{-1}}{1-\frac{z}{a}D^{-1}}=D^{-1}\left(1+\frac{z}{a}D^{-1}+\left(\frac{z}{a}\right)^2D^{-2}+...\right)
+\Xi g = \frac{1}{D-\frac{z}{a}}g=\left(D-\frac{z}{a}\right)^{-1}g=\left(e^{-\frac{zx}{a}}D-\frac{z}{a}e^{-\frac{zx}{a}}\right)^{-1}\left(e^{-\frac{zx}{a}}g\right)=\left(De^{-\frac{zx}{a}}\right)^{-1}f
+\Xi g =\int_0^x\left[ 1+\sum_{k=1}^{\infty}\left(\frac{z}{a}\right)^k\frac{1}{(k-1)!}\int_0^s(s-t)^{k-1}g(t)dt\right]ds
+\\ a+b+c=d \\ 2b+c=d \\ a+5b+3c=d
+\\(-1)^1=-1\\(-1)^2=-1\times-1=+1\\(-1)^3=(-1)^2\times-1=-1\\(-1)^4=(-1)^3\times-1=+1
+\\(1-x)e^x \text{ becomes } e^x-xe^x\\\begin{aligned}\\e^x &= 1 + x +\frac{x^2}{2}\\-xe^x &= -x-x^2-\frac{x^3}{2}...\\\\\end{aligned}
+\\(\frac{5}{6})^n = 0.5\\n = \frac{ln(0.5)}{ln\frac{5}{6}}\\\therefore n = 3.802
+\\35 \times 7^n + 2(7 \times 7^n) = 49 \times 7^n\\35 \times -(-5^n) +2(5 \times (-5^n) = -25 \times (-5^n)\\
+\\x=1\\y=2
+\\y=x\\y=x^2-x-3\\\\\text{intersect, so}\\\\x^2-x-3=x\\x^2-2x-3=0\\(x-3)(x+1)=0\\x=3, -1\\
+\alpha = {(g/l)} sin {\theta}
+\alpha ={{\left( \frac{{{E}_{G}}}{4k} \right)}^{1/3}}
+\alpha \beta \gamma \delta \epsilon \dots
+\alpha \ne 0
+\alpha ^{0} =1
+\alpha ^{1} =\alpha
+\alpha+\beta_1\cdot x_1+\beta_2\cdot x_2+...
+\alpha,\beta\in\mathbb{R}\implies\alpha+2\beta\in\mathbb{R},\alpha+3\beta\in\mathbb{R}
+\alpha,\beta\in\mathbb{R}}
+\alpha=\dfrac{-b+ \sqrt{b^2-4ac}}{2a}
+\alpha=\dfrac{\mathbf{v}_1\cdot\mathbf{u}}{\mathbf{v}_1\cdot\mathbf{v}_1}
+\alpha=\dfrac{\mathbf{v}_1\cdot\mathbf{w_2}}{\mathbf{v}_1\cdot\mathbf{v_1}}
+\alpha=\frac{\mathrm{d}\boldsymbol{\omega}}{\mathrm{d}t}=\frac{\mathrm{d}^2\theta}{\mathrm{d}t^2}
+\alpha\in\mathbb{R}^{+}
+\alpha\mathbf{v}_1+\beta\mathbf{v}_2=0
+\alpha_1=14.134725, \; \alpha_2=21.022040, \; \alpha_3=25.010856
+\alpha_4=30.424878, \; \alpha_5=32.935057, \; \alpha_6=37.586176
+\alpha_7=40.918720, \; \alpha_8=43.327073, \; \alpha_9=48.005150
+\approx 10^{4.13033768} = 13499.99998
+\bar w
+\bar x=25.6
+\bar{F}_{y'}(v) = 0
+\bar{S} \left[ \bar{y} \right] = \int d \bar{x} \bar{x}^3 \bar{y}^2 \left( \frac{d\bar{y}}{d\bar{x}} \right)^2
+\bar{S}[y] = \int^{v}_{0}dx\, (y'^2 - y^2) - \lambda xy'
+\bar{a}-\bar{b}\quad?
+\bar{x}^2
+\begin{align*} 5\times2+2y&=12\\2y&=12-10\\y&=\frac{2}{2}=1\end{align*}
+\begin{align*} [e^xx^n]_0^1 &= [e^1x^n] - [e^0x^n] \\ &= ex^n - x^n \\ &= x^n(e - 1) \\ \end{align*}
+\begin{align*} \frac{(3n+3)(3n+1)(3n+1)}{(n+1)(n+1)}&=\frac{(3n+3)(3n+1)(3n+1)}{(n+1)(n+1)}\times\frac{1/n^2}{1/n^2}\\&=\frac{(3n+3)\times 1/n\times(3n+1)\times1/n\times(3n+1)}{(n+1)\times1/n\times(n+1)\times1/n}\\&=\frac{(3+3/n)(3+2/n)(3n+1)}{(1+1/n)(1+1/n)}\end{align*}
+\begin{align*} \left[\begin{array}{ccc|c}a & b & c & d\\e & f & g & h\\i & j & k & l\\\end{array}\right]\end{align*}
+\begin{align*} r^{-1}\circ s&=r_{2\pi-\theta}\circ q_{\phi}(\text{mod }\pi)\\ &=q_{(\tfrac{1}{2}(2\pi-\theta)+\phi)}(\text{mod }\pi)\\ &=q_{(\phi-\tfrac{1}{2}\theta)+\pi)}(\text{mod }\pi)\\ &=q_{(\phi-\tfrac{1}{2}\theta)}(\text{mod }\pi)\ \end{align*}
+\begin{align*}&1.\bar{9}<2\\&\Rightarrow2-1.\bar{9}>0\\&\Rightarrow\exists\;x\in\mathbb{R}^+\colon2-1.\bar{9}=x\end{align*}
+\begin{align*}&1=2 +(-1)&&\implies&\\&1\times1=(2 +(-1))\times2 +((-1))&&\implies&\\&1\times1=(2 +(-1))\times2 +((-1))&&\implies&\\&1=2\times2+(-1)\times2+2\times(-1)+(-1)\times(-1)&&\implies&\\&1=4-2-2+(-1)\times(-1)&&\implies&\\&1=0+(-1)\times(-1)&&\implies&\\&1=(-1)\times(-1).&&&\end{align*}\\\text{that is, }(-1)^2=1
+\begin{align*}&\delta s^2 = \delta x^2+\delta y^2 \\\Longrightarrow& \frac{\delta s}{\delta x} = \sqrt{1+\frac{\delta y^2}{\delta x^2}} \\\Longrightarrow& \delta s = \delta x\sqrt{1+y^{\prime2}}\end{align*}
+\begin{align*}&\frac{n^2-n}{18n^2}=\frac{1}{18}(1-1/n)\\&=\frac{4}{3} + \frac{1}{18}-\frac{1}{18n}\end{align*}
+\begin{align*}&\left(1-\frac{1}{3}\right)+\left(\frac{1}{2}-\frac{1}{4}\right)+\left(\frac{1}{3}-\frac{1}{5}\right)+\dots\\&\quad+\mathbf{\left(\frac{1}{n-2}-\frac{1}{n}\right)+\left(\frac{1}{n-1}-\frac{1}{n+1}\right)}+\left(\frac{1}{n}-\frac{1}{n+2}\right)\end{align*}
+\begin{align*}&\text{I take an interval }I\text{ to be the domain of the complex function }f\text{ with }i \in\;I\\&\text{I show how }I\text{ and }i\text{ are contrived so that I confuse }I,i\text{ and the pronoun I when I read the text aloud.}\end{align*}
+\begin{align*}&\text{Let }f\colon\;x\mapsto\;f(x)\text{ be the cubic given.}\\&f(x)=0\text{ has solutions }x=p, x=q,x=r \text{ therefore,}\\&(x-p)(x-q)(x-r)=0,\\&\Rightarrow\;x^3-x^2(p+q+r)+x(pq+pr+qr)-pqr=0,\\&\text{At the turning points }f'(x)=0\text{ so,}\\&3x^2-2x(p+q+r)+(pq+pr+qr)=0,\\&\Rightarrow(pq+pr+qr)=-3x^2+2x(p+q+r)=-3(x^2-\tfrac{2}{3}x(p+q+r)),\\&=-3((x-\tfrac{1}{3}(p+q+r))^2-\frac{(p+q+r)^2}{9})\text{ by completing the square.}\end{align*}
+\begin{align*}&\text{The series }\sum_{n=1}^{\infty}a_n\text{ is absolutely convergent if and only if }\sum_{n=1}^{\infty}|a_n|\text{ is convergent}\end{align*}
+\begin{align*}&\text{The series }\sum_{n=1}^{\infty}a_n\text{ is absolutely convergent if }\sum_{n=1}^{\infty}|a_n|\text{ is convergent.}\\&\text{The series }\sum_{n=1}^{\infty}a_n\text{ is not absolutely convergent if }\sum_{n=1}^{\infty}|a_n|\text{ is divergent.}\\\end{align*}
+\begin{align*}&\text{The series }\sum_{n=1}^{\infty}a_n\text{ is absolutely convergent if }\sum_{n=1}^{\infty}|a_n|\text{ is convergent}\end{align*}
+\begin{align*}&\{a_n\}\text{ is a null sequence }\\\iff &\{a_n-0\}\text{ is a null sequence (as }a_n=a_n-0\text{)}\\\iff &\{a_n\}\text{ converges to 0 (by the definition)}\end{align*}
+\begin{align*}&pq+pr+qr<\frac{(p+q+r)^2}{3},\\&\Rightarrow3(pq+pr+qr)<p^2+q^2+r^2+2pq+2pr+2qr,\\&\Rightarrow\;p^2+q^2+r^2>pq+pr+qr\text{ as required.}\end{align*}
+\begin{align*}&t(\mathbf{v}_1)+t(\mathbf{v}_2)\\&=\ldots\\&=\ldots\\&=\ldots\\&=\text{the same really long expression of 6 variables}\end{align*}
+\begin{align*}&t(\mathbf{v}_1+\mathbf{v}_2)\\&=\ldots\\&=\ldots\\&=\ldots\\&=\text{a really long expression of 6 variables}\\\end{align*}
+\begin{align*}(-a)(-b)&=-(a(-b))\text{ (by *)}\\&=-(-(ab))\text{ (by *)}\\&=ab\end{align*}
+\begin{align*}(1+2)^n &= 1+2n+\dfrac{n(n-1)}{2!}2^2 + \text{ lots of positive terms}\\ &\geq 1+2n+\dfrac{n(n-1)}{2!}2^2\end{align*}
+\begin{align*}(I-BA)B(I-AB)^{-1}A &= B(I-AB)^{-1}A-BAB(I-AB)^{-1}A\\&= B(I-AB)(I-AB)^{-1}A\\&= BIA\\&= BA\end{align*}
+\begin{align*}(n+1)\frac{\alpha(\alpha-1)\dots(\alpha-n+1)(\alpha-n)}{(n+1)!}&=(\alpha-n)\frac{n+1}{(n+1)!}.\alpha(\alpha-1)\dots(\alpha-n+1)\\&=(\alpha-n)\frac{1}{n!}\frac{\alpha(\alpha-1)\dots(\alpha-n+1)(\alpha-n)(\alpha-n-1)\dots2.1}{(\alpha-n)(\alpha-n-1)\dots2.1}\\&=(\alpha-n)\frac{\alpha!}{n!(\alpha-n)!}\\&=(\alpha-n)\binom{\alpha}{n}\end{align*}
+\begin{align*}-208 &= 520r(1 - \frac{200}{E})\\&= 520r - \frac{(520)(200)}{E}\\&= 520r - \frac{104000}{E}\\\end{align*}
+\begin{align*}0\text{ is an eigenvalue of }\mathbf{A}&\iff \det(\mathbf{A})=0 \\&\iff \mathbf{A}\text{ is singular}\\&\iff \ker(t)\neq 0\\&\iff\text{the rows of $\mathbf{A}$ are linearly dependent}\\&\iff\text{the columns of $\mathbf{A}$ are linearly dependent}\end{align*}
+\begin{align*}1+\frac{1}{2}(x^2-4)^{-1/2}2x&=1+(x^2-4)^{-1/2}x\\&=(x^2-4)^{-1/2}(x^2-4)^{1/2}+(x^2-4)^{-1/2}x&\\&=(x^2-4)^{-1/2}\left((x^2-4)^{1/2}+x\right)\end{align*}
+\begin{align*}2(26-S)+4s&=74\\52-2s+4s&=74\\2s&=22\\s&=\displaystyle\frac{22}{2}=11\end{align*}
+\begin{align*}3x&=y+1\\2x&=y-1\\x&=1-(-1)=2\end{align*}
+\begin{align*}I_n&=\int^1_0 e^xx^n\,dx\\&=\left[e^xx^n\right]_0^1-\int^1_0 e^xnx^{n-1}\,dx\\&=e^11^n-e^00^n-n\int^1_0 e^xx^{n-1}\,dx\\&=e.1-1.0-nI_{n-1}\\&=e-nI_{n-1}\end{align*}
+\begin{align*}M'<1+\frac{1}{n} &\Leftrightarrow M'-1<\frac{1}{n}\\&\Leftrightarrow \frac{1}{M'-1}>n\\\end{align*}
+\begin{align*}MN&=\sqrt{\left(c(t_1+t_2)-\frac{c(t_1+t_2)}{2}\right)^2+\left(\frac{c(t_1+t_2)}{2t_1t_2}-0\right)^2}\\&=\sqrt{\left(c(t_1+t_2)-\frac{c(t_1+t_2)}{2}\right)^2+\left(\frac{c(t_1+t_2)}{2t_1t_2}\right)^2}\\&=\sqrt{\left(\frac{c(t_1+t_2)}{2}\right)^2+\left(\frac{c(t_1+t_2)}{2t_1t_2}\right)^2}\text{\quad using $x -\frac{x}{2}=\frac{x}{2}$ where $x = c(t_1+t_2)$ for the first square}\\\end{align*}
+\begin{align*}OM&=\sqrt{\left(\frac{c(t_1+t_2)}{2}-0\right)^2+\left(\frac{c(t_1+t_2)}{2t_1t_2}-0\right)^2}\\&=\sqrt{\left(\frac{c(t_1+t_2)}{2}\right)^2+\left(\frac{c(t_1+t_2)}{2t_1t_2}\right)^2}\text{\quad\quad (*)}\\&=\sqrt{\left(\frac{c(t_1+t_2)}{2}\right)^2\left(1+\left(\frac{1}{t_1t_2}\right)^2\right)}\\&=\left|\frac{c(t_1+t_2)}{2}\right|\sqrt{1+\left(\frac{1}{t_1t_2}\right)^2}\text{\quad as $\sqrt{x^2}=|x|$}\\&=\frac{c|t_1+t_2|}{2}\sqrt{\frac{(t_1t_2)^2+1}{(t_1t_2)^2}}\text{\quad as $c>0$}\\&=\frac{c|t_1+t_2|}{2|t_1t_2|}\sqrt{(t_1t_2)^2+1}\end{align*}
+\begin{align*}T_3(x) &= f(0) + f'(0)(x-0) + \frac{f''(0)}{2!}(x-0)^2+\frac{f^{(3)}(0)}{3!}(x-0)^3\\&= x+\frac{-1}{6}x^3=x-\frac{1}{6}x^3\end{align*}
+\begin{align*}\det(\lambda I-AB)=0 &\iff\lambda I-AB \text{ is invertible}\\&\iff I - (\lambda^{-1}A)B \text{ is invertible}\\&\iff I - B(\lambda^{-1}A)\text{ is invertible}\\&\iff \lambda I-BA\text{ is invertible}\\ &\iff \det(\lambda I - BA)=0\end{align*}
+\begin{align*}\dfrac{\dfrac{1}{c+h}-\dfrac{1}{c}}{h}&=\dfrac{\dfrac{1}{c+h}-\dfrac{1}{c}}{h}\times\dfrac{c(c+h)}{c(c+h)}\\&=\dfrac{\dfrac{1}{c+h}\times c(c+h)-\dfrac{1}{c}\times c(c+h)}{hc(c+h)}\\&=\dfrac{c-(c+h)}{hc(c+h)}\\&=\dfrac{-h}{hc(c+h)}\\&=\dfrac{-1}{c(c+h)}\end{align*}
+\begin{align*}\dfrac{\sqrt{16\pi n}\,4^{8n}}{(\sqrt{4\pi n})^4}&=\sqrt{\dfrac{16\pi n}{(4\pi n)^4}}\,4^{8n}\\&=\sqrt{\dfrac{16\pi n}{4^4\pi^4n^4}}\,4^{8n}\\&=\sqrt{\dfrac{1}{4^2\pi^3 n^3}}\,4^{8n}\\&=\dfrac{1}{\sqrt{4^2\pi^3 n^3}}\,4^{8n}\\&=\dfrac{1}{4}\dfrac{1}{\pi^{3/2}}\dfrac{1}{n^{3/2}}\,4^{8n}\\&=\dfrac{1}{\pi^{3/2}}\dfrac{4^{8n-1}}{n^{3/2}}\end{align*}
+\begin{align*}\dfrac{d}{dx}(x^3+x^2y+y^3)=\dfrac{d}{dx}(1)&\Rightarrow\dfrac{d}{dx}(x^3)+\dfrac{d}{dx}(x^2y)+\dfrac{d}{dx}(y^3)=\dfrac{d}{dx}(1)\\&\Rightarrow3x^2+\dfrac{d}{dx}(x^2)y+x^2\dfrac{d}{dx}(y)+\dfrac{d}{dx}(y^3)=0\\&\Rightarrow3x^2+2xy+x^2\dfrac{dy}{dx}+3y^2\dfrac{dy}{dx}=0\\&\Rightarrow (x^2+3y^2)\dfrac{dy}{dx}=-3x^2-2xy\\&\Rightarrow \dfrac{dy}{dx}=-\dfrac{x(3x+2y)}{x^2+3y^2}.\end{align*}
+\begin{align*}\frac{1-\left ( \frac{1}{2} \right )^n}{\frac{1}{2}}&=2\left ( 1-\left (\frac{1}{2} \right )^n \right )\\&=2-2\left ( \frac{1}{2} \right )^n\\&=2-\left ( \frac{1}{2} \right )^{-1}\left ( \frac{1}{2} \right )^n\\&=2-\left ( \frac{1}{2} \right )^{n-1}\\&=2-\frac{1}{2^{n-1}}\end{align*}
+\begin{align*}\frac{1}{x(1-ax)}&=\frac{1}{x}.\frac{1}{1-ax}\\&=\frac{1}{x}.\left(1-\frac{ax}{1-ax}\right)\\&=\frac{1}{x}-\frac{ax}{x(1-ax)}\\&=\frac{1}{x}-\frac{a}{1-ax}\end{align*}
+\begin{align*}\frac{4x-x^2-7}{x^2-1}-3&=\frac{4x-x^2-7}{x^2-1}-\frac{3(x^2-1)}{x^2-1}\\&=\frac{4x-x^2-7-3(x^2-1)}{x^2-1}\\&=\frac{4x-4x^2-4}{x^2-1}\end{align*}
+\begin{align*}\frac{\sqrt{16\pi n}\,4^{8n}}{(\sqrt{4\pi n})^4}&=\sqrt{\frac{16\pi n}{(4\pi n)^4}}\,4^{8n}\\&=\sqrt{\frac{16\pi n}{4^4\pi^4n^4}}\,4^{8n}\\&=\sqrt{\frac{1}{4^2\pi^3 n^3}}\,4^{8n}\\&=\frac{1}{\sqrt{4^2\pi^3 n^3}}\,4^{8n}\\&=\frac{1}{4}\frac{1}{\pi^{3/2}}\frac{1}{n^{3/2}}\,4^{8n}\\&=\frac{1}{\pi^{3/2}}\frac{4^{8n-1}}{n^{3/2}}\end{align*}
+\begin{align*}\frac{\sqrt{600\pi}}{(\sqrt{300\pi})^2}&=\sqrt{\frac{600\pi}{(300\pi)^2}}\\&=\sqrt{\frac{600\pi}{300\pi.300\pi}}\\&=\sqrt{\frac{6}{900\pi}}\\&=\frac{\sqrt{6}}{30\sqrt{\pi}}\end{align*}
+\begin{align*}\frac{\sqrt{8\pi n}(4n/e)^{4n}(\sqrt{2\pi n}(n/e)^n)^2}{(\sqrt{4\pi n}(2n/e)^{2n})^3}&=\frac{\sqrt{8\pi n}(\sqrt{2\pi n})^2}{(\sqrt{4\pi n})^3}.\frac{(4n/e)^{4n}((n/e)^n)^2}{((2n/e)^{2n})^3}\\&=\sqrt{\frac{8\pi n(2\pi n)^2}{(4\pi n)^3}}.\frac{(4n)^{4n}(n^n)^2)}{((2n)^{2n})^3}.\frac{e^{-4n}(e^{-n})^2}{(e^{-2n})^3}\\&=\sqrt{\frac{1}{2}}.\frac{4^{4n}}{(2^{2n})^3}.\frac{n^{4n}n^{2n}}{n^{6n}}.\frac{e^{-4n}e^{-2n}}{e^{-6n}}\\&=\sqrt{\frac{1}{2}}.\frac{(2^2)^{4n}}{2^{6n}}.\frac{n^{6n}}{n^{6n}}.\frac{e^{-6n}}{e^{-6n}}\\&=\sqrt{\frac{1}{2}}.\frac{2^{8n}}{2^{6n}}\\&=\frac{1}{\sqrt{2}}.2^{2n}\end{align*}
+\begin{align*}\frac{\text{d}s}{\beta s} &= \frac{\text{d}\Pi}{-\lambda\Pi} \\ \implies \frac{1}{\beta}\int\frac{1}{s}\ \text{d}s &= \frac{-1}{\lambda}\int\frac{1}{\Pi}\ \text{d}\Pi \\ \implies \frac{1}{\beta}\log s &= \frac{-1}{\lambda}\log\Pi + constant \\ \implies c_2 &= s^{1/\beta}\Pi^{1/\lambda} \end{align*}
+\begin{align*}\frac{x+2}{x+4}-\frac{x-3}{2x-1}&=\frac{(x+2)(2x-1)}{(x+4)(2x-1)}-\frac{(x+4)(x-3)}{(x+4)(2x-1)}\\&=\frac{(x+2)(2x-1)-(x+4)(x-3)}{(x+4)(2x-1)}\\&=\frac{2x^2+4x-x-2-(x^2-3x+4x-12)}{(x+4)(2x-1)}\\&=\frac{x^2+2x+10}{(x+4)(2x-1)}\end{align*}
+\begin{align*}\int\frac{1}{x}-\frac{a}{1-ax} dx&=\ln{(x)}-\frac{a(\ln{(1-ax)})}{a}+c\\&=\ln{(x)}-\ln{(1-ax)}+c\\&=\ln{\left(\frac{x}{(1-ax)}\right)}+c\\&=c-\ln{\left(\frac{(1-ax)}{x}\right)}\\&=c-\ln{\left(\frac{1}{x}-a\right)}\end{align*}
+\begin{align*}\int_1^n\frac{dx}{x^p}=\int_1^nx^{-p}\,dx=\left[\frac{x^{-p+1}}{-p+1}\right]^n_1&=\left[\frac{x^{1-p}}{1-p}\right]^n_1&\\&=\frac{n^{1-p}}{1-p}-\frac{1}{1-p}\\&=\frac{n^{1-p}-1}{1-p}\end{align*}
+\begin{align*}\lim_{n\to\infty}L(f,P_{2n})&=\lim_{n\to\infty}\left[\frac{1}{6}\left(1+\frac{1}{n}\right)\left(2+\frac{1}{n}\right)+2-\frac{2}{n}\right]\\&=\frac{1}{6}(1+0)(2+0)+2-0\quad\text{by the Combination Rules for sequences}\\&=\frac{7}{3}\end{align*}
+\begin{align*}\mathbf{r}&=\lambda(3,1)+(1-\lambda)(2,3)\\&=(3\lambda,\lambda)+(2-2\lambda,3-3\lambda)\\&=(3\lambda+(2-2\lambda),\lambda+(3-3\lambda))\\&=(2+\lambda,3-2\lambda)\end{align*}
+\begin{align*}\mathbf{r}&=\tfrac{1}{3}\mathbf{a}+\tfrac{1}{3}\mathbf{b}\\&=\tfrac{1}{3}(\mathbf{a}+\mathbf{b})\\&=\tfrac{2}{3}.\tfrac{1}{2}(\mathbf{a}+\mathbf{b})\\&=\tfrac{2}{3}\mathbf{p}\\&=\tfrac{1}{3}\mathbf{0}+\tfrac{2}{3}\mathbf{p}\\&=\lambda\mathbf{0}+(1-\lambda)\mathbf{p}\text{\quad where $\lambda=\frac{1}{3}$}\end{align*}
+\begin{align*}\phi\colon &G\to\mathbb{Z}\\&x^n\mapsto n\end{align*}
+\begin{align*}\sqrt{108}&=\sqrt{2\times3\times2\times9}\\&=\sqrt{2\times2}\times\sqrt{3}\times\sqrt{3\times3}\\&=\sqrt{4}\times\sqrt{3}\times\sqrt{9}\\\end{align*}
+\begin{align*}\text{Ker}(\phi)&=\{z\in\mathbb{C}\colon\phi(z)=0\}\\&=\{z\in\mathbb{C}\colon z-\overline{z}=0\}\\&=\{z\in\mathbb{C}\colon z=\overline{z}\}\\&=\{z\in\mathbb{C}\colon z\text{ is real}\}\\&=\mathbb{R}\end{align*}
+\begin{align*}\text{Stab}(x,y)&=\left\{\begin{pmatrix}a&b\\0&1\end{pmatrix}: ax = x,\ a,b\in\mathbb{R},\ a\neq0\right\} \\&= \left\{\begin{pmatrix}a&b\\0&1\end{pmatrix}:a=1,\ b\in\mathbb{R}\right\}\\&=\left\{\begin{pmatrix}1&b\\0&1\end{pmatrix}:b\in\mathbb{R}\right\}\end{align*}
+\begin{align*}a\times(b+1)&=(a\times\;b)+a,\quad\forall\;a,b\in\mathbb{Z}&&\implies&\\-1\times(-1+1)&=(-1\times\;-1)+(-1)&&\implies&\\-1\times0&=(-1\times\;-1)+(-1)&&\implies&\\0+1&=(-1\times\;-1)+(-1)+1&&\implies&\\1&=(-1\times\;-1)+0&&\implies&\\1&=(-1\times\;-1)&&&\end{align*}
+\begin{align*}e-s_n&=\left(1+1+\dfrac{1}{2!}+\dfrac{1}{3!}+\dots+\dfrac{1}{n!}+\dfrac{1}{(n+1)!}+\dfrac{1}{(n+2)!}+\dots\right)\\&-\left(1+1+\dfrac{1}{2!}+\dfrac{1}{3!}+\dots+\dfrac{1}{n!}\right)\\&=\dfrac{1}{(n+1)!}+\dfrac{1}{(n+2)!}+\dots\end{align*}
+\begin{align*}e^{i(\theta +\phi)}&=e^{i\theta}e^{i\phi}\\&=(\cos\theta+i\sin\theta)(\cos\phi+i\sin\phi)\\&=\cos\theta\cos\phi-\sin\theta\sin\phi+i(\sin\theta\cos\phi+\cos\theta\sin\phi).\end{align*}
+\begin{align*}f\colon \mathbb{R}&\to\mathbb{R}\\x &\mapsto x^2\end{align*}
+\begin{align*}f\colon&G\to H\\&g\mapsto e\end{align*}
+\begin{align*}f\colon&\mathbb{R}\rightarrow\mathbb{R}\\&x\mapsto e^x\end{align*}
+\begin{align*}f\colon&\mathbb{R}\to\mathbb{R}\\&x\mapsto x^2\end{align*}
+\begin{align*}f\colon&\mathbb{R}\to\mathbb{R}\\&x\mapsto\pm\sqrt{x}\end{align*}
+\begin{align*}f\colon&\mathbb{R}^+\to\mathbb{R}\\&x\mapsto\;x^2\end{align*}
+\begin{align*}f\colon&\mathbb{R}^+\to\mathbb{R}\\&x\mapsto\sqrt{x}\end{align*}
+\begin{align*}f\colon[0,1]\cup[2,3]&\to\mathbb{R}\\x&\mapsto2x\end{align*}
+\begin{align*}f\colon\mathbb{R}&\to\mathbb{R}\\x&\mapsto|x|\end{align*}
+\begin{align*}f\colon\mathbb{R}^++\left \{ 0 \right \}&\to\mathbb{R}\\x&\mapsto\sqrt{x}\end{align*}
+\begin{align*}g\colon&\mathbb{R}\to\mathbb{R}\\&x\mapsto\;x^2\end{align*}
+\begin{align*}m_2&=\frac{2at_2-4a}{at_2^2-4a}\\&=\frac{2a(t_2-2)}{a(t_2^2-4)}\\&=\frac{2(t_2-2)}{(t_2-2)(t_2+2)}\text{\quad (difference of two squares formula)}\\&=\frac{2}{t_2+2}\\&=\frac{2}{2+t_2}\end{align*}
+\begin{align*}p\colon&\mathbb{R}\to\mathbb{R}\\&x\mapsto a+bx+cx^2+dx^3\end{align*}
+\begin{align*}rx_n&=r^n+r^{n-1}+r^{n-2}+...+r^2+r+0\qquad\qquad(2)\\x_n&=\qquad r^{n-1}+r^{n-2} \ +...+r^2+r+1\qquad\qquad(1)\\\therefore\qquad rx_n-x_n&=r^n + \qquad\qquad\qquad\qquad\qquad\qquad -1\\\therefore\qquad rx_n-x_n&=r^n-1\end{align*}
+\begin{align*}t(a,b)_E &=t(ae^x\cos x+be^x\sin x)\\ &= ae^x\cos x-ae^x\sin x+be^x\sin x+be^x\cos x\\&= (a+b)e^x\cos x+(-a+b)e^x\sin x\\&= (a+b, -a+b)_E\end{align*}
+\begin{align*}x&=1\\y+x&=2\end{align*}
+\begin{align*}x_0.x_1x_2...x_n>a &\Rightarrow 10^n x_0.x_1x_2...x_n>10^n a\\&\Rightarrow x_0x_1x_2\ldots x_n>a_0a_1a_2\ldots a_n.a_{n+1}\ldots\\&\Rightarrow x_0x_1x_2\ldots x_n>a_0a_1a_2\ldots a_n\\&\Rightarrow x_0x_1x_2\ldots x_n\geq a_0a_1a_2\ldots a_n +1\text{ since both sides are integers}\\&\Rightarrow x_0x_1x_2\ldots x_n\geq a_0a_1a_2\ldots a_n +\frac{1}{10^n}\text{ dividing by $10^n$ again}\end{align*}
+\begin{align*}y''+3y'+2y&=1(x)+0(0)\\&=x\end{align*}
+\begin{align*}y(x)&=1(\tfrac{1}{2}x-\tfrac{3}{4})+0(C_1e^{-2x}+C_2e^{-x})\\&=\tfrac{1}{2}x-\tfrac{3}{4}\end{align*}
+\begin{align*}y=1-\dfrac{3}{x+2}&\iff \dfrac{3}{x+2}=1-y\\&\iff\dfrac{x+2}{3}=\dfrac{1}{1-y}\\&\iff x+2 =\dfrac{3}{1-y}\\&\iff x =-2+\dfrac{3}{1-y}\end{align*}
+\begin{align*}y^n&=(gxg^{-1})^n,\\&=(gxg^{-1})(gxg^{-1})(gxg^{-1})\ldots(gxg^{-1})(gxg^{-1}),\\&=gx(g^{-1}g)x(g^{-1}g)\ldots\;x(g^{-1}g)x(g^{-1}g)xg^{-1},\\&=gxexe\ldots\;xexexg^{-1},\\&=gx^ng^{-1}.\end{align*}
+\begin{align*}|2\sin n - 3\cos n|&=|2\sin n + (-3\cos n)|\\&\leq |2\sin n|+|-3\cos n|\text{\quad by the triangle inequality}\\&=2|\sin n|+3|\cos n|\\&\leq 2 + 3\\&= 5\end{align*}
+\begin{align*}|\textbf{a}\times\textbf{b}|&=\sqrt{(-18)^2+18^2}\\&=\sqrt{(-1)^2(18)^2+18^2}\\&=\sqrt{2(18)^2}\\&=\sqrt{2}\sqrt{18^2}\\&=18\sqrt{2}.\end{align*}
+\begin{align*}|r(x)|&=\ldots\\&\leq\;K(\ldots)\\&<K(\ldots)\text{ not true for K=0}\end{align*}
+\begin{align}     E &= mc^2                              \\     m &= \frac{m_0}{\sqrt{1-\frac{v^2}{c^2}}}   \end{align}
+\begin{align} 7x+3y&=17\\5x+2y&=12 \end{align}
+\begin{align}&\text{Let }z=\frac{1}{2}i\end{align}
+\begin{align}&\text{Let }z=\tfrac{1}{2}i\end{align}
+\begin{align}0&\le\sin{x}\le1\text{ on }[0,\pi]\\0&\le2\sin{x}\le2\\-2&\le-2\sin{x}\le0\\1&\le3-2\sin{x}\le3\\\frac{1}{3}&\le\frac{1}{3-2\sin{x}}\le1\\\frac{\pi-x}{3}&\le\frac{\pi-x}{3-2\sin{x}}\le\pi-x\\&\text{Specifically }\frac{\pi-x}{3-2\sin{x}}\le\pi-x\text{ on }[0,\pi]\end{align}
+\begin{align}1&2\\&3\end{align}
+\begin{align}\frac{\partial u}{\partial x} &= \frac{\partial u}{\partial \zeta}\frac{\partial \zeta}{\partial x}+\frac{\partial u}{\partial \phi}\frac{\partial \phi}{\partial x}\\\frac{\partial^2 u}{\partial x^2} &=\frac{\partial}{\partial x} (\frac{\partial u}{\partial x}) \\\nabla \cdot \vec u&=0\end{align}\end{document}
+\begin{align}\text{Let } &a = 1, b=2\\&\Rightarrow2a=b\\&\Rightarrow4a^2=b^2\end{align}
+\begin{align}a+b=2\\c+d=2\end{align}
+\begin{align}f\,:&\mathbb{R}^2\rightarrow\mathbb{R}^2\\&(x,y)\mapsto(2x,2y)\end{align}
+\begin{align}x&=\sqrt{-5}\\ \sqrt{1-x_0^3}&=3\end{align}
+\begin{align}x+2y&=7\\2x+3y&=11\end{align}
+\begin{array}{ccccc}&(1&2&3&4)\\g &\;\downarrow&\downarrow&\downarrow&\!\downarrow\\&(a&b&c&d)\end{array}
+\begin{array}{c|cccc}o & e & r^1 & r^2 & r^3 \\ -&-&-&-&- \\e & e & r^1 & r^2 & r^3\\r^1 & r^1 & r^2 &r^3&e\\r^2&r^2&r^3&e&r^1\\r^3&r^3&e&r^1&r^2\end{array}
+\begin{array}{c|cccc}o&e&r^1&r^2&r^3\\-&-&-&-&-\\s&s&r^3s&r^2s&rs\\r^1s&r^1s&s&r^3s&r^2s\\r^2s&r^2s&r^1s&s&r^3s\\r^3s&r^3s&r^2s&r^1s&s\\\end{array}
+\begin{array}{c|cccc}o&s&r^1s&r^2s&r^3s\\-&-&-&-&-\\e&s&r^1s&r^2s&r^3s\\r^1&r^1s&r^2s&r^3s&s\\r^2&r^2s&r^3s&s&r^1s\\r^3&r^3s&s&r^1s&r^2s\\\end{array}
+\begin{array}{c|cccc}o&s&rs&r^2s&r^3s\\-&-&-&-&-\\s&e&r^3&r^2&r\\r^1s&r^1&e&r^3&r^2\\r^2s&r^2&r&e&r^3\\r^3s&r^3&r^2&r&e\\\end{array}
+\begin{array}{lll}\begin{pmatrix}12345678\\12345678\end{pmatrix}&\text{Identity }&e\\[3ex]\begin{pmatrix}12345678\\18765432\end{pmatrix}&\text{Something }&g\end{array}
+\begin{bmatrix}1 & 1 & 0\end{bmatrix}\begin{bmatrix}1 & 0 & 0 & 0 & 1 & 1 \\0 & 1 & 0 & 1 & 0 & 1 \\0 & 0 & 1 & 1 & 1 & 0\end{bmatrix}= \begin{bmatrix}1\times1+1\times0+0\times0=1+0+0=1 \\1\times0+1\times1+0\times0=0+1+0=1 \\1\times0+1\times0+0\times1=0+0+0=0 \\1\times0+1\times1+0\times1=0+1+0=1 \\1\times1+1\times0+0\times1=1+0+0=1 \\1\times1+1\times1+0\times0=1+1+0=0 \\\end{bmatrix}^T= \begin{bmatrix}1 & 1 & 0 & 1 & 1 & 0\end{bmatrix}
+\begin{bmatrix}\alpha\\\beta\end{bmatrix}=\begin{bmatrix}a&c\\b&d\end{bmatrix}^{-1}\begin{bmatrix}x\\y\end{bmatrix}.
+\begin{displaymath}f(x) = e^{x_1}\end{displaymath}
+\begin{equation}-\frac{1}{x}-\frac{1}{3x^3}+c\end{equation}
+\begin{equation}-x^{-1}-\frac{1}{3}x^{-3}+c\end{equation}
+\begin{equation}\frac{1}{4}x^{8/3}+10x^{-1/2}-2e^{-2x}+c\end{equation}
+\begin{large}\left|\frac{z^{s-1}}{e^{-z}-1}\right|\leq\frac{r^{m-1}e^{\pi M}}{e^r-1}\end{large}
+\begin{matrix}o & e & r^1 & r^2 & r^3 \\ e & e & r^1 & r^2 & r^3\\ r^1 & r^1 & r^2 & r^3 & e \\ r^2 & r^2 & r^3 & e & r^1 \\ r^3 & r^3 & e & r^1 & r^2 \end{matrix}
+\begin{pmatrix}1&-\sqrt3\\\sqrt3&1)\end{pmatrix}
+\begin{pmatrix}3-sqrt3\\\3\sqrt3+1)\end{pmatrix}
+\begin{pmatrix}x'\\y'\end{pmatrix}=A^{-1}\begin{pmatrix}x\\y\end{pmatrix}
+\begin{pmatrix}x'\\y'\end{pmatrix}=A^{-1}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}3x-2y\\x-y\end{pmatrix}
+\begin{pmatrix}{1-\lambda &4\\1&-2-\lambda}\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}
+\begin{vmatrix}{1-\lambda &4\\1&-2-\lambda}\end{vmatrix} =0
+\beta = (1 + \delta)^{-1/2}
+\beta ^{0} =1
+\beta ^{1} =\beta
+\beta=\dfrac{-b- \sqrt{b^2-4ac}}{2a}
+\beta=\dfrac{\mathbf{v}_2\cdot\mathbf{u}}{\mathbf{v}_2\cdot\mathbf{v}_2}
+\bf F
+\bf abc
+\bf e_\theta
+\bf e_r
+\bf u
+\bf{\hat{i}}
+\bf{\hat{j}}
+\bf{\hat{k}}
+\bf{\hat{v}}
+\bf{\hat{v}}=\frac{1}{|\bf{v}|}\bf{v}
+\bf{\hat{~}}
+\bf{i}
+\bf{i}\times -\bf{j}
+\bf{i}\times\bf{j}
+\bf{i}\times\bf{j}=\bf{k}
+\bf{j}
+\bf{j}\times\bf{i}
+\bf{j}\times\bf{i}=-\bf{k}
+\bf{k}
+\bf{r}\times\bf{F}=(|\bf{r}||\bf{F}|\sin\theta)\bf{\hat{c}}
+\bf{v}
+\big(\frac{1}{3}\big)
+\big[-g(x)\big]_2^n = (-g(n)) - (-g(2)) = -g(n)+g(2)=g(2)-g(n)
+\big[\log_e(x)\big]_1^n=\log_en-\log_e1=\log_en-0
+\bigcap_{k=1}^{\infty}U_k\not=\emptyset
+\bigl(\begin{smallmatrix}1 & 1\\0 & 0\end{smallmatrix}\bigr)
+\bigl(\begin{smallmatrix}1 & 1\\0 & 1\end{smallmatrix}\bigr)
+\binom{\alpha}{n}=\frac{\alpha\left ( \alpha-1 \right )...\left ( \alpha-n+1 \right )}{n!}
+\bold 0
+\bold A\bold x
+\bold x^T\bold A
+\bold {A} (t)
+\bold {\ddot{x}} (t_{0}) = \bold 0
+\bold {\dot{x}} (t_{0}) = \bold 0
+\bold {x} (t)
+\bold {x}(t)
+\bold {x}(t) = 0
+\bold {x}(t)=\bold{\Psi}(t) \bold{x}(0)
+\bold {x}(t_{0}) = \bold 0
+\boldsymbol F = \frac{\mathrm{d}\boldsymbol p}{\mathrm{d}t}
+\boldsymbol F_m = q \left( \boldsymbol v \boldsymbol{\times} \boldsymbol B \right )
+\boldsymbol \Gamma = \boldsymbol F \boldsymbol{\times} \boldsymbol r
+\boldsymbol \Gamma = \boldsymbol r \boldsymbol{\times} \boldsymbol F
+\boldsymbol v
+\boldsymbol v = \boldsymbol \omega} \boldsymbol{} \times}\boldsymbol r
+\boldsymbol{B}_{\perp}'
+\boldsymbol{E}(r,\theta ,z)=A\boldsymbol{e_{r}}+B\boldsymbol{e_{\theta }}+C\boldsymbol{e_{z}}
+\boldsymbol{F_T}
+\boldsymbol{F_{el}}(q,\boldsymbol{r})=q\boldsymbol{E}(\boldsymbol{r})
+\boldsymbol{F}_\text{21} = \frac{-Gm_1m_2}{r^2} \boldsymbol{\hat r}
+\boldsymbol{F}_{12}
+\boldsymbol{F}_{21}
+\boldsymbol{F}_{21} = \frac{- G m_1 m_2}{r^2} \boldsymbol{\hat{r}}
+\boldsymbol{F}_{21} = \frac{-Gm_1m_2}{r^2} \boldsymbol{\hat r}
+\boldsymbol{F}_{\textrm{total}}.\boldsymbol{s}
+\boldsymbol{\alpha} = \frac{\mathrm{d} \boldsymbol{\omega}}{ \mathrm{d} t}
+\boldsymbol{\hat M}
+\boldsymbol{\hat r}
+\boldsymbol{\hat{r}}
+\boldsymbol{\hat{r}}=\frac{\boldsymbol{r}}{r}
+\boldsymbol{\omega}
+\boldsymbol{a}=a\hat{\boldsymbol{a}}
+\boldsymbol{r}
+\boldsymbol{t}
+\boldsymbol{v}
+\boldsymbol{v} = \boldsymbol{\omega} \times \boldsymbol{r}
+\boldsymbol{v}_1
+\boldsymbol{v}_2
+\bold{\Phi^{-1}}(0)=\left[ \begin {array}{cc} 1&0\\ 1&1\end {array} \right]
+\bold{\Phi}
+\bold{\Phi}(t)
+\bold{\Psi}(t)
+\bold{\Psi}(t)=\bold{\Phi}(t) \bold{\Phi^{-1}}(0)
+\bold{r}
+\bold{x}
+\bold{x}H^T=\bold{0}
+\cap\{X\subseteq\mathbb{R}^{n}:\; X\; is\; closed\;\&\;\mu\left(\mathbb{R}^{n}\setminus X\right)=0\}
+\chi (m)=\chi (m_1)...\chi (m_r)
+\chi(n)\ne0
+\chi^{2}
+\chi^{2}_{1}
+\chi_i \not\equiv 0
+\chi_{i}
+\cos i = 1+\frac{1}{2!}+\frac{1}{4!}+\frac{1}{6!}\dots>1
+\cos(2x)=1-2\sin^{2}x
+\cos(ax)\ne0
+\cos(x)^2
+\cos\,\theta=\frac{\mathbf{F\cdot s}}{Fs}
+\cos\,\theta=\frac{a_xb_x+a_yb_y+a_zb_z}{ab}
+\cos\delta\theta\rightarrow 1\text{ as }\delta\theta\rightarrow 0
+\cos\theta+i\sin\theta=lim(1+\frac{i\theta}{n})^n
+\cos\theta=\frac{\mbox{adj}}{\mbox{hyp}}=\frac{x}{1}=x
+\cos\theta=\frac{a}{\sqrt{a^2+b^2}
+\cos^{2}\Theta + \sin^{2}\Theta = 1
+\cos^{2}\left(x\right)+\sin^{2}\left(x\right)=1
+\cos^{2}\theta=1-\sin^{2}\theta=1-(\frac{2}{5})^{2}=\frac{21}{25}
+\cos^{2}t\cos3t=\frac{1}{2}\left(1+\cos2t\right)\cos3t=\frac{1}{2}\cos3t+\frac{1}{4}\cos5t+\frac{1}{4}\cos t
+\cos{\alpha}=a/\sqrt{a^2+x^2}
+\cos{}
+\cot^{2}\Theta + 1 = \csc^{2}\Theta
+\cup\{W\subseteq\mathbb{R}^{n}:\; W\; is\; open\;\&\;\mu\left(W\right)=0\}
+\cup_{k=1}^{\infty}f^{-k}(z)
+\dbinom{-\frac{1}{2}}{n}
+\dbinom{5}{2}
+\dbinom{5}{4}
+\dbinom{5}{4}=\dfrac{5!}{4!(5-4)!}=\dfrac{5.4.3.2.1}{4.3.2.1.1}=5
+\dbinom{5}{4}\,2(3x)^4=5\times 2(3x)^4
+\ddot{\phi} + 3 H \dot{\phi} - \nabla^2 \phi + {\rm d}V/{\rm d}\phi = 0
+\ddot{x} + x = a(1-{\omega}^2){\cos({\omega}t)}+c
+\ddot{x} + {2} \dot{x} + {x} = 0
+\ddot{x}+k\dot{x}^2=g
+\ddot{x}=-0.02\dot{x}\sqrt{\dot{x}^2+\dot{y}^2}
+\ddot{y} + \frac {2} {5} {y} + (\frac {-1} {6}) y^3 = cos(\tau)
+\ddot{y} + \frac {2} {5} {y} + \delta y^3 = cos(\tau)
+\ddot{y}=-0.02\dot{y}\sqrt{\dot{x}^2+\dot{y}^2}-9.81
+\delta \mathbf{r}=\delta r\, \mathbf{e_r}+r\, \delta \mathbf{e_r}
+\delta _h=f'(netinput_h)\sum_{k=1}^{K}(\delta_kw_k_h)=0.61(1-0.61)(0.145\cdot -1.57\, +\, 0.028\cdot 2.44)=-0.038
+\delta r\,  \delta \mathbf{e_r}
+\delta r_{n}
+\delta s = (1 + y'(x)^2)^{1/2}\delta x + O( \delta x ^2)
+\delta t'
+\delta z$=0
+\delta {\bf e_z}=0
+\delta {{m}_{K}}=2.5{{\log }_{10}}\left( 1+\frac{1}{SN{{R}_{K}}} \right)
+\delta=0.5x10^{-5}
+\delta>0,\ \left|\dfrac{f(x)-f(a)}{x-a}-f'(a)\right|<\dfrac{f'(a)}{2}\text{ if }0<|x-a|<\delta
+\delta>0,f(x)<f(a)\text{ if }a-\delta<x<a
+\delta\mathbf{e_r} = \delta\theta\dfrac{\partial}{\partial\theta}\mathbf{e_r}=\delta\theta\mathbf{e_\theta}
+\delta_k \geq (\frac{1}{3})^{\frac{k}{2}} (\frac{1}{5})^{\frac{k}{2}}
+\delta{\bf e_r}
+\delta{\bf e_r}=a\,\delta\theta\,{\bf e_\theta}
+\delta{\bf e_r}={\bf e_\theta}\delta\theta
+\delta{\bf e_r}={\partial{\bf e_r}\over\partial\theta}\delta\theta+{\partial{\bf e_r}\over\partial{r}}\delta{r}
+\delta{\bf r}
+\delta{\bf r}=a\,\delta\theta\,{\bf e_\theta}
+\delta{\bf r}=a\delta{\bf e_r}
+\det\mathbf{A}= 0 \iff \mathbf{Ax}=\mathbf{0}\text{ has non-trivial ie non-zero solutions}
+\dfrac{(-1)^n}{n}=-\dfrac{(-1)^{n+1}}{n}
+\dfrac{(n+1)^{n+1}}{n^n}
+\dfrac{(n+1)^{n+1}}{n^n} =(n+1)\left(\dfrac{n+1}{n}\right)^n=(n+1)\left(1+\dfrac{1}{n}\right)^n\geq n+1
+\dfrac{-a}{-b}=\dfrac{-1}{-1}\times\dfrac{a}{b}=1\times\dfrac{a}{b}$=$\dfrac{a}{b}
+\dfrac{-a}{b}=\dfrac{-1}{+1}\times\dfrac{a}{b}=-1\times\dfrac{a}{b}=-\dfrac{a}{b}
+\dfrac{0}{0} = 0
+\dfrac{1-2n^2+3n^4}{2n^4-3n+4}\div\dfrac{1}{n^4}=\dfrac{1/n^4-2/n^2+3}{2-3/n^3+4/n^4}
+\dfrac{105}{300\,000\,000-100}\approx \dfrac{100}{300\,000\,000}
+\dfrac{10}{n}
+\dfrac{15(n+1)}{(3n+2)^2}=\dfrac{15(1+1/n)}{(3+2/n)^2}
+\dfrac{15x}{3}+\dfrac{4x}{3}-\dfrac{10}{3}=-16
+\dfrac{19x}{3}-\dfrac{10}{3}=-16
+\dfrac{1}{(1+x)(1+y)}\leq\dfrac{1}{1}
+\dfrac{1}{0}
+\dfrac{1}{0}=\infty
+\dfrac{1}{1+(2u)^2}\,.\,2=\dfrac{2}{4u^2+1}
+\dfrac{1}{1+(2x)^2}
+\dfrac{1}{1+(2x)^2}.2
+\dfrac{1}{1-r}
+\dfrac{1}{1-x}
+\dfrac{1}{100}\displaystyle\sum_{x=1}^n \; \dfrac{1}{x}
+\dfrac{1}{100}\displaystyle\sum_{x=1}^n \dfrac{1}{x}
+\dfrac{1}{10^n}<1
+\dfrac{1}{10^n}\left(2x_n+\dfrac{1}{10^n}\right)<\dfrac{5}{10^n}
+\dfrac{1}{1}
+\dfrac{1}{1}+\dfrac{1}{\sqrt{2}}=\dfrac{(1\cdot\sqrt{2})-(1\cdot1)}{1\cdot\sqrt{2}}=\dfrac{\sqrt{2}-1}{\sqrt{2}}
+\dfrac{1}{2n\sqrt{n}}
+\dfrac{1}{2}
+\dfrac{1}{2}(x-\dfrac{9}{2}\ln(|9+2x|))+C^\prime
+\dfrac{1}{2}-3
+\dfrac{1}{2}-3 =\dfrac{1}{2}-\dfrac{6}{2}=\dfrac{1-6}{2}
+\dfrac{1}{2}\left(x_n+\dfrac{a}{x_n}\right)
+\dfrac{1}{2}\leq\dfrac{1}{2-x^{99}}\leq1
+\dfrac{1}{2}\leq\dfrac{1}{2-x^{99}}\leq\dfrac{1+x^{30}}{2-x^{99}}\leq \dfrac{2}{2-x^{99}}=2.\dfrac{1}{2-x^{99}}\leq2\times1=2
+\dfrac{1}{2}\tan^{-1}(x/2)
+\dfrac{1}{4+x^2}
+\dfrac{1}{4}
+\dfrac{1}{4}.4^{8n}=\dfrac{4^{8n}}{4}=4^{8n-1}
+\dfrac{1}{E}=\dfrac{1}{13300}=7.5\times10^{-5}
+\dfrac{1}{\sqrt 2}
+\dfrac{1}{\sqrt{1+1/n}+1}\to\dfrac{1}{1+1}=\dfrac{1}{2}
+\dfrac{1}{\sqrt{2}}\textbf{i}-\dfrac{1}{\sqrt{2}}\textbf{j}
+\dfrac{1}{\sqrt{3}}=\dfrac{2x}{1-x^2}
+\dfrac{1}{\zeta(s)}
+\dfrac{1}{a^2+x^2}
+\dfrac{1}{a}\tan^{-1}(x/a)
+\dfrac{1}{c+h}-\dfrac{1}{c}=\dfrac{c}{c(c+h)}-\dfrac{c+h}{c(c+h)}=\dfrac{c-(c+h)}{c(c+h)}=\dfrac{-h}{c(c+h)}
+\dfrac{1}{g-kv^2}
+\dfrac{1}{n+1}
+\dfrac{1}{n+2}
+\dfrac{1}{n^2}\leq0
+\dfrac{1}{n^4}
+\dfrac{1}{n}
+\dfrac{1}{n}=\dfrac{n+1}{n(n+1)}
+\dfrac{1}{y}\,\dfrac{dy}{dx}=2x+1
+\dfrac{1}{z}=\dfrac{1}{4+2i}=\dfrac{4-2i}{(4+2i)(4-2i)}=\dfrac{4-2i}{16-8i+8i+4}=\dfrac{4-2i}{20}
+\dfrac{1}{z}=\dfrac{\overline{z}}{|z|^2}=\dfrac{4-2i}{4^2+2^2}}=\dfrac{4-2i}{20}
+\dfrac{211440}{80}=2643
+\dfrac{25}{4}
+\dfrac{2\kappa\sin\theta }{2\pi r} = \dfrac{\kappa a}{\pi r^2} = \dfrac{\kappa a}{\pi(a^2+x^2)}.
+\dfrac{2^nn^2}{2^{n+1}(n+1)^2}=\dfrac{1}{2}.\left(\dfrac{n}{n+1}\right)^2=\dfrac{1}{2}\left(\dfrac{1}{1+1/n}\right)^2=\dfrac{1}{2(1+1/n)^2}
+\dfrac{2^{n+1}+4^{n+1}}{2^n+4^n}=\dfrac{2^{n+1}/4^n+4^{n+1}/4^n}{2^n/4^n+4^n/4^n}=\dfrac{2({2^n/4^n})+4}{2^n/4^n+1}=\dfrac{2(2/4)^n+4}{(2/4)^n+1}=\dfrac{2(1/2)^n+4}{(1/2)^n+1}
+\dfrac{2a}{2a}
+\dfrac{2a}{2a}\cdot x=-\dfrac{b}{2a}\cdot\dfrac{2a}{2a}\pm\dfrac{1}{2a}\cdot\sqrt{-\dfrac{c}{a}(2a)^{2}+\dfrac{b^{2}}{4a}(2a)^{2}}
+\dfrac{2a}{2a}\cdot x=-\dfrac{b}{2a}\cdot\dfrac{2a}{2a}\pm\dfrac{1}{2a}\cdot\sqrt{-\dfrac{c}{a}\cdot4a^{2}+\dfrac{b^{2}}{4a^{2}}\cdot4a^{2}}
+\dfrac{2a}{2a}\cdot x=-\dfrac{b}{2a}\cdot\dfrac{2a}{2a}\pm\dfrac{2a}{2a}\cdot\sqrt{-\dfrac{c}{a}+\dfrac{b^{2}}{4a^{2}}}
+\dfrac{2a}{3} )
+\dfrac{2x_n^2+a}{2x_n}
+\dfrac{2x}{\sqrt x}-\dfrac{3}{\sqrt x}\quad\Rightarrow 2\sqrt x-\dfrac{3}{\sqrt x}\quad\Rightarrow 2\sqrt x-3x^{-1/2}
+\dfrac{2|x-y|}{(1+x)(1+y)}\leq\dfrac{2|x-y|}{1}
+\dfrac{2}{3}-\dfrac{1}{4}=\dfrac{8}{12}-\dfrac{3}{12}=\dfrac{8-3}{12}=\dfrac{5}{12}
+\dfrac{2}{3}\cdot a
+\dfrac{30000}{n}
+\dfrac{3n-2}{3n}\geq\left(\dfrac{1}{3}\right)^{1/n}
+\dfrac{3n^3-4n+5}{2+3n^2-4n^3}=\dfrac{3n^3/4n+5}{2/4n+3n^2/4n-4n^3/4n}\to 5
+\dfrac{3n}{3n-2}\leq3^{1/n}
+\dfrac{3x\sqrt{x}}{x}
+\dfrac{3x_n^2-2}{3x_n^2-2}
+\dfrac{3x}{\sqrt{x}}
+\dfrac{3x}{\sqrt{x}}\times\dfrac{\sqrt{x}}{\sqrt{x}}
+\dfrac{4(x+3)+2(3x+6)}{3(x+2)(x+3)}
+\dfrac{4(x+3)+2\times3(x+2)}{3(x+2)(x+3)}=
+\dfrac{4(x+3)+6(x+3)}{3(x+2)(x+2)}
+\dfrac{4a}{3}
+\dfrac{5n^5/n!+1}{7n^7/n!-1}
+\dfrac{5}{2}
+\dfrac{5}{2}=\dfrac{5}{2}
+\dfrac{5}{2}=\dfrac{\sqrt{25}}{2}
+\dfrac{6640}{(6640+204800)}\times100\%
+\dfrac{6640}{211440}=\dfrac{83}{2643}
+\dfrac{6640}{80}=83
+\dfrac{6x^2}{18}+\dfrac{3y^2}{18}+\dfrac{2z^2}{18}-\dfrac{18}{18}=0
+\dfrac{6x}{2\sqrt{x}}
+\dfrac{6x}{\sqrt{4x}}
+\dfrac{6x}{\sqrt{4}\sqrt{x}}
+\dfrac{6}{2}=3
+\dfrac{7.5\times10^{-5}P_{n}}{1}=\dfrac{1\cdot P_{n}}{13300}
+\dfrac{7}{5n^2+n+1}
+\dfrac{8}{3\sqrt{2}}\dfrac{\sqrt{2}}{\sqrt{2}}=\dfrac{4}{3}\sqrt{2}
+\dfrac{P_{n}}{E}
+\dfrac{\cos\phi\cos\theta}{\cos\phi\cos\theta}-\dfrac{\sin\phi\sin\theta}{\cos\phi\cos\theta}
+\dfrac{\cos^2 x + \sin^2 x}{\cos^2 x}
+\dfrac{\dfrac{h}{1+h}-0}{h}=\dfrac{\dfrac{h}{1+h}}{h}=\dfrac{h}{h(1+h)}
+\dfrac{\frac{3}{2}}{\frac{2}{7}}=\frac{3}{2} \times \frac{7}{2}
+\dfrac{\mathbf{p}}{2}
+\dfrac{\mathbf{v}}{2}
+\dfrac{\mathbf{v}}{3}
+\dfrac{\mathbf{w}}{\|\mathbf{w}\|}=\left(\dfrac{1}{\sqrt{6}},\dfrac{-2}{\sqrt{6}},\dfrac{1}{\sqrt{6}}\right)
+\dfrac{\pi - x}{3-2\sin x}\leq\pi -x
+\dfrac{\pi^2}{6}
+\dfrac{\sin\phi\cos\theta+\cos\phi\sin\theta}{\cos\phi\cos\theta-\sin\phi\sin\theta}
+\dfrac{\sin\phi\cos\theta+\cos\phi\sin\theta}{\cos\theta\cos\phi}
+\dfrac{\sin\phi\cos\theta}{\cos\phi\cos\theta}+\dfrac{\cos\phi\sin\theta}{\cos\phi\cos\theta}
+\dfrac{\sin\phi}{\cos\phi}+\dfrac{\sin\theta}{\cos\theta}
+\dfrac{\sqrt{0}}{2}=0
+\dfrac{\sqrt{1}}{2}=\dfrac{1}{2}
+\dfrac{\sqrt{2}}{2}
+\dfrac{\sqrt{2}}{\sqrt{2}}
+\dfrac{\sqrt{3}}{2}
+\dfrac{\sqrt{4}}{2}=1
+\dfrac{\sqrt{n}}{2}
+\dfrac{\sqrt{x}}{\sqrt{x}}
+\dfrac{a^n}{a^m}=a^{n-m}
+\dfrac{a_n+1}{a_n}
+\dfrac{a_n}{b_n} =1 \to 1
+\dfrac{a_n}{b_n} =\dfrac{1}{\sqrt{n}} \to 0
+\dfrac{a_n}{b_n} =\dfrac{3^n n+3^n2^n}{2^n3^n+5.2^n}=\dfrac{\frac{3^n n}{3^n2^n}+\frac{3^n2^n}{3^n2^n}}{\frac{2^n3^n}{3^n2^n}+\frac{5.2^n}{3^n2^n}}=\dfrac{\frac{n}{2^n}+1}{1+\frac{5}{3^n}}
+\dfrac{a_n}{b_n} =\sqrt{n} \to \infty
+\dfrac{a_{n+1}}{a_n}=\dfrac{1/2^{n+1}}{1/2^n}=\dfrac{1}{2}
+\dfrac{a_{n+1}}{a_n}=r
+\dfrac{a_{n+1}}{a_n}\neq\dfrac{(n+1)^{n+1}}{n^n}
+\dfrac{a}{-b}=\dfrac{+1}{-1}\times\dfrac{a}{b}=-1\times\dfrac{a}{b}=-\dfrac{a}{b}
+\dfrac{a}{1-r}
+\dfrac{a}{1-r}=\dfrac{1}{1-(-\frac{1}{2})}=\dfrac{2}{3}
+\dfrac{a}{b}
+\dfrac{a}{b}-\dfrac{c}{d}=\dfrac{(a\cdot d)-(b\cdot c)}{(b\cdot d)}
+\dfrac{a}{b}\times\dfrac{a}{b} =\dfrac{a^{2}}{b^{2}}
+\dfrac{a}{b}\times\dfrac{c}{d} =\dfrac{ac}{bd}
+\dfrac{b}{2a}
+\dfrac{d^2 y}{dx^2}
+\dfrac{du}{ds}=\dfrac{1}{7}
+\dfrac{du}{dx}
+\dfrac{du}{dx}=\dfrac{1}{4}\quad\Rightarrow dx=4\;du
+\dfrac{dy}{dx}+g(x)y=h(x)
+\dfrac{dy}{dx}=\dfrac{dy}{dy}\dfrac{dy}{dx}.
+\dfrac{dy}{dx}=f(x,y)
+\dfrac{dy}{dx}=xy
+\dfrac{dy}{y}=x\;dx
+\dfrac{d}{dx} (-\arccos x) =\dfrac{d}{dx} \arcsin x
+\dfrac{d}{dx} \ln ax=\dfrac{d}{dx} \ln a + \dfrac{d}{dx} \ln x=\dfrac{1}{x}
+\dfrac{d}{dx}\;\; x/a=1/a
+\dfrac{e^x}{x^0}\to\infty\text{ as }x\to\infty
+\dfrac{e^{\arcsin x}}{\sqrt{1-x^2}}
+\dfrac{e}{x^2}
+\dfrac{hc}{\lambda}\left(e^{hc/\lambda kT}-1\right)^{-1}\approx\dfrac{hc}{\lambda}\left(hc/\lambda kT\right)^{-1}=kT
+\dfrac{n(n+1)}{2}
+\dfrac{n(n+1)}{2}-\dfrac{m(m+1)}{2}
+\dfrac{n(n-1)}{2!}\left(\dfrac{1}{n}\right)^2 = \dfrac{n(n-1)}{2n^2}=\dfrac{n-1}{2n}=\dfrac{1}{2}\left(\dfrac{n-1}{n}\right)=\dfrac{1}{2}\left(1-\dfrac{1}{n}\right)
+\dfrac{n+4}{2n^3-n+1}
+\dfrac{n+5}{3n^4-n}
+\dfrac{n2^n+2^n+2^{-1}}{n2^n+1}
+\dfrac{n}{2n^3}=\dfrac{1}{2n^2}
+\dfrac{n}{3n^4}=\dfrac{1}{3n^3}
+\dfrac{p-q}{p-2q}
+\dfrac{p}{q}=\dfrac{denominator}{numerator-denominator}
+\dfrac{q}{p-q}
+\dfrac{q}{p-q}=\dfrac{p}{q}
+\dfrac{x-2}{y^2+7}
+\dfrac{x^2(-2\sin 2x-2x\cos 2x}{x^4}=\dfrac{-2x(x\sin 2x+\cos 2x)}{x^4}=-\dfrac{2}{x^3}(x\sin 2x+\cos 2x)
+\dfrac{x^2+a}{x}=x+\dfrac{a}{x}
+\dfrac{x^2}{3}+\dfrac{y^2}{6}+\dfrac{z^2}{9}-1=0
+\dfrac{x^2}{\left(\frac{1}{\sqrt{a}}\right)^2}+\dfrac{y^2}{\left(\frac{1}{\sqrt{b}}\right)^2}+\dfrac{z^2}{\left(\frac{1}{\sqrt{c}}\right)^2}=1
+\dfrac{x_n^2+a}{2x_n}
+\dfrac{x}{\sqrt x}=\sqrt x
+\dfrac{x}{y} + constant
+\dfrac{y+x}{xy}=(p+q)^{2}
+\dfrac{y_1-y_2}{x_1-x_2}
+\displaystyle 12100=500\times11+50c
+\displaystyle 16=2^4\Leftrightarrow\log_2 (16)=4
+\displaystyle 7.5\times10^{-5}P_n=\frac{P_n}{E}\\ \Leftrightarrow7.5\times10^{-5}=\frac{P_n}{P_nE}\\ \Leftrightarrow7.5\times10^{-5}=\frac{1}{1\times E}\\ \Leftrightarrow E=\frac{1}{7.5\times10^{-5}}
+\displaystyle S\Leftrightarrow D
+\displaystyle \dfrac{1}{2}\int 4 e^u\;du
+\displaystyle \frac{(n+1)^n}{n^n}=\left(\frac{1+n}{n}\right)^n=\left(1+\frac{1}{n}\right)^n}
+\displaystyle \frac{1}{8}\times\frac{40,000}{80}\times10=\pounds625
+\displaystyle \frac{1}{\sqrt{(a^2)}\sqrt{1-\frac{x^2}{a^2}}}
+\displaystyle \frac{1}{\sqrt{a^2-x^2}}\quad(-a<x<a)
+\displaystyle \frac{1}{a\sqrt{1-\frac{x^2}{a^2}}}
+\displaystyle \frac{z}{|z|}=\frac{3+4i}{5}=\frac{3}{5}+\frac{4}{5}i
+\displaystyle \int \dfrac{dy}{dx}=\int f(x,y)=y(x)
+\displaystyle \int_0^n
+\displaystyle \int_{-\infty }^{\infty }e^{-x^{2}}\;dx=\sqrt{\pi }
+\displaystyle \int_{0}^{1}\frac{x^{4}\left(  1-x\right) ^{4}}{1+x^{2}}dx=\frac{22}{7}-\pi
+\displaystyle \int_{0}^{1}\frac{x^{4}\left( 1-x\right)  ^{4}}{1+x^{2}}dx=\frac{22}{7}-\pi
+\displaystyle \int_{0}^{1}\frac{x^{4}\left( 1-x\right) ^{4}}{1+x^{2}}\,dx=\frac{22}{7}-\pi
+\displaystyle \int_{0}^{1}\frac{x^{4}\left( 1-x\right) ^{4}}{1+x^{2}}dx=\frac{22}{7}-\pi
+\displaystyle \int_{0}^{1}\frac{x^{4}\left( 1-x\right) ^{4}}{1+x^{2}}dx=\frac{666}{7}- \pi
+\displaystyle \lim_{x \to 8}\frac{1}{x-8}=\infty
+\displaystyle \lim_{x\to\infty}f(x) = f(a)
+\displaystyle \pi = \sum _{k=0} ^{\infty} \frac{1}{16^k} \left[\frac{4}{8k+1}-\frac{2}{8k+4}-\frac{1}{8k+5}-\frac{1}{8k+6}\right]
+\displaystyle \sqrt{a}\cdot\sqrt{b}=\sqrt{a\cdot b}
+\displaystyle \sum_{d \mid n}
+\displaystyle \sum_{i=0}^n
+\displaystyle \sum_{i=1}^n M_i\delta x_i= \sum_{i=1}^{n-1} M_i\delta x_i + M_n\delta x_n
+\displaystyle \sum_{n=1}^\infty\frac{(-1)^n}{n}
+\displaystyle \sum_{n=1}^\infty\frac{(-1)^n}{n}=\sum_{n=0}^\infty\frac{(-1)^{n+1}}{n+1}
+\displaystyle \sum_{n=1}^\infty\frac{(-1)^{n+1}}{n}
+\displaystyle \text{Why does\alpha repeat?}
+\displaystyle a\int \frac{\sin u}{u^2}\; du
+\displaystyle f(a)=\frac{1}{2\pi i}\oint_C\frac{f(z)}{z-a}\text{d}z
+\displaystyle f_R'(0)=\lim_{x\to0^+}\frac{f(x)-f(0)}{x-0}=\lim_{x\to0^+}\frac{2+x-1}{x}=\lim_{x\to0^+}\frac{x+1}{x}
+\displaystyle r(x)<\frac{K}{|x|-1}
+\displaystyle w=500m+50c
+\displaystyle x=\frac{-b \pm \sqrt{b^2-4ac}}{2a}
+\displaystyle0\leq\frac{1}{e^{-1/x}+1}\leq\frac{1}{e^{-1/x}}=e^{1/x}
+\displaystyle4(n - m + 1) + (-2)\left(\sum_{i=m}^{n}x_i\right)
+\displaystyle4(n - m + 1) + (-2)\left(\sum_{i=m}^{n}x_i\right)\\\\= \displaystyle4(52 - 51 + 1) - 2\left(\sum_{i=51}^{52}x_i\right)\\\\ = 4 \times 2 - 2 \times (51 + 52) = 8 -206 = -198
+\displaystyle4\times (100 - 51 + 1) - 2\left(\sum_{i=51}^{100}x_i\right)\\\\= 4 \times 50 - 2 \times 3775\\\\= 200 - 7550\\\\= -7350
+\displaystyle\;b_n=\frac{1}{2n^2}
+\displaystyle\;b_n=\frac{1}{n^2}
+\displaystyle\binom{\alpha}{0}
+\displaystyle\binom{\alpha}{0}=1
+\displaystyle\dfrac{1}{2}\int e^{\frac{x}{4}}
+\displaystyle\frac{(-2)^n}{2^n}=\left(\frac{-2}{2}\right)^n=(-1)^n
+\displaystyle\frac{(1+0)}{(2n^2-1+0)}
+\displaystyle\frac{(n+4)}{(2n^3-n+1)}
+\displaystyle\frac{1(x+3)}{3x(x+3)}-\frac{2(3x)}{3x(x+3)}
+\displaystyle\frac{1}{2},\frac{1}{4},\frac{1}{8},\dots
+\displaystyle\frac{1}{2}\int{\frac{2x}{9+2x}dx}
+\displaystyle\frac{1}{2}\int{\left(1-\frac{9}{9+2x}\right)dx}
+\displaystyle\frac{1}{2}\int{\left(\frac{9+2x}{9+2x}-\frac{9}{9+2x}\right)dx}
+\displaystyle\frac{1}{3x}-\frac{2}{x+3}
+\displaystyle\frac{1}{4\pi}\oint_\Sigma\frac{1}{r}\frac{\partial U}{\partial n} ds
+\displaystyle\frac{1}{b_n}=\frac{n^2+1}{n}=n+\frac{1}{n}
+\displaystyle\frac{1}{n+\sqrt{n}}\geq \frac{1}{2n}
+\displaystyle\frac{1}{n+\sqrt{n}}\leq \frac{1}{\sqrt{n}}
+\displaystyle\frac{1}{n^2}
+\displaystyle\frac{1}{n}\sum_{i=1}^{n-1}\left(1+\frac{1}{n}\right)
+\displaystyle\frac{F_{n+1}}{F_{n}}\rightarrow\phi=
+\displaystyle\frac{F_{n+1}}{F_{n}}\rightarrow\phi}=
+\displaystyle\frac{d}{dx}\sec(x)\longrightarrow\frac{\sin(x)}{cos(x)}
+\displaystyle\frac{m}{2k}\int\frac{2kv}{\mu mg+kv^2}
+\displaystyle\frac{n(n-1)}{2!}2^2=0
+\displaystyle\frac{something}{3x(x+3)}-\frac{something}{3x(x+3)}
+\displaystyle\frac{x+3-6x}{3x(x+3)} \ = \ \frac{-5x+3}{3x(x+3)}
+\displaystyle\int (-x+a)\; dx= -\frac{(x-a)^2}{2}=\dfrac{-x^2+2ax-a^2}{2}
+\displaystyle\int (-x+a)\; dx= -\frac{x^2}{2} +ax + const
+\displaystyle\int (-x+a)\;dx=\displaystyle\int -x\;dx+\displaystyle\int a\;dx=\textstyle -\frac{1}{2}x^2+ax+const
+\displaystyle\int \dfrac{1}{2}e^{\frac{x}{4}}
+\displaystyle\int \dfrac{1}{\mathrm{cabin}}\;d\mathrm{cabin}
+\displaystyle\int \dfrac{1}{y}\;dx
+\displaystyle\int \left(\frac{2}{x}\right)^{1/2}=\int 2^{1/2}x^{-1/2} = 2^{1/2}.\frac{x^{1/2}}{\scriptstyle{1/2}}=2^{3/2}x^{1/2}
+\displaystyle\int mg\sin\theta dx = mgx\sin\theta +c
+\displaystyle\int\dfrac{dy}{y}=\int x\;dx
+\displaystyle\int\frac{2}{4u^2+1}\,du =\int\frac{\frac{1}{2}}{u^2+1/4}\,du=\frac{1}{2}\int\frac{1}{1/4+u^2}\,du
+\displaystyle\int\frac{\pi}{2}-x=\frac{\pi}{2}x-\frac{1}{2}x^2
+\displaystyle\int^5_1 2x\,dx = 24
+\displaystyle\int^e_1\frac{du}{(1+u)^2}=\int^e_1(1+u)^{-2}\,du=\left[\frac{(1+u)^{-1}}{-1}\right]^e_1=\left[\frac{-1}{1+u}\right]^e_1
+\displaystyle\int_0^1 e^x x^0\;dx=\int_0^1 e^x \;dx=\left[e^x\right]_0^1=e^1-e^0
+\displaystyle\int_0^1\frac{x^8(1-x)^8(25+816x^2)}{3164(1+x^2)}\,dx=\frac{355}{113}-\pi
+\displaystyle\int_0^{3\pi\over 4} \cos x\;dx
+\displaystyle\int_0^{\infty} \delta x\;dx
+\displaystyle\int_0^{\infty}\delta y \; dx
+\displaystyle\int_1^n \log_ex\,dx=\left[x\log_ex-x\right]_1^n=n\log_en-(n-1)
+\displaystyle\int_3^{4\pi}e^{-3x}
+\displaystyle\int_3^{\dfrac{1}{4}\pi}e^{-3x}
+\displaystyle\int_a^b |f|\leq M(b-a)
+\displaystyle\int_{-1}^1 x\;dx
+\displaystyle\int_{\frac{1}{3}\pi}^{\frac{1}{4}\pi}e^{-3x}
+\displaystyle\int_{\frac{\pi}{3}}^{\frac{\pi}{4}}e^{-3x}
+\displaystyle\int{\frac{x}{9+2x}dx}
+\displaystyle\lambda=\frac{c}{f}
+\displaystyle\left(1+\frac{1}{n}\right)^2.\frac{e}{n+2}=\left(1+\frac{1}{n}\right)^2.\frac{e/n}{1+2/n}\to(1+0)^2.\frac{0}{1+0}=0
+\displaystyle\left\{\frac{1}{2},\frac{1}{4},\frac{1}{8},\dots\right\}
+\displaystyle\left\{\frac{1}{n}\right\}=\left\{1, \frac{1}{2},\frac{1}{3},\frac{1}{4},\frac{1}{5},\dots\right\}
+\displaystyle\left|\int_a^b f\right|\leq M(b-a)
+\displaystyle\left|\sum_{d>x}\frac{\mu(d)\log d}{d^2}\right|\leq\sum_{d>x}\frac{\log x}{d^2}
+\displaystyle\lim_{x\to c}\frac{x^2-c^2}{x-c}=2c
+\displaystyle\lim_{x\to0^+}\cos x
+\displaystyle\lim_{x\to0^+}\frac{e^{1/x}}{1+e^{1/x}}=1
+\displaystyle\lim_{x\to0^+}e^{1/x}=\infty
+\displaystyle\lim_{x\to0^-}\frac{1}{e^{-1/x}+1}
+\displaystyle\lim_{x\to0^-}\frac{e^{1/x}}{1+e^{1/x}}=0
+\displaystyle\lim_{x\to0^-}e^{1/x}=0
+\displaystyle\lim_{x\to0}\frac{-(2x^2)\sin(x^2)+2\cos(x^2)}{16\cos4x}
+\displaystyle\lim_{x\to0}\frac{\sin x}{x^3}=\infty
+\displaystyle\lim_{x\to0}\frac{f'(x)}{g'(x)}=\frac{f'(0)}{g'(0)}
+\displaystyle\lim_{x\to0}\frac{f'(x)}{g'(x)}=\frac{f'(x)}{g'(x)}
+\displaystyle\log_e
+\displaystyle\mathop{\sum_{i,j=1}^{N}}_{i>j}x^{i+j}
+\displaystyle\sum_{i=0}^n ar^i = a\left(\frac{r^{n+1}-1}{r-1}\right)
+\displaystyle\sum_{i=1}^n ar^i = a\left(\frac{r^{n+1}-r}{r-1}\right)
+\displaystyle\sum_{i=1}^n ar^{n-1}=a\left(\dfrac{r^{n+1}-r}{r-1}\right)
+\displaystyle\sum_{i=1}^n\left (1-\frac{i}{n}\right)=\sum_{i=1}^n 1 - \sum_{i=1}^n \frac{i}{n}=n - \frac{1}{n}\sum_{i=1}^n i
+\displaystyle\sum_{i=1}^nar^{i-1}=a(\frac{r^n-1}{r-1})
+\displaystyle\sum_{i=1}^{n-1}\frac{i}{n}=\frac{1}{n}\sum_{i=1}^{n-1}i
+\displaystyle\sum_{i=1}^{n-1}\left(1+\frac{1}{n}-\frac{i}{n}\right)=\sum_{i=1}^{n-1}\left(1+\frac{1}{n}\right)-\sum_{i=1}^{n-1}\frac{i}{n}
+\displaystyle\sum_{i=1}^{n-1}\left(1+\frac{1}{n}\right)
+\displaystyle\sum_{i=1}^{n-1}\left(1+\frac{1}{n}\right) = \left(1+\frac{1}{n}\right)+\left(1+\frac{1}{n}\right)+\dots\left(1+\frac{1}{n}\right)= (n-1)\left(1+\frac{1}{n}\right)
+\displaystyle\sum_{i=51}^{100}4 + 2i
+\displaystyle\sum_{n=0}^\infty a_n
+\displaystyle\sum_{n=0}^\infty a_n= 1+\frac{1}{2}-\frac{1}{4}+\frac{1}{8}-\frac{1}{16}+\frac{1}{32}+\dots
+\displaystyle\sum_{n=0}^\infty b\left(\frac{1}{2}\right)^n=b\left(\frac{1}{2}\right)^0+b\left(\frac{1}{2}\right)^1+b\left(\frac{1}{2}\right)^2 +\dots
+\displaystyle\sum_{n=0}^\infty |a_n|= 1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\frac{1}{32}+\dots
+\displaystyle\sum_{n=0}^\infty\left(\frac{1}{2}\right)^n=\left(\frac{1}{2}\right)^0+\left(\frac{1}{2}\right)^1+\left(\frac{1}{2}\right)^2 +\dots
+\displaystyle\sum_{n=1}^\infty (-1)^n b_n=\sum_{n=0}^\infty (-1)^{n+1}b_{n+1}
+\displaystyle\sum_{n=1}^\infty a_n
+\displaystyle\sum_{n=1}^\infty b\left(\frac{1}{2}\right)^n=b\left(\frac{1}{2}\right)^1+b\left(\frac{1}{2}\right)^2+b\left(\frac{1}{2}\right)^3 +\dots
+\displaystyle\sum_{n=1}^\infty\frac{(-1)^{n+1}}{\sqrt{n}}
+\displaystyle\sum_{n=1}^\infty\frac{1}{2^n} = \frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\dots+\frac{1}{2^n}+\dots
+\displaystyle\sum_{n=1}^\infty\frac{1}{2^n} = \frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\dots+\frac{1}{2^n}+\dots=1
+\displaystyle\sum_{n=1}^\infty\frac{1}{n^2}=\frac{\pi^2}{6}
+\displaystyle\sum_{n=1}^\infty\left(\frac{1}{2}\right)^n=\left(\frac{1}{2}\right)^1+\left(\frac{1}{2}\right)^2+\left(\frac{1}{2}\right)^3 +\dots
+\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}
+\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\dots
+\displaystyle{\frac{2}{H}}
+\displaystyle{\frac{H}{2}\times{x^2}=DC}
+\displaystyle{\frac{H}{2}\times{x}=\frac{DC}x}
+\displaystyle{\sum_{i=1}^1 i^2} = 1^2 = 1 = \frac{(1)(2)(3)}{6}
+\displaystyle{\sum_{i=1}^{n+1} (n+1-i)(i)}
+\displaystyle{\sum_{i=1}^{n-1} i^2} = \frac{(n-1)(n)(2(n-1)+1)}{6}
+\displaystyle{\sum_{i=1}^{n} \frac{1}{2}(n)(n+1)}\\= \displaystyle{\frac{1}{2}\left[\sum_{i=1}^{n} n^2 + \sum_{i=1}^{n} n}\right]}\\=\frac{1}{2}\left[\frac{n(n+1)(2n+1)}{6} + \frac{n(n+1)}{2}\right]}\\=\frac{n(n+1)(2n+1) + 3n(n+1)}{12}\\=\frac{n(n+1)(2n+4)}{12}\\=\frac{n(n+1)(n+2)}{6}}
+\displaystyle{\sum_{i=1}^{n} i^2} = \frac{(n-1)(n)(2n-1)}{6} + n^2
+\displaystyle{x=\sqrt\frac{2DC}{H}}
+\displaystyle{x^2=\frac{2DC}H}
+\displaystyle{y=\frac{DC}x}
+\displaystyle{y=\frac{H}{2}\times{x}}
+\dot\theta
+\dots
+\dot{\boldsymbol{x}}
+\dot{r}=sqrt{\frac{(n+1)\pi}{b}}sin(n+1\pi)
+\dot{r}=sqrt{\frac{n\pi}{b}}sin(n\pi)
+\dot{x}=f'(t)
+\dot{x}^2
+\dot{y}=\pm\sqrt{2}\left(C+\omega^{2}\cos x\right)^{1/2}
+\dot{y}=f'(t)\tan\theta
+\epsilon \to 0
+\epsilon>0,\, w\in J
+\eta t_{\rm E} / (1 - \eta)
+\eta=1.8\times 10^{-4}\mathrm{~N~s~m^{-2}}
+\eta=1.8\times 10^{-5}\mathrm{~N~s~m^{-2}}
+\exists x\colon x/3 \in \mathbb{Z} \wedge x/6 \not\in \mathbb{Z}
+\exp \left[ - \left(\frac{E_G}{E}\right)^{1/2} - \frac{E}{kT} \right]
+\exp \left[ - \left(\frac{E_G}{E}\right)^{1/2}\right] \times \exp \left[ - \frac{E}{kT} \right]
+\forall (x,y)\in A, (x,y)\in B\text{, that is, } A\subseteq B
+\forall g\in\,G, g\times\0=0
+\forall x \in \mathbb{R}, x^2\ge 0
+\forall z\exists p\exists u\,[(p=|p|) \wedge (|u|=1) \wedge (z=pu)]
+\forall\ a,b,c\in\mathbb{N}\ \nexists\ k>\text{a couple}\in\mathbb{N}:a^k+b^k=c^k
+\forall{a,b}\in\mathbb{Q}(a<b),\exists~x(x\in\mathbb{R},x\notin\mathbb{Q},a<x<b)
+\forall{w\in C}\exists{z\in U}\exists{k}{g_k(z)=w}
+\frac dn
+\frac w2--\frac w2=w
+\frac {13x^2-7x-19} {(x+27)^2}
+\frac {1} { n +  {\frac {1}  {n + 1}}}
+\frac {1} {(1+3x)^2}
+\frac {1}{6.022 x 10^2^3 J K^-^1 mol^-^1}
+\frac {25} {(-25+15x)^2}
+\frac {25} {(5+15x)^2}
+\frac {8\times9}{3.90398\ldots}=\,18.4427\ldots
+\frac12
+\frac1234
+\frac12g(s_x/u_x)^2
+\frac12g\left(\frac{s_x}{u_x}\right)^2 = \frac g2\left(\frac{s_x}{u_x}\right)^2 = \frac g2\left(\frac{s_x^2}{u_x^2}\right) = \frac{g\times s_x^2}{2 \times u_x^2} = \frac{g}{2\times u_x^2}\times s_x^2.
+\frac1TdT=-kdt
+\frac1w\times x
+\frac\mu\pi
+\frac{(3,2)m}\sqrt{({3^{2}+2^{2})}m}
+\frac{(4x)^2}{2^e}
+\frac{(x'')^2}{12}-\frac{(y'')^2}{18}=1
+\frac{(x+h)^4-x^4}{h}
+\frac{(x-2)^2}{9}+\frac{(y-1)^2}{4}=1
+\frac{(x^2 -1)}{\sqrt(1-x^2)}
+\frac{(y'')^2}{12}-\frac{(x'')^2}{18}=1
+\frac{-1+\frac{1}{\sqrt3}}{1+\frac{1}{\sqrt3}}
+\frac{-1}{2}(3-\sqrt3)
+\frac{-\sqrt3}{\sqrt3}
+\frac{0.0014\text{ m}}{0.3\text{ s}}=0.0\text{ m s}^{-1}\text{ (1 d.p)}=5\times10^{-3}\text{ m s}^{-1}\text{ (1 s.f)}
+\frac{1+T}{1-T}=e^{t-t_{0}}
+\frac{1-\cos(2x)}{2}=\sin^{2}x
+\frac{1-\left ( \frac{1}{2} \right )^n}{\frac{1}{2}}=2\left ( 1-\left (\frac{1}{2} \right )^n \right )=2-2\left ( \frac{1}{2} \right )^n=2-\left ( \frac{1}{2} \right )^{-1}\left ( \frac{1}{2} \right )^n=2-\left ( \frac{1}{2} \right )^{n-1}=2-\frac{1}{2^{n-1}}
+\frac{1-\left ( \frac{1}{2} \right )^n}{\frac{1}{2}}=2\left ( 1-\left (\frac{1}{2} \right )^n \right )=2-2\left ( \frac{1}{2} \right )^n\\=2-\left ( \frac{1}{2} \right )^{-1}\left ( \frac{1}{2} \right )^n=2-\left ( \frac{1}{2} \right )^{n-1}=2-\frac{1}{2^{n-1}}
+\frac{1.25663709 \times 10^{-6}}{3.1415926535}
+\frac{1.4\text{ mm}}{0.3\text{ s}}=4.7\text{ mm s}^{-1}\text{ (1 d.p)}=5\text{ mm s}^{-1}\text{ (1 s.f)}
+\frac{10 log 2}{log 5 + 9 log 3} \geq \frac{10 log 2}{11 log 3}
+\frac{12}3
+\frac{12}34
+\frac{1}\{delta}
+\frac{1}{(1-x)^{2}}=\sum_{n=1}^\infty nx^{n-1}=1+2x+3x^{2}+4x^{3}+...
+\frac{1}{1+\sqrt{n}}=\frac{1}{1001}=0.000999001...
+\frac{1}{160}\displaystyle\left(-60u^2\right)
+\frac{1}{160}\displaystyle\left(60u^2-120u^2\right)
+\frac{1}{160}\displaystyle\left(60u^2-6u^3(\frac{20}{u})\right)
+\frac{1}{2.1^{10^{-10}}-1}+...\geq 1.35\cdot 10^{10}
+\frac{1}{2\left ( 1+\frac{1}{n} \right )^{2}} \to \frac{1}{2(1)^{2}}=\frac{1}{2}
+\frac{1}{2} = 2^{-1},\sqrt 2 = 2^{\frac {1}{2}}, \frac {1}{\sqrt 2} = 2^{\frac {-1}{2}}
+\frac{1}{2} \int u^{6} (2x) dx
+\frac{1}{2} m v^2 = q_{\mathrm{ion}} | \Delta V |
+\frac{1}{2}(1-\cos(2x)=\sin^{2}x
+\frac{1}{2}(2c-x^{2})^{-\frac{1}{2}}(-2x)
+\frac{1}{2}(n-1)\text{ bins, that is: }\frac{1}{2}n+\frac{1}{2}\text{ bins}
+\frac{1}{2}(n-1)\times{k}\text{ bins}=\frac{1}{2}n+\frac{1}{2}\text{ bins}
+\frac{1}{2}(x^{2}+1)^{-1/2}\cdot cos(2x)+\sqrt{x^{2}+1}\cdot2xcos(2x)
+\frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}+\frac{1}{10}\dots
+\frac{1}{2}\int(x^{2}-1)^{3}(2x)dx
+\frac{1}{2}\left(1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}\dots\right)=\frac{1}{2}\log(2)
+\frac{1}{2}\left(\frac{d\phi}{dt}\right)^2=\frac{g}{l}(cos{\phi}-\cos{\phi_1})
+\frac{1}{2}\left)\frac{d\phi}{dt}\left)^2=\frac{g}{l}(\cos{\phi}-1)+C
+\frac{1}{2}m4^2-\frac{1}{2}m2^2=6\text{~J}
+\frac{1}{2}m6^2-\frac{1}{2}m4^2=10\text{~J}
+\frac{1}{2}x(a^2+x^2)^{1/2}+\frac{1}{2}a^2\log_e(x+(a^2+x^2)^{1/2})
+\frac{1}{31} + \frac{1}{61} + \frac{1}{91} + ...
+\frac{1}{3}(0)^3 - \frac{1}{3}(2)^3 = -\frac{8}{3}
+\frac{1}{3}(2)^3 - \frac{1}{3}(0)^3 = \frac{8}{3}
+\frac{1}{3}+\frac{2}{9}+\dots+\frac{2^n}{3^{n+1}}+\dots
+\frac{1}{3}\left(\left(a+(z/2)\right)^2-\left(a-(z/2)\right)^2\right)
+\frac{1}{4\pi\epsilon_0}\frac{Qq}{(d/\sqrt3)^2}=\frac{3Qq}{4\pi\epsilon_0d^2}
+\frac{1}{4} \sqrt{64 + 8y}\\= \sqrt{(64 \times (\frac{1}{4})^2) + (8y \times (\frac{1}{4})^2)}\\=\sqrt{(64 \times \frac{1}{16}) + (8y \times \frac{1}{16})}\\=\sqrt{4 + \frac{1}{2}y}
+\frac{1}{4}((1+z)^3 (1+3z^2) (1-z)/(1+z)) = \frac{1}{4} + \frac{z}{4} + \frac{z^2}{2} + \frac{z^3}{2} - \frac{3 z^4}{4} - \frac{3 z^5}{4}
+\frac{1}{4}(\frac{u^{-1}}{-1}-\frac{u^{-2}}{-2})+C=\frac{1}{8}(\frac{1}{u^{2}}-\frac{2}{u})+C
+\frac{1}{4}(a-x)^4
+\frac{1}{4}\sin2x=\sin^{2}x\cos^{2}x
+\frac{1}{9}=0.1111...
+\frac{1}{C}i_2=\dot{v}_2
+\frac{1}{L}v_3=\dot{i}_3
+\frac{1}{R_\mathrm{eff}} = \frac{1}{R_1} + \frac{1}{R_2}
+\frac{1}{R_\mathrm{eff}} = \frac{R_2 + R_1}{R_1 \times R_2}
+\frac{1}{R_\mathrm{eff}} = \frac{R_2}{R_1 \times R_2} + \frac{R_1}{R_1 \times R_2}
+\frac{1}{\frac{x}{2}}=\frac{1}{1}\div{\frac{x}{2}}=\frac{1}{1}\times{\frac{2}{x}}=\frac{2}{x}
+\frac{1}{\ln^{2}{2}} \geq \frac{1}{\ln^{2}{t}}
+\frac{1}{\ln^{2}{\sqrt{x}}} \geq \frac{1}{\ln^{2}{t}}
+\frac{1}{\mathrm{e}^{t/\tau}}
+\frac{1}{\sin^{2}\Theta} = \csc^{2}\Theta
+\frac{1}{\sqrt2}
+\frac{1}{\sqrt{2\pi }}=\left (2\pi\right )^{-1/2}=2\pi\left (2\pi\right )^{-3/2}=2\pi\left (\frac{1}{2\pi}\right )^{3/2}
+\frac{1}{\sqrt{2}
+\frac{1}{\sqrt{2}}=\frac{(1)(\sqrt{2})}{(\sqrt{2})(\sqrt{2})
+\frac{1}{\sqrt{2}}=\frac{1}{\sqrt{2}}\times 1\\=\frac{1}{\sqrt{2}}\times\frac{\sqrt{2}}{\sqrt{2}}\\=\frac{\sqrt{2}}{2}
+\frac{1}{\sqrt{5}}(\phi^{n+2} - \psi^{n+2})-\frac{1}{\sqrt{5}}(\phi^{2} - \psi^{2})
+\frac{1}{\tau\mathrm{e}^{t/\tau}}
+\frac{1}{k}\boldsymbol{a}
+\frac{1}{p_1...p_k + 1}  = \frac{1}{31}
+\frac{1}{x}+\frac{1}{y}=(p+q)^{2}
+\frac{1}{y}=(p+q)^{2}-\frac{1}{x}
+\frac{1}{y}=\frac{x\cdot(p+q)^{2}-1}{x}
+\frac{1}{y}=\frac{x\cdot(p+q)^{2}}{x}-\frac{1}{x}
+\frac{360^{\circ}}{2 \pi}=\frac{180^{\circ}}{\pi} = 57.3^{\circ}
+\frac{364!}{341!}*(365^{-23})
+\frac{3\text{~m}}{5\text{~s}}=\frac{3}{5}\text{~m~s}^{-1}
+\frac{3\times 10^{4}C}{4\pi\times (0.065m)^{2}\times (8.85\times 10^{-9}N^{-1} C^{2}m^{-2})}\boldsymbol{e}_{x}
+\frac{3\times 10^{4}C}{4\pi\times (0.065m)^{2}\times 8.85\times 10^{-9}N^{-1} C^{2}m^{-2}}\boldsymbol{e}_{x}
+\frac{3}{5} \sqrt[3]{\left(v_x\pi\right)^5}
+\frac{3}{5} \sqrt{\left(v_x\right)^2}
+\frac{4 \pi \times 10^{-7}}{\pi}
+\frac{431.472 + 4x}{6.0220 x 10^23}
+\frac{4\pi}{\sqrt3}
+\frac{4}{3} \pi \left[ 3r^2 \left( \Delta r \right) + 3r \left( \Delta r \right)^2 + \left( \Delta r \right)^3 \right]
+\frac{4}{3} \pi \left[ \left( r + \Delta r \right)^3 - r^3 \right]
+\frac{4}{3} \pi \left[ \left( r - \Delta r \right)^3 - r^3 \right]
+\frac{4}{3}\pi (r+\Delta r)^3-\frac{4}{3}\pi r^3
+\frac{6\pm\sqrt{-16}}{2} \text{ to } 3\pm2i
+\frac{8\sin25}{\sin120}=\,3.90398\dots
+\frac{8}{\sqrt x}=8x^{-\frac{1}{2}}
+\frac{B}{(x^2+\frac{B}{24})^2}
+\frac{Nm^{2}kg}{m^{4}}
+\frac{Number of molecules of A}{Total number of molecules} \times {10^6}
+\frac{S}{{{\theta }^{2}}}\propto \frac{d_{A}^{2}}{d_{L}^{2}}
+\frac{S}{{{\theta }^{2}}}\propto {{(1+z)}^{-4}}
+\frac{\boldsymbol{r}}{r}
+\frac{\cos^{2}\Theta}{\sin^{2}\Theta} = \cot^{2}\Theta
+\frac{\delta X}{X}=\sqrt{(\frac{\delta A}{A})^2+(\frac{\delta B}{B})^2}
+\frac{\dot{x}}{\sqrt{\dot{x}^2 + \dot{y}^2}} = C
+\frac{\dot{y}}{\sqrt{\dot{x}^2 + \dot{y}^2}} = D
+\frac{\ldots\pi\ldots(\ldots\pi\ldots)^2}{(\ldots\pi\ldots)^3}
+\frac{\left(0 - 5m s^{-1}\right)}{2 \text s}
+\frac{\left(9.81 m s^{-2}\right)\left(100 m\right)^2}{2 \times \cos^2 60^o}
+\frac{\mathrm{d} f(v)}{\mathrm{d} x}=\left (2Bv\right )e^{-mv^{2}/2kT}-2vm/2kT\left (e^{-mv^{2}/2kT}\right )Bv^{2}
+\frac{\mathrm{d}\boldsymbol p}{\mathrm{d}t}= \frac{\mathrm{d}m}{\mathrm{d}t}\boldsymbol v
+\frac{\mathrm{d}\boldsymbol{t}}{\mathrm{d}u}=f\left(u\right)\boldsymbol{t}
+\frac{\mathrm{d}^2x(t)}{ \mathrm{d}t^2} = -{\omega}^2 x(t)
+\frac{\mathrm{d}^2x}{ \mathrm{d}t^2
+\frac{\mathrm{d}^2x}{\mathrm{d}t^2}=c
+\frac{\mathrm{d}t^{i}}{\mathrm{d}u}+\sum\Gamma_{jk}^{i}t^{j}\frac{\mathrm{d}x^{k}}{\mathrm{d}u}=f\left(u\right)t^{i}
+\frac{\mathrm{d}t^{i}}{\mathrm{d}u}+\sum_{j,k}\Gamma_{\, jk}^{i}t^{i}\frac{\mathrm{d}x^{k}}{\mathrm{d}u}=0
+\frac{\mathrm{d}t^{i}}{\mathrm{d}u}+\sum_{j,k}\Gamma_{\, jk}^{i}t^{i}\frac{\mathrm{d}x^{k}}{\mathrm{d}u}=f\left(u\right)t^{i}
+\frac{\mathrm{d}t^{i}}{\mathrm{d}u}=f\left(u\right)t^{i}
+\frac{\mathrm{d}v^{i}}{\mathrm{d}u}+\sum_{j,k}\Gamma_{\, jk}^{i}v^{i}\frac{\mathrm{d}x^{k}}{\mathrm{d}u}=0
+\frac{\mathrm{d}v^{i}}{\mathrm{d}u}=-\sum_{j,k}\Gamma_{\, jk}^{i}v^{i}\frac{\mathrm{d}x^{k}}{\mathrm{d}u}
+\frac{\mathrm{d}{2x}{\mathrm{d}{t^2}=b
+\frac{\mathrm{d}}{\mathrm{d}t}\mathrm{e}^{kt}=k\mathrm{e}^{kt}
+\frac{\mathrm{d}}{\mathrm{d}t}\mathrm{e}^{t/\tau}=\frac{1}{\tau}\mathrm{e}^{t/\tau}
+\frac{\mathrm{d}}{\mathrm{d}t}\mathrm{e}^{t/\tau}=\tau\mathrm{e}^{t/\tau}
+\frac{\mathrm{d}}{\mathrm{d}v}(f(v))=\left (2Bv\right )(e^{-v^{2}\frac{m}{2kT}})(1-v^{2}\frac{m}{2kT})
+\frac{\mathrm{e}^{-t/\tau}}{\tau}
+\frac{\mbox{numerator}}{\mbox{denominator}}
+\frac{\partial H}{\partial y}=-x^2y+v'(y)
+\frac{\partial \mathbf{e}_j}{\partial x^k}=\sum_i{ \mathbf{e}^i \frac{\partial \mathbf{e}_j}{\partial x^k} \;\mathbf{e}_i}
+\frac{\partial \phi}{\partial x'^0}
+\frac{\partial \rho}{\partial t} + \mathrm{div} \mathbf{J} = 0
+\frac{\partial}{\partial\theta} \mathbf{e}_r=\mathbf{e}_\theta
+\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + ...
+\frac{\sin^{2}\Theta}{\sin^{2}\Theta} = 1
+\frac{\sqrt 3}{\sqrt 3} = 1
+\frac{\sqrt n}{log (n)}
+\frac{\sqrt {15} \times \sqrt 3}{\sqrt 3 \times \sqrt 3}
+\frac{\sqrt {15}}{\sqrt 3}
+\frac{\sqrt {15}}{\sqrt 3} = \frac{\sqrt {5 \times 3}}{\sqrt 3}
+\frac{\sqrt2}{2}
+\frac{\sqrt3}{\sqrt3}
+\frac{\sqrt{2}\sqrt{\pi }B}{2\left (\frac{m}{Tk}\right )^{3/2}}=1
+\frac{\tau}{\mathrm{e}^{t/\tau}}
+\frac{\text{d}x}{\text{d}t}
+\frac{\text{d}y}{\text{d}t}+\frac{\text{d}z}{\text{d}t}
+\frac{\text{d}}{\text{d}x}
+\frac{\text{expression}\times(\sqrt 3 -1)}{2}
+\frac{\text{expression}}{\sqrt 3 +1}
+\frac{b}{a}\sqrt{x^{2}-a^{2}}-\frac{b}{a}x
+\frac{d\,(q + ps)}{ds}} = p
+\frac{d\Pi}{dt}=\frac{-1}{(1-t)^2}
+\frac{d\boldsymbol{\mathbf{r}}}{dt} = \frac{dx}{dt}\boldsymbol{\mathbf{i}} + \frac{dy}{dt}\boldsymbol{\mathbf{j}} + \frac{dz}{dt}\boldsymbol{\mathbf{k}}
+\frac{d\langle{p_x}\rangle}{dt} = -\langle{\frac{\partial V}{\partial x}\rangle
+\frac{d\mathbf{r}}{d\theta}d\theta=r\,d\theta\mathbf{e}_\theta
+\frac{d^2\phi}{dt^2}=-\frac{g}{l}\sin{\phi}
+\frac{d^2x^i}{d\lambda^2}+\sum_{j,k}\Gamma^i_{jk}\frac{dx^j}{d\lambda}\frac{dx^k}{d\lambda}=0
+\frac{d^2y}{dx^2}=f''(x)
+\frac{d^{2}f}{d\eta^2}+2\frac{df}{d\eta}=2P-2Qe^{-2\eta}
+\frac{d^{2}f}{d\eta^2}+2\frac{df}{d\eta}=a+be^{-2\eta}
+\frac{d^{2}f}{d\eta^2}=-2Qe^{-2\eta}-2Qe^{-2\eta}+4Q\eta e^{-2\eta}+4Re^{-2\eta}
+\frac{d^{2}}{dx^2}} cos(\lambda x)
+\frac{d^{2}}{dx^{2}}f(x)\longrightarrow6x
+\frac{dg}{dt}=F'(H))\frac{\partial H}{\partial x}\dot{x}+F'(H))\frac{\partial H}{\partial y}\dot{y}=F'(H)\left(\frac{\partial H}{\partial x}\frac{\partial H}{\partial y}-\frac{\partial H}{\partial y}\frac{\partial H}{\partial x}\right)=0
+\frac{dv}{dx}=\frac{1}{2}(x^2+1)^{-\frac{1}{2}}\cdot2x=\frac{x}{\sqrt{x^2+1}}
+\frac{dy}{dx} = f'(x)
+\frac{dy}{dx}(\cos y-x^2y^3+2y-\pi) = \frac{2xy^3}{2-\sin y-3x^2y^2
+\frac{dy}{dx}=-\frac{x+axy}{y+bx^{2}+cy^{2}}
+\frac{dy}{dx}=-\frac{x}{3}\left ( \frac{27-x^2}{3}\right )^{-\frac{1}{2}}
+\frac{dy}{dx}=\frac{1}{2}\left ( \frac{27-x^2}{3}\right )^{-\frac{1}{2}}\frac{d}{dx}\left ( \frac{27-x^2}{3}\right )
+\frac{dy}{dx}=\frac{1}{2}\left ( \frac{27-x^2}{3}\right )^{-\frac{1}{2}}\left ( -\frac{2}{3}x \right )
+\frac{dy}{dx}=\frac{3 x^{2}}{y^{3}}
+\frac{dy}{dx}=f'(x)
+\frac{dy}{dx}f(x)\neq{\frac{d}{dx}(f(x))}
+\frac{d{{\log }_{e}}{{R}_{AB}}}{d{{\log }_{e}}T}=\left[ {{\left( \frac{{{E}_{G}}}{4kT} \right)}^{1/3}}-\frac{2}{3} \right]=\nu (T)
+\frac{d}{\sqrt3}
+\frac{d}{d x} f(g(x))=f'(g(x)).g'(x)=\frac{d f}{d g} \frac {d g}{d x}
+\frac{d}{d\theta}r\mathbf{e}_r=\frac{dr}{d\theta}\mathbf{e}_r+r\mathbf{e}_\theta
+\frac{d}{dt}(\lambda - t)^{-r}=-r (\lambda - t)^{-r-1}\times (-1)
+\frac{d}{dt}(\mathbf{e}_r)=\dot\theta\mathbf{e}_\theta
+\frac{d}{dt}[\mathbf{r}(t)]=\frac{d}{dt}\left(\sqrt{a^2+b^2}\right)\mathbf{e}_r+\sqrt{a^2+b^2}\dot\theta\mathbf{e}_\theta
+\frac{d}{dt}u^{-r}=-r (u)^{(-r-1)}\times \frac{du}{dt}
+\frac{d}{dx}(\pm\sqrt{x}})
+\frac{d}{dx}(\sqrt{2c-x^{2}})=\frac{-x}{y}
+\frac{d}{dx}\tan\left(ax\right)=a\sec^{2}\left(ax\right)
+\frac{d}{dx}f(x)\longrightarrow3x^{2}
+\frac{e^{-nas}}{(s+\lambda)^{n+1}} \risingdotseq \frac{(t-na)^n e^{-\lambda(t-na)}}{n!}
+\frac{e^{2}\sqrt{3}}{2}+\frac{e^{2}}{2}i
+\frac{f(\delta t)}{\delta t} = \frac{(\delta t)^2}{\delta t} = \delta t \to 0 \quad\text{as }\delta t \to 0.
+\frac{g}{l}(1+\cos{\phi})=\frac{2g}{l}\cos^2{\frac{\phi}{2}}
+\frac{ln(m_{1}.....m_{k-1})}{-ln(m_{k}\varepsilon_{k})}
+\frac{ln\:t\:+\:2}{2\sqrt{t}}
+\frac{log1-log(0.5x10^{-5})}{log2}
+\frac{n^p}{n!}\text{ types}
+\frac{s_x^2}{t^2}=\left(\frac{s_x}{t}\right)^2=v_x^2
+\frac{t^4}{6^4} {\left ( 1 - t^6 \right )}^{4}{\left ( 1 - t \right )}^{-4}
+\frac{top'(bottom) - top(bottom')}{bottom^{2}}
+\frac{v_{0}^{2}}{v_{0}^{3}}
+\frac{x^2}{4}+\frac{y^2}{3}=1\quad\text{(A)}
+\frac{x^2}{9} + \frac{y^2}{\frac12} = 1
+\frac{x^2}{a^2
+\frac{x^{2}}{9}-\frac{y^{2}}{4}=1
+\frac{x}{(x^2-1)
+\frac{y'y''}{\sqrt{1+y'^2}
+\frac{y+x}{xy}=(p+q)^{2}
+\frac{y}{xy}+\frac{x}{xy}=(p+q)^{2}
+\frac{{\pi}^2}{6}
+\frac{{\rm d}M_{\rm BH}}{{\rm d}t}
+\frac{{\rm d}M_{\rm BH}}{{\rm d}t} = (1 - \eta)  \frac{{\rm d}M_{\rm acc}}{{\rm d}t}
+\frac{{\rm d}M_{\rm BH}}{{\rm d}t}= \frac{(1- \eta)}{\eta} \frac{M_{\rm BH}}{t_{\rm E}}
+\frac{{\rm d}M_{\rm acc}}{{\rm d}t}
+\frac{{\rm d}R}{R} = const \times {\rm d}t
+\frac{{\rm d}R}{{\rm d}t} = const \times R
+\frac{{\rm d}^2 x^i}{{\rm d}u^2} + \sum_{j,k} \Gamma^i_{\; jk} \frac{{\rm d}x^j}{{\rm d}u} \frac{{\rm d}x^k}{{\rm d}u} = f(u) \frac{{\rm d}x^i}{{\rm d}u}
+\frac{{mol^{-1}K}}{m^{2}s^{-2}}
+\gamma = \frac{c}{\sqrt{c^2-v^2}
+\gamma=\frac{1}{\sqrt{1-0.6^2}}=1.25
+\gamma_s < 3 \times 10^{20} (E_0/10^{44}~{\rm J})^{-1}
+\gamma_{\rm b}
+\gamma_{\rm b} \le  \gamma_2/\sqrt{2}
+\gamma_{\rm b} \le \gamma_2/ \sqrt{2}
+\ge
+\ge 1
+\ge1
+\hat e
+\hat n
+\hat r
+\hat{A}^{\dagger}\psi_n(x)=\sqrt{n+1}\psi_{n+1}(x)
+\hat{\boldsymbol{a}}=\frac{1}{a}\boldsymbol{a}
+\hat{p}=\frac{x_{M}+x_{F}}{n_{M}+n_{F}}
+\hat{p}_{x}\langle f | g\rangle
+\hat{x}\Rightarrow {x}
+\iff
+\implies a+b=mq+r, a+d=nq+r
+\in \mathcal{C}
+\int (1+u)^{-2} du=\int z^{-2}dz=\frac{z^{-1}}{-1}=-(1+u)
+\int (1-x)^{-2}\partial x=\int u^{-2}\left ( -\partial u \right )=-{\frac{u^{-1}}{-1}}=\left ( 1-x \right )^{-1}
+\int (\sin x \cos x) \text{d}x=\frac{\sin^2 x}{2}+c\\
+\int (\sin x \cos x) \text{d}x=c-\frac{\cos^2 x}{2}\\
+\int 2cos({s \over 7}) ds = 14 \int {1 \over 7}cos({s \over 7}) ds = 14sin({s \over 7}) + c
+\int 2x(x^{2}-1)^3dx
+\int \frac{1}{(1 + 2x)^{3}} dx = \frac{1}{2} \int \frac{x}{(1 + 2x)^3} (2) dx
+\int \frac{x}{\left(x^{2}+4\right)} dx
+\int dy \, \frac{1}{\sqrt(y^6 - c^2)}
+\int e^{-xu}\,du
+\int f'(x)/f(x) dx = ln \left | f(x) \right | + c
+\int fg'=\int (fg)'-\int f'g
+\int fg'=fg-\int f'g
+\int u'v
+\int u'v\,dx=\int (uv)'\,dx-\int uv'\,dx=uv-\int uv'\,dx
+\int uv'
+\int x(x^{2}-1)^3dx
+\int x\cos\bigg(\frac{1}{6}x\bigg)\,dx=6x\sin\bigg(\frac{1}{6}x\bigg)-\int 6\sin\bigg(\frac{1}{6}x\bigg)\,dx
+\int x\sin x\,dx=-x\cos x +\int\cos x\,dx=-x\cos x+\sin x
+\int x^a=\frac{x^{a+1}}{a+1}~~~(a\ne -1)
+\int {g(x))}'\Rightarrow \varepsilon \mu \varsigma \upsilon \oint_{9}^{2}
+\int {m.da} = ma
+\int {m.dv} = mv
+\int {mv.dv} = \frac{1}{2}mv^2
+\int(\sin x \cos x)\text{d}x\\\text{Let } f=\sin x \therefore f'=\cos x\\\text{Let } g'=\cos x \therefore g=\sin x\\\int(\sin x \cos x)\text{d}x=\sin^2 x-\int(\sin x \cos x)\text{d}x\\\therefore 2\int(\sin x \cos x)\text{d}x=\sin^2 x\\\therefore \int(\sin x \cos x)\text{d}x=\frac{\sin^2 x}{2}\\
+\int(e^{x})dx=\frac{1}{1}e^{1x}+c=e^{x}+c
+\int[f(x)]^{n}f'(x)dx=\frac{1}{n+1}[f(x)]^{n+1}+c
+\int\big(10x^{\frac{7}{3}}-x^{-\frac{5}{3}}\big)\,dx
+\int\frac1TdT=\int-kdt
+\int\frac1wdx
+\int\frac{1}{2}(e^x-e^{-x})dx=\frac{1}{2}(e^{x}-e^{-x})+c
+\int\frac{1}{x}dx=ln\lvert x \rvert
+\int\frac{1}{y}\frac{dy}{dx}\,dx=\int x\,dx
+\int\frac{\sin x}{1+\cos x}\,\text{d}x
+\int\frac{\sin x}{1+\cos x}\,dx
+\int\frac{g'(x)}{g(x)}\,dx
+\int^ \pi _0 \frac {\pi-x}{3 - 2 \sin x} dx
+\int^ \pi _0 \frac {u}{3 - 2 \sin u} du
+\int^1_0 f = 0
+\int^1_0 f=-2
+\int^4_2\left(\frac{x}{(\frac{9}{4}-8x^2)}\right)dx
+\int^5_1 2x\,dx = 24
+\int^\infty_{-5}f(x)\,dx
+\int^\infty_{-\infty}
+\int^\infty_{-\infty}\psi_1^*\psi_1=1
+\int^\infty_{-\infty}dx\,f(x)
+\int^r_0 {\rm d} r = v \int_{t_0}^{t_0 + 5} \frac{1}{R(t)} {\rm  d}t = v \int^{t_0 + 5}_{t_0} \frac{1}{R_0}\left( \frac{t_0}{t}\right)^{2/3} {\rm  d}t
+\int^{740}_0 {\rm d} r = v \int_{t_0}^{t_0 + 5} \frac{1}{R(t)} {\rm d}t = v \int^{t_0 + 5}_{t_0} \left( \frac{t_0}{t}\right)^{2/3} {\rm d}t
+\int_0^1 dx h'^2
+\int_0^1 x\,dx=\frac{1}{2}
+\int_0^1 x^2 \, dx =\frac{1}{3}.
+\int_0^1 x^2 \,dx
+\int_0^2{x^2}\text{d}x
+\int_0^L \cos^2\left(\frac{\left(n+\tfrac{1}{2}\right)\pi x}{L}\right)=L/2
+\int_0^\infty e^{-x^2}\, dx =\sqrt{\pi}/2.
+\int_0^\infty{\frac{x}{\sqrt{\pi}}}\textrm{d}x
+\int_0^\pi frac{\pi - x}{3-2\sin x}\leq \int_0^\pi \pi-x
+\int_0^\pi{\frac{\pi-x}{3-2\sin{x}}}dx\le\int_0^\pi\pi-x}dx
+\int_0^{\frac{\pi}{2}}\cos \theta \text{d}\theta = 1
+\int_0^{\pi/2} -8\cos t\sin t\, dt=\int_0^{\pi/2} -4\sin 2t\, dt=[2\cos 2t]_0^{\pi/2}
+\int_1^x(t-[t])(\frac{logt}{t})'dt
+\int_1^{\infty}(t-[t])(\frac{logt}{t})'dt
+\int_1^{\infty}(t-[t])(\frac{logt}{t})'dt - \int_x^{\infty}(t-[t])(\frac{logt}{t})'dt
+\int_3^{\dfrac{1}{4}\pi}e^{-3x}
+\int_S (\textbf{curl F})\cdot \textbf{n} \,dA = \oint_C \mathbf{F}\cdot d\textbf{r}
+\int_S \nabla\times{\bf u}.{\bf n}\,dA
+\int_a^b \! f(x) \, \mathrm{d}x
+\int_a^b \! k(x) \, \mathrm{d}x
+\int_a^b[\int_{y=u(x)}^{y=v(x)} g(y)\,dy]f(x)\,dx
+\int_a^b\,f(x)\,dx=\lim_{x_1\rightarrow a}\bigl[\lim_{x_2\rightarrow b}\bigl[\int_{x_1}^{x_2}\,f(x)\,dx\bigr]\bigr]
+\int_x^x \! f(x) \,\mathrm{d}x
+\int_x^{\infty}(t-[t])(\frac{logt}{t})'dt=O(\frac{logx}{x})
+\int_{-12}^3{3-x\,\mathrm{d}x}+\int_{3}^{12}{x-3\,\mathrm{d}x}
+\int_{-12}^{12}{|x-3|\,\mathrm{d}x}
+\int_{-1}^{\infty}\frac{\pi x^2}{3}dx
+\int_{-4}^{\infty} \sin(x)\, dx
+\int_{-\infty}^\infty\mathrm{d}x \int_{-\infty}^\infty\mathrm{d}y \,\, f(x,y)
+\int_{-\infty}^{+\infty}e^{-x^{2}}dx
+\int_{-\infty}^{\infty} \! |A\Psi(x,t)|^2 \, \mathrm{d}x = 1
+\int_{-\infty}^{\infty} \mbox{exp}(-x^2)\;dx=\sqrt{\pi}
+\int_{-\pi}^{\pi}cos(mx)cos(nx)dx = 0
+\int_{0}^{R} 4\pi r^{2} {\rm dr}= \frac{4}{3}\pi R^{3}
+\int_{0}^{\pi/3} x^2 \sin(x) \, d x
+\int_{0}^{a}{1\over x^{1/2}}\,dx=2\sqrt{a}
+\int_{A}^{B}F_{x}dx=\int_{A}^{B}\left ( \frac{k}{x^{2}} \right )dx=k\left ( \frac{1}{A}-\frac{1}{B} \right )
+\int_{A}^{B}F_{x}dx=\int_{A}^{B}\left ( kx^{3} \right )dx=\frac{1}{4}k\left ( B^{4}-A^{4} \right )
+\int_{D_2}{\rm curl}{\bf u}.\,{\bf n}\,dA-\int_{D_1}{\rm curl}{\bf u}.\,{\bf n}\,dA=\int_D{\rm curl}{\bf u}.\,{\bf n}\,dA=0
+\int_{E_1}^{E_2}{g(E)\textrm{d}E}
+\int_{\mathcal{A}}d\alpha
+\int_{a-z/2}^{a+z/2}\frac{2}{3}x\,dx
+\int_{a}^{\infty}f(x) dx = \lim_{Z \to \infty}\int_{a}^{Z}f(x)dx
+\int_{x_0}^x\frac{dx}{+\sqrt{F(x)}}=\int_{x_0}^x\frac{dx}{(x_1-x)^{1/2}\sqrt{\phi(x)}}=t_1
+\int{(\frac{x}{ax+b})dx}=\int{\left(\frac{1}{a}-\frac{b}{a(ax+b)}\right)}\,dx
+\int{\dfrac{(p-9)}{4p}dp}
+\int{\dfrac{1}{y}\,dy} = \int(2x+1)\,dx
+\int{\dfrac{x}{9+2x}dx}
+\int{\dfrac{x}{9+2x}dx}=\int{\dfrac{(p-9)/2}{p}\times(1/2)dp}
+\int{\frac{1}{g(y)}\frac{dy}{dx}dx}=\int{p dx}
+\int{\frac{1}{g(y)}dy}=\int{p dx}
+\int{\frac{1}{g(y)}dy}=px+c
+\int{\frac{dx}{x(1-ax)}} = -\int{\frac{du}{u(1-a/u)}} = -\int{\frac{du}{u-a}}
+\int{\frac{dx}{x(1-ax)}}=\int{\left(\frac{1}{x}+\frac{a}{1-ax}\right)}\,dx
+\int{\frac{xdx}{ax+b}}=\int{\left(\frac{1}{a}-\frac{b}{a(ax+b)}\right)}\,dx
+\int{\int{f(x)[g(y)dy]dx}}=\int{f(x)dx}\times\int{g(y)dy}
+\int{\int{f(x)g(y)dxdy}}=\int{\int{f(x)g(y)dydx}}=\int{\int{f(x)[g(y)dy]dx}}
+\int{a\sin\theta\,d\theta}=-a\cos\theta
+\int{e^{ax}cos(ax)dx} = \int{g(x)f'(x)dx
+\int{f'(x)dx} = f(x) + c
+\int{f(x)g'(x)}~dx=f(x)g(x)-\int{f'(x)g(x)~dx}
+\int{fg'}=fg-\int{f'g}
+\int{m.da}=ma
+\int{m.dv}=mv
+\int{ma.dv}=\frac{1}{2}ma^2
+\int{mv.dv}=\frac{1}{2}mv^2
+\int{xe^{-x}}~dx=-xe^{-x}+\int{e^{-x}}~dx
+\int{xe^{-x}}~dx=-xe^{-x}-\int{-e^{-x}}~dx
+\int{y}~dx
+\kappa,\lambda,\mu\in\mathbb{R}^*
+\lambda = \dfrac{(a+d) \pm \sqrt{(a+d)^2 -4(ad -bc)}}{2}
+\lambda = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\lambda=2.1,s=1+10^{-10}
+\lambda^{N}t
+\lambda^{k}
+\lambda_{i}
+\langle 1,\phi\rangle^n=\langle 1, n\phi\rangle
+\langle E_k \rangle = \int^{+\infty}_{-\infty} \ \frac{\hbar^2 k^2}{2m} |A(k)|^2 \ \mathrm{d}k
+\langle \hat{B}\phi | \hat{B}\phi \rangle = \langle b\phi | b\phi \rangle = b^{*}b\langle\phi |\phi \rangle
+\langle b_{i}\phi_{i} | b_{i}\phi_{i} \rangle
+\langle f  |\hat{p}_{x}| g \rangle
+\langle r,\phi\rangle^n=\langle r^n, n\phi\rangle
+\langle r_2 \rangle=\{r_{2n}\colon n\in\mathbb{Z}\}=\{\dots,r_{-6},r_{-4},r_{-2},r_0,r_2,r_4,r_6,\dots\}
+\langle\,S\rangle=\{(\alpha,\alpha)\colon\alpha\in\mathbb{R}\}
+\langle\,S\rangle=\{(x,0,z)\colon\,x,z\in\mathbb{R}\}
+\langle\,S\rangle\subseteq\{(x,0,z)\colon\,x,z\in\mathbb{R}\}
+\langle\,U\rangle
+\langle\,U\rangle=T=\langle\,S\rangle
+\langle\,V\rangle
+\lbrace\lvert z_n\rvert\rbrace
+\lbrace\sqrt{z_n}\rbrace
+\lbrace{z_n}\rbrace
+\le
+\le x0
+\left ( 1-x \right )^{-1}
+\left ( x+1 \right )^{2}<9(x^{2}-4x+4)=9x^2-36x+36
+\left (2Bv\right )e^{-mv^{2}/2kT}-2vm/2kT\left (e^{-mv^{2}/2kT}\right )Bv^{2}=0
+\left (x^2 + y^2 \right )^2
+\left \sin\left(\sqrt{\lambda} x\right)\ \ \ \ \ \right/\ \ \ \ \ \ y''+\lambda y = 0,
+\left \{ \int_{2}^{n}f \right \}
+\left \{ \int_{2}^{n}f \right \}_{2}^\infty
+\left \{ a_{n} \right \}
+\left \{ b_{n} \right \}
+\left \{ x_{n} \right \}
+\left \| B_nq-q \right \|_\infty \leq \frac{1}{8n}\left \| q'' \right \|_\infty
+\left \| q_l'') \right \|_\infty = \left \| f'') \right \|_\infty = \left \| q_u'') \right \|_\infty
+\left | \frac{a_{n+1}}{a_{n}} \right |
+\left( \Delta r \right)^2
+\left( \Delta r \right)^3
+\left( \boldsymbol v \boldsymbol{\times} \boldsymbol B \right )
+\left( a^{1/3}+b^{1/3}\right)^3= a+3a^{2/3}b^{1/3}+3a^{1/3}b^{2/3}+b
+\left( r + \Delta r \right)^3
+\left( {\begin{array}{*{20}c}H_A & 0 \\ H_B & H_B\\\end{array}} \right)
+\left( {\frac {d}{dt}}x \right) {\frac {\partial }{\partial x}}H \left( x,y \right) + \left( {\frac {d}{dt}}y \right) {\frac {\partial }{\partial y}}H \left( x,y \right)
+\left( {a_1}^{5}\,b_5+4\,{a_1}^{3}\,a_2\,b_4+\left( 3\,{a_1}^{2}\,a_3+3\,a_1\,{a_2}^{2}\right) \,b_3+\left( 2\,a_1\,a_4+2\,a_2\,a_3\right) \,b_2+a_5\,b_1\right) \,{z}^{5}+\left( {a_1}^{4}\,b_4+3\,{a_1}^{2}\,a_2\,b_3+\left( 2\,a_1\,a_3+{a_2}^{2}\right) \,b_2+a_4\,b1\right) \,{z}^{4}+\left( {a_1}^{3}\,b_3+2\,a_1\,a_2\,b_2+a_3\,b_1\right) \,{z}^{3}+\left( {a_1}^{2}\,b_2+a_2\,b_1\right) \,{z}^{2}+a_1\,b_1\,z+b_0
+\left(-\frac{1}{3}\right)^2
+\left(-\frac{2}{5}\right)^2
+\left(-x^2\right)^3
+\left(1+\dfrac{1}{4}\right)^3=\left(\dfrac{5}{4}\right)^3=\dfrac{125}{64}\leq\dfrac{128}{64}=2
+\left(1+\dfrac{1}{n}\right)^n
+\left(1+\dfrac{1}{n}\right)^n\geq 1 + 1 + \dfrac{1}{2!}\left(1-\dfrac{1}{n}\right)+...
+\left(1+\dfrac{1}{n}\right)^n\geq t(m,n)
+\left(1+\dfrac{1}{n}\right)^n\leq s_n
+\left(1+\frac{1}{3n}\right)^n\geq \dfrac{25}{18}-\dfrac{1}{18n}
+\left(1+\frac{1}{3n}\right)^n\geq \dfrac{4}{3}- \dfrac{1}{6n}
+\left(1+\frac{1}{n}\in\;E\right)<m'
+\left(1-\dfrac{1}{n}\right)^2>M'\iff\text{put working here}\iff n>\dfrac{1}{1-\sqrt{M'}}
+\left(1-\frac{1}{2}\right)-\frac{1}{4}+\left(\frac{1}{3}-\frac{1}{6}\right)-\frac{1}{8}+\left(\frac{1}{5}-\frac{1}{10}\right)\dots
+\left(5-x^{2}\right)^{5}
+\left(DE\right)^{-1}=E^{-1}D^{-1}
+\left(S\left(\vartriangle\right),\circ \right)
+\left(\alpha+\beta\right)^2=\alpha^2+\beta^2+2\alpha\beta
+\left(\alpha+\beta\right)^2=\alpha^2+\beta^2-2\alpha\beta
+\left(\begin{array}{ccc}\kappa\,x_1&\lambda\,x_2&\mu\,x_3\\\kappa\,y_1&\lambda\,y_2&\mu\,y_3\\\kappa\,z_1&\lambda\,z_2&\mu\,z_3\\\end{array}\right)
+\left(\begin{array}{cc}2&4\\6&4\end{array}\right){1\choose0}=2{1\choose3}
+\left(\dfrac{10}{11}\right)\left(\dfrac{10}{12}\right)\dots\left(\dfrac{10}{n-1}\right)
+\left(\dfrac{10}{11}\right)\left(\dfrac{10}{12}\right)\dots\left(\dfrac{10}{n-1}\right)\left(\dfrac{10}{n}\right)< 1.1\dots 1.\dfrac{10}{n}=\dfrac{10}{n}
+\left(\dfrac{10}{1}\right)\left(\dfrac{10}{2}\right)\dots\left(\dfrac{10}{10}\right) = \dfrac{10^{10}}{10!} < 3000
+\left(\dfrac{a}{b}\right)^2 = \dfrac{a}{b} \times \dfrac{a}{b} = \dfrac{a^2}{b^2}
+\left(\dfrac{r^{n-1} - 1}{r - 1}\right)d
+\left(\dfrac{r^{n-1}-1}{r-1}\right)d
+\left(\frac{(2+s)(2+s)e^{3\lambda t}-2(1-s)(2+s)}{3(2+s)e^{3\lambda t}}\right)^n
+\left(\frac{1}{2}\right)^0=1
+\left(\frac{1}{2}\right)^1=\frac{1}{2}
+\left(\frac{1}{M}+Ce^{-kt}\right)^{-1}=\left(\frac{1}{M}+\frac{C}{e^{kt}}\right)^{-1}=\left({\frac{e^{kt}+MC}{Me^{kt}}\right)^{-1}=\frac{Me^{kt}}{e^{kt}+MC}
+\left(\frac{1}{kT}\right)\times{\left(\frac{1}{kT}\right)}^\frac{1}{2}
+\left(\frac{2}{5}\right)^2
+\left(\frac{3}{2\pi}\right)^{3/2}
+\left(\frac{a}{d}\right)^2=1
+\left(\frac{dx}{dt}\right)^2=F(x)
+\left(\frac{dx}{dt}\right)^2=\int_{x_0}^xf(x)dx+C\qquad(1)
+\left(\frac{dx}{dt}\right)_0=+\sqrt{F(x)_0}
+\left(\mathbb{Z}^n,+_n\right)
+\left(\pm\sqrt{x}\right)^2=x
+\left(\sqrt{a}\right)^2 = \sqrt{a}\times \sqrt{a} = a
+\left(a+b\right)^{5}=a^{5}+5a^{4}b+10a^{3}b^{2}+10a^{2}b^{3}+5ab^{4}+b^{5}
+\left(a^4\right)^{9}\times a^1=a^1
+\left(cos 60^o \right)^2
+\left(ct,\, x\right)=\left(0,\,0\right)
+\left(e^\mathbf{A}\right)^{-1}=e^{-\mathbf{A}}
+\left(e^{\mathbf{A}\right)^T}=e^{\mathbf{A}^T}
+\left(i^3\right)^{1/2}=(i)^{3/2}
+\left(x+\frac{b}{2a}\right)^2 - \frac{b^2}{4a^2} + \frac{c}{a} = 0
+\left(x+\frac{b}{2a}\right)^2 = \frac{b^2-4ac}{4a}
+\left(x-a\right)^2+\left(y-b\right)^2=r^2
+\left(x^a\right)^b=x^{ab}
+\left({\frac{2}{3-s} }\right)^2 = \left({\frac{2/3}{1 - s/3}}\right)^2
+\left. Res \frac{ze^{zt}}{z^2+\omega^2}\right|_{z+i\omega}+\left. Re\frac{ze^{zt}}{z^2+\omega^2}\right|_{z=-i\infty}
+\left. Res \frac{ze^{zt}}{z^2+\omega^2}\right|_{z=+i\omega}+\left. Res\frac{ze^{zt}}{z^2+\omega^2}\right|_{z=-i\omega}
+\left.Q\right|_E
+\left.\left(\frac{d^2x}{dt^2}\right)\right|_{t_1}=f(x_1)=\frac{1}{2}F'(x_1)=-\frac{1}{2}\phi(x_1)<0
+\left.e^x\right|_0^1
+\left< ... \right>
+\left<E_\mathrm{tot}\right>=\frac{f}{2}kT
+\left<\frac{1}{2}k_sx^2\right>=\frac{1}{2}kT
+\left<\frac{1}{2}mv^2\right>=\frac{1}{2}kT
+\left<\sigma v\right>
+\left<v\right>=\sqrt{\frac{8kT}{\pi m}}
+\left[ \begin {array}{cc} {e}^{-t}&t{e}^{-t}\\ -{e}^{-t}& \left( 1-t \right) {e}^{-t}\end {array} \right]
+\left[ \begin {array}{c} t{e}^{-t}\\ (1-t){e}^{-t}\end {array} \right]
+\left[ \begin {array}{c} {e}^{-t}\\ -{e}^{-t}\end {array} \right]
+\left[-\frac{1}{2t^2} \right ]_1^\infty
+\left[\begin{matrix}2D&0 \\1&-1\end{matrix}\right]
+\left[e^x\right]_0^1
+\left\frac{1}{S N R_{Tot}^{2}} \right=\left\frac{1}{S N R_{MaxIm}^{2}} \right + \left\frac{1}{ g \times {Inten}} \right
+\left\vert(B_nq_l)(\xi)-q_l(\xi)\right\vert\leq \left\vert(b_nf)(\xi)-f(\xi)\right\vert\leq \left\vert(B_nq_l)(\xi)-q_l(\xi)\right\vert
+\left\{\begin{pmatrix}a&d-a\\0&d\end{pmatrix}\colon\;ad=1\right\}
+\left\{\begin{pmatrix}a&x(d-a)\\0&d\end{pmatrix}\colon\;ad=1\right\}
+\left\{\begin{pmatrix}a&x_1(d-a)\\0&d\end{pmatrix}\colon\;ad=1\right\}
+\left\{\begin{pmatrix}a&x_2(d-a)\\0&d\end{pmatrix}\colon:ad=1\right\}
+\left\{\dfrac{(n+1)^{n+1}}{n^n}\right\}
+\left\{\dfrac{1}{2+1/n^2}\right\}
+\left\{\dfrac{1}{n^4}\right\}
+\left\{\dfrac{1}{n}\right\}
+\left\{\dfrac{a_n+1}{a_n}\right\}
+\left\{\dfrac{a_n}{\text{any other term}}\right\}
+\left\{\dfrac{a_n}{b_n} =(-1)^n\right\}
+\left\{\dfrac{n}{2^n}\right\},\left\{\dfrac{n^2}{2^n}\right\}
+\left\{\dfrac{n}{n^3+1}\right\}
+\left\{\dfrac{x}{\|x\|}\right\}
+\left\{\left\{x\right\}\colon\;x\in\mathbb{R}\right\}
+\left\{x\right\}\text{ for some }x\in\mathbb{R}
+\left{s,r^1s,r^2s....r^{N-1}s \right}
+\left|\begin{array}{ccc} 1 & 2 & 3\\ 4 & 5 & 6\\ 7 & 8 & 9 \end{array}\right| = 1 \times \left|\begin{array}{cc} 5 & 6\\ 8 & 9 \end{array}\right| - 2 \times\left|\begin{array}{cc} 4 & 6\\ 7 & 9 \end{array}\right| +  4\times\left|\begin{array}{cc} 4 & 5\\ 7 & 8 \end{array}\right|\\ \text{thus the determinant is}\, 1 \times (5 \times 9 - 6 \times 8) -2\times (4 \times 9 - 6 \times 7) + 3 \times (4 \times 8 - 5 \times 7)
+\left|\frac{3}{5}+\frac{4}{5}i|=1
+\leq \frac{2\pi}{2^{q}}
+\lim\inf_{x\to\infty}\sin{x}=-1
+\lim\sup_{n\to\infty}x_n
+\lim\sup_{x\to\infty}\sin{x}=1
+\lim_{n \to 0} \frac{1}{n} = \infty
+\lim_{n \to \infty}
+\lim_{n \to \infty}\sum_{k=1}^n \frac{1}{k^2}= \frac{\pi^2}{6}
+\lim_{n \to \infty}a_n=\infty
+\lim_{n\to\infty}
+\lim_{n\to\infty}\sup\{x_m\,:\,m\geqslant n\}
+\lim_{t \to 0} \frac {\left| ax^2 + bxy + cy^2 \right|} {\left| x^2 + y^2 \right|} = \lim_{t \to 0} \frac {\left| (2ax+by) \frac {dx} {dt} + (2cy+bx) \frac {dy} {dt} \right|} {\left| 2x \frac {dx} {dt} + 2y \frac {dy} {dt} \right|} = \lim_{t \to 0} \frac {\left|\, a \,\left(\frac {dx} {dt}\right)^2 + b \,\left( \frac {dx} {dt} \right) \left( \frac {dy} {dt} \right) + c \,\left( \frac {dy} {dt} \right)^2 \,\right|} {\left|\, \left(\frac {dx} {dt}\right)^2 + \left(\frac {dy} {dt}\right)^2 \,\right|}
+\lim_{x,y \to 0} \frac {\left| f(x,y) \right|} {\left| g(x,y) \right|} = 0
+\lim_{x\to\infty} f(x)
+\lim_{x\to\infty} g(x)
+\lim_{x\to\infty}O\Big(\frac{1}{\ln{x}}\Big)=0
+\lim_{x\to\infty}\frac{1}{x}
+\lim_{x\to\infty}\frac{\pi(x)\ln{x}}{x}=\lim_{x\to\infty}\Bigg(1+O\Big(\frac{1}{\ln{x}}\Big)\Bigg)=1
+\lim_{x\to\infty}\frac{\theta(x)}{x}=1
+\limsup_{x\to\infty} f(x)
+\limsup_{x\to\infty} f(x) = \lim_{x\to\infty}\sup_{y\geqslant x} f(y).
+\ln\left(\frac{1+T}{1-T}\right)=t-t_{0}
+\ln\left(\frac{\sqrt{2}+1}{\sqrt{2}-1}\right)=\ln\left(\frac{(\sqrt{2}+1)(\sqrt{2}+1)}{(\sqrt{2}-1)(\sqrt{2}+1)}\right)=\ln\left(\frac{(\sqrt{2}+1)^2}{2-1}\right)=2\ln\left(\sqrt{2}+1\right)
+\ln^{2}{2} \leq \ln^{2}{t}
+\ln^{2}{\sqrt{x}} \leq \ln^{2}{t}
+\ln{(t + \sqrt{t^2 +9})} + c < 0
+\ln{|1+x+y|}=(x+y)-2x+\ln{C}
+\ln{|y|}
+\log (1.1^x) = \log 2
+\log 10^{100}=2
+\log(2)=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}\dots
+\log_{\rm e} (R/R_0) = const \times (t -t_0)
+\log{\mathrm{cabin}}
+\log{odds}=-0.616
+\lvert\sqrt{z} \rvert\leq\lvert z\rvert
+\mathbb R^2
+\mathbb{C}^*
+\mathbb{C}^*/\text{Ker}(\phi)\cong(\mathbb{R}^+,\times)
+\mathbb{C}^+
+\mathbb{C}^2
+\mathbb{N^{\star}}
+\mathbb{N}_0
+\mathbb{N}_1
+\mathbb{Q}^*
+\mathbb{Q}^+
+\mathbb{R}\
+\mathbb{R}\rightarrow\mathbb{R}^{-}
+\mathbb{R}^*
+\mathbb{R}^*, \mathbb{Q}^*, \mathbb{C}^*
+\mathbb{R}^+
+\mathbb{R}^2
+\mathbb{R}^2 \rightarrow\mathbb{R}
+\mathbb{R}^3
+\mathbb{R}^5, \mathbb{R}^6, ..., \mathbb{R}^\infty
+\mathbb{R}^n
+\mathbb{R}^{+}
+\mathbb{R}^{-}
+\mathbb{R}^{2}
+\mathbb{R}^{n+1}
+\mathbb{R}^{n}\setminus\cup\{W\subseteq\mathbb{R}^{n}:\; W\; is open\;\&\;\mu\left(W\right)=0\}
+\mathbb{R}^{n}\setminus\cup\{W\subseteq\mathbb{R}^{n}:\; W\; is\; open\;\&\;\mu\left(W\right)=0\}
+\mathbb{Z}, \mathbb{Z}^*, \mathbb{Z}^+, \mathbb{Q}
+\mathbb{Z}=\{\dots,-2,-1,0,1,2,\dots\}
+\mathbb{Z}^*
+\mathbb{Z}^*, \mathbb{Z}^+, \mathbb{N}
+\mathbb{Z}^+
+\mathbb{Z}^n
+\mathbb{Z}^{12}
+\mathbb{Z}_3 \times \mathbb{Z}_7
+\mathbb{Z}_6
+\mathbb{Z}_7
+\mathbb{Z}_9
+\mathbb{Z}_n
+\mathbb{Z}_n= \{0,1,2,\ldots,n-1\}
+\mathbb{Z}_q
+\mathbb{Z}_{19}
+\mathbb{Z}_{205}
+\mathbb{Z}_{25}
+\mathbb{Z}_{37}
+\mathbf^{}\hat{}{r}
+\mathbf{Ax}=\mathbf{0}\text{ has only the trivial solution}\iff \det\mathbf{A}\neq0
+\mathbf{A}=\begin{pmatrix}{1-\lambda &4\\1&-2-\lambda}\end{pmatrix}
+\mathbf{B}e^\mathbf{A}\mathbf{B}^{-1}=e^{\mathbf{B}\mathbf{A}\mathbf{B}^{-1}
+\mathbf{D}=\begin{pmatrix}1& 2 & 3\\4& 5 &6 \\7& 8 &9\end{pmatrix}^{-1}
+\mathbf{E}=\begin{pmatrix}1& 2 & 3\\4& 5 &6 \\7& 8 &9\end{pmatrix}^{-1}
+\mathbf{F\cdot s}=Fs\,\cos\,\theta
+\mathbf{F}=\frac{-GmM_E}{\mathbf{r}^2}
+\mathbf{F}^{0.5}=(x^{0.5},y^{0.5},z^{0.5})
+\mathbf{F}_{21}=-\mathbf{F}_{12}
+\mathbf{Pv}_E = \begin{pmatrix}1&3\\-2&1\end{pmatrix}\begin{pmatrix}1\\1\end{pmatrix}= \begin{pmatrix}4\\-1\end{pmatrix}=\mathbf{v}
+\mathbf{R}_2 - 3\mathbf{R}_1
+\mathbf{W}_A - \mathbf{T} = m_A\mathbf{a}
+\mathbf{W}_A-\mathbf{W}_B= \left(m_A+m_B\left)\mathbf{a}
+\mathbf{W}_B - \mathbf{T} = - m_B\mathbf{a}
+\mathbf{\sum_{i=1}^N{\frac{\partial {x'}^j}{\partial x^i}u^i}}
+\mathbf{a} \boldsymbol{a}
+\mathbf{a}=\dfrac{l}{k}\mathbf{b}
+\mathbf{c}\boldsymbol\cdot(\mathbf{b}-\mathbf{a})=0
+\mathbf{r_1},\mathbf{r_2},\dots
+\mathbf{r}(t)=\left(\sqrt{a^2+b^2}\right)\mathbf{e}_r
+\mathbf{r}_1\to\frac{1}{2}\mathbf{r}_1
+\mathbf{r}_3\to-\mathbf{r}_3
+\mathbf{u}= \alpha\mathbf{v}_1+\beta\mathbf{v}_2
+\mathbf{v}=\frac{\beta}\alpha}\mathbf{w}
+\mathbf{v}_1=\left(\frac{\beta}{\alpha}\right)\mathbf{v}_2
+\mathbf{v}_1\cdot \mathbf{v}_2=\mathbf{v}_1\cdot (\mathbf{v}_1-\alpha \mathbf{v}_1)=\mathbf{v}_1\cdot \mathbf{v}_1 - \alpha \mathbf{v}_1\cdot \mathbf{v}_1
+\mathbf{v}_i(t)=\mathbf{v}_i
+\mathbf{v}_i(t+1)=\mathbf{v'}_i
+\mathbf{v}_i(t-1)
+\mathbf{w} \cdot \mathbf{x}_1=Aw_1+Bw_2
+\mathbf{w}=\left[\!\begin{array}{c}w_1\\w_2\end{array}\!\right],\mathbf{x}_1=\left[\!\begin{array}{c}A\\B\end{array}\!\right] (A=0,B=1)
+\mathbf{w}\mapsto\mathbf{A}^{-1}\mathbf{w}=t^{-1}(\mathbf{w})
+\mathbf{x}(t)=e^{-t}[\frac{1}{6},-\frac{1}{6},\frac{1}{6}]^{T}+e^{t}[t+\frac{3}{2},t+\frac{3}{2},t-\frac{1}{6}]^{T}+e^{2t}[-\frac{2}{3},-\frac{4}{3},0]^{T}
+\mathbf{x}= A \mathbf{v}_1 \mathrm{e}^{5t} + B \mathbf{v}_2 \mathrm{e}^{2t}
+\mathbf{x}_1
+\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_3
+\mathbf{x}_1=\left[\!\begin{array}{c}0\\1\end{array}\!\right]
+\mathbf{x}_2
+\mathbf{x}_2=\left[\!\begin{array}{c}1\\0\end{array}\!\right]
+\mathbf{x}_k=\left[\!\begin{array}{c}p\\q\end{array}\!\right]
+\mathbf{z}^T H(\mathbf{a})\mathbf{z}
+\mathcal{ABCDEFGHIJKLMNOPQRSTUVXYZ}
+\mathcal{C}
+\mathcal{E}
+\mathcal{E}_k
+\mathcal{F}\mathbb{R}
+\mathcal{R}
+\mathcal{R}-{\alpha}
+\mathcal{R}_3
+\mathcal{R}_4
+\mathcal{R}_6
+\mathcal{T}
+\mathcal{x \ = \ \frac{\sqrt{144}}{2} \ \times \ (y \ + \ 12)}
+\mathit{\bf {abc}}
+\mathrm{AB}=\begin{pmatrix}1 & 0\\0 & 1\end{pmatrix}
+\mathrm{AB}=\left(\begin{array}{cc}\left(8\times2+5\times-3\right) & \left(8\times-5+5\times8\right)\\\left(3\times2+2\times-3\right) & \left(3\times-5+2\times8\right)\end{array}\right)
+\mathrm{Corr}(X,Y)
+\mathrm{Re}(ve^{i\omega t})
+\mathrm{[kg][m] [s]}^{-1}
+\mathrm{\widehat{O}} = ...
+\mathrm{\widehat{O}}=...
+\mathrm{arcsin}
+\mathrm{curl} \mathbf{B} = \mu_0 \mathbf{J} +\mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}
+\mathrm{curl}\mathbf{B}=\mu_0\mathbf{J}
+\mathrm{div} \mathbf{B}
+\mathrm{div} \mathbf{B} =\frac{\partial B_x}{\partial x} +\frac{\partial B_y}{\partial y}+ \frac{\partial B_z}{\partial z}
+\mathrm{e}^{-t/\tau}
+\mathrm{log}_e\left(e^{-\frac{x}{y}}\right)=-\frac{x}{y}
+\mathrm{m s}^{-1}
+\mbox{LaTeX}
+\mu \le 1
+\mu=T\pm(T^2 -1)^{1/2}
+\mu=f'(a_1)f'(a_2)f'(a_3)=0
+\nabla\times{\bf F}
+\nabla^2{\bf u}=\left({1\over r}{\partial\over\partial r}\left(r{\partial u_r\over\partial r}\right)+{\partial^2 u_r\over\partial z^2}\right){\bf e_r}+{u_r\over r^2}{\partial^2\over\partial\theta^2}({\bf e_r})+(\nabla^2u_z){\bf e_z}
+\nabla^2{\bf u}=\left({1\over r}{\partial\over\partial r}\left(r{\partial\over\partial r}\right)+{1\over r^2}{\partial^2\over\partial\theta^2}+{\partial^2\over\partial z^2}\right)\left(u_r{\bf e_r}+u_z{\bf e_z}\right)
+\nabla{p}=-c{\bf i}
+\not\subseteq
+\oint_C{\bf u}.{\bf dr}
+\omega = 1- ...
+\omega = \frac{2\pi}{(27\times24+7)\times3600} = 2.664624812\dots
+\omega = \left | \frac{\mathrm{d}\theta}{\mathrm{d}t} \right | = \frac{2\pi \text{ rad}}{T}
+\omega = \left | \frac{\mathrm{d}\theta}{\mathrm{d}t} \right |= \frac{2\pi \text{ rad}}{T}
+\omega=e^{\frac{2\pi{i}}{p-1}}=e^{\frac{2\pi{i}}{\phi(p)}
+\omega_n=\frac{\left(n+\tfrac{1}{2}\right)\pi}{L} = \sqrt{\lambda_n-3}
+\overline\lim_{n\rightarrow\infty} a_n
+\partial{H}{x}
+\partial{\bf e_\theta}/\partial\theta = -{\bf e_r}
+\partial{\bf e_r}/\partial\theta
+\partial{\bf e_r}/\partial\theta = {\bf e_\theta}
+\phi = \dfrac{p-q}{(q)-(p-q)}= \dfrac{p-q}{2q-p}
+\phi = \dfrac{p}{q}
+\phi = \dfrac{q}{p-q}
+\phi \left ( \mathbb{R}^2 \right )\subseteq \mathbb{R}
+\phi(\frac{\phi^{n}-1}{\phi-1})=\phi(\frac{\phi^{n}-1}{\frac{1}{\phi}})=\frac{\phi\phi}{1}(\phi^{n}-1)=\phi^{2}(\phi^{n}-1)
+\phi(\mathbb{R}^2)=\mathbb{R}
+\phi:G\to\mathbb{Z}^n
+\phi:\mathbb R^2\rightarrow\mathbb R^2
+\phi=150^{\circ}
+\phi=30^{\circ}
+\phi=45^{\circ}
+\phi\colon(\mathbb{R}^*,\times)\to(\mathbb{R}^*,\times)
+\phi\colon(\mathbb{R}^2,+)\longrightarrow(\mathbb{R},+)
+\phi\left ( \mathbb{R}^2 \right )\supseteq \mathbb{R}
+\phi^{n}
+\phi_1(x)=\sqrt{\frac{2}{L}}\sin{\left(\frac{\pi x}{L}\right)}
+\pi = 180^{\circ}
+\pi \over 2
+\pi(x)=\frac{x}{\ln{x}}+O\Big(\frac{x}{\ln^{2}{x}}\Big)
+\pi<\dfrac{22}{7}
+\pi<\phi<\dfrac{3\pi}{2}
+\pi\:^{\circ}C
+\pi^{2}\hbar^{2}
+\pi{D} = 360^{\circ}
+\pm 2 = \pm {1} + c
+\pm \sqrt{\dots}
+\pm\frac{b}{a}\sqrt{x^{2}}=\pm\frac{b}{a}x
+\pounds\dfrac{5000}{80}\times10
+\psi_1(x)=\sqrt{\frac{2}{L}}\sin{\left(\frac{\pi x}{L}\right)}
+\quad\int_0^\infty \lim_{\delta y \to 0^+} \delta y \, dx = \int_0^\infty 0 \,dx = 0
+\quad\lim_{\delta y \to 0^+} \int_0^\infty \delta y \, dx = \lim_{\delta y \to 0^+} \infty = \infty
+\rho_b = \rho_{b,0} (1+z)^3 = \rho_{crit} \Omega_{b,0} (1+z)^3
+\rho_m = (1+z)^3 \rho_{m0}
+\rho_r = (1+z)^4 \rho_{r0}
+\rho_{crit} \Omega_{b,0} \sim 4 \times 10^{-28}
+\rho_{crit} \sim 9.3 \times 10^{-27}
+\rho{e}^{i\phi} \mapsto \rho^{\frac{1}{2}}e^{i\frac{\phi}{2}}
+\rm{d}r
+\rm{sgn}\cos(\omega t)
+\rvert\sqrt{z}\rvert \leq z
+\sin \phi\,/\,2
+\sin \pi\,/\,2
+\sin x\ \cos x\text{ rather than }\sin x\cos x
+\sin x\leq 1\implies3-2\sin x\geq1\implies\dfrac{1}{3-2\sin x}\leq 1\implies\dfrac{\pi-x}{3-2\sin x}\leq\pi-x
+\sin(2k\pi+\frac{1}{2}\pi)}=\sin{\frac{1}{2}\pi}=1
+\sin\delta\theta\rightarrow\delta\theta\text{ as }\delta\theta\rightarrow 0
+\sin\theta=\frac{b}{\sqrt{a^2+b^2}
+\sin^2 x=1-\cos x\\
+\sin^2(2\theta)=(2\sin(\theta)\cos(\theta))^2
+\sin{x}
+\sin{x}=0
+\sin{}
+\sqrt
+\sqrt 2
+\sqrt 25
+\sqrt 3
+\sqrt 3/2
+\sqrt 36
+\sqrt 5
+\sqrt N
+\sqrt [6]{1+12\,\delta}\sqrt [3]{1+{\frac { \sqrt{12} \sqrt{\delta}}{ \sqrt{1+12\,\delta}}}}
+\sqrt a
+\sqrt x
+\sqrt x \ne \sqrt{x}
+\sqrt x=-8
+\sqrt x=2
+\sqrt0
+\sqrt2
+\sqrt3
+\sqrt4
+\sqrt9
+\sqrt9=3
+\sqrt[3]{x^{2}+y^{2}}
+\sqrt[n]{a^{n}}=a
+\sqrt[n]{a^{n}}=|a|
+\sqrt\frac{1}{2}
+\sqrt\frac{a}{a-m'}
+\sqrt\sqrt\sqrt\sqrt\sqrt\sqrt\sqrt{\sqrt{x^2+1}}}}}}}}
+\sqrt{(-1 - 2)^2} = \sqrt{{(-3)}^2} = \sqrt{9}=3
+\sqrt{(-1)^2+(-7)^2}=5\sqrt{2}
+\sqrt{(-1)^{2}+2^{2}}=\sqrt{5}
+\sqrt{(3+5)^2}=8
+\sqrt{(\frac{dx}{dt})^2+(\frac{dy}{dt})^2}
+\sqrt{(a-b)^2}
+\sqrt{(a-b)^2}=\sqrt{(b-a)^2}
+\sqrt{(a-b)^2}=a-b
+\sqrt{(a-b)^2}=b-a
+\sqrt{(v^2/c^2-1)}^{-1/2}
+\sqrt{(x-2)^{2}}=\sqrt{9}
+\sqrt{-1}\times\sqrt{-1}\ne\sqrt{-1\times-1}
+\sqrt{-1}^{\sqrt{-1}}=i^i
+\sqrt{1+y'^2}
+\sqrt{1-(\frac{1}{2})^2}
+\sqrt{1-x^{2}}
+\sqrt{18}&=3\sqrt{2}
+\sqrt{18}&=\sqrt{3}\sqrt{3}\sqrt{2}
+\sqrt{1^2 + (-1)^2}
+\sqrt{3}=\sqrt{2^{2}+(-1)}\approx2-\frac{1}{4}
+\sqrt{9\text{~m}^2}=3\text{~m}
+\sqrt{\dfrac{25}{4}}=\dfrac{\sqrt{25}}{2}
+\sqrt{\dfrac{3^{2}+6^{2}-4\cdot5}{4}}=\dfrac{\sqrt{3^{2}+6^{2}-4\cdot5}}{2}
+\sqrt{\dfrac{5}{2}\times\dfrac{5}{2}}=\dfrac{\sqrt{25}}{2}
+\sqrt{\dfrac{9+36-20}{4}}=\dfrac{\sqrt{9+36-20}}{2}
+\sqrt{\dfrac{a^{2}+b^{2}-4c}{4}}=\dfrac{\sqrt{a^{2}+b^{2}-4c}}{2}
+\sqrt{\dfrac{a}{b}}=\dfrac{\sqrt{a}}{\sqrt{b}}
+\sqrt{\langle v_x\rangle ^2+\langle v_y \rangle ^2+\langle v_z \rangle^2}
+\sqrt{\sqrt{36^2+77^2}-4}=\sqrt{85-4}=9
+\sqrt{a^{2} +h}\approx\frac{h}{2a}+a
+\sqrt{a^{3}}
+\sqrt{a}+\sqrt{b}\ne\sqrt{a^2+b^2}
+\sqrt{e^{\pi \sqrt{e^{\pi \sqrt{e^{\pi}}}}}}
+\sqrt{n(n+1)}-n= \dfrac{n}{\sqrt{n(n+1)}+n}
+\sqrt{n+1}-\sqrt{n}=\dfrac{1}{\sqrt{n+1}+\sqrt{n}}\leq\dfrac{1}{\sqrt{n}+\sqrt{n}}
+\sqrt{x^3+\sqrt\alpha}
+\sqrt{x}\ge0\forall x \in \mathbb{R}, x\ge 0
+\sqrt{~~}
+\sum \Big( \frac{1}{p_{m}} \Big)^{t}
+\sum _1 ^\infty \frac{(-1)^n}{n}
+\sum _1 ^\infty \frac{(-1)^{n-1}(-1)}{n}=\sum _1 ^\infty \frac{(-1)^{n+1}(-1)}{n}
+\sum c_j \mathbf{A}^j
+\sum f(n)\ln{p}
+\sum {n \times f(n)}
+\sum(-1)^n b_n=-\sum(-1)^{n+1}b_n
+\sum\;C^n\text{ for }0\leq\;C<1
+\sum\;C^n\text{ for }\left|C\right|<1
+\sum\dfrac{1-2n^2+3n^4}{2n^4-3n+4}
+\sum\dfrac{1}{n}
+\sum\dfrac{3^n}{n(-3)^n}=\sum\dfrac{1}{n}.\left(\dfrac{3}{-3}\right)^n=\sum\dfrac{(-1)^n}{n}
+\sum\dfrac{n-1}{n^2-2}
+\sum^{n}_{i=1}a_{i}
+\sum^{n}_{i=1}a_{i}\times r
+\sum_\alpha{g_{\alpha\mu}A^\alpha}
+\sum_\alpha{g_{\mu\alpha}A^\alpha}
+\sum_\alpha{g_{a b}{A_{c d e f g h}}^{i j k l m a}}={A_{b c d e f g h}}^{i j k l m}
+\sum_\nu{F^{\mu\nu}\eta_{\nu\beta}}
+\sum_b{\eta_{cb}F_{ab}}
+\sum_b{\eta_{cb}F_{ba}}
+\sum_i \boldsymbol F_i
+\sum_i \boldsymbol \Gamma_i
+\sum_i{{M^i}_i}
+\sum_{(r|p)=1}{r}=\sum_{(r|p)=1}{(p-r)}
+\sum_{i=1}^N{\frac{\partial {x'}^j}{\partial x^i}u^i}
+\sum_{j,k}\Gamma_{\, jk}^{i}t^{i}\frac{\mathrm{d}x^{k}}{\mathrm{d}u}
+\sum_{m=1}^{n}a_{1m}
+\sum_{n=0}^{35}n^2\ne70
+\sum_{n=1}^\infty\frac{(-1)^n}{n}
+\sum_{n=1}^\infty\frac{(-1)^{n+1}}{n}
+\sum_{n=1}^\infty\frac{(-1)^{n}}{n}  = -1\sum_{n=1}^\infty\frac{(-1)^{n+1}}{n}
+\sum_{n=1}^\infty\left|\frac{(-1)^n}{n}\right|=\sum_{n=1}^\infty\frac{1}{n}
+\sum_{n=1}^{\infty }\frac{1}{n}
+\sum_{n=1}^{\infty}M_n
+\sum_{n=1}^{\infty}\left ( \frac{4}5{} \right )^{n}=\frac{\frac{4}{5}}{1-\frac{4}{5}}
+\sum_{n=1}^{\infty}\left ( \frac{4}5{} \right )^{n}=\sum_{n=1}^{\infty}\left ( \frac{4}{5} \right )\left ( \frac{4}5{} \right )^{n-1}=\sum_{n=0}^{\infty}\left ( \frac{4}{5} \right )\left ( \frac{4}5{} \right )^{n}
+\sum_{n=1}^{\infty}|a_n|
+\sum_{n=1}^{\inf}{\frac{(-1)^{n-1}}{n^s}=0
+\sum_{n=1}^{n=N} 4 \pi r_{n}^{2} \delta r_{n}
+\sum_{p\in \mathcal{P}}\frac{1}{p}
+\sum_{p\le x}\frac{f(p)logp}{logp}=\sum_{p\le x}\frac{f(p)logp}{logx}-\sum_{p\le 2}\frac{f(p)logp}{log2}-\text{integral term}
+\sum_{p\leq x}f(p)\ln{p}=\sum_{n\leq x}b(n)=B(x)
+\sum_{p|k}\frac{\ln{p}}{p}
+\sum_{r=1}^\infty {g_r(t) \over 1-G_r(t)} \delta t
+\sum_{r=1}^{p-1}{r}=\sum_{r=1}^{p-1}{(p-r)}
+\sum_{u,v} {g^{u v}R_{u v}} - \frac 1 2 R \sum_{u,v} {g^{u v}g_{u v}} = -k \sum_{u,v} {g^{u v}T_{u v}}
+\sum_{u} {T^u{}_u} = T
+\sum_{u} {T_u{}^u}
+\sum_{y< n\leq x}b(n)g(n)=B(x)g(x)-B(y)g(y)-\int_{y}^{x}B(t)g'(t)dt
+\sum_{y<n\leq x}b(n)\frac{1}{\ln{n}}=\sum_{n\leq x}1_{p}(n)f(n)\frac{\ln{n}}{\ln{n}}=\sum_{p\leq x}f(p)
+\sum{a_n}
+\sum{b_n}
+\sup\{1, 1.4, 1.41, 1.414, 1.4142,\dots\}=\sqrt{2}
+\sup\{b-a\,\colon1<a<b<3\text{ so }[a,b]\subseteq(1,3)\}
+\tan \frac{1}{6}\pi=\dfrac{\frac{1}{2}a}{h}
+\tan x = \dfrac{\sin x}{\cos x}
+\tan(\phi+\theta)=\dfrac{\tan\phi+\tan\theta}{1-\tan\phi\tan\theta}
+\tan({\theta})=\frac{1}{\sqrt{3}}
+\tan\left(\frac{1}{12}\pi\right)=\dfrac{-2\sqrt{3}\pm\sqrt{(2\sqrt{3})^2+4}}{2}
+\tan\left(\frac{1}{12}\pi\right)=\dfrac{\frac{1}{2}a}{h}=\frac{1}{2}a
+\tan\left(\frac{1}{6}\pi\right)=\dfrac{2\tan\left(\frac{1}{12}\pi\right)}{1-\tan^2\left(\frac{1}{12}\pi\right)}
+\tan\left(\frac{1}{6}\pi\right)=\dfrac{\tan\left(\frac{1}{12}\pi\right)}{1-\tan^2\left(\frac{1}{12}\pi\right)}
+\tan{2\pi x}
+\tau \over 4
+\tau\mathrm{e}^{t/\tau}
+\textbf{Q}_\theta=-\cos^2(2\theta)-\sin^2(2\theta)=-1
+\textbf{Q}_\theta=\begin{pmatrix}\cos 2\theta & \sin 2\theta\\\sin 2\theta & -\cos 2\theta \end{pmatrix}
+\textrm{d}m=\frac{M}{L}\;\textrm{d}r
+\textrm{m s}^{-1}
+\textstyle\lim_{x\to\;c}f(x)
+\text{%age eaten } = \frac{140}{200} \times 100% = 70%
+\text{%age eaten } = \frac{70}{100} \times 100%=70%
+\text{-}5
+\text{A}n>\text{A}n+1\quad\text{for } n = 0,1,2,\ldots
+\text{Car } A \text{ and car }B\text{ race round an elliptical track.}
+\text{D}
+\text{For } x\in\mathbb{R}.
+\text{For }g\in(G,*), g^2=g*g, g^3=g*g*g,\ldots
+\text{Given, }x_0=0, \quad x_{n+1} = (x_{n})^2+c\quad(n=0,1,2,\ldots)
+\text{Group\;}\mathbb{Z}_n
+\text{Hense }a+b=c+d
+\text{Hense }t(\mathbf{v}_1+\mathbf{v}_2)=t(\mathbf{v}_1)+t(\mathbf{v}_2)
+\text{I want the tutor to see this bit.}\\\text{And I want the tutor to see this bit.}
+\text{If }\left\{a_n\right\}\text{ is a null sequence, then }\lim_{n\rightarrow\infty}a_n=0
+\text{If }x=1+\frac{1}{n}\text{ then }x\in E\text{ and so }x<m'
+\text{If}\ a,b\in\mathbb{R},\text{then}\ a\times b\in\mathbb{R}.
+\text{Im}(\phi)=\{ir\colon r\in \mathbb{R}\}
+\text{Im}(\phi)\cong(\mathbb{R},+)
+\text{Im}(\phi)\subseteq\{ir\colon r\in \mathbb{R}\}
+\text{Im}(e^{i(\theta+\phi)})
+\text{Im}(t)=\langle\{e^x\cos x-e^x\sin x,e^x\sin x+e^x\cos x\}\rangle
+\text{Im}(t)=\{a(e^x\cos x-e^x\sin x)+b(e^x\sin x+e^x\cos x)\colon a,b\in\mathbb{R}\}
+\text{Integrating and replacing substitution we get }\sin(\ln(x))
+\text{Integration becomes }\int\frac{du}{u}
+\text{Its a substitution problem rather than a parts one}
+\text{Let } f=\cos x \therefore f'=-\sin x\\\text{Let } g'=\sin x \therefore g=-\cos x\\\int(\sin x \cos x)\text{d}x=-\cos^2 x-\int(\sin x \cos x)\text{d}x\\\therefore 2\int(\sin x \cos x)\text{d}x=-\cos^2 x\\\therefore \int(\sin x \cos x)\text{d}x=-\frac{\cos^2 x}{2}\\
+\text{Let } u = x^4-1, \frac{du}{dx}=4x, du = 4x dx
+\text{Let }\circ=\times
+\text{Let }\tau=2\pi.
+\text{Let }d\text{ be the distance from the origin to general point } (x,y)=p\in\mathbb{R}^2, p\not\in B
+\text{Let }f(x)=\begin{cases}0, & n=0,\\4,&n=1,\\1+3+\dots+(2n-1), & n>1.\\\end{cases} \\\text{Let }P(n) \text{be statement}\\f\left ( n \right )=n^{2}\\\text{P(0) is true as }f(0)=0^{2}=0\\\text{see I2 pg 45 for induction part }\\P(k)\Rightarrow P(k+1)\\
+\text{Let }g=1,h=2,G=H=\mathbb{R^*},\circ=*=\times
+\text{Let }g=1,h=2,G=H=\mathbb{R^*},\text{ where }\circ\text{ and }*\text{ are the multiplication operator}
+\text{Let }x=0\text{ so,}
+\text{Letting } u = \ln(x), \frac{du}{dx}=\frac{1}{x},du = \frac{1}{x}dx\\
+\text{Log}(1+w)
+\text{Now we have}\int\cos(u)du
+\text{Orb}(0,0) = \left\{\begin{pmatrix}a&b\\0&1\end{pmatrix}\wedge(0,0)\colon a,b\in\mathbb{R},a \neq 0\right\}=\ ??
+\text{Orb}(x,0) = \left\{\begin{pmatrix}a&b\\0&1\end{pmatrix}\wedge(x,0)\colon a,b\in\mathbb{R},a \neq 0\right\}=\ ??
+\text{Replace }\frac{1}{x}dx \text{ with } du \text{ as above}
+\text{Re}(e^{i(\theta+\phi)})
+\text{Since equations 1 and 2 are equivalent, then }a+b=c+d
+\text{So we have }(3)=(4)\text{, hense }0=1\text{\ldots~um.}
+\text{The position of car } A\text{ is given by the parametric equations }x=2\cos(t/60), y=sin(t/60)
+\text{The position of car } B\text{ is given by the parametric equations, }x=2\cos(t/50), y=sin(t/50)
+\text{Tom}
+\text{Where }x\text{ is an integer.}
+\text{\Delta} \ \text{\Sigma}
+\text{area}=\frac{1}{2}ah
+\text{area}=\frac{1}{2}ah=\frac{1}{2}a=\tan\left(\frac{1}{12}\pi\right)
+\text{average energy per mode}=\frac{\sum_0^\infty nhfe^{-nhf/kT}}{\sum_0^\infty e^{-nhf/kT}}
+\text{constant} = 2y^2+\frac{3}{2}x^2 t
+\text{constant} =y^2+\frac{3}{4}x^2 t
+\text{constant}=y^2+x^2
+\text{e}^{x} = \left(\text{e}^{\frac{x}{2}}\right)^2
+\text{for all }g\in\;G
+\text{for }n=1,2,\ldots,
+\text{lim}_{h \rightarrow 0}\frac{f(\alpha + h) - f(\alpha)}{h} = \text{lim}_{t \rightarrow 0}\frac{f(\alpha + it) - f(\alpha)}{it}
+\text{road}=\text{road}_{\text{car}_1}=\text{road}_{\text{car}_2}
+\text{so it follows that }(a,b,c)\text{ is a basis for}S
+\text{spt }\mu=\mathbb{R}^{n}\setminus\cup\{W\subseteq\mathbb{R}^{n}:\; W\;\text{ is o{p}en \& }\mu\left(W\right)=0\}
+\text{tan}^{-1}
+\text{there exists a positive real number }\alpha\text{ such that }\|Ax\|\geqq\alpha\|x\|\text{ for every vector $x$.}
+\text{therefore }\forall p \not\in B, d>\sqrt{2},\text{ hence } x^2+y^2 > 2 \text{ by pythagoras. So } p\not\in A
+\text{tyre}=\text{tyre}_{\text{car}_1}=\text{tyre}_{\text{car}_2}
+\text{with ``quotes''}
+\tfrac12\tan\left(\tfrac14\pi-\tfrac12x\right)
+\therefore (\frac{364!}{342!})*365^{-24}
+\therefore 1.1^x = 2
+\therefore F_1 + F_3 ... + F_{2n-1}=F_{2n}
+\therefore F_1 + F_3 ... + F_{2n-1}=F_{2n} - F_0
+\therefore \;\;\;\; {ax^2 + bx + c = 0 \;\;  \Leftrightarrow \;\; x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}}
+\therefore \beta=f'(\eta)
+\therefore \frac{\sqrt {15}}{\sqrt 3} = \frac{\sqrt {15}}{\sqrt 3} \times \frac{\sqrt 3}{\sqrt 3}
+\theta = 30^{\circ}
+\theta(x)=x+O\Big(x\cdot\frac{1}{\ln{x}}\Big)
+\theta=\frac{1}{2} \arctan \frac{10\sqrt{3}}{3-(-7)}=\frac{\pi}{6}\\
+\underbrace{\Lambda\ast...\ast\Lambda}
+\underline n
+\underline\lim_{n\rightarrow\infty} a_n
+\underline{\mathrm{\ddot{r}}
+\underline{\mathrm{\dot{r}}
+\varepsilon\,\text{-}\,\delta
+\varnothing
+\vert P_c(0) \vert >2
+\vert z \vert < \pi /4
+\vert z \vert < \pi/2
+\vert z \vert \geqslant \pi/2
+\widehat{L}_z
+\widehat{L}_z \,Y_{2,1}(\theta,\phi) = -i\hbar \frac{\partial}{\partial \phi} \left( -\sqrt{\frac{15}{8\pi}} \cos \theta \sin \theta \exp(+i\phi) \right)
+\widehat{L}_z \,Y_{lm}(\theta,\phi) = m \hbar Y_{lm}(\theta,\phi)
+\widehat{OR}_{observed}=\frac{ad}{(b+f)\times c}=\frac{b}{(b+f)}\times\frac{ad}{bc}
+\widehat{OR}_{true}=\frac{ad}{bc}
+\zeta{(s)}
+\zeta{(s)}=0
+\{ [-1, \infty) - {2x^2 -1 : x \in \mathbb{Z} \}
+\{(-4-2k,2+k,k)\colon k\in \mathbb{R}\}
+\{(\alpha+2\beta,0,\alpha+3\beta\colon\alpha,\beta\in\mathbb{R}\}
+\{(\alpha-2\beta,-2\alpha+4\beta,0)\colon\,\alpha,\beta\in\mathbb{R}\}
+\{(r,0,0,0,...,0)\in\mathbb{R}^n\colon\,r\in\mathbb{R}\}
+\{(x,0,z)\colon\,x,z\in\mathbb{R}\}
+\{(x,0,z)\colon\,x,z\in\mathbb{R}\}\subseteq\langle\,S\rangle
+\{(x,0,z)\colon\,x,z\in\mathbb{R}\}\subseteq\{(\alpha-2\beta,0,\alpha+3\beta)\colon\,\alpha,\beta\in\mathbb{R}\}
+\{I_n\}=\{\int^n_1 f\}
+\{\alpha(1,1)\colon\alpha\in\mathbb{R}\}=\{(\alpha,\alpha)\colon\alpha\in\mathbb{R}\}
+\{\lambda(1,0,1)+(1-\lambda)(1,0,0)\colon \lambda\in\mathbb{R}\}=\{(1,0,\lambda):\lambda\in\mathbb{R}\}
+\{a_2, a_3, a_4,\dots\}
+\{a_n\}=\left\{\frac{1}{3n^2-4}\right\},\quad\;n=1,2,\ldots
+\{a_n\}^\infty_2
+\{a_n\}^\infty_{n=2}
+\{f^k(z^{\prime\prime})\}_{k\ge0}
+\{u_n\}_{n\geq 1}
+\{x\in S\colon g(x)\in S\}
+\{z\in\mathbb{C} \colon |z|=1\}
+\|\mathbf{w}\|=\sqrt{(1^2+(-2)^2+ 1^2}=\sqrt{6}
+\|x\|=1
+^{10}C_4
+^{10}C_6
+^{14}\text{C}
+^{20}C_8(2x)^{12}\bigg(-\frac{y}{2}\bigg)^8=125970\times 16x^{12}y^8
+^{20}C_r(2x)^{20-r}\bigg(-\frac{y}{2}\bigg)^r
+^{5}C_{3}=10
+^{5}C_{3}\times5^{(5-3)}\times(-x^{2})^3
+^{5}C_{3}\times5^{2}\times x^{6}
+^{n}C_{k}=\frac{n!}{(n-k)!k!}
+^{n}C_{k}a^{n-k}b^{k}
+_{2}
+_{s}
+``text''
+a : R \rightarrow R^{2}
+a < b \iff -4a > -4b
+a < b \iff a^n<b^n
+a = (1+c)^{1/n},\ b= 1+\dfrac{c}{n}
+a = \left(-\frac{1}{3}\right)^1=-\frac{1}{3}
+a \geq \frac{1}{2}n
+a \ne d
+a \times_{n} \left(b \times_{n} c\right) = c
+a \times_{n} b = 1
+a \times_{n} b\times_{n} c = c
+a \times_{n} c
+a \times_{n} d = c
+a'=4x^{3}
+a((x + \frac{b}{2a})^2-\frac{b^2}{a^2})
+a((x-p)^2-p^2)
+a(x)\, {d/dx}
+a(x)\, {df/dx}
+a(x+ [a \ number])^2 + [a \ number]
+a+bx+cx^2+dx^3+...
+a,\,b
+a,b,c \in \mathbb{Z}_n)
+a,d\in\mathbb{R}, ad\ne0\text{ hence }a,d\in\mathbb{R^*}
+a-\dfrac{b}{c}=\dfrac{(a\cdot c)-b}{c}
+a-b<0\iff a<b\iff b-a>0
+a=10, b=13-16y \text{ and } c=5-24y
+a=5\quad b=-x^{2}\quad n=5\quad k=3
+a=\frac{1\text{~N}}{1\text{~kg}}=1 \text{~m~s^{-2}}
+a=\frac{F}{m}=\frac{1\text{~N}}{1\text{~kg}}=1\text{~m~s^{-2}}
+a=\frac{F}{m}=\frac{1\text{~kg~m~s^{-2}}}{1\text{~kg}}=1 \text{~m~s^{-2}}
+a=a_0=\left(-\dfrac{1}{3}\right)^0 = 1
+a=a_1=\left(\dfrac{1}{2}\right)^1 =\dfrac{1}{2}
+a=x^{4}
+a\,\delta\theta
+a\bold{x}
+a\circ a =a^2 \not\in \{e,a,a^5\}
+a\equiv b\bmod{(n)}
+a\ne d
+a\ne1
+a\sim_1 b \text{ if } a=b
+a\sim_2 b \text{ if } a,b\in X
+a\sim_2 b \text{ if } b\in X
+a\times_n b=1 \implies b \times_n c
+a^2 \times a^3 = a\times a ........\times a\times a\times a = a^5
+a^2=d^2\text{ so }a=\pm d
+a^{\frac{m}{n}}=(\sqrt[n]{a})^m
+a^{b}
+a^{n+1}b^{n}\neq ab^{n}\neq ab^{n+1}
+a^{n}\times b^{n}=ab^{n}
+a_0.a_1a_2\dots a_n + \dfrac{1}{10^n}
+a_0=1=c_1(3)^0+c_2(-1)^0
+a_1 = \frac{2\omega}{\pi}\int_{0}^{\frac{\pi}{\omega}}dt cos(\omega t)sgn(acos(\omega t))
+a_1 = \frac{2}{\pi}\int_0^\pi\cos\theta~\rm{sgn}(\cos\theta)~d\theta=\frac{2}{\pi}\int_0^{\pi/2}\cos\theta~d\theta-\frac{2}{\pi}\int_{\pi/2}^\pi\cos\theta~d\theta,
+a_1=0,a_{n+1}=2a_n+1,(n=1,2,3...)
+a_1=2=c_1(3)^1+c+2(-1)^1
+a_2u''+a_1u'+(b+\lambda)u=0
+a_k = \frac{4}{\tau}\int_0^{\tau/2}\rm{sgn}(\cos\omega t)\cos(2k\pi t/\tau)~dt;
+a_k=\frac{2\omega}{\pi}\int_0^{\pi/\omega}\rm{sgn}\cos(\omega t)\cos(k\omega t)~dt,
+a_n = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + ... + \frac{(-1)^n}{2n+1}
+a_n = 1,b_n = \dfrac{1}{\sqrt{n}}
+a_n \to \infty\ as\ n \to \infty
+a_n,b_n\to 0
+a_n= \dfrac{1}{n},b_n = \dfrac{1}{\sqrt{n}}
+a_n= \dfrac{1}{n},b_n = \dfrac{1}{n}
+a_n=(-1)^nb_n
+a_n=(-1)^{n+1}
+a_n=(-1)^{n+1}b_{n}
+a_n=(3n+2)^2\implies a_{n+1}=(3n+1)^2
+a_n=\begin{cases}1&\text{if }n=0\\\dfrac{(-1)^{n+1}}{2^n}&\text{if }n>0\end{cases}
+a_n=\dfrac{(-1)^n}{4n-5}
+a_n=\dfrac{(-1)^n}{n-10}
+a_n=\dfrac{(-1)^n}{n},b_n=\dfrac{1}{n}
+a_n=\dfrac{(-1)^{n+1}}{n}
+a_n=\dfrac{(n!)^2}{(2n)!}
+a_n=\dfrac{1}{2^n}
+a_n=\dfrac{1}{n(-2)^n}
+a_n=\dfrac{2n^3+1}{n^2}
+a_n=\dfrac{3}{4}(3)^n+\dfrac{1}{4}(-1)^n=\dfrac{3^{n+1}+(-1)^n}{4}
+a_n=\dfrac{n+2^n}{n^2+2^n}=\dfrac{n/2^n+1}{n^2/2^n+1}
+a_n=\dfrac{n-1}{n^2-2}
+a_n=\dfrac{n-2^n}{n^2+2^n}=\dfrac{n/2^n-1}{n^2/2^n+1}\to-1\text{ as }n\to\infty
+a_n=\dfrac{n}{n^3+1}
+a_n=\frac{{\frac{n^2}{n^2}+\frac{1}{n^2}}}{{\frac{3n^2}{n^2}-\frac{5}{n^2}}
+a_n=\frac{{n^2}+1}{{3n^2}-5}
+a_n=b_n=\frac{(-1)^n}{\sqrt{n}}
+a_n=c_1\alpha^n+c_2\beta^n=c_1(3)^n+c_2(-1)^n
+a_n=n,\;b_n=\frac{1}{n^2}\Rightarrow\;a_nb_n=\frac{1}{n}
+a_n\ge0
+a_n\not\leq b_n
+a_n\to1,b_n\to0
+a_n\to\dfrac{0+1}{0+1}=1\text{ as }n\to\infty
+a_{1}$=1, $a_{n+1}=a_{n}^{\frac{2}{3}}+3(n=1,2,3,...)
+a_{grav}=3.539\times10^{-54} ms^{-2}
+a_{i}
+a_{n+1}=\dfrac{((n+1)!)^2}{(2(n+1))!}=\dfrac{((n+1)!)^2}{(2n+2)!}
+a_{n+1}=\dfrac{1}{2^{n+1}}
+a_{n+1}=\frac{1}{2^{n+1}\left ( n+1 \right )^{2}}
+a_{n}
+a_{n}=\dfrac{v_{0}r(1-r^{n})+n(c_{0}+\dfrac{1}{2}d(n+1))}{n}
+a_{n}=\dfrac{v_{0}r(1-r^{n})}{n}+\dfrac{n(c_{0}+\dfrac{1}{2}d(n+1))}{n}
+a_{n}=\dfrac{v_{0}r}{n}(1-r^{n})+c_{0}+\dfrac{1}{2}d(n+1)
+a_{n}=\dfrac{v_{0}r}{n}\times(1-r^{n})+(c_{0}+\dfrac{1}{2}d(n+1))
+a_{n}=\frac{n^{3}-4n}{n^{3}}
+a_{n}\lambda^{n} + a_{n-1}\lambda^{n-1} + ... + a_{1}\lambda + a_{0} = 0
+a_{n}d^{n}y/dx^{n} + a_{n-1}d^{n-1}y/dx^{n-1} + ... + a_{1}dy/dx + a_{0}y = 0
+ab-ab^{n+1}=ab\times 1-ab\times b^{n}=ab(1-b^n)
+ad \ne 0
+and all sides are equal.Let's say all the sides of our equilateral triangle equal 2. If we bisect the triangle we wind up with two right-angled triangles where the internal angles are
+average~energy~per~mode=\frac{hc}{\lambda}\left(\mathrm{e}^{hc/\lambda kT}-1\right)^{-1}
+ax\ne\frac{n\pi}{2}, n\in\mathbb{O}
+ax\ne\pm\frac{(2n-1)\pi}{2},n\in\mathbb{Z}
+ax\ne\pm\frac{n\pi}{2},  n\in\mathbb{Z}
+ax\ne\pm\frac{n\pi}{2}, n\in[...-5,-3,-1,1,3,5...]
+ax^2 + bx + c = 0 \; \therefore \; x = \frac{-b\pm\sqrt{b^2 - 4ac}}{2a}
+ax^2 + bx + c = 0\;\Leftrightarrow\;x=\frac{-b\pm\sqrt{b^2 - 4ac}}{2a}
+ax^{2}+bx+c=0
+ax^{2}+bx=-c
+b \geq \frac{1}{4}n
+b \ne d
+b \times_{n} c
+b \times_{n} c = d \times_{n} c
+b \times_{n} c \ne 0
+b \times_{n} c \times_{n} c^{-1} = d \times_{n} c \times_{n} c^{-1}
+b'=cos(x)
+b(n)=1_{p}(n)f(n)\ln{n}
+b,d\in \mathbb{Z}_q
+b-d=(m-n)q\implies b-d\equiv 0\pmod q
+b=p_1^{c1} p_2^{c2} ... p_r^{cr}
+b>\sqrt a
+b\ge0
+b\left(\frac{1}{2}\right)^0=b
+b\left(\frac{1}{2}\right)^1=\frac{1}{2}b
+b\sqrt{a/b} = \sqrt{{{b^2}a}/b} = \sqrt{ab}
+b^{*}b = |b^{2}|\geq 0
+b_2=\dfrac{8}{3\sqrt{2}}
+b_n =\begin{cases}\dfrac{1}{n}&\text{if n is odd}\\[2ex]\dfrac{10}{n}&\text{if n is even}\end{cases}
+b_n =\begin{cases}\dfrac{1}{n}&\text{if n is odd}\\[2ex]\dfrac{1}{n^2}&\text{if n is even}\end{cases}
+b_n =\begin{cases}n&n \leq 1000\\[2ex]\dfrac{1}{n}&n>1000\end{cases}
+b_n=\dfrac{1}{3n^3}
+b_n=\dfrac{1}{n^2}
+b_n=\dfrac{1}{n^3}
+b_n=\dfrac{1}{n}
+b_n=\dfrac{|\sin n|}{n}
+b_{j}
+c \in \mathbb{Z}_n
+c'=-sin(x)
+c-\alpha(c^2 +a^{2}/2)=0
+c-c=rc \left(1-\dfrac{c}{E}\right)
+c=1,2,...,[n/d]
+c=3.14\text{ m s}^{-1}
+c=\alpha(c^2 +a^{2}/2)=\alpha*O(1)
+c=\frac{1}{2}v_{R}^{2}-\frac{k}{R}
+c=\frac{a}{b}=\frac{22 \text{ m}}{7.0 \text{ s}}=3.14\text{ m s}^{-1}=3.1\text{ m s}^{-1}\text{ (2 sig fig)}
+c\equiv 0\pmod{10}\text{ or }c\in\{11,21\}
+c\ge0
+c^2 = (-2)^2 = (-2) \times (-2) = 4
+c^2&=&a^2+b^2
+c^{2}
+c_1=\dfrac{3}{4}
+c_2 = s^{\lambda}\Pi^{\beta}
+c_2=\dfrac{1}{4}
+cos( \dfrac{\pi}{4})=\sqrt{\dfrac{1}{2}}=\dfrac{1}{\sqrt{2}}=\dfrac{1}{\sqrt{2}}\times \dfrac{\sqrt{2}}{\sqrt{2}}=\dfrac{\sqrt{2}}{2}
+cos(2\theta)=1-2sin^{2}\theta
+cos(\lambda x)}
+cos^2 60^o
+cos^{2}(a)+sin^{2}(a)=1
+cos^{2}(a\theta)+sin^{2}(a\theta)=1
+d = (r1-r2)^2(r2-r3)^2(r3-r1)^2
+d'
+d(x,y)=|x_1-y_1|+\sum_{1}^{\infty}|x_n-x_{n+1}-y_n+y_{n+1}|
+d=\left[\dfrac{1}{1-\sqrt{M'}}\right]+1
+d\le x
+d^2=(t+5)^2
+d^{2}=(3t-10-(2t-3))^{2}+(t+4-(-t+13))^{2}
+d^{2}=(3t-2t-10+3)^{2}+(t+t+4-13)^{2}
+d^{2}=(t-7)^{2}+(2t-9)^{2}
+d^{2}=5t^{2}-50t+130
+d^{2}=t^{2}+4t^{2}-14t-36t+49+81
+d^{2}=t^{2}-14t+49+4t^{2}-36t+81
+d_{1}(x,a)<\delta
+d_{2}(f(x),f(a))<\epsilon
+d_{\rm L} = (1+z) d_{\rm M}
+dr=a\cos\theta\,d\theta
+ds = (1 + y'(x)^2)^{1/2} dx
+dx^2 = g_{ij}dx^{i}dx^{j}
+dx^{i}
+dx^{j}
+dy/dx=\dot{y}/\dot{x}=\text{constant}
+e'(\eta)=0
+e=\sqrt{1+\frac{b^{2}}{a^{2}}}
+e=\sqrt{1-\dfrac{9}{16}}\quad\Rightarrow\quad e=\sqrt{\dfrac{16-9}{16}}
+e=\sqrt{\dfrac{7}{16}}\quad\Rightarrow\quad e=\dfrac{\sqrt 7}{4}
+e\colon\;x\mapsto\;x^2
+e\geq 1+1+\dfrac{1}{2!}+...=s_m
+e^\mathbf{A}
+e^\pi/6 =1.688,  cos(\pi/6) =0.866,  sin(\pi/6) =0.5
+e^\pi>\pi^e}
+e^x=1+x+x^2/2+\dots
+e^z=lim(1+\frac{z}{n})^n
+e^{-11p}p^{5}10.8
+e^{-11p}p^{6}10.8
+e^{-\frac{x}{y}}=\frac{1}{e^\frac{x}{y}}
+e^{-i\omega_{0} t} - e^{i\omega_{0} t}=-2 i \sin(\omega_{0} t)
+e^{-x^2}=\dfrac{1}{e^{x^2}}
+e^{2 \pi m a g_{j} / k_{j}}=e^{2 \pi (m_{j}+b_{j}k_{j}) a g_{j} / k_{j}}=e^{2 \pi m_{j} a g_{j} / k_{j}}
+e^{\frac{\pi e^\frac{i\pi}{2}}{2}}=e^{\frac{\pi}{2}(\cos\frac{\pi}{2}+i\sin{\pi}{2})}=e^{\frac{i\pi}{2}}
+e^{\mathbf{A}+ \mathbf{B}}=e^\mathbf{A}e^\mathbf{B}
+e^{i\theta }=(e^{i})^{\theta}
+e^{i\theta}=\cos{\theta}+i\sin{\theta}}
+e^{i}=e^0
+e^{x+iy}=e^{x}e^{iy}=e^x(cosy+isiny)
+e^{x+yi}=e^{x}(cosy+isiny)
+e^{x+y}=e^{x} \cdot e^{y}
+e^{x}
+e^{x}(x^2-3x+4)
+e^{−x}
+e_h = f^{\prime}(netinput_h) \cdot \sum^K _{k=1} d_k W_{kh}
+e_h = f^{\prime}(netinput_h) \cdot \sum^K _{k=1} d_k w_{kh}
+e_{n}
+erf(x)/(2/\sqrt(\pi))
+f '(a) = (3.2-6.4[\frac{1}{32}(21+\sqrt{21})]
+f'
+f''(0)=2b=0
+f''(a)<0
+f''(a)>0
+f''(t)=-\omega^2 f(t)
+f''(x)=(-1)45x^{-1-1}=-45x^{-2}=-\frac{45}{x^{2}}
+f'(0)=0
+f'(1)=\frac{5}{3}(8)^{-2/3}-\frac{1}{2}(4)^{-1/2}
+f'(2x)={df(2x)\over dx}
+f'(2x)={df(y)\over dy}|_{y=2x}
+f'(\alpha)=\sqrt{b^2-4ac}
+f'(\beta)=-\sqrt{b^2-4ac}
+f'(\eta)-\beta=0
+f'(\frac{1}{2}\pi)\neq0
+f'(\zeta)+g'(\phi)
+f'(a)
+f'(a)=-0.7
+f'(a)=0
+f'(a)>0
+f'(g)
+f'(t)\neq 0
+f'(x)
+f'(x) = 0
+f'(x)<0
+f'(x)=(4x^{3}sin(x)+x^{4}cos(x))cos(x)+x^{4}sin(x)(-sin(x))= x^{4}(cos^{2}(x)-sin^{2}(x))+4x^{3}sin(x)cos(x)= x^{4}cos(2x)+2x^{3}sin(2x)
+f'(x)=-3x^2-1<0\forall\;x\in\mathbb{R}
+f'(x)=-4\sin{4x}-4\cos{4x}
+f'(x)=-\dfrac{3x^2+12}{(x^2-4)^2}
+f'(x)=0
+f'(x)=1
+f'(x)=2x
+f'(x)=3x^{2}\tan x+x^{3}\sec^{2}x
+f'(x)=4x^3 \sin x \cos x + x^4 \left(\cos^2 x - \sin^2 x)
+f'(x)=4x^3 u + x^4\frac{d}{dx}u
+f'(x)=6x^2+6x-12
+f'(x)=\cos x
+f'(x)=\dfrac{-3x^2-12}{(x^2-4)^2}
+f'(x)=\dfrac{3(x^2-4)-3x(2x)}{(x^2-4)^2}
+f'(x)=\dfrac{3x^2-12-6x^2}{(x^2-4)^2}
+f'(x)=\dfrac{g'(x)h(x)-g(x)h'(x)}{(h(x))^2}
+f'(x)=\frac{45}{x}=45x^{-1}
+f'(x)=\frac{5}{3}(5x+3)^{-2/3}-\frac{1}{2}(x+3)^{-1/2}
+f'(x)=\frac{d}{dx}(x^4) u + x^4\frac{d}{dx}u \quad \text {where }u = \sin x \cos x
+f'(x)=g'(f(x))f'(x)
+f'(x)=lim(h\rightarrow0)\frac{f(x+h)-f(x)}{h}=lim(h\rightarrow0)\frac{\sqrt{x+h}-\sqrt{x}}{h}=lim(h\rightarrow0)\frac{\sqrt{x+h}-\sqrt{x}}{h}\frac{\sqrt{x+h}+\sqrt{x}}{\sqrt{x+h}+\sqrt{x}}= lim(h\rightarrow0)\frac{x+h-x}{h(\sqrt{x+h}+\sqrt{x})}=lim(h\rightarrow0)\frac{h}{h(\sqrt{x+h}+\sqrt{x}}=lim(h\rightarrow0)\frac{1}{\sqrt{x+h}+\sqrt{x}}=\frac{1}{\sqrt{x}+\sqrt{x}}=\frac{1}{2\sqrt{x}}
+f'(x)>0
+f'(x_2)=0
+f'(z)=lim_{h\rightarrow 0}{\frac{f(z+h)-f(z)}{h}}=lim_{h\rightarrow 0}{\frac{f(x+h+iy)-f(x+iy)}{h}}
+f'=1
+f'=\frac{1}{2}a+b\eta e^{-2\eta}-2\delta e^{-2\eta}
+f'\left[(2c-x^{2})^{\frac{1}{2}\right]=\frac{1}{2}(2c-x^{2})^{\frac{-1}{2}}(-2x)
+f'e^{2\eta}=\frac{1}{2}ae^{2\eta}+b\eta-2\delta
+f'g=-\cos x
+f(0) + f'(0).(1-0) + (1/2!)f''(0).(1-0)^2 + (1/3!).f'''(0).(1-0)^3 + ...
+f(0)+f'(0)(x-0)+(1/2!)f''(0)(x-0)^2+(1/3!)f'''(0)(x-0)^3
+f(0)+f'(0)(x-0)+(1/2!)f''(0)(x-0)^2+(1/3!)f'''(0)(x-0)^3+...
+f(0)= 0^{2}-\frac{13}{16}=-\frac{13}{16}
+f(1,y)=(0.111111... ,\lambda y+1/2)=(1,\lambda y+1/2)
+f(1/2,y) = (1.000..,y)
+f(1/2,y)=(0.0000... ,\lambda y)=(0,\lambda y)
+f(4) = \sqrt(4) = 2
+f(4) = \sqrt(4) = \pm2
+f(\bold{r})
+f(\mathbb{R}) =  \mathbb{R}
+f(\mathbb{R}) \subseteq  \mathbb{R}
+f(\mathbb{R}) \supseteq  \mathbb{R}
+f(\mathbf{A})=\sum c_k \mathbf{A}^k
+f(\mathbf{B}^{-1}\mathbf{A}\mathbf{B})=\mathbf{B}^{-1}f(\mathbf{A})\mathbf{B}
+f(a,b)=f(a,d)\implies a+b\equiv a+d\pmod q
+f(c+h)=\dfrac{c+h}{c+h+1},f(c)=\dfrac{c}{c+1}
+f(n)\to 1\text{ as }n\to\infty
+f(p^a)=p^a=f(p)^a
+f(p^{a}) = f(p)^{a}
+f(s)=0+\frac{1}{1!}2n\pi \cos (n\pi )s+O({{s}^{2}})=2n\pi {{\left( -1 \right)}^{n}}s
+f(s)=\left( \sqrt{{n\pi }/{b}\;}+s \right)\sin \left( n\pi +2\sqrt{n\pi b}s+{{s}^{2}} \right)
+f(v)=Bv^{2}e^{-mv^{2}/2kT}
+f(v)\Delta v=4\pi\left(\frac{3}{2\pi}\right)^{3/2} \times \frac{v_{0}^{2}}{v_{0}^{3}}\times (2 \text{ m s}^{-1})
+f(v, \sigma)=\dfrac{\sqrt{1-\frac{v^2}{c^2}}}{2+ \log_4 \sigma}
+f(x')=a(x')^2+c
+f(x')=a(x')^3+cx'
+f(x) = \cos{3t}
+f(x) = \frac{1}{\sigma\sqrt{2\pi}}*e^{\left(-\frac{1}{2}(\frac{x - \mu}{\sigma})^2\right)
+f(x) = \left[\frac{1}{\sigma\sqrt{2\pi}}\right]^{\left(-\frac{1}{2}(\frac{x - \mu}{\sigma})^2\right)
+f(x) = \sqrt(x)
+f(x) = \sqrt{x}-\frac{x}{0.5\ln^{2}{x}}
+f(x)&=(x^4)(\sin x \cos x)
+f(x)&=x^4\sin x \cos x
+f(x):=x^{3}
+f(x)=-\dfrac{1}{8}x^2+\dfrac{11}{8}x+\dfrac{1}{2}
+f(x)=1+x^{2}
+f(x)=\begin{cases}0&x\le2\\1&x>2\end{cases}
+f(x)=\begin{cases}0, & n=0,\\1+3+\dots+(2n-1), & n>0.\end{cases}
+f(x)=\begin{cases}0, & n\leq100,\\1+3+\dots+(2n-1), & n>100.\end{cases}
+f(x)=\begin{cases}1 &\text{ for }x\ge2\\0 &\text{ for }x <2\end{cases}
+f(x)=\begin{cases}1/q,&x=p/q,\\0,&x\text{ irrational}\end{cases}
+f(x)=\begin{cases}x^2&\text{if $x$ is rational}\\0&\text{if $x$ is irrational}\end{cases}
+f(x)=\dfrac{1}{(x-a)^n}.\dfrac{p(x)}{r(x)}
+f(x)=\dfrac{1}{2x+3}+\dfrac{5x-1}{8}
+f(x)=\dfrac{1}{x - 2}
+f(x)=\dfrac{2x+3}{x^2-1}
+f(x)=\dfrac{\sin x}{x}
+f(x)=\dfrac{p(x)}{q(x)}
+f(x)=\dfrac{p_1(x)}{q_1(x)}
+f(x)=\dfrac{x^{4}\left( 1-x\right) ^{4}}{1+x^{2}}
+f(x)=\dfrac{x}{x+1}
+f(x)=\frac{1}{1-x}\quad(x\neq{1})
+f(x)=\frac{1}{x} \Rightarrow V=\pi\int_{1}^{\infty}(f(x))^{2}dx
+f(x)=\sqrt x
+f(x)=\text{Log}(1+\text{sin}(z))
+f(x)=h(g(x))\text{ where }h(x)=e^x, g(x)=\frac{1}{x}
+f(x)=x^2\Rightarrow F(x)=\frac{1}{3}x^3\Rightarrow \frac{1}{2}F(2x)=\frac{1}{2}.\frac{1}{3}(2x)^3=\frac{4}{3}x^3
+f(x)=x^{2}-1
+f(x)=x^{2}-1.76
+f(x)=x^{3}\tan x
+f(x)=x^{4}sin(x)cos(x)
+f(x)>f(a)\text{ if }a<x<a+\delta
+f(x)\in\mathbb{R}\text{ for }x\in\mathbb{R}
+f(x,y): \mathbb{R}^2\longrightarrow\mathbb{R}^2
+f(x_n)=0\text{ for }n\geq1}\text{ so }f(x_n)\to0\text{ as }n\to\infty
+f(x_{1})
+f(x_{1})=1 > f(x_{2})=-1
+f(x_{\text{peek}(n)}) =1
+f(x_{\text{trough}(n)})=-1
+f(y)\dfrac{dy}{dx}
+f:\mathbb{R}\rightarrow\mathbb{R}\\x\mapsto\sin(x)
+f:\mathbb{R}\to 2^\mathbb{R}
+f\,:\,\mathbb{R}^{2}\rightarrow\mathbb{R}^{2}
+f\colon I\to \mathbb{R}
+f\colon\;x\mapsto-x^3-x+1\quad(x\in\mathbb{R})
+f\left ( n \right )=\left\{\begin{matrix} 0, n=0\\  1+3+...+(2n-1), n>0) \end{matrix}\right.
+f\left ( x_{n} \right )\rightarrow f\left ( a \right )
+f\left(x\right)=\dfrac{e^{\arcsin x}}{\sqrt{1-x^{2}}}\qquad\left(-1<x<1\right)
+f^k(x,y)=(0\cdot a_{k+1}a_{k+2}\ldots\,,\frac{a_k}{2}+\frac{\lambda a_{k-1}}{2}\ldots+\lambda^ky)
+f^{*}(x)
+f^{k-1}(f(x))=f^{k}(x) \notin [0,1]
+f^{k}(x) \notin [0,1]
+f^{k}(x) \rightarrow -\infty
+f^{k}(x)=f(f^{k-1}(x)) \notin [0,1]
+f^{k}(z)\nrightarrow \infty
+f^{n},
+f_1,f_2,f_3,\dots
+f_1=r_1+\omega r_{2}+\omega^{2}r_{3}
+f_1\left(\frac{1}{2}\right)=\cos{\frac{\pi}{2}}=0
+f_2=r_1+\omega^{2}r_{2}+\omega r_{3}
+f_3=\omega(r_1+\omega r_{2}+\omega^{2} r_{3})
+f_4 = \omega(r_1+\omega^{2}r_{2}+\omega r_{3})
+f_5 = \omega^2(r_1+\omega r_{2}+\omega^{2}r_{3})
+f_6=\omega^2(r_1+\omega^{2}r_2+\omega r_{3})
+f_\mathbf{X}(\mathbf{x})
+f_\mathrm{em}
+f_n(0)=\cos{0}=1
+f_n(0)=\frac{1}{n}\cos{0}=\frac{1}{n}
+f_{\mathbf{X}_a}(\mathbf{x}_a)
+f_{\text{obs}} = f_{\text{em}}\left (\frac{v\text{ }\pm \text{ }V}{v} \right )
+f_{\text{obs}} = f_{\text{em}}\left (\frac{v}{v\text{ }\pm \text{ }V} \right )
+f_{{\bf X}_a}({x_a})
+f_{{\bf X}_b}({x_b})
+f_{{\bf X}}({\bf x})
+fg'=(fg)'-f'g
+frac{m_0}{\sqrt{1-\frac{v^2}{c^2}}}
+frac{y}{8}
+f{}'_{L}\left ( 0 \right )=f{}'_{R}\left ( 0 \right )=f{}'\left ( 0 \right )=1
+g' =\rm{d}\left(\frac{mu}{\sqrt{1-\frac{u^2}{c^2}}}\right)
+g'(s)=-1
+g'(x)
+g'(x)=-2e^x-2x
+g'(x)=-\sin x
+g'(x)=e^{-x}
+g'= \sin x
+g(n)=\frac{1}{\ln{n}}
+g(x) ={\exp^{-\theta x} Q(x) \over \int_0^\infty\exp^{-\theta x} Q(x) dx}
+g(x)=-2,\ 0\leq x\leq1}
+g(x)=\Sigma_{n\le x}a(n)h(n) = A(x)h(x) - A(2)h(2) - \int_2^x A(t)h'(t)dt
+g(x)=\begin{cases}2x - f(x)&\text{if }2x\geq f(x)\\2x + 2 - f(x)&\text{if }2x<f(x)\end{cases}
+g(x)=\dfrac{6}{1-x}
+g(x)=\frac{1}{\ln{x}}
+g(x)=\int{e^{-x}}~dx=-e^{-x}
+g(x)=\left(\dfrac{1}{x}\right)^{1/2}=\dfrac{1}{x^{1/2}}
+g(x)=f(x),\quad\text{for }x\in C
+g:[-\pi,\pi]\rightarrow[-1,1]\\x\mapsto\sin(x)
+g\left ( u \right )=e^{u} \to \infty
+g\not\in H
+g\wedge\;x=x+\text{Rand()}\times\;g
+g^{u v}R_{u v} - \frac 1 2 R g^{u v}g_{u v} = -k g^{u v}T_{u v}
+h = \sqrt{25} = 5\,\mathrm{cm}
+h \to 0
+h'(x) = \frac{1}{\epsilon^2}\cos\left(\frac{x}{\epsilon^2}\right)
+h=\sqrt{(3\text{~m})^2+(4\text{~m})^2}=5\text{~m (to 1 s.f.)}
+h=\sqrt{(3\text{~m})^2+(4\text{~m})^2}=5\text{~m}\text{~(to 1 s.f.)}
+h\to0
+h^n=(g^m)^n=g^{mn}=e=g^p
+hyp=\sqrt3
+hyp^2=\sqrt2^2+1^2
+i = 1, 2, ... , n
+i = 1, 2, ..., n
+i \hbar \frac{\partial \Psi}{\partial t} = \hat H \Psi
+i \ne j
+i\frac{\partial}{\partial{x}}
+if f(x) = ax^2 + bx + c, then f'(x) = 2ax + b
+ir\in\text{Im}(\phi)
+j=0,1,...,\frac{m}{2}
+j_x(x,t)=-\frac{i\hbar}{2m}\lgroup{\Psi^*\frac{\partial\Psi}{\partial x}-\Psi\frac{\partial\Psi^*}{\partial x}\rgroup}
+k'(x) = f'(g(x))\cdot g'(x) = 2\cdot g(x)\cdot g'(x) = 2y\cdot\frac{dy}{dx}
+k'(x)=\dfrac{(\cos x)(\cos x) - (\sin x)(-\sin x)}{\left(\cos x\right)^2}
+k'(x)=\dfrac{1}{\cos^2 x} = \sec^2 x
+k'(x)=\dfrac{g(x)f'(x)-f(x)g'(x)}{\left(g(x)\right)^2}
+k(t)=\frac{2-t^2}{cos(4t)}$ where $cos(4t)\not=0
+k(x) = y^2 = (g(x))^2 = f(g(x))
+k(x)=\dfrac{f(x)}{g(x)}
+k-1, k \ge 2
+k=0,1,2,...,\frac{N}{m}-1
+k=d,2d,3d,...,[n/d]d
+k\ge7
+k\ge7\in\mathbb{Z}
+k\to\infty
+km \times_{n} c = kc + r
+ln x^{2}
+ln x^{2}\neq(ln x)^{2}
+ln((x+1)^n)=n ln (x+1)
+ln(10)^{2}
+ln(m_{k}\varepsilon_{k})
+ln(x)^{2}=ln(x)ln(x)
+ln(x+1)^{n}=ln(x+1)ln(x+1)...- n terms
+ln(x^{2})
+ln(x^{2})=ln(x x)=ln(x)+ln(x)=2ln(x)=ln(x^{2})
+ln(x^{2})\neq ln(x)^{2}
+ln\, z
+ln^{2}
+lnx^{2}
+m = (0.37\pm0.03) \mathrm{M}_{\odot}
+m > 1 \text{ or } m < -1
+m \ge 2
+m \ne n
+m v = \sqrt{2 m q_{\mathrm{ion}} | \Delta V | }
+m=1\text{~kg}
+m=\begin{pmatrix}w&x\\y&z\end{pmatrix}\;w,z\in\mathbb{R}^*,x,y\in\mathbb{R}
+m=\dfrac{2}{t_1+t_2},\ a=\frac{1}{2}t_1^2,\ b=t_1
+m=m_{j}+b_{j}k_{j}
+mUm^{-1}=\left\{\begin{pmatrix}w&x\\y&z\end{pmatrix}\begin{pmatrix}a&b\\0&d\end{pmatrix}\begin{pmatrix}w&x\\y&z\end{pmatrix}^{-1}\colon\;a,b,d\in\mathbb{R}, ad\neq0\right\}
+mUm^{-1}=\left\{\begin{pmatrix}w&x\\y&z\end{pmatrix}\begin{pmatrix}a&b\\0&d\end{pmatrix}\begin{pmatrix}w&x\\y&z\end{pmatrix}^{-1}\colon\;a,d,w,z\in\mathbb{R}^*, b,x,y\in\mathbb{R}\right\}
+mUm^{-1}=\left\{\begin{pmatrix}w&x\\y&z\end{pmatrix}\begin{pmatrix}a&b\\0&d\end{pmatrix}\begin{pmatrix}w&x\\y&z\end{pmatrix}^{-1}\colon\;a,d\in\mathbb{R}^*, b\in\mathbb{R}\right\}
+m\ddot{x}+c_2D^2\dot{x}^2=mg
+m\displaystyle\int\frac{v}{\mu mg + kv^2}dv
+m\in\mathbb{Z}^+, n<p
+m\to\infty
+m^2 v^2 = 2 m q_{\mathrm{ion}} | \Delta V |
+m_1 =4 m_p\;  m_2 = 3 m_p
+m_1 \ge m_2/\gamma_2
+m_A\mathbf{g}-m_B\mathbf{g}= \left(m_A+m_B\left)\mathbf{a}
+m_k^s \epsilon_k^s>(m_1...m_{k-1})^{-1}
+maths    
+mg=\underbrace{g+g+\dots+g}_{m\text{ times}}
+min\{2|U|/\epsilon_k,m_k\}=2|U|/\epsilon_k = (2|U|/\epsilon_k)^s (2|U|/\epsilon_k)^{1-s} \leq
+n = 1,2,3,...
+n \in 0,\pm 1, \pm 2 ...
+n \to \infty
+n p(n)=\sum_{d=1}^{n}{\sum_{c<=n/d}d p(n-cd)
+n p(n)=\sum_{k=1}^{n}{\sigma(k) p(n-k)}=\sum_{k=1}^{n}{\sum_{d|k}d p(n-k)}
+n=0,1,2,\dots
+n=1,2,3,...,
+n={p_1}^{a_1}...{p_r}^{a_r}
+n>\frac{1}{M'-1}
+n>\sqrt{-1/M'}
+n>\sqrt{\dfrac{1}{1-M'}}
+n\ge 1
+n\ge2
+n\le x
+n\to \infty
+n\to\infty
+n^ne^{-n}\left(1-\frac{(x-n)^2)}{2n}\right)
+n^ne^{-n}e^{-\frac{(x-n)^2}{2n}}
+n^{-s}=n^{-\sigma}e^{-it\log{n}}
+n^{2}-1=(2k)^{2}-1=4k^{2}-1
+n^{2}-1=(2k+1)^{2}-1=4k^{2}+4k+1-1=4k^{2}+4k=4k(k+1)
+n^{2}-1=4k^{2}-1
+n^{4}+1>n^{4}
+n^{4}+1>n^{4}>\frac{1}{\varepsilon}
+n_{\rm d}/n_{\rm p} \propto \sigma_{\rm pp}/\sigma_{\rm pd}
+netinput_i=w_i_h*y_h = -1.57\cdot 0.61 = -.9577
+netinput_j=w_j_h*y_h = 2.44\cdot 0.61 = 1.4884
+numerator\over denominator
+odds = \exp{-0.616}=0.540
+p = \sqrt{65^3} = 524
+p \implies q
+p(1)=\frac{\nu\beta}{(\beta+\nu)^2}
+p(10)=1\left(\frac{1}{2}\right)^{10}
+p(2)=\frac{\nu\beta^2}{(\beta+\nu)^3}
+p(9)+p(10)=10\left(\frac{1}{2}\right)^{10}+1\left(\frac{1}{2}\right)^{10}
+p(9)=10\left(\frac{1}{2}\right)^{10}
+p(k) \implies p(k+1)
+p(x)\,{d^2y\over{dx^2}} + q(x)\,{dy\over dx} + r(x) y = f(x)
+p*t\ne t*p
+p+1=2n\text{ for some }n\in\mathbb{N}
+p-1=2m\text{ for some }m\in\mathbb{N}
+p:(-\frac{1}{2}\pi,\frac{1}{2}\pi),(\frac{1}{2}\pi,\frac{3}{2}\pi)\to\mathbb{R}^2
+p= \sqrt{2mE} = \sqrt{\mathrm{[kg]}\times\mathrm{[kg][m]^2} \mathrm{[s]}^{-2} }} = \mathrm{[kg][m] [s]}^{-1} }
+p= m \sqrt{2mE} = \mathrm{[kg]} \sqrt{\mathrm{[kg]}\times\mathrm{[kg][m]^2} \mathrm{[s]}^{-2} }} = \mathrm{[kg]^2 [m] [s]^{-1} }
+p=(1\:3\:7\:5)
+p=1, 2, ...
+p=1,2,...
+p=\sqrt{3.1^3} = 5.5
+p=\sqrt{a^3} = \sqrt{1.324^3} = 1.52
+p\implies q
+p^2 = p + q \implies p^2 - p - q = 0
+p^2_x
+p^{-1}(=p^{T})
+p^{T}
+p_1...p_k + 1 = 2.3.5 + 1 = 31
+p_{g}(n)=(1+x+x^{2}+x^{3}+...)^{g(1)}(1+x^{2}+x^{4}+x^{6}+...)^{g(2)}......(1+x^{k}+x^{2k}+x^{3k}+...)^{g(k)}.......
+q \implies p
+q(x) = (x - a)^nr(x)
+q=-\left(1+\frac{h}{h^2})\right
+q\ge p+q+1
+q\le x/d
+r = \dfrac{\frac{1}{2}}{1}=\frac{1}{2}
+r = \frac{\text{second term}}{\text{first term}} =\frac{\left(-\frac{1}{3}\right)^2}{-\frac{1}{3}}=-\frac{1}{3}
+r = \sqrt{a^{2} + o^{2}}
+r(x) =0\text{ for }x\neq 0
+r2\rightarrow{r2-r1}
+r=\frac{-4k\pm\sqrt{16k^{2}-16}}{2}=\frac{-4k\pm\sqrt{16(k^{2}-1)}}{2}=\frac{-4k\pm4\sqrt{k^{2}-1}}{2}=\frac{2(-2k\pm2\sqrt{k^{2}-1})}{2}=-2k\pm2\sqrt{k^{2}-1}
+r=\frac{-p\pm\sqrt{p^{2}-4q}}{2}
+r=r_{\theta}
+rR_0 = 556~{\rm Mpc} = vt_0^{2/3} [ 3t^{1/3} ]^{t_0 +5}_{t_0} = 3vt_0^{2/3} ((t_0+5)^{1/3} - t_0^{1/3})
+r\delta{\bf e_r}=a\,\delta\theta\,{\bf e_\theta}
+r\ge R
+r\in \mathbb{Z}_q
+r^2=(x-a)^2 +(y-b)^2
+r^3 + 3r^2 \left( \Delta r \right) + 3r \left( \Delta r \right)^2 + \left( \Delta r \right)^3
+r^3(r)^-1s
+r^j(r^k)^{-1}s
+r^jr{N-k}s
+r^js = s(r^j)^{-1} = sr^{N-j}
+r^jss(r^k)^{-1}
+r^{0}
+r^{1}
+r^{1}(r^{1}s)
+r^{1}=\frac{\pi}{360}
+r^{1}s
+r^{2}
+r^{2}-3r-4=0
+r^{2}=r^{1}+1
+r^{2}=r^{1}r^{1}
+r^{2}s
+r^{\frac12}
+r^{\theta} = \left(\begin{array}{cc}cos(\theta)&-sin(\theta)\\sin(\theta)&cos(\theta)\\\end{array} \right)
+r^{n+2}=r^{n+1}+r^{n}
+r^{n+2}=r^{n}\times r^{2}
+r^{n-1}a+\left(\dfrac{r^{n-1}-1}{r-1}\right)d\\=r^{n-1}a+\left(\dfrac{r^{n-1}}{r-1}-\dfrac{1}{r-1}\right)d\\=r^{n-1}a+\dfrac{r^{n-1}}{r-1}d-\dfrac{1}{r-1}d\\ \text{Change the order so that d is in the numerator of each fraction}\\=r^{n-1}a+\dfrac{d}{r-1}r^{n-1}-\dfrac{d}{r-1}\\ \text{Now factorise the first two terms}\\=\left(a+\dfrac{d}{r-1}\right)r^{n-1}-\dfrac{d}{r-1}
+r^{n}
+r_\mathrm{i}
+r_\mathrm{i}=1
+r_{2 \pi \over 5},r_{4 \pi \over 5},r_{6 \pi \over 5},r_{8 \pi \over 5}
+r_{\frac{4\pi}{3}}\,\circ\, r_{\frac{2\pi}{3}}=r_{\frac{4\pi}{3}+\frac{2\pi}{3}(mod\,2\pi)}
+r_{\phi+\theta(mod\,2\pi)}
+r_{\pi \over 2}
+r_{\theta}
+r_{n} = \sum_{j=1}^{j=n}\delta r_{j}
+s = 1+ \frac{\log{2}}{\log{3}}
+s \ne 2
+s''(t)=a
+s'(t)=at + b
+s/\sqrt N
+s<\frac{log(m_1...m_{k-1})}{-log(m_k \epsilon_k)
+s=10^6\text{~m}\times1\text{~s}+\frac{1}{2}\times1\text{~m~s^{-2}}\times(1\text{~s})^2=10^6\text{~m} + \frac{1}{2}\text{~m}
+s=\frac{1}{2} gt^{2}
+s=q_{\phi}
+s=r^{1}\sigma
+s=r^{1}s
+s>\frac{log(m_1...m_{k-1})}{-log(m_k \epsilon_k^s)}
+s\cdot log(m_k \epsilon_k^s)>- log(m_1...m_{k-1})
+s\circ r=q_{\phi}\circ~r_{\theta}=q_{(\phi-\tfrac{1}{2}\theta)}(\text{mod }\pi)
+s\sqrt{\frac{(x_0 -\bar x)^2}{s_{xx}}+\frac{1}{n} }=0.0876
+s_x = v_x t \text{ ( }v_x \text{= constant)}
+s_y = \frac{11.0\sin 60^o\text{  m s}^{-1}}{11.0\cos 60^o\text{  m s}^{-1}}s_x - \frac{9.81\text{ m s}^{-2}}{2(11.0\cos 60^o\text{  m s}^{-1})^2}s_x^2,
+s_y = \left(\frac{u_y}{u_x}\right)s_x - \frac{g}{2(u_x)^2}s_x^2.
+s_y = u_y\left(\frac{s_x}{u_x}\right)-\frac12g\left(\frac{s_x}{u_x}\right)^2.
+sin x\ne\sin x
+sin {\theta} = {\theta}
+sin(2\theta)=sin^{2}xcos^{2}x
+sin(3 {\theta})
+sin(3{\beta}) <= 1
+sin(3{\beta}) =
+sin^{2}\Theta
+sin^{2}\theta
+sin^{2}\theta=\frac{1}{2}-\frac{1}{2}cos(2\theta)
+sin^{2}x cos^{2}x=(sinxcosx)^2
+sin^{2}x cos^{2}x=\frac{1}{4}(\frac{1}{2}-\frac{1}{2}cos(2*2x))
+sin^{2}xcos^{2}x
+sin^{2}xcos^{2}x=(sinxcosx)^{2}=\frac{1}{4}sin^{2}(2x)
+spt\:\mu=\{x\in\mathbb{R}^{n}:\forall r>0\;\mu(B(x,r))>0\}
+spt\:\mu=smallest\; closed\: X\subseteq\mathbb{R}^{n}:\mu\left(\mathbb{R}^{n}\setminus X\right)=0
+sr^{j}
+t' = \gamma(10-Vx)=8
+t' = \gamma(t-Vx) = (1.25)\times(8 - (-0.6 \times -4.8)) = 6.4 s
+t'=\gamma(-6-Vx)=-12
+t'=\gamma(0-Vx)=-4.5
+t'=\gamma(0-Vx)=0
+t'=\gamma(10-0.6\times3)=10.25\mathrm{~s}
+t'=\gamma(10-Vx)=12.5
+t'=\gamma(5-Vx)=6.25
+t'=\gamma(t-Vx)=0 \mathrm{~s}
+t'=\gamma(t-Vx)=4 \mathrm{~s}
+t'=\gamma(t-Vx)=8 \mathrm{~s}
+t'=\gamma(t-\frac{Vx}{c^2})
+t(\mathbf{0}_{\mathbb{R}^3})=\mathbf{0}_{\mathbb{C}}
+t(t-na)^{n-1}
+t:\mathbb{R}^2 \rightarrow\mathbb{R}^2
+t=(\frac{U}{2\pi})^2\times\pi, y=3(t)+3
+t=r^{2}s
+t=t_{\text{max}}
+t\colon\mathbb{R}^3\to\mathbb{C}\\(x,y,z)\mapsto x+iy
+t\geq 0,\,m>100
+t\leq\;s
+t\to -t
+t\to \infty
+t\to \pm\infty
+t\to-\infty
+t^i = {\rm d}x^i/{\rm d}u
+t^{0}=1
+t^{1}=t
+t^{i}
+t_\text{max}
+t_{3}
+t_{4}
+t_{5}
+t_{\rm E} = \frac{M_{\rm BH} c^2}{L_{\rm E}}
+t_{\rm E} \propto 1/L_{\rm E}
+t_{\rm E} \propto 1/\eta
+tan(90^{\circ}) = \infty
+tan(\theta) \to \infty\ as\ \theta \to \frac{\pi}{2}
+tan^2x+1=\frac{1}{cos^2x}=\left(\frac{1}{cosx}\right)^2
+testing \over testing
+time in seconds=\frac{\frac{15 ms}{1}}{\frac{1000 ms}{1 s}}\\
+u = \frac{a}{a^2+t^2}, v= frac{-t}{a^2+t^2}
+u \to \infty
+u''+(\lambda-3)u=0
+u''+\gamma u=0
+u'(t)=(\frac {1}{2\sqrt{t}})(ln\:t)+(\sqrt{t})(\frac{1}{t})
+u(r)\ne{A/r}
+u<v\implies u^{2n+1}<v^{2n+1},\quad(n\in\mathbb{N})
+u=(2c-x^{2})
+u=1+\sqrt x
+u=\dfrac{s}{7}
+u=\dfrac{x}{4}
+u=\sqrt{x^{2}+1}
+u=x^{2} +1
+u^{6}x
+u_n = 3(2)^n + 2(-3)^n
+u_n^2 = (3(2)^n + 2(-3)^n)^2 = 9(2)^{2n} + 4(-3)^{2n} + 12(2)^n(-3)^n
+u_{0}=A+B
+u_{1} = A \alpha + B \beta
+u_{5}
+u_{n+1} = 3(2)^{n+1} + 2(-3)^{n+1}
+u_{n+1}=9^{n+1}+(-2)^{n+1}
+u_{n+2}=3\times 2^{n+2}+2\times(-3)^{n+2}
+u_{n+2}=u_{n+1}+u_{n}
+u_{n+2}\neq u_{n}\times u_{2}
+u_{n-1} = 3(2)^{n-1} + 2(-3)^{n-1}
+u_{n-1}u_{n+1} = 9(2)^{2n} + 4(-3)^{2n} +
+u_{n-1}u_{n+1} = (3(2)^{n-1} + 2(-3)^{n-1})(3(2)^{n-1} + 2(-3)^{n-1})
+u_{n}
+u_{n}=9^{n}+(-2)^{n}
+u_{n}=r^{n}
+u_{yy}=\frac{1}{4}y^{-3/2}\left(u_{\zeta}-u_{\phi}}\right)+\frac{1}{4y}\left(u_{\zeta\zeta}-2u_{\zeta\phi}+u_{\phi\phi}}\right)
+uv'
+v = f'(\zeta)+g'(\phi)
+v'(y)=13y-y^3
+v= \dfrac{-1}{2\pi\lambda}e^{-\pi\lambda r^2}
+v=3\text{ m s}^{-1}\text{ (moving from right to left along the x-axis)}
+v=\frac{f(\lambda+k)}{r_\mathrm{i}}
+v=\left(\frac{7e\Delta E-6\pi\eta R~\mathrm{d}v}{\frac{4}{3}\pi R^3\rho}\right)\delta t'
+v=\sqrt\frac{{2 \times 9.81 J}}{2.5 kg}=2.8m s^{-1}
+v=\sqrt{(10^6)^2+2\times1\times(10^6+\frac{1}{2})}=1000001
+v=\sqrt{u^2+2as}=\sqrt{(10^6)^2+2\times1\times\frac{1}{2}}
+v=\sqrt{v_{R}^{2}+2k(\frac{1}{r}-\frac{1}{R})}
+v=\sqrt{x^2+1}=(x^2+1)^\frac{1}{2}
+v^{T}A^{T}
+v^{i}
+v^{i}\left(u+\mathrm{d}u\right)=v^{i}\left(u\right)-\sum_{j,k}\Gamma_{jk}^{i}v^{j}\frac{\mathrm{d}x^{k}}{\mathrm{d}u}\mathrm{d}u
+v_\textrm{mp}
+v_x=-3\text{ m s}^{-1}
+v_{0}
+v_{R}=\sqrt{2(\frac{k}{r}+c)}
+v_{\rm r}
+v_{esc}=\sqrt{GM/R^{2}}
+v_{space}=1.2164\times10^{-31} m s^{-1}
+vf(v)=Bv^{3}e^{-mv^{2}/2kT}
+w,z\in\mathbb{R}^*,x,y\in\mathbb{R}
+w_n(t)=\frac{1}{n!}t(t-na)^{n-1}
+w_{31}+w_{32} + w_{3b} \ge 0
+w_{31}+w_{32} \ge 1
+w_{n+1}(t)=\int_{0}^{t}ds\,w_n(s-a)
+w_{n+1}(t)=\int_{0}^{t}ds\,w_n(t-a)
+w_{n}(t)=\int_{0}^{t}ds\,w_{n-1}(s-a)
+x + \mathsf{y} + \mathcal{Z}
+x = 0.\dot9
+x = \dots, -5\pi, -3\pi, -\pi, \pi, 3\pi, 5\pi,\dots
+x = \dots,-2\pi+\frac{1}{2}\pi, \frac{1}{2}\pi, 2\pi+\frac{1}{2}\pi, 4\pi+\frac{1}{2}\pi,\dots
+x = \frac{\theta}{\int t^2 {\rm d}t
+x = \left( At+B \right) {e}^{-t}
+x = \text{e}^p
+x \in S^{k-1}[0,1] \backslash S^{k}[0,1]
+x \notin S^{k}[0,1]
+x'
+x''= x' + \dfrac{f}{2\lambda_1} = x' + \dfrac{4\sqrt{6}}{2\times6}= x' +\dfrac{2}{\sqrt{6}}
+x'=\gamma(3-0.6\times10)=-3.75\mathrm{~ls}
+x'=\gamma(x-Vt)=0 \mathrm{~ls}
+x'^0, x'^1,x'^2,x'^3
+x'_i
+x(t) = -A{\omega}^2 \sin (\omega t + \phi)
+x(t) = C_1\mathbf{v}_1\cos(\omega_1t+\phi_1) + \dots + C_n\mathbf{v}_n\cos(\omega_nt +\phi_n)
+x+\dfrac{b}{2a}=\pm\sqrt{-\dfrac{c}{a}+\dfrac{b^{2}}{4a^{2}}}
+x,y\;\in\mathbb{Z},x,y<0
+x.y = \begin{cases}0&\text{if }x\neq y\\1&\text{if }x=y\end{cases}
+x.yz *10^{a}
+x<2\Rightarrow\dfrac{1}{x-2}<0
+x= \displaystyle\sum_{n=1}^{10} 7 n
+x=-\dfrac{b}{2a}\pm\sqrt{-\dfrac{c}{a}+\dfrac{b^{2}}{4a^{2}}}
+x=0,1,2,...,n
+x=1+\frac{1}{n}\colon\;x\in\;E,x<m'
+x=1+\frac{1}{n}\in\;E<m'
+x=1\\y=2
+x=2+\sqrt7
+x=2-\sqrt7
+x=3,\;\;x=-2
+x=S_{i_{1}} \circ \dots \circ S_{i_{k-1}}(y) \in S_{i_{1}}[0,1]
+x=\dfrac{-b\pm\sqrt{-4ac+b^{2}}}{2a}
+x=\dfrac{-b\pm\sqrt{-c\cdot4a+b^{2}}}{2a}
+x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}
+x=\dfrac{-b\pm\sqrt{b^{2}-4ac}}{2a}
+x=\dfrac{-b}{2a}\pm\dfrac{1}{2a}\cdot\sqrt{-c\cdot4a+b^{2}}
+x=\dfrac{-b}{2a}\pm\dfrac{\sqrt{-c\cdot4a+b^{2}}}{2a}
+x=\dfrac{p}{q},y=\dfrac{m}{n}
+x=\displaystyle\frac{\pi}{5} \ and \ x=\displaystyle\frac{4\pi}{5}
+x=\frac{-(-4)\pm\sqrt{{(-4)^2}-4\times{1}\times{(-3)}}}{2\times{1}}
+x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}
+x=\left(1+\frac{1}{n}\in\;E\right)
+x=\left(1+\frac{1}{n}\in\;E\right)<m'
+x=\sqrt4=2
+x=\sqrt\frac{2DC}{H}
+x=\sqrt{(\sqrt a-b)^2
+x=\sqrt{2+\sqrt{2+\sqrt{2+...}
+x=b-\sqrt a
+x\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}=\dfrac{-(13-16y)\pm\sqrt{(13-16y)^2-4\times10\times(5-24y)}}{2\times10}
+x\ge 2
+x\in\mathbb{R}^n
+x\in\mathbb{R}^{n+1}
+x\le N
+x\left( t \right) = \frac{{F\cos \left( {\omega t - \gamma } \right)}}{{\left[ {\left( {\omega _0 ^2 - \omega ^2 } \right) + k^2 \omega ^2 } \right]^{{\textstyle{1 \over 2}}} }} + Ce^{ - {\textstyle{1 \over 2}}kt} \cos \left[ {\left( {\omega _0 ^2 - \frac{1}{4}k^2 } \right)^{{\textstyle{1 \over 2}}} t - \phi } \right]
+x\leq e^{x}-1\leq \frac{x}{1-x}
+x\mapsto\dfrac{p(x)}{r(x)}
+x\mapsto\left(\dfrac{x}{\sin x}\right)^{1/2}
+x\mapsto|x|, x\mapsto\sqrt{x}, x\mapsto\sin{x}
+x\mapsto|x|, x\mapsto\sqrt{x}, x\mapsto\sin{x}\text{ are basic continuous functions.}
+x\sim y \text{ if } x - y \text{ is odd }, x,y\in\mathbb{R}
+x\to x_1
+x\to0^-
+x^1, ..., x^n
+x^2 + \frac{b}{a}x = (x + \frac{b}{2a})^2-\frac{b^2}{a^2}
+x^2 + x_n + \frac1x + \frac{1}{x} + \frac1{x^n} + x^{1/n} + x_{n+1} + \frac{-b+\sqrt{b^2-4ac}}{2a}
+x^2 \times \int_{0}^{\pi/3} \sin(x) \, d x
+x^2+(-x)^2+0^2=1\Longleftrightarrow 2x^2=1\Longleftrightarrow x=\pm\dfrac{1}{\sqrt{2}}
+x^2+1\ge1>0
+x^2-4x=(x-2)^2-4
+x^2  + \frac{2a}{sqrt{a^2 +  B^2}
+x^3+y^3 \ge \pm\mu^\heartsuit
+x^\frac{1}{2}
+x^n * y^n = (xy)^n
+x^{-1/2}=\dfrac{1}{\sqrt x}
+x^{-a}=\frac{1}{x^{a}}
+x^{0}...x^{n}
+x^{1/2}=\sqrt x
+x^{2}
+x^{2} + 27x = \frac{11}{3}
+x^{2}+3x-28=0
+x^{2}+\dfrac{bx}{a}+(\dfrac{b}{2a})^{2}=-\dfrac{c}{a}+(\dfrac{b}{2a})^{2}
+x^{2}+\dfrac{bx}{a}=-\dfrac{c}{a}
+x^{2}+y^{2}-4=0
+x^{2}-5x
+x^{2}-5x+6=0
+x^{2}-5x+8x-28=0
+x^{2}-5x-28=-8x
+x^{2}<1
+x^{2}=\sqrt{y^{2}+z^{2}}
+x^{3}+1
+x^{6}
+x^{\frac{1}{n}
+x^{ab}-x^a=(x^a)^b-x^a=x^a(1^b-1)
+x^{ab}-x^a=(x^a)^b-x^a=x^a(x^{a(b-1)}-1)
+x^{n}+...
+x^{n}=(a+\dfrac{d}{r-1})r^{n-1}-\dfrac{d}{r-1}
+x^{n}=r^{n-1}(a+\dfrac{d}{r-1})-\dfrac{d}{r-1}
+x^{n}=r^{n-1}a+\dfrac{dr^{n-1}}{r-1}-\dfrac{d}{r-1}
+x_0=a,\ x_{n+1}=rx_n\ (n=0,1,2,...)
+x_1\neq x_2\Rightarrow{}H_{x_1}\cap H_{x_2}=\left\{\begin{pmatrix}1&0\\0&1\end{pmatrix},\begin{pmatrix}-1&0\\0&-1\end{pmatrix}\right\}
+x_1\neq x_2\Rightarrow{}H_{x_1}\cap H_{x_2}=\left\{\begin{pmatrix}1&0\\0&1\end{pmatrix}\right\}
+x_1\neq\;x_2
+x_3 [\begin{matrix} 1 & \tfrac{1}{2} & 1 \end{matrix}]^T
+x_n=\dfrac{1}{2n\pi+\pi/2}
+x_n=\dfrac{1}{2n\pi+\pi/2}=\dfrac{1/n}{2\pi+\pi/2n}\to0\text{ as }n\to\infty
+x_n=\dfrac{d}{1-r}
+x_n=\frac{r^n-1}{r-1} \ \ \ (n=1,2,3,...) \ where \ r\neq1
+x_n=ar^n\ (n=0,1,2,...)
+x_n=p+\frac{(-1)^n}{n}
+x_{0}
+x_{0}=0
+x_{1}
+x_{1}<x_{2}
+x_{1}=-1
+x_{1}=a
+x_{1}=f(x_{0})
+x_{2}
+x_{2}=1
+x_{2}=ra+d
+x_{3}=r(ra+d)+d=r^{2}a+rd+d
+x_{4}=r(r^{2}a+rd+d)=r^{3}a+(r^{2}d+rd+d )
+x_{\text{peek}(n)} = 1/(2n\pi+\pi/2)
+x_{\text{trough}(n)} = 1/(2n\pi+3\pi/2)
+x_{n+1} &= x_n+1 (n=1,2,3, \dots)
+x_{n+1} &= x_n+1 \qquad (n=1,2,3, \dots)
+x_{n+1} &= x_n+1 \quad (n=1,2,3, \dots)
+x_{n+1} = 2x_{n}
+x_{n+1}=\dfrac{1}{2}\left(x_n+\dfrac{2}{x_n}\right)
+x_{n+1}=x_n-\dfrac{x_n^3-2x_n-2}{3x_n^2-2}
+x_{n+1}=x_n-\dfrac{x_n^5-5x_n+6}{5x_n^4-5}
+x_{n}=r^{n-1}a+(\dfrac{r^{n-1}-1}{r-1})d
+x_{n}=r^{n-1}a+(r^{n-2+}...r^{1}+1)d
+x_{n}=r^{n-1}a+\dfrac{dr^{n-1}-d}{r-1}
+x_{n}\rightarrow a
+xy - x^2 \implies x(y - x)
+xy=\dfrac{p}{q}.\dfrac{m}{n}=\dfrac{pm}{qn}
+y = A_{n}e^{\lambda_{n}x} + A_{n-1}e^{\lambda_{n-1}x} + ... + A_{1}e^{\lambda_{1}x}
+y = \dot{x}= \left( A - B- At \right) {e}^{-t}
+y = cx-\text{e}^p
+y = px - \text{e}^p
+y = {(1-x)\over(1+x)}
+y \text{ in set } \Delta
+y$\geqq$1
+y'
+y' = 1 + 0
+y' = \frac{B}{x} - A
+y' \ne 0
+y''
+y'' + \lambda y = 0, y(0)=0, y(\pi )=0, C[y] = \int^{\pi}_0\, dx y^2 = 1
+y'' + y = 0.
+y'''+6y''+11y'+6y=0
+y''+3y'+2y=0
+y''+3y'+2y=x
+y''+py'+q=0
+y'(\sqrt{2c-x^{2}})
+y'(\sqrt{2c-x^{2}})=\frac{-x}{y}
+y'=(\sqrt{2c-x^{2}})'
+y'=(\sqrt{2c-x^{2}})'=((2c-x^{2})^{\frac{1}{2}})'=\frac{1}{2}(2c-x^{2})^{\frac{-1}{2}}(-2x)= \frac{1}{2\sqrt{2c-x^{2}}}(-2x)=\frac{-x}{\sqrt{2c-x^{2}}}=\frac{-x}{y}
+y'=(ab)'c+(ab)c'=(a'b+ab')c+(ab)c'
+y'=(ln x)'2ln x=2\frac{1}{x}ln x=\frac{2}{x}ln x
+y'=-\frac{x}{y}
+y'=2\frac{1}{x}=\frac{2}{x}
+y'=\frac{1}{15}5(x^{3}+1)^{4}3x^{2}=\frac{1}{15}15x^{2}(x^{3}+1)^{4}=x^{2}(x^{3}+1)^{4}
+y'=\frac{1}{2\sqrt{a}}
+y'=a'(bc)+a(bc)'=a'(bc)+a(b'c+bc')
+y'^2 + y^2 = c
+y'_1(1)=0
+y(2) + 2y'(2) = 0
+y(x)=A\frac{\left(\int_0^x{\mathrm{e}^{-t^2}\mathrm{d}t}\right)}{\sqrt{\pi}}\,\mathrm{e}^{x^2}\ +\ B\,\mathrm{e}^{x^2}
+y(x-1)=x^{n}-1
+y+x={xy}(p+q)^{2}
+y-t_1=\dfrac{2}{t_1+t_2}\left(x-\frac{1}{2}t_1^2\right)
+y<92\text{ and }y\equiv 2\pmod{10}\text{ or }
+y=(x+p)^2-p^2
+y=(x-1)^2
+y=-\frac{1}{\textnormal{something}-1}
+y=-\sqrt{4-x^{2}}
+y=13\text{ and }c\in\{10,30,50,70,80,1,21\}
+y=3((j\times100)^2)+3
+y=92,c=20\text{ or }
+y=\dfrac {x^{2}}{\log \supset \emptyset }
+y=\dfrac{1}{2x+3}+\dfrac{5x-1}{8}
+y=\dfrac{x^{n+1}-1}{x-1}
+y=\dfrac{x^{n}-1}{x-1}
+y=\dfrac{x}{x(p+q)^{2}-1}
+y=\dfrac{y+x}{x(p+q)^{2}}
+y=\frac{(x^{3}+1)^{5}}{15}
+y=\frac{x}{x\cdot(p+q)^{2}-1}
+y=\mathbf{\pm}\frac{b}{a}\sqrt{x^{2}-a^{2}}
+y=\pm\sqrt{2}\left(C+\omega^{2}\cos x\right)^{1/2}
+y=\sqrt{2c-x^{2}}
+y=\sqrt{4-x^{2}}
+y=a+(x-a)\frac{\delta}{\delta+\delta'}
+y=x\dot=-asin\theta
+y=x^{n}+...x^{1}+1
+y=x^{n}...+x^{1}+1
+y\cdot x+1=x^{n+1}+x^{n}...+x^{1}+1
+y\cdot x+1=x^{n}+y
+y\cdot x-y=x^{n}-1
+y\cdot x=x^{n+1}+x^{n}...+x^{1}
+y\dfrac{dy}{dx}+y^2= x
+y\equiv 0\text{ or }1\pmod{10}\text{ or }
+y\in\{92,3,13\}\text{ and }c\in\{10,30,50,70,80,1,21\}
+y\in\{92,3\}\text{ and }c\neq 20\text{ or }
+y^2 = (g(x))^2
+y^2-2y=(y-1)^2-1
+y^\frac{1}{2} = x^\frac{1}{2} + c
+y^{2}=4ax
+y^{2}=\frac{4x^{2}}{9}-4
+y^{2}=\frac{4}{9}(x^{2}-9)
+y^{2}=\frac{4}{9}x^{2}-4
+y^{2}>=0
+y^{a}=x
+z = {{ - \varepsilon g'' \pm \sqrt {\varepsilon ^2 g'' - 2f'''\varepsilon g'} } \over {f'''}}
+z''G'(z)+G''(z)z'^2 = 0
+z'=(1-z)/(1+z)
+z=\rho{e}^{i\phi}
+z\in J(f) \implies z \in \overline{C}
+z\in J(f), w\in J(f)\implies w \in \overline{C}
+z\sim w \text{ if } |z| = |w|
+z\to z^2+1
+z^2  =  - {{2\varepsilon } \over {f'''}}\left( {g' + g''z} \right) + O(\varepsilon ^2 )
+z^2-2\text{Re}(w)z+|w|^2, \text{or } z^2-2r\cos\theta z+r^2
+z^{'''} \in J(f)
+z^{'''} \in U
+z^{'''}\in U\cap J(f)
+z^{\prime\prime}G^\prime(z)^2+G^{\prime\prime}(z)G^\prime(z)z^{\prime 2}=0
+{ \sqrt{15 \delta} < {\frac {4}{5}}
+{(1+2\,\delta-10\,{\delta}^{2})}{(1+2/3\, \sqrt{3} \sqrt{\delta}-4/3\,\delta-{\frac {68}{27}}\, \sqrt{3}{\delta}^{3/2}+{\frac {272}{27}}\,{\delta}^{2})}
+{(1-t)}^{-4}
+{1,g} \text{ where } g \times_{20} g = 1
+{1/2}
+{1\over r}{\partial\over\partial r}(ru)
+{2 \over 4}
+{294\choose441}
+{2\choose3}
+{4\pi\varepsilon_0}
+{6\choose9}
+{R_{PP}} = {C_{PP}}{T^{ - 2/3}}\exp [ - 3381{T^{ - 1/3}}]
+{\Gamma^1}_{12}={\Gamma^1}_{21}
+{\Gamma^2}_{12}={\Gamma^2}_{21}
+{\Gamma^a}_{bc}={\Gamma^a}_{cb}
+{\Gamma^i}_{jk} = \mathbf{e}^i \frac{\partial \mathbf{e}_j}{\partial x^k} = \sum_l g^{il} \mathbf{e}_l \frac{\partial \mathbf{e}_j}{\partial x^k}
+{\bf F}=-y{\bf i}+x{\bf j}
+{\bf F}=A{\bf e_\theta}
+{\bf X}
+{\bf X}=[X_1, X_2 \ldots X_n]^T
+{\bf X}_{a}
+{\bf X}_{b}
+{\bf \omega}=\nabla\times{\bf u}
+{\bf a}.{\bf b}=\sum_{i=1}^{3}a_i b_i
+{\bf e_\theta}
+{\bf e_r}
+{\bf e_r}.[\nabla^2{\bf u}]\ne \nabla^2u_r
+{\bf e_r}.\nabla^2{\bf u}=\left({1\over r}{\partial\over\partial r}\left(r{\partial u_r\over\partial r}\right)-{u_r\over r^2}+{\partial^2 u_r\over\partial z^2}\right){\bf e_r}
+{\bf e_z}
+{\bf e}_z
+{\bf j} \times {\bf k} = {\bf i}
+{\bf k}\times{\bf j} = -{\bf i}
+{\bf r}
+{\bf t}
+{\bf u}
+{\bf u}.(\nabla\rho)
+{\bf u}.\nabla=u{\partial\over\partial x}+v{\partial\over\partial x}+w{\partial\over\partial z}
+{\bf u}.\nabla\ne\nabla.{\bf u}
+{\bf\omega}.{\bf\hat y}=\partial{u}/\partial{z}-\partial{w}/\partial{x}
+{\delta m_B}
+{\delta m_V}
+{\displaystyle \ddot{\theta}}= \frac{d}{d\theta}\left({\textstyle \frac12}\dot{\theta}^2\right)
+{\displaystyle \frac{{r^{n}\times r^{2}}}{r^{n}}=\frac{r^{n}\times r^{1}}{r^{n}}+\frac{r^{n}}{r^{n}}}
+{\displaystyle {a=\frac{4^{n+1}}{4^{n-1}}=4^{n+1-(n-1)}=4^{n+1-n+1}=4^{n-n+1+1}=4^{2}}}
+{\frac {1} {12}}
+{\frac {4} {5 \sqrt{15 \delta}
+{\frac {4} {5 \sqrt{15 \delta}} sin({\beta})
+{\frac{1}{\sqrt{2}}\times\frac{\sqrt{2}}{\sqrt{2}}=\frac{\sqrt{2}}{2}}
+{\left \{ \left | a_{n} \right | \right \}}
+{\left(\frac{1}{kT}\right)}^\frac{3}{2}
+{\left(e^{-\frac{t}{\tau}}\right)}^2=e^{-\frac{2t}{\tau}}=e^{-\frac{t}{\left(\frac{\tau}{2}\right)}}
+{\mbox{numerator}}/{\mbox{denominator}}
+{\omega^2}
+{\omega}
+{\partial u_r\over\partial\theta}={\partial u_z\over\partial\theta}=0
+{\partial x}=-{\partial u}
+{\partial^2\over\partial\theta^2}({\bf e_r})={\partial\over\partial\theta}({\bf e_\theta})=-{\bf e_r}
+{\partial{\bf e_\theta}\over\partial{r}}\equiv0
+{\partial{\bf e_r}\over\partial\theta}={\bf e_\theta}
+{\partial{\bf e_r}\over\partial{r}}\equiv0
+{\pi}
+{\rm U} (0, \infty )
+{\rm d}{\bf t}/{\rm d}u = f(u) {\bf t}
+{\sigma=\frac{1}{\sqrt{{\rm prec}}}= \sqrt{120\tau}
+{\sqrt 5} \times {\sqrt 3} = {\sqrt {15}}
+{\theta}
+{ax^2 + bx + c = 0}
+{ax^2 + bx + c = 0} \; \Leftrightarrow \;    {x = \frac{{ - b \pm \sqrt {b^2 - 4ac} }}{{2a}}}
+{ax^2 + bx + c = 0} \therefore x = \frac{ - b \pm \sqrt {b^2 - 4ac} }{2a}
+{a}
+{a}_{i}={a}^{'}_{i}
+{a}_{max} = A{\omega}^2
+{b}
+{d \over ds} {(sin({s \over 7}))} = {1 \over 7}cos({s \over 7})
+{d \over dx} {(sin( f(x) ))} = f'(x)cos( f(x) )
+{d \over dx} {(sin(x))} = cos(x)
+{d/dx}\, a(x)
+{d/dx}\,(a(x)f(x))=a(x)\, {df/dx+f(x)\, {da/dx
+{d\over dx}\Bigl( ye^{2/x}\Bigr)=0
+{d^2y\over{dx^2}} + {q(x)\over{p(x)}}{dy\over{dx}} + {r(x)\over{p(x)}}\,y = {f(x)\over{p(x)}}
+{du}={dz}
+{dy\over dx}-{2\over x^2}y
+{f^k}
+{f}'(0)=\left( \sqrt{{n\pi }/{b}\;} \right)\left( 2\sqrt{n\pi b} \right)\cos (n\pi )=2n\pi \cos (n\pi )
+{g_k}
+{x_2}
+{x}(p+q)^{2}
+{y}^{'}_{k}
+{y}_{k}
+{y}_{k}={y}^{'}_{k}
+{{({a \over b})^2} = {{a^2}\over{b^2}}
+{{H}_{0}}\simeq 2\text{x1}{{\text{0}}^{-18}}{{s}^{-1\text{ }}}\text{and }{{\text{T}}_{0}}=2.725\text{K}
+{{R}_{AB}}
+{{R}_{AB}}={{T}^{\nu }}
+{{R}_{AB}}\propto {{T}^{\nu }}
+{{\Omega }_{k,0}}
+{{\Omega }_{k}}
+{{\log }_{e}}{{R}_{AB}}
+{{\text{V}}_{Max}}=10.1
+{{\theta }^{-2}}\propto d_{A}^{-2}
+{{dy}\over{dx}} = 0
+{{dy}\over{dx}} = 1
+{{e}^{-(t-{{t}_{1}})c\sqrt{\Lambda /3}}}
+{{t}_{0}}=\frac{1}{2{{H}_{0}}}
+{}_E\left({}_F\mathbf{A}_E^{-1}\right)_F
+{}_F\mathbf{A}_E
+{~}$ In the clear? ${~}
+|(2+3i)^2|=|-5+12i|=\sqrt{(-5)^2+12^2}=13
+|(B_nf)(\xi)-f(\xi))|\leq \frac{1}{8n}\left \| f'' \right \|_\infty
+|- \text{sin}(2z)|<1
+|-\bf{k}|
+|A\rangle = |\uparrow \rangle_{1}\times \frac{1}{\sqrt{2}} \left (|\downarrow\rangle_{2} - |\uparrow \rangle_{2}\right )
+|D|=\int_{0}^{2\pi}(ccos(t)+dsin(t))\times|(acos(t)+bsin(t))'|dt=
+|M|=1+\text{max(0,0,\ldots,0)}=1
+|R_2(x)|\leq\dfrac{3}{8}.\dfrac{1}{3!}.|x-4|^3
+|T|(cos^{2}(10)+sin^{2}(10))=26000sin(10)
+|T|cos^{2}(10)+|T|sin^{2}(10)=26000sin(10)
+|T|cos^{2}(10)-|N|sin(10)cos(10)+|T|sin^{2}(10)+|N|sin(10)cos(10)=0+26000sin(10)
+|T|cos^{2}(10)-|N|sin(10)cos(10)=0
+|T|sin^{2}(10)+|N|sin(10)cos(10)=26000sin(10)
+|\boldsymbol{F}|=\sqrt{F_x^2+F_y^2+F_z^2}
+|\cos\theta|\le1
+|\cos{c}|\le1
+|\mathbf{N}_2|=\frac{1}{2}Mg+\frac{x}{l}mg
+|\mathbf{N}_2|=\left(\frac{xm}{l}+\frac{1}{2}M\right)g
+|\phi(z)|\le a\exp\left\{\frac{\pi a}{\sqrt{2}m}(R-\sqrt{2}R^2)\right\}=o(1)
+|\psi^{2}|
+|\psi|^{2}
+|\sqrt{x}|\leq\frac{x}{0.5\ln^{2}{x}}
+|a_n|<\varepsilon \iff \dfrac{1}{n-10}<\varepsilon\text{\quad for }n\ge10
+|a_n|=\begin{cases}\dfrac{1}{4n-5}&\text{for }n>1,\\[2ex]\left|\dfrac{-1}{4\times 1-5}\right|=\left|\dfrac{-1}{-1}\right|=1&\text{for }n=1\end{cases}
+|a_n|=\begin{cases}\dfrac{1}{n-10}&\text{for }n\ge10\\[2ex]\dfrac{1}{10-n}&\text{for }n<10\end{cases}
+|a_n|=\dfrac{1}{2^n}
+|a_n|=\dfrac{1}{n-10}<\varepsilon
+|a_{m+1}+...+a_{n}|\rightarrow 0
+|a_{m+1}+\ldots +a_{n}|<\varepsilon
+|a|<b\iff-b<a<b
+|e^a+0i|=\sqrt{(e^a)^2+0^2}=e^a
+|e^{3+4i}|=|e^3e^{4i}|=e^{3}
+|e^{i}|=1
+|f'(a)|
+|f'(a)|<1
+|f'(a)|=0
+|f'(a)|=1
+|f'(a)|>1
+|f'(x)|=|\frac{3cos(x)+k}{2+k}| < 1
+|f(d) - 1|<\varepsilon=1-M'\Rightarrow 1-f(d)<1 - M'\Rightarrow f(d)>M'
+|f(x)-\infty|<\varepsilon\text{ for all }x\text{ with }|x-c|<\delta
+|f(x)-f(y)|=\left|\dfrac{2(x-y)}{(1+x)(1+y)}\right|=\dfrac{2|x-y|}{(1+x)(1+y)}\leq2|x-y|
+|f(x)|<|x|\forall\;x\in[-1,1]
+|f^{(4)}(c)|=\dfrac{24}{(c+2)^4}\leq\dfrac{24}{4^5}
+|r(x)|<1\text{ for }|x|\geq M
+|r|\le|a|
+|r|\ne|a|
+|r||F|\sin(\frac{{\pi}}{6})\textbf{k}
+|s|\leq1\iff-1\leq s\leq1\iff s\in[-1,1]
+|x - 2| < \frac{0.00001 }{5}\implies |f(x)-f(2)|<0.00001
+|x+1| < 3|x-2|\iff x\in \left(-\infty,\frac{5}{4}\right)\cup\left(\frac{7}{2},\infty\right)
+|x+1| < 3|x-2|\implies x\in \mathbb{R}
+|x+1|\leq1\implies-1\leq x+1\leq1
+|x+1|\leq1\implies|x-(-1)|\leq1
+|x|,|y|\le 1
+|x|<\delta\implies\;|f(x)|<\varepsilon
+|{\bf K}||{\bf r}|\cos\theta
+~$ Do equation numbers start again? \\ \begin{equation}x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\end{equation}$~
+~$ Now we've closed the inline formula, can we do some better things? \\ \begin{equation}x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\end{equation}$~
+ 
+ \mathcal{T}
+   = \frac{15 s}{1000}\\
+£$£
+££$%
