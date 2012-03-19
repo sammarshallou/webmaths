@@ -1171,7 +1171,31 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return displayStyleToMathml(slf);
+				return displayStyleToMathml(slf, true, 0);
+			}
+		});
+		texCommands.put("\\textstyle", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return displayStyleToMathml(slf, false, 0);
+			}
+		});
+		texCommands.put("\\scriptstyle", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return displayStyleToMathml(slf, false, 1);
+			}
+		});
+		texCommands.put("\\scriptscriptstyle", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return displayStyleToMathml(slf, false, 2);
 			}
 		});
 //u"\\pod": lambda slf: v_parenthesized_operator(slf, None), \
@@ -1873,11 +1897,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //def v_displaystyle_to_mathml(slf):
 //v_result = v_subexpr_chain_to_mathml(slf, g_hard_stop_tokens)
 //return result_element(u"mstyle", 2, u"displaystyle", u"true", u"scriptlevel", u"0", v_result)
-	private Element displayStyleToMathml(TokenInput slf)
+	private Element displayStyleToMathml(TokenInput slf, boolean displaystyle, int scriptlevel)
 	{
 		Element result = subExprChainToMathml(slf, HARD_STOP_TOKENS);
-		return resultElement("mstyle", 2, "displaystyle", "true",
-			"scriptlevel", "0", result);
+		return resultElement("mstyle", 2, "displaystyle", displaystyle ? "true" : "false",
+			"scriptlevel", "" + scriptlevel, result);
 	}
 
 //def v_displaymath_to_mathml(slf):

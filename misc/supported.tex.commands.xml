@@ -2609,6 +2609,21 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \displaystyle \frac{1}{x}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>\textstyle</ComputerCode></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\textstyle \frac{1}{x}</ComputerCode></Paragraph></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textstyle \frac{1}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\scriptstyle</ComputerCode></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\scriptstyle \frac{1}{x}</ComputerCode></Paragraph></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \scriptstyle \frac{1}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\scriptscriptstyle</ComputerCode></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\scriptscriptstyle \frac{1}{x}</ComputerCode></Paragraph></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \scriptscriptstyle \frac{1}{x}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\mathop</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\mathop{XQX}_{i=1}^n</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathop{XQX}_{i=1}^n</TeX></InlineEquation></td>
