@@ -281,6 +281,11 @@ public class TestLatexToMathml extends TestCase
 
 	private void assertMath(String expected, String input)
 	{
+		assertEquals(expected, getMath(input));
+	}
+
+	private String getMath(String input)
+	{
 		TokenInput tokens = new TokenInput(input);
 		String actual = tokens.toMathml(true);
 		// Get rid of math tag, semantics, annotation
@@ -289,7 +294,7 @@ public class TestLatexToMathml extends TestCase
 			+ "</mstyle><annotation[^>]+>.*</semantics></math>", "$1");
 		// Get rid of outer mrow if included
 		actual = actual.replaceFirst("^<mrow>(.*)</mrow>$", "$1");
-		assertEquals(expected, actual);
+		return actual;
 	}
 
 	@Test
@@ -339,5 +344,15 @@ public class TestLatexToMathml extends TestCase
 		// \textrm with a space on one side (in something that is not mrow-equivalent)
 		assertMath("<mfrac><mrow><mspace width=\"mediummathspace\"/><mtext>x</mtext></mrow><mn>2</mn></mfrac>",
 			"\\frac{\\textrm{ x}}{2}");
+	}
+
+	@Test
+	public void testTexWhitespace() throws Exception
+	{
+		// The following examples should all be equal
+		assertEquals(getMath("\\text{frog}"), getMath("\\text {frog}"));
+		assertEquals(getMath("\\sqrt{x}y"), getMath("\\sqrt xy"));
+		assertEquals(getMath("\\sqrt{xy}"), getMath("\\sqrt {xy}"));
+		assertEquals(getMath("\\frac 1 2"), getMath("\\frac{1}{2}"));
 	}
 }

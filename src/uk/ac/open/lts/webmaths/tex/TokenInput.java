@@ -70,6 +70,8 @@ public class TokenInput
 		"\\text", "\\textnormal", "\\hbox", "\\mbox"
 	}));
 
+	private final static Pattern WHITESPACE_RE = Pattern.compile("^\\s+");
+
 	private String source;
 	private LinkedList<String> tokens;
 	private ListIterator<String> tokensIterator;
@@ -233,6 +235,15 @@ public class TokenInput
 						// sam: It didn't add the token for the command before, but I think
 						// we need to?!
 						tokens.add(m.group(0));
+						// sam: If there is whitespace after the \text command but before
+						// any opening brace, we need to skip it, or code like
+						// \text   {frog} fails.
+						Matcher ws = WHITESPACE_RE.matcher(tex);
+						ws.region(pos, tex.length());
+						if(ws.find())
+						{
+							pos = ws.end();
+						}
 					}
 //      else:
 //        self.tokens.append(m.group(0))
