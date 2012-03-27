@@ -27,7 +27,7 @@
  *
  * Modified Java port:
  *
- * Copyright 2011 The Open University.
+ * Copyright 2012 The Open University.
  */
 package uk.ac.open.lts.webmaths.tex;
 
@@ -2820,6 +2820,12 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		{
 			slf.nextToken();
 			result = texCommands.get(token).call(slf);
+		}
+		// sam added: ignore unknown TeX commands instead of treating them as numbers
+		else if(token != null && token.matches("\\\\[a-zA-Z]+"))
+		{
+			result = resultElement("xerroronly", 0, "Unknown TeX command: " + token);
+			slf.nextToken();
 		}
 //else:
 // v_result = result_element(u"mn", 0, v_token)

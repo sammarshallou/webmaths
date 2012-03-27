@@ -355,4 +355,13 @@ public class TestLatexToMathml extends TestCase
 		assertEquals(getMath("\\sqrt{xy}"), getMath("\\sqrt {xy}"));
 		assertEquals(getMath("\\frac 1 2"), getMath("\\frac{1}{2}"));
 	}
+
+	@Test
+	public void testUnsupportedCommands() throws Exception
+	{
+		// Unsupported commands ought to be ignored (treated as nonexistent)
+		// with a MathML comment.
+		assertMath("<mn>1</mn><!-- Unknown TeX command: \\frog -->", "1\\frog");
+		assertMath("<!-- Unknown TeX command: \\frog --><mn>1</mn>", "\\frog{1}");
+	}
 }
