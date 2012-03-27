@@ -461,6 +461,11 @@ public class TestMathmltoLatex
 					System.err.println(out.toString());
 					throw new Exception("Unsupported");
 				}
+				else if(out.toString().contains("<!-- TeX to MathML conversion failure"))
+				{
+					System.err.println(line);
+					errors++;
+				}
 			}
 			catch(Throwable t)
 			{
