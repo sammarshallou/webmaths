@@ -364,4 +364,13 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mn>1</mn><!-- Unknown TeX command: \\frog -->", "1\\frog");
 		assertMath("<!-- Unknown TeX command: \\frog --><mn>1</mn>", "\\frog{1}");
 	}
+
+	@Test
+	public void testTextStyleLimits() throws Exception
+	{
+		// Should use munder in display style and msub in text style
+		assertMath("<munder><mi>lim </mi><mi>i</mi></munder>", "\\lim_i");
+		assertMath("<mstyle displaystyle=\"false\" scriptlevel=\"0\"><msub><mi>lim </mi><mi>i</mi></msub></mstyle>",
+			"\\textstyle\\lim_i");
+	}
 }

@@ -52,6 +52,9 @@ import static uk.ac.open.lts.webmaths.WebMathsService.NS;
  */
 public class LatexToMathml
 {
+	/** Tree property: display style (Boolean) */
+	private final static String PROPERTY_DISPLAYSTYLE = "displaystyle";
+
 	/**
 	 * Java interface equivalent for the lambda functions that take one TokenInput
 	 * parameter.
@@ -1899,7 +1902,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //return result_element(u"mstyle", 2, u"displaystyle", u"true", u"scriptlevel", u"0", v_result)
 	private Element displayStyleToMathml(TokenInput slf, boolean displaystyle, int scriptlevel)
 	{
+		slf.pushProperty(PROPERTY_DISPLAYSTYLE, displaystyle);
 		Element result = subExprChainToMathml(slf, HARD_STOP_TOKENS);
+		slf.popProperty(PROPERTY_DISPLAYSTYLE);
 		return resultElement("mstyle", 2, "displaystyle", displaystyle ? "true" : "false",
 			"scriptlevel", "" + scriptlevel, result);
 	}
@@ -2937,6 +2942,12 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 // v_limit_style = (slf.tokens[slf.tokens_index] in g_limit_commands)
 		boolean limitStyle = LIMIT_COMMANDS.containsKey(slf.peekToken());
+
+		// sam added: need to also use 'limit style' if in text style mode
+		if (slf.getProperty(PROPERTY_DISPLAYSTYLE, true) == Boolean.FALSE)
+		{
+			limitStyle = false;
+		}
 
 // if (slf.tokens[slf.tokens_index] is None):
 		if(slf.peekToken() == null)

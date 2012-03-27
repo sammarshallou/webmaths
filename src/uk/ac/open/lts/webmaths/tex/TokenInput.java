@@ -76,6 +76,9 @@ public class TokenInput
 	private LinkedList<String> tokens;
 	private ListIterator<String> tokensIterator;
 
+	// Used to store useful information while parsing
+	private Map<String, LinkedList<Object>> treeProperties;
+
 	/**
 	 * Constructs with given TeX string.
 	 * @param tex TeX input string
@@ -517,5 +520,70 @@ public class TokenInput
 	public String getSource()
 	{
 		return source;
+	}
+
+	/**
+	 * Pushes a property value while parsing. This will become the new return
+	 * value for the relevant {@link #getProperty(String, Object)} call.
+	 * @param property Property name
+	 * @param value Value
+	 */
+	public void pushProperty(String property, Object value)
+	{
+		if(treeProperties == null)
+		{
+			treeProperties = new HashMap<String, LinkedList<Object>>();
+		}
+		LinkedList<Object> list = treeProperties.get(property);
+		if(list == null)
+		{
+			list = new LinkedList<Object>();
+			treeProperties.put(property, list);
+		}
+		list.addLast(value);
+	}
+
+	/**
+	 * Gets a property. Will return the most recently pushed value, or the
+	 * default if none.
+	 * @param property Property name
+	 * @param defaultValue Default value
+	 * @return Value
+	 */
+	public Object getProperty(String property, Object defaultValue)
+	{
+		if(treeProperties == null)
+		{
+			return defaultValue;
+		}
+		LinkedList<Object> list = treeProperties.get(property);
+		if(list == null)
+		{
+			return defaultValue;
+		}
+		return list.getLast();
+	}
+
+	/**
+	 * Pops a property.
+	 * @param property Property name
+	 * @throws IllegalStateException If there wasn't one pushed
+	 */
+	public void popProperty(String property) throws IllegalStateException
+	{
+		if(treeProperties == null)
+		{
+			throw new IllegalStateException("No properties");
+		}
+		LinkedList<Object> list = treeProperties.get(property);
+		if(list == null)
+		{
+			throw new IllegalStateException("Property not pushed");
+		}
+		list.removeLast();
+		if(list.isEmpty())
+		{
+			treeProperties.remove(property);
+		}
 	}
 }
