@@ -31,13 +31,15 @@
  */
 package uk.ac.open.lts.webmaths.tex;
 
+import java.io.StringReader;
 import java.util.*;
 import java.util.regex.*;
 
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
 import org.w3c.dom.ls.*;
+import org.xml.sax.InputSource;
 
 /**
  * Handles tokenising of TeX input and related tasks.
@@ -57,7 +59,7 @@ public class TokenInput
 		"(\\\\begin|\\\\operatorname|\\\\mathrm|\\\\mathop|\\\\end)\\s*" +
 		"\\{\\s*([A-Z a-z]+)\\s*\\}|(\\\\[a-zA-Z]+|\\\\[ \\\\#\\%\\{\\},:;!])|(\\s+)|" +
 		"([0-9\\.])|([\\$!\"#%&'\u2019\u201d()*+,-.\\/:;<=>?\\[\\]" +
-		"^_`\\{\\|\\}~])|([a-zA-Z@])");
+		"^_`\\{\\|\\}~])|([a-zA-Z@])|(\\\\&)");
 
 //  tokenize_text_re = re.compile(ur"""[\${}\\]|\\[a-zA-Z]+|[^{}\$]+""")
 	private final static Pattern TEXT_RE = Pattern.compile(
@@ -71,6 +73,12 @@ public class TokenInput
 	}));
 
 	private final static Pattern WHITESPACE_RE = Pattern.compile("^\\s+");
+
+	/**
+	 * Pattern for handling special temporary error tags from resulting XML.
+	 */
+	private final static Pattern XERROR_RE = Pattern.compile(
+		"<xerror(only)?>(.*?)</xerror(only)?>");
 
 	private String source;
 	private LinkedList<String> tokens;
@@ -390,14 +398,44 @@ public class TokenInput
 		}
 
 		// Result may contain fake <xerror> tags. Convert these to mspace and comment.
-		result = result.replace("<xerror>", "<mspace/><!-- ").replace(
-			"<xerror space=\"false\">", "<!--").replace("</xerror>", " -->");
+		StringBuffer out = new StringBuffer();
+		Matcher m = XERROR_RE.matcher(result);
+		while(m.find())
+		{
+			String replacement;
 
-		// And <xerroronly>. Same but no mspace needed.
-		result = result.replace("<xerroronly>", "<!-- ").replace(
-			"<xerror space=\"false\">", "<!--").replace("</xerroronly>", " -->");
+			// If it's not 'error only' then we add an mspace. (This is in case the
+			// error item occurred inside something like an <mfrac> where MathML is
+			// expecting a specific number of parameters.)
+			if(m.group(1) != null)
+			{
+				replacement = "<!-- ";
+			}
+			else
+			{
+				replacement = "<mspace/><!-- ";
+			}
 
-		return result;
+			// To get the replacement text, we need to actually parse it as XML
+			// again (just this single entity)
+			String unescaped;
+			try
+			{
+				DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+				Document d = builder.parse(new InputSource(new StringReader(m.group())));
+				unescaped = ((Text)d.getDocumentElement().getFirstChild()).getNodeValue();
+			}
+			catch(Throwable t)
+			{
+				throw new Error("Error parsing error value", t);
+			}
+
+			replacement += unescaped;
+			replacement += " -->";
+			m.appendReplacement(out, Matcher.quoteReplacement(replacement));
+		}
+		m.appendTail(out);
+		return out.toString();
 	}
 
 	/**

@@ -77,6 +77,16 @@ public class TestLatexToMathml extends TestCase
 	}
 
 	@Test
+	public void testIncorrectSeparators()
+	{
+		// We do not support & or \\ outside the relevant environments.
+//		assertMath("<!-- Symbol not supported outside environment: & --><mn>4</mn>" +
+//			"<!-- Symbol not supported outside environment: \\\\ -->", "& 4 \\\\");
+		// But you can do \&
+		assertMath("<mi>x</mi><mo>&amp;</mo><mi>y</mi>", "x \\& y");
+	}
+
+	@Test
 	public void testFractionDigits()
 	{
 		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "\\frac 12"); 
@@ -120,8 +130,8 @@ public class TestLatexToMathml extends TestCase
 	public void testBeginEnd()
 	{
 		// Unsupported begin/end should do nothing
-		assertMath("<!--Unsupported environment: frog --><mrow><mn>1</mn><mo>+</mo><mrow>"
-			+ "<!--Unsupported environment: zombie --><mn>2</mn></mrow></mrow>",
+		assertMath("<!-- Unsupported environment: frog --><mrow><mn>1</mn><mo>+</mo><mrow>"
+			+ "<!-- Unsupported environment: zombie --><mn>2</mn></mrow></mrow>",
 			"\\begin{frog}1+\\begin{zombie}2\\end{zombie}\\end{frog}");
 	}
 
@@ -129,12 +139,14 @@ public class TestLatexToMathml extends TestCase
 	public void testBeginEndMultiToken()
 	{
 		// Unsupported begin/end should still do nothing even with several tokens
-		assertMath("<!--Unsupported environment: frog* --><mrow><mn>1</mn><mo>+</mo><mrow>"
-			+ "<!--Unsupported environment: frog zombie --><mn>2</mn></mrow></mrow>",
+		assertMath("<!-- Unsupported environment: frog* --><mrow><mn>1</mn><mo>+</mo><mrow>"
+			+ "<!-- Unsupported environment: frog zombie --><mn>2</mn></mrow></mrow>",
 			"\\begin{frog*}1+\\begin{frog zombie}2\\end{frog zombie}\\end{frog*}");
-		assertMath("<!--Unsupported environment: frog* --><mrow><mi>x</mi><mrow>"
-			+ "<mn>&amp;</mn><mo>=</mo><mn>1</mn></mrow><mrow><mn>\\\\</mn><mi>y</mi>"
-			+ "</mrow><mrow><mn>&amp;</mn><mo>=</mo><mn>2</mn></mrow></mrow>",
+		assertMath("<!-- Unsupported environment: frog* --><mrow><mi>x</mi><mrow>" +
+			"<!-- Symbol not supported outside environment: & --><mo>=</mo><mn>1</mn>" +
+			"</mrow><mrow><!-- Symbol not supported outside environment: \\\\ --><mi>y</mi>" +
+			"</mrow><mrow><!-- Symbol not supported outside environment: & -->" +
+			"<mo>=</mo><mn>2</mn></mrow></mrow>",
 			"\\begin{frog*}x&=1\\\\y&=2\\end{frog*}");
 	}
 

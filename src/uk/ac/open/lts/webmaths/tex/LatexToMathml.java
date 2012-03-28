@@ -484,6 +484,7 @@ public class LatexToMathml
 		"=", "=",
 		"<", "<",
 		">", ">",
+		"\\&", "&",
 		"\\approx", "\u2248",
 		"\\approxeq", "\u224a",
 		"\\asymp", "\u224d",
@@ -2510,7 +2511,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			// For unknown environments, instead of failing horribly, insert an xerror
 			// (comment) and put the contents into an mrow.
 			slf.nextToken();
-			Element error = resultElement("xerror", 1, "space", "false",
+			Element error = resultElement("xerroronly", 0,
 				"Unsupported environment: " + cmd);
 			result = texEnvironments.get(null).call(slf);
 			result = resultElement("mrow", 0, error, result);
@@ -2855,6 +2856,12 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else if(token != null && token.matches("\\\\[a-zA-Z]+"))
 		{
 			result = resultElement("xerroronly", 0, "Unknown TeX command: " + token);
+			slf.nextToken();
+		}
+		// sam added: ignore & and \\ outside of relevant environments
+		else if("&".equals(token) || "\\\\".equals(token))
+		{
+			result = resultElement("xerroronly", 0, "Symbol not supported outside environment: " + token);
 			slf.nextToken();
 		}
 //else:

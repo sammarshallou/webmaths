@@ -166,4 +166,15 @@ public class TestTokenInput extends TestCase
 		assertEquals("<frog sound=\"ribbit\"><tadpole/>Ribbit!</frog>", 
 			TokenInput.saveXml(frog));
 	}
+
+	@Test
+	public void testAmpersand()
+	{
+		// The ampersand should be a token
+		TokenInput tokens = new TokenInput("& \\&");
+		assertEquals("&", tokens.nextToken());
+		// So should backslash-ampersand
+		assertEquals("\\&", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+	}
 }
