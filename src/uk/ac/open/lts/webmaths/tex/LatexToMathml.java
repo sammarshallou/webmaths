@@ -881,41 +881,31 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\tanh", "tanh\u2009"
 	});
 
-	private final static Map<String, String> GREEK_LETTERS =
+	private final static Map<String, String> LOWER_GREEK_LETTERS =
 		makeMap(new String[]
 	{
 		"\\alpha", "\u03b1",
 		"\\beta", "\u03b2",
 		"\\chi", "\u03c7",
 		"\\delta", "\u03b4",
-		"\\Delta", "\u0394",
 		"\\digamma", "\u03dd",
 		"\\epsilon", "\u03f5",
 		"\\eta", "\u03b7",
 		"\\gamma", "\u03b3",
-		"\\Gamma", "\u0393",
 		"\\iota", "\u03b9",
 		"\\kappa", "\u03ba",
 		"\\lambda", "\u03bb",
-		"\\Lambda", "\u039b",
 		"\\mu", "\u03bc",
 		"\\nu", "\u03bd",
 		"\\omega", "\u03c9",
-		"\\Omega", "\u03a9",
 		"\\phi", "\u03d5",
-		"\\Phi", "\u03a6",
 		"\\pi", "\u03c0",
-		"\\Pi", "\u03a0",
 		"\\psi", "\u03c8",
-		"\\Psi", "\u03a8",
 		"\\rho", "\u03c1",
 		"\\sigma", "\u03c3",
-		"\\Sigma", "\u03a3",
 		"\\tau", "\u03c4",
 		"\\theta", "\u03b8",
-		"\\Theta", "\u0398",
 		"\\upsilon", "\u03c5",
-		"\\Upsilon", "\u03d2",
 		"\\varepsilon", "\u03b5",
 		"\\varkappa", "\u03f0",
 		"\\varphi", "\u03c6",
@@ -924,8 +914,24 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\varsigma", "\u03c2",
 		"\\vartheta", "\u03d1",
 		"\\xi", "\u03be",
-		"\\Xi", "\u039e",
 		"\\zeta", "\u03b6",
+	});
+
+	// sam: I split Greek into lower and upper because of different behaviour
+	private final static Map<String, String> UPPER_GREEK_LETTERS =
+		makeMap(new String[]
+	{
+		"\\Delta", "\u0394",
+		"\\Gamma", "\u0393",
+		"\\Lambda", "\u039b",
+		"\\Omega", "\u03a9",
+		"\\Phi", "\u03a6",
+		"\\Pi", "\u03a0",
+		"\\Psi", "\u03a8",
+		"\\Sigma", "\u03a3",
+		"\\Theta", "\u0398",
+		"\\Upsilon", "\u03d2",
+		"\\Xi", "\u039e",
 	});
 
 	private final static Map<String, String> LIMIT_COMMANDS =
@@ -1279,7 +1285,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return fontToMathml(slf, "normal");
+				// sam: mathop should result in italic text, not normal
+				return fontToMathml(slf, "italic");
 			}
 		});
 //u"\\mathrm": lambda slf: v_font_to_mathml(slf, u"normal"), \
@@ -1990,10 +1997,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				result = resultElement("mstyle", 1, "mathvariant", fontName, result);
 			}
 		}
-		if(fontName.equals("normal"))
-		{
-			resultSetAttr(result, "fontstyle", "normal");
-		}
+		// sam: It used to set fontstyle here but I removed it as this attribute is
+		// deprecated.
 		return result;
 	}
 
@@ -2001,8 +2006,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //return result_element(u"mstyle", 2, u"mathvariant", v_font_name, u"fontstyle", ((v_font_name == u"normal") and u"normal" or None), v_subexpr_chain_to_mathml(slf, g_hard_stop_tokens))
 	private Element oldFontToMathml(TokenInput slf, String fontName)
 	{
-		return resultElement("mstyle", 2, "mathvariant", fontName,
-			"fontstyle", (fontName == "normal") ? "normal" : null,
+		// I removed the fontstyle as it is deprecated in MathML 2.
+		return resultElement("mstyle", 1, "mathvariant", fontName,
 				subExprChainToMathml(slf, HARD_STOP_TOKENS));
 	}
 
@@ -2787,9 +2792,17 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //elif (v_token in g_greek_letters):
 // v_result = result_element(u"mi", 1, u"fontstyle", u"normal", g_greek_letters[v_token])
 // slf.tokens_index += 1
-		else if(GREEK_LETTERS.containsKey(token))
+		else if(LOWER_GREEK_LETTERS.containsKey(token))
 		{
-			result = resultElement("mi", 1, "fontstyle", "normal", GREEK_LETTERS.get(token));
+			// Lower greek letters default to italic (same as MathML default for
+			// single-letter <mi> token)
+			result = resultElement("mi", 0, LOWER_GREEK_LETTERS.get(token));
+			slf.nextToken();
+		}
+		else if(UPPER_GREEK_LETTERS.containsKey(token))
+		{
+			// Upper greek letters default to non-italic (sigh)
+			result = resultElement("mi", 1, "mathvariant", "normal", UPPER_GREEK_LETTERS.get(token));
 			slf.nextToken();
 		}
 //elif (v_token in g_named_identifiers):
@@ -2797,7 +2810,19 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // slf.tokens_index += 1
 		else if(NAMED_IDENTIFIERS.containsKey(token))
 		{
-			result = resultElement("mi", 0, NAMED_IDENTIFIERS.get(token));
+			// sam: In addition to Greek letters (above) we also need to specify normal
+			// style for all the non-alpha that is in NAMED_IDENTIFIERS (basically
+			// lots of dots), unless we are going to use an <mi> longer than one
+			// character which defaults to normal anyway.
+			String value = NAMED_IDENTIFIERS.get(token);
+			if(token.matches("[A-Za-z]") || value.length() > 1)
+			{
+				result = resultElement("mi", 0, value);
+			}
+			else
+			{
+				result = resultElement("mi", 1, "mathvariant", "normal", value);
+			}
 			slf.nextToken();
 		}
 //elif (v_token in g_punct_and_space):

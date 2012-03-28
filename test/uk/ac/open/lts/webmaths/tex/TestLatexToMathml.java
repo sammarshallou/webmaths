@@ -34,7 +34,20 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<msqrt><mn>1</mn></msqrt>", "\\sqrt{1}");
 		assertMath("<mfrac><mi>x</mi><mi>y</mi></mfrac>", "\\frac{x}{y}");
 	}
-	
+
+	@Test
+	public void testLetters()
+	{
+		// Normal letters are italic (MathML default for one letter)
+		assertMath("<mi>x</mi>", "x");
+		// Lower Greek letters are also italic
+		assertMath("<mi>\u03b1</mi>", "\\alpha");
+		// But upper Greek letters are not
+		assertMath("<mi mathvariant=\"normal\">\u0393</mi>", "\\Gamma");
+		// Unless you put them in mathit
+		assertMath("<mi mathvariant=\"italic\">\u0393</mi>", "\\mathit{\\Gamma}");
+	}
+
 	@Test
 	public void testPowers()
 	{
@@ -42,7 +55,7 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<msup><mn>10</mn><mn>3.14</mn></msup>", "10^{3.14}");
 		assertMath("<msup><mn>10</mn><mn>3</mn></msup><mn>2</mn>", "10^32"); 
 	}
-	
+
 	@Test
 	public void testDigitsExample()
 	{
@@ -59,7 +72,7 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testMathop()
 	{
-		assertMath("<munderover><mi fontstyle=\"normal\" mathvariant=\"normal\">Q"
+		assertMath("<munderover><mi mathvariant=\"italic\">Q"
 			+ "</mi><mn>1</mn><mi>N</mi></munderover>", "\\mathop{Q}_1^N");
 	}
 

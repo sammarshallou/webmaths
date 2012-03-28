@@ -39,6 +39,14 @@ public class TestMathmltoLatex
 			imageTexService.parseMathml(mathml), ignoreUnsupported);
 	}
 
+	private String convertToTexInner(String inner, boolean ignoreUnsupported)
+		throws Exception
+	{
+		return convertToTex(
+			"<math xmlns='" + WebMathsService.NS + "'>" + inner + "</math>",
+			ignoreUnsupported);
+	}
+
 	private static Map<String, String> NO_ROUND_TRIP = makeMap(new String[]
 	{
 		// Wrapper thingies
@@ -146,9 +154,6 @@ public class TestMathmltoLatex
 		"x \\: y", "x \\medspace y",
 		"x \\, y", "x \\thinspace y",
 
-		// Extra brackets
-		"\\mathop{XQX}_{i=1}^n", "{\\mathop{XQX}}_{i=1}^n",
-
 		// Unnecessary \dfrac, \dsum, \dint
 		"\\dfrac{4}{x}", "\\frac{4}{x}",
 		"\\dsum_{i=1}^x X_i" , "\\sum_{i=1}^x X_i",
@@ -252,6 +257,16 @@ public class TestMathmltoLatex
 			"<math xmlns='" + WebMathsService.NS + "'><mn>3</mn></math>", false));
 		assertRoundTrip("x+1");
 		assertRoundTrip("\\frac{x}{y}");
+	}
+
+	@Test
+	public void testLetters() throws Exception
+	{
+		// Test various letter categories
+		assertRoundTrip("x");
+		assertRoundTrip("\\alpha");
+		assertRoundTrip("\\Gamma");
+		assertRoundTrip("\\mathit{\\Gamma}");
 	}
 
 	@Test
@@ -373,6 +388,23 @@ public class TestMathmltoLatex
 		assertRoundTrip("\\textbf{frog   }\\textrm{zombie}");
 		// A 'special' mtext that we don't glue things to
 		assertRoundTrip("\\ \\# \\ ");
+	}
+
+	@Test
+	public void testMathop() throws Exception
+	{
+		assertRoundTrip("\\mathop{frog}_x^y");
+		assertEquals("\\mathop{frog}_x", convertToTexInner(
+			"<munder><mi mathvariant='italic'>frog</mi><mi>x</mi></munder>", false));
+		assertEquals("{\\mathit{frog}}_x", convertToTexInner(
+			"<msub><mi mathvariant='italic'>frog</mi><mi>x</mi></msub>", false));
+	}
+
+	@Test
+	public void testMathrm() throws Exception
+	{
+		assertRoundTrip("\\mathrm{x}");
+		assertRoundTrip("\\mathrm{distance}");
 	}
 
 	@Test

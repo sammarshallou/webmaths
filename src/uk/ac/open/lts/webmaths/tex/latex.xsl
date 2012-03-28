@@ -16,7 +16,10 @@
 </xsl:variable>
 
 <!-- Letters and numbers -->
-<xsl:variable name="LETTERSNUMBERS">abcdefghijklmnopqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</xsl:variable>
+<xsl:variable name="LETTERSNUMBERS">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</xsl:variable>
+
+<!-- Characters which get made italic in TeX, including normal letters plus lower Greek -->
+<xsl:variable name="TEXITALIC">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x03b1;&#x03b2;&#x03c7;&#x03b4;&#x03dd;&#x03f5;&#x03b7;&#x03b3;&#x03b9;&#x03ba;&#x03bb;&#x03bc;&#x03bd;&#x03c9;&#x03d5;&#x03c0;&#x03c8;&#x03c1;&#x03c3;&#x03c4;&#x03b8;&#x03c5;&#x03b5;&#x03f0;&#x03c6;&#x03d6;&#x03f1;&#x03c2;&#x03d1;&#x03be;&#x03b6;</xsl:variable>
 
 <!--
   Root template
@@ -37,7 +40,7 @@
 <!--
   Basic elements passed through
   -->
-<xsl:template match="m:semantics|m:mn|m:mi|m:mrow">
+<xsl:template match="m:semantics|m:mn|m:mrow">
   <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
@@ -144,13 +147,96 @@
   <xsl:text>\pounds </xsl:text>
 </xsl:template>
 
-<!-- styled mi/mn -->
-<xsl:template match="m:mi[@mathvariant]">
+<!-- mi -->
+<xsl:template match="m:mi">
   <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
-  <xsl:call-template name="mathvariant-to-tex-font">
-    <xsl:with-param name="PREFIX">\math</xsl:with-param>
-  </xsl:call-template>
+  <xsl:variable name="FN">
+    <xsl:choose>
+      <xsl:when test="contains(string(.), '&ThinSpace;') and substring-after(string(.), '&ThinSpace;') = ''">
+        <xsl:value-of select="substring-before(string(.), '&ThinSpace;')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="string(.)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <!-- Use mathop if it is main part of munder/mover (when not used for accents) -->
+    <xsl:when test="not(preceding-sibling::*) and
+        (parent::m:munder or parent::m:mover or parent::m:munderover) and
+        not (parent::*/@accent = 'true') and
+        @mathvariant='italic'">
+      <xsl:text>\mathop{</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>}</xsl:text>
+    </xsl:when>
+    <!-- Single letters with no style or italic -->
+    <xsl:when test="string-length($FN) = 1 and contains($TEXITALIC, $FN) and
+        (not(@mathvariant) or (@mathvariant = 'italic'))">
+      <xsl:apply-templates select="@*[local-name() != 'mathvariant']|node()"/>
+    </xsl:when>
+    <!-- Single not-ASCII-letters with normal style (Greek etc) -->
+    <xsl:when test="string-length($FN) = 1 and not(contains($TEXITALIC, $FN)) and
+        @mathvariant = 'normal'">
+      <xsl:apply-templates select="@*[local-name() != 'mathvariant']|node()"/>
+    </xsl:when>
+    <!-- \dotsm is treated same as above even though it is multiple characters (sigh) -->
+    <xsl:when test="count(node()) = 1 and w:esc/@tex = '\dotsm '">
+      <xsl:apply-templates select="@*[local-name() != 'mathvariant']|node()"/>
+    </xsl:when>
+    <!-- Use styling for non-normal style -->
+    <xsl:when test="@mathvariant and @mathvariant != 'normal'">
+      <xsl:call-template name="mathvariant-to-tex-font">
+        <xsl:with-param name="PREFIX">\math</xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <!-- Supported functions -->
+    <xsl:when test="$FN = 'arccos'"><xsl:text>\arccos </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'arcsin'"><xsl:text>\arcsin </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'arctan'"><xsl:text>\arctan </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'arg'"><xsl:text>\arg </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'cos'"><xsl:text>\cos </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'cosh'"><xsl:text>\cosh </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'cot'"><xsl:text>\cot </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'coth'"><xsl:text>\coth </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'csc'"><xsl:text>\csc </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'deg'"><xsl:text>\deg </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'det'"><xsl:text>\det </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'dim'"><xsl:text>\dim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'exp'"><xsl:text>\exp </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'gcd'"><xsl:text>\gcd </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'hom'"><xsl:text>\hom </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'ker'"><xsl:text>\ker </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lg'"><xsl:text>\lg </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'ln'"><xsl:text>\ln </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'log'"><xsl:text>\log </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'Pr'"><xsl:text>\Pr </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sec'"><xsl:text>\sec </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sin'"><xsl:text>\sin </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sinh'"><xsl:text>\sinh </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'tan'"><xsl:text>\tan </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'tanh'"><xsl:text>\tanh </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'inf'"><xsl:text>\inf </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'inj lim'"><xsl:text>\injlim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lim'"><xsl:text>\lim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lim inf'"><xsl:text>\liminf </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lum sup'"><xsl:text>\limsup </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'max'"><xsl:text>\max </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'min'"><xsl:text>\min </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'proj lim'"><xsl:text>\projlim </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'sup'"><xsl:text>\sup </xsl:text></xsl:when>
+    <!-- Otherwise do styling for mathrm -->
+    <xsl:otherwise>
+      <xsl:call-template name="mathvariant-to-tex-font">
+        <xsl:with-param name="PREFIX">\math</xsl:with-param>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+
 </xsl:template>
+
+
 <xsl:template match="m:mn[@mathvariant]">
   <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
   <xsl:call-template name="mathvariant-to-tex-font">
@@ -195,7 +281,7 @@
       <xsl:when test="@mathvariant='script'">
         <xsl:text>scr</xsl:text>
       </xsl:when>
-      <xsl:when test="@mathvariant='normal'">
+      <xsl:when test="@mathvariant='normal' or not(@mathvariant)">
         <xsl:text>rm</xsl:text>
       </xsl:when>
       <xsl:when test="@mathvariant='sans-serif'">
@@ -823,73 +909,6 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
-<!-- mi with function name -->
-<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc) and
-    (not(@fontstyle) or @fontstyle='normal')]">
-  <xsl:apply-templates select="@*"/>
-  <xsl:variable name="FN">
-    <xsl:choose>
-      <xsl:when test="contains(string(.), '&ThinSpace;') and substring-after(string(.), '&ThinSpace;')=''">
-        <xsl:value-of select="substring-before(string(.), '&ThinSpace;')"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="string(.)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:if test="@mathvariant != 'normal'">
-    <xsl:text>\UNSUPPORTED{mi function missing @mathvariant=normal}</xsl:text>
-  </xsl:if>
-  <xsl:choose>
-    <xsl:when test="$FN = 'arccos'"><xsl:text>\arccos </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'arcsin'"><xsl:text>\arcsin </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'arctan'"><xsl:text>\arctan </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'arg'"><xsl:text>\arg </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'cos'"><xsl:text>\cos </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'cosh'"><xsl:text>\cosh </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'cot'"><xsl:text>\cot </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'coth'"><xsl:text>\coth </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'csc'"><xsl:text>\csc </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'deg'"><xsl:text>\deg </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'det'"><xsl:text>\det </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'dim'"><xsl:text>\dim </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'exp'"><xsl:text>\exp </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'gcd'"><xsl:text>\gcd </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'hom'"><xsl:text>\hom </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'ker'"><xsl:text>\ker </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'lg'"><xsl:text>\lg </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'ln'"><xsl:text>\ln </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'log'"><xsl:text>\log </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'Pr'"><xsl:text>\Pr </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'sec'"><xsl:text>\sec </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'sin'"><xsl:text>\sin </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'sinh'"><xsl:text>\sinh </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'tan'"><xsl:text>\tan </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'tanh'"><xsl:text>\tanh </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'inf'"><xsl:text>\inf </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'inj lim'"><xsl:text>\injlim </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'lim'"><xsl:text>\lim </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'lim inf'"><xsl:text>\liminf </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'lum sup'"><xsl:text>\limsup </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'max'"><xsl:text>\max </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'min'"><xsl:text>\min </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'proj lim'"><xsl:text>\projlim </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'sup'"><xsl:text>\sup </xsl:text></xsl:when>
-
-    <!-- Unknown characters like this may be \mathop -->
-    <xsl:otherwise>
-      <xsl:text>\mathop{</xsl:text>
-      <xsl:value-of select="."/>
-      <xsl:text>}</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
-
-</xsl:template>
-<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc) and
-    (not(@fontstyle) or @fontstyle='normal')]/@mathvariant"/>
-<xsl:template match="m:mi[string-length(.) > 1 and not(count(node()) = 1 and w:esc) and
-    (not(@fontstyle) or @fontstyle='normal')]/@fontstyle"/>
-
 <!--
   Put spaces around some weird operators just to make it look nicer and match
   some of the input tests.
@@ -1369,6 +1388,11 @@
     <!-- Backslash followed by letters -->
     <xsl:when test="starts-with($NS, '\') and
       string-length(translate(substring($NS, 2), $SLASHCHARS, '')) = 0">
+      <xsl:value-of select="$NS"/>
+    </xsl:when>
+    <!-- \mathop special case because it breaks if you put {} around it -->
+    <xsl:when test="starts-with($NS, '\mathop{') and
+        '}' = substring($NS, string-length($NS))">
       <xsl:value-of select="$NS"/>
     </xsl:when>
     <!-- Any other string - use braces -->
