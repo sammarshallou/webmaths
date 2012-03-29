@@ -53,7 +53,8 @@ public class TestLatexToMathml extends TestCase
 	{
 		assertMath("<msup><mn>10</mn><mn>3</mn></msup>", "10^3"); 
 		assertMath("<msup><mn>10</mn><mn>3.14</mn></msup>", "10^{3.14}");
-		assertMath("<msup><mn>10</mn><mn>3</mn></msup><mn>2</mn>", "10^32"); 
+		assertMath("<msup><mn>10</mn><mn>3</mn></msup><mn>2</mn>", "10^32");
+		assertMath("<msup><mn>10</mn><mn>3</mn></msup>", "{10}^3");
 	}
 
 	@Test
@@ -94,6 +95,17 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mfrac><mrow><mi>x</mi><mo>\u2212</mo><mn>1</mn></mrow>" 
 			+ "<mn>2</mn></mfrac><mn>12</mn>", "\\frac{x-1}212");
 		assertMath("<msqrt><mn>1</mn></msqrt><mn>2</mn>", "\\sqrt 12"); 
+	}
+
+	@Test
+	public void testOver()
+	{
+		// Simple usage
+		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "1 \\over 2");
+		// Scoped with braces
+		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac><mo>=</mo><mn>3</mn>", "{1 \\over 2} = 3");
+		// Complex usage that initially caused infinite loop
+		getMath("\\left[  {d \\over d\\beta } \\right]");
 	}
 
 	@Test

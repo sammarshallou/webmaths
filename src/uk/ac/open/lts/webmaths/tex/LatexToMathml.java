@@ -55,6 +55,9 @@ public class LatexToMathml
 	/** Tree property: display style (Boolean) */
 	private final static String PROPERTY_DISPLAYSTYLE = "displaystyle";
 
+	/** Tree property: looking for a closing brace (Boolean) */
+	private final static String PROPERTY_PENDINGBRACE = "pendingbrace";
+
 	/**
 	 * Java interface equivalent for the lambda functions that take one TokenInput
 	 * parameter.
@@ -2744,9 +2747,11 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		if("{".equals(token))
 		{
 			slf.nextToken();
+			slf.pushProperty(PROPERTY_PENDINGBRACE, true);
 			result = subExprChainToMathml(slf, HARD_STOP_TOKENS);
 			if("}".equals(slf.peekToken()))
 			{
+				slf.popProperty(PROPERTY_PENDINGBRACE);
 				slf.nextToken();
 			}
 		}
@@ -3213,6 +3218,31 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // while ((slf.tokens[slf.tokens_index] is not None) and not ((slf.tokens[slf.tokens_index] in v_stop_tokens))):
 		while(slf.peekToken() != null && !stopTokens.containsKey(slf.peekToken()))
 		{
+			// When there is a closing brace, gather the result so far
+			if("}".equals(slf.peekToken()) &&
+				slf.getProperty(PROPERTY_PENDINGBRACE, false) == Boolean.TRUE)
+			{
+				slf.popProperty(PROPERTY_PENDINGBRACE);
+				if(mfrac != null)
+				{
+					resultElementAppend(mfrac, result);
+					result = wrappedResult;
+				}
+				else if(result == null)
+				{
+					// Original code didn't stop it returning null. This basically only
+					// happens if the equation is 'silly' TeX, but it causes exceptions and
+					// is generally problematic.
+					result = document.createElementNS(NS, "mspace");
+				}
+				wrappedResult = null;
+				mfrac = null;
+
+				// Go on with processing frmo next token
+				slf.nextToken();
+				continue;
+			}
+
 //  if (slf.tokens[slf.tokens_index] == u"\\over"):
 //   slf.tokens_index += 1
 //   v_mfrac = result_element(u"mfrac", 0, v_result)
