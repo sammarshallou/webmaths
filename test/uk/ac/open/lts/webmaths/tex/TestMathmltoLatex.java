@@ -287,6 +287,13 @@ public class TestMathmltoLatex
 	}
 
 	@Test
+	public void testText() throws Exception
+	{
+		assertEquals("\\textrm{$\\backslash $}", convertToTexInner("<mtext>\\</mtext>", true));
+		assertEquals("\\textrm{$\\backslash $omega}", convertToTexInner("<mtext>\\omega</mtext>", true));
+	}
+
+	@Test
 	public void testWhitespace() throws Exception
 	{
 		String tex = convertToTex("<math xmlns='http://www.w3.org/1998/Math/MathML'>\n" +

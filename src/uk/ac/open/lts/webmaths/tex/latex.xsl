@@ -36,6 +36,9 @@
 <xsl:template match="w:esc">
   <xsl:value-of select="@tex"/>
 </xsl:template>
+<xsl:template match="w:esc" mode="textmode">
+  <xsl:text>$</xsl:text><xsl:value-of select="@tex"/><xsl:text>$</xsl:text>
+</xsl:template>
 
 <!--
   Basic elements passed through
@@ -47,11 +50,9 @@
 <!-- mtext should turn into \textrm -->
 <xsl:template match="m:mtext">
   <xsl:apply-templates select="@*"/>
-  <xsl:text>\textrm{</xsl:text>
-  <xsl:call-template name="collect-preceding-spaces"/>
-  <xsl:apply-templates/>
-  <xsl:call-template name="collect-following-spaces"/>
-  <xsl:text>}</xsl:text>
+  <xsl:call-template name="mathvariant-to-tex-font">
+    <xsl:with-param name="PREFIX">\text</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="collect-preceding-spaces">
@@ -310,13 +311,16 @@
       <xsl:value-of select="$PREFIX"/>
       <xsl:value-of select="$FONT"/>
       <xsl:text>{</xsl:text>
-      <xsl:if test="$PREFIX = '\text'">
-        <xsl:call-template name="collect-preceding-spaces"/>
-      </xsl:if>
-      <xsl:apply-templates/>
-      <xsl:if test="$PREFIX = '\text'">
-        <xsl:call-template name="collect-following-spaces"/>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$PREFIX = '\text'">
+          <xsl:call-template name="collect-preceding-spaces"/>
+          <xsl:apply-templates mode="textmode"/>
+          <xsl:call-template name="collect-following-spaces"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates/>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:text>}</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
