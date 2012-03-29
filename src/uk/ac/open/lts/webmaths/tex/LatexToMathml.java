@@ -2139,10 +2139,14 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	}
 
 //def v_array_to_mathml(slf):
-	private Element arrayToMathml(TokenInput slf)
+	private Element arrayToMathml(TokenInput slf, boolean addSpacing)
 	{
 //v_mtable = result_element(u"mtable", 0)
 		Element mtable = resultElement("mtable", 0);
+		if(addSpacing)
+		{
+			mtable.setAttribute("rowspacing", "2ex");
+		}
 
 //# ROBHACK skip OUTeX 'optional' arg if present
 //if (slf.tokens[slf.tokens_index] == u"{"):
@@ -2192,7 +2196,26 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				resultAppendAttr(mtable, "columnalign", "0.0em ");
 			}
 		}
-		return matrixToMtable(slf, mtable);
+
+		Element result = matrixToMtable(slf, mtable);
+
+		// If alignment isn't given, default it to left-align now
+		if(s.length() == 0)
+		{
+			// This code makes assumptions about the XML (not having any whitespace,
+			// only <mtr> and <mtd>) which are true because we just generated it.
+			Node firstRow = mtable.getFirstChild();
+			if(firstRow != null)
+			{
+				int count = firstRow.getChildNodes().getLength();
+				for(int i=0; i<count; i++)
+				{
+					resultAppendAttr(mtable, "columnalign", "left ");
+				}
+			}
+		}
+
+		return result;
 	}
 
 //def v_matrix_to_mtable(slf, v_mtable):
@@ -2445,12 +2468,19 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return arrayToMathml(slf);
+				return arrayToMathml(slf, false);
 			}
 		});
-		// Add support for 'align' and 'align*' by treating as array
-		texEnvironments.put("align*", texEnvironments.get("array"));
-		texEnvironments.put("align", texEnvironments.get("array"));
+		// sam add: support align, align*
+		texEnvironments.put("align*", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return arrayToMathml(slf, true);
+			}
+		});
+		texEnvironments.put("align", texEnvironments.get("align*"));
 //u"displaymath": v_displaymath_to_mathml, \
 //}
 		texEnvironments.put("displaymath", new LambdaTokenInput()

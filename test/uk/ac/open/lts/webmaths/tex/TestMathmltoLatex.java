@@ -187,9 +187,6 @@ public class TestMathmltoLatex
 		// smallmatrix = pmatrix
 		"\\begin{smallmatrix} a&b \\\\ c&d \\end{smallmatrix}", "\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
 
-		// align* = array
-		"\\begin{align*} x & =1 \\\\ y & =2 \\end{align*}", "\\begin{array}{ll} x & =1 \\\\ y & =2 \\end{array}",
-
 		// Evil letter things
 		"\\R", "\\mathbb{R}",
 		"\\Q", "\\mathbb{Q}",

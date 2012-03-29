@@ -165,7 +165,7 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testAlign()
 	{
-		assertMath("<mtable><mtr><mtd><mi>x</mi></mtd>"
+		assertMath("<mtable columnalign=\"left left \" rowspacing=\"2ex\"><mtr><mtd><mi>x</mi></mtd>"
 			+ "<mtd><mo>=</mo><mn>1</mn></mtd></mtr>"
 			+ "<mtr><mtd><mi>y</mi></mtd>"
 			+ "<mtd><mo>=</mo><mn>2</mn></mtd></mtr></mtable>",

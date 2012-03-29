@@ -475,12 +475,12 @@
 <xsl:template match="m:mi/@fontstyle[string(.)='normal']"/>
 
 <!-- Detect constructs we do not support, and mark result equation. -->
-<xsl:template match="*">
+<xsl:template match="*" priority="-100">
   <xsl:text>\UNSUPPORTED{element </xsl:text>
   <xsl:value-of select="local-name(.)"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
-<xsl:template match="@*">
+<xsl:template match="@*" priority="-100">
   <xsl:text>\UNSUPPORTED{attribute </xsl:text>
   <xsl:value-of select="local-name(..)"/>
   <xsl:text>/@</xsl:text>
@@ -545,8 +545,20 @@
   <xsl:text>\end{cases} </xsl:text>
 </xsl:template>
 
+<!-- mtable as \begin{align*} -->
+<xsl:template match="m:mtable[m:mtr and @rowspacing='2ex']">
+  <xsl:apply-templates select="@*[local-name() != 'rowspacing' and local-name() != 'columnalign']"/>
+  <xsl:text>\begin{align*} </xsl:text>
+
+  <xsl:call-template name="matrix">
+    <xsl:with-param name="DONEATTRIBUTES">y</xsl:with-param>
+  </xsl:call-template>
+
+  <xsl:text>\end{align*} </xsl:text>
+</xsl:template>
+
 <!-- Default mtable treated as \begin{array} -->
-<xsl:template match="m:mtable[m:mtr]">
+<xsl:template match="m:mtable[m:mtr]" priority="-1">
   <xsl:apply-templates select="@*[local-name() != 'columnalign']"/>
   <xsl:text>\begin{array}{</xsl:text>
   <xsl:choose>
