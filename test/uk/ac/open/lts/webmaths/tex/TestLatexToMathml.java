@@ -179,7 +179,13 @@ public class TestLatexToMathml extends TestCase
 			+ "<mfrac><mn>1</mn><mi>x</mi></mfrac></mstyle>",
 			"\\tfrac{1}{x}"); 
 	}
-	
+
+	@Test
+	public void testTextModeSwitch()
+	{
+		assertMath("<mtext>a</mtext><mi>x</mi><mtext>b</mtext>", "\\text{a$x$b}");
+	}
+
 	@Test
 	public void testSubstack()
 	{

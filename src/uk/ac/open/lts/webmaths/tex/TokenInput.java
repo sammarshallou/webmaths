@@ -205,6 +205,8 @@ public class TokenInput
 						// sam: I added this because when in text mode it expects a
 						// bracelevel
 						braceLevel.add(0);
+						// sam: I added this otherwise it doesn't work to re-enter text mode
+						tokens.add("$");
 					}
 //      elif m.group(4) is not None:
 //        continue
