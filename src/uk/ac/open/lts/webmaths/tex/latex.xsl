@@ -172,12 +172,26 @@
       <xsl:apply-templates/>
       <xsl:text>}</xsl:text>
     </xsl:when>
+    <!-- Single letters with bold italic -->
+    <xsl:when test="string-length($FN) = 1 and contains($TEXITALIC, $FN) and
+        @mathvariant = 'bold-italic'">
+      <xsl:text>\boldsymbol{</xsl:text>
+      <xsl:apply-templates select="@*[local-name() != 'mathvariant']|node()"/>
+      <xsl:text>}</xsl:text>
+    </xsl:when>
+    <!-- Single letters with bold -->
+    <xsl:when test="string-length($FN) = 1 and not(contains($TEXITALIC, $FN)) and
+        @mathvariant = 'bold'">
+      <xsl:text>\boldsymbol{</xsl:text>
+      <xsl:apply-templates select="@*[local-name() != 'mathvariant']|node()"/>
+      <xsl:text>}</xsl:text>
+    </xsl:when>
     <!-- Single letters with no style or italic -->
     <xsl:when test="string-length($FN) = 1 and contains($TEXITALIC, $FN) and
         (not(@mathvariant) or (@mathvariant = 'italic'))">
       <xsl:apply-templates select="@*[local-name() != 'mathvariant']|node()"/>
     </xsl:when>
-    <!-- Single not-ASCII-letters with normal style (Greek etc) -->
+    <!-- Single not-ASCII (or lower Greek)-letters with normal style -->
     <xsl:when test="string-length($FN) = 1 and not(contains($TEXITALIC, $FN)) and
         @mathvariant = 'normal'">
       <xsl:apply-templates select="@*[local-name() != 'mathvariant']|node()"/>

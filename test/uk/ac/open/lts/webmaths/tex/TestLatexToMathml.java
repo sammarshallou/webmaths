@@ -112,8 +112,12 @@ public class TestLatexToMathml extends TestCase
 	public void testBoldSymbol()
 	{
 		assertMath("<mi mathvariant=\"bold\">\u0393</mi>", "\\boldsymbol \\Gamma");
-		assertMath("<mi mathvariant=\"bold\">?<!-- Unknown styled token: \\frog --></mi>",
-			"\\boldsymbol \\frog");
+		assertMath("<mi mathvariant=\"bold-italic\">\u03b3</mi>", "\\boldsymbol \\gamma");
+		assertMath("<mi mathvariant=\"bold-italic\">x</mi>" +
+			"<mi mathvariant=\"bold-italic\">y</mi>", "\\boldsymbol{xy}");
+		assertMath("<!-- Unknown TeX command: \\frog -->", "\\boldsymbol \\frog");
+		assertMath("<mover accent=\"true\"><mi mathvariant=\"bold-italic\">r</mi>" +
+			"<mo mathvariant=\"bold\">^</mo></mover>", "\\boldsymbol{\\hat r}");
 	}
 
 	@Test

@@ -921,6 +921,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\zeta", "\u03b6",
 	});
 
+	private final static Set<String> LOWER_GREEK_VALUE_SET =
+		new HashSet<String>(LOWER_GREEK_LETTERS.values());
+
 	// sam: I split Greek into lower and upper because of different behaviour
 	private final static Map<String, String> UPPER_GREEK_LETTERS =
 		makeMap(new String[]
@@ -1235,7 +1238,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return fontToMathml(slf, "bold");
+				return boldSymbolToMathml(slf);
 			}
 		});
 //u"\\bold": lambda slf: v_font_to_mathml(slf, u"bold"), \
@@ -2004,6 +2007,61 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		// sam: It used to set fontstyle here but I removed it as this attribute is
 		// deprecated.
 		return result;
+	}
+
+	/**
+	 * Special handler for the \boldsymbol structure that handles correct setting
+	 * of italic (or not) for individual characters.
+	 * @param slf
+	 * @return
+	 */
+	private Element boldSymbolToMathml(TokenInput slf)
+	{
+		// Parse next token or block
+		Element result = pieceToMathml(slf);
+
+		// Find all the mi, mo, and mn and style them
+		boldSymbolApply(result);
+
+		return result;
+	}
+
+	private static void boldSymbolApply(Element parent)
+	{
+		if(parent.getTagName().matches("mi|mo|mn"))
+		{
+			// We only style single characters
+			Node child = parent.getFirstChild();
+			if(child.getNextSibling() != null)
+			{
+				return;
+			}
+
+			if(child.getNodeType() == Node.TEXT_NODE)
+			{
+				String letter = child.getNodeValue();
+				String fontName;
+				if(letter.matches("[A-Za-z]") || LOWER_GREEK_VALUE_SET.contains(letter))
+				{
+					fontName = "bold-italic";
+				}
+				else
+				{
+					fontName = "bold";
+				}
+				parent.setAttribute("mathvariant", fontName);
+			}
+		}
+		else
+		{
+			for(Node child = parent.getFirstChild(); child!=null; child=child.getNextSibling())
+			{
+				if(child instanceof Element)
+				{
+					boldSymbolApply((Element)child);
+				}
+			}
+		}
 	}
 
 //def v_old_font_to_mathml(slf, v_font_name):
