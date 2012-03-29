@@ -2948,7 +2948,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		// sam added: ignore unknown TeX commands instead of treating them as numbers
 		else if(token != null && token.matches("\\\\[a-zA-Z]+"))
 		{
-			result = resultElement("xerroronly", 0, "Unknown TeX command: " + token);
+			result = resultElement("xerror", 0, "Unknown TeX command: " + token);
 			slf.nextToken();
 		}
 		// sam added: ignore & and \\ outside of relevant environments

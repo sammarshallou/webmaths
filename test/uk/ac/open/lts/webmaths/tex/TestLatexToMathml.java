@@ -115,7 +115,7 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mi mathvariant=\"bold-italic\">\u03b3</mi>", "\\boldsymbol \\gamma");
 		assertMath("<mi mathvariant=\"bold-italic\">x</mi>" +
 			"<mi mathvariant=\"bold-italic\">y</mi>", "\\boldsymbol{xy}");
-		assertMath("<!-- Unknown TeX command: \\frog -->", "\\boldsymbol \\frog");
+		assertMath("<mspace/><!-- Unknown TeX command: \\frog -->", "\\boldsymbol \\frog");
 		assertMath("<mover accent=\"true\"><mi mathvariant=\"bold-italic\">r</mi>" +
 			"<mo mathvariant=\"bold\">^</mo></mover>", "\\boldsymbol{\\hat r}");
 	}
@@ -406,10 +406,10 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testUnsupportedCommands() throws Exception
 	{
-		// Unsupported commands ought to be ignored (treated as nonexistent)
+		// Unsupported commands ought to be ignored (treated as mspace)
 		// with a MathML comment.
-		assertMath("<mn>1</mn><!-- Unknown TeX command: \\frog -->", "1\\frog");
-		assertMath("<!-- Unknown TeX command: \\frog --><mn>1</mn>", "\\frog{1}");
+		assertMath("<mn>1</mn><mspace/><!-- Unknown TeX command: \\frog -->", "1\\frog");
+		assertMath("<mspace/><!-- Unknown TeX command: \\frog --><mn>1</mn>", "\\frog{1}");
 	}
 
 	@Test
