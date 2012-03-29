@@ -419,5 +419,10 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<munder><mi>lim </mi><mi>i</mi></munder>", "\\lim_i");
 		assertMath("<mstyle displaystyle=\"false\" scriptlevel=\"0\"><msub><mi>lim </mi><mi>i</mi></msub></mstyle>",
 			"\\textstyle\\lim_i");
+
+		// With text style specified in param
+		String sample = "\\lim _{n\\rightarrow \\infty } B(\\tilde\\theta ) = 0";
+		String fromParam = new TokenInput(sample).toMathml(false);
+		assertTrue(fromParam.contains("<msub>"));
 	}
 }

@@ -3068,7 +3068,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // v_limit_style = (slf.tokens[slf.tokens_index] in g_limit_commands)
 		boolean limitStyle = LIMIT_COMMANDS.containsKey(slf.peekToken());
 
-		// sam added: need to also use 'limit style' if in text style mode
+		// sam added: need to also not use 'limit style' if in text style mode
 		if (slf.getProperty(PROPERTY_DISPLAYSTYLE, true) == Boolean.FALSE)
 		{
 			limitStyle = false;
@@ -3588,6 +3588,12 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	 */
 	public Element convert(TokenInput tokens, boolean display)
 	{
+		// If default is text mode, set that up
+		if(!display)
+		{
+			tokens.pushProperty(PROPERTY_DISPLAYSTYLE, false);
+		}
+
 		Element root = subExprChainToMathml(tokens, new HashMap<String, String>());
 		Element style = resultElement("mstyle", 1, "displaystyle",
 			display ? "true" : "false", root);
