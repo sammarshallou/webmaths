@@ -57,6 +57,15 @@
                 example demonstrates, it is usually easier to use TeX when
                 typing equations manually. 
             </Paragraph>
+            <StudyNote>
+                <Heading>How to enter equations</Heading>
+                <Paragraph>
+                    When entering equations in MathML or TeX, always enter the
+                    equation directly into the normal text editor. <b>Do not
+                    use the HTML view</b>. If you enter MathML equations into
+                    the HTML view, they will not work.
+                </Paragraph>
+            </StudyNote>
             <Paragraph>
                 While our system aims to support all commands and symbols in
                 the MathML version 2 specification, with regard to TeX, we support
