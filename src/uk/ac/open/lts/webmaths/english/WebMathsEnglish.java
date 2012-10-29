@@ -259,6 +259,7 @@ public class WebMathsEnglish extends WebMathsService implements MathsEnglishPort
 		return col;
 	}
 	
+	@SuppressWarnings(value="all")
 	private void display(Node node) throws Exception
 	{
 		DOMSource in = new DOMSource(node);
