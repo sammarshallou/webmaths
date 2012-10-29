@@ -2197,7 +2197,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	}
 
 //def v_array_to_mathml(slf):
-	private Element arrayToMathml(TokenInput slf, boolean addSpacing)
+	private Element arrayToMathml(TokenInput slf, boolean addSpacing, boolean align)
 	{
 //v_mtable = result_element(u"mtable", 0)
 		Element mtable = resultElement("mtable", 0);
@@ -2257,7 +2257,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 		Element result = matrixToMtable(slf, mtable);
 
-		// If alignment isn't given, default it to left-align now
+		// If alignment isn't given, default it to left-align now - or alternate
+		// between right and left for 'align' environment
 		if(s.length() == 0)
 		{
 			// This code makes assumptions about the XML (not having any whitespace,
@@ -2268,7 +2269,16 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				int count = firstRow.getChildNodes().getLength();
 				for(int i=0; i<count; i++)
 				{
-					resultAppendAttr(mtable, "columnalign", "left ");
+					if(align)
+					{
+						// First column is right, second left, third right, etc.
+						resultAppendAttr(mtable, "columnalign",
+							(i % 2 == 0) ? "right " : "left ");
+					}
+					else
+					{
+						resultAppendAttr(mtable, "columnalign", "left ");
+					}
 				}
 			}
 		}
@@ -2526,7 +2536,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return arrayToMathml(slf, false);
+				return arrayToMathml(slf, false, false);
 			}
 		});
 		// sam add: support align, align*
@@ -2535,7 +2545,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return arrayToMathml(slf, true);
+				return arrayToMathml(slf, true, true);
 			}
 		});
 		texEnvironments.put("align", texEnvironments.get("align*"));

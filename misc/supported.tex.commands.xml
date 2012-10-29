@@ -3033,8 +3033,8 @@
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>align</ComputerCode>, <ComputerCode>align*</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\begin{align*} x &amp; =1 \\ y &amp; =2 \end{align*}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{align*} x &amp; =1 \\ y &amp; =2 \end{align*}</TeX></InlineEquation></td>
+                            <td class="TableLeft"><ComputerCode>\begin{align*} x &amp; =1 \\ Q_{\text{frog}} &amp; =2 \end{align*}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{align*} x &amp; =1 \\ Q_{\textrm{frog}}  &amp; =2 \end{align*}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>displaymath</ComputerCode> - <b>do not use</b>
