@@ -69,6 +69,11 @@ public class TestWebMathsEnglish extends TestCase
 				"<mo>.</mo>" +
 			"</mrow></math>");
 	}
+	
+	public void testPlusOrMinus() throws Exception
+	{
+		assertEnglish("plus or minus 5", "<mo>&#xb1;</mo><mn>5</mn>");
+	}
 
 	private void assertEnglish(String expected, String mathml) throws Exception
 	{

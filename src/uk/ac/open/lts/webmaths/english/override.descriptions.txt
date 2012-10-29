@@ -67,5 +67,6 @@
 # Guess at specific meanings
 2032=prime
 
-# Stupid explanations
+# Removing unnecessary text in general
 2062=times
+b1=plus or minus 
