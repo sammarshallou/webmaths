@@ -766,9 +766,16 @@
 <!-- msub, under -->
 <xsl:template match="m:msub|m:munder">
   <xsl:apply-templates select="@*"/>
-  <xsl:call-template name="brace"><xsl:with-param name="VAL">
-    <xsl:apply-templates select="*[1]"/>
-  </xsl:with-param></xsl:call-template>
+  <xsl:choose>
+    <xsl:when test="*[1][self::m:mrow and count(node()) = 0]">
+        <xsl:text>\strut</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="brace"><xsl:with-param name="VAL">
+        <xsl:apply-templates select="*[1]"/>
+      </xsl:with-param></xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>_</xsl:text>
   <xsl:call-template name="brace"><xsl:with-param name="VAL">
     <xsl:apply-templates select="*[2]"/>
@@ -779,9 +786,16 @@
 <!-- msup, mover -->
 <xsl:template match="m:msup|m:mover">
   <xsl:apply-templates select="@*"/>
-  <xsl:call-template name="brace"><xsl:with-param name="VAL">
-    <xsl:apply-templates select="*[1]"/>
-  </xsl:with-param></xsl:call-template>
+  <xsl:choose>
+    <xsl:when test="*[1][self::m:mrow and count(node()) = 0]">
+        <xsl:text>\strut</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="brace"><xsl:with-param name="VAL">
+        <xsl:apply-templates select="*[1]"/>
+      </xsl:with-param></xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>^</xsl:text>
   <xsl:call-template name="brace"><xsl:with-param name="VAL">
     <xsl:apply-templates select="*[2]"/>
@@ -792,9 +806,16 @@
 <!-- msubsup, munderover -->
 <xsl:template match="m:msubsup|m:munderover">
   <xsl:apply-templates select="@*"/>
-  <xsl:call-template name="brace"><xsl:with-param name="VAL">
-    <xsl:apply-templates select="*[1]"/>
-  </xsl:with-param></xsl:call-template>
+  <xsl:choose>
+    <xsl:when test="*[1][self::m:mrow and count(node()) = 0]">
+        <xsl:text>\strut</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="brace"><xsl:with-param name="VAL">
+        <xsl:apply-templates select="*[1]"/>
+      </xsl:with-param></xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>_</xsl:text>
   <xsl:call-template name="brace"><xsl:with-param name="VAL">
     <xsl:apply-templates select="*[2]"/>

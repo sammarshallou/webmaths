@@ -231,6 +231,15 @@ public class TestLatexToMathml extends TestCase
 		tokens.toMathml(true);
 	}
 	
+	@Test
+	public void testInitialSubscript()
+	{
+		// Subscript at start of equation, or block, doesn't work
+		assertMath("<msup><mrow/><mi>x</mi></msup>", "^x");
+		assertMath("<mn>3</mn><mo>+</mo><msup><mrow/><mi>x</mi></msup>", "3 + ^x");
+		assertMath("<mi>x</mi><mo>+</mo><msup><mrow/><mn>3</mn></msup>", "x + {^3}");
+	}
+
 	private final static Pattern SAMPLES_REGEX = 
 		Pattern.compile("^([^,]+),(.*)$");
 	

@@ -528,10 +528,10 @@ public class TokenInput
 	}
 
 	/**
-	* Moves to the previous token and overwrites it. (EWWWW.)
-	* <p>
-	* This function was not in the Python version but I added it.
-	*/
+	 * Moves to the previous token and overwrites it. (EWWWW.)
+	 * <p>
+	 * This function was not in the Python version but I added it.
+	 */
 	public void backAndOverwriteToken(String value)
 	{
 		tokensIterator.previous();
@@ -539,6 +539,24 @@ public class TokenInput
 		if(debug)
 		{
 			System.err.println("TOKEN [" + value + "] back");
+		}
+	}
+
+	/**
+	 * Insert extra tokens before the current one. (EWWW.)
+	 * <p>
+	 * This function was not in the Python version but I added it.
+	 * @param tokens Tokens to insert
+	 */
+	public void insertTokensBeforeCurrent(String... tokens)
+	{
+		for(String token : tokens)
+		{
+			tokensIterator.add(token);
+		}
+		for(int i=0; i<tokens.length; i++)
+		{
+			tokensIterator.previous();
 		}
 	}
 

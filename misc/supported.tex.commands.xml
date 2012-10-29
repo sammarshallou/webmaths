@@ -2578,6 +2578,11 @@
                             <td class="TableLeft"><ComputerCode>\sum_{\substack{x&lt;0&lt;n \\ y&lt;0&lt;n}}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sum_{\substack{x&lt;0&lt;n \\ y&lt;0&lt;n}}</TeX></InlineEquation></td>
                         </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\strut</ComputerCode> (empty space)</td>
+                            <td class="TableLeft"><ComputerCode>\strut^2</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \strut^2</TeX></InlineEquation></td>
+                        </tr>
                     </tbody>
                 </Table>
 

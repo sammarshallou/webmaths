@@ -1764,6 +1764,15 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				return substackToMathml(slf);
 			}
 		});
+		// Add \strut command
+		texCommands.put("\\strut", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return resultElement("mrow", 0);
+			}
+		});
 //}
 	}
 
@@ -2966,6 +2975,12 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		{
 			result = resultElement("xerroronly", 0, "Symbol not supported outside environment: " + token);
 			slf.nextToken();
+		}
+		// sam added: special handling for ^ or _ without preceding stuff
+		else if("^".equals(token) || "_".equals(token))
+		{
+			slf.insertTokensBeforeCurrent("\\strut");
+			result = subExprToMathml(slf);
 		}
 //else:
 // v_result = result_element(u"mn", 0, v_token)
