@@ -240,6 +240,14 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mi>x</mi><mo>+</mo><msup><mrow/><mn>3</mn></msup>", "x + {^3}");
 	}
 
+	@Test
+	public void testNegativeSpace()
+	{
+		// Note this adds unnecessary mrow, which is annoying, but I don't really
+		// want to fix it right now.
+		assertMath("<mi>x</mi><mrow><mspace width=\"negativethinmathspace\"/><mi>y</mi></mrow>", "x\\!y");
+	}
+
 	private final static Pattern SAMPLES_REGEX = 
 		Pattern.compile("^([^,]+),(.*)$");
 	

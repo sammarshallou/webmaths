@@ -2422,9 +2422,12 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x ~ y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft">Zero-width space</td>
-                            <td class="TableLeft"><ComputerCode>x \! y</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \! y</TeX></InlineEquation></td>
+                            <td class="TableLeft">Negative thin space
+                                <footnote>Some MathML renderers ignore negative space
+                                (e.g. Firefox <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=717546">bug
+                                717546</a>).</footnote></td>
+                            <td class="TableLeft"><ComputerCode>x\!\!\!y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \!\!\!y</TeX></InlineEquation></td>
                         </tr>
                     </tbody>
                 </Table>

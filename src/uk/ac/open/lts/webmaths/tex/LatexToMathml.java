@@ -272,7 +272,6 @@ public class LatexToMathml
 		"\\:", "\u2005",
 		"\\thinspace", "\u2009",
 		"\\,", "\u2009",
-		"\\!", "\u200b",
 		"\\ ", " ",
 		"~", "\u00a0",
 		".", ".",
@@ -1771,6 +1770,14 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			public Element call(TokenInput slf)
 			{
 				return resultElement("mrow", 0);
+			}
+		});
+		texCommands.put("\\!", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return resultElement("mspace", 1, "width", "negativethinmathspace");
 			}
 		});
 //}

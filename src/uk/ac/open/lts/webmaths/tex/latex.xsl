@@ -995,6 +995,11 @@
     <xsl:text>\ </xsl:text>
   </xsl:if>
 </xsl:template>
+<!-- Or negative space (no special glom-onto-mtext handling for these) -->
+<xsl:template match="m:mspace[@width='negativethinmathspace']">
+  <xsl:apply-templates select="@*[local-name() != 'width']"/>
+  <xsl:text>\!</xsl:text>
+</xsl:template>
 
 <xsl:template name="is-this-a-normal-mtext">
   <xsl:if test="not(string(.) = '.' or string(.) = ';' or string(.) = '?' or
