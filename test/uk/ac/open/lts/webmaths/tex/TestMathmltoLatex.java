@@ -442,6 +442,7 @@ public class TestMathmltoLatex
 	{
 		assertEquals("\\textrm{q\\textasciicircum q}",
 			convertToTexInner("<mtext>q^q</mtext>", true));
+		assertRoundTrip("\\textrm{x \\quad y}");
 	}
 
 	@Test

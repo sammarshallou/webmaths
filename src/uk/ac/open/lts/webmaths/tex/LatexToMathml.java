@@ -482,7 +482,8 @@ public class LatexToMathml
 	private final static Map<String, String> TEXT_MODE_SYMBOLS =
 		makeMap(new String[]
 	{
-		"\\textasciicircum", "^"
+		"\\textasciicircum", "^",
+		"\\quad", "\u2003",
 	});
 
 	private final static Map<String, String> RELATION_SYMBOLS =

@@ -36,14 +36,14 @@
 <xsl:template match="w:esc">
   <xsl:value-of select="@tex"/>
 </xsl:template>
-<xsl:template match="w:esc[@textmode]">
+<xsl:template match="w:esc[not(@mathmode)]">
   <xsl:text>\textrm{</xsl:text>
   <xsl:call-template name="mark-text-mode-start"/>
   <xsl:value-of select="@tex"/>
   <xsl:call-template name="mark-text-mode-end"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
-<xsl:template match="w:esc" mode="textmode">
+<xsl:template match="w:esc[not(@textmode)]" mode="textmode">
   <xsl:call-template name="mark-text-mode-end"/>
   <xsl:text>$</xsl:text>
   <xsl:value-of select="@tex"/>

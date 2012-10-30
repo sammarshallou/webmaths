@@ -338,16 +338,33 @@ public class MathmlToLatex
 					continue;
 				}
 				String original = in.substring(i, i+chars);
-				String replace = REPLACE_CHARS.get(original);
-				boolean textMode = false;
+				String replace;
+				boolean textMode = false, mathMode = false;
+				replace = BOTH_REPLACE_CHARS.get(original);
+				if(replace != null)
+				{
+					mathMode = true;
+					textMode = true;
+				}
+				if(replace == null)
+				{
+					replace = MATH_REPLACE_CHARS.get(original);
+					if(replace != null)
+					{
+						mathMode = true;
+					}
+				}
 				if(replace == null)
 				{
 					replace = TEXT_REPLACE_CHARS.get(original);
-					textMode = true;
+					if(replace != null)
+					{
+						textMode = true;
+					}
 				}
 				if(replace != null)
 				{
-					addEscape(original, replace, nodes, out, d, textMode);
+					addEscape(original, replace, nodes, out, d, textMode, mathMode);
 					changed = true;
 					i += (chars - 1);
 					continue outerloop;
@@ -360,7 +377,7 @@ public class MathmlToLatex
 						if(ignoreUnsupported)
 						{
 							// If unsupported, use ? character
-							addEscape(original, "?", nodes, out, d, false);
+							addEscape(original, "?", nodes, out, d, true, true);
 							changed = true;
 						}
 						else
@@ -379,7 +396,7 @@ public class MathmlToLatex
 
 		if(changed)
 		{
-			addEscape(null, null, nodes, out, d, false);
+			addEscape(null, null, nodes, out, d, true, true);
 			return nodes;
 		}
 		else
@@ -389,7 +406,8 @@ public class MathmlToLatex
 	}
 
 	private static void addEscape(String original, String escape,
-		LinkedList<Node> nodes, StringBuilder out, Document d, boolean textMode)
+		LinkedList<Node> nodes, StringBuilder out, Document d,
+		boolean textMode, boolean mathMode)
 	{
 		// Add text node for previous text
 		if(out.length() > 0)
@@ -408,6 +426,10 @@ public class MathmlToLatex
 			if(textMode)
 			{
 				esc.setAttribute("textmode", "y");
+			}
+			if(mathMode)
+			{
+				esc.setAttribute("mathmode", "y");
 			}
 			nodes.add(esc);
 		}
@@ -445,7 +467,11 @@ public class MathmlToLatex
 	{
 		"^", "\\textasciicircum ",
 	});
-	private final static Map<String, String> REPLACE_CHARS = makeMap(new String[]
+	private final static Map<String, String> BOTH_REPLACE_CHARS = makeMap(new String[]
+	{
+		"\u2003", "\\quad ",
+	});
+	private final static Map<String, String> MATH_REPLACE_CHARS = makeMap(new String[]
 	{
 		"{", "\\{ ",
 		"}", "\\} ",
@@ -454,7 +480,6 @@ public class MathmlToLatex
 		"%", "\\% ",
 		"&", "\\& ",
 		"\u2016", "\\Vert ",
-		"\u2003", "\\quad ",
 		"\u2003\u2003", "\\qquad ",
 		"\u2002", "\\thickspace ",
 		"\u2005", "\\medspace ",
