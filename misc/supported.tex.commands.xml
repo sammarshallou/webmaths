@@ -2623,7 +2623,7 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Bigg( X \Bigg)</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\left</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\left</ComputerCode> (stretchy)</td>
                             <td class="TableLeft"><ComputerCode>\left( \frac{1}{x} \right\}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left( \frac{1}{x} \right\}</TeX></InlineEquation></td>
                         </tr>
@@ -2631,6 +2631,11 @@
                             <td class="TableLeft"><ComputerCode>\left</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\left( \begin{array}{l} a \\ b \end{array} \right)</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left( \begin{array}{l} a \\ b \end{array} \right)</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\left.</ComputerCode> (no left symbol)</td>
+                            <td class="TableLeft"><ComputerCode>\left. \frac{1}{x} \right\}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left. \frac{1}{x} \right \}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\bigl</ComputerCode></td>

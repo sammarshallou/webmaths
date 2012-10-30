@@ -446,6 +446,18 @@ public class TestMathmltoLatex
 	}
 
 	@Test
+	public void testLeftRightDots() throws Exception
+	{
+		// Test that it copes with \\left. and \\right
+		assertRoundTrip("\\left. \\frac{1}{y} \\right|");
+		assertRoundTrip("\\left| \\frac{1}{y} \\right.");
+		assertRoundTrip("\\left. X \\right)");
+		// Test something else isn't broken
+		assertRoundTrip("\\big( X \\big)");
+		assertRoundTrip("\\Bigl( \\frac{1}{x} \\Bigr\\}");
+	}
+
+	@Test
 	public void testSupported() throws Exception
 	{
 		// Checks all the equations from the 'supported' document. There is an
