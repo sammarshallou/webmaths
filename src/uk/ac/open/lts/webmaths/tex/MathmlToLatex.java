@@ -881,6 +881,7 @@ public class MathmlToLatex
 		"\u03d1", "\\vartheta ",
 		"\u03be", "\\xi ",
 		"\u039e", "\\Xi ",
-		"\u03b6", "\\zeta "
+		"\u03b6", "\\zeta ",
+		"\u2062", "", // InvisibleTimes; ignored
 	});
 }

@@ -472,6 +472,13 @@ public class TestMathmltoLatex
 	}
 
 	@Test
+	public void testInvisibleTimes() throws Exception
+	{
+		assertEquals("19x", convertToTexInner(
+			"<mn>19</mn><mo>\u2062</mo><mi>x</mi>", false));
+	}
+
+	@Test
 	public void testSupported() throws Exception
 	{
 		// Checks all the equations from the 'supported' document. There is an
