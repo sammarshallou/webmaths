@@ -19,12 +19,14 @@ Copyright 2011 The Open University
 package uk.ac.open.lts.webmaths.imagetex;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.*;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.jws.WebService;
 import javax.servlet.ServletContext;
 import javax.xml.ws.WebServiceContext;
@@ -223,6 +225,17 @@ public class WebMathsImageTex extends WebMathsImage
 		MathsImageReturn result) throws IOException, InterruptedException,
 			IllegalArgumentException
 	{
+		// Special case for empty equation (our TeX file doesn't work with empty)
+		if(tex.trim().equals(""))
+		{
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+			ImageIO.write(image, "png", out);
+			result.setImage(out.toByteArray());
+			result.setOk(true);
+			return;
+		}
+
 		// Get latex and dvipng executable paths, and temp folder
 		ServletContext servletContext = getServletContext();
 		String latex = null, dvipng = null, temp = null;

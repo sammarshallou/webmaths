@@ -242,7 +242,10 @@ public class TestMathmltoLatex
 	{
 		StringBuilder out = new StringBuilder();
 		checkRoundTrip(out, tex, true);
-		System.err.println(out);
+		if (out.length() > 0)
+		{
+			System.err.println(out);
+		}
 		assertTrue(out.length() == 0);
 	}
 
@@ -408,6 +411,19 @@ public class TestMathmltoLatex
 	{
 		assertRoundTrip("\\mathrm{x}");
 		assertRoundTrip("\\mathrm{distance}");
+	}
+
+	@Test
+	public void testEmpty() throws Exception
+	{
+		// Round trip
+		assertRoundTrip("");
+
+		// Empty MathML which actually has other junk in it
+		assertEquals("", convertToTex("<math xmlns='" + WebMathsService.NS + "'>" +
+			"<semantics><mstyle displaystyle=\"true\"></mstyle>" +
+			"<annotation encoding=\"TeX\"></annotation></semantics></math>",
+			false));
 	}
 
 	@Test
