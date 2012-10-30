@@ -479,6 +479,11 @@ public class LatexToMathml
 		"\\Z", "\u2124"
 	});
 
+	private final static Map<String, String> TEXT_MODE_SYMBOLS =
+		makeMap(new String[]
+	{
+		"\\textasciicircum", "^"
+	});
 
 	private final static Map<String, String> RELATION_SYMBOLS =
 		makeMap(new String[]
@@ -851,7 +856,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\dotsi", "\u22ef",
 		"\\dotsm", "\u22c5\u22c5\u22c5",
 		"\\dotso", "\u2026",
-		"\\ddots", "\u22f1"
+		"\\ddots", "\u22f1",
 	});
 
 	private final static Map<String, String> WORD_OPERATORS =
@@ -1491,7 +1496,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				// This used to return 0302, but MathML uses the basic circumfle3x 005e
+				// This used to return 0302, but MathML uses the basic circumflex 005e
 				// as its &Hat; so I figure that is right.
 				return accentToMathml(slf, "\u005e");
 			}
@@ -1964,7 +1969,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"ms",
 	}));
 
-	
+
 //def v_font_to_mathml(slf, v_font_name):
 //if (slf.tokens[slf.tokens_index] != u"{"):
 // v_result = result_element(u"mi", 1, u"mathvariant", v_font_name, slf.tokens[slf.tokens_index])
@@ -2788,6 +2793,20 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				node = subExprChainToMathml(slf, HARD_STOP_TOKENS);
 				slf.nextToken();
 			}
+			else if(token.startsWith("\\"))
+			{
+				String match = TEXT_MODE_SYMBOLS.get(token.trim());
+				if(match == null)
+				{
+					// No match, so I guess we just use the literal
+					node = resultElement("mtext", 0, token);
+				}
+				else
+				{
+					// Use the match
+					node = resultElement("mtext", 0, match);
+				}
+			}
 // else:
 //  v_node = result_element(u"mtext", 0, slf.tokens[slf.tokens_index])
 //  slf.tokens_index += 1
@@ -2817,8 +2836,27 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			}
 			else if(result != null)
 			{
-				mrow = resultElement("mrow", 0, result, node);
-				result = mrow;
+				// Glom together multiple mtext tags.
+				if(result.getTagName().equals("mtext") && node.getTagName().equals("mtext") &&
+					result.getAttribute("mathvariant").equals(node.getAttribute("mathvariant")))
+				{
+					String mathVariant = result.getAttribute("mathvariant");
+					if(mathVariant.equals(""))
+					{
+						result = resultElement("mtext", 0, result.getFirstChild().getNodeValue() +
+							node.getFirstChild().getNodeValue());
+					}
+					else
+					{
+						result = resultElement("mtext", 1, mathVariant,
+							result.getFirstChild().getNodeValue() + node.getFirstChild().getNodeValue());
+					}
+				}
+				else
+				{
+					mrow = resultElement("mrow", 0, result, node);
+					result = mrow;
+				}
 			}
 			else
 			{
@@ -3135,7 +3173,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		else
 		{
 			result = pieceToMathml(slf);
-			
+
 			// If the piece starts with a digit, gloop them together...
 			if(result != null && result.getTagName().equals("mn") &&
 				result.getFirstChild() != null &&
@@ -3163,7 +3201,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 						break;
 					}
 				}
-	
+
 				if(extra.length() > 0)
 				{
 					result = resultElement("mn", 0,

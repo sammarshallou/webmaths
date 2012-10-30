@@ -99,6 +99,10 @@ public class MathmlToLatex
 		}
 		String result = text.toString();
 
+		// Detect text mode
+		TextModeInfo textModeInfo = new TextModeInfo(result);
+		result = textModeInfo.getActualTex();
+
 		// If it contains any unsupported elements, either throw exception or
 		// else strip out
 		if (ignoreUnsupported)
@@ -112,8 +116,22 @@ public class MathmlToLatex
 			throw new UnsupportedMathmlException(message);
 		}
 
-		// Add space before each \ command
-		result = result.replaceAll("([A-Za-z0-9])(\\\\)", "$1 $2");
+		// Add space before each \ command except inside \text commands
+		Matcher m = SPACE_BEFORE_BACKSLASH.matcher(result);
+		StringBuffer buffer = new StringBuffer();
+		while(m.find())
+		{
+			if (textModeInfo.isText(m.start()))
+			{
+				m.appendReplacement(buffer, "$0");
+			}
+			else
+			{
+				m.appendReplacement(buffer, "$1 $2");
+			}
+		}
+		m.appendTail(buffer);
+		result = buffer.toString();
 
 		// In situation like \symbol ^2 or \symbol _2, remove the space
 		result = result.replaceAll("(\\\\[A-Za-z]+) ([_^])", "$1$2");
@@ -123,6 +141,79 @@ public class MathmlToLatex
 
 		return result;
 	}
+
+	private static class TextModeInfo
+	{
+		private String tex;
+
+		private final static String TEXT_START = "\u2022TEXT-START\u2022";
+		private final static String TEXT_END = "\u2022TEXT-END\u2022";
+
+		private static class Range
+		{
+			int from, length;
+			Range(int from, int length)
+			{
+				this.from = from;
+				this.length = length;
+			}
+		}
+
+		private LinkedList<Range> ranges = new LinkedList<Range>();
+
+		TextModeInfo(String input)
+		{
+			StringBuilder out = new StringBuilder();
+			int pos = 0;
+			while(true)
+			{
+				int found = input.indexOf(TEXT_START, pos);
+				if(found == -1)
+				{
+					out.append(input.substring(pos));
+					break;
+				}
+				out.append(input.substring(pos, found));
+				pos = found + TEXT_START.length();
+				int from = out.length();
+
+				int end = input.indexOf(TEXT_END, pos);
+				if(end == -1)
+				{
+					end = input.length();
+				}
+				out.append(input.substring(pos, end));
+				ranges.add(new Range(from, end - pos));
+
+				pos = end + TEXT_END.length();
+				if(pos >= input.length())
+				{
+					break;
+				}
+			}
+			tex = out.toString();
+		}
+
+		boolean isText(int pos)
+		{
+			for(Range range : ranges)
+			{
+				if(range.from <= pos && range.from + range.length > pos)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		String getActualTex()
+		{
+			return tex;
+		}
+	}
+
+	private final static Pattern SPACE_BEFORE_BACKSLASH = Pattern.compile(
+		"([A-Za-z0-9])(\\\\)");
 
 	private final static Pattern TEX_TRIMMER = Pattern.compile(
 		"^ *(.*?(\\\\*))( *)$");
@@ -248,9 +339,15 @@ public class MathmlToLatex
 				}
 				String original = in.substring(i, i+chars);
 				String replace = REPLACE_CHARS.get(original);
+				boolean textMode = false;
+				if(replace == null)
+				{
+					replace = TEXT_REPLACE_CHARS.get(original);
+					textMode = true;
+				}
 				if(replace != null)
 				{
-					addEscape(original, replace, nodes, out, d);
+					addEscape(original, replace, nodes, out, d, textMode);
 					changed = true;
 					i += (chars - 1);
 					continue outerloop;
@@ -263,7 +360,7 @@ public class MathmlToLatex
 						if(ignoreUnsupported)
 						{
 							// If unsupported, use ? character
-							addEscape(original, "?", nodes, out, d);
+							addEscape(original, "?", nodes, out, d, false);
 							changed = true;
 						}
 						else
@@ -282,7 +379,7 @@ public class MathmlToLatex
 
 		if(changed)
 		{
-			addEscape(null, null, nodes, out, d);
+			addEscape(null, null, nodes, out, d, false);
 			return nodes;
 		}
 		else
@@ -292,7 +389,7 @@ public class MathmlToLatex
 	}
 
 	private static void addEscape(String original, String escape,
-		LinkedList<Node> nodes, StringBuilder out, Document d)
+		LinkedList<Node> nodes, StringBuilder out, Document d, boolean textMode)
 	{
 		// Add text node for previous text
 		if(out.length() > 0)
@@ -308,6 +405,10 @@ public class MathmlToLatex
 				"http://ns.open.ac.uk/lts/webmaths", "esc");
 			esc.appendChild(d.createTextNode(original));
 			esc.setAttribute("tex", escape);
+			if(textMode)
+			{
+				esc.setAttribute("textmode", "y");
+			}
 			nodes.add(esc);
 		}
 	}
@@ -340,6 +441,10 @@ public class MathmlToLatex
 	}));
 
 	private final static int MAX_REPLACE_CHARS = 3;
+	private final static Map<String, String> TEXT_REPLACE_CHARS = makeMap(new String[]
+	{
+		"^", "\\textasciicircum ",
+	});
 	private final static Map<String, String> REPLACE_CHARS = makeMap(new String[]
 	{
 		"{", "\\{ ",

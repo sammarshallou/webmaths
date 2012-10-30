@@ -2321,6 +2321,11 @@
                             <td class="TableLeft"><ComputerCode>\pounds 300</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \pounds 300</TeX></InlineEquation></td>
                         </tr>
+                        <tr>
+                            <td class="TableLeft">Circumflex</td>
+                            <td class="TableLeft"><ComputerCode>\textrm{\textasciicircum}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textrm{\textasciicircum }</TeX></InlineEquation></td>
+                        </tr>
                     </tbody>
                 </Table>
 

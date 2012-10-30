@@ -61,6 +61,19 @@ public class TestTokenInput extends TestCase
 	}
 
 	@Test
+	public void testEscapesInTextMode()
+	{
+		TokenInput tokens = new TokenInput("\\text{ \\frog 49}");
+		assertEquals("\\text", tokens.nextToken());
+		assertEquals("{", tokens.nextToken());
+		assertEquals(" ", tokens.nextToken());
+		assertEquals("\\frog ", tokens.nextToken());
+		assertEquals("49", tokens.nextToken());
+		assertEquals("}", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+	}
+
+	@Test
 	public void testOverrun()
 	{
 		TokenInput tokens = new TokenInput("*");
@@ -69,7 +82,7 @@ public class TestTokenInput extends TestCase
 		assertEquals(null, tokens.nextToken());
 		assertEquals(null, tokens.nextToken());
 	}
-	
+
 	@Test
 	public void testPeek()
 	{
@@ -80,7 +93,7 @@ public class TestTokenInput extends TestCase
 		tokens.nextToken();
 		assertEquals(null, tokens.peekToken());
 	}
-	
+
 	@Test
 	public void testPeekAhead()
 	{
@@ -93,7 +106,7 @@ public class TestTokenInput extends TestCase
 		// Just check it didn't mess up current position
 		assertEquals("1", tokens.peekToken(0));
 	}
-	
+
 	@Test
 	public void testBackAndOverwrite()
 	{
@@ -149,7 +162,7 @@ public class TestTokenInput extends TestCase
 		assertEquals("}", tokens.nextToken());
 		assertEquals("\\,", tokens.nextToken());
 	}
-	
+
 	private Element parse(String xml) throws Exception
 	{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -162,8 +175,8 @@ public class TestTokenInput extends TestCase
 	@Test
 	public void testSaveXml() throws Exception
 	{
-		Element frog = parse("<frog sound='ribbit'><tadpole/>Ribbit!</frog>"); 
-		assertEquals("<frog sound=\"ribbit\"><tadpole/>Ribbit!</frog>", 
+		Element frog = parse("<frog sound='ribbit'><tadpole/>Ribbit!</frog>");
+		assertEquals("<frog sound=\"ribbit\"><tadpole/>Ribbit!</frog>",
 			TokenInput.saveXml(frog));
 	}
 

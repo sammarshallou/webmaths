@@ -36,8 +36,32 @@
 <xsl:template match="w:esc">
   <xsl:value-of select="@tex"/>
 </xsl:template>
+<xsl:template match="w:esc[@textmode]">
+  <xsl:text>\textrm{</xsl:text>
+  <xsl:call-template name="mark-text-mode-start"/>
+  <xsl:value-of select="@tex"/>
+  <xsl:call-template name="mark-text-mode-end"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
 <xsl:template match="w:esc" mode="textmode">
-  <xsl:text>$</xsl:text><xsl:value-of select="@tex"/><xsl:text>$</xsl:text>
+  <xsl:call-template name="mark-text-mode-end"/>
+  <xsl:text>$</xsl:text>
+  <xsl:value-of select="@tex"/>
+  <xsl:text>$</xsl:text>
+  <xsl:call-template name="mark-text-mode-start"/>
+</xsl:template>
+<xsl:template match="w:esc[@textmode]" mode="textmode">
+  <xsl:value-of select="@tex"/>
+</xsl:template>
+
+<!--
+  We mark text mode with special sequences used by the Java code later.
+  -->
+<xsl:template name="mark-text-mode-start">
+  <xsl:text>&#x2022;TEXT-START&#x2022;</xsl:text>
+</xsl:template>
+<xsl:template name="mark-text-mode-end">
+  <xsl:text>&#x2022;TEXT-END&#x2022;</xsl:text>
 </xsl:template>
 
 <!--
@@ -327,9 +351,11 @@
       <xsl:text>{</xsl:text>
       <xsl:choose>
         <xsl:when test="$PREFIX = '\text'">
+          <xsl:call-template name="mark-text-mode-start"/>
           <xsl:call-template name="collect-preceding-spaces"/>
           <xsl:apply-templates mode="textmode"/>
           <xsl:call-template name="collect-following-spaces"/>
+          <xsl:call-template name="mark-text-mode-end"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates/>

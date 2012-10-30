@@ -51,7 +51,7 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testPowers()
 	{
-		assertMath("<msup><mn>10</mn><mn>3</mn></msup>", "10^3"); 
+		assertMath("<msup><mn>10</mn><mn>3</mn></msup>", "10^3");
 		assertMath("<msup><mn>10</mn><mn>3.14</mn></msup>", "10^{3.14}");
 		assertMath("<msup><mn>10</mn><mn>3</mn></msup><mn>2</mn>", "10^32");
 		assertMath("<msup><mn>10</mn><mn>3</mn></msup>", "{10}^3");
@@ -60,14 +60,14 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testDigitsExample()
 	{
-		assertMath("<msqrt><mn>12</mn></msqrt>", "\\sqrt{12}"); 
+		assertMath("<msqrt><mn>12</mn></msqrt>", "\\sqrt{12}");
 		assertMath("<msqrt><mn>543210</mn></msqrt>", "\\sqrt{543210}");
 	}
-	
+
 	@Test
 	public void testDecimalDigitsExample()
 	{
-		assertMath("<msqrt><mn>31.459</mn></msqrt>", "\\sqrt{31.459}"); 
+		assertMath("<msqrt><mn>31.459</mn></msqrt>", "\\sqrt{31.459}");
 	}
 
 	@Test
@@ -90,11 +90,11 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testFractionDigits()
 	{
-		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "\\frac 12"); 
+		assertMath("<mfrac><mn>1</mn><mn>2</mn></mfrac>", "\\frac 12");
 		assertMath("<mfrac><mn>12</mn><mn>24</mn></mfrac>", "\\frac{12}{24}");
-		assertMath("<mfrac><mrow><mi>x</mi><mo>\u2212</mo><mn>1</mn></mrow>" 
+		assertMath("<mfrac><mrow><mi>x</mi><mo>\u2212</mo><mn>1</mn></mrow>"
 			+ "<mn>2</mn></mfrac><mn>12</mn>", "\\frac{x-1}212");
-		assertMath("<msqrt><mn>1</mn></msqrt><mn>2</mn>", "\\sqrt 12"); 
+		assertMath("<msqrt><mn>1</mn></msqrt><mn>2</mn>", "\\sqrt 12");
 	}
 
 	@Test
@@ -125,7 +125,7 @@ public class TestLatexToMathml extends TestCase
 	{
 		assertMath("<mn>1</mn><mo>−</mo><mn>0.498</mn>", "1-0.498");
 	}
-	
+
 	@Test
 	public void testCharFunctionThatNobodyWillEverUse()
 	{
@@ -179,9 +179,9 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testTfrac()
 	{
-		assertMath("<mstyle displaystyle=\"false\">" 
+		assertMath("<mstyle displaystyle=\"false\">"
 			+ "<mfrac><mn>1</mn><mi>x</mi></mfrac></mstyle>",
-			"\\tfrac{1}{x}"); 
+			"\\tfrac{1}{x}");
 	}
 
 	@Test
@@ -205,32 +205,32 @@ public class TestLatexToMathml extends TestCase
 	public void testSlightlyLessSimpleExample()
 	{
 		assertMath("<msqrt><mfrac><mn>1</mn><mi>x</mi></mfrac></msqrt>",
-			"\\sqrt{\\frac{1}{x}}"); 
+			"\\sqrt{\\frac{1}{x}}");
 	}
-	
+
 	@Test
 	public void testBloodyHorribleExample()
 	{
 		// This test is there because it caused the converter to crash initially
-		String horribleExample = "\\begin{array}{rl} ({\\bf x}-{\\bfmu })^ T {" 
-			+ "\\bfupSigma }^{-1}({\\bf x}-{\\bfmu })&  = \\frac1{\\sigma ^2_ X" 
-			+ "\\sigma ^2_ Y(1-\\rho ^2)} \\times \\\\ & \\quad (x-\\mu _ X ~ y-" 
-			+	"\\mu _ Y) \\begin{pmatrix}{c} \\sigma ^2_ Y(x-\\mu _ X) -\\rho " 
-			+	"\\sigma _ X\\sigma _ Y(y-\\mu _ Y) [NEWLINE][NEWLINE]\\\\ " 
-			+	"\\end{pmatrix}\\begin{pmatrix}{c}-\\rho \\sigma _ X\\sigma _ " 
+		String horribleExample = "\\begin{array}{rl} ({\\bf x}-{\\bfmu })^ T {"
+			+ "\\bfupSigma }^{-1}({\\bf x}-{\\bfmu })&  = \\frac1{\\sigma ^2_ X"
+			+ "\\sigma ^2_ Y(1-\\rho ^2)} \\times \\\\ & \\quad (x-\\mu _ X ~ y-"
+			+	"\\mu _ Y) \\begin{pmatrix}{c} \\sigma ^2_ Y(x-\\mu _ X) -\\rho "
+			+	"\\sigma _ X\\sigma _ Y(y-\\mu _ Y) [NEWLINE][NEWLINE]\\\\ "
+			+	"\\end{pmatrix}\\begin{pmatrix}{c}-\\rho \\sigma _ X\\sigma _ "
 			+ "Y(x-\\mu _ X) +\\sigma ^2_ X(y-\\mu _ Y)[NEWLINE][NEWLINE]\\\\ "
-			+ "\\end{pmatrix}\\\\ &  = \\frac1{\\sigma ^2_ X\\sigma ^2_ Y(1-\\rho " 
-			+ "^2)} \\times \\\\ & \\quad \\left[ \\left\\{  \\sigma ^2_ Y(x-\\mu _ " 
-			+ "X) -\\rho \\sigma _ X\\sigma _ Y(y-\\mu _ Y)\\right\\}  (x-\\mu _ X) " 
-			+ "\\right. \\\\ & \\quad \\left. \\quad + \\left\\{  -\\rho \\sigma _ " 
-			+ "X\\sigma _ Y(x-\\mu _ X) +\\sigma ^2_ X(y-\\mu _ Y)\\right\\} " 
-			+ "(y-\\mu _ Y) \\right] \\\\ & = \\frac{\\sigma _ Y^2(x-\\mu _ X)^2-2" 
-			+ "\\rho \\sigma _ X\\sigma _ Y (x-\\mu _ X)(y-\\mu _ Y)+\\sigma _ X^2" 
+			+ "\\end{pmatrix}\\\\ &  = \\frac1{\\sigma ^2_ X\\sigma ^2_ Y(1-\\rho "
+			+ "^2)} \\times \\\\ & \\quad \\left[ \\left\\{  \\sigma ^2_ Y(x-\\mu _ "
+			+ "X) -\\rho \\sigma _ X\\sigma _ Y(y-\\mu _ Y)\\right\\}  (x-\\mu _ X) "
+			+ "\\right. \\\\ & \\quad \\left. \\quad + \\left\\{  -\\rho \\sigma _ "
+			+ "X\\sigma _ Y(x-\\mu _ X) +\\sigma ^2_ X(y-\\mu _ Y)\\right\\} "
+			+ "(y-\\mu _ Y) \\right] \\\\ & = \\frac{\\sigma _ Y^2(x-\\mu _ X)^2-2"
+			+ "\\rho \\sigma _ X\\sigma _ Y (x-\\mu _ X)(y-\\mu _ Y)+\\sigma _ X^2"
 			+ "(y-\\mu _ Y)^2}{\\sigma _ X^2\\sigma _ Y^2(1-\\rho ^2)} \\end{array}";
 		TokenInput tokens = new TokenInput(horribleExample);
 		tokens.toMathml(true);
 	}
-	
+
 	@Test
 	public void testInitialSubscript()
 	{
@@ -248,9 +248,17 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mi>x</mi><mrow><mspace width=\"negativethinmathspace\"/><mi>y</mi></mrow>", "x\\!y");
 	}
 
-	private final static Pattern SAMPLES_REGEX = 
+	@Test
+	public void testTextEscapes()
+	{
+		// Support for escapes inside text is pretty limited right now but let's
+		// test what we've got
+		assertMath("<mtext>q^q</mtext>", "\\textrm{q\\textasciicircum q}");
+	}
+
+	private final static Pattern SAMPLES_REGEX =
 		Pattern.compile("^([^,]+),(.*)$");
-	
+
 	/**
 	 * Loads all the sample equations from course content and tests them. This
 	 * test is basically a 'does it crash' kind of test - we don't examine the
@@ -281,7 +289,7 @@ public class TestLatexToMathml extends TestCase
 			{
 				throw new IOException("Unexpected line data:\n" + line);
 			}
-			
+
 			String tex = m.group(2);
 			String result = new TokenInput(tex).toMathml(true);
 			if(result.contains("</xerror>"))
@@ -289,7 +297,7 @@ public class TestLatexToMathml extends TestCase
 				System.err.println(tex);
 				errors++;
 			}
-		}		
+		}
 		assertEquals(0, errors);
 	}
 
@@ -354,7 +362,7 @@ public class TestLatexToMathml extends TestCase
 		String actual = tokens.toMathml(true);
 		// Get rid of math tag, semantics, annotation
 		actual = actual.replaceFirst(
-			"<math[^>]+><semantics><mstyle displaystyle=\"(?:true|false)\">(.*?)" 
+			"<math[^>]+><semantics><mstyle displaystyle=\"(?:true|false)\">(.*?)"
 			+ "</mstyle><annotation[^>]+>.*</semantics></math>", "$1");
 		// Get rid of outer mrow if included
 		actual = actual.replaceFirst("^<mrow>(.*)</mrow>$", "$1");

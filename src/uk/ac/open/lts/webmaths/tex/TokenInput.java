@@ -2,13 +2,13 @@
  * Unlike most of this project, this files is based on code from another system
  * and is therefore NOT licensed under the GPL. I believe this license is
  * compatible with the GPL (it is also 'weaker', so you may be able to use
- * this specific code more widely).  
- * 
+ * this specific code more widely).
+ *
  * Original license:
- * 
+ *
  * Copyright (C) 2006 Steve Cheng <stevecheng@users.sourceforge.net>
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
@@ -26,7 +26,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALNGS IN THE SOFTWARE.
  *
  * Modified Java port:
- * 
+ *
  * Copyright 2011 The Open University.
  */
 package uk.ac.open.lts.webmaths.tex;
@@ -63,7 +63,7 @@ public class TokenInput
 
 //  tokenize_text_re = re.compile(ur"""[\${}\\]|\\[a-zA-Z]+|[^{}\$]+""")
 	private final static Pattern TEXT_RE = Pattern.compile(
-		"[\\${}\\\\]|\\\\[a-zA-Z]+|[^{}\\$]+");
+		"[\\${}]|\\\\[a-zA-Z]+\\s?|[^{}\\$\\\\]+");
 
 //  tokenize_text_commands = [u'\\textrm',u'\\textsl',u'\\textit',u'\\texttt',u'\\textbf',u'\\text',u'\\textnormal',u'\\hbox',u'\\mbox']
 	private final static Set<String> TEXT_COMMANDS = new HashSet<String>(
@@ -151,7 +151,7 @@ public class TokenInput
 					// Check for two-surrogate unicode - note I change this logic to do it
 					// properly rather than only supporting one range or whatever,
 					// hopefully that is correct.
-					if(Character.isHighSurrogate(tex.charAt(pos)))  
+					if(Character.isHighSurrogate(tex.charAt(pos)))
 					{
 						tokens.add(tex.substring(pos, pos + 2));
 						pos += 2;
@@ -167,7 +167,7 @@ public class TokenInput
 				{
 //        if m.end()==pos:
 //        print "matched nothing!"
-//        return         
+//        return
 					if(m.end() == pos)
 					{
 						// Matched nothing (I don't know why this had a print but figure
@@ -215,7 +215,7 @@ public class TokenInput
 						continue;
 					}
 //      elif m.group(5) is not None:#numbers
-//        #sanitise numbers by removing \, added for readability 
+//        #sanitise numbers by removing \, added for readability
 //        s=m.group(5)
 //        #check for trailing \, and do not clobber this
 //        se=s[-2:]==ur'\,'
@@ -287,7 +287,7 @@ public class TokenInput
 					// Check for two-surrogate unicode - note I change this logic to do it
 					// properly rather than only supporting one range or whatever,
 					// hopefully that is correct.
-					if(Character.isHighSurrogate(tex.charAt(pos)))  
+					if(Character.isHighSurrogate(tex.charAt(pos)))
 					{
 						tokens.add(tex.substring(pos, pos + 2));
 						pos += 2;
@@ -296,7 +296,7 @@ public class TokenInput
 					{
 						tokens.add(tex.substring(pos, pos + 1));
 						pos += 1;
-					}  
+					}
 				}
 //      else:
 				else
@@ -364,7 +364,7 @@ public class TokenInput
 
 	/**
 	* Converts tokenised data to MathML.
-	* @param display True if this is display equation 
+	* @param display True if this is display equation
 	* @return String containing MathML text
 	*/
 	public String toMathml(boolean display)
@@ -451,7 +451,7 @@ public class TokenInput
 		DOMImplementationLS domImplLS = (DOMImplementationLS)document.getImplementation();
 		LSSerializer serializer = domImplLS.createLSSerializer();
 		return serializer.writeToString(e).replaceFirst("^<\\?xml.*\n", "");
-	}  
+	}
 
 	/**
 	* Returns the next token and increments the position.

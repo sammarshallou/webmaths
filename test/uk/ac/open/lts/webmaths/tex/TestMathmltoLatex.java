@@ -427,6 +427,24 @@ public class TestMathmltoLatex
 	}
 
 	@Test
+	public void testEscaping() throws Exception
+	{
+		assertEquals("\\textrm{$\\{ $f$\\} $r$\\backslash $o\\textasciicircum g}",
+			convertToTex("<math xmlns='" + WebMathsService.NS + "'>" +
+			"<semantics><mstyle displaystyle=\"true\">" +
+			"<mtext>{f}r\\o^g</mtext>" +
+			"</mstyle><annotation encoding=\"TeX\"></annotation></semantics></math>",
+			false));
+	}
+
+	@Test
+	public void testTextEscapes() throws Exception
+	{
+		assertEquals("\\textrm{q\\textasciicircum q}",
+			convertToTexInner("<mtext>q^q</mtext>", true));
+	}
+
+	@Test
 	public void testSupported() throws Exception
 	{
 		// Checks all the equations from the 'supported' document. There is an
