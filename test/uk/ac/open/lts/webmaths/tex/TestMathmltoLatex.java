@@ -160,6 +160,10 @@ public class TestMathmltoLatex
 		"\\dint_{i=1}^x X_i" , "\\int_{i=1}^x X_i",
 		"\\dbinom{4}{x}", "\\binom{4}{x}",
 
+		// \tsum, \tint not supported in our TeX setup
+		"\\tsum_{i=1}^x X_i", "{ \\textstyle \\sum_{i=1}^x } X_i",
+		"\\tint_{i=1}^x X_i", "{ \\textstyle \\int_{i=1}^x } X_i",
+
 		// Font styles that are converted the same
 		"\\textnormal{frog}", "\\textrm{frog}",
 		"\\text{frog}", "\\textrm{frog}",
@@ -455,6 +459,16 @@ public class TestMathmltoLatex
 		// Test something else isn't broken
 		assertRoundTrip("\\big( X \\big)");
 		assertRoundTrip("\\Bigl( \\frac{1}{x} \\Bigr\\}");
+	}
+
+	@Test
+	public void testNotUsingTsum() throws Exception
+	{
+		// \tsum is not supported in our TeX install (also \tint, \dsum, etc).
+		// \tfrac and others work fine.
+		assertEquals("\\textstyle \\sum_{I=0}^n",
+			convertToTex(convertToMathml("\\tsum_{I=0}^n", true),
+			false));
 	}
 
 	@Test

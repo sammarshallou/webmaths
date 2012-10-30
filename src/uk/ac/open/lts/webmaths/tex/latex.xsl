@@ -1113,9 +1113,7 @@
  -->
 <xsl:template name="is-tdfrac">
   <xsl:if test="count(child::*)=1 and (m:mfrac or
-      *[self::m:munderover or self::m:munder or self::m:mover or self::m:msub or
-        self::m:msup or self::m:msubsup]/*[1][self::m:mo and
-        (string(.) = '&Sum;' or string(.) = '&int;')] or m:mrow[
+      m:mrow[
           count(*) = 3 and *[1][self::m:mo and string(.) = '('] and
           *[3][self::m:mo and string(.) = ')'] and *[2][self::m:mfrac[@linethickness='0' and
           count(@*)=1]]
