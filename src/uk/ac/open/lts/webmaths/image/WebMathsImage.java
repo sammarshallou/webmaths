@@ -92,6 +92,33 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 		}
 	}
 
+	@Override
+	public MathsEpsReturn getEps(MathsEpsParams params)
+	{
+		long start = System.currentTimeMillis();
+		MathsEpsReturn result = new MathsEpsReturn();
+		result.setOk(false);
+		result.setEps(EMPTY);
+		result.setError("");
+
+		try
+		{
+			// Parse XML
+			Document mathml = parseMathml(params, result, start);
+			if(mathml == null)
+			{
+				return result;
+			}
+			return getEps(params, mathml, result, start);
+		}
+		catch(Throwable t)
+		{
+			result.setError("MathML unexpected error - " + t.getMessage());
+			t.printStackTrace();
+			return result;
+		}
+	}
+
 	/**
 	 * Parses mathml from the input into a DOM document. Split out so that
 	 * subclass can call.
@@ -331,5 +358,51 @@ public class WebMathsImage extends WebMathsService implements MathsImagePort
 			return false;
 		}
 		return child.getNodeValue().equals(text);
+	}
+
+	/**
+	 * Parses mathml from the input into a DOM document. Split out so that
+	 * subclass can call.
+	 * @param params Parameters including MathML
+	 * @param result Blank result object
+	 * @param start Request start time (milliseconds since epoch)
+	 * @return Document or null if failed (in which case should return result)
+	 */
+	protected Document parseMathml(MathsEpsParams params, MathsEpsReturn result,
+		long start) throws Exception
+	{
+		try
+		{
+			Document mathml = parseMathml(params.getMathml());
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Parse DOM: " + (System.currentTimeMillis() - start));
+			}
+			return mathml;
+		}
+		catch(SAXParseException e)
+		{
+			int line = e.getLineNumber(), col = e.getColumnNumber();
+			result.setError("MathML parse error at " + line + ":" + col + " - "
+				+ e.getMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Does real work; separated out so it can be efficiently called from
+	 * subclass.
+	 * @param params Request parameters
+	 * @param doc MathML as DOM document
+	 * @param result Initialised result object with blank fields
+	 * @param start Start time of request (milliseconds since epoch)
+	 * @return Return result
+	 * @throws IOException Any error creating image file
+	 */
+	protected MathsEpsReturn getEps(MathsEpsParams params, Document doc,
+		MathsEpsReturn result, long start) throws IOException
+	{
+		result.setError("EPS output from JEuclid not supported");
+		return result;
 	}
 }

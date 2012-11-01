@@ -99,59 +99,7 @@ public class WebMathsImageTex extends WebMathsImage
 				return result;
 			}
 
-			// Check for annotations indicating specific behaviour
-			Mode renderingMode = null;
-			NodeList annotations = mathml.getElementsByTagNameNS(NS, "annotation");
-			boolean gotTex = false;
-			for(int i=0; i<annotations.getLength(); i++)
-			{
-				// Get attribute encoding or null if none
-				Element annotation = (Element)annotations.item(i);
-				String encoding = annotation.getAttribute("encoding");
-
-				// application/x-tex is the correct encoding indicating there was a
-				// TeX version; TeX is included for OU legacy reasons only
-				if("application/x-tex".equals(encoding) || "TeX".equals(encoding))
-				{
-					gotTex = true;
-				}
-
-				// application/x-webmaths is used to manually control rendering
-				if("application/x-webmaths".equals(encoding))
-				{
-					Node child = annotation.getFirstChild();
-					if(child.getNodeType() == Node.TEXT_NODE)
-					{
-						renderingMode = Mode.fromType(child.getNodeValue());
-					}
-				}
-			}
-
-			// If rendering mode is not set, default it
-			if(renderingMode == null)
-			{
-				if(gotTex)
-				{
-					renderingMode = Mode.AUTOFALLBACK;
-				}
-				else
-				{
-					String defaultMode = null;
-					ServletContext servletContext = getServletContext();
-					if(servletContext != null)
-					{
-						defaultMode = servletContext.getInitParameter("default-render-mode");
-					}
-					if(defaultMode == null)
-					{
-						renderingMode = Mode.MATHML;
-					}
-					else
-					{
-						renderingMode = Mode.fromType(defaultMode);
-					}
-				}
-			}
+			Mode renderingMode = getMode(mathml);
 			if(SHOWPERFORMANCE)
 			{
 				System.err.println("Decide mode: " + (System.currentTimeMillis() - start));
@@ -200,6 +148,136 @@ public class WebMathsImageTex extends WebMathsImage
 		}
 	}
 
+	@Override
+	public MathsEpsReturn getEps(MathsEpsParams params)
+	{
+		long start = System.currentTimeMillis();
+		MathsEpsReturn result = new MathsEpsReturn();
+		result.setOk(false);
+		result.setError("");
+		result.setEps(EMPTY);
+
+		try
+		{
+			// Parse MathML
+			Document mathml = parseMathml(params, result, start);
+			if(mathml == null)
+			{
+				return result;
+			}
+
+			Mode renderingMode = getMode(mathml);
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Decide mode: " + (System.currentTimeMillis() - start));
+			}
+
+			// If we're using the MathML renderer, call that from base class
+			if(renderingMode == Mode.MATHML)
+			{
+				return super.getEps(params, mathml, result, start);
+			}
+
+			// Convert MathML to LaTeX
+			String tex;
+			try
+			{
+				tex = getMathmlToLatex().convert(mathml, renderingMode == Mode.LATEX);
+			}
+			catch(UnsupportedMathmlException e)
+			{
+				// Fallback
+				if(SHOWPERFORMANCE)
+				{
+					System.err.println("Selecting fallback: " + (System.currentTimeMillis() - start));
+				}
+				return super.getEps(params, mathml, result, start);
+			}
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("Convert to LaTeX: " + (System.currentTimeMillis() - start));
+			}
+
+			// Create the EPS
+			texToEps(tex, result);
+
+			if(SHOWPERFORMANCE)
+			{
+				System.err.println("End: " + (System.currentTimeMillis() - start));
+			}
+			return result;
+		}
+		catch(Throwable t)
+		{
+			result.setError("MathML/LaTeX unexpected error - " + t.getMessage());
+			t.printStackTrace();
+			return result;
+		}
+	}
+
+	/**
+	 * Get rendering mode to use for this equation (latex or JEuclid).
+	 * @param mathml MathML document
+	 * @return Rendering mode
+	 */
+	private Mode getMode(Document mathml)
+	{
+		// Check for annotations indicating specific behaviour
+		Mode renderingMode = null;
+		NodeList annotations = mathml.getElementsByTagNameNS(NS, "annotation");
+		boolean gotTex = false;
+		for(int i=0; i<annotations.getLength(); i++)
+		{
+			// Get attribute encoding or null if none
+			Element annotation = (Element)annotations.item(i);
+			String encoding = annotation.getAttribute("encoding");
+
+			// application/x-tex is the correct encoding indicating there was a
+			// TeX version; TeX is included for OU legacy reasons only
+			if("application/x-tex".equals(encoding) || "TeX".equals(encoding))
+			{
+				gotTex = true;
+			}
+
+			// application/x-webmaths is used to manually control rendering
+			if("application/x-webmaths".equals(encoding))
+			{
+				Node child = annotation.getFirstChild();
+				if(child.getNodeType() == Node.TEXT_NODE)
+				{
+					renderingMode = Mode.fromType(child.getNodeValue());
+				}
+			}
+		}
+
+		// If rendering mode is not set, default it
+		if(renderingMode == null)
+		{
+			if(gotTex)
+			{
+				renderingMode = Mode.AUTOFALLBACK;
+			}
+			else
+			{
+				String defaultMode = null;
+				ServletContext servletContext = getServletContext();
+				if(servletContext != null)
+				{
+					defaultMode = servletContext.getInitParameter("default-render-mode");
+				}
+				if(defaultMode == null)
+				{
+					renderingMode = Mode.MATHML;
+				}
+				else
+				{
+					renderingMode = Mode.fromType(defaultMode);
+				}
+			}
+		}
+		return renderingMode;
+	}
+
 	/**
 	 * @return Converter used to change MathML to LaTeX
 	 */
@@ -236,66 +314,12 @@ public class WebMathsImageTex extends WebMathsImage
 			return;
 		}
 
-		// Get latex and dvipng executable paths, and temp folder
-		ServletContext servletContext = getServletContext();
-		String latex = null, dvipng = null, temp = null;
-		if(servletContext != null)
-		{
-			latex = servletContext.getInitParameter("latex-executable");
-			dvipng = servletContext.getInitParameter("dvipng-executable");
-			temp = servletContext.getInitParameter("temp-directory");
-		}
-		// Note: Defaults are here because, although these values should always be
-		// set in web.xml, it's possible to run this from command line without
-		// context parameters.
-		if(latex == null)
-		{
-			latex = "latex";
-		}
-		if(dvipng == null)
-		{
-			dvipng = "dvipng";
-		}
-		if(temp == null)
-		{
-			temp = "/tmp";
-		}
-
-		// Create folder with random name
-		File tempFolder;
-		int attempts = 0;
-		do
-		{
-			tempFolder = new File(temp, UUID.randomUUID().toString());
-			attempts++;
-			if(attempts > MAX_TEMP_FOLDER_ATTEMPTS)
-			{
-				throw new IOException("Error creating temp folder (" +
-					MAX_TEMP_FOLDER_ATTEMPTS + " attempts failed): " + tempFolder);
-			}
-		}
-		while(!tempFolder.mkdir());
-
-		// Ensure we delete the folder when finished
+		// Create temp folder and ensure we delete it when finished
+		File tempFolder = createTempFolder();
 		try
 		{
-			// Create TeX file in folder
-			String fullTex = TEX_PROLOG + TEX_PRE_ITEM + tex +
-				TEX_POST_ITEM + TEX_EPILOG;
-			byte[] fullTexBytes = fullTex.getBytes("US-ASCII");
-			File texFile = new File(tempFolder, "eq.tex");
-			FileOutputStream out = new FileOutputStream(texFile);
-			out.write(fullTexBytes);
-			out.close();
-
-			if (SHOW_COMMANDS)
-			{
-				System.err.println("[WEBMATHS] In folder: " + tempFolder);
-				System.err.println("[WEBMATHS] TeX file follows {{\n" + fullTex + "}}");
-			}
-
-			// Convert it to .dvi
-			runProcess(new String[] {latex, "--interaction=batchmode", "eq.tex"}, tempFolder);
+			// Create DVI file in folder
+			createDvi(tex, tempFolder);
 
 			// Get colour, size parameters
 			int dpi = Math.round((float)(BASE_PIXEL_SIZE * 72.27 / 10.0) * size);
@@ -304,6 +328,7 @@ public class WebMathsImageTex extends WebMathsImage
 			String texFg = "rgb " + components[0] + " " + components[1] + " " + components[2];
 
 			// Convert DVI to PNG
+			String dvipng = getParam("dvipng-executable", "dvipng");
 			String[] stdout = runProcess(
 				new String[] {dvipng, "-q", "-D", "" + dpi, "-fg", texFg, "-bg", "Transparent",
 					"-l", "1", "--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
@@ -321,14 +346,8 @@ public class WebMathsImageTex extends WebMathsImage
 			}
 			result.setBaseline(new BigInteger(m.group(1)));
 
-			// Load PNG image
-			File pngFile = new File(tempFolder, "eq.png");
-			FileInputStream in = new FileInputStream(pngFile);
-			byte[] image = new byte[(int)pngFile.length()];
-			in.read(image);
-			in.close();
-
-			result.setImage(image);
+			// Load PNG image and return
+			result.setImage(loadFile(tempFolder, "eq.png"));
 			result.setOk(true);
 		}
 		finally
@@ -337,6 +356,146 @@ public class WebMathsImageTex extends WebMathsImage
 		}
 	}
 
+	/**
+	 * Converts TeX to an EPS image. Value (or error) will be placed in the result
+	 * parameter.
+	 * @param tex TeX string
+	 * @param result Out parameter; output image goes here
+	 * @throws IOException
+	 */
+	private void texToEps(String tex, MathsEpsReturn result)
+		throws IOException, InterruptedException, IllegalArgumentException
+	{
+		// Special case for empty equation (our TeX file doesn't work with empty)
+		if(tex.trim().equals(""))
+		{
+			result.setOk(false);
+			result.setError("Blank equation not supported");
+			return;
+		}
+
+		// Get latex and dvips executable paths, and temp folder
+		String dvips = getParam("dvips-executable", "dvips");
+
+		// Create temp folder and ensure we delete it when finished
+		File tempFolder = createTempFolder();
+		try
+		{
+			// Create DVI file in folder
+			createDvi(tex, tempFolder);
+
+			// Convert DVI to EPS
+			runProcess(
+				new String[] {dvips, "-l", "=1", "-E", "-o", "eq.eps", "eq.dvi" }, tempFolder);
+
+			// Load image and finish
+			result.setEps(loadFile(tempFolder, "eq.eps"));
+			result.setOk(true);
+		}
+		finally
+		{
+			killFolder(tempFolder);
+		}
+	}
+
+	/**
+	 * Loads a file into a byte array.
+	 * @param tempFolder Temp folder
+	 * @param filename Filename
+	 * @return File contents
+	 * @throws IOException Any error loading file
+	 */
+	private byte[] loadFile(File tempFolder, String filename)
+		throws IOException
+	{
+		File file = new File(tempFolder, filename);
+		FileInputStream in = new FileInputStream(file);
+		byte[] image = new byte[(int)file.length()];
+		in.read(image);
+		in.close();
+		return image;
+	}
+
+	/**
+	 * Creates a DVI file from a TeX equation
+	 * @param tex Equation
+	 * @param tempFolder Temp folder
+	 * @throws UnsupportedEncodingException Will never happen
+	 * @throws IOException IO errors
+	 * @throws InterruptedException If thread is interrupted
+	 */
+	private void createDvi(String tex, File tempFolder)
+		throws UnsupportedEncodingException, FileNotFoundException, IOException,
+			InterruptedException
+	{
+		String latex = getParam("latex-executable", "latex");
+		String fullTex = TEX_PROLOG + TEX_PRE_ITEM + tex +
+			TEX_POST_ITEM + TEX_EPILOG;
+		byte[] fullTexBytes = fullTex.getBytes("US-ASCII");
+		File texFile = new File(tempFolder, "eq.tex");
+		FileOutputStream out = new FileOutputStream(texFile);
+		out.write(fullTexBytes);
+		out.close();
+
+		if (SHOW_COMMANDS)
+		{
+			System.err.println("[WEBMATHS] In folder: " + tempFolder);
+			System.err.println("[WEBMATHS] TeX file follows {{\n" + fullTex + "}}");
+		}
+
+		// Convert it to .dvi
+		runProcess(new String[] {latex, "--interaction=batchmode", "eq.tex"}, tempFolder);
+	}
+
+	/**
+	 * Creates a temp folder using a random name.
+	 * @return Folder
+	 * @throws IOException
+	 */
+	private File createTempFolder() throws IOException
+	{
+		String temp = getParam("temp-directory", "/tmp");
+		File tempFolder;
+		int attempts = 0;
+		do
+		{
+			tempFolder = new File(temp, UUID.randomUUID().toString());
+			attempts++;
+			if(attempts > MAX_TEMP_FOLDER_ATTEMPTS)
+			{
+				throw new IOException("Error creating temp folder (" +
+					MAX_TEMP_FOLDER_ATTEMPTS + " attempts failed): " + tempFolder);
+			}
+		}
+		while(!tempFolder.mkdir());
+		return tempFolder;
+	}
+
+	/**
+	 * Gets parameter from servlet context.
+	 * @param param Param name
+	 * @param defaultValue Default if not supplied (such as when running from
+	 *   command line)
+	 * @return Param value
+	 */
+	private String getParam(String param, String defaultValue)
+	{
+		ServletContext servletContext = getServletContext();
+		String temp = null;
+		if(servletContext != null)
+		{
+			temp = servletContext.getInitParameter(param);
+		}
+		if(temp == null)
+		{
+			temp = defaultValue;
+		}
+		return temp;
+	}
+
+	/**
+	 * @return Servlet context (or null if not running from servlet)
+	 */
 	private ServletContext getServletContext()
 	{
 		return (ServletContext)context.getMessageContext().get(

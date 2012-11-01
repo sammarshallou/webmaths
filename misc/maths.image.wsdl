@@ -67,6 +67,38 @@
                 </complexType>
             </element>
 
+            <element name="MathsEpsParams">
+                <complexType>
+                    <sequence>
+                        <element name="mathml" type="xsd:string">
+                            <annotation><documentation>Complete MathML content to render, as
+                                    string. Should begin with &lt;math... and end with &lt;/math>,
+                                    omitting XML prolog and doctype. The namespace is required but
+                                    must be set using xmlns= on the math element. Namespace prefixes
+                                    must not be used.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="MathsEpsReturn">
+                <complexType>
+                    <sequence>
+                        <element name="ok" type="xsd:boolean">
+                            <annotation><documentation>True if the request was ok, false if
+                                    not.</documentation></annotation>
+                        </element>
+                        <element name="error" type="xsd:string">
+                            <annotation><documentation>Error message string (blank if no
+                                    error; can also set for warning).</documentation></annotation>
+                        </element>
+                        <element name="eps" type="xsd:base64Binary">
+                            <annotation><documentation>Image data in EPS format. Service will
+                                    return empty data if error.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
         </schema>
     </types>
 
@@ -78,10 +110,22 @@
         <part name="result" element="t:MathsImageReturn"/>
     </message>
 
+    <message name="getEpsRequest">
+        <part name="params" element="t:MathsEpsParams"/>
+    </message>
+
+    <message name="getEpsResponse">
+        <part name="result" element="t:MathsEpsReturn"/>
+    </message>
+
     <portType name="MathsImagePort">
         <operation name="getImage">
             <input message="tns:getImageRequest"></input>
             <output message="tns:getImageResponse"></output>
+        </operation>
+        <operation name="getEps">
+            <input message="tns:getEpsRequest"></input>
+            <output message="tns:getEpsResponse"></output>
         </operation>
     </portType>
 
@@ -90,6 +134,11 @@
             transport="http://schemas.xmlsoap.org/soap/http" />
         <operation name="getImage">
             <soap:operation soapAction="getImage"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+        <operation name="getEps">
+            <soap:operation soapAction="getEps"/>
             <input><soap:body use="literal"/></input>
             <output><soap:body use="literal"/></output>
         </operation>
