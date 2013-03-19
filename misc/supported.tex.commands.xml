@@ -1,56 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Item TextType="BodyMatter" SchemaVersion="1.2" SessionStartNumber="1"
-    id="X-Supported-Tex-commands" ACSPageNumber="1" ACSTemplate="Generic_Print"
-    ACSCourseItem="SC" LastRendering="VLE Preview" DiscussionAlias="Discussion"
-    SessionAlias="" SecondColour="None" ThirdColour="None" FourthColour="None"
-    Logo="colour">
+<Item TextType="BodyMatter" SchemaVersion="2.0" id="X-Supported-Tex-commands"
+    Rendering="VLE2 shared (learn1)">
     <CourseCode>COMPUTING-GUIDE</CourseCode>
     <CourseTitle>COMPUTING-GUIDE</CourseTitle>
-    <ItemID />
+    <ItemID/>
     <ItemTitle>Supported TeX commands</ItemTitle>
     <FrontMatter>
         <Imprint>
             <Standard>
                 <GeneralInfo>
-                    <Paragraph />
+                    <Paragraph/>
                 </GeneralInfo>
                 <Address>
-                    <AddressLine />
+                    <AddressLine/>
                 </Address>
                 <FirstPublished>
-                    <Paragraph />
+                    <Paragraph/>
                 </FirstPublished>
+                <Copyright>
+                    <Paragraph/>
+                </Copyright>
                 <Rights>
-                    <Paragraph />
+                    <Paragraph/>
                 </Rights>
                 <Edited>
-                    <Paragraph />
+                    <Paragraph/>
                 </Edited>
                 <Printed>
-                    <Paragraph />
+                    <Paragraph/>
                 </Printed>
-                <ISBN />
-                <Edition />
+                <ISBN/>
+                <Edition/>
             </Standard>
         </Imprint>
         <Introduction>
-            <Title />
+            <Title/>
             <Paragraph>The equation processing system used in Open
                 University module websites supports two equation languages:
                 MathML (version 2) and TeX.</Paragraph>
             <Paragraph>For example, this is a MathML equation that you could
                 type into a forum post or wiki page:</Paragraph>
-            <ProgramDisplay>
-                &lt;math>&lt;mi>x&lt;/mi>&lt;mo>=&lt;/mo>&lt;msup>&lt;mi>y&lt;/mi>&lt;mn>2&lt;/mn>&lt;/msup>&lt;/math>
-            </ProgramDisplay>
+            <ProgramListing>
+                <Paragraph>&lt;math>&lt;mi>x&lt;/mi>&lt;mo>=&lt;/mo>&lt;msup>&lt;mi>y&lt;/mi>&lt;mn>2&lt;/mn>&lt;/msup>&lt;/math></Paragraph>
+            </ProgramListing>
             <Paragraph>Alternatively, you could type this LaTeX equation:</Paragraph>
-            <ProgramDisplay>
-                $$ x=y^2 $$
-            </ProgramDisplay>
+            <ProgramListing>
+                <Paragraph>$$ x=y^2 $$</Paragraph>
+            </ProgramListing>
             <Paragraph>These give very similar results (or identical, if you are
                 viewing directly as MathML):</Paragraph>
-            <Equation><MathML>&lt;math>&lt;mi>x&lt;/mi>&lt;mo>=&lt;/mo>&lt;msup>&lt;mi>y&lt;/mi>&lt;mn>2&lt;/mn>&lt;/msup>&lt;/math></MathML></Equation>
-            <Equation><TeX>\displaystyle x=y^2</TeX></Equation>
+            <Equation>
+                <MathML>
+                    &lt;math xmlns="http://www.w3.org/1998/Math/MathML">
+                        &lt;mi>x&lt;/mi>
+                        &lt;mo>=&lt;/mo>
+                        &lt;msup>
+                            &lt;mi>y&lt;/mi>
+                            &lt;mn>2&lt;/mn>
+                        &lt;/msup>
+                    &lt;/math>
+                </MathML>
+            </Equation>
+            <Equation>
+                <TeX>\displaystyle x=y^2</TeX>
+            </Equation>
             <Paragraph>
                 When copying and pasting equations from other applications,
                 MathML may be the most suitable choice. However, as the above
@@ -81,18 +94,15 @@
         </Introduction>
     </FrontMatter>
     <Unit>
-        <UnitID />
-        <UnitTitle />
-        <ByLine />
-
+        <UnitID/>
+        <UnitTitle/>
+        <ByLine/>
         <Session>
-            <Title>Symbols</Title>
-            
+            <Title><Number>1</Number> Symbols</Title>
             <Section>
-                <Title>Letters</Title>
-
+                <Title><Number>1.1</Number> Letters</Title>
                 <Table class="type 2">
-                    <Heading>Latin letters</Heading>
+                    <TableHead>Latin letters</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">TeX command</th>
@@ -308,9 +318,8 @@
                         </tr>
                     </tbody>
                 </Table>
-    
                 <Table class="type 2">
-                    <Heading>Greek letters</Heading>
+                    <TableHead>Greek letters</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">TeX command</th>
@@ -486,14 +495,11 @@
                         </tr>
                     </tbody>
                 </Table>
-
             </Section>
-            
             <Section>
-                <Title>Operators</Title>
-
+                <Title><Number>1.2</Number> Operators</Title>
                 <Table class="type 2">
-                    <Heading>Delimiters</Heading>
+                    <TableHead>Delimiters</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Meaning</th>
@@ -547,9 +553,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Other operators</Heading>
+                    <TableHead>Other operators</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">TeX command</th>
@@ -1205,11 +1210,10 @@
                     </tbody>
                 </Table>
             </Section>
-            
             <Section>
-                <Title>Relations</Title>
+                <Title><Number>1.3</Number> Relations</Title>
                 <Table class="type 2">
-                    <Heading>Relations</Heading>
+                    <TableHead>Relations</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">TeX command</th>
@@ -2130,11 +2134,10 @@
                     </tbody>
                 </Table>
             </Section>
-            
             <Section>
-                <Title>Functions and words</Title>
+                <Title><Number>1.4</Number> Functions and words</Title>
                 <Table class="type 2">
-                    <Heading>Named identifiers</Heading>
+                    <TableHead>Named identifiers</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">TeX command</th>
@@ -2279,12 +2282,10 @@
                     </tbody>
                 </Table>
             </Section>
-            
             <Section>
-                <Title>Miscellaneous</Title>
-
+                <Title><Number>1.5</Number> Miscellaneous</Title>
                 <Table class="type 2">
-                    <Heading>Miscellaneous punctuation</Heading>
+                    <TableHead>Miscellaneous punctuation</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Meaning</th>
@@ -2322,15 +2323,19 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \pounds 300</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft">Dollar sign</td>
+                            <td class="TableLeft"><ComputerCode>\$ 39.95</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \$ 39.95</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft">Circumflex</td>
                             <td class="TableLeft"><ComputerCode>\textrm{\textasciicircum}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textrm{\textasciicircum }</TeX></InlineEquation></td>
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Dots</Heading>
+                    <TableHead>Dots</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">TeX command</th>
@@ -2382,9 +2387,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Spaces</Heading>
+                    <TableHead>Spaces</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Meaning</th>
@@ -2437,17 +2441,13 @@
                     </tbody>
                 </Table>
             </Section>
-
         </Session>
-
         <Session>
-            <Title>TeX commands</Title>
-            
+            <Title><Number>2</Number> TeX commands</Title>
             <Section>
-                <Title>Mathematical structures</Title>
-
+                <Title><Number>2.1</Number> Mathematical structures</Title>
                 <Table class="type 2">
-                    <Heading>Common mathematical structures</Heading>
+                    <TableHead>Common mathematical structures</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2479,7 +2479,6 @@
                             <td class="TableLeft"><ComputerCode>{}^u{}_w^vX_a{}_b{}_c^d</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle {}^u{}_w^vX_a{}_b{}_c^d</TeX></InlineEquation></td>
                         </tr>
-
                         <tr>
                             <td class="TableLeft"><ComputerCode>\frac</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\frac{1}{x}</ComputerCode></td>
@@ -2593,9 +2592,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Parentheses</Heading>
+                    <TableHead>Parentheses</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2659,9 +2657,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Display style</Heading>
+                    <TableHead>Display style</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2691,9 +2688,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Miscellaneous</Heading>
+                    <TableHead>Miscellaneous</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2726,12 +2722,10 @@
                     </tbody>
                 </Table>
             </Section>
-
             <Section>
-                <Title>Text and fonts</Title>
-                
+                <Title><Number>2.2</Number> Text and fonts</Title>
                 <Table class="type 2">
-                    <Heading>Accents and decorations</Heading>
+                    <TableHead>Accents and decorations</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2825,9 +2819,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Text inside equations</Heading>
+                    <TableHead>Text inside equations</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2881,9 +2874,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Font style</Heading>
+                    <TableHead>Font style</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2979,13 +2971,11 @@
                         </tr>
                     </tbody>
                 </Table>
-
             </Section>
-            
             <Section>
-                <Title>Environments</Title>
+                <Title><Number>2.3</Number> Environments</Title>
                 <Table class="type 2">
-                    <Heading>Matrices</Heading>
+                    <TableHead>Matrices</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Environment</th>
@@ -3024,9 +3014,8 @@
                         </tr>
                     </tbody>
                 </Table>
-
                 <Table class="type 2">
-                    <Heading>Other environments</Heading>
+                    <TableHead>Other environments</TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Environment</th>
@@ -3065,42 +3054,7 @@
                         </tr>
                     </tbody>
                 </Table>
-
             </Section>
-            
-
         </Session>
-
     </Unit>
-    <settings>
-        <numbering>
-            <Session autonumber="true" />
-            <Section autonumber="true" />
-            <SubSection autonumber="true" />
-            <SubSubSection autonumber="false" />
-            <Activity autonumber="true" />
-            <Exercise autonumber="true" />
-            <Box autonumber="true" />
-            <CaseStudy autonumber="false" />
-            <Quote autonumber="false" />
-            <Extract autonumber="false" />
-            <Dialogue autonumber="false" />
-            <KeyPoints autonumber="false" />
-            <Reading autonumber="false" />
-            <StudyNote autonumber="false" />
-            <Example autonumber="true" />
-            <Verse autonumber="false" />
-            <SAQ autonumber="true" />
-            <ComputerDisplay autonumber="false" />
-            <Summary autonumber="false" />
-            <ProgramListing autonumber="false" />
-            <ITQ autonumber="false" />
-            <Tables autonumber="true" />
-            <Figures autonumber="true" />
-            <MediaContent autonumber="false" />
-            <Chemistry autonumber="false" />
-        </numbering>
-        <discussion_alias>Discussion</discussion_alias>
-        <session_prefix />
-    </settings>
 </Item>

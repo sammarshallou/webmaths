@@ -171,6 +171,10 @@
   <xsl:apply-templates select="@*"/>
   <xsl:text>\pounds </xsl:text>
 </xsl:template>
+<xsl:template match="m:mtext[string(.) = '$']">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\$ </xsl:text>
+</xsl:template>
 
 <!-- mi -->
 <xsl:template match="m:mi">

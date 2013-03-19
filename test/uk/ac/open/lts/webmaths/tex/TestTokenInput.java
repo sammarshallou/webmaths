@@ -190,4 +190,26 @@ public class TestTokenInput extends TestCase
 		assertEquals("\\&", tokens.nextToken());
 		assertEquals(null, tokens.nextToken());
 	}
+
+	@Test
+	public void testWhitespaceDollar()
+	{
+		// Check that whitespace after the dollar sign is ignored
+		TokenInput tokens = new TokenInput("\\$ 3");
+		assertEquals("\\$", tokens.nextToken());
+		assertEquals("3", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+
+		// Whitespace was already ignored after text symbols
+		tokens = new TokenInput("\\frog 3");
+		assertEquals("\\frog", tokens.nextToken());
+		assertEquals("3", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+
+		// And after other operators
+		tokens = new TokenInput("+ 3");
+		assertEquals("+", tokens.nextToken());
+		assertEquals("3", tokens.nextToken());
+		assertEquals(null, tokens.nextToken());
+	}
 }

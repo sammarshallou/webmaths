@@ -450,4 +450,11 @@ public class TestLatexToMathml extends TestCase
 		String fromParam = new TokenInput(sample).toMathml(false);
 		assertTrue(fromParam.contains("<msub>"));
 	}
+
+	@Test
+	public void testDollarSpacing() throws Exception
+	{
+		// The space should NOT be included in the <mn> tag around dollars
+		assertMath("<mtext>$</mtext><mn>3</mn>", "\\$ 3");
+	}
 }

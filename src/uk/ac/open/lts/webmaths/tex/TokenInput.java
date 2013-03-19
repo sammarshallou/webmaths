@@ -57,13 +57,20 @@ public class TokenInput
 //  tokenize_strict_re = re.compile(ur"""(\\begin|\\operatorname|\\mathrm|\\mathop|\\end)\s*\{\s*([A-Z a-z]+)\s*\}|(\\[a-zA-Z]+|\\[\\#\%\{\},:;!])|(\s+)|([0-9\.])|([\$!"#%&'\u2019\u201d()*+,-.\/:;<=>?\[\]^_`\{\|\}~])|([a-zA-Z@])""")
 	private final static Pattern STRICT_RE = Pattern.compile(
 		"(\\\\begin|\\\\operatorname|\\\\mathrm|\\\\mathop|\\\\end)\\s*" +
-		"\\{\\s*([A-Z a-z]+)\\s*\\}|(\\\\[a-zA-Z]+|\\\\[ \\\\#\\%\\{\\},:;!])|(\\s+)|" +
-		"([0-9\\.])|([\\$!\"#%&'\u2019\u201d()*+,-.\\/:;<=>?\\[\\]" +
-		"^_`\\{\\|\\}~])|([a-zA-Z@])|(\\\\&)");
+			"\\{\\s*([A-Z a-z]+)\\s*\\}|" +
+		"(\\\\[a-zA-Z]+|" +
+		"\\\\[ \\\\#\\%\\{\\},:;!$])|" +
+		"(\\s+)|" +
+		"([0-9\\.])|" +
+		"([\\$!\"#%&'\u2019\u201d()*+,-.\\/:;<=>?\\[\\]^_`\\{\\|\\}~])|" +
+		"([a-zA-Z@])|" +
+		"(\\\\&)");
 
 //  tokenize_text_re = re.compile(ur"""[\${}\\]|\\[a-zA-Z]+|[^{}\$]+""")
 	private final static Pattern TEXT_RE = Pattern.compile(
-		"[\\${}]|\\\\[a-zA-Z]+\\s?|[^{}\\$\\\\]+");
+		"[\\${}]|" +
+		"\\\\[a-zA-Z]+\\s?|" +
+		"[^{}\\$\\\\]+");
 
 //  tokenize_text_commands = [u'\\textrm',u'\\textsl',u'\\textit',u'\\texttt',u'\\textbf',u'\\text',u'\\textnormal',u'\\hbox',u'\\mbox']
 	private final static Set<String> TEXT_COMMANDS = new HashSet<String>(

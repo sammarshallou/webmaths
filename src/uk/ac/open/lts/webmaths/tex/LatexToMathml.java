@@ -278,6 +278,7 @@ public class LatexToMathml
 		";", ";",
 		"?", "?",
 		"\\pounds", "\u00a3",
+		"\\$", "$",
 		"\\qedsymbol", "\u220e"
 	});
 

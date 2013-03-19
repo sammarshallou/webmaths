@@ -470,6 +470,7 @@ public class MathmlToLatex
 	private final static Map<String, String> BOTH_REPLACE_CHARS = makeMap(new String[]
 	{
 		"\u2003", "\\quad ",
+		"$", "\\$",
 	});
 	private final static Map<String, String> MATH_REPLACE_CHARS = makeMap(new String[]
 	{
