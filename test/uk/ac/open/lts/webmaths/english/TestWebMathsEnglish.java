@@ -7,17 +7,18 @@ import org.junit.*;
 public class TestWebMathsEnglish extends TestCase
 {
 	private WebMathsEnglish english;
-	
+
+	@Override
 	@Before
 	public void setUp() throws Exception
 	{
 		english = new WebMathsEnglish();
 	}
-	
+
 	@Test
 	public void testExcessiveBrackets() throws Exception
 	{
-		assertEnglish("( 1 minus 0.498 ) squared", 
+		assertEnglish("( 1 minus 0.498 ) squared",
 			"<msup>" +
 				"<mrow>" +
 					"<mo>(</mo>" +
@@ -26,7 +27,7 @@ public class TestWebMathsEnglish extends TestCase
 							"<mn>1</mn>" +
 							"<mo>−</mo>" +
 							"<mn>0</mn>" +
-						"</mrow>" + 
+						"</mrow>" +
 			  		"<mtext>.</mtext>" +
 						"<mn>498</mn>" +
 					"</mrow>" +
@@ -35,13 +36,13 @@ public class TestWebMathsEnglish extends TestCase
 				"<mn>2</mn>" +
 			"</msup>");
 	}
-	
+
 	@Test
 	public void testOuterBrackets() throws Exception
 	{
 		assertEnglish("1 over z", "<mfrac><mn>1</mn><mi>z</mi></mfrac>");
 	}
-	
+
 	public void testMenclose() throws Exception
 	{
 		assertEnglish("( upward diagonal strike through 2 to the power 1 over " +
@@ -69,10 +70,12 @@ public class TestWebMathsEnglish extends TestCase
 				"<mo>.</mo>" +
 			"</mrow></math>");
 	}
-	
-	public void testPlusOrMinus() throws Exception
+
+	public void testOperatorNames() throws Exception
 	{
 		assertEnglish("plus or minus 5", "<mo>&#xb1;</mo><mn>5</mn>");
+		assertEnglish("much greater than 5", "<mo>&#x226b;</mo><mn>5</mn>");
+		assertEnglish("much less than 5", "<mo>&#x226a;</mo><mn>5</mn>");
 	}
 
 	private void assertEnglish(String expected, String mathml) throws Exception

@@ -17,6 +17,8 @@
 
 # Operators
 2211=sum
+226a=much less than
+226b=much greater than
 
 # Greek letters
 3b1=alpha 
