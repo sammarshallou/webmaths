@@ -51,14 +51,14 @@
                 viewing directly as MathML):</Paragraph>
             <Equation>
                 <MathML>
-                    &lt;math xmlns="http://www.w3.org/1998/Math/MathML">
-                        &lt;mi>x&lt;/mi>
-                        &lt;mo>=&lt;/mo>
-                        &lt;msup>
-                            &lt;mi>y&lt;/mi>
-                            &lt;mn>2&lt;/mn>
-                        &lt;/msup>
-                    &lt;/math>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>x</mi>
+                        <mo>=</mo>
+                        <msup>
+                            <mi>y</mi>
+                            <mn>2</mn>
+                        </msup>
+                    </math>
                 </MathML>
             </Equation>
             <Equation>
