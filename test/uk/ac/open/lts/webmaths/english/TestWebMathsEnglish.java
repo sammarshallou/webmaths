@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 
 import org.junit.*;
 
+import uk.ac.open.lts.webmaths.tex.TokenInput;
+
 public class TestWebMathsEnglish extends TestCase
 {
 	private WebMathsEnglish english;
@@ -78,11 +80,26 @@ public class TestWebMathsEnglish extends TestCase
 		assertEnglish("much less than 5", "<mo>&#x226a;</mo><mn>5</mn>");
 	}
 
+	public void testAccents() throws Exception
+	{
+		assertEnglishTex("x-bar x-double-dot x-tilde",
+			"\\bar{x} \\ddot{x} \\widetilde{x}");
+	}
+
 	private void assertEnglish(String expected, String mathml) throws Exception
 	{
 		MathsEnglishParams params = new MathsEnglishParams();
 		params.setMathml("<math xmlns=\"http://www.w3.org/1998/Math/MathML\">"
 			+ mathml + "</math>");
+		MathsEnglishReturn result = english.getEnglish(params);
+		assertTrue(result.ok);
+		assertEquals(expected, result.english);
+	}
+
+	private void assertEnglishTex(String expected, String tex) throws Exception
+	{
+		MathsEnglishParams params = new MathsEnglishParams();
+		params.setMathml(new TokenInput(tex).toMathml(true));
 		MathsEnglishReturn result = english.getEnglish(params);
 		assertTrue(result.ok);
 		assertEquals(expected, result.english);

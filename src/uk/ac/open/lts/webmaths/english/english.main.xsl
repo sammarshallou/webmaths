@@ -374,6 +374,24 @@
 </xsl:template>
 
 <!--
+  <mover> for 'ddot'
+  -->
+<xsl:template match="m:mover[@accent='true' and 
+    string-length(normalize-space(*[1])) = 1 and
+    *[2][self::m:mo and string(.)='&DoubleDot;']]">
+  <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-double-dot<xsl:text> </xsl:text>
+</xsl:template>
+
+<!--
+  <mover> for 'widetilde'
+  -->
+<xsl:template match="m:mover[ 
+    string-length(normalize-space(*[1])) = 1 and
+    *[2][self::m:mo and string(.)='&tilde;']]">
+  <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-tilde<xsl:text> </xsl:text>
+</xsl:template>
+
+<!--
   <munderover>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.munderover 
   -->
