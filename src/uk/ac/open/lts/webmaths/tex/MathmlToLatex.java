@@ -459,7 +459,8 @@ public class MathmlToLatex
 		"\u0332",
 		"\u00af",
 		"\u02dc",
-
+		// QED symbol (hollow square)
+		"\u2b1c",
 	}));
 
 	private final static int MAX_REPLACE_CHARS = 3;
@@ -487,7 +488,7 @@ public class MathmlToLatex
 		"\u2009", "\\thinspace ",
 		"\u200b", "\\! ",
 		"\u00A0", "~",
-		"\u220e", "\\qedsymbol ",
+		"\u220e", "\\blacksquare ",
 		"\u00a3", "\\pounds ",
 		"\u2308", "\\lceil ",
 		"\u230a", "\\lfloor ",

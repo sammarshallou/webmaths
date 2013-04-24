@@ -2313,9 +2313,16 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \&amp; y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft">QED (end of proof)</td>
+                            <td class="TableLeft">QED symbol<footnote>The AMS LaTeX QED symbol is a
+                                hollow rectangle. Many people prefer the <ComputerCode>\blacksquare</ComputerCode>
+                                command.</footnote></td>
                             <td class="TableLeft"><ComputerCode>x \qedsymbol</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \qedsymbol</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft">Black square</td>
+                            <td class="TableLeft"><ComputerCode>x \blacksquare</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \blacksquare</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft">Pound sign</td>

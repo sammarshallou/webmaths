@@ -279,7 +279,8 @@ public class LatexToMathml
 		"?", "?",
 		"\\pounds", "\u00a3",
 		"\\$", "$",
-		"\\qedsymbol", "\u220e"
+		"\\qedsymbol", "\u2b1c",
+		"\\blacksquare", "\u220e"
 	});
 
 	private final static Map<String, String> LEFT_DELIMITERS =

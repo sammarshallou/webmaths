@@ -161,6 +161,10 @@
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&#x220e;']">
   <xsl:apply-templates select="@*"/>
+  <xsl:text>\blacksquare </xsl:text>
+</xsl:template>
+<xsl:template match="m:mtext[string(.) = '&#x2b1c;']">
+  <xsl:apply-templates select="@*"/>
   <xsl:text>\qedsymbol </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '#']">
