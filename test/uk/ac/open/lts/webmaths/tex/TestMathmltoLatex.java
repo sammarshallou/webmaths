@@ -81,13 +81,6 @@ public class TestMathmltoLatex
 		// Unnecessary \displaystyle
 		"\\displaystyle \\frac{1}{x}", "\\frac{1}{x}",
 
-		// \pod{n} is currently converted in a way that can't be distinguished
-		"3 \\pod{6}", "3(6)",
-
-		// \mod and \bmod are treated like operators
-		"13 \\mod{16}", "13 \\mod 16",
-		"13 \\bmod{16}", "13 \\mod 16",
-
 		// Symbols with multiple names
 		"\\intersect", "\\cap",
 		"\\Cap", "\\doublecap",
@@ -305,6 +298,15 @@ public class TestMathmltoLatex
 		String tex = convertToTex("<math xmlns='http://www.w3.org/1998/Math/MathML'>\n" +
 			"<mi>a</mi>\n<mo>+</mo>\n<mi>b</mi></math>", false);
 		assertEquals("a+b", tex);
+	}
+
+	@Test
+	public void testMods() throws Exception
+	{
+		assertRoundTrip("13 \\mod{4}");
+		assertRoundTrip("13 \\bmod{8}");
+		assertRoundTrip("13 \\pmod{2 \\pi }");
+		assertRoundTrip("13 \\pod{N}");
 	}
 
 	@Test

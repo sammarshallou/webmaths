@@ -463,4 +463,16 @@ public class TestLatexToMathml extends TestCase
 	{
 		assertMath("<mi>lim sup\u2009</mi><mn>4</mn>", "\\limsup 4");
 	}
+
+	@Test
+	public void testMods() throws Exception
+	{
+		assertMath("<mn>13</mn><mrow><mspace width=\"1em\"/><mo>mod</mo><mn>16</mn></mrow>",
+			"13 \\mod{16}");
+		assertMath("<mn>13</mn><mrow><mo>mod</mo><mn>16</mn></mrow>", "13 \\bmod{16}");
+		assertMath("<mn>13</mn><mrow><mspace width=\"1em\"/><mo>(</mo><mn>16</mn><mo>)</mo></mrow>",
+			"13 \\pod{16}");
+		assertMath("<mn>13</mn><mrow><mspace width=\"1em\"/><mo>(</mo><mo>mod</mo><mn>16</mn><mo>)</mo></mrow>",
+			"13 \\pmod{16}");
+	}
 }

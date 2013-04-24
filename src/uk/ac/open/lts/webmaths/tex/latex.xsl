@@ -709,15 +709,43 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
-<!-- mrow as \pmod -->
-<xsl:template match="m:mrow[count(*) = 4 and *[1][self::m:mo and string(.) = '('] and
-    *[4][self::m:mo and string(.) = ')'] and *[2][self::m:mo[string(.) = 'mod']] and
-    *[3][self::m:mn]]">
+<!-- mrow as \bmod -->
+<xsl:template match="m:mrow[count(*) = 2 and
+    *[1][self::m:mo[string(.) = 'mod']]]">
   <xsl:apply-templates select="@*"/>
-  <xsl:text>\pmod{</xsl:text>
-  <xsl:apply-templates select="m:mn"/>
+  <xsl:text>\bmod{</xsl:text>
+  <xsl:apply-templates select="*[2]"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
+
+<!-- mrow as \mod -->
+<xsl:template match="m:mrow[count(*) = 3 and *[1][self::m:mspace and @width='1em'] and
+    *[2][self::m:mo[string(.) = 'mod']]]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\mod{</xsl:text>
+  <xsl:apply-templates select="*[3]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<!-- mrow as \pmod -->
+<xsl:template match="m:mrow[count(*) = 5 and *[1][self::m:mspace and @width='1em'] and
+    *[2][self::m:mo and string(.) = '('] and
+    *[5][self::m:mo and string(.) = ')'] and *[3][self::m:mo[string(.) = 'mod']]]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\pmod{</xsl:text>
+  <xsl:apply-templates select="*[4]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
+<!-- mrow as \pod -->
+<xsl:template match="m:mrow[count(*) = 4 and *[1][self::m:mspace and @width='1em'] and
+    *[2][self::m:mo and string(.) = '('] and *[4][self::m:mo and string(.) = ')']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\pod{</xsl:text>
+  <xsl:apply-templates select="*[3]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 
 <!-- mrow as \binom -->
 <xsl:template match="m:mrow[count(*) = 3 and *[1][self::m:mo and string(.) = '('] and

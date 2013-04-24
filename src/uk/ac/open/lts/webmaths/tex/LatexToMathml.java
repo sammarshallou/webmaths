@@ -395,8 +395,6 @@ public class LatexToMathml
 		"'", "\u2032",
 		"\\#", "#",
 		"\\%", "%",
-		"\\bmod", "mod",
-		"\\mod", "mod",
 		"\\downarrow", "\u2193",
 		"\\Downarrow", "\u21d3",
 		"\\uparrow", "\u2191",
@@ -1220,13 +1218,29 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				return displayStyleToMathml(slf, false, 2);
 			}
 		});
+		texCommands.put("\\mod", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return modOperator(slf, "mod", false, true);
+			}
+		});
+		texCommands.put("\\bmod", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return modOperator(slf, "mod", false, false);
+			}
+		});
 //u"\\pod": lambda slf: v_parenthesized_operator(slf, None), \
 		texCommands.put("\\pod", new LambdaTokenInput()
 		{
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return parenthesizedOperator(slf, null);
+				return modOperator(slf, null, true, true);
 			}
 		});
 //u"\\pmod": lambda slf: v_parenthesized_operator(slf, u"mod"), \
@@ -1235,7 +1249,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return parenthesizedOperator(slf, "mod");
+				return modOperator(slf, "mod", true, true);
 			}
 		});
 //u"\\boldsymbol": lambda slf: v_font_to_mathml(slf, u"bold"), \
@@ -1910,18 +1924,37 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // return result_element(u"mrow", 0, result_element(u"mo", 0, u"("), result_element(u"mo", 0, v_word), v_object, result_element(u"mo", 0, u")"))
 //else:
 // return result_element(u"mrow", 0, result_element(u"mo", 0, u"("), v_object, result_element(u"mo", 0, u")"))
-	private Element parenthesizedOperator(TokenInput slf, String word)
+	private Element modOperator(TokenInput slf, String word, boolean parentheses, boolean space)
 	{
 		Element obj = pieceToMathml(slf);
 		if(word != null)
 		{
-			return resultElement("mrow", 0, resultElement("mo", 0, "("),
-				resultElement("mo", 0, word), obj, resultElement("mo", 0, ")"));
+			if(parentheses)
+			{
+				assert(space);
+				return resultElement("mrow", 0, resultElement("mspace", 1, "width", "1em"),
+					resultElement("mo", 0, "("), resultElement("mo", 0, word), obj,
+					resultElement("mo", 0, ")"));
+			}
+			else
+			{
+				if(space)
+				{
+					return resultElement("mrow", 0,
+						resultElement("mspace", 1, "width", "1em"), resultElement("mo", 0, word), obj);
+				}
+				else
+				{
+					return resultElement("mrow", 0, resultElement("mo", 0, word), obj);
+				}
+			}
 		}
 		else
 		{
-			return resultElement("mrow", 0, resultElement("mo", 0, "("), obj,
-				resultElement("mo", 0, ")"));
+			assert(parentheses);
+			assert(space);
+			return resultElement("mrow", 0, resultElement("mspace", 1, "width", "1em"),
+				resultElement("mo", 0, "("), obj, resultElement("mo", 0, ")"));
 		}
 	}
 
