@@ -264,7 +264,7 @@
     <xsl:when test="$FN = 'inj lim'"><xsl:text>\injlim </xsl:text></xsl:when>
     <xsl:when test="$FN = 'lim'"><xsl:text>\lim </xsl:text></xsl:when>
     <xsl:when test="$FN = 'lim inf'"><xsl:text>\liminf </xsl:text></xsl:when>
-    <xsl:when test="$FN = 'lum sup'"><xsl:text>\limsup </xsl:text></xsl:when>
+    <xsl:when test="$FN = 'lim sup'"><xsl:text>\limsup </xsl:text></xsl:when>
     <xsl:when test="$FN = 'max'"><xsl:text>\max </xsl:text></xsl:when>
     <xsl:when test="$FN = 'min'"><xsl:text>\min </xsl:text></xsl:when>
     <xsl:when test="$FN = 'proj lim'"><xsl:text>\projlim </xsl:text></xsl:when>

@@ -749,7 +749,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\injlim", "inj lim\u2009",
 		"\\lim", "lim\u2009",
 		"\\liminf", "lim inf\u2009",
-		"\\limsup", "lum sup\u2009",
+		"\\limsup", "lim sup\u2009",
 		"\\max", "max\u2009",
 		"\\min", "min\u2009",
 		"\\projlim", "proj lim\u2009",

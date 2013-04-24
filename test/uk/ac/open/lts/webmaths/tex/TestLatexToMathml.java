@@ -457,4 +457,10 @@ public class TestLatexToMathml extends TestCase
 		// The space should NOT be included in the <mn> tag around dollars
 		assertMath("<mtext>$</mtext><mn>3</mn>", "\\$ 3");
 	}
+
+	@Test
+	public void testLimSup() throws Exception
+	{
+		assertMath("<mi>lim sup\u2009</mi><mn>4</mn>", "\\limsup 4");
+	}
 }
