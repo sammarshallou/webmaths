@@ -508,6 +508,7 @@ public class WebMathsImageTex extends WebMathsImage
 		// amsthm is needed only for \qedsymbol
 		// gensmyb is needed only for \degree
 		"\\usepackage{amsmath,amssymb,amsthm,gensymb}\n" +
+		"\\usepackage[mathscr]{euscript}\n" +
 		"\\begin{document}\n";
 	private final static String TEX_PRE_ITEM =
 		"\\begin{equation*}\n\\setbox0\n\\hbox{$\\displaystyle\n";
