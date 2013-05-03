@@ -1328,10 +1328,6 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gg</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\gg</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gg</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\ggg</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ggg</TeX></InlineEquation></td>
                         </tr>
@@ -2308,7 +2304,7 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x ? y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft">Ampersand</td>
+                            <td class="TableLeft">Ampersand<footnote>The ampersand symbol is rendered with space around it in MathML, but not in LaTeX. It may be best to avoid this symbol.</footnote></td>
                             <td class="TableLeft"><ComputerCode>x \&amp; y</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \&amp; y</TeX></InlineEquation></td>
                         </tr>
@@ -2565,8 +2561,6 @@
                             <td class="TableLeft"><ComputerCode>\operatorname{rank}(x)</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \operatorname{rank}(x)</TeX></InlineEquation></td>
                         </tr>
-                        <!-- Note: \mod and \bmod are treated as operators but I put them here
-                             because it makes more sense. -->
                         <tr>
                             <td class="TableLeft"><ComputerCode>\mod</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>13 \mod{16}</ComputerCode></td>
@@ -2633,17 +2627,12 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left( \frac{1}{x} \right\}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\left</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\left( \begin{array}{l} a \\ b \end{array} \right)</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left( \begin{array}{l} a \\ b \end{array} \right)</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\left.</ComputerCode> (no left symbol)</td>
                             <td class="TableLeft"><ComputerCode>\left. \frac{1}{x} \right\}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \left. \frac{1}{x} \right \}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\bigl</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\bigl<footnote>These commands do not render correctly in MathPlayer and should be avoided.</footnote></ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\bigl( \frac{1}{x} \bigr\}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bigl( \frac{1}{x} \bigr\}</TeX></InlineEquation></td>
                         </tr>
@@ -2673,9 +2662,8 @@
                             <th class="ColumnHeadLeft">Output</th>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\displaystyle</ComputerCode></td>
-                            <td class="TableLeft"><Paragraph><ComputerCode>\displaystyle \frac{1}{x}</ComputerCode></Paragraph>
-                                <Paragraph><i>Note: Has no effect because equations created in collaborative tools use display style by default.</i></Paragraph></td>
+                            <td class="TableLeft"><ComputerCode>\displaystyle<footnote><ComputerCode>\displaystyle</ComputerCode> has no effect in this example because equations created in collaborative tools use display style by default. It should work within an inline equation.</footnote></ComputerCode></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\displaystyle \frac{1}{x}</ComputerCode></Paragraph></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \displaystyle \frac{1}{x}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
@@ -2721,9 +2709,8 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \not Q</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\char</ComputerCode></td>
-                            <td class="TableLeft"><Paragraph><ComputerCode>\char93</ComputerCode></Paragraph>
-                                <Paragraph><i>Note: Only character 93 is currently supported.</i></Paragraph></td>
+                            <td class="TableLeft"><ComputerCode>\char</ComputerCode><footnote>Only character 93 is currently supported.</footnote></td>
+                            <td class="TableLeft"><Paragraph><ComputerCode>\char93</ComputerCode></Paragraph></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \char93</TeX></InlineEquation></td>
                         </tr>
                     </tbody>
@@ -2887,7 +2874,10 @@
                     </tbody>
                 </Table>
                 <Table class="type 2">
-                    <TableHead>Font style</TableHead>
+                    <TableHead>Font style<footnote>At time of writing, Firefox only supports the
+                        bold, italic, and sans-serif variants when users choose to render as MathML.
+                        Other variants display as normal text. This is Firefox bug
+                        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=114365">114365</a></footnote></TableHead>
                     <tbody>
                         <tr>
                             <th class="ColumnHeadLeft">Command</th>
@@ -2969,10 +2959,10 @@
                             <td class="TableLeft"><ComputerCode>\EuScript{X}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \EuScript{X}</TeX></InlineEquation></td>
                         </tr>
-                        <!-- Note: The \bf and \rm commands have been deprecated since 1994.
-                             http://www.tex.ac.uk/cgi-bin/texfaq2html?label=2letterfontcmd -->
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\bf</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\bf</ComputerCode>
+                                <footnote>The \bf and \rm commands have been
+                                    <a href="http://www.tex.ac.uk/cgi-bin/texfaq2html?label=2letterfontcmd">deprecated since 1994</a>.</footnote></td>
                             <td class="TableLeft"><ComputerCode>{\bf X Y}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle {\bf X Y}</TeX></InlineEquation></td>
                         </tr>
