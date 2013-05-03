@@ -839,6 +839,13 @@
     <xsl:when test="*[1][self::m:mrow and count(node()) = 0]">
         <xsl:text>\strut</xsl:text>
     </xsl:when>
+    <!-- For certain things, we don't want to put braces around them. This
+         basically corresponds to \underbrace and the rest of the list from
+         below. -->
+    <xsl:when test="self::m:munder and *[1][self::m:munder and *[2][self::m:mo
+        and contains('&#xfe38;&#x0332;', string(.))]]">
+      <xsl:apply-templates select="*[1]"/>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="brace"><xsl:with-param name="VAL">
         <xsl:apply-templates select="*[1]"/>
@@ -858,6 +865,13 @@
   <xsl:choose>
     <xsl:when test="*[1][self::m:mrow and count(node()) = 0]">
         <xsl:text>\strut</xsl:text>
+    </xsl:when>
+    <!-- For certain things, we don't want to put braces around them. This
+         basically corresponds to \underbrace and the rest of the list from
+         below. -->
+    <xsl:when test="self::m:mover and *[1][self::m:mover and *[2][self::m:mo
+        and contains('&#xfe37;&#x00af;~&Hat;', string(.))]]">
+      <xsl:apply-templates select="*[1]"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="brace"><xsl:with-param name="VAL">
@@ -958,6 +972,7 @@
   <xsl:apply-templates select="*[1]"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
+
 
 <!-- mmultiscripts -->
 <xsl:template match="m:mmultiscripts">

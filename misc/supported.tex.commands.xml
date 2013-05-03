@@ -2800,6 +2800,11 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \underbrace{x+1}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>\underbrace</ComputerCode> (with content underneath)</td>
+                            <td class="TableLeft"><ComputerCode>\underbrace{x+1}_n</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \underbrace{x+1}_n</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\overbrace</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\overbrace{x+1}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \overbrace{x+1}</TeX></InlineEquation></td>
