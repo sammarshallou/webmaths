@@ -383,11 +383,11 @@
 </xsl:template>
 
 <!--
-  <mover> for 'widetilde'
+  <mover> for 'widetilde', 'tilde'
   -->
-<xsl:template match="m:mover[ 
+<xsl:template match="m:mover[
     string-length(normalize-space(*[1])) = 1 and
-    *[2][self::m:mo and string(.)='&tilde;']]">
+    *[2][self::m:mo and string(.)='~']]">
   <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-tilde<xsl:text> </xsl:text>
 </xsl:template>
 

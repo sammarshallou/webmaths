@@ -82,8 +82,8 @@ public class TestWebMathsEnglish extends TestCase
 
 	public void testAccents() throws Exception
 	{
-		assertEnglishTex("x-bar x-double-dot x-tilde",
-			"\\bar{x} \\ddot{x} \\widetilde{x}");
+		assertEnglishTex("x-bar x-double-dot x-tilde x-tilde",
+			"\\bar{x} \\ddot{x} \\widetilde{x} \\tilde{x}");
 	}
 
 	private void assertEnglish(String expected, String mathml) throws Exception

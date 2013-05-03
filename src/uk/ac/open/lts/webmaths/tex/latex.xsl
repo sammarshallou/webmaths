@@ -902,7 +902,7 @@
   <xsl:choose>
     <xsl:when test="string(*[2]) = '&DiacriticalAcute;'"><xsl:text>\acute{</xsl:text></xsl:when>
     <xsl:when test="string(*[2]) = '&DiacriticalGrave;'"><xsl:text>\grave{</xsl:text></xsl:when>
-    <xsl:when test="string(*[2]) = '~'"><xsl:text>\tilde{</xsl:text></xsl:when>
+    <xsl:when test="*[2][@stretchy='false'] and string(*[2]) = '~'"><xsl:text>\tilde{</xsl:text></xsl:when>
     <xsl:when test="string(*[2]) = '&OverBar;'"><xsl:text>\bar{</xsl:text></xsl:when>
     <xsl:when test="string(*[2]) = '&Breve;'"><xsl:text>\breve{</xsl:text></xsl:when>
     <xsl:when test="string(*[2]) = '&Hacek;'"><xsl:text>\check{</xsl:text></xsl:when>
@@ -946,7 +946,7 @@
   <xsl:apply-templates select="*[1]"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
-<xsl:template match="m:mover[*[2][self::m:mo and string(.) = '&DiacriticalTilde;']]">
+<xsl:template match="m:mover[not(@accent) and *[2][self::m:mo and string(.) = '~']]">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\widetilde{</xsl:text>
   <xsl:apply-templates select="*[1]"/>
