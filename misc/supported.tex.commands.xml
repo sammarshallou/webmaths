@@ -2440,7 +2440,7 @@
                         <tr>
                             <td class="TableLeft">Negative thin space
                                 <footnote>Some MathML renderers ignore negative space
-                                (e.g. Firefox <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=717546">bug
+                                    (e.g. Firefox prior to version 23, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=717546">bug
                                 717546</a>).</footnote></td>
                             <td class="TableLeft"><ComputerCode>x\!\!\!y</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \!\!\!y</TeX></InlineEquation></td>
