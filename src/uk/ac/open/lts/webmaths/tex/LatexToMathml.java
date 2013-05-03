@@ -2153,7 +2153,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 //def v_matrix_to_mathml(slf, v_open_delim, v_close_delim):
 
-	Element matrixToMathml(TokenInput slf, String openDelim, String closeDelim, boolean stretchy)
+	Element matrixToMathml(TokenInput slf, String openDelim, String closeDelim, boolean stretchy, String align)
 	{
 //# ROBHACK skip OUTeX 'optional' arg if present
 //if (slf.tokens[slf.tokens_index] == u"{"):
@@ -2182,7 +2182,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 // return v_mrow
 //else:
 // return v_mtable
-		Element mtable = matrixToMtable(slf, resultElement("mtable", 0));
+		Element mtable = matrixToMtable(slf, resultElement("mtable", 0), align);
 		if(openDelim != null || closeDelim != null)
 		{
 			Element mrow = resultElement("mrow", 0);
@@ -2312,7 +2312,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			}
 		}
 
-		Element result = matrixToMtable(slf, mtable);
+		Element result = matrixToMtable(slf, mtable, null);
 
 		// If alignment isn't given, default it to left-align now - or alternate
 		// between right and left for 'align' environment
@@ -2344,7 +2344,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	}
 
 //def v_matrix_to_mtable(slf, v_mtable):
-	Element matrixToMtable(TokenInput slf, Element mtable)
+	Element matrixToMtable(TokenInput slf, Element mtable, String align)
 	{
 //v_mtr = result_element(u"mtr", 0)
 //v_mtd = result_element(u"mtd", 0)
@@ -2357,6 +2357,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		String token = slf.peekToken();
 		resultElementAppend(mtable, mtr);
 		resultElementAppend(mtr, mtd);
+		int maxCols = 1, col = 1;
 		while(token != null && !token.equals("\\end"))
 		{
 // if (v_token == u"\\\\"):
@@ -2376,6 +2377,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				slf.nextToken();
 				// look for (and discard) optional argument of \\
 				optionalArgToMathml(slf);
+
+				// Now on col 1 of next row
+				col = 1;
 			}
 // elif v_token == u"&":
 //	  v_mtd = result_element(u"mtd", 0)
@@ -2386,6 +2390,12 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				mtd = resultElement("mtd", 0);
 				resultElementAppend(mtr, mtd);
 				slf.nextToken();
+
+				col++;
+				if(col > maxCols)
+				{
+					maxCols = col;
+				}
 			}
 //   elif v_token in g_hard_stop_tokens:
 //    slf.tokens_index += 1
@@ -2406,6 +2416,19 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //v_finish_latex_block(slf)
 //return v_mtable
 		finishLatexBlock(slf);
+
+		// Add alignment if required
+		if(align != null)
+		{
+			String columnAlign = "";
+			for(int i=0; i<maxCols; i++)
+			{
+				columnAlign += align + " ";
+			}
+			columnAlign = columnAlign.trim();
+			mtable.setAttribute("columnalign", columnAlign);
+		}
+
 		return mtable;
 	}
 
@@ -2536,7 +2559,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "(", ")", false);
+				return matrixToMathml(slf, "(", ")", false, null);
 			}
 		});
 //u"pmatrix": lambda slf: v_matrix_to_mathml(slf, u"(", u")"), \
@@ -2548,7 +2571,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "[", "]", false);
+				return matrixToMathml(slf, "[", "]", false, null);
 			}
 		});
 //u"Bmatrix": lambda slf: v_matrix_to_mathml(slf, u"{", u"}"), \
@@ -2557,7 +2580,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "{", "}", false);
+				return matrixToMathml(slf, "{", "}", false, null);
 			}
 		});
 //u"vmatrix": lambda slf: v_matrix_to_mathml(slf, u"|", u"|"), \
@@ -2566,7 +2589,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "|", "|", false);
+				return matrixToMathml(slf, "|", "|", false, null);
 			}
 		});
 //u"Vmatrix": lambda slf: v_matrix_to_mathml(slf, u"\u2016", u"\u2016"), \
@@ -2575,7 +2598,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "\u2016", "\u2016", true);
+				return matrixToMathml(slf, "\u2016", "\u2016", true, null);
 			}
 		});
 //u"cases": lambda slf: v_matrix_to_mathml(slf, u"{", None), \
@@ -2584,7 +2607,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return matrixToMathml(slf, "{", null, false);
+				return matrixToMathml(slf, "{", null, false, "left");
 			}
 		});
 //u"array": v_array_to_mathml, \

@@ -590,13 +590,16 @@
 </xsl:template>
 
 <!-- mtable as cases -->
-<xsl:template match="m:mrow[count(*) = 2 and *[2][self::m:mtable and not(@columnalign)] and
+<xsl:template match="m:mrow[count(*) = 2 and *[2][self::m:mtable and @columnalign = 'left left'] and
     *[1][self::m:mo] and string(*[1]) = '{']">
   <xsl:apply-templates select="@*"/>
   <xsl:apply-templates select="m:mo/@*"/>
   <xsl:text>\begin{cases} </xsl:text>
   <xsl:for-each select="m:mtable">
-    <xsl:call-template name="matrix"/>
+    <xsl:apply-templates select="@*[local-name() != 'columnalign']"/>
+    <xsl:call-template name="matrix">
+      <xsl:with-param name="DONEATTRIBUTES">y</xsl:with-param>
+    </xsl:call-template>
   </xsl:for-each>
   <xsl:text>\end{cases} </xsl:text>
 </xsl:template>

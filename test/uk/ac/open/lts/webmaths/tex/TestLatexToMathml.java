@@ -475,4 +475,12 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mn>13</mn><mrow><mspace width=\"1em\"/><mo>(</mo><mo>mod</mo><mn>16</mn><mo>)</mo></mrow>",
 			"13 \\pmod{16}");
 	}
+
+	@Test
+	public void testCases() throws Exception
+	{
+		// Cases should be left-aligned.
+		assertMath("<mo>{</mo><mtable columnalign=\"left left\"><mtr><mtd><mn>1</mn></mtd><mtd><mi>x</mi><mo>=</mo><mn>4</mn></mtd></mtr><mtr><mtd><mn>17</mn></mtd><mtd><mi>x</mi><mo>=</mo><mn>5</mn></mtd></mtr></mtable>",
+			"\\begin{cases} 1 & x=4 \\\\ 17 & x=5 \\end{cases}");
+	}
 }
