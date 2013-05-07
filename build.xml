@@ -9,7 +9,7 @@
 	<property name="build" location="${java.io.tmpdir}/build/webmaths" />
 
 	<!-- Version number -->
-	<property name="version" value="1.0.0"/>
+	<property name="version" value="1.0.5"/>
 
 	<!-- Set location of JAX-WS 2.1 installation -->
 	<property name="jaxws.home" location="c:/program files/jaxws2.1-ri"/>
