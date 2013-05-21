@@ -3,7 +3,7 @@
     xmlns:m="http://www.w3.org/1998/Math/MathML">
 
 <!--
-  Root template 
+  Root template
   -->
 <xsl:template match="/m:math">
 <result>
@@ -21,16 +21,17 @@
  -->
 
 <!--
-  <mglyph> 
+  <mglyph>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mglyph
   Uses alt attribute.
   -->
 <xsl:template match="m:mglyph">
+  <xsl:call-template name="showvariant"/>
   <xsl:text> </xsl:text><xsl:value-of select="@alt"/><xsl:text> </xsl:text>
 </xsl:template>
 
 <!--
-  <ms> 
+  <ms>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.ms
   Puts quotes around content.
   -->
@@ -39,7 +40,7 @@
 </xsl:template>
 
 <!--
-  <mspace> 
+  <mspace>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mspace
   -->
 <xsl:template match="m:mspace">
@@ -47,38 +48,87 @@
 </xsl:template>
 
 <!--
-  <mo> 
+  <mo>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mo
   -->
 <xsl:template match="m:mo">
+  <xsl:call-template name="showvariant"/>
   <xsl:text> </xsl:text><xsl:value-of select="."/><xsl:text> </xsl:text>
 </xsl:template>
 
 <!--
-  <mi> 
+  <mi>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mi
   -->
 <xsl:template match="m:mi">
+  <xsl:call-template name="showvariant"/>
   <xsl:text> </xsl:text><xsl:value-of select="."/><xsl:text> </xsl:text>
 </xsl:template>
 
 <!--
-  <mn>, <mtext> no special handling yet 
+  <mn>
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mn
   -->
+<xsl:template match="m:mn">
+  <xsl:call-template name="showvariant"/>
+  <xsl:value-of select="."/>
+</xsl:template>
+
+<!--
+  <mtext>
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mn
+  -->
+<xsl:template match="m:mtext">
+  <xsl:call-template name="showvariant"/>
+  <xsl:value-of select="."/>
+</xsl:template>
+
+<!--
+  Outputs the math variant (font style) if relevant.
+  -->
+<xsl:template name="showvariant">
+  <!-- Work out current mathvariant. -->
+  <xsl:variable name="VARIANT" select="(ancestor-or-self::*[@mathvariant][1])/@mathvariant"/>
+  <xsl:variable name="DEFAULTITALIC" select="self::m:mi and (string-length(normalize-space(.)) = 1)"/>
+
+  <!-- Render variant, except don't express italic for mi because they're
+       italic by default -->
+  <xsl:choose>
+    <xsl:when test="$VARIANT = 'bold' or ($DEFAULTITALIC and $VARIANT='bold-italic')">
+      <xsl:text> bold </xsl:text>
+    </xsl:when>
+    <xsl:when test="$VARIANT = 'italic' and not($DEFAULTITALIC)"><xsl:text> italic </xsl:text></xsl:when>
+    <xsl:when test="$VARIANT = 'bold-italic' and not($DEFAULTITALIC)"><xsl:text> bold italic </xsl:text></xsl:when>
+    <xsl:when test="$VARIANT = 'italic' or $VARIANT = 'bold-italic'">
+      <!-- This is just to catch the mi case -->
+    </xsl:when>
+    <xsl:when test="normalize-space($VARIANT) = '' or $VARIANT = 'normal'">
+      <!-- Not specified: do nothing -->
+    </xsl:when>
+    <xsl:when test="$VARIANT = 'bold-fraktur'"><xsl:text> bold fraktur </xsl:text></xsl:when>
+    <xsl:when test="$VARIANT = 'bold-script'"><xsl:text> bold script </xsl:text></xsl:when>
+    <xsl:when test="$VARIANT = 'bold-sans-serif'"><xsl:text> bold sans-serif </xsl:text></xsl:when>
+    <xsl:when test="$VARIANT = 'sans-serif-italic'"><xsl:text> italic sans-serif </xsl:text></xsl:when>
+    <xsl:when test="$VARIANT = 'sans-serif-bold-italic'"><xsl:text> bold italic sans-serif </xsl:text></xsl:when>
+    <xsl:otherwise>
+      <xsl:text> </xsl:text><xsl:value-of select="$VARIANT"/><xsl:text> </xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 <!--
   GENERAL LAYOUT SCHEMATA (3.1.6.2)
   ***************************************************************************
  -->
 
-<!-- 
+<!--
   <mrow> no special treatment (it used to add brackets but this didn't really
   help)
   -->
 
 <!--
   <mfrac>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mfrac 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mfrac
   -->
 <xsl:template match="m:mfrac">
     (
@@ -90,7 +140,7 @@
 
 <!--
   <msqrt>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot
   -->
 <xsl:template match="m:msqrt">
     square root of
@@ -98,7 +148,7 @@
 </xsl:template>
 
 <!--
-  <mroot> - numeric root 
+  <mroot> - numeric root
   -->
 <xsl:template match="m:mroot[child::*[position()=2 and self::m:mn]]">
     <xsl:value-of select="child::*[position()=2 and self::m:mn]"/>th root of
@@ -107,7 +157,7 @@
 
 <!--
   <mroot> - square root
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot
   -->
 <xsl:template match="m:mroot[child::*[position()=2 and self::m:mn and normalize-space(.) = '2']]">
     square root of
@@ -116,7 +166,7 @@
 
 <!--
   <mroot> - cube root
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mroot
   -->
 <xsl:template match="m:mroot[child::*[position()=2 and self::m:mn and normalize-space(.) = '3']]">
     cube root of
@@ -124,7 +174,7 @@
 </xsl:template>
 
 <!--
-  <mroot> - textual root 
+  <mroot> - textual root
   -->
 <xsl:template match="m:mroot">
     <xsl:apply-templates select="*[2]"/>
@@ -134,7 +184,7 @@
 
 <!--
   <merror>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.merror 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.merror
   -->
 <xsl:template match="m:merror">
     ERROR [
@@ -144,14 +194,14 @@
 
 <!--
   <mphantom>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mphantom 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mphantom
   -->
 <xsl:template match="m:mphantom">
     <!-- mphantom is not rendered -->
 </xsl:template>
 
 <!--
-  <menclose> 
+  <menclose>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.menclose
  -->
 <xsl:template match="m:menclose">
@@ -166,7 +216,7 @@
     <xsl:apply-templates/>
 </xsl:template>
 
-<!-- 
+<!--
   Outputs text based on the notation attribute of the menclose tag. Supports
   all attributes listed in MathML 2 spec.
   $NOTATION - value of notation attribute after it has been passed through
@@ -179,17 +229,17 @@
 
     <xsl:variable name="LEFT">
         <xsl:if test="contains($NOTATIONSP, ' left ') or contains($NOTATIONSP, ' box ')">y</xsl:if>
-    </xsl:variable> 
+    </xsl:variable>
     <xsl:variable name="RIGHT">
         <xsl:if test="contains($NOTATIONSP, ' right ') or contains($NOTATIONSP, ' box ') or contains($NOTATIONSP, ' actuarial ')">y</xsl:if>
-    </xsl:variable> 
+    </xsl:variable>
     <xsl:variable name="TOP">
         <xsl:if test="contains($NOTATIONSP, ' top ') or contains($NOTATIONSP, ' box ') or contains($NOTATIONSP, ' actuarial ')">y</xsl:if>
-    </xsl:variable> 
+    </xsl:variable>
     <xsl:variable name="BOTTOM">
         <xsl:if test="contains($NOTATIONSP, ' bottom ') or contains($NOTATIONSP, ' box ')">y</xsl:if>
-    </xsl:variable> 
-    
+    </xsl:variable>
+
     <!-- Box or lines -->
     <xsl:choose>
         <xsl:when test="$LEFT='y' and $RIGHT='y' and $TOP='y' and $BOTTOM='y'">
@@ -238,10 +288,10 @@
             <xsl:text>line under  </xsl:text>
         </xsl:when>
     </xsl:choose>
-    
+
     <!-- Basic enclosures -->
     <xsl:if test="contains($NOTATIONSP, ' longdiv ')">
-        <xsl:text>long division sign around </xsl:text>    
+        <xsl:text>long division sign around </xsl:text>
     </xsl:if>
     <xsl:if test="contains($NOTATIONSP, ' radical ')">
         <xsl:text>square root sign around </xsl:text>
@@ -266,11 +316,11 @@
     </xsl:if>
 </xsl:template>
 
-<!-- 
+<!--
   The following elements have no special handling:
   <mstyle>
   <mpadded>
-  
+
   The <mfenced> element will not be present as it is removed by the normalise
   XSL.
  -->
@@ -282,7 +332,7 @@
 
 <!--
   <msub>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.msub 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.msub
   -->
 <xsl:template match="m:msub">
     <xsl:apply-templates select="*[1]"/>
@@ -292,7 +342,7 @@
 
 <!--
   <msup>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.msup 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.msup
   -->
 <xsl:template match="m:msup">
     <xsl:apply-templates select="*[1]"/>
@@ -306,7 +356,7 @@
 <xsl:template match="m:msup[child::*[position()=2 and self::m:mn and normalize-space(.) = '2']]">
     <xsl:apply-templates select="*[1]"/>
     squared
-</xsl:template> 
+</xsl:template>
 
 <!--
   <msup> - cubed
@@ -314,9 +364,9 @@
 <xsl:template match="m:msup[child::*[position()=2 and self::m:mn and normalize-space(.) = '3']]">
     <xsl:apply-templates select="*[1]"/>
     cubed
-</xsl:template> 
+</xsl:template>
 
-<!-- 
+<!--
   <msubsup> - limits on operator
   http://www.w3.org/TR/MathML2/chapter3.html#presm.msubsup
   When not applied to an operator, this is normalised to <msup><msub> in
@@ -325,7 +375,7 @@
 <xsl:template match="m:msubsup">
   <xsl:apply-templates select="*[1]"/>
   subscript <xsl:apply-templates select="*[2]"/>
-  superscript <xsl:apply-templates select="*[3]"/> 
+  superscript <xsl:apply-templates select="*[3]"/>
 </xsl:template>
 
 <!--
@@ -334,12 +384,12 @@
 <xsl:template match="m:msubsup[*[1][m:mo]]">
   <xsl:apply-templates select="*[1]"/>
   from <xsl:apply-templates select="*[2]"/>
-  to <xsl:apply-templates select="*[3]"/> 
+  to <xsl:apply-templates select="*[3]"/>
 </xsl:template>
 
 <!--
   <munder>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.munder 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.munder
   -->
 <xsl:template match="m:munder">
   <xsl:apply-templates select="*[2]"/>
@@ -348,7 +398,7 @@
 
 <!--
   <mover>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.mover 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.mover
   -->
 <xsl:template match="m:mover">
   <xsl:apply-templates select="*[2]"/>
@@ -358,7 +408,7 @@
 <!--
   <mover> for 'hat'
   -->
-<xsl:template match="m:mover[@accent='true' and 
+<xsl:template match="m:mover[@accent='true' and
     string-length(normalize-space(*[1])) = 1 and
     *[2][self::m:mo and string(.)='&Hat;']]">
   <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-hat<xsl:text> </xsl:text>
@@ -367,7 +417,7 @@
 <!--
   <mover> for 'bar'
   -->
-<xsl:template match="m:mover[@accent='true' and 
+<xsl:template match="m:mover[@accent='true' and
     string-length(normalize-space(*[1])) = 1 and
     *[2][self::m:mo and string(.)='&OverBar;']]">
   <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-bar<xsl:text> </xsl:text>
@@ -376,7 +426,7 @@
 <!--
   <mover> for 'ddot'
   -->
-<xsl:template match="m:mover[@accent='true' and 
+<xsl:template match="m:mover[@accent='true' and
     string-length(normalize-space(*[1])) = 1 and
     *[2][self::m:mo and string(.)='&DoubleDot;']]">
   <xsl:text> </xsl:text><xsl:value-of select="normalize-space(*[1])"/>-double-dot<xsl:text> </xsl:text>
@@ -393,33 +443,33 @@
 
 <!--
   <munderover>
-  http://www.w3.org/TR/MathML2/chapter3.html#presm.munderover 
+  http://www.w3.org/TR/MathML2/chapter3.html#presm.munderover
   -->
 <xsl:template match="m:munderover">
   <xsl:apply-templates select="*[1]"/>
   (<xsl:apply-templates select="*[2]"/> below,
-  <xsl:apply-templates select="*[3]"/> above) 
+  <xsl:apply-templates select="*[3]"/> above)
 </xsl:template>
 
 <!--
-  <munderover> - sum, etc   
+  <munderover> - sum, etc
   -->
 <xsl:template match="m:munderover[*[1][self::m:mo]]">
   <xsl:apply-templates select="*[1]"/>
   from <xsl:apply-templates select="*[2]"/>
-  to <xsl:apply-templates select="*[3]"/> 
+  to <xsl:apply-templates select="*[3]"/>
 </xsl:template>
 
 <!--
-  <mmultiscripts> 
+  <mmultiscripts>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mmultiscripts
   -->
 <xsl:template match="m:mmultiscripts">
   <!-- Base -->
   <xsl:apply-templates select="*[1]"/>
-  
-  (  
-  
+
+  (
+
   <!-- Output all the super/subscript pairs that go BEFORE the base -->
   <xsl:if test="mprescripts">
     preceded by
@@ -431,14 +481,14 @@
           </xsl:when>
           <xsl:otherwise>
             superscript
-          </xsl:otherwise> 
+          </xsl:otherwise>
         </xsl:choose>
         <xsl:apply-templates select="."/>
       </xsl:if>
     </xsl:for-each>
   </xsl:if>
 
-  <!-- Output all the super/subscript pairs that go AFTER the base -->  
+  <!-- Output all the super/subscript pairs that go AFTER the base -->
   <xsl:for-each select="*[not(self::mprescripts) and not(preceding-sibling::mprescripts)]">
     <xsl:if test="not(self::none)">
       <xsl:choose>
@@ -447,12 +497,12 @@
         </xsl:when>
         <xsl:otherwise>
           superscript
-        </xsl:otherwise> 
+        </xsl:otherwise>
       </xsl:choose>
       <xsl:apply-templates select="."/>
     </xsl:if>
   </xsl:for-each>
-  
+
   }
 
 </xsl:template>
@@ -463,7 +513,7 @@
  -->
 
 <!--
-  <mtable> 
+  <mtable>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mtable
   Relies on additional x_* attributes added in WebMathsEnglish class to
   resolve column and row indices.
@@ -473,18 +523,18 @@
   by
   <xsl:value-of select="@x_rows"/>
   grid.
-  
+
   <xsl:for-each select="*">
     <xsl:call-template name="output-mtr">
       <xsl:with-param name="COLS" select="../@x_cols"/>
-    </xsl:call-template>  
+    </xsl:call-template>
   </xsl:for-each>
 
 </xsl:template>
 
 <xsl:template name="output-mtr">
   <xsl:param name="COLS"/>
-  
+
   Row
   <xsl:value-of select="@x_row"/>
   <xsl:if test="self::m:mlabeledtr">
@@ -492,7 +542,7 @@
     <xsl:apply-templates select="*[1]"/>
   </xsl:if>
   :
-  
+
   <xsl:for-each select="m:mtd">
     <!-- Do extra blanks if there were missing columns before this one -->
     <xsl:choose>
@@ -505,12 +555,12 @@
       <xsl:otherwise>
         <!-- For other columns, do all blanks between columns -->
         <xsl:call-template name="output-mtr-extra-blanks">
-          <xsl:with-param name="NUM" select="number(@x_col) - 
+          <xsl:with-param name="NUM" select="number(@x_col) -
             number(preceding-sibling::m:mtd[1]/@x_col) - 1"/>
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-    
+
     <!-- Do column itself -->
     <xsl:apply-templates/>
   </xsl:for-each>
@@ -545,7 +595,7 @@
  -->
 
 <!--
-  <maction> 
+  <maction>
   http://www.w3.org/TR/MathML2/chapter3.html#presm.maction
   Applies default behaviour to render only selected element.
   -->
@@ -560,7 +610,7 @@
 </template>
 
 <!--
-  UTILITY TEMPLATES 
+  UTILITY TEMPLATES
   ***************************************************************************
  -->
 
@@ -599,7 +649,7 @@
         <xsl:otherwise>
             <!-- First character is not whitespace. Output it. -->
             <xsl:value-of select="substring($TEXT, 1, 1)"/>
-            
+
             <!-- Continue in text mode -->
             <xsl:call-template name="inner-tidy-whitespace">
                 <xsl:with-param name="TEXT" select="substring($TEXT, 2)"/>
@@ -607,7 +657,7 @@
             </xsl:call-template>
         </xsl:otherwise>
     </xsl:choose>
-    
+
 </xsl:template>
 
 <!--

@@ -86,6 +86,41 @@ public class TestWebMathsEnglish extends TestCase
 			"\\bar{x} \\ddot{x} \\widetilde{x} \\tilde{x}");
 	}
 
+	public void testStyles() throws Exception
+	{
+		// One character mi special cases
+		assertEnglish("x", "<mi mathvariant='italic'>x</mi>");
+		assertEnglish("bold x", "<mi mathvariant='bold-italic'>x</mi>");
+
+		// Two character mi (not special cases)
+		assertEnglish("italic xx", "<mi mathvariant='italic'>xx</mi>");
+		assertEnglish("bold italic xx", "<mi mathvariant='bold-italic'>xx</mi>");
+
+		// mtext (not special cases)
+		assertEnglish("italic x", "<mtext mathvariant='italic'>x</mtext>");
+		assertEnglish("bold italic x", "<mtext mathvariant='bold-italic'>x</mtext>");
+
+		// Other examples
+		assertEnglish("3", "<mn>3</mn>");
+		assertEnglish("3", "<mn mathvariant='normal'>3</mn>");
+		assertEnglish("bold 3", "<mn mathvariant='bold'>3</mn>");
+		assertEnglish("italic 3", "<mn mathvariant='italic'>3</mn>");
+		assertEnglish("bold italic 3", "<mn mathvariant='bold-italic'>3</mn>");
+		assertEnglish("double-struck 3", "<mn mathvariant='double-struck'>3</mn>");
+		assertEnglish("bold fraktur 3", "<mn mathvariant='bold-fraktur'>3</mn>");
+		assertEnglish("script 3", "<mn mathvariant='script'>3</mn>");
+		assertEnglish("bold script 3", "<mn mathvariant='bold-script'>3</mn>");
+		assertEnglish("fraktur 3", "<mn mathvariant='fraktur'>3</mn>");
+		assertEnglish("sans-serif 3", "<mn mathvariant='sans-serif'>3</mn>");
+		assertEnglish("bold sans-serif 3", "<mn mathvariant='bold-sans-serif'>3</mn>");
+		assertEnglish("italic sans-serif 3", "<mn mathvariant='sans-serif-italic'>3</mn>");
+		assertEnglish("bold italic sans-serif 3", "<mn mathvariant='sans-serif-bold-italic'>3</mn>");
+		assertEnglish("monospace 3", "<mn mathvariant='monospace'>3</mn>");
+
+		// Inheritance
+		assertEnglish("bold x bold y", "<mstyle mathvariant='bold'><mi>x</mi><mi>y</mi></mstyle>");
+	}
+
 	private void assertEnglish(String expected, String mathml) throws Exception
 	{
 		MathsEnglishParams params = new MathsEnglishParams();
