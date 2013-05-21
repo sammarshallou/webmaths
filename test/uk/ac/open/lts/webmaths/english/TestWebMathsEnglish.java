@@ -45,6 +45,7 @@ public class TestWebMathsEnglish extends TestCase
 		assertEnglish("1 over z", "<mfrac><mn>1</mn><mi>z</mi></mfrac>");
 	}
 
+	@Test
 	public void testMenclose() throws Exception
 	{
 		assertEnglish("( upward diagonal strike through 2 to the power 1 over " +
@@ -73,6 +74,7 @@ public class TestWebMathsEnglish extends TestCase
 			"</mrow></math>");
 	}
 
+	@Test
 	public void testOperatorNames() throws Exception
 	{
 		assertEnglish("plus or minus 5", "<mo>&#xb1;</mo><mn>5</mn>");
@@ -80,12 +82,14 @@ public class TestWebMathsEnglish extends TestCase
 		assertEnglish("much less than 5", "<mo>&#x226a;</mo><mn>5</mn>");
 	}
 
+	@Test
 	public void testAccents() throws Exception
 	{
 		assertEnglishTex("x-bar x-double-dot x-tilde x-tilde",
 			"\\bar{x} \\ddot{x} \\widetilde{x} \\tilde{x}");
 	}
 
+	@Test
 	public void testStyles() throws Exception
 	{
 		// One character mi special cases
@@ -119,6 +123,19 @@ public class TestWebMathsEnglish extends TestCase
 
 		// Inheritance
 		assertEnglish("bold x bold y", "<mstyle mathvariant='bold'><mi>x</mi><mi>y</mi></mstyle>");
+	}
+
+	@Test
+	public void testRemovedEquals() throws Exception
+	{
+		assertEnglish("double dagger", "<mo>&#x2021;</mo>");
+	}
+
+	@Test
+	public void testMultiCharacter() throws Exception
+	{
+		assertEnglish("right arrow-curved", "<mo>&#x2933;</mo>");
+		assertEnglish("not right arrow-curved", "<mo>&#x2933;&#x338;</mo>");
 	}
 
 	private void assertEnglish(String expected, String mathml) throws Exception

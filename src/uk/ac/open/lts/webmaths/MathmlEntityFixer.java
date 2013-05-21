@@ -32,16 +32,16 @@ public class MathmlEntityFixer
 {
 	private Map<String, String> entityToChar = new HashMap<String, String>();
 	private Map<String, String> hexesToDesc = new HashMap<String, String>();
-	
+
 	private int longestDescSequence;
-	
-	private final static Pattern 
-		REGEX_ENTITY = Pattern.compile("&([^#][^;]*);"),	
+
+	private final static Pattern
+		REGEX_ENTITY = Pattern.compile("&([^#][^;]*);"),
 		REGEX_NUMERIC_ENTITY = Pattern.compile("&#([^;]*);"),
 		REGEX_HEX_ENTITIES = Pattern.compile("(?:&#x[^;]*;)+"),
 		REGEX_CDATA = Pattern.compile("<!\\[CDATA\\[.*?\\]\\]>", Pattern.DOTALL),
 		REGEX_COMMENT = Pattern.compile("<!--.*?-->", Pattern.DOTALL);
-	
+
 	/**
 	 * Constructs and initialises the fixer, loading in all the data it needs.
 	 * @throws IOException Any error loading data
@@ -61,7 +61,7 @@ public class MathmlEntityFixer
 			{
 				continue;
 			}
-			
+
 			int equals = line.indexOf('=');
 			entityToChar.put(line.substring(0, equals), line.substring(equals+1));
 		}
@@ -85,6 +85,9 @@ public class MathmlEntityFixer
 	 */
 	private void readDescriptions(InputStream input) throws IOException
 	{
+		// Make sure there aren't any duplicates within the same file.
+		Map<String, String> thisFile = new HashMap<String, String>();
+
 		BufferedReader reader = new BufferedReader(
 			new InputStreamReader(input, "UTF-8"));
 		while(true)
@@ -102,7 +105,7 @@ public class MathmlEntityFixer
 			{
 				continue;
 			}
-			
+
 			int equals = line.indexOf('=');
 			if(equals == -1)
 			{
@@ -112,17 +115,22 @@ public class MathmlEntityFixer
 			// Store in map
 			String hexes = line.substring(0, equals);
 			String desc = line.substring(equals+1).trim();
+			if(thisFile.containsKey(hexes) && !thisFile.get(hexes).equals(desc))
+			{
+				throw new IOException("Duplicate hex value: " + hexes);
+			}
+			thisFile.put(hexes, desc);
 			hexesToDesc.put(hexes, desc);
 
 			// Work out which has the longest sequence of codepoints (= the number
 			// of commas plus one)
 			longestDescSequence = Math.max(longestDescSequence,
 				hexes.replaceAll("[^,]", "").length()+1);
-			
+
 		}
 		reader.close();
 	}
-	
+
 	/**
 	 * Fixes all the named entities in the source string.
 	 * @param original Original string
@@ -200,12 +208,12 @@ public class MathmlEntityFixer
 				int number = Integer.parseInt(value);
 				replacement = "&#x" + Integer.toHexString(number) + ";";
 			}
-			
+
 			m.appendReplacement(out, replacement);
 		}
 		m.appendTail(out);
 		text = out.toString();
-		
+
 		// Now replace special characters with entities
 		StringBuilder out2 = new StringBuilder();
 		for(int i=0; i<text.length(); i++)
@@ -258,11 +266,11 @@ public class MathmlEntityFixer
 
 			// Sequence of one or more hex entities
 			String entities = m.group(0);
-			
+
 			// Turn into an array; each entry will be normalised (no leading zeros,
 			// lower-case)
 			String[] hexes = entities.substring(3, entities.length()-1).split(";&#x");
-			
+
 			// Loop round handling all
 			entityLoop: for(int entity=0; entity<hexes.length; )
 			{
@@ -280,7 +288,7 @@ public class MathmlEntityFixer
 						}
 						combined.append(hexes[entity + index]);
 					}
-					
+
 					// Look in map
 					String desc = hexesToDesc.get(combined.toString());
 					if(desc != null)
@@ -290,19 +298,19 @@ public class MathmlEntityFixer
 						continue entityLoop;
 					}
 				}
-				
+
 				// No match found so leave it as an entity and go onto next
 				replacement.append("&#x");
 				replacement.append(hexes[entity]);
 				replacement.append(";");
 				entity++;
 			}
-			
+
 			m.appendReplacement(out, replacement.toString());
 		}
 		m.appendTail(out);
 		text = out.toString();
-		
+
 		// Step 3: Tidy up whitespace and return
 		return text.replaceAll("\\s+", " ").trim();
 	}

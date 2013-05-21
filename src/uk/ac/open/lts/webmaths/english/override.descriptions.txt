@@ -3,7 +3,7 @@
 # This file is in the same format as mathml.descriptions.txt:
 # <characters>=<description>
 #   <characters> = one or more hexadecimal unicode character codes, in
-#     lower-case and without leading zeros
+#     lower-case and without leading zeros, comma-separated
 #   <description> = text description in ASCII without any special characters
 
 2a01=circle plus   
@@ -20,51 +20,11 @@
 226a=much less than
 226b=much greater than
 
-# Greek letters
-3b1=alpha 
-3b2=beta 
-3c7=chi 
-394=capital Delta 
-3b4=delta 
-3f5=epsilon 
-3b7=eta 
-393=capital Gamma 
-3b3=gamma 
-3dc=capital digamma 
-3b9=iota 
-3ba=kappa 
-39b=capital Lambda 
-3bb=lambda 
-3bc=mu 
-3bd=nu 
-3a9=capital Omega 
-3c9=omega 
-3a6=capital Phi 
-3d5=phi 
-3c6=curly or open phi 
-3a0=capital Pi 
-3c0=pi 
-3a8=capital Psi 
-3c8=psi 
-3c1=rho 
-3a3=capital Sigma 
-3c3=sigma 
-3c4=tau 
-398=capital Theta 
-3b8=theta 
-3d1=curly theta 
-3d2=capital Upsilon 
-3c5=upsilon 
-39e=capital Xi 
-3be=xi 
-3b6=zeta 
-
-# Other letters; remove word 'small'
+# Remove word 'small'
 2113=cursive l 
 
 # Remove annoying commas
 2243=similar equals 
-
 
 # Guess at specific meanings
 2032=prime

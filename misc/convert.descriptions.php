@@ -26,7 +26,11 @@ require_once($CFG->dirroot . '/lib/filelib.php');
 
 header('Content-Type: text/plain');
 
+// Note: The files are in priority order (highest priority first) for cases
+// when two files define the same symbol.
 $files = <<<END
+mathml/mmlalias.ent
+mathml/mmlextra.ent
 iso9573-13/isoamsa.ent
 iso9573-13/isoamsb.ent
 iso9573-13/isoamsc.ent
@@ -46,10 +50,8 @@ iso8879/isolat1.ent
 iso8879/isolat2.ent
 iso8879/isonum.ent
 iso8879/isopub.ent
-mathml/mmlextra.ent
-mathml/mmlalias.ent
 END;
-$split = split("\n", $files);
+$split = preg_split("~\n~", $files);
 
 
 $start = 'http://www.w3.org/Math/DTD/mathml2/';
@@ -60,20 +62,24 @@ foreach ($split as $ent) {
     
     $target = $CFG->dataroot . '/mml/' . $ent;
     if (!file_exists($target)) {
+      if(!dir_exists(dirname($target))) {
+        mkdir(dirname($target));
+      }
 			$result = download_file_content($url);
-			$result || die;
+			if(!$result) {
+        throw new coding_exception("Failed to download: $url");
+			}
 			file_put_contents($target, $result);
 		} else {
 			$result = file_get_contents($target);
 		}
-    
 /*
     $result = preg_replace('~<!--.*?-->~s', '', $result);
     $result = preg_replace('~ {2,}~', ' ', $result);
     $result = preg_replace('~<!ENTITY % plane1D.*?>~', '', $result);
     $result = str_replace('" >', '">', $result);
 */    
-    $lines = split("\n", $result);
+    $lines = preg_split("~\n~", $result);
     foreach ($lines as $line) {
         if (trim($line) == '') {
             continue;
@@ -83,12 +89,12 @@ foreach ($split as $ent) {
             if (preg_match('~^[^ ]+ ([^ ]+) +"([^"]+)" ><!--(.*?)-->$~', $line, $matches)) {
                 $ref = $matches[1];
 
-                $value = $matches[2];
+                $value = trim($matches[2]);
                 $value = str_replace('%plane1D;', '&#38;#38;#x1D', $value);
                 $value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
                 $value = str_replace('&#38;', '&', $value);
                 
-                $desc = $matches[3];
+                $desc = trim($matches[3]);
                 $desc = preg_replace('~^/[^:=-]+[:=-]\s*~', '', $desc);
                 $desc = preg_replace('~^/[^:= -]+ \s*~', '', $desc);
                 $desc = preg_replace('~\bdbl\b~', 'double', $desc);
@@ -105,9 +111,13 @@ foreach ($split as $ent) {
                 $desc = preg_replace('~\bSE\b~', 'southeast', $desc);
                 $desc = preg_replace('~\bgt-or-eq\b~', 'greater-than-or-equal', $desc);
                 $desc = preg_replace('~\bless-or-eq\b~', 'less-than-or-equal', $desc);
+                $desc = preg_replace('~\bgtr\b~', 'greater', $desc);
+                $desc = preg_replace('~\beq\b~', 'equal', $desc);
+                $desc = preg_replace('~, Greek$~', '', $desc);
+                $desc = preg_replace('~^=~', '', $desc);
                 
                 $results[$ref] = array('d'=>$desc, 'v'=>$value);
-//                print $ref . " - $desc - $ent\n"; 
+                //print $ref . " - $desc - $ent - $value - " . strlen($value) . "\n";
             } else {
                 print "ARGH! Invalid line $line"; exit;
             }
@@ -115,7 +125,8 @@ foreach ($split as $ent) {
     }
 }
 require_once('utf8.inc');
-$outfile = '';
+$outfile = "# Automatically generated. Do not edit; use override.descriptions.txt instead.\n";
+$done = array();
 foreach ($results as $key=>$value) {
     if (preg_match('~^((alias\s+[^ ]+\s+)|(ISO[A-Z]+\s+))([^ ]+)~', $value['d'], $matches)) {
         $from = $matches[4];
@@ -131,10 +142,19 @@ foreach ($results as $key=>$value) {
          $ent = ltrim(strtolower($matches[1]), '0');
      } else {
          $what = utf8ToUnicode($value['v']);
-         $what = $what[0];
-         $ent = dechex($what);
+         $ent = '';
+         foreach ($what as $number) {
+           $ent .= dechex($number);
+           $ent .= ',';
+         }
+         $ent = rtrim($ent, ',');
      }
      $line = $ent . '=' . $value['d'] . "\n";
+     if (!empty($done[$ent])) {
+         // Comment out duplicates.
+         $line = '#' . $line;
+     }
+     $done[$ent] = true;
      print $line;
      $outfile .= $line;
 }
