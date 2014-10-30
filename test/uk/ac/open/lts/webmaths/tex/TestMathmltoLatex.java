@@ -192,17 +192,17 @@ public class TestMathmltoLatex
 		"\\Z", "\\mathbb{Z}",
 
 		// Function names that aren't actually supported in AMS LaTeX
-		"\\Arg", "\\mathop{\\mathrm{Arg}}",
-		"\\Corr", "\\mathop{\\mathrm{Corr}}",
-		"\\cosec", "\\mathop{\\mathrm{cosec}}",
-		"\\cosech", "\\mathop{\\mathrm{cosech}}",
-		"\\Cov", "\\mathop{\\mathrm{Cov}}",
-		"\\lcm", "\\mathop{\\mathrm{lcm}}",
-		"\\Log", "\\mathop{\\mathrm{Log}}",
-		"\\Res", "\\mathop{\\mathrm{Res}}",
-		"\\rot", "\\mathop{\\mathrm{rot}}",
-		"\\sech", "\\mathop{\\mathrm{sech}}",
-		"\\tr", "\\mathop{\\mathrm{tr}}",
+		"\\Arg", "\\mathop{\\mathrm{Arg}}\\nolimits",
+		"\\Corr", "\\mathop{\\mathrm{Corr}}\\nolimits",
+		"\\cosec", "\\mathop{\\mathrm{cosec}}\\nolimits",
+		"\\cosech", "\\mathop{\\mathrm{cosech}}\\nolimits",
+		"\\Cov", "\\mathop{\\mathrm{Cov}}\\nolimits",
+		"\\lcm", "\\mathop{\\mathrm{lcm}}\\nolimits",
+		"\\Log", "\\mathop{\\mathrm{Log}}\\nolimits",
+		"\\Res", "\\mathop{\\mathrm{Res}}\\nolimits",
+		"\\rot", "\\mathop{\\mathrm{rot}}\\nolimits",
+		"\\sech", "\\mathop{\\mathrm{sech}}\\nolimits",
+		"\\tr", "\\mathop{\\mathrm{tr}}\\nolimits",
 	});
 
 	private String doRoundTrip(String tex) throws Exception

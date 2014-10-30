@@ -279,7 +279,7 @@
             $FN = 'sech' or $FN = 'tr'">
         <xsl:text>\mathop{\mathrm{</xsl:text>
         <xsl:value-of select="$FN"/>
-        <xsl:text>}} </xsl:text>
+        <xsl:text>}}\nolimits </xsl:text>
     </xsl:when>
     <!-- Otherwise do styling for mathrm -->
     <xsl:otherwise>
