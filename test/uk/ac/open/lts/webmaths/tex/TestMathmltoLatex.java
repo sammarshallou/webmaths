@@ -190,6 +190,19 @@ public class TestMathmltoLatex
 		"\\N", "\\mathbb{N}",
 		"\\C", "\\mathbb{C}",
 		"\\Z", "\\mathbb{Z}",
+
+		// Function names that aren't actually supported in AMS LaTeX
+		"\\Arg", "\\mathop{\\mathrm{Arg}}",
+		"\\Corr", "\\mathop{\\mathrm{Corr}}",
+		"\\cosec", "\\mathop{\\mathrm{cosec}}",
+		"\\cosech", "\\mathop{\\mathrm{cosech}}",
+		"\\Cov", "\\mathop{\\mathrm{Cov}}",
+		"\\lcm", "\\mathop{\\mathrm{lcm}}",
+		"\\Log", "\\mathop{\\mathrm{Log}}",
+		"\\Res", "\\mathop{\\mathrm{Res}}",
+		"\\rot", "\\mathop{\\mathrm{rot}}",
+		"\\sech", "\\mathop{\\mathrm{sech}}",
+		"\\tr", "\\mathop{\\mathrm{tr}}",
 	});
 
 	private String doRoundTrip(String tex) throws Exception

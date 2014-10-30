@@ -35,6 +35,7 @@
         </Imprint>
         <Introduction>
             <Title/>
+            <Paragraph><i>Updated: December 2014.</i></Paragraph>
             <Paragraph>The equation processing system used in Open
                 University module websites supports two equation languages:
                 MathML (version 2) and TeX.</Paragraph>
@@ -73,10 +74,11 @@
             <StudyNote>
                 <Heading>How to enter equations</Heading>
                 <Paragraph>
-                    When entering equations in MathML or TeX, always enter the
+                    When entering equations in MathML or TeX, always use the
+                    <ComputerUI>Insert equation</ComputerUI> button, or enter the
                     equation directly into the normal text editor. <b>Do not
-                    use the HTML view</b>. If you enter MathML equations into
-                    the HTML view, they will not work.
+                    use the HTML source view</b>. If you enter MathML equations into
+                    the HTML source view, they will not work.
                 </Paragraph>
             </StudyNote>
             <Paragraph>
@@ -2137,145 +2139,239 @@
                         <tr>
                             <th class="ColumnHeadLeft">TeX command</th>
                             <th class="ColumnHeadLeft">Output</th>
+                            <th class="ColumnHeadLeft">Meaning</th>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\arccos</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arccos</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\arcsin</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arcsin</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\arctan</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arctan</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\arg</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \arg</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Arg</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Arg</TeX></InlineEquation></td>
+                            <td>Argument of a complex number</td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Corr</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Corr</TeX></InlineEquation></td>
+                            <td>Correlation</td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\cos</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cos</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cosec</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cosec</TeX></InlineEquation></td>
+                            <td>Reciprocal of the sine of an angle</td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\cosech</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cosech</TeX></InlineEquation></td>
+                            <td>Hyperbolic cosec; the reciprocal of hyperbolic sine</td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\cosh</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cosh</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\cot</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cot</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\coth</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \coth</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Cov</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Cov</TeX></InlineEquation></td>
+                            <td>Covariance</td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\csc</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \csc</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\deg</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \deg</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\det</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \det</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\dim</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dim</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\exp</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \exp</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\gcd</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \gcd</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\hom</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hom</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\ker</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ker</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\lg</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lg</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\ln</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ln</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\log</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \log</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\Pr</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Pr</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\sec</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sec</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\sin</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sin</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\sinh</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sinh</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\tan</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tan</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\tanh</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tanh</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\inf</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \inf</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\injlim</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \injlim</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ker</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ker</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lcm</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lcm</TeX></InlineEquation></td>
+                            <td>Lowest common multiple</td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\lg</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lg</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\lim</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lim</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\liminf</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \liminf</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\limsup</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \limsup</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\ln</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \ln</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\log</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \log</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Log</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Log</TeX></InlineEquation></td>
+                            <td>Principle value of logarithm of a complex number</td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\max</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \max</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\min</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \min</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\projlim</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \projlim</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Pr</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Pr</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Res</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Res</TeX></InlineEquation></td>
+                            <td>In complex anaylsis, the residue of a contour integral</td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\rot</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rot</TeX></InlineEquation></td>
+                            <td>Rotation about a point (in the plane) or axis (in higher dimensional space)</td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sec</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sec</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sech</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sech</TeX></InlineEquation></td>
+                            <td>Hyperbolic secant, inverse of hyperbolic sine</td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sin</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sin</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\sinh</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sinh</TeX></InlineEquation></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\sup</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sup</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tan</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tan</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tanh</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tanh</TeX></InlineEquation></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\tr</ComputerCode>*</td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tr</TeX></InlineEquation></td>
+                            <td>Trace of a square matrix</td>
                         </tr>
                     </tbody>
                 </Table>
+                <Paragraph>
+                    Note: * indicates that the command is not a standard one from AMS LaTeX, but is a custom addition.
+                    The <ComputerUI>Meaning</ComputerUI> column has only been completed for recently-added commands.
+                </Paragraph>
             </Section>
             <Section>
                 <Title><Number>1.5</Number> Miscellaneous</Title>

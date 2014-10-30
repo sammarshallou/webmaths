@@ -238,7 +238,7 @@
         <xsl:with-param name="PREFIX">\math</xsl:with-param>
       </xsl:call-template>
     </xsl:when>
-    <!-- Supported functions -->
+    <!-- Supported functions that are in AMS LaTeX -->
     <xsl:when test="$FN = 'arccos'"><xsl:text>\arccos </xsl:text></xsl:when>
     <xsl:when test="$FN = 'arcsin'"><xsl:text>\arcsin </xsl:text></xsl:when>
     <xsl:when test="$FN = 'arctan'"><xsl:text>\arctan </xsl:text></xsl:when>
@@ -273,6 +273,14 @@
     <xsl:when test="$FN = 'min'"><xsl:text>\min </xsl:text></xsl:when>
     <xsl:when test="$FN = 'proj lim'"><xsl:text>\projlim </xsl:text></xsl:when>
     <xsl:when test="$FN = 'sup'"><xsl:text>\sup </xsl:text></xsl:when>
+    <!-- Supported functions that are not in AMS LaTeX -->
+    <xsl:when test="$FN = 'Arg' or $FN = 'Corr' or $FN = 'Cov' or $FN = 'cosec' or
+            $FN = 'cosech' or $FN = 'lcm' or $FN = 'Log' or $FN = 'Res' or $FN = 'rot' or
+            $FN = 'sech' or $FN = 'tr'">
+        <xsl:text>\mathop{\mathrm{</xsl:text>
+        <xsl:value-of select="$FN"/>
+        <xsl:text>}} </xsl:text>
+    </xsl:when>
     <!-- Otherwise do styling for mathrm -->
     <xsl:otherwise>
       <xsl:call-template name="mathvariant-to-tex-font">
