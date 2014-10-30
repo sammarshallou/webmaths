@@ -280,7 +280,8 @@ public class LatexToMathml
 		"\\pounds", "\u00a3",
 		"\\$", "$",
 		"\\qedsymbol", "\u2b1c",
-		"\\blacksquare", "\u220e"
+		"\\blacksquare", "\u220e",
+		"\\box", "\u25a1"
 	});
 
 	private final static Map<String, String> LEFT_DELIMITERS =
@@ -448,6 +449,7 @@ public class LatexToMathml
 		"\\spadesuit", "\u2660",
 		"\\sphericalangle", "\u2222",
 		"\\square", "\u25a1",
+		"\\Box", "\u25a1",
 		"\\surd", "\u221a",
 		"\\top", "\u22a4",
 		"\\triangle", "\u25b5",

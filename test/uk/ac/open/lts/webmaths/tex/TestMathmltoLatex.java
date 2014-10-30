@@ -130,6 +130,7 @@ public class TestMathmltoLatex
 		"\\char93", "\\#",
 		"\\iff", "\\Leftrightarrow",
 		"\\implies", "\\Rightarrow",
+		"\\Box", "\\square",
 
 		// \doublesum not really supported
 		"\\doublesum", "\\operatorname{\\sum \\sum }",

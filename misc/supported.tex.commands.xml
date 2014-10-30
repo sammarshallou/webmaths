@@ -984,10 +984,6 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacksquare</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\blacksquare</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacksquare</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\blacktriangle</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \blacktriangle</TeX></InlineEquation></td>
                         </tr>
@@ -998,6 +994,10 @@
                         <tr>
                             <td class="TableLeft"><ComputerCode>\bot</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bot</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\Box</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Box</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\clubsuit</ComputerCode></td>
