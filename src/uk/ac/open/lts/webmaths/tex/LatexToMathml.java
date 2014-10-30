@@ -977,6 +977,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		"\\overbrace", null,
 		"\\underline", null,
 		"\\overline", null,
+		"\\overrightarrow", null,
 		"\\mathop", null,
 	});
 
@@ -1597,6 +1598,14 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			public Element call(TokenInput slf)
 			{
 				return overToMathml(slf, "\u00af");
+			}
+		});
+		texCommands.put("\\overrightarrow", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return overToMathml(slf, "\u27f6");
 			}
 		});
 //u"\\widetilde": lambda slf: v_over_to_mathml(slf, u"\u0303"), \

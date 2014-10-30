@@ -2806,6 +2806,11 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \overline{x+1}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
+                            <td class="TableLeft"><ComputerCode>\overrightarrow</ComputerCode></td>
+                            <td class="TableLeft"><ComputerCode>\overrightarrow{x+1}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \overrightarrow{x+1}</TeX></InlineEquation></td>
+                        </tr>
+                        <tr>
                             <td class="TableLeft"><ComputerCode>\widetilde</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\widetilde{x+1}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \widetilde{x+1}</TeX></InlineEquation></td>

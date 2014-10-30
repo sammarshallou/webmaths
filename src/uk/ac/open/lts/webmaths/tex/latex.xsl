@@ -960,6 +960,12 @@
   <xsl:apply-templates select="*[1]"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
+<xsl:template match="m:mover[*[2][self::m:mo and string(.) = '&#x27f6;']]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\overrightarrow{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
 <xsl:template match="m:mover[not(@accent) and *[2][self::m:mo and string(.) = '~']]">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\widetilde{</xsl:text>
