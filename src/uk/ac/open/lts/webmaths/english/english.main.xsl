@@ -401,8 +401,10 @@
   http://www.w3.org/TR/MathML2/chapter3.html#presm.mover
   -->
 <xsl:template match="m:mover">
+  <xsl:text> </xsl:text>
   <xsl:apply-templates select="*[2]"/>
-  above <xsl:apply-templates select="*[1]"/>
+  <xsl:text> above </xsl:text>
+  <xsl:apply-templates select="*[1]"/>
 </xsl:template>
 
 <!--

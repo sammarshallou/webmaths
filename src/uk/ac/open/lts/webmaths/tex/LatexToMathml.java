@@ -1797,6 +1797,15 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				return substackToMathml(slf);
 			}
 		});
+		// Add \stackrel command
+		texCommands.put("\\stackrel", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return stackrelToMathml(slf);
+			}
+		});
 		// Add \strut command
 		texCommands.put("\\strut", new LambdaTokenInput()
 		{
@@ -1865,6 +1874,40 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 		// Build mtable
 		Element[] stackRowsArray = stackRows.toArray(new Element[stackRows.size()]);
 		return resultElement("mtable", 0, (Object[])stackRowsArray);
+	}
+
+	/**
+	 * Handles \stackrel expression using mover.
+	 * @param slf Token input
+	 * @return Converted mtable element
+	 */
+	private Element stackrelToMathml(TokenInput slf)
+	{
+		// Read open {
+		String token = slf.nextToken();
+		if(!token.equals("{"))
+		{
+			return resultElement("xerror", 0, "Expected {");
+		}
+
+		// Get both parameters
+		Element above = subExprChainToMathml(slf, HARD_STOP_TOKENS);
+		if(slf.peekToken().equals("}"))
+		{
+			slf.nextToken();
+		}
+		token = slf.nextToken();
+		if(!token.equals("{"))
+		{
+			return resultElement("xerror", 0, "Expected {");
+		}
+		Element below = subExprChainToMathml(slf, HARD_STOP_TOKENS);
+		if(slf.peekToken().equals("}"))
+		{
+			slf.nextToken();
+		}
+
+		return resultElement("mover", 0, below, above);
 	}
 
 	/**

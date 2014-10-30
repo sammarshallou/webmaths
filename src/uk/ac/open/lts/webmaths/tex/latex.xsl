@@ -935,6 +935,16 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
+<!--  Generic mover -->
+<xsl:template match="m:mover[not(@accent)]">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\stackrel{</xsl:text>
+  <xsl:apply-templates select="*[2]"/>
+  <xsl:text>}{</xsl:text>
+  <xsl:apply-templates select="*[1]"/>
+  <xsl:text>}</xsl:text>
+</xsl:template>
+
 <!-- Under/over thingies other than accents -->
 <xsl:template match="m:munder[*[2][self::m:mo and string(.) = '&#xfe38;']]">
   <xsl:apply-templates select="@*"/>
@@ -978,7 +988,6 @@
   <xsl:apply-templates select="*[1]"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
-
 
 <!-- mmultiscripts -->
 <xsl:template match="m:mmultiscripts">
