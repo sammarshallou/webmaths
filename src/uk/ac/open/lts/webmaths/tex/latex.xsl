@@ -609,7 +609,7 @@
 </xsl:template>
 
 <!-- mtable as cases -->
-<xsl:template match="m:mrow[count(*) = 2 and *[2][self::m:mtable and @columnalign = 'left left'] and
+<xsl:template match="m:mrow[count(*) = 2 and *[2][self::m:mtable] and
     *[1][self::m:mo] and string(*[1]) = '{']">
   <xsl:apply-templates select="@*"/>
   <xsl:apply-templates select="m:mo/@*"/>

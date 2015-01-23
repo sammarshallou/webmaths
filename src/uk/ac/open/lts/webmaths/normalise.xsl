@@ -29,9 +29,9 @@
     or self::m:math) and count(*) != 1]">
     <xsl:copy>
         <xsl:apply-templates select="@*"/>
-        <mrow>
+        <m:mrow>
             <xsl:apply-templates/>
-        </mrow>
+        </m:mrow>
     </xsl:copy>
 </xsl:template>
 

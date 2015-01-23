@@ -675,4 +675,10 @@ public class TestMathmltoLatex
 	{
 		assertRoundTrip("\\boldsymbol{\\times }");
 	}
+
+	@Test
+	public void testCasesSmallBrace() throws Exception
+	{
+		assertRoundTrip("\\begin{cases} 0 \\\\ 1 \\end{cases}");
+	}
 }

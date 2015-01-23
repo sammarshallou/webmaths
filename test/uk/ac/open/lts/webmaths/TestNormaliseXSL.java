@@ -30,20 +30,21 @@ import org.junit.*;
 public class TestNormaliseXSL extends TestCase
 {
 	private TransformerPool pool;
-	
+
+	@Override
 	@Before
 	public void setUp() throws Exception
 	{
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
 		pool = new TransformerPool(fixer, WebMathsService.class, "normalise.xsl");
 	}
-	
+
 	@Test
 	public void testNull() throws Exception
 	{
-		assertResult("<mrow><mi>x</mi></mrow>", "<mrow><mi>x</mi></mrow>"); 
+		assertResult("<mrow><mi>x</mi></mrow>", "<mrow><mi>x</mi></mrow>");
 	}
-	
+
 	@Test
 	public void testMrowAdding() throws Exception
 	{
@@ -60,7 +61,7 @@ public class TestNormaliseXSL extends TestCase
 		assertResult("<" + tag + "><mrow><mi>x</mi><mi>y</mi></mrow></" + tag + ">",
 			"<" + tag + "><mi>x</mi><mi>y</mi></" + tag + ">");
 		assertResult("<" + tag + "><mi>x</mi></" + tag + ">",
-			"<" + tag + "><mi>x</mi></" + tag + ">"); 
+			"<" + tag + "><mi>x</mi></" + tag + ">");
 	}
 
 	@Test
@@ -70,7 +71,7 @@ public class TestNormaliseXSL extends TestCase
 			"<mrow><mrow> <mo fence='true'> ( </mo> <mi>x</mi> <mo fence='true'> ) </mo> </mrow></mrow>",
 			"<mrow><mfenced> <mi>x</mi> </mfenced></mrow>");
 	}
-	
+
 	@Test
 	public void testFencedDefaults2() throws Exception
 	{
@@ -142,7 +143,7 @@ public class TestNormaliseXSL extends TestCase
 			"<mtable><mtr><mtd><mn>3</mn></mtd></mtr></mtable>",
 			"<mtable><mtr><mtd><mn>3</mn></mtd></mtr></mtable>");
 	}
-	
+
 	private void assertResult(String expected, String fragment) throws Exception
 	{
 		String mathmlIn = "<math xmlns='http://www.w3.org/1998/Math/MathML'>" +
@@ -157,7 +158,8 @@ public class TestNormaliseXSL extends TestCase
 				new StreamResult(out));
 			String outString = out.toString().replaceAll(
 				"[^Q]*<math[^>]*>(.*?)</math>", "$1");
-			outString = outString.replaceAll(" xmlns:m=\"[^\"]*\"", ""); 
+			outString = outString.replaceAll(" xmlns:m=\"[^\"]*\"", "");
+			outString = outString.replaceAll("m:", "");
 			assertEqualsIgnoringWhitespace(expected, outString);
 		}
 		finally
@@ -165,7 +167,7 @@ public class TestNormaliseXSL extends TestCase
 			pool.release(t);
 		}
 	}
-	
+
 	private void assertEqualsIgnoringWhitespace(String expected, String value)
 	{
 		assertTrue(
