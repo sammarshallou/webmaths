@@ -483,4 +483,15 @@ public class TestLatexToMathml extends TestCase
 		assertMath("<mo>{</mo><mtable columnalign=\"left left\"><mtr><mtd><mn>1</mn></mtd><mtd><mi>x</mi><mo>=</mo><mn>4</mn></mtd></mtr><mtr><mtd><mn>17</mn></mtd><mtd><mi>x</mi><mo>=</mo><mn>5</mn></mtd></mtr></mtable>",
 			"\\begin{cases} 1 & x=4 \\\\ 17 & x=5 \\end{cases}");
 	}
+
+	@Test
+	public void testCaseBraces() throws Exception
+	{
+		// There was a bug with the 'a' text in curly braces in this instance.
+		assertMath("<mo>{</mo><mtable columnalign=\"left left\">"
+			+ "<mtr><mtd><mi>a</mi></mtd><mtd><mtext>A</mtext></mtd></mtr>"
+			+ "<mtr><mtd><mi>b</mi></mtd><mtd><mtext>B</mtext></mtd></mtr>"
+			+ "</mtable>", "\\begin{cases}{a}&\\mbox{A}\\\\b & \\mbox{B}\\end{cases}");
+	}
+
 }

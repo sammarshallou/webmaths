@@ -2240,7 +2240,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 //	    s+=c
 //	    slf.tokens_index += 1
 //#end of skip optional arg
-		skipOuOptional(slf);
+		// sam note: I have commented this out as it caused bugs.
+		//skipOuOptional(slf);
 
 //v_mtable = v_matrix_to_mtable(slf, result_element(u"mtable", 0))
 //if ((v_open_delim is not None) or (v_close_delim is not None)):
