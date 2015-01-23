@@ -962,6 +962,8 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 	private final static Map<String, String> LIMIT_COMMANDS =
 		makeMap(new String[]
 	{
+		// WARNING: This list is duplicated in latex.xsl. Ensure changes apply to
+		// both locations.
 		"\\bigcap", "\u22c2",
 		"\\bigcup", "\u22c3",
 		"\\bigodot", "\u2a00",
@@ -1328,7 +1330,9 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			public Element call(TokenInput slf)
 			{
 				// sam: mathop should result in italic text, not normal
-				return fontToMathml(slf, "italic");
+				Element result = fontToMathml(slf, "italic");
+				result.setAttribute("class", "tex-mathop");
+				return result;
 			}
 		});
 //u"\\mathrm": lambda slf: v_font_to_mathml(slf, u"normal"), \
@@ -1581,7 +1585,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return underToMathml(slf, "\ufe38");
+				return underToMathml(slf, "\ufe38", true);
 			}
 		});
 //u"\\overbrace": lambda slf: v_over_to_mathml(slf, u"\ufe37"), \
@@ -1590,7 +1594,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return overToMathml(slf, "\ufe37");
+				return overToMathml(slf, "\ufe37", true);
 			}
 		});
 //u"\\underline": lambda slf: v_under_to_mathml(slf, u"\u0332"), \
@@ -1599,7 +1603,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return underToMathml(slf, "\u0332");
+				return underToMathml(slf, "\u0332", false);
 			}
 		});
 //u"\\overline": lambda slf: v_over_to_mathml(slf, u"\u00af"), \
@@ -1608,7 +1612,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return overToMathml(slf, "\u00af");
+				return overToMathml(slf, "\u00af", false);
 			}
 		});
 		texCommands.put("\\overrightarrow", new LambdaTokenInput()
@@ -1616,7 +1620,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return overToMathml(slf, "\u27f6");
+				return overToMathml(slf, "\u27f6", false);
 			}
 		});
 //u"\\widetilde": lambda slf: v_over_to_mathml(slf, u"\u0303"), \
@@ -1625,7 +1629,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return overToMathml(slf, "~");
+				return overToMathml(slf, "~", false);
 			}
 		});
 //u"\\widehat": lambda slf: v_over_to_mathml(slf, u"\u0302"), \
@@ -1634,7 +1638,7 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 			@Override
 			public Element call(TokenInput slf)
 			{
-				return overToMathml(slf, "\u005e");
+				return overToMathml(slf, "\u005e", false);
 			}
 		});
 //u"\\not": lambda slf: v_combining_to_mathml(slf, u"\u0338"), \
@@ -2506,18 +2510,28 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 
 //def v_over_to_mathml(slf, v_char):
 //return result_element(u"mover", 0, v_piece_to_mathml(slf), result_element(u"mo", 0, v_char))
-	Element overToMathml(TokenInput slf, String chr)
+	Element overToMathml(TokenInput slf, String chr, boolean resetSize)
 	{
-		return resultElement("mover", 0, pieceToMathml(slf),
-			resultElement("mo", 0, chr));
+		Element content = pieceToMathml(slf);
+		// Overbrace and underbrace contain an internal \displaysize for TeX.
+		if(resetSize)
+		{
+			content = resultElement("mstyle", 2, "scriptlevel", "0", "displaystyle", "true", content);
+		}
+		return resultElement("mover", 0, content, resultElement("mo", 0, chr));
 	}
 
 //def v_under_to_mathml(slf, v_char):
 //return result_element(u"munder", 0, v_piece_to_mathml(slf), result_element(u"mo", 0, v_char))
-	Element underToMathml(TokenInput slf, String chr)
+	Element underToMathml(TokenInput slf, String chr, boolean resetSize)
 	{
-		return resultElement("munder", 0, pieceToMathml(slf),
-			resultElement("mo", 0, chr));
+		Element content = pieceToMathml(slf);
+		// Overbrace and underbrace contain an internal \displaysize for TeX.
+		if(resetSize)
+		{
+			content = resultElement("mstyle", 2, "scriptlevel", "0", "displaystyle", "true", content);
+		}
+		return resultElement("munder", 0, content, resultElement("mo", 0, chr));
 	}
 
 //def v_delimiter_to_mathml(slf, v_end_command, v_min_size, v_max_size):

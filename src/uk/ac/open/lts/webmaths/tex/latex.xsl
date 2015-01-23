@@ -68,12 +68,12 @@
   Basic elements passed through
   -->
 <xsl:template match="m:semantics|m:mn|m:mrow">
-  <xsl:apply-templates select="@*|node()"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']|node()"/>
 </xsl:template>
 
 <!-- mtext should turn into \textrm -->
 <xsl:template match="m:mtext">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:call-template name="mathvariant-to-tex-font">
     <xsl:with-param name="PREFIX">\text</xsl:with-param>
   </xsl:call-template>
@@ -114,7 +114,7 @@
 
 <!-- Styled text -->
 <xsl:template match="m:mtext[@mathvariant]">
-  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle' and local-name() != 'class']"/>
   <xsl:call-template name="mathvariant-to-tex-font">
     <xsl:with-param name="PREFIX">\text</xsl:with-param>
     <xsl:with-param name="FAILCOMMAND">\text</xsl:with-param>
@@ -128,61 +128,61 @@
   -->
 
 <xsl:template match="m:mtext[string(.) = '&emsp;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\quad </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&emsp;&emsp;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\qquad </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&ensp;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\thickspace </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&emsp14;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\medspace </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&ThinSpace;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\thinspace </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&ZeroWidthSpace;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\! </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&nbsp;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>~</xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '.' or string(.) = ';' or string(.) = '?']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:value-of select="."/>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&#x220e;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\blacksquare </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&#x2b1c;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\qedsymbol </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '#']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\#</xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '&#x00a3;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\pounds </xsl:text>
 </xsl:template>
 <xsl:template match="m:mtext[string(.) = '$']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\$ </xsl:text>
 </xsl:template>
 
 <!-- mi -->
 <xsl:template match="m:mi">
-  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle' and local-name() != 'class']"/>
   <xsl:variable name="FN">
     <xsl:choose>
       <xsl:when test="contains(string(.), '&ThinSpace;') and substring-after(string(.), '&ThinSpace;') = ''">
@@ -293,7 +293,7 @@
 
 
 <xsl:template match="m:mn[@mathvariant]">
-  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle' and local-name() != 'class']"/>
   <xsl:call-template name="mathvariant-to-tex-font">
     <xsl:with-param name="PREFIX">\math</xsl:with-param>
   </xsl:call-template>
@@ -301,7 +301,7 @@
 
 <!-- Font style using mstyle -->
 <xsl:template match="m:mstyle[@mathvariant]">
-  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle' and local-name() != 'class']"/>
   <xsl:call-template name="mathvariant-to-tex-font">
     <xsl:with-param name="PREFIX">\math</xsl:with-param>
   </xsl:call-template>
@@ -387,7 +387,7 @@
     (parent::m:munder or parent::m:mover or parent::m:munderover or
     parent::m:msub or parent::m:msup or parent::m:msubsup) and
     not(preceding-sibling::*) and parent::*/parent::m:mstyle]" priority="+1">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:variable name="TDFRAC">
     <xsl:for-each select="parent::*/parent::m:mstyle">
       <xsl:call-template name="is-tdfrac"/>
@@ -409,20 +409,20 @@
 
 <!-- Direct passthrough for mo that is a single letter non-alpha, or TeX escape -->
 <xsl:template match="m:mo[(w:esc and count(node()) = 1) or string-length(normalize-space(.)) = 1]">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:apply-templates/>
 </xsl:template>
 
 <!-- Special-case for prime symbol - only use \prime when in super/subscript -->
 <xsl:template match="m:mo[w:esc[@tex='\prime '] and not(
     (parent::m:msup or parent::m:msubsup or parent::m:msub) and preceding-sibling::*)]">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>'</xsl:text>
 </xsl:template>
 
 <!-- mo that has font style -->
 <xsl:template match="m:mo[@mathvariant]">
-  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle']"/>
+  <xsl:apply-templates select="@*[local-name() != 'mathvariant' and local-name() != 'fontstyle' and local-name() != 'class']"/>
   <xsl:call-template name="mathvariant-to-tex-font">
     <xsl:with-param name="PREFIX">\math</xsl:with-param>
   </xsl:call-template>
@@ -443,7 +443,7 @@
 <xsl:template match="m:mo[(string-length(normalize-space(.)) = 1 and
     contains($BRACKETS, normalize-space(.))) or normalize-space(.) = '']" priority="+1">
   <!-- Note: We actually ignore maxsize altogether -->
-  <xsl:apply-templates select="@*[local-name(.) != 'minsize' and local-name(.) != 'maxsize']"/>
+  <xsl:apply-templates select="@*[local-name(.) != 'minsize' and local-name(.) != 'maxsize' and local-name() != 'class']"/>
 
   <!-- Get size as TeX name -->
   <xsl:variable name="SIZE">
@@ -500,13 +500,13 @@
 
 <!-- Special-case for mod -->
 <xsl:template match="m:mo[normalize-space(.) = 'mod']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\mod </xsl:text>
 </xsl:template>
 
 <!-- mo with combining 'not' operator -->
 <xsl:template match="m:mo[string-length(.) = 2 and substring(., 2) = '&#x0338;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text>\not</xsl:text>
   <xsl:choose>
     <!-- Just in case the first character needs escaping  -->
@@ -525,7 +525,7 @@
 
 <!-- Other mo uses operatorname -->
 <xsl:template match="m:mo">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
 
   <xsl:text>\operatorname{</xsl:text>
   <xsl:apply-templates/>
@@ -943,27 +943,87 @@
   <xsl:text>}</xsl:text>
 </xsl:template>
 
+<!--
+  Checks if the context element corresponds to one of the LIMIT_COMMANDS
+  commands defined in LatexToMathml class.
+  -->
+<xsl:template name="is-limit-command">
+  <xsl:choose>
+    <xsl:when test="1 = count(self::m:mo[string(.) = '&#x22c2;' or string(.) = '&#x22c3;'
+        or string(.) = '&#x2a00;' or string(.) = '&#x2a01;' or string(.) = '&#x2a02;'
+        or string(.) = '&#x2a06;' or string(.) = '&#x2a04;' or string(.) = '&#x22c1;'
+        or string(.) = '&#x22c0;' or string(.) = '&#x2210;' or string(.) = '&#x220f;'
+        or string(.) = '&#x2211;' or string(.) = '&#x2211;&#x2211;'])">
+      <xsl:text>y</xsl:text>
+    </xsl:when>
+    <xsl:when test="1 = count(self::m:mi[string(.) = 'inf&#x2009;' or string(.) = 'inj lim&#x2009;'
+        or string(.) = 'lim&#x2009;' or string(.) = 'lim inf&#x2009;' or string(.) = 'lim sup&#x2009;'
+        or string(.) = 'max&#x2009;' or string(.) = 'min&#x2009;' or string(.) = 'proj lim&#x2009;'
+        or string(.) = 'sup&#x2009;'])">
+      <xsl:text>y</xsl:text>
+    </xsl:when>
+    <xsl:when test="1 = count(self::m:munder[*[2][self::m:mo[string(.) = '&#xfe38;'
+        or string(.) = '&#x0332;']]])">
+      <xsl:text>y</xsl:text>
+    </xsl:when>
+    <xsl:when test="1 = count(self::m:mover[*[2][self::m:mo[string(.) = '&#xfe37;'
+        or string(.) = '&#x00af;' or string(.) = '&#x27f6;']]])">
+      <xsl:text>y</xsl:text>
+    </xsl:when>
+    <xsl:when test="1 = count(self::*[@class='tex-mathop'])">
+      <xsl:text>y</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>n</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <!--  Generic mover -->
 <xsl:template match="m:mover[not(@accent)]">
   <xsl:apply-templates select="@*"/>
-  <xsl:text>\stackrel{</xsl:text>
-  <xsl:apply-templates select="*[2]"/>
-  <xsl:text>}{</xsl:text>
-  <xsl:apply-templates select="*[1]"/>
-  <xsl:text>}</xsl:text>
+
+  <!-- For certain commands and symbols, mover can represent ^. -->
+  <xsl:variable name="ISLIMIT">
+    <xsl:for-each select="*[1]">
+      <xsl:call-template name="is-limit-command"/>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$ISLIMIT = 'y'">
+      <xsl:apply-templates select="*[1]"/>
+      <xsl:text>^</xsl:text>
+      <xsl:variable name="VAL2">
+        <xsl:apply-templates select="*[2]"/>
+      </xsl:variable>
+      <xsl:call-template name="brace">
+        <xsl:with-param name="VAL" select="$VAL2"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\stackrel{</xsl:text>
+      <xsl:apply-templates select="*[2]"/>
+      <xsl:text>}{</xsl:text>
+      <xsl:apply-templates select="*[1]"/>
+      <xsl:text>}</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- Under/over thingies other than accents -->
-<xsl:template match="m:munder[*[2][self::m:mo and string(.) = '&#xfe38;']]">
+<xsl:template match="m:munder[*[2][self::m:mo and string(.) = '&#xfe38;']
+    and *[1][self::m:mstyle[@displaystyle='true']]]">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\underbrace{</xsl:text>
-  <xsl:apply-templates select="*[1]"/>
+  <xsl:apply-templates select="*[1]/*"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
-<xsl:template match="m:mover[*[2][self::m:mo and string(.) = '&#xfe37;']]">
+<xsl:template match="m:mover[*[2][self::m:mo and string(.) = '&#xfe37;']
+    and *[1][self::m:mstyle[@displaystyle='true']]]">
   <xsl:apply-templates select="@*"/>
   <xsl:text>\overbrace{</xsl:text>
-  <xsl:apply-templates select="*[1]"/>
+  <xsl:apply-templates select="*[1]/*"/>
   <xsl:text>}</xsl:text>
 </xsl:template>
 <xsl:template match="m:munder[*[2][self::m:mo and string(.) = '&#x0332;']]">
@@ -1073,7 +1133,7 @@
   -->
 <xsl:template match="m:mtext[string(.) = '.' or string(.) = ';' or
     string(.) = '?' or string(.) = '&nbsp;']">
-  <xsl:apply-templates select="@*"/>
+  <xsl:apply-templates select="@*[local-name() != 'class']"/>
   <xsl:text> </xsl:text>
   <xsl:apply-templates/>
   <xsl:text> </xsl:text>
@@ -1123,6 +1183,7 @@
 <!-- Supported attributes -->
 <xsl:template match="m:mstyle/@displaystyle"/>
 <xsl:template match="m:mstyle/@scriptlevel"/>
+<xsl:template match="m:mstyle/@class"/>
 
 <!-- Displaystyle true; exclude auto-added wrapper -->
 <xsl:template match="m:mstyle">
@@ -1140,14 +1201,14 @@
   <xsl:variable name="SCRIPTLEVEL">
     <xsl:call-template name="get-scriptlevel"/>
   </xsl:variable>
-  <xsl:variable name="PARENTSCRIPTLEVEL">
-    <xsl:for-each select="parent::*">
-      <xsl:call-template name="get-scriptlevel"/>
-    </xsl:for-each>
+  <xsl:variable name="DEFAULTSCRIPTLEVEL">
+    <xsl:call-template name="get-scriptlevel">
+      <xsl:with-param name="DEFAULT">y</xsl:with-param>
+    </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="NOCHANGE">
-    <xsl:if test="$SCRIPTLEVEL = $PARENTSCRIPTLEVEL and
+    <xsl:if test="$SCRIPTLEVEL = $DEFAULTSCRIPTLEVEL and
         $DISPLAYSTYLE = $PARENTDISPLAYSTYLE">y</xsl:if>
   </xsl:variable>
 
@@ -1402,8 +1463,13 @@
 
 <!--
   Gets current in-effect value of scriptlevel attribute.
+
+  If DEFAULT is set to 'y', then it ignores the content of the current node,
+  and works out what it would be by default (inheriting from parent).
   -->
 <xsl:template name="get-scriptlevel">
+  <xsl:param name="DEFAULT"/>
+
   <!-- Get parent value -->
   <xsl:variable name="PARENTVAL">
     <xsl:for-each select="parent::*">
@@ -1417,19 +1483,19 @@
   <!-- Check specified option -->
   <xsl:choose>
     <!-- Increment -->
-    <xsl:when test="self::m:mstyle and starts-with(string(@scriptlevel), '+')">
+    <xsl:when test="$DEFAULT != 'y' and self::m:mstyle and starts-with(string(@scriptlevel), '+')">
       <xsl:variable name="SHIFT" select="substring-after(@scriptlevel, '+')"/>
       <xsl:value-of select="number($PARENTVAL) + number($SHIFT)"/>
     </xsl:when>
 
     <!-- Decrement -->
-    <xsl:when test="self::m:mstyle and starts-with(@scriptlevel, '-')">
+    <xsl:when test="$DEFAULT != 'y' and self::m:mstyle and starts-with(@scriptlevel, '-')">
       <xsl:variable name="SHIFT" select="substring-after(@scriptlevel, '-')"/>
       <xsl:value-of select="number($PARENTVAL) - number($SHIFT)"/>
     </xsl:when>
 
     <!-- Fixed value -->
-    <xsl:when test="self::m:mstyle and @scriptlevel">
+    <xsl:when test="$DEFAULT != 'y' and self::m:mstyle and @scriptlevel">
       <xsl:value-of select="@scriptlevel"/>
     </xsl:when>
 

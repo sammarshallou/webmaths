@@ -595,4 +595,78 @@ public class TestMathmltoLatex
 		reader.close();
 		assertEquals(0, errors);
 	}
+
+	@Test
+	public void testLimitRoundTrip() throws Exception
+	{
+		assertRoundTrip("\\stackrel{x}{x}");
+		// Check the round-trip of commands which treat ^ and _ as special limits.
+		for(String limit : new String[] {"^2", "_2", "_3^4"})
+		{
+			// Prefixes used sometimes. Note this is just about allowing for differences
+			// in the generated result that aren't actually significant.
+			String prefix = "", longLimit = limit;
+			String prefix2 = "", longLimit2 = limit;
+			if (limit.equals("_2") || limit.equals("_3^4"))
+			{
+				prefix = "{";
+				longLimit = "}" + limit;
+			}
+			if (limit.equals("_3^4"))
+			{
+				prefix2 = "{";
+				longLimit2 = "}" + limit;
+			}
+
+			// 1. Symbols.
+			assertRoundTrip("\\bigcap" + limit);
+			assertRoundTrip("\\bigcup" + limit);
+			assertRoundTrip("\\bigodot" + limit);
+			assertRoundTrip("\\bigoplus" + limit);
+			assertRoundTrip("\\bigotimes" + limit);
+			assertRoundTrip("\\bigsqcup" + limit);
+			assertRoundTrip("\\biguplus" + limit);
+			assertRoundTrip("\\bigvee" + limit);
+			assertRoundTrip("\\bigwedge" + limit);
+			assertRoundTrip("\\coprod" + limit);
+			assertRoundTrip("\\prod" + limit);
+			assertRoundTrip("\\sum" + limit);
+			assertEquals(prefix + "\\operatorname{\\sum \\sum }" + longLimit,
+				doRoundTrip("\\doublesum" + limit));
+
+			// 2.Words.
+			assertRoundTrip("\\inf" + limit);
+			assertRoundTrip("\\injlim" + limit);
+			assertRoundTrip("\\lim" + limit);
+			assertRoundTrip("\\liminf" + limit);
+			assertRoundTrip("\\limsup" + limit);
+			assertRoundTrip("\\max" + limit);
+			assertRoundTrip("\\min" + limit);
+			assertRoundTrip("\\projlim" + limit);
+			assertRoundTrip("\\sup" + limit);
+
+			// 3. Special commands.
+			assertEquals(prefix2 + "\\underbrace{q}" + longLimit2,
+				doRoundTrip("\\underbrace{q}" + limit));
+			assertEquals(prefix + "\\overbrace{q}" + longLimit,
+				doRoundTrip("\\overbrace{q}" + limit));
+			assertEquals(prefix2 + "\\underline{q}" + longLimit2,
+				doRoundTrip("\\underline{q}" + limit));
+			assertEquals(prefix + "\\overline{q}" + longLimit,
+				doRoundTrip("\\overline{q}" + limit));
+			assertEquals(prefix + "\\overrightarrow{q}" + longLimit,
+				doRoundTrip("\\overrightarrow{q}" + limit));
+			assertRoundTrip("\\mathop{q}" + limit);
+		}
+	}
+
+	@Test
+	public void testCaseWeirdOverbrace() throws Exception
+	{
+		assertRoundTrip("\\overbrace{a}^b");
+		assertEquals("\\overbrace{{ \\scriptstyle n} }^{{ \\scriptstyle m}}",
+			doRoundTrip("\\overbrace{\\scriptstyle{n}}^{\\scriptstyle{m}}"));
+		assertEquals("a^{\\overbrace{{ \\scriptstyle n} }^{{ \\scriptstyle m}}}",
+			doRoundTrip("a^{\\overbrace{\\scriptstyle{n}}^{\\scriptstyle{m}}}"));
+	}
 }

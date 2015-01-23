@@ -73,7 +73,7 @@ public class TestLatexToMathml extends TestCase
 	@Test
 	public void testMathop()
 	{
-		assertMath("<munderover><mi mathvariant=\"italic\">Q"
+		assertMath("<munderover><mi class=\"tex-mathop\" mathvariant=\"italic\">Q"
 			+ "</mi><mn>1</mn><mi>N</mi></munderover>", "\\mathop{Q}_1^N");
 	}
 
@@ -493,5 +493,4 @@ public class TestLatexToMathml extends TestCase
 			+ "<mtr><mtd><mi>b</mi></mtd><mtd><mtext>B</mtext></mtd></mtr>"
 			+ "</mtable>", "\\begin{cases}{a}&\\mbox{A}\\\\b & \\mbox{B}\\end{cases}");
 	}
-
 }
