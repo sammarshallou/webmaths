@@ -815,6 +815,14 @@
   </xsl:for-each>
 </xsl:template>
 
+<!-- mphantom -->
+<xsl:template match="m:mphantom">
+  <xsl:apply-templates select="@*"/>
+  <xsl:text>\phantom{</xsl:text>
+  <xsl:apply-templates select="*"/>
+  <xsl:text>} </xsl:text>
+</xsl:template>
+
 <!-- mfrac -->
 <xsl:template match="m:mfrac">
   <xsl:apply-templates select="@*"/>

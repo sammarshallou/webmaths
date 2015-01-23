@@ -493,4 +493,11 @@ public class TestLatexToMathml extends TestCase
 			+ "<mtr><mtd><mi>b</mi></mtd><mtd><mtext>B</mtext></mtd></mtr>"
 			+ "</mtable>", "\\begin{cases}{a}&\\mbox{A}\\\\b & \\mbox{B}\\end{cases}");
 	}
+
+	@Test
+	public void testPhantom() throws Exception
+	{
+		assertMath("<mphantom><mn>3</mn><mo>+</mo><mi>x</mi></mphantom>",
+			"\\phantom{3+x}");
+	}
 }

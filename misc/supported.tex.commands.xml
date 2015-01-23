@@ -35,7 +35,7 @@
         </Imprint>
         <Introduction>
             <Title/>
-            <Paragraph><i>Updated: December 2014.</i></Paragraph>
+            <Paragraph><i>Updated: March 2015.</i></Paragraph>
             <Paragraph>The equation processing system used in Open
                 University module websites supports two equation languages:
                 MathML (version 2) and TeX.</Paragraph>
@@ -2790,6 +2790,11 @@
                             <th class="ColumnHeadLeft">Command</th>
                             <th class="ColumnHeadLeft">Example</th>
                             <th class="ColumnHeadLeft">Output</th>
+                        </tr>
+                        <tr>
+                            <td class="TableLeft"><ComputerCode>\phantom</ComputerCode> (invisible but takes up space)</td>
+                            <td class="TableLeft"><ComputerCode>2 + \phantom{\frac{1}{x}} = 3 + \frac{1}{x}</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle 2+\phantom{\frac{1}{x} } =3+\frac{1}{x}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\mathop</ComputerCode></td>

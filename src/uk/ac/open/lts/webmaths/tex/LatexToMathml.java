@@ -1838,6 +1838,15 @@ private final static Map<String, String> NAMED_IDENTIFIERS =
 				return resultElement("mspace", 1, "width", "negativethinmathspace");
 			}
 		});
+		// Add \phantom command.
+		texCommands.put("\\phantom", new LambdaTokenInput()
+		{
+			@Override
+			public Element call(TokenInput slf)
+			{
+				return resultElement("mphantom", 0, pieceToMathml(slf));
+			}
+		});
 //}
 	}
 
