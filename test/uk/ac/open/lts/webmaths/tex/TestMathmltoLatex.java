@@ -669,4 +669,10 @@ public class TestMathmltoLatex
 		assertEquals("a^{\\overbrace{{ \\scriptstyle n} }^{{ \\scriptstyle m}}}",
 			doRoundTrip("a^{\\overbrace{\\scriptstyle{n}}^{\\scriptstyle{m}}}"));
 	}
+
+	@Test
+	public void testBoldSymbol() throws Exception
+	{
+		assertRoundTrip("\\boldsymbol{\\times }");
+	}
 }

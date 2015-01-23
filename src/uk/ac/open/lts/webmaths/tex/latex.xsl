@@ -361,6 +361,17 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
+    <!--
+      Special handling for mn, mi, and mo with bold - TeX needs use of the
+      \boldsymbol command, instead of \mathbf, if the contents are symbols
+      rather than letters etc. Yes, what the actual.
+      -->
+    <xsl:when test="$FONT = 'bf' and $PREFIX = '\math' and string-length(normalize-space(.)) = 1
+        and not(contains($LETTERSNUMBERS, normalize-space(.)))">
+      <xsl:text>\boldsymbol{</xsl:text>
+      <xsl:apply-templates/>
+      <xsl:text>}</xsl:text>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$PREFIX"/>
       <xsl:value-of select="$FONT"/>
