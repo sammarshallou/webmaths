@@ -320,6 +320,11 @@ public class WebMathsImageTex extends WebMathsImage
 		{
 			// Create DVI file in folder
 			createDvi(tex, tempFolder);
+			File dvi = new File(tempFolder, "eq.dvi");
+			if(!dvi.exists())
+			{
+				throw new IOException("latex: DVI file not created");
+			}
 
 			// Get colour, size parameters
 			int dpi = Math.round((float)(BASE_PIXEL_SIZE * 72.27 / 10.0) * size);
@@ -445,6 +450,11 @@ public class WebMathsImageTex extends WebMathsImage
 
 		// Convert it to .dvi
 		runProcess(new String[] {latex, "--interaction=batchmode", "eq.tex"}, tempFolder);
+
+		if(stderrLines.length != 0)
+		{
+			throw new IOException("latex error: " + Arrays.toString(stderrLines));
+		}
 	}
 
 	/**
@@ -535,6 +545,8 @@ public class WebMathsImageTex extends WebMathsImage
 		folder.delete();
 	}
 
+	private static String[] stderrLines;
+
 	private static String[] runProcess(String[] command, File cwd)
 		throws IOException, InterruptedException
 	{
@@ -549,9 +561,10 @@ public class WebMathsImageTex extends WebMathsImage
 			System.err.println("[WEBMATHS] Exec: " + commandString.toString().trim());
 		}
 		Process process = Runtime.getRuntime().exec(command, null, cwd);
-		new EaterThread(process.getErrorStream());
+		EaterThread stderr = new EaterThread(process.getErrorStream());
 		EaterThread stdout = new EaterThread(process.getInputStream());
 		process.waitFor();
+		stderrLines = stderr.getLines();
 		return stdout.getLines();
 	}
 
