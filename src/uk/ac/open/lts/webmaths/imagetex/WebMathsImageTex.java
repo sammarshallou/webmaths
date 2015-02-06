@@ -320,11 +320,6 @@ public class WebMathsImageTex extends WebMathsImage
 		{
 			// Create DVI file in folder
 			createDvi(tex, tempFolder);
-			File dvi = new File(tempFolder, "eq.dvi");
-			if(!dvi.exists())
-			{
-				throw new IOException("latex: DVI file not created");
-			}
 
 			// Get colour, size parameters
 			int dpi = Math.round((float)(BASE_PIXEL_SIZE * 72.27 / 10.0) * size);
@@ -451,9 +446,10 @@ public class WebMathsImageTex extends WebMathsImage
 		// Convert it to .dvi
 		runProcess(new String[] {latex, "--interaction=batchmode", "eq.tex"}, tempFolder);
 
-		if(stderrLines.length != 0)
+		File dvi = new File(tempFolder, "eq.dvi");
+		if(!dvi.exists())
 		{
-			throw new IOException("latex error: " + Arrays.toString(stderrLines));
+			throw new IOException("latex - DVI not created: " + Arrays.toString(stderrLines));
 		}
 	}
 
