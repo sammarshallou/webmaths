@@ -1,0 +1,101 @@
+#! /usr/bin/env node
+
+var mj = require("./lib/mj-single.js");
+var readline = require('readline');
+var fs = require('fs');
+
+// Fixed settings.
+var argv = {
+  linebreaks: false,
+  speechrules: 'mathspeak',
+  speechstyle: 'default',
+  font: 'TeX',
+  ex: 6,
+  width: 100,
+  extensions: 'Safe,TeX/noUndefined'
+};
+
+// Set up MathJax.
+mj.config({
+  MathJax: {
+    SVG: {
+      font: argv.font
+    }
+  },
+  extensions: 'Safe,TeX/noUndefined',
+  displayErrors: false
+});
+mj.start();
+
+// Prepare to read lines from stdin.
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: null,
+  terminal: false
+});
+
+var mode = 'format';
+var input = null;
+
+function processInput(input) {
+  var data = {
+    math: input.value,
+    format: input.format,
+    svg: true,
+    speakText: true,
+    speakRuleset: 'mathspeak',
+    speakStyle: 'default',
+    ex: 6,
+    width: 100,
+    linebreaks: false
+  };
+  if (input.format === 'TeX') {
+    data.mml = true;
+  }
+  mj.typeset(data, function(result) {
+    process.stdout.write('<<BEGIN:RESULT\n');
+    if (result.errors) {
+      process.stdout.write('<<BEGIN:ERRORS\n');
+      for (var i = 0; i < result.errors; i++) {
+        process.stdout.write(result.errors[i] + '\n');
+      }
+      process.stdout.write('<<END:ERRORS\n');
+    } else {
+      // Output SVG (which includes speech text and baseline info).
+      process.stdout.write('<<BEGIN:SVG\n');
+      process.stdout.write(result.svg);
+      process.stdout.write('\n<<END:SVG\n');
+
+      // Output MathML.
+      if (input.format === 'TeX') {
+        process.stdout.write('<<BEGIN:MATHML\n');
+        process.stdout.write(result.mml);
+        process.stdout.write('\n<<END:MATHML\n');
+      }
+    }
+    process.stdout.write('<<END:RESULT\n');
+  });
+}
+
+// Process input lines.
+rl.on('line', function(line) {
+  switch (mode) {
+    case 'format':
+      if (line === 'TeX' || line === 'MathML') {
+        input = { value: '', format: line };
+        mode = 'input';
+      } else {
+        process.stderr.write('Invalid format: ' + line + '\n');
+      }
+      break;
+
+    case 'input' :
+      if (line === '') {
+        processInput(input);
+        mode = 'format';
+      } else {
+        input.value += line + '\n';
+      }
+      break;
+  }
+});
