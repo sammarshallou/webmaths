@@ -331,7 +331,7 @@ public class WebMathsImageTex extends WebMathsImage
 			String dvipng = getParam("dvipng-executable", "dvipng");
 			String[] stdout = runProcess(
 				new String[] {dvipng, "-q", "-D", "" + dpi, "-fg", texFg, "-bg", "Transparent",
-					"-l", "1", "--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
+					"--truecolor", "-l", "1", "--depth", "-o", "eq.png", "eq.dvi" }, tempFolder);
 
 			// Get baseline from stdout value
 			if(stdout.length < 1)
