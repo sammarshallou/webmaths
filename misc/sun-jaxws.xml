@@ -30,4 +30,10 @@
         wsdl="WEB-INF/wsdl/maths.tex.wsdl"
         implementation="uk.ac.open.lts.webmaths.mjtex.WebMathsMjTex"
         url-pattern="/mj-tex"/>
+    <endpoint
+        name="WebMathsMjEnglish"
+        service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsEnglish"
+        wsdl="WEB-INF/wsdl/maths.english.wsdl"
+        implementation="uk.ac.open.lts.webmaths.mjenglish.WebMathsMjEnglish"
+        url-pattern="/mj-english"/>
 </endpoints> 

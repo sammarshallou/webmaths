@@ -28,7 +28,7 @@ import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
 import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
+import org.xml.sax.*;
 
 /**
  * Base class for maths services including shared code.
@@ -43,8 +43,6 @@ public class WebMathsService
 	 */
 	public final static String NS = "http://www.w3.org/1998/Math/MathML";
 
-	private static MathmlEntityFixer localFixer;
-	
 	private final static Pattern REGEX_DOCTYPE = Pattern.compile(
 		"^\\s*<!DOCTYPE[^>]+>");
 
@@ -52,19 +50,65 @@ public class WebMathsService
 	 * Parses a MathML string.
 	 * @param xml MathML content
 	 * @return XML document
-	 * @throws Exception Any error
+	 * @throws IOException Any error
 	 */
 	public Document parseMathml(String xml) throws Exception
 	{
-		// Get rid of doctype if supplied
+		ServletContext servletContext = null;
+		if(context != null)
+		{
+			servletContext = (ServletContext)context.getMessageContext().get(
+				MessageContext.SERVLET_CONTEXT);
+		}
+		return parseMathml(servletContext, xml);
+
+	}
+
+	/**
+	 * Parses a MathML string.
+	 * @param context Servlet context
+	 * @param xml MathML content
+	 * @return XML document
+	 * @throws IOException Any error
+	 */
+	public static Document parseMathml(ServletContext context, String xml)
+		throws IOException
+	{
+		// Get rid of doctype if supplied.
 		xml = REGEX_DOCTYPE.matcher(xml).replaceFirst("");
-		// Fix entities
-		xml = getFixer().fix(xml);
-		// Parse final string
+		// Fix entities.
+		xml = MathmlEntityFixer.getFixer(context).fix(xml);
+		// Parse.
+		return parseXml(context, xml);
+	}
+
+	/**
+	 * Parses an XML document
+	 * @param context Servlet context
+	 * @param xml XML string
+	 * @return XML document
+	 * @throws IOException Any error
+	 */
+	public static Document parseXml(ServletContext context, String xml)
+		throws IOException
+	{
+  	// Parse final string
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		return builder.parse(new InputSource(new StringReader(xml)));
+		DocumentBuilder builder;
+		try
+		{
+			builder = factory.newDocumentBuilder();
+			return builder.parse(new InputSource(new StringReader(xml)));
+		}
+		catch(ParserConfigurationException e)
+		{
+			throw new IOException("Error with parser setup", e);
+		}
+		catch(SAXException e)
+		{
+			throw new IOException("Invalid XML", e);
+		}
 	}
 
 	/**
@@ -78,47 +122,6 @@ public class WebMathsService
 			servletContext = (ServletContext)context.getMessageContext().get(
 				MessageContext.SERVLET_CONTEXT);
 		}
-		
-		if(servletContext != null)
-		{
-			synchronized(servletContext)
-			{
-				String key = "uk.ac.open.lts.webmaths.Fixer";
-				MathmlEntityFixer fixer = (MathmlEntityFixer)servletContext.getAttribute(key);
-				if(fixer == null)
-				{
-					try
-					{
-						fixer = new MathmlEntityFixer();
-					}
-					catch(IOException e)
-					{
-						throw new Error(e);
-					}
-					servletContext.setAttribute(key, fixer);
-				}
-				return fixer;
-			}
-		}
-		else
-		{
-			// If this isn't running as part of a servlet, we'll use a static - 
-			// I don't trust statics in webapps.
-			synchronized(WebMathsService.class)
-			{
-				if(localFixer == null)
-				{
-					try
-					{
-						localFixer = new MathmlEntityFixer();
-					}
-					catch(IOException e)
-					{
-						throw new Error(e);
-					}
-				}
-				return localFixer;
-			}
-		}
+		return MathmlEntityFixer.getFixer(servletContext);
 	}
 }

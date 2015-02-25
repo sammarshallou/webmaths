@@ -121,6 +121,7 @@
 		<copy todir="${build}/WEB-INF">
 	  	<fileset dir="misc">
 	  	  <include name="sun-jaxws.xml"/>
+	  		<include name="ou-mathjax-batchprocessor"/>
 	  	</fileset>
 		</copy>
 		<copy file="misc/web.xml" tofile="${build}/WEB-INF/web.xml">

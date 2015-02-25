@@ -1,25 +1,19 @@
 #! /usr/bin/env node
 
-var mj = require("./lib/mj-single.js");
 var readline = require('readline');
 var fs = require('fs');
 
-// Fixed settings.
-var argv = {
-  linebreaks: false,
-  speechrules: 'mathspeak',
-  speechstyle: 'default',
-  font: 'TeX',
-  ex: 6,
-  width: 100,
-  extensions: 'Safe,TeX/noUndefined'
-};
+// MathJax folder from command line.
+var mj = require(process.argv[2] + "/lib/mj-single.js");
 
 // Set up MathJax.
 mj.config({
   MathJax: {
     SVG: {
-      font: argv.font
+      font: 'TeX'
+    },
+    menuSettings: {
+      semantics: true
     }
   },
   extensions: 'Safe,TeX/noUndefined',
@@ -49,7 +43,7 @@ function processInput(input) {
     width: 100,
     linebreaks: false
   };
-  if (input.format === 'TeX') {
+  if (input.format === 'TeX' || input.format === 'inline-TeX') {
     data.mml = true;
   }
   mj.typeset(data, function(result) {
@@ -67,7 +61,7 @@ function processInput(input) {
       process.stdout.write('\n<<END:SVG\n');
 
       // Output MathML.
-      if (input.format === 'TeX') {
+      if (input.format === 'TeX' || input.format === 'inline-TeX') {
         process.stdout.write('<<BEGIN:MATHML\n');
         process.stdout.write(result.mml);
         process.stdout.write('\n<<END:MATHML\n');
@@ -81,7 +75,7 @@ function processInput(input) {
 rl.on('line', function(line) {
   switch (mode) {
     case 'format':
-      if (line === 'TeX' || line === 'MathML') {
+      if (line === 'TeX' || line === 'inline-TeX' || line === 'MathML') {
         input = { value: '', format: line };
         mode = 'input';
       } else {

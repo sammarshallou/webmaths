@@ -10,6 +10,11 @@
             com.sun.xml.ws.transport.http.servlet.WSServletContextListener
         </listener-class>
     </listener>
+    <listener>
+        <listener-class>
+            uk.ac.open.lts.webmaths.WebMathsServletContextListener
+        </listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>WS</servlet-name>
@@ -43,6 +48,10 @@
     <servlet-mapping>
         <servlet-name>WS</servlet-name>
         <url-pattern>/mj-tex</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WS</servlet-name>
+        <url-pattern>/mj-english</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Redirect</servlet-name>

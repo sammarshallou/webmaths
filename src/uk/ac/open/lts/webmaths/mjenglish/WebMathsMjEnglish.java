@@ -16,7 +16,7 @@ along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
 
 Copyright 2011 The Open University
 */
-package uk.ac.open.lts.webmaths.mjtex;
+package uk.ac.open.lts.webmaths.mjenglish;
 
 import java.io.IOException;
 
@@ -25,31 +25,28 @@ import javax.jws.WebService;
 import javax.xml.ws.WebServiceContext;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
+import uk.ac.open.lts.webmaths.english.*;
 import uk.ac.open.lts.webmaths.mathjax.*;
-import uk.ac.open.lts.webmaths.tex.*;
 
-@WebService(endpointInterface="uk.ac.open.lts.webmaths.tex.MathsTexPort",
+@WebService(endpointInterface="uk.ac.open.lts.webmaths.english.MathsEnglishPort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
-	serviceName="MathsTex", portName="MathsTexPort")
-public class WebMathsMjTex extends WebMathsService implements MathsTexPort
+	serviceName="MathsEnglish", portName="MathsEnglishPort")
+public class WebMathsMjEnglish extends WebMathsService implements MathsEnglishPort
 {
 	@Resource
 	private WebServiceContext context;
 
 	@Override
-	public MathsTexReturn getMathml(MathsTexParams params)
+	public MathsEnglishReturn getEnglish(MathsEnglishParams params)
 	{
-		System.err.println("---REQUEST---");
-		// Set up default return values
-		MathsTexReturn result = new MathsTexReturn();
+		MathsEnglishReturn result = new MathsEnglishReturn();
 		result.setOk(false);
 		result.setError("");
-		result.setMathml("");
+		result.setEnglish("");
 
 		try
 		{
-			result.setMathml(MathJax.get(context).getMathml(params.getTex(),
-				params.isDisplay()));
+			result.setEnglish(MathJax.get(context).getEnglishFromMathml(params.getMathml()));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)
@@ -61,17 +58,6 @@ public class WebMathsMjTex extends WebMathsService implements MathsTexPort
 			result.setError("Unexpected error: " + e.getMessage());
 		}
 
-		return result;
-	}
-
-	@Override
-	public GetTexReturn getTex(GetTexParams params)
-	{
-		// Set up default return values
-		GetTexReturn result = new GetTexReturn();
-		result.setOk(false);
-		result.setError("MathML to TeX conversion not available");
-		result.setTex("");
 		return result;
 	}
 }

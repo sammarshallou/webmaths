@@ -22,6 +22,8 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
+import javax.servlet.ServletContext;
+
 import uk.ac.open.lts.webmaths.english.WebMathsEnglish;
 
 /**
@@ -30,6 +32,8 @@ import uk.ac.open.lts.webmaths.english.WebMathsEnglish;
  */
 public class MathmlEntityFixer
 {
+	private static MathmlEntityFixer localFixer;
+
 	private Map<String, String> entityToChar = new HashMap<String, String>();
 	private Map<String, String> hexesToDesc = new HashMap<String, String>();
 
@@ -313,5 +317,56 @@ public class MathmlEntityFixer
 
 		// Step 3: Tidy up whitespace and return
 		return text.replaceAll("\\s+", " ").trim();
+	}
+
+	/**
+	 * Gets the fixer singleton. It is stored in the servlet context if supplied,
+	 * or (for testing only) in a local static.
+	 * @param servletContext Servlet context (null if testing)
+	 * @return Fixer object
+	 */
+	public static MathmlEntityFixer getFixer(ServletContext servletContext)
+	{
+		if(servletContext != null)
+		{
+			synchronized(servletContext)
+			{
+				String key = "uk.ac.open.lts.webmaths.Fixer";
+				MathmlEntityFixer fixer = (MathmlEntityFixer)servletContext.getAttribute(key);
+				if(fixer == null)
+				{
+					try
+					{
+						fixer = new MathmlEntityFixer();
+					}
+					catch(IOException e)
+					{
+						throw new Error(e);
+					}
+					servletContext.setAttribute(key, fixer);
+				}
+				return fixer;
+			}
+		}
+		else
+		{
+			// If this isn't running as part of a servlet, we'll use a static -
+			// I don't trust statics in webapps.
+			synchronized(MathmlEntityFixer.class)
+			{
+				if(localFixer == null)
+				{
+					try
+					{
+						localFixer = new MathmlEntityFixer();
+					}
+					catch(IOException e)
+					{
+						throw new Error(e);
+					}
+				}
+				return localFixer;
+			}
+		}
 	}
 }
