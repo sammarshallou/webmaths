@@ -19,12 +19,21 @@ Copyright 2015 The Open University
 package uk.ac.open.lts.webmaths.mathjax;
 
 /**
- * Exception thrown when MathJax gives an error.
+ * TeX inline equations.
  */
-public class MathJaxException extends Exception
+public class InputTexInlineEquation extends InputTexEquation
 {
-	MathJaxException(String message)
+	/**
+	 * @param content TeX string
+	 */
+	public InputTexInlineEquation(String content)
 	{
-		super(message);
+		super(content);
+	}
+
+	@Override
+	public String getFormat()
+	{
+		return "inline-TeX";
 	}
 }

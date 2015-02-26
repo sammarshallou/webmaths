@@ -19,12 +19,25 @@ Copyright 2015 The Open University
 package uk.ac.open.lts.webmaths.mathjax;
 
 /**
- * Exception thrown when MathJax gives an error.
+ * MathML equations
  */
-public class MathJaxException extends Exception
+public class InputMathmlEquation extends InputEquation
 {
-	MathJaxException(String message)
+	/**
+	 * @param content MathML as string
+	 */
+	public InputMathmlEquation(String content)
 	{
-		super(message);
+		super(content);
+	}
+
+	/**
+	 * Gets the format code used by the MathJax systems for this type of equation.
+	 * @return Format code e.g. "TeX"
+	 */
+	@Override
+	public String getFormat()
+	{
+		return "MathML";
 	}
 }

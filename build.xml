@@ -105,6 +105,9 @@
 	  	<fileset dir="lib/jeuclid">
 	  		<include name="*.jar"/>
 	  	</fileset>
+	  	<fileset dir="lib/batik">
+	  		<include name="*.jar"/>
+	  	</fileset>
 			<fileset dir="lib/extrafonts">
 				<include name="*.jar"/>
 			</fileset>

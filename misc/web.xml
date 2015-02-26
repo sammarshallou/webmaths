@@ -54,6 +54,10 @@
         <url-pattern>/mj-english</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>WS</servlet-name>
+        <url-pattern>/mj-image</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Redirect</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>

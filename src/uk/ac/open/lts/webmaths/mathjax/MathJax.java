@@ -1,21 +1,41 @@
+/*
+This file is part of OU webmaths
+
+OU webmaths is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+OU webmaths is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
+
+Copyright 2015 The Open University
+*/
 package uk.ac.open.lts.webmaths.mathjax;
 
+import java.awt.RenderingHints;
 import java.io.*;
-import java.nio.charset.Charset;
-import java.util.*;
-import java.util.concurrent.TimeoutException;
 import java.util.regex.*;
 
-import javax.servlet.*;
-import javax.xml.XMLConstants;
-import javax.xml.namespace.NamespaceContext;
+import javax.servlet.ServletContext;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 import javax.xml.xpath.*;
 
-import org.w3c.dom.*;
+import org.apache.batik.gvt.renderer.ImageRenderer;
+import org.apache.batik.transcoder.*;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.apache.batik.transcoder.keys.FloatKey;
+import org.apache.xmlgraphics.image.codec.png.PNGEncodeParam;
+import org.w3c.dom.Document;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
+import uk.ac.open.lts.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
 
 /**
  * Carries out transformations using MathJax.node via an application copied to
@@ -25,9 +45,6 @@ public class MathJax
 {
 	/** Name of attribute in ServletContext that stores singleton value. */
 	private static final String ATTRIBUTE_NAME = "uk.ac.open.lts.webmaths.MathJax";
-
-	/** Servlet parameter used to specify location of MathJax-node folder. */
-	private static final String PARAM_MATHJAXNODEFOLDER = "mathjaxnode-folder";
 
 	/**
 	 * Get MathJax singleton, starting it if not already running.
@@ -62,14 +79,9 @@ public class MathJax
 		}
 	}
 
-	private final static int PROCESSING_TIMEOUT = 10000;
-
 	private ServletContext context;
 
-	private String[] executableParams;
-	private TimeoutReader stdout;
-	private OutputStream stdin;
-	private Process process;
+	private MathJaxNodeExecutable mjNode;
 
 	private final XPath xpath;
 	private final XPathExpression xpathAnnotation, xpathSvgDesc;
@@ -81,255 +93,21 @@ public class MathJax
 	 */
 	private MathJax(ServletContext servletContext)
 	{
-		// Work out parameters for executable.
-		String folder = servletContext.getInitParameter(PARAM_MATHJAXNODEFOLDER);
-		if(folder == null)
-		{
-			folder = "c:/users/sm449/workspace/MathJax-Node";
-		}
-
-		File executable = new File(servletContext.getRealPath("WEB-INF/ou-mathjax-batchprocessor"));
-		executable.setExecutable(true);
-		executableParams = new String[]
-		{
-			"node",
-			executable.getAbsolutePath(),
-			folder
-		};
+		// Set up the executable
+		mjNode = new MathJaxNodeExecutable(servletContext);
 
 		// Precompile the xpath expressions.
 		xpath = XPathFactory.newInstance().newXPath();
 		xpath.setNamespaceContext(new MathmlAndSvgNamespaceContext());
 		try
 		{
-			xpathAnnotation = xpath.compile(
-				"normalize-space(/m:math/m:semantics/m:annotation[@encoding='application/x-tex'])");
+			xpathAnnotation = InputTexEquation.getXPathExpression(xpath);
 			xpathSvgDesc = xpath.compile("normalize-space(/s:svg/s:desc)");
 		}
 		catch(XPathExpressionException e)
 		{
 			throw new Error(e);
 		}
-
-		System.err.println(executableParams[1] + " " + executableParams[2]);
-	}
-
-	private static final class MathmlAndSvgNamespaceContext implements NamespaceContext
-	{
-		@Override
-		public String getNamespaceURI(String prefix)
-		{
-			if(prefix.equals("m"))
-			{
-				return "http://www.w3.org/1998/Math/MathML";
-			}
-			else if(prefix.equals("s"))
-			{
-				return "http://www.w3.org/2000/svg";
-			}
-			else
-			{
-				return XMLConstants.NULL_NS_URI;
-			}
-		}
-
-		@Override
-		public String getPrefix(String uri)
-		{
-			if(uri.equals("http://www.w3.org/1998/Math/MathML"))
-			{
-				return "m";
-			}
-			else if(uri.equals("http://www.w3.org/2000/svg"))
-			{
-				return "s";
-			}
-			return null;
-		}
-
-		@Override
-		public Iterator<?> getPrefixes(String uri)
-		{
-			LinkedList<String> list = new LinkedList<String>();
-			list.add(getPrefix(uri));
-			return list.iterator();
-		}
-	}
-
-	private static class ConversionResults
-	{
-		private String svg;
-		private String mathMl;
-
-		private ConversionResults(String svg, String mathMl)
-		{
-			this.svg = svg;
-			this.mathMl = mathMl;
-		}
-
-		public String getSvg()
-		{
-			return svg;
-		}
-
-		public String getMathMl()
-		{
-			return mathMl;
-		}
-	}
-
-	private enum EquationType
-	{
-		TEX("TeX"), MATHML("MathML"), INLINE_TEX("inline-TeX");
-
-		private String name;
-		EquationType(String name)
-		{
-			this.name = name;
-		}
-
-		public String getName()
-		{
-			return this.name;
-		}
-	}
-
-	/**
-	 * Sends a line of text to the application.
-	 * @param text Text to send
-	 * @throws IOException Any error
-	 */
-	private synchronized void sendLine(String text) throws IOException
-	{
-		stdin.write((text + "\n").getBytes(Charset.forName("UTF-8")));
-		System.err.println("[SENT] " + text);
-	}
-
-	private final static Pattern REGEX_BEGIN = Pattern.compile("^<<BEGIN:([A-Z0-9]+)$");
-	private final static Pattern REGEX_END = Pattern.compile("^<<END:([A-Z0-9]+)$");
-
-	/**
-	 * Converts an equation using MathJax.
-	 * @param type Equation type
-	 * @param value Equation text
-	 * @param bool If true, uses display mode (for TeX)
-	 * @return Converted data
-	 * @throws IOException Error running MathJax
-	 * @throws MathJaxException MathJax reports an error
-	 */
-	private synchronized ConversionResults convertEquation(EquationType type,
-		String value)
-		throws IOException, MathJaxException
-	{
-		// Start executable if needed.
-		if(!isExecutableRunning())
-		{
-			startExecutable();
-		}
-
-		// Send the type value.
-		sendLine(type.getName());
-
-		// Strip CRs from value, and ensure there aren't two LFs in a row or any the end.
-		value = value.trim().replaceAll("\r", "").replaceAll("\n\n+", "\n");
-
-		// Send value.
-		sendLine(value);
-		sendLine("");
-		stdin.flush();
-
-		// Start reading lines from output.
-		String first = stdout.getNextLine(PROCESSING_TIMEOUT);
-		System.err.println("[READ] " + first);
-		if(!first.equals("<<BEGIN:RESULT"))
-		{
-			throw new IOException("Expecting result start: " + first);
-		}
-
-		// Read the rest of it, splitting it into sections.
-		Map<String, String> result = new HashMap<String, String>();
-		result.put("ERROR", "");
-		result.put("SVG", "");
-		result.put("MATHML", "");
-		String section = null;
-		while(true)
-		{
-			String line = stdout.getNextLine(PROCESSING_TIMEOUT);
-			System.err.println("[READ] " + line);
-			if(section == null)
-			{
-				if(line.equals("<<END:RESULT"))
-				{
-					break;
-				}
-				Matcher m = REGEX_BEGIN.matcher(line);
-				if(!m.matches())
-				{
-					throw new IOException("Expecting BEGIN line: " + line);
-				}
-				section = m.group(1);
-				if(!result.containsKey(section))
-				{
-					throw new IOException("Unknown result section: " + line);
-				}
-			}
-			else
-			{
-				Matcher m = REGEX_END.matcher(line);
-				if(m.matches())
-				{
-					if(!m.group(1).equals(section))
-					{
-						throw new IOException("Non-matching END, expecting " + section + ": " + line);
-					}
-					result.put(section, result.get(section).trim());
-					section = null;
-				}
-				else
-				{
-					result.put(section, result.get(section) + line + "\n");
-				}
-			}
-		}
-
-		String error = result.get("ERROR");
-		if(!error.isEmpty())
-		{
-			throw new MathJaxException(error);
-		}
-		return new ConversionResults(result.get("SVG"), result.get("MATHML"));
-	}
-
-	/**
-	 * @return True if it's running
-	 */
-	private synchronized boolean isExecutableRunning()
-	{
-		return process != null;
-	}
-
-	/**
-	 * Starts the executable.
-	 * @throws IOException Any problem launching it
-	 */
-	private synchronized void startExecutable() throws IOException
-	{
-		process = Runtime.getRuntime().exec(executableParams);
-		stdout = new TimeoutReader(process.getInputStream());
-		stdin = process.getOutputStream();
-	}
-
-	/**
-	 * Stops the executable.
-	 */
-	private synchronized void stopExecutable()
-	{
-		stdout.requestExit();
-		process.destroy();
-		process = null;
-		stdout.waitForExit();
-		stdout = null;
-		stdin = null;
 	}
 
 	/**
@@ -337,125 +115,54 @@ public class MathJax
 	 */
 	public synchronized void close()
 	{
-		stopExecutable();
+		mjNode.close();
+		mjNode = null;
 	}
 
 	/**
 	 * Converts TeX to MathML.
-	 * @param tex TeX equation
-	 * @param display True if in display mode
+	 * @param eq TeX equation
 	 * @return MathML string
+	 * @throws MathJaxException Error processing equation
+	 * @throws IOException Other error
 	 */
-	public String getMathml(String tex, boolean display) throws MathJaxException, IOException
+	public String getMathml(InputTexEquation eq) throws MathJaxException, IOException
 	{
-		try
-		{
-			System.err.println("---convertStart---");
-			return convertEquation(
-				display ? EquationType.TEX : EquationType.INLINE_TEX, tex).getMathMl();
-		}
-		catch(IOException e)
-		{
-			System.err.println("---Exception---");
-			e.printStackTrace();
-			TimeoutReader stderr = new TimeoutReader(process.getErrorStream());
-			StringBuilder out = new StringBuilder();
-			try
-			{
-				for(int i=0; i<100; i++)
-				{
-					out.append(stderr.getNextLine(1000) + "\n");
-				}
-			}
-			catch(IOException e2)
-			{
-			}
-			throw new IOException("Message: [" + out + "]");
-		}
+		return mjNode.convertEquation(eq).getMathMl();
 	}
 
-	private static class TexDetails
-	{
-		private final static Pattern REGEX_MATHML_TEXANNOTATION = Pattern.compile(
-			"^<[^>]*?( display=\"block\")?[^>]*><annotation encoding=\"application/x-tex\">([^<]+)</annotation>");
-
-		private String tex;
-		private boolean display;
-
-		private TexDetails(String tex, boolean display)
-		{
-			this.tex = tex;
-			this.display = display;
-		}
-
-		public String getTex()
-		{
-			return tex;
-		}
-
-		public boolean isDisplay()
-		{
-			return display;
-		}
-
-		public static TexDetails getFromMathml(Document doc, XPathExpression xpathAnnotation)
-		{
-			try
-			{
-				String tex = (String)xpathAnnotation.evaluate(doc, XPathConstants.STRING);
-				if(tex.equals(""))
-				{
-					return null;
-				}
-				boolean display = "block".equals(doc.getDocumentElement().getAttribute("display"));
-				return new TexDetails(tex, display);
-			}
-			catch(XPathExpressionException e)
-			{
-				throw new Error(e);
-			}
-		}
-
-		public static TexDetails getFromMathml(String mathml)
-		{
-			Matcher m = REGEX_MATHML_TEXANNOTATION.matcher(mathml);
-			if(m.matches())
-			{
-				return new TexDetails(m.group(2), !m.group(1).equals(""));
-			}
-			else
-			{
-				return null;
-			}
-		}
-	}
-
-	private final static Pattern REGEX_MATHML_ALTTEXT = Pattern.compile(
-		"^<[^>]* alttext=\"([^\">]*)\"");
-
-
-	public String getEnglishFromMathml(String mathml)
+	/**
+	 * Extracts English text from a TeX or MathML input equation.
+	 * @param eq Equation
+	 * @return English text alternative
+	 * @throws MathJaxException Error processing equation
+	 * @throws IOException Other error
+	 */
+	public String getEnglish(InputEquation eq)
 		throws MathJaxException, IOException
 	{
-		// Parse MathML.
-		Document doc = WebMathsService.parseMathml(context, mathml);
-
-		// If there is already alt text, just use that.
-		String alt = doc.getDocumentElement().getAttribute("alttext");
-		if(!alt.isEmpty())
+		if (eq instanceof InputMathmlEquation)
 		{
-			return alt;
+			// Parse MathML.
+			Document doc = WebMathsService.parseMathml(context, eq.getContent());
+
+			// If there is already alt text, just use that.
+			String alt = doc.getDocumentElement().getAttribute("alttext");
+			if(!alt.isEmpty())
+			{
+				return alt;
+			}
+
+			// If we can get a TeX equation from the MathML, better use that for conversion.
+			InputTexEquation tex = InputTexEquation.getFromMathml(doc, xpathAnnotation);
+			if(tex != null)
+			{
+				return getEnglish(tex);
+			}
 		}
 
-		// If we can get a TeX equation from the MathML, better use that for conversion.
-		TexDetails details = TexDetails.getFromMathml(doc, xpathAnnotation);
-		if(details != null)
-		{
-			return getEnglishFromTex(details.getTex(), details.isDisplay());
-		}
-
-		// Convert the MathML.
-		ConversionResults results = convertEquation(EquationType.MATHML, mathml);
+		// Convert the equation and get text from SVG.
+		ConversionResults results = mjNode.convertEquation(eq);
 		Document svgDoc = WebMathsService.parseXml(context, results.getSvg());
 		try
 		{
@@ -467,18 +174,209 @@ public class MathJax
 		}
 	}
 
-	public String getEnglishFromTex(String tex, boolean display) throws MathJaxException, IOException
+	/** Parameter for {@link #getSvg(InputEquation, float)} when using ex sizes */
+	public final static double SIZE_IN_EX = -1.0;
+
+	/** MathJax vertical-align value appears to be off by 0.07ex. */
+	private final static double MATHJAX_BASELINE_FUDGE = 0.07;
+
+	private final static Pattern REGEX_BASELINE = Pattern.compile(
+		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)ex)");
+	private final static Pattern REGEX_BASELINE_PIXELS = Pattern.compile(
+		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)px)");
+	private final static Pattern REGEX_DIMENSIONS = Pattern.compile(
+		"^<svg[^>]* width=\"(([0-9]+(?:\\.[0-9]+)?)ex)\" height=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
+	private final static Pattern REGEX_COLOUR = Pattern.compile(
+		"(<[^>]+ )stroke=\"black\" fill=\"black\"");
+
+	/**
+	 * Gets SVG for an input equation.
+	 * <p>
+	 * You can optionally convert size from 'ex' into pixels. If no conversion
+	 * is required, use SIZE_IN_EX for the float parameter.
+	 * <p>
+	 * Note that the returned SVG contains two IDs MathJax-SVG-1-Title and
+	 * MathJax-SVG-1-Desc. If included on a web page, these should be string
+	 * replaced with suitable unique IDs.
+	 * @param eq Equation
+	 * @param correctBaseline If true, adjusts the reported baseline which is wrong
+	 * @param exSize SIZE_IN_EX or ex size in pixels
+	 * @return SVG as text
+	 * @throws MathJaxException Error processing equation
+	 * @throws IOException Other error
+	 */
+	public String getSvg(InputEquation eq, boolean correctBaseline, double exSize)
+		throws MathJaxException, IOException
 	{
-		ConversionResults results = convertEquation(
-			display ? EquationType.TEX : EquationType.INLINE_TEX, tex);
-		Document svgDoc = WebMathsService.parseXml(context, results.getSvg());
+		String svg = mjNode.convertEquation(eq).getSvg();
+		boolean convertToPixels = exSize != SIZE_IN_EX;
+		if(correctBaseline)
+		{
+			Matcher m = REGEX_BASELINE.matcher(svg);
+			if(!m.find())
+			{
+				throw new IOException("MathJax SVG does not match expected baseline pattern");
+			}
+			double baseline = Double.parseDouble(m.group(2));
+			baseline += MATHJAX_BASELINE_FUDGE;
+			String unit = "ex";
+			if(convertToPixels)
+			{
+				baseline *= exSize;
+				unit = "px";
+			}
+			svg = svg.substring(0, m.start(1)) + String.format("%.4f", baseline) + unit +
+				svg.substring(m.end(1));
+		}
+		if(convertToPixels)
+		{
+			Matcher m = REGEX_DIMENSIONS.matcher(svg);
+			if(!m.find())
+			{
+				throw new IOException("MathJax SVG does not match expected dimensions pattern");
+			}
+			double width = Double.parseDouble(m.group(2)),
+				height = Double.parseDouble(m.group(4));
+			svg = svg.substring(0, m.start(1)) +
+				String.format("%.4f", width * exSize) + "px" +
+				svg.substring(m.end(1), m.start(3)) +
+				String.format("%.4f", height * exSize) + "px" +
+				svg.substring(m.end(3));
+		}
+		return svg;
+	}
+
+	/**
+	 * Result of a PNG conversion.
+	 */
+	public static class PngResult
+	{
+		byte[] png;
+		int baseline;
+
+		private PngResult(byte[] png, int baseline)
+		{
+			this.png = png;
+			this.baseline = baseline;
+		}
+
+		/**
+		 * @return PNG data
+		 */
+		public byte[] getPng()
+		{
+			return png;
+		}
+
+		/**
+		 * @return Baseline in pixels
+		 */
+		public int getBaseline()
+		{
+			return baseline;
+		}
+	}
+
+	/**
+	 * Obtains a PNG transcoder that uses high quality settings.
+	 * @return Transcoder with settings improved
+	 */
+	private PNGTranscoder createTranscoder()
+	{
+    return new PNGTranscoder()
+    {
+      @Override
+      protected ImageRenderer createRenderer()
+      {
+        ImageRenderer r = super.createRenderer();
+
+        RenderingHints rh = r.getRenderingHints();
+
+        rh.add(new RenderingHints(RenderingHints.KEY_ALPHA_INTERPOLATION,
+            RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY));
+        rh.add(new RenderingHints(RenderingHints.KEY_INTERPOLATION,
+            RenderingHints.VALUE_INTERPOLATION_BICUBIC));
+
+        rh.add(new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+            RenderingHints.VALUE_ANTIALIAS_ON));
+
+        rh.add(new RenderingHints(RenderingHints.KEY_COLOR_RENDERING,
+            RenderingHints.VALUE_COLOR_RENDER_QUALITY));
+        rh.add(new RenderingHints(RenderingHints.KEY_DITHERING,
+            RenderingHints.VALUE_DITHER_DISABLE));
+
+        rh.add(new RenderingHints(RenderingHints.KEY_RENDERING,
+            RenderingHints.VALUE_RENDER_QUALITY));
+
+        rh.add(new RenderingHints(RenderingHints.KEY_STROKE_CONTROL,
+            RenderingHints.VALUE_STROKE_PURE));
+
+        r.setRenderingHints(rh);
+
+        return r;
+      }
+    };
+  }
+
+	/**
+	 * Recolours an SVG file by changing black to the given colour.
+	 * @param svg SVG file
+	 * @param rgb Colour code
+	 * @return Recoloured SVG
+	 */
+	private String recolourSvg(String svg, String rgb)
+	{
+		if(!rgb.matches("#[0-9a-f]{6}"))
+		{
+			throw new IllegalArgumentException("Invalid RGB colour (must match #000000): " + rgb);
+		}
+		Matcher m = REGEX_COLOUR.matcher(svg);
+		StringBuffer out = new StringBuffer();
+		while(m.find())
+		{
+			String replace = m.group(1) + "stroke=\"" + rgb + "\" fill=\"" + rgb + "\"";
+			m.appendReplacement(out, replace);
+		}
+		m.appendTail(out);
+		return out.toString();
+	}
+
+	/**
+	 * Gets PNG for equation.
+	 * @param eq Equation
+	 * @param rgb RGB colour e.g. "#000000"
+	 * @param size Size (1.0f = normal)
+	 * @return Result
+	 * @throws MathJaxException Error processing equation
+	 * @throws IOException Other error
+	 */
+	public PngResult getPng(InputEquation eq, String rgb, float size)
+		throws MathJaxException, IOException
+	{
+		double ex = 7.26667 * (double)size;
+		String svg = getSvg(eq, true, ex);
+		svg = recolourSvg(svg, rgb);
+
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		PNGTranscoder transcoder = createTranscoder();
+		transcoder.addTranscodingHint(PNGTranscoder.KEY_GAMMA, new Float(PNGEncodeParam.INTENT_PERCEPTUAL));
 		try
 		{
-			return (String)xpathSvgDesc.evaluate(svgDoc, XPathConstants.STRING);
+			transcoder.transcode(new TranscoderInput(new StringReader(svg)),
+				new TranscoderOutput(output));
 		}
-		catch(XPathExpressionException e)
+		catch(TranscoderException e)
 		{
-			throw new Error(e);
+			e.printStackTrace();
+			throw new IOException("Transcoder failed", e);
 		}
+
+		Matcher m = REGEX_BASELINE_PIXELS.matcher(svg);
+		if(!m.find())
+		{
+			throw new IOException("Unexpected failure detecting baseline");
+		}
+		int baseline = (int)Math.round(Double.parseDouble(m.group(2))) * -1;
+		return new PngResult(output.toByteArray(), baseline);
 	}
 }

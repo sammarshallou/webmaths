@@ -16,38 +16,47 @@ along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
 
 Copyright 2015 The Open University
 */
-package uk.ac.open.lts.webmaths.mjenglish;
+package uk.ac.open.lts.webmaths.mjimage;
 
 import java.io.IOException;
+import java.math.BigInteger;
 
 import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.xml.ws.WebServiceContext;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
-import uk.ac.open.lts.webmaths.english.*;
+import uk.ac.open.lts.webmaths.image.*;
 import uk.ac.open.lts.webmaths.mathjax.*;
+import uk.ac.open.lts.webmaths.mathjax.MathJax.PngResult;
 
-@WebService(endpointInterface="uk.ac.open.lts.webmaths.english.MathsEnglishPort",
+@WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
-	serviceName="MathsEnglish", portName="MathsEnglishPort")
-public class WebMathsMjEnglish extends WebMathsService implements MathsEnglishPort
+	serviceName="MathsImage", portName="MathsImagePort")
+public class WebMathsMjImage extends WebMathsService implements MathsImagePort
 {
 	@Resource
 	private WebServiceContext context;
 
+	private final static byte[] EMPTY = new byte[0];
+
 	@Override
-	public MathsEnglishReturn getEnglish(MathsEnglishParams params)
+	public MathsImageReturn getImage(MathsImageParams params)
 	{
-		MathsEnglishReturn result = new MathsEnglishReturn();
+		MathsImageReturn result = new MathsImageReturn();
 		result.setOk(false);
+		result.setImage(EMPTY);
 		result.setError("");
-		result.setEnglish("");
+		result.setBaseline(BigInteger.valueOf(0));
 
 		try
 		{
-			result.setEnglish(MathJax.get(context).getEnglish(
-				new InputMathmlEquation(params.getMathml())));
+			PngResult png = MathJax.get(context).getPng(
+				InputEquation.getFromMathml(params.getMathml()),
+				params.getRgb(), params.getSize());
+
+			result.setImage(png.getPng());
+			result.setBaseline(BigInteger.valueOf(png.getBaseline()));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)
@@ -58,6 +67,17 @@ public class WebMathsMjEnglish extends WebMathsService implements MathsEnglishPo
 		{
 			result.setError("Unexpected error: " + e.getMessage());
 		}
+
+		return result;
+	}
+
+	@Override
+	public MathsEpsReturn getEps(MathsEpsParams params)
+	{
+		MathsEpsReturn result = new MathsEpsReturn();
+		result.setOk(false);
+		result.setEps(EMPTY);
+		result.setError("");
 
 		return result;
 	}

@@ -14,7 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
 
-Copyright 2011 The Open University
+Copyright 2015 The Open University
 */
 package uk.ac.open.lts.webmaths.mjtex;
 
@@ -39,7 +39,6 @@ public class WebMathsMjTex extends WebMathsService implements MathsTexPort
 	@Override
 	public MathsTexReturn getMathml(MathsTexParams params)
 	{
-		System.err.println("---REQUEST---");
 		// Set up default return values
 		MathsTexReturn result = new MathsTexReturn();
 		result.setOk(false);
@@ -48,8 +47,9 @@ public class WebMathsMjTex extends WebMathsService implements MathsTexPort
 
 		try
 		{
-			result.setMathml(MathJax.get(context).getMathml(params.getTex(),
-				params.isDisplay()));
+			result.setMathml(MathJax.get(context).getMathml(
+				params.isDisplay() ? new InputTexDisplayEquation(params.getTex()) :
+					new InputTexInlineEquation(params.getTex())));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)
