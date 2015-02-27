@@ -16,7 +16,7 @@ along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
 
 Copyright 2015 The Open University
 */
-package uk.ac.open.lts.webmaths.mjimage;
+package uk.ac.open.lts.webmaths.mathjax;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -27,8 +27,6 @@ import javax.xml.ws.WebServiceContext;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
 import uk.ac.open.lts.webmaths.image.*;
-import uk.ac.open.lts.webmaths.mathjax.*;
-import uk.ac.open.lts.webmaths.mathjax.MathJax.PngResult;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.image.MathsImagePort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
@@ -51,12 +49,11 @@ public class WebMathsMjImage extends WebMathsService implements MathsImagePort
 
 		try
 		{
-			PngResult png = MathJax.get(context).getPng(
-				InputEquation.getFromMathml(params.getMathml()),
-				params.getRgb(), params.getSize());
-
-			result.setImage(png.getPng());
-			result.setBaseline(BigInteger.valueOf(png.getBaseline()));
+			MathJax mathJax = MathJax.get(context);
+			String svg = mathJax.getSvg(InputEquation.getFromMathml(params.getMathml()),
+				true, params.getSize() * MathJax.DEFAULT_EX_SIZE, params.getRgb());
+			result.setImage(mathJax.getPngFromSvg(svg));
+			result.setBaseline(BigInteger.valueOf(Math.round(mathJax.getBaselineFromSvg(svg))));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)
@@ -78,6 +75,21 @@ public class WebMathsMjImage extends WebMathsService implements MathsImagePort
 		result.setOk(false);
 		result.setEps(EMPTY);
 		result.setError("");
+
+		try
+		{
+			result.setEps(MathJax.get(context).getEps(
+				InputEquation.getFromMathml(params.getMathml())));
+			result.setOk(true);
+		}
+		catch(MathJaxException e)
+		{
+			result.setError("MathJax failure: " + e.getMessage());
+		}
+		catch(IOException e)
+		{
+			result.setError("Unexpected error: " + e.getMessage());
+		}
 
 		return result;
 	}

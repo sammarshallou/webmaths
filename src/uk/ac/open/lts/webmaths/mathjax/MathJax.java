@@ -30,9 +30,12 @@ import javax.xml.xpath.*;
 import org.apache.batik.gvt.renderer.ImageRenderer;
 import org.apache.batik.transcoder.*;
 import org.apache.batik.transcoder.image.PNGTranscoder;
-import org.apache.batik.transcoder.keys.FloatKey;
+import org.apache.fop.render.ps.EPSTranscoder;
 import org.apache.xmlgraphics.image.codec.png.PNGEncodeParam;
-import org.w3c.dom.Document;
+import org.w3c.dom.*;
+import org.w3c.dom.ls.*;
+
+import com.sun.org.apache.xerces.internal.xni.QName;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
 import uk.ac.open.lts.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
@@ -43,6 +46,9 @@ import uk.ac.open.lts.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
  */
 public class MathJax
 {
+	/** Default ex size (in pixels) */
+	public static final double DEFAULT_EX_SIZE = 7.26667;
+
 	/** Name of attribute in ServletContext that stores singleton value. */
 	private static final String ATTRIBUTE_NAME = "uk.ac.open.lts.webmaths.MathJax";
 
@@ -163,7 +169,19 @@ public class MathJax
 
 		// Convert the equation and get text from SVG.
 		ConversionResults results = mjNode.convertEquation(eq);
-		Document svgDoc = WebMathsService.parseXml(context, results.getSvg());
+		return getEnglishFromSvg(results.getSvg());
+	}
+
+	/**
+	 * Gets English text from an already-obtained SVG.
+	 * @param svg SVG code
+	 * @return English text
+	 * @throws IOException If any error extracting text
+	 */
+	public String getEnglishFromSvg(String svg)
+		throws IOException
+	{
+		Document svgDoc = WebMathsService.parseXml(context, svg);
 		try
 		{
 			return (String)xpathSvgDesc.evaluate(svgDoc, XPathConstants.STRING);
@@ -184,8 +202,10 @@ public class MathJax
 		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)ex)");
 	private final static Pattern REGEX_BASELINE_PIXELS = Pattern.compile(
 		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)px)");
-	private final static Pattern REGEX_DIMENSIONS = Pattern.compile(
-		"^<svg[^>]* width=\"(([0-9]+(?:\\.[0-9]+)?)ex)\" height=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
+	private final static Pattern REGEX_WIDTH = Pattern.compile(
+		"^<svg[^>]* width=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
+	private final static Pattern REGEX_HEIGHT = Pattern.compile(
+		"^<svg[^>]* height=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
 	private final static Pattern REGEX_COLOUR = Pattern.compile(
 		"(<[^>]+ )stroke=\"black\" fill=\"black\"");
 
@@ -201,16 +221,145 @@ public class MathJax
 	 * @param eq Equation
 	 * @param correctBaseline If true, adjusts the reported baseline which is wrong
 	 * @param exSize SIZE_IN_EX or ex size in pixels
+	 * @param rgb Colour code or null to leave as-is
 	 * @return SVG as text
 	 * @throws MathJaxException Error processing equation
 	 * @throws IOException Other error
 	 */
-	public String getSvg(InputEquation eq, boolean correctBaseline, double exSize)
+	public String getSvg(InputEquation eq, boolean correctBaseline, double exSize, String rgb)
 		throws MathJaxException, IOException
 	{
-		String svg = mjNode.convertEquation(eq).getSvg();
-		boolean convertToPixels = exSize != SIZE_IN_EX;
+		// When correcting the baseline, bodge in a 1 at the start.
 		if(correctBaseline)
+		{
+			if(eq instanceof InputTexDisplayEquation)
+			{
+				eq = new InputTexDisplayEquation("1" + eq.getContent());
+			}
+			else if(eq instanceof InputTexInlineEquation)
+			{
+				eq = new InputTexInlineEquation("1" + eq.getContent());
+			}
+			else
+			{
+				eq = new InputMathmlEquation(eq.getContent().replaceAll(
+					"^(.*?)>\\s*(<semantics>)?", "$0<mn>1</mn>"));
+			}
+		}
+		String svg = mjNode.convertEquation(eq).getSvg();
+		if(correctBaseline)
+		{
+			// Parse the svg and mess with it.
+			try
+			{
+				// Parse.
+				Document svgDom = WebMathsService.parseXml(context, svg);
+
+//				// Find the first 'use' and remove it.
+//				Node n = (Node)xpath.compile("//s:use[1]").evaluate(svgDom, XPathConstants.NODE);
+//				n.getParentNode().removeChild(n);
+//
+//				// Find the desc and remove the 1 from it.
+//				Element e = (Element)xpath.compile("//s:desc[1]").evaluate(svgDom, XPathConstants.NODE);
+//				String desc = e.getFirstChild().getNodeValue();
+//				System.err.println("[[" + desc + "]]");
+//				e.removeChild(e.getFirstChild());
+//				e.appendChild(svgDom.createTextNode(desc.replaceFirst("^1 ", "")));
+
+				// Get the view box.
+				Element root = svgDom.getDocumentElement();
+				String viewBox = root.getAttribute("viewBox");
+				Matcher m = Pattern.compile("(-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+)").matcher(viewBox);
+				if(!m.matches())
+				{
+					throw new IOException("Unexpected SVG format (viewBox)");
+				}
+
+				// Get viewbox Y and height.
+				double viewY = Double.parseDouble(m.group(2));
+				double viewHeight = Double.parseDouble(m.group(4));
+				String viewX = m.group(1), viewWidth = m.group(3);
+
+				// Now get the height in ex.
+				m = Pattern.compile("([0-9.]+)ex").matcher(root.getAttribute("height"));
+				if(!m.matches())
+				{
+					throw new IOException("Unexpected SVG format (height)");
+				}
+				double heightEx = Double.parseDouble(m.group(1));
+
+				// We now can calculate baseline in ex.
+				double baselineEx = (((viewY + viewHeight - 5) / viewHeight) * heightEx);
+
+				// If we know pixels, I'm going to make this an exact number of pixels
+				// by slightly increasing the height of the equation.
+				if (exSize != SIZE_IN_EX)
+				{
+					// First make the size from top to baseline into an even number of pixels.
+					double ascentPixels = (-viewY / viewHeight) * heightEx * exSize;
+					double heightOffsetPixels = Math.ceil(ascentPixels) - ascentPixels;
+					double heightOffsetEx = heightOffsetPixels / exSize;
+					double oldHeightEx = heightEx;
+					heightEx += heightOffsetEx;
+					double oldViewHeight = viewHeight;
+					viewHeight = (viewHeight / oldHeightEx) * heightEx;
+					viewY -= (viewHeight - oldViewHeight);
+
+					// Next make baseline to bottom into an even number.
+					baselineEx = (((viewY + viewHeight - 5) / viewHeight) * heightEx);
+					double baselinePixels = baselineEx * exSize;
+					heightOffsetPixels = Math.ceil(baselinePixels) - baselinePixels;
+					heightOffsetEx = heightOffsetPixels / exSize;
+
+					oldHeightEx = heightEx;
+					heightEx += heightOffsetEx;
+					root.setAttribute("height", String.format("%.4f", heightEx) + "ex");
+					viewHeight = (viewHeight / oldHeightEx) * heightEx;
+					root.setAttribute("viewBox", viewX + " " + String.format("%.4f", viewY) + " " +
+						viewWidth + " " + String.format("%.4f", viewHeight));
+					baselineEx = (((viewY + viewHeight - 5) / viewHeight) * heightEx);
+				}
+
+				// Replace current value in the style attribute.
+				String style = root.getAttribute("style");
+				style = style.replaceFirst("vertical-align: -?[0-9.]+",
+					"vertical-align: " + String.format("%.4f", -baselineEx));
+				// Get rid of the 1px margin, it throws off the calculation.
+				style = style.replaceAll("margin-(top|bottom): 1px", "margin-$1: 0px");
+				root.setAttribute("style", style);
+
+//				double x = Double.parseDouble(m.group(1)), width = Double.parseDouble(m.group(3));
+
+//				// Add 505 to the start co-ordinate and subtract from width.
+//				e.setAttribute("viewBox",
+//					String.format("%.1f", x + 505.0) + " " + m.group(2) + " " +
+//					String.format("%.1f", width - 505.0) + " " + m.group(4));
+//
+//				// Change the overall width (in ex) proportionally.
+//				m = Pattern.compile("([0-9.]+)ex").matcher(e.getAttribute("width"));
+//				if(!m.matches())
+//				{
+//					throw new IOException("Unexpected SVG format (width)");
+//				}
+//				double widthEx = Double.parseDouble(m.group(1));
+//				e.setAttribute("width", String.format("%.4f", widthEx * (width - 505.0) / width) + "ex");
+
+				// Write back to a file.
+				DOMImplementationLS domImplementation = (DOMImplementationLS)svgDom.getImplementation();
+				LSSerializer lsSerializer = domImplementation.createLSSerializer();
+				lsSerializer.getDomConfig().setParameter("xml-declaration", false);
+				svg = lsSerializer.writeToString(svgDom);
+				System.err.println(svg);
+			}
+			catch(Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
+		boolean convertToPixels = exSize != SIZE_IN_EX;
 		{
 			Matcher m = REGEX_BASELINE.matcher(svg);
 			if(!m.find())
@@ -218,7 +367,10 @@ public class MathJax
 				throw new IOException("MathJax SVG does not match expected baseline pattern");
 			}
 			double baseline = Double.parseDouble(m.group(2));
-			baseline += MATHJAX_BASELINE_FUDGE;
+			if(correctBaseline && false)
+			{
+				baseline += MATHJAX_BASELINE_FUDGE;
+			}
 			String unit = "ex";
 			if(convertToPixels)
 			{
@@ -230,51 +382,31 @@ public class MathJax
 		}
 		if(convertToPixels)
 		{
-			Matcher m = REGEX_DIMENSIONS.matcher(svg);
+			Matcher m = REGEX_WIDTH.matcher(svg);
 			if(!m.find())
 			{
-				throw new IOException("MathJax SVG does not match expected dimensions pattern");
+				throw new IOException("MathJax SVG does not match expected width pattern");
 			}
-			double width = Double.parseDouble(m.group(2)),
-				height = Double.parseDouble(m.group(4));
+			double width = Double.parseDouble(m.group(2));
 			svg = svg.substring(0, m.start(1)) +
 				String.format("%.4f", width * exSize) + "px" +
-				svg.substring(m.end(1), m.start(3)) +
+				svg.substring(m.end(1));
+
+			m = REGEX_HEIGHT.matcher(svg);
+			if(!m.find())
+			{
+				throw new IOException("MathJax SVG does not match expected height pattern");
+			}
+			double height = Double.parseDouble(m.group(2));
+			svg = svg.substring(0, m.start(1)) +
 				String.format("%.4f", height * exSize) + "px" +
-				svg.substring(m.end(3));
+				svg.substring(m.end(1));
+		}
+		if(rgb != null)
+		{
+			svg = recolourSvg(svg, rgb);
 		}
 		return svg;
-	}
-
-	/**
-	 * Result of a PNG conversion.
-	 */
-	public static class PngResult
-	{
-		byte[] png;
-		int baseline;
-
-		private PngResult(byte[] png, int baseline)
-		{
-			this.png = png;
-			this.baseline = baseline;
-		}
-
-		/**
-		 * @return PNG data
-		 */
-		public byte[] getPng()
-		{
-			return png;
-		}
-
-		/**
-		 * @return Baseline in pixels
-		 */
-		public int getBaseline()
-		{
-			return baseline;
-		}
 	}
 
 	/**
@@ -342,24 +474,56 @@ public class MathJax
 	}
 
 	/**
-	 * Gets PNG for equation.
-	 * @param eq Equation
-	 * @param rgb RGB colour e.g. "#000000"
-	 * @param size Size (1.0f = normal)
-	 * @return Result
-	 * @throws MathJaxException Error processing equation
-	 * @throws IOException Other error
+	 * Gets baseline from an SVG image. The SVG must have been converted to pixels.
+	 * @param svg SVG (pixel format)
+	 * @return Baseline
+	 * @throws IOException If it can't be found
 	 */
-	public PngResult getPng(InputEquation eq, String rgb, float size)
-		throws MathJaxException, IOException
+	public double getBaselineFromSvg(String svg)
+		throws IOException
 	{
-		double ex = 7.26667 * (double)size;
-		String svg = getSvg(eq, true, ex);
-		svg = recolourSvg(svg, rgb);
+		Matcher m = REGEX_BASELINE_PIXELS.matcher(svg);
+		if(!m.find())
+		{
+			throw new IOException("Unexpected failure detecting baseline");
+		}
+		return Double.parseDouble(m.group(2)) * -1;
+	}
 
+	/**
+	 * Gets PNG from an SVG image. The SVG must have been converted to pixels.
+	 * @param svg SVG (pixel format)
+	 * @return PNG data
+	 * @throws IOException Any error processing
+	 */
+	public byte[] getPngFromSvg(String svg) throws IOException
+	{
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		PNGTranscoder transcoder = createTranscoder();
-		transcoder.addTranscodingHint(PNGTranscoder.KEY_GAMMA, new Float(PNGEncodeParam.INTENT_PERCEPTUAL));
+		try
+		{
+			transcoder.transcode(new TranscoderInput(new StringReader(svg)),
+				new TranscoderOutput(output));
+			return output.toByteArray();
+		}
+		catch(TranscoderException e)
+		{
+			e.printStackTrace();
+			throw new IOException("Transcoder failed", e);
+		}
+	}
+
+	public byte[] getEps(InputEquation eq)
+		throws MathJaxException, IOException
+	{
+		double ex = 7.26667;
+		String svg = getSvg(eq, true, ex, null);
+
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		EPSTranscoder transcoder = new EPSTranscoder();
+		// This arbitrary size makes it appear with the same x height as text font.
+		transcoder.addTranscodingHint(EPSTranscoder.KEY_PIXEL_UNIT_TO_MILLIMETER,
+			new Float(0.30900239f));
 		try
 		{
 			transcoder.transcode(new TranscoderInput(new StringReader(svg)),
@@ -370,13 +534,6 @@ public class MathJax
 			e.printStackTrace();
 			throw new IOException("Transcoder failed", e);
 		}
-
-		Matcher m = REGEX_BASELINE_PIXELS.matcher(svg);
-		if(!m.find())
-		{
-			throw new IOException("Unexpected failure detecting baseline");
-		}
-		int baseline = (int)Math.round(Double.parseDouble(m.group(2))) * -1;
-		return new PngResult(output.toByteArray(), baseline);
+		return output.toByteArray();
 	}
 }

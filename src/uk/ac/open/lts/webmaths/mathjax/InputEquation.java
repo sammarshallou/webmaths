@@ -18,7 +18,6 @@ Copyright 2015 The Open University
 */
 package uk.ac.open.lts.webmaths.mathjax;
 
-import javax.security.auth.callback.TextInputCallback;
 
 /**
  * Base class for equations used as input to MathJax.
@@ -51,6 +50,23 @@ public abstract class InputEquation
 		return content;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		return (getFormat() + "\n" + content).hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if(!(obj instanceof InputEquation))
+		{
+			return false;
+		}
+		InputEquation other = (InputEquation)obj;
+		return content.equals(other.content) && getFormat().equals(other.getFormat());
+	}
+
 	/**
 	 * Creates an InputEquation from MathML text. If the MathML appears to
 	 * actually include a TeX alternative, then a TeX equation will be created
@@ -66,5 +82,29 @@ public abstract class InputEquation
 			return eq;
 		}
 		return new InputMathmlEquation(mathml);
+	}
+
+	/**
+	 * Converts from SourceEquation, which is the web service class.
+	 * @param eq Source equation
+	 * @return Suitable InputEquation
+	 */
+	public static InputEquation getFromSourceEquation(SourceEquation eq)
+	{
+		if(eq.getMathml() != null)
+		{
+			return InputMathmlEquation.getFromMathml(eq.getMathml());
+		}
+		else
+		{
+			if(eq.isDisplay())
+			{
+				return new InputTexDisplayEquation(eq.getTex());
+			}
+			else
+			{
+				return new InputTexInlineEquation(eq.getTex());
+			}
+		}
 	}
 }

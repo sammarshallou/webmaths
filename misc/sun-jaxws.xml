@@ -28,18 +28,24 @@
         name="WebMathsMjTex"
         service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsTex"
         wsdl="WEB-INF/wsdl/maths.tex.wsdl"
-        implementation="uk.ac.open.lts.webmaths.mjtex.WebMathsMjTex"
+        implementation="uk.ac.open.lts.webmaths.mathjax.WebMathsMjTex"
         url-pattern="/mj-tex"/>
     <endpoint
         name="WebMathsMjEnglish"
         service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsEnglish"
         wsdl="WEB-INF/wsdl/maths.english.wsdl"
-        implementation="uk.ac.open.lts.webmaths.mjenglish.WebMathsMjEnglish"
+        implementation="uk.ac.open.lts.webmaths.mathjax.WebMathsMjEnglish"
         url-pattern="/mj-english"/>
     <endpoint
         name="WebMathsMjImage"
         service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsImage"
         wsdl="WEB-INF/wsdl/maths.image.wsdl"
-        implementation="uk.ac.open.lts.webmaths.mjimage.WebMathsMjImage"
+        implementation="uk.ac.open.lts.webmaths.mathjax.WebMathsMjImage"
         url-pattern="/mj-image"/>
+    <endpoint
+        name="WebMathsMathJax"
+        service="{http://ns.open.ac.uk/lts/vle/filter_maths/}MathsMathJax"
+        wsdl="WEB-INF/wsdl/maths.mathjax.wsdl"
+        implementation="uk.ac.open.lts.webmaths.mathjax.WebMathsMathJax"
+        url-pattern="/mathjax"/>
 </endpoints> 

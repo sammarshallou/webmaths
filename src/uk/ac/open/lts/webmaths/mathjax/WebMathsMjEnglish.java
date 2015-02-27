@@ -16,7 +16,7 @@ along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
 
 Copyright 2015 The Open University
 */
-package uk.ac.open.lts.webmaths.mjenglish;
+package uk.ac.open.lts.webmaths.mathjax;
 
 import java.io.IOException;
 

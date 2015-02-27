@@ -1,4 +1,4 @@
-<project name="webmaths" default="webinf" basedir=".">
+<project name="webmaths" default="tomcatdeploy" basedir=".">
 
 	<description>
 		Builds web maths services and related items. If your project doesn't have
@@ -11,9 +11,6 @@
 	<!-- Version number -->
 	<property name="version" value="1.2"/>
 
-	<!-- Set location of JAX-WS 2.1 installation -->
-	<property name="jaxws.home" location="c:/program files/jaxws2.1-ri"/>
-		
 	<!-- Set location you want to build the WEB-INF folder inside -->
 	<property name="webinf.location" location="${user.home}/Desktop"/>
 
@@ -23,32 +20,36 @@
 	<!-- Set default temp directory (on server), will be placed into web.xml -->
 	<property name="temp.directory" value="/tmp"/>
 
-	<path id="jaxws.classpath">
-      <fileset dir="${jaxws.home}/lib" includes="jaxws-tools.jar"/>
-  </path>
+	<!-- URL of Tomcat application -->
+  <property name="tomcat-url" value="http://localhost:8080/"/>
 	
-	<taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
-		<classpath refid="jaxws.classpath"/>
-	</taskdef>
+	<!-- Tomcat admin username -->
+  <property name="tomcat-username" value="admin"/>
+  	
+  <!-- Tomcat admin password -->
+  <property name="tomcat-password" value=""/>
+ 	
+	<!-- Tomcat home folder -->
+	<property name="tomcat-home" location="C:/Program Files/Apache Software Foundation/Tomcat 7.0"/>
 	
 	<target name="wsdlgen" description="Create generated source (gen folder) based on WSDL">
 		<delete dir="gen/uk/ac/open/lts/webmaths/image"/>
 		<delete dir="gen/uk/ac/open/lts/webmaths/english"/>
 		<delete dir="gen/uk/ac/open/lts/webmaths/tex"/>
+		<delete dir="gen/uk/ac/open/lts/webmaths/mathjax"/>
 		<mkdir dir="gen"/>
-		<wsimport
-			sourcedestdir="gen"
-			package="uk.ac.open.lts.webmaths.image"
-			wsdl="misc/maths.image.wsdl"/>
-		<wsimport
-			sourcedestdir="gen"
-			package="uk.ac.open.lts.webmaths.english"
-			wsdl="misc/maths.english.wsdl"/>
-		<wsimport
-			sourcedestdir="gen"
-			verbose="true"
-			package="uk.ac.open.lts.webmaths.tex"
-			wsdl="misc/maths.tex.wsdl"/>
+		<exec executable="${java.home}/../bin/wsimport">
+			<arg line="-keep -Xnocompile -s gen misc/maths.tex.wsdl -p uk.ac.open.lts.webmaths.tex"/>
+		</exec>
+		<exec executable="${java.home}/../bin/wsimport">
+			<arg line="-keep -Xnocompile -s gen misc/maths.image.wsdl -p uk.ac.open.lts.webmaths.image"/>
+		</exec>
+		<exec executable="${java.home}/../bin/wsimport">
+			<arg line="-keep -Xnocompile -s gen misc/maths.english.wsdl -p uk.ac.open.lts.webmaths.english"/>
+		</exec>
+		<exec executable="${java.home}/../bin/wsimport">
+			<arg line="-keep -Xnocompile -s gen misc/maths.mathjax.wsdl -p uk.ac.open.lts.webmaths.mathjax"/>
+		</exec>
 	</target>
 
 	<!-- Get date in format used for build version -->
@@ -105,7 +106,10 @@
 	  	<fileset dir="lib/jeuclid">
 	  		<include name="*.jar"/>
 	  	</fileset>
-	  	<fileset dir="lib/batik">
+<!--	  	<fileset dir="lib/batik">
+	  		<include name="*.jar"/>
+	  	</fileset>-->
+	  	<fileset dir="lib/fop">
 	  		<include name="*.jar"/>
 	  	</fileset>
 			<fileset dir="lib/extrafonts">
@@ -143,20 +147,6 @@
 		<echo message="${version} (${build-date})" file="${build}/WEB-INF/version.txt" />
 	</target>
 		
-	<target name="webinf" depends="buildwebinf" description="Build WEB-INF folder on desktop">
-		
-		<!-- Delete existing target -->
-		<delete dir="${webinf.location}}"/>
-		
-		<!-- Copy it to target location -->
-		<copy todir="${webinf.location}">
-			<fileset dir="${build}">
-				<include name="WEB-INF/**"/>
-			</fileset>
-		</copy>
-		
-	</target>
-	
 	<target name="war" depends="buildwebinf" description="Build .war file on desktop">
 		<delete file="${war.location}/webmaths.war"/>
 		<jar destfile="${war.location}/webmaths.war">
@@ -164,6 +154,35 @@
 				<include name="WEB-INF/**"/>
 			</fileset>
 		</jar>
-	</target>	
+	</target>
+	
+	<path id="catalina-ant-classpath">
+	    <fileset dir="${tomcat-home}/lib">
+	        <include name="catalina-ant.jar"/>
+	        <include name="tomcat-coyote.jar"/>
+	        <include name="tomcat-util.jar"/>
+	    </fileset>
+	    <fileset dir="${tomcat-home}/bin">
+	        <include name="tomcat-juli.jar"/>
+	    </fileset>
+	</path>
+	<taskdef name="tomcatdeploy" classname="org.apache.catalina.ant.DeployTask">
+		<classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+  <taskdef name="tomcatundeploy" classname="org.apache.catalina.ant.UndeployTask">
+		<classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+	<taskdef name="tomcatstop" classname="org.apache.catalina.ant.StopTask">
+		<classpath refid="catalina-ant-classpath"/>
+	</taskdef>
+	
+	<target name="tomcatdeploy" depends="war" description="Deploy to Tomcat server">
+		<tomcatstop url="${tomcat-url}/manager/text" username="${tomcat-username}" password="${tomcat-password}"
+			path="/webmaths"/>
+		<tomcatundeploy url="${tomcat-url}/manager/text" username="${tomcat-username}" password="${tomcat-password}"
+			path="/webmaths"/>
+		<tomcatdeploy url="${tomcat-url}/manager/text" username="${tomcat-username}" password="${tomcat-password}"
+			path="/webmaths" war="${war.location}/webmaths.war"/>
+  </target>
 	
 </project>
