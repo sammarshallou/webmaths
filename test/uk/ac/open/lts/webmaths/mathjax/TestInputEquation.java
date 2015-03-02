@@ -18,13 +18,13 @@ Copyright 2015 The Open University
 */
 package uk.ac.open.lts.webmaths.mathjax;
 
-import java.io.*;
+import static org.junit.Assert.*;
+
+import java.io.IOException;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
-public class TestInputEquation extends TestCase
+public class TestInputEquation
 {
 	@Test
 	public void testGetFromMathmlNotTex() throws IOException

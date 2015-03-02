@@ -207,12 +207,12 @@ public class MathJaxNodeExecutable
 	public static class ConversionResults
 	{
 		private String svg;
-		private String mathMl;
+		private String mathml;
 
-		private ConversionResults(String svg, String mathMl)
+		protected ConversionResults(String svg, String mathMl)
 		{
 			this.svg = svg;
-			this.mathMl = mathMl;
+			this.mathml = mathMl;
 		}
 
 		/**
@@ -226,10 +226,17 @@ public class MathJaxNodeExecutable
 		/**
 		 * @return MathJax code (empty string if none)
 		 */
-		public String getMathMl()
+		public String getMathml()
 		{
-			return mathMl;
+			return mathml;
 		}
+	}
+
+	/**
+	 * Empty constructor for unit test.
+	 */
+	protected MathJaxNodeExecutable()
+	{
 	}
 
 	/**

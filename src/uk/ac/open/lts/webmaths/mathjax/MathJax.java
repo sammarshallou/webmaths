@@ -31,11 +31,8 @@ import org.apache.batik.gvt.renderer.ImageRenderer;
 import org.apache.batik.transcoder.*;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.fop.render.ps.EPSTranscoder;
-import org.apache.xmlgraphics.image.codec.png.PNGEncodeParam;
 import org.w3c.dom.*;
 import org.w3c.dom.ls.*;
-
-import com.sun.org.apache.xerces.internal.xni.QName;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
 import uk.ac.open.lts.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
@@ -51,6 +48,9 @@ public class MathJax
 
 	/** Name of attribute in ServletContext that stores singleton value. */
 	private static final String ATTRIBUTE_NAME = "uk.ac.open.lts.webmaths.MathJax";
+
+	/** Ratio to use for converting size to ex */
+	private static final double CORRECT_DRAWING_UNITS_PER_EX = 428;
 
 	/**
 	 * Get MathJax singleton, starting it if not already running.
@@ -93,14 +93,14 @@ public class MathJax
 	private final XPathExpression xpathAnnotation, xpathSvgDesc;
 
 	/**
-	 * Starts application.
+	 * Constructor.
 	 * @param servletContext Servlet context
 	 * @throws IOException Any problem launching the application
 	 */
-	private MathJax(ServletContext servletContext)
+	protected MathJax(ServletContext servletContext)
 	{
 		// Set up the executable
-		mjNode = new MathJaxNodeExecutable(servletContext);
+		mjNode = createExecutable(servletContext);
 
 		// Precompile the xpath expressions.
 		xpath = XPathFactory.newInstance().newXPath();
@@ -114,6 +114,17 @@ public class MathJax
 		{
 			throw new Error(e);
 		}
+	}
+
+	/**
+	 * Create the executable object. This is a separate function so that it can be
+	 * overridden (with a mock) for unit testing.
+	 * @param servletContext Servlet context
+	 * @return Created executable
+	 */
+	protected MathJaxNodeExecutable createExecutable(ServletContext servletContext)
+	{
+		return new MathJaxNodeExecutable(servletContext);
 	}
 
 	/**
@@ -134,7 +145,7 @@ public class MathJax
 	 */
 	public String getMathml(InputTexEquation eq) throws MathJaxException, IOException
 	{
-		return mjNode.convertEquation(eq).getMathMl();
+		return mjNode.convertEquation(eq).getMathml();
 	}
 
 	/**
@@ -195,9 +206,6 @@ public class MathJax
 	/** Parameter for {@link #getSvg(InputEquation, float)} when using ex sizes */
 	public final static double SIZE_IN_EX = -1.0;
 
-	/** MathJax vertical-align value appears to be off by 0.07ex. */
-	private final static double MATHJAX_BASELINE_FUDGE = 0.07;
-
 	private final static Pattern REGEX_BASELINE = Pattern.compile(
 		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)ex)");
 	private final static Pattern REGEX_BASELINE_PIXELS = Pattern.compile(
@@ -210,6 +218,18 @@ public class MathJax
 		"(<[^>]+ )stroke=\"black\" fill=\"black\"");
 
 	/**
+	 * Rounds numbers suitable for use in SVG. They are rounded to 4 digits but
+	 * show as integers if they are integers.
+	 * @param number Number
+	 * @return Rounded form
+	 */
+	private static String round(double number)
+	{
+		String formatted = String.format("%.4f", number);
+		return formatted.replaceFirst("\\.0+$", "");
+	}
+
+	/**
 	 * Gets SVG for an input equation.
 	 * <p>
 	 * You can optionally convert size from 'ex' into pixels. If no conversion
@@ -218,6 +238,9 @@ public class MathJax
 	 * Note that the returned SVG contains two IDs MathJax-SVG-1-Title and
 	 * MathJax-SVG-1-Desc. If included on a web page, these should be string
 	 * replaced with suitable unique IDs.
+	 * <p>
+	 * When correcting the baseline, width and height are also corrected. (MathJax
+	 * sometimes uses an incorrect ratio of drawing units to ex.)
 	 * @param eq Equation
 	 * @param correctBaseline If true, adjusts the reported baseline which is wrong
 	 * @param exSize SIZE_IN_EX or ex size in pixels
@@ -229,24 +252,10 @@ public class MathJax
 	public String getSvg(InputEquation eq, boolean correctBaseline, double exSize, String rgb)
 		throws MathJaxException, IOException
 	{
-		// When correcting the baseline, bodge in a 1 at the start.
-		if(correctBaseline)
-		{
-			if(eq instanceof InputTexDisplayEquation)
-			{
-				eq = new InputTexDisplayEquation("1" + eq.getContent());
-			}
-			else if(eq instanceof InputTexInlineEquation)
-			{
-				eq = new InputTexInlineEquation("1" + eq.getContent());
-			}
-			else
-			{
-				eq = new InputMathmlEquation(eq.getContent().replaceAll(
-					"^(.*?)>\\s*(<semantics>)?", "$0<mn>1</mn>"));
-			}
-		}
+		boolean convertToPixels = exSize != SIZE_IN_EX;
 		String svg = mjNode.convertEquation(eq).getSvg();
+
+		double correctedHeight = 0.0, correctedWidth = 0.0, correctedBaseline = 0.0;
 		if(correctBaseline)
 		{
 			// Parse the svg and mess with it.
@@ -254,17 +263,6 @@ public class MathJax
 			{
 				// Parse.
 				Document svgDom = WebMathsService.parseXml(context, svg);
-
-//				// Find the first 'use' and remove it.
-//				Node n = (Node)xpath.compile("//s:use[1]").evaluate(svgDom, XPathConstants.NODE);
-//				n.getParentNode().removeChild(n);
-//
-//				// Find the desc and remove the 1 from it.
-//				Element e = (Element)xpath.compile("//s:desc[1]").evaluate(svgDom, XPathConstants.NODE);
-//				String desc = e.getFirstChild().getNodeValue();
-//				System.err.println("[[" + desc + "]]");
-//				e.removeChild(e.getFirstChild());
-//				e.appendChild(svgDom.createTextNode(desc.replaceFirst("^1 ", "")));
 
 				// Get the view box.
 				Element root = svgDom.getDocumentElement();
@@ -278,26 +276,52 @@ public class MathJax
 				// Get viewbox Y and height.
 				double viewY = Double.parseDouble(m.group(2));
 				double viewHeight = Double.parseDouble(m.group(4));
-				String viewX = m.group(1), viewWidth = m.group(3);
+				double viewX = Double.parseDouble(m.group(1));
+				double viewWidth = Double.parseDouble(m.group(3));
 
-				// Now get the height in ex.
-				m = Pattern.compile("([0-9.]+)ex").matcher(root.getAttribute("height"));
-				if(!m.matches())
-				{
-					throw new IOException("Unexpected SVG format (height)");
-				}
-				double heightEx = Double.parseDouble(m.group(1));
+				// Now get the height in ex - this used to read it from the file but
+				// we now hardcoded it based on drawing units, because MathJax.Node
+				// returns inconsistent results e.g. for the equations "xqx" and "xxx".
+				double heightEx = viewHeight / CORRECT_DRAWING_UNITS_PER_EX;
+				double widthEx = viewWidth / CORRECT_DRAWING_UNITS_PER_EX;
+
+//				m = Pattern.compile("([0-9.]+)ex").matcher(root.getAttribute("height"));
+//				if(!m.matches())
+//				{
+//					throw new IOException("Unexpected SVG format (height)");
+//				}
+//				double heightEx = Double.parseDouble(m.group(1));
+//
+//				// Get width in ex.
+//				m = Pattern.compile("([0-9.]+)ex").matcher(root.getAttribute("width"));
+//				if(!m.matches())
+//				{
+//					throw new IOException("Unexpected SVG format (width)");
+//				}
+//				double widthEx = Double.parseDouble(m.group(1));
 
 				// We now can calculate baseline in ex.
-				double baselineEx = (((viewY + viewHeight - 5) / viewHeight) * heightEx);
+				double baselineEx = ((viewY + viewHeight) / viewHeight) * heightEx;
 
 				// If we know pixels, I'm going to make this an exact number of pixels
 				// by slightly increasing the height of the equation.
-				if (exSize != SIZE_IN_EX)
+				if (convertToPixels)
 				{
 					// First make the size from top to baseline into an even number of pixels.
 					double ascentPixels = (-viewY / viewHeight) * heightEx * exSize;
 					double heightOffsetPixels = Math.ceil(ascentPixels) - ascentPixels;
+
+					// NOTE: I tried making it something.5 pixels but this didn't help.
+//					if(heightOffsetPixels >= 0.5)
+//					{
+//						heightOffsetPixels -= 0.5;
+//					}
+//					else
+//					{
+//						heightOffsetPixels += 0.5;
+//					}
+
+
 					double heightOffsetEx = heightOffsetPixels / exSize;
 					double oldHeightEx = heightEx;
 					heightEx += heightOffsetEx;
@@ -306,50 +330,49 @@ public class MathJax
 					viewY -= (viewHeight - oldViewHeight);
 
 					// Next make baseline to bottom into an even number.
-					baselineEx = (((viewY + viewHeight - 5) / viewHeight) * heightEx);
+					baselineEx = (((viewY + viewHeight) / viewHeight) * heightEx);
 					double baselinePixels = baselineEx * exSize;
 					heightOffsetPixels = Math.ceil(baselinePixels) - baselinePixels;
+
+					// NOTE: I tried making it something.5 pixels but this didn't help.
+//					if(heightOffsetPixels >= 0.5)
+//					{
+//						heightOffsetPixels -= 0.5;
+//					}
+//					else
+//					{
+//						heightOffsetPixels += 0.5;
+//					}
+
 					heightOffsetEx = heightOffsetPixels / exSize;
 
 					oldHeightEx = heightEx;
 					heightEx += heightOffsetEx;
-					root.setAttribute("height", String.format("%.4f", heightEx) + "ex");
+					root.setAttribute("height", round(heightEx) + "ex");
 					viewHeight = (viewHeight / oldHeightEx) * heightEx;
-					root.setAttribute("viewBox", viewX + " " + String.format("%.4f", viewY) + " " +
-						viewWidth + " " + String.format("%.4f", viewHeight));
-					baselineEx = (((viewY + viewHeight - 5) / viewHeight) * heightEx);
+					root.setAttribute("viewBox", viewX + " " + round(viewY) + " " +
+						viewWidth + " " + round(viewHeight + 0.00005)); // TODO Hack
+					baselineEx = ((viewY + viewHeight) / viewHeight) * heightEx;
 				}
 
 				// Replace current value in the style attribute.
 				String style = root.getAttribute("style");
 				style = style.replaceFirst("vertical-align: -?[0-9.]+",
-					"vertical-align: " + String.format("%.4f", -baselineEx));
+					"vertical-align: " + round(-baselineEx));
 				// Get rid of the 1px margin, it throws off the calculation.
 				style = style.replaceAll("margin-(top|bottom): 1px", "margin-$1: 0px");
 				root.setAttribute("style", style);
 
-//				double x = Double.parseDouble(m.group(1)), width = Double.parseDouble(m.group(3));
-
-//				// Add 505 to the start co-ordinate and subtract from width.
-//				e.setAttribute("viewBox",
-//					String.format("%.1f", x + 505.0) + " " + m.group(2) + " " +
-//					String.format("%.1f", width - 505.0) + " " + m.group(4));
-//
-//				// Change the overall width (in ex) proportionally.
-//				m = Pattern.compile("([0-9.]+)ex").matcher(e.getAttribute("width"));
-//				if(!m.matches())
-//				{
-//					throw new IOException("Unexpected SVG format (width)");
-//				}
-//				double widthEx = Double.parseDouble(m.group(1));
-//				e.setAttribute("width", String.format("%.4f", widthEx * (width - 505.0) / width) + "ex");
+				// Remember the precise figures for next calculation.
+				correctedHeight = heightEx;
+				correctedWidth = widthEx;
+				correctedBaseline = -baselineEx;
 
 				// Write back to a file.
 				DOMImplementationLS domImplementation = (DOMImplementationLS)svgDom.getImplementation();
 				LSSerializer lsSerializer = domImplementation.createLSSerializer();
 				lsSerializer.getDomConfig().setParameter("xml-declaration", false);
 				svg = lsSerializer.writeToString(svgDom);
-				System.err.println(svg);
 			}
 			catch(Exception e)
 			{
@@ -358,38 +381,25 @@ public class MathJax
 			}
 		}
 
-
-		boolean convertToPixels = exSize != SIZE_IN_EX;
+		if(convertToPixels)
 		{
 			Matcher m = REGEX_BASELINE.matcher(svg);
 			if(!m.find())
 			{
 				throw new IOException("MathJax SVG does not match expected baseline pattern");
 			}
-			double baseline = Double.parseDouble(m.group(2));
-			if(correctBaseline && false)
-			{
-				baseline += MATHJAX_BASELINE_FUDGE;
-			}
-			String unit = "ex";
-			if(convertToPixels)
-			{
-				baseline *= exSize;
-				unit = "px";
-			}
-			svg = svg.substring(0, m.start(1)) + String.format("%.4f", baseline) + unit +
+			double baseline = correctBaseline ? correctedBaseline : Double.parseDouble(m.group(2));
+			baseline *= exSize;
+			svg = svg.substring(0, m.start(1)) + round(baseline) + "px" +
 				svg.substring(m.end(1));
-		}
-		if(convertToPixels)
-		{
-			Matcher m = REGEX_WIDTH.matcher(svg);
+
+			m = REGEX_WIDTH.matcher(svg);
 			if(!m.find())
 			{
 				throw new IOException("MathJax SVG does not match expected width pattern");
 			}
-			double width = Double.parseDouble(m.group(2));
-			svg = svg.substring(0, m.start(1)) +
-				String.format("%.4f", width * exSize) + "px" +
+			double width = correctBaseline ? correctedWidth : Double.parseDouble(m.group(2));
+			svg = svg.substring(0, m.start(1)) + round(width * exSize) + "px" +
 				svg.substring(m.end(1));
 
 			m = REGEX_HEIGHT.matcher(svg);
@@ -397,9 +407,8 @@ public class MathJax
 			{
 				throw new IOException("MathJax SVG does not match expected height pattern");
 			}
-			double height = Double.parseDouble(m.group(2));
-			svg = svg.substring(0, m.start(1)) +
-				String.format("%.4f", height * exSize) + "px" +
+			double height = correctBaseline ? correctedHeight : Double.parseDouble(m.group(2));
+			svg = svg.substring(0, m.start(1)) + round(height * exSize) + "px" +
 				svg.substring(m.end(1));
 		}
 		if(rgb != null)

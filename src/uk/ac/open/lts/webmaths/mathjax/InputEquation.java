@@ -57,6 +57,12 @@ public abstract class InputEquation
 	}
 
 	@Override
+	public String toString()
+	{
+		return getFormat() + ":" + content;
+	}
+
+	@Override
 	public boolean equals(Object obj)
 	{
 		if(!(obj instanceof InputEquation))

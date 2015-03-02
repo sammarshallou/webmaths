@@ -21,10 +21,9 @@ package uk.ac.open.lts.webmaths.mathjax;
 import java.io.*;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-import junit.framework.TestCase;
-
-public class TestTimeoutReader extends TestCase
+public class TestTimeoutReader
 {
 	@Test
 	public void testImmediate() throws IOException
