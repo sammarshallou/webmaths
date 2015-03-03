@@ -25,7 +25,9 @@
                 <xsd:enumeration value="SVG_EX"/>
                 <xsd:enumeration value="PNG"/>
                 <xsd:enumeration value="TEXT"/>
-                <xsd:enumeration value="BASELINE"/>
+                <xsd:enumeration value="PNG_BASELINE"/>
+                <xsd:enumeration value="SVG_PX_BASELINE"/>
+                <xsd:enumeration value="SVG_EX_BASELINE"/>
               </restriction>
             </simpleType>
 
@@ -78,11 +80,23 @@
                                 <annotation><documentation>Text equivalent,
                                     for accessibility.</documentation></annotation>
                             </element>
-                            <element name="baseline" type="xsd:float" minOccurs="0">
+                            <element name="pngBaseline" type="xsd:float" minOccurs="0">
                                 <annotation><documentation>Baseline position within image, in pixels
                                     measured from the BOTTOM of the image. 0 = the bottom pixel of
                                     the image should line up with the bottom of the text.
-                                    0 if error. Negative values permitted.</documentation></annotation>
+                                    Negative values permitted.</documentation></annotation>
+                            </element>
+                            <element name="svgPxBaseline" type="xsd:float" minOccurs="0">
+                                <annotation><documentation>Baseline position within pixel-based SVG,
+                                    in pixels measured from the BOTTOM of the image.
+                                    0 = the bottom pixel of the image should line up with the
+                                    bottom of the text. Negative values permitted.</documentation></annotation>
+                            </element>
+                            <element name="svgExBaseline" type="xsd:float" minOccurs="0">
+                                <annotation><documentation>Baseline position within image, in ex
+                                    measured from the BOTTOM of the image. 0 = the bottom pixel of
+                                    the image should line up with the bottom of the text.
+                                    Negative values permitted.</documentation></annotation>
                             </element>
                         </sequence>
                     </choice>

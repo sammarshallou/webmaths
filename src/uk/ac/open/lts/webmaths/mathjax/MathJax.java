@@ -43,6 +43,9 @@ import uk.ac.open.lts.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
  */
 public class MathJax
 {
+//	public static final double PNG_OFFSET = -0.5;
+	public static final double PNG_OFFSET = 0.5;
+
 	/** Default ex size (in pixels) */
 	public static final double DEFAULT_EX_SIZE = 7.26667;
 
@@ -206,7 +209,7 @@ public class MathJax
 	/** Parameter for {@link #getSvg(InputEquation, float)} when using ex sizes */
 	public final static double SIZE_IN_EX = -1.0;
 
-	private final static Pattern REGEX_BASELINE = Pattern.compile(
+	private final static Pattern REGEX_BASELINE_EX = Pattern.compile(
 		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)ex)");
 	private final static Pattern REGEX_BASELINE_PIXELS = Pattern.compile(
 		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)px)");
@@ -214,6 +217,10 @@ public class MathJax
 		"^<svg[^>]* width=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
 	private final static Pattern REGEX_HEIGHT = Pattern.compile(
 		"^<svg[^>]* height=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
+	private final static Pattern REGEX_VIEWBOX = Pattern.compile(
+		"^<svg[^>]* viewBox=\"(-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+)\"");
+	private final static Pattern REGEX_HEIGHT_PX = Pattern.compile(
+		"^<svg[^>]* height=\"(([0-9]+(?:\\.[0-9]+)?)px)\"");
 	private final static Pattern REGEX_COLOUR = Pattern.compile(
 		"(<[^>]+ )stroke=\"black\" fill=\"black\"");
 
@@ -351,7 +358,7 @@ public class MathJax
 					root.setAttribute("height", round(heightEx) + "ex");
 					viewHeight = (viewHeight / oldHeightEx) * heightEx;
 					root.setAttribute("viewBox", viewX + " " + round(viewY) + " " +
-						viewWidth + " " + round(viewHeight + 0.00005)); // TODO Hack
+						viewWidth + " " + round(viewHeight));
 					baselineEx = ((viewY + viewHeight) / viewHeight) * heightEx;
 				}
 
@@ -383,7 +390,7 @@ public class MathJax
 
 		if(convertToPixels)
 		{
-			Matcher m = REGEX_BASELINE.matcher(svg);
+			Matcher m = REGEX_BASELINE_EX.matcher(svg);
 			if(!m.find())
 			{
 				throw new IOException("MathJax SVG does not match expected baseline pattern");
@@ -500,6 +507,106 @@ public class MathJax
 	}
 
 	/**
+	 * Gets baseline from an SVG image. The SVG must be in ex.
+	 * @param svg SVG (ex format)
+	 * @return Baseline
+	 * @throws IOException If it can't be found
+	 */
+	public double getExBaselineFromSvg(String svg)
+		throws IOException
+	{
+		Matcher m = REGEX_BASELINE_EX.matcher(svg);
+		if(!m.find())
+		{
+			throw new IOException("Unexpected failure detecting baseline");
+		}
+		return Double.parseDouble(m.group(2)) * -1;
+	}
+
+	/**
+	 * Offsets an SVG by changing the view box and height.
+	 * @param svg SVG (in pixel format)
+	 * @param pixels Number of pixels to offset (+ve = move up)
+	 * @return Offset SVG
+	 * @throws IOException Invalid/unexpected SVG format
+	 */
+	public static String offsetSvg(String svg, double pixels) throws IOException
+	{
+		if(pixels == 0.0)
+		{
+			return svg;
+		}
+		// Get height.
+		Matcher heightMatcher = REGEX_HEIGHT_PX.matcher(svg);
+		if(!heightMatcher.find())
+		{
+			throw new IOException("Unexpected SVG format (no height in px)");
+		}
+		double height = Double.parseDouble(heightMatcher.group(2));
+
+		// Get viewbox.
+		Matcher viewBoxMatcher = REGEX_VIEWBOX.matcher(svg);
+		if(!viewBoxMatcher.find())
+		{
+			throw new IOException("Unexpected SVG format (no viewBox)");
+		}
+
+		// Get viewbox Y and height.
+		double viewY = Double.parseDouble(viewBoxMatcher.group(2));
+		double viewHeight = Double.parseDouble(viewBoxMatcher.group(4));
+
+		// Size increase.
+		double newHeightOffset = Math.ceil(Math.abs(pixels));
+
+		viewHeight = viewHeight * (height + newHeightOffset) / height;
+
+		height += newHeightOffset;
+
+		if(pixels > 0)
+		{
+			// Take the difference between the height change and actual change, and
+			// move it up this much.
+			viewY -= (newHeightOffset - pixels) * viewHeight / height;
+		}
+		else
+		{
+			// Move the viewbox the required amount.
+			viewY += pixels * viewHeight / height;
+
+			// Adjust the baseline.
+			Matcher baselineMatcher = REGEX_BASELINE_PIXELS.matcher(svg);
+			if(!baselineMatcher.find())
+			{
+				throw new IOException("Unexpected SVG format (no baseline)");
+			}
+			double baseline = Double.parseDouble(baselineMatcher.group(2));
+			baseline += newHeightOffset;
+			svg = svg.substring(0, baselineMatcher.start(2)) + round(baseline) +
+				svg.substring(baselineMatcher.end(2));
+
+			// Update location of viewbox matcher.
+			viewBoxMatcher = REGEX_VIEWBOX.matcher(svg);
+			viewBoxMatcher.find();
+		}
+
+		// Do the viewbox replace.
+		svg = svg.substring(0, viewBoxMatcher.start(2)) +
+				round(viewY) +
+				svg.substring(viewBoxMatcher.end(2), viewBoxMatcher.start(4)) +
+				round(viewHeight) +
+				svg.substring(viewBoxMatcher.end(4));
+
+		// Do the height replace
+		heightMatcher = REGEX_HEIGHT_PX.matcher(svg);
+		heightMatcher.find();
+		svg = svg.substring(0, heightMatcher.start(2)) +
+				round(height) +
+				svg.substring(heightMatcher.end(2));
+
+		return svg;
+	}
+
+	/**
 	 * Gets PNG from an SVG image. The SVG must have been converted to pixels.
 	 * @param svg SVG (pixel format)
 	 * @return PNG data
@@ -507,6 +614,9 @@ public class MathJax
 	 */
 	public byte[] getPngFromSvg(String svg) throws IOException
 	{
+		// Offset the SVG slightly, as it renders a fraction lower down than I'd like.
+		svg = offsetSvg(svg, PNG_OFFSET);
+
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		PNGTranscoder transcoder = createTranscoder();
 		try

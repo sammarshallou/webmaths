@@ -25,6 +25,8 @@ import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.xml.ws.WebServiceContext;
 
+import static uk.ac.open.lts.webmaths.mathjax.ConversionType.*;
+
 import uk.ac.open.lts.webmaths.WebMathsService;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.mathjax.MathsMathJaxPort",
@@ -55,36 +57,50 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 			try
 			{
 				// We need the pixel SVG for lots of things.
-				String pixelSvg = null;
-				if(types.contains(ConversionType.SVG_PX) || types.contains(ConversionType.PNG) ||
-					types.contains(ConversionType.BASELINE) || types.contains(ConversionType.TEXT))
+				String pixelSvg = null, exSvg = null;
+				if(types.contains(SVG_PX) || types.contains(PNG) ||
+					types.contains(PNG_BASELINE) || types.contains(SVG_PX_BASELINE) ||
+					types.contains(TEXT))
 				{
 					pixelSvg = mathJax.getSvg(eq, true, params.getExSize(), params.getRgb());
 				}
+				if(types.contains(SVG_EX) || types.contains(SVG_EX_BASELINE))
+				{
+					exSvg = mathJax.getSvg(eq, true, MathJax.SIZE_IN_EX, params.getRgb());
+				}
 
 				// If SVG was turned on, store it.
-				if(types.contains(ConversionType.SVG_EX))
+				if(types.contains(SVG_EX))
 				{
-					out.setSvg(mathJax.getSvg(eq, true, MathJax.SIZE_IN_EX, params.getRgb()));
+					out.setSvg(exSvg);
 				}
-				else if(types.contains(ConversionType.SVG_PX))
+				else if(types.contains(SVG_PX))
 				{
 					out.setSvg(pixelSvg);
 				}
 
-				if(types.contains(ConversionType.PNG))
+				if(types.contains(PNG))
 				{
 					out.setPng(mathJax.getPngFromSvg(pixelSvg));
 				}
 
-				if(types.contains(ConversionType.TEXT))
+				if(types.contains(TEXT))
 				{
 					out.setText(mathJax.getEnglishFromSvg(pixelSvg));
 				}
 
-				if(types.contains(ConversionType.BASELINE))
+				if(types.contains(SVG_PX_BASELINE))
 				{
-					out.setBaseline((float)mathJax.getBaselineFromSvg(pixelSvg));
+					out.setSvgPxBaseline((float)mathJax.getBaselineFromSvg(pixelSvg));
+				}
+				if(types.contains(SVG_EX_BASELINE))
+				{
+					out.setSvgExBaseline((float)mathJax.getExBaselineFromSvg(exSvg));
+				}
+				if(types.contains(PNG_BASELINE))
+				{
+					out.setPngBaseline((float)mathJax.getBaselineFromSvg(
+						MathJax.offsetSvg(pixelSvg, MathJax.PNG_OFFSET)));
 				}
 
 				out.setOk(true);

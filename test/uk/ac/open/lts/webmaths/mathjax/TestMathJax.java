@@ -144,6 +144,11 @@ public class TestMathJax
 		{
 			return mockExecutable;
 		}
+
+		public String publicOffsetSvg(String svg, double pixels) throws IOException
+		{
+			return MathJax.offsetSvg(svg, pixels);
+		}
 	}
 
 	private MathJaxNodeExecutableMock mockExecutable;
@@ -189,11 +194,11 @@ public class TestMathJax
 		// Fix the baseline (in ex). This is calculated by the location of 0 in
 		// the co-ordinate system. In this case the view box starts at -465.9
 		// with height of 500.9 (meaning the difference between zero and bottom is
-		// 35 units => negative certical align of -35 units), and the ex height is
-		// 1.167ex. -35 / 500.9 * 1.167 = about -0.08.
+		// 35 units => negative vertical align of -35 units), and the ex height is
+		// recalculated to 428 units per ex (1.170ex). -35 / 500.9 * 1.170 = about -0.08.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		svg = mathJax.getSvg(eq, true, MathJax.SIZE_IN_EX, null);
-		assertTrue(svg.contains("vertical-align: -0.0815ex"));
+		assertTrue(svg.contains("vertical-align: -0.0818ex"));
 
 		// Also the margins are removed as these confuse the vertical-align.
 		assertTrue(svg.contains("margin-bottom: 0px;"));
@@ -209,7 +214,7 @@ public class TestMathJax
 
 		// I calculated the correct sizes in Excel (it's quite complicated) to
 		// verify that they match.
-		assertTrue(svg.contains("viewBox=\"0 -472.1422 577 515.0643\""));
+		assertTrue(svg.contains("viewBox=\"0.0 -470.8000 577.0 513.6000\""));
 		assertTrue(svg.contains("height=\"12px\""));
 		assertTrue(svg.contains("vertical-align: -1px"));
 
@@ -219,8 +224,56 @@ public class TestMathJax
 		assertTrue(svg.contains("margin-bottom: 0px;"));
 		assertTrue(svg.contains("margin-top: 0px;"));
 
-		assertTrue(svg.contains("viewBox=\"0 -958.8338 1263.3 1198.5423\""));
-		assertTrue(svg.contains("height=\"20px\""));
+		assertTrue(svg.contains("viewBox=\"0.0 -1001.2839 1263.3 1236.8802\""));
+		assertTrue(svg.contains("height=\"21px\""));
 		assertTrue(svg.contains("vertical-align: -4px"));
 	}
+
+	@Test
+	public void testOffsetSvg() throws Exception
+	{
+		// Try with one that doesn't use pixels and see if we get the error.
+		try
+		{
+			mathJax.publicOffsetSvg(SVG_X, 0.5);
+			fail();
+		}
+		catch(IOException e)
+		{
+			assertTrue(e.getMessage().contains("no height in px"));
+		}
+
+		// Convert to pixels.
+		InputEquation eq = new InputTexDisplayEquation("x");
+		mockExecutable.expect(eq, SVG_X, MATHML_X);
+		String svg = mathJax.getSvg(eq, true, 10.0, null);
+
+		// Try with one that doesn't have a valid viewBox and see if we get the
+		// other error.
+		try
+		{
+			mathJax.publicOffsetSvg(svg.replace("viewBox", "viewbbbbox"), 0.5);
+			fail();
+		}
+		catch(IOException e)
+		{
+			assertTrue(e.getMessage().contains("no viewBox"));
+		}
+
+		// Original viewBox: 0.0 -470.8000 577.0 513.6000 (12px).
+		// 1 pixel is 42.8 units, 0.1 pixels is 4.28.
+
+		// Try moving it UP 0.1 pixels.
+		String up = mathJax.publicOffsetSvg(svg, 0.1);
+		assertTrue(up.contains("viewBox=\"0.0 -509.3200 577.0 556.4000\""));
+		assertTrue(up.contains("height=\"13px"));
+		assertTrue(up.contains("vertical-align: -1px"));
+
+		// Move it DOWN 0.1 pixels. The baseline should change.
+		String down = mathJax.publicOffsetSvg(svg, -0.1);
+		assertTrue(down.contains("viewBox=\"0.0 -475.0800 577.0 556.4000\""));
+		assertTrue(down.contains("height=\"13px"));
+		assertTrue(down.contains("vertical-align: -2px"));
+	}
+
 }
