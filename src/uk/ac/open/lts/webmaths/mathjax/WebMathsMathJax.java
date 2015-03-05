@@ -91,7 +91,7 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 
 				if(types.contains(SVG_PX_BASELINE))
 				{
-					out.setSvgPxBaseline((float)mathJax.getBaselineFromSvg(pixelSvg));
+					out.setSvgPxBaseline((float)mathJax.getPxBaselineFromSvg(pixelSvg));
 				}
 				if(types.contains(SVG_EX_BASELINE))
 				{
@@ -99,7 +99,7 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 				}
 				if(types.contains(PNG_BASELINE))
 				{
-					out.setPngBaseline((float)mathJax.getBaselineFromSvg(
+					out.setPngBaseline((float)mathJax.getPxBaselineFromSvg(
 						MathJax.offsetSvg(pixelSvg, MathJax.PNG_OFFSET)));
 				}
 

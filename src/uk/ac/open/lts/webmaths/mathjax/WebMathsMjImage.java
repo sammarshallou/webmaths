@@ -53,7 +53,7 @@ public class WebMathsMjImage extends WebMathsService implements MathsImagePort
 			String svg = mathJax.getSvg(InputEquation.getFromMathml(params.getMathml()),
 				true, params.getSize() * MathJax.DEFAULT_EX_SIZE, params.getRgb());
 			result.setImage(mathJax.getPngFromSvg(svg));
-			result.setBaseline(BigInteger.valueOf(Math.round(mathJax.getBaselineFromSvg(svg))));
+			result.setBaseline(BigInteger.valueOf(Math.round(mathJax.getPxBaselineFromSvg(svg))));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)

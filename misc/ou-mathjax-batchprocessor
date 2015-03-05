@@ -50,7 +50,7 @@ function processInput(input) {
     process.stdout.write('<<BEGIN:RESULT\n');
     if (result.errors) {
       process.stdout.write('<<BEGIN:ERRORS\n');
-      for (var i = 0; i < result.errors; i++) {
+      for (var i = 0; i < result.errors.length; i++) {
         process.stdout.write(result.errors[i] + '\n');
       }
       process.stdout.write('<<END:ERRORS\n');

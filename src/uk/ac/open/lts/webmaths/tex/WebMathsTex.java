@@ -39,13 +39,12 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 		result.setOk(false);
 		result.setError("");
 		result.setMathml("");
-		
 		try
 		{
 			// Convert TeX to MathML
 			TokenInput input = new TokenInput(params.getTex());
 			String mathml = input.toMathml(params.isDisplay());
-			
+
 			result.setMathml(mathml);
 			result.setOk(true);
 		}
@@ -54,7 +53,7 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 			t.printStackTrace(); // TODO Get rid of this or log somehow
 			result.setError(t.getMessage());
 		}
-		
+
 		return result;
 	}
 

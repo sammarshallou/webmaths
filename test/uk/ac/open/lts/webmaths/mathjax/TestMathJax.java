@@ -18,12 +18,15 @@ Copyright 2015 The Open University
 */
 package uk.ac.open.lts.webmaths.mathjax;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Arrays;
 
 import javax.servlet.ServletContext;
 
 import org.junit.*;
-import static org.junit.Assert.*;
 
 public class TestMathJax
 {
@@ -75,7 +78,10 @@ public class TestMathJax
 	private final static String MATHML_X =
 		"<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" "
 		+ "alttext=\"x\">\n"
-		+ "<mi>x</mi>\n"
+		+ "  <semantics>"
+		+ "    <mi>x</mi>"
+		+ "    <annotation encoding=\"application/x-tex\">x</annotation>"
+		+ "  </semantics>"
 		+ "</math>";
 
 		/**
@@ -144,11 +150,6 @@ public class TestMathJax
 		{
 			return mockExecutable;
 		}
-
-		public String publicOffsetSvg(String svg, double pixels) throws IOException
-		{
-			return MathJax.offsetSvg(svg, pixels);
-		}
 	}
 
 	private MathJaxNodeExecutableMock mockExecutable;
@@ -188,6 +189,13 @@ public class TestMathJax
 
 		// Change the colour.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
+		svg = mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, "#ff0000");
+		assertTrue(svg.contains("<g stroke=\"#ff0000\" fill=\"#ff0000\""));
+
+		// Try changing the colour when the colours are the wrong way around.
+		mockExecutable.expect(eq,
+			SVG_X.replace("stroke=\"black\" fill=\"black\"", "fill=\"black\" stroke=\"black\""),
+			MATHML_X);
 		svg = mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, "#ff0000");
 		assertTrue(svg.contains("<g stroke=\"#ff0000\" fill=\"#ff0000\""));
 
@@ -235,10 +243,10 @@ public class TestMathJax
 		// Try with one that doesn't use pixels and see if we get the error.
 		try
 		{
-			mathJax.publicOffsetSvg(SVG_X, 0.5);
+			MathJax.offsetSvg(SVG_X, 0.5);
 			fail();
 		}
-		catch(IOException e)
+		catch(IllegalArgumentException e)
 		{
 			assertTrue(e.getMessage().contains("no height in px"));
 		}
@@ -252,10 +260,10 @@ public class TestMathJax
 		// other error.
 		try
 		{
-			mathJax.publicOffsetSvg(svg.replace("viewBox", "viewbbbbox"), 0.5);
+			MathJax.offsetSvg(svg.replace("viewBox", "viewbbbbox"), 0.5);
 			fail();
 		}
-		catch(IOException e)
+		catch(IllegalArgumentException e)
 		{
 			assertTrue(e.getMessage().contains("no viewBox"));
 		}
@@ -264,16 +272,146 @@ public class TestMathJax
 		// 1 pixel is 42.8 units, 0.1 pixels is 4.28.
 
 		// Try moving it UP 0.1 pixels.
-		String up = mathJax.publicOffsetSvg(svg, 0.1);
+		String up = MathJax.offsetSvg(svg, 0.1);
 		assertTrue(up.contains("viewBox=\"0.0 -509.3200 577.0 556.4000\""));
 		assertTrue(up.contains("height=\"13px"));
 		assertTrue(up.contains("vertical-align: -1px"));
 
 		// Move it DOWN 0.1 pixels. The baseline should change.
-		String down = mathJax.publicOffsetSvg(svg, -0.1);
+		String down = MathJax.offsetSvg(svg, -0.1);
 		assertTrue(down.contains("viewBox=\"0.0 -475.0800 577.0 556.4000\""));
 		assertTrue(down.contains("height=\"13px"));
-		assertTrue(down.contains("vertical-align: -2px"));
+		assertTrue(down.contains("vertical-align: 0px"));
+	}
+
+	@Test
+	public void testGetEnglish() throws Exception
+	{
+		// Try basic case with TeX equation.
+		InputEquation eq = new InputTexDisplayEquation("x");
+		mockExecutable.expect(eq, SVG_X, MATHML_X);
+		assertEquals("x", mathJax.getEnglish(eq));
+
+		// Try with MathML equation (does not need to use the executable).
+		eq = new InputMathmlEquation(MATHML_X);
+		assertEquals("x", mathJax.getEnglish(eq));
+
+		// MathML equation without alt text but with TeX (will use executable again).
+		String mathmlWithoutAlt = MATHML_X.replaceFirst("alttext=\"[^\"]+\"", "");
+		eq = new InputMathmlEquation(mathmlWithoutAlt);
+		mockExecutable.expect(new InputTexDisplayEquation("x"), SVG_X, MATHML_X);
+		assertEquals("x", mathJax.getEnglish(eq));
+
+		// MathML equation without alt text or TeX.
+		String mathmlWithoutTeX = mathmlWithoutAlt.replaceFirst("<annotation.*?</annotation>", "");
+		eq = new InputMathmlEquation(mathmlWithoutTeX);
+		mockExecutable.expect(eq, SVG_X, "");
+		assertEquals("x", mathJax.getEnglish(eq));
+	}
+
+	@Test
+	public void testGetEnglishFromSvg() throws Exception
+	{
+		assertEquals("x", mathJax.getEnglishFromSvg(SVG_X));
+
+		// If there is no description then this should fail.
+		String svgNoDesc = SVG_X.replaceFirst("<desc.*?</desc>", "");
+		try
+		{
+			mathJax.getEnglishFromSvg(svgNoDesc);
+			fail();
+		}
+		catch(IllegalArgumentException e)
+		{
+			assertTrue(e.getMessage().contains("does not include <desc>"));
+		}
+
+		// If there is a description but empty, it should still work.
+		String svgEmptyDesc = SVG_X.replaceFirst("(<desc[^>]*>).*?(</desc>)", "$1$2");
+		assertEquals("", mathJax.getEnglishFromSvg(svgEmptyDesc));
+	}
+
+	@Test
+	public void testGetEps() throws Exception
+	{
+		InputEquation eq = new InputTexDisplayEquation("x");
+		mockExecutable.expect(eq, SVG_X, MATHML_X);
+		byte[] eps = mathJax.getEps(eq);
+		String header = new String(Arrays.copyOfRange(eps, 0, 10),
+			Charset.forName("ISO-8859-1"));
+		assertEquals("%!PS-Adobe", header);
+	}
+
+	@Test
+	public void testGetExBaselineFromSvg() throws Exception
+	{
+		// Get baseline from ex SVG.
+		assertEquals(0.167, mathJax.getExBaselineFromSvg(SVG_X), 0.000001);
+
+		// Check we get an error if it's a pixel SVG (no ex).
+		try
+		{
+			// Get pixel SVG.
+			InputEquation eq = new InputTexDisplayEquation("x");
+			mockExecutable.expect(eq, SVG_X, MATHML_X);
+			String svg = mathJax.getSvg(eq, true, 10.0, null);
+
+			// Attempt to get ex baseline from it.
+			mathJax.getExBaselineFromSvg(svg);
+			fail();
+		}
+		catch(IllegalArgumentException e)
+		{
+			assertTrue(e.getMessage().contains("failure detecting baseline"));
+		}
+	}
+
+	@Test
+	public void testGetPxBaselineFromSvg() throws Exception
+	{
+		// Get pixel SVG.
+		InputEquation eq = new InputTexDisplayEquation("x");
+		mockExecutable.expect(eq, SVG_X, MATHML_X);
+		String svg = mathJax.getSvg(eq, true, 10.0, null);
+
+		// Get baseline from it.
+		assertEquals(1, mathJax.getPxBaselineFromSvg(svg), 0.000001);
+
+		// Check we get an error if it's not a pixel SVG.
+		try
+		{
+			mathJax.getPxBaselineFromSvg(SVG_X);
+			fail();
+		}
+		catch(IllegalArgumentException e)
+		{
+			assertTrue(e.getMessage().contains("failure detecting baseline"));
+		}
+	}
+
+	@Test
+	public void testGetMathml() throws Exception
+	{
+		InputTexEquation eq = new InputTexDisplayEquation("x");
+		mockExecutable.expect(eq, SVG_X, MATHML_X);
+		assertEquals(MATHML_X, mathJax.getMathml(eq));
+	}
+
+	@Test
+	public void testGetPngFromSvg() throws Exception
+	{
+		// Get pixel SVG.
+		InputEquation eq = new InputTexDisplayEquation("x");
+		mockExecutable.expect(eq, SVG_X, MATHML_X);
+		String svg = mathJax.getSvg(eq, true, 10.0, null);
+
+		// Convert to PNG.
+		byte[] png = mathJax.getPngFromSvg(svg);
+
+		// Check it's a reasonable length and the first 4 bytes match the PNG header.
+		assertTrue(png.length > 100);
+		assertArrayEquals(new byte[] { (byte)0x89, 0x50, 0x4e, 0x47 },
+			Arrays.copyOfRange(png, 0, 4));
 	}
 
 }

@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+	<title>%%SERVER%% - WebMaths status</title>
+	<style>
+
+body
+{
+  font: 14px/25px Arial, sans-serif;
+}
+h1
+{
+  font-size: 1.5em;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+h2
+{
+  margin: 0;
+  font-size: 1em;
+  margin: 0 0 10px;
+}
+p
+{
+  margin: 10px 0;
+}
+h1 .server
+{
+  font-weight: bold;
+}
+section
+{
+  background: #f8f0d0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 400px;
+}
+ul
+{
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+li
+{
+  margin:0;
+  padding: 0;
+  display: block;
+  list-style-type: none;
+}
+section.errors li,
+section.recent li
+{
+  background: white;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+section.errors .time,
+section.recent .time,
+section.recent .performance
+{
+  font-size: 11px;
+}
+.sections
+{  
+}
+section.recent
+{
+  max-width: none;
+  width: auto;
+  margin-left: 430px;
+}
+section.recent li
+{
+  display: inline-block;
+  width: 20em;
+  overflow: hidden;
+  margin-right: 10px;
+  padding-top: 4px;
+  position: relative;
+  margin-bottom: 3px;
+}
+section.recent .equation
+{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.performance
+{
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  text-align: right;
+}
+.svg
+{
+  height: 75px;
+  overflow: auto;
+}
+.firstpair section
+{
+  float: left;
+  width: 40em;
+  margin-right: 10px;
+}
+.secondpair
+{
+  clear: left;
+}
+.secondpair .errors
+{
+  float: left;
+  width: 400px;
+  margin-top: 0;
+}
+
+section.recent .TeX
+{
+  background: #e8f8c0;
+}
+section.recent .inline-TeX
+{
+  background: #f8ffd8;
+}
+section.recent .MathML
+{
+  background: #e8eaf4;
+}
+a
+{
+  color: black;
+}
+pre
+{
+  font: 11px/18px Lucida Console, monospace;
+  max-height: 300px;
+  overflow: auto;
+  background: #f4f4f4;
+  margin: 5px 0 0;
+}
+</style>
+</head>
+<body>
+	<h1><span class="server">%%SERVER%%</span> - WebMaths status</h1>
+	<p class="uptime">Up since <strong>%%STARTEDAT%%</strong></p>
+	<div class="sections">
+	  <div class="firstpair">
+		<section class="links">
+			<h2>Links</h2>
+			<ul>
+				<li><a href="mathjax">Web service list</a></li>
+				<li><a href="check">Automated check URL</a></li>
+			</ul>
+		</section>
+		<section class="stats">
+			<h2>MathJax stats</h2>
+			<ul>
+				<li>Equations processed by MathJax: <strong>%%MATHJAXRUNS%%</strong>
+				  (errors: <strong>%%ERRORCOUNT%%</strong>, <strong>%%ERRORPERCENTAGE%%</strong>)</li>
+				<li>Cache hits: <strong>%%CACHEHITS%%</strong></li>
+			</ul>
+		</section>
+	  </div>
+	  <div class="secondpair">
+		<section class="errors">
+			<h2>MathJax errors</h2>
+			%%MATHJAXERRORS%%
+		</section>
+		<section class="recent">
+			<h2>Recent MathJax equations</h2>
+			%%MATHJAXRECENT%%
+		</section>
+	  </div>
+	</div>
+</body>
+</html>

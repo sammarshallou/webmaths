@@ -25,7 +25,6 @@ import javax.jws.WebService;
 import javax.xml.ws.WebServiceContext;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
-import uk.ac.open.lts.webmaths.mathjax.*;
 import uk.ac.open.lts.webmaths.tex.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.tex.MathsTexPort",

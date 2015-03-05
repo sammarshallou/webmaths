@@ -23,9 +23,17 @@
         </servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Redirect</servlet-name>
+        <servlet-name>Status</servlet-name>
         <servlet-class>
-            uk.ac.open.lts.webmaths.RedirectServlet
+            uk.ac.open.lts.webmaths.StatusServlet
+        </servlet-class>
+        <!-- Load this on startup just so the start time is correct. -->
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>Check</servlet-name>
+        <servlet-class>
+            uk.ac.open.lts.webmaths.CheckServlet
         </servlet-class>
     </servlet>
 
@@ -62,8 +70,12 @@
         <url-pattern>/mathjax</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Redirect</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>Check</servlet-name>
+        <url-pattern>/check</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Status</servlet-name>
+        <url-pattern></url-pattern>
     </servlet-mapping>
 
     <context-param>
@@ -99,6 +111,14 @@
             fail. (ImageTex service only.)</description>
         <param-name>default-render-mode</param-name>
         <param-value>mathml</param-value>
+    </context-param>
+    
+    <context-param>
+        <description>Home folder of MathJax-Node installation.
+            (MathJax service only.)
+        </description>
+        <param-name>mathjaxnode-folder</param-name>
+        <param-value>c:/users/sm449/workspace/MathJax-Node</param-value>
     </context-param>
 
 </web-app>

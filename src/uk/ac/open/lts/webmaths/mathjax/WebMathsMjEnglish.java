@@ -26,7 +26,6 @@ import javax.xml.ws.WebServiceContext;
 
 import uk.ac.open.lts.webmaths.WebMathsService;
 import uk.ac.open.lts.webmaths.english.*;
-import uk.ac.open.lts.webmaths.mathjax.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.english.MathsEnglishPort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",

@@ -1,7 +1,6 @@
 package uk.ac.open.lts.webmaths.mathjax;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.regex.*;
 
@@ -12,8 +11,11 @@ public class MathJaxNodeExecutable
 	/** Servlet parameter used to specify location of MathJax-node folder. */
 	private static final String PARAM_MATHJAXNODEFOLDER = "mathjaxnode-folder";
 
+	/** If true, logs content sent/retrieved to executable to stderr */
+	private final static boolean LOG_COMMUNICATION = false;
+
 	/** Time allowed for MathJax to process an equation or return a line of text. */
-	private final static int PROCESSING_TIMEOUT = 10000;
+	final static int PROCESSING_TIMEOUT = 10000;
 
 	/**
 	 * Number of recent results to cache - quite low as we mainly only expect this
@@ -32,10 +34,17 @@ public class MathJaxNodeExecutable
 	 */
 	private final static int ERROR_COUNT = 100;
 
+	/** If true, fakes errors for most responses. */
+	private final static boolean FAKE_ERRORS = false;
+
+	/** Maximum number of instances of MathJax.node to run at once. */
+	private final static int MAX_INSTANCES = 4;
+
 	private String[] executableParams;
-	private TimeoutReader stdout;
-	private OutputStream stdin;
-	private Process process;
+
+	/** Current instances. */
+	private ArrayList<MathJaxNodeInstance> instances = new ArrayList<MathJaxNodeInstance>(MAX_INSTANCES);
+	private Set<MathJaxNodeInstance> availableInstances = new HashSet<MathJaxNodeInstance>();
 
 	/** Cache of recent conversion results. */
 	private Map<InputEquation, ConversionResults> cache =
@@ -53,11 +62,8 @@ public class MathJaxNodeExecutable
 	/** Number of errors. */
 	private int countErrors;
 
-	/**
-	 * Time it took (in milliseconds) to process each of the last STATS_SIZE
-	 * equations.
-	 */
-	private int[] equationTimes = new int[STATS_SIZE];
+	/** Time it took to process each of the last STATS_SIZE equations. */
+	private EquationDetails[] equationTimes = new EquationDetails[STATS_SIZE];
 
 	/**
 	 * Index of next equation time to write (circular buffer).
@@ -68,6 +74,77 @@ public class MathJaxNodeExecutable
 	 * List of recent errors.
 	 */
 	private LinkedList<Error> errors = new LinkedList<Error>();
+
+	/** Time at which we started having spare processes */
+	private long sparesSince = 0L;
+	/** Min spare processes (since the time we started having spares) */
+	private int sparesMin = 0;
+	/** Flush spares after 5 minutes. */
+	private final static long FLUSH_SPARES_AFTER = 5 * 60 * 1000L;
+
+	/**
+	 * Details about an equation that was processed recently.
+	 * <p>
+	 * Comparable - will sort in reverse date order.
+	 */
+	public static class EquationDetails implements Comparable<EquationDetails>
+	{
+		private long date;
+		private InputEquation equation;
+		private int processingTime;
+
+		/**
+		 * @param equation Equation
+		 * @param processingTime Time in milliseconds
+		 */
+		public EquationDetails(InputEquation equation, int processingTime)
+		{
+			this.date = System.currentTimeMillis();
+			this.equation = equation;
+			this.processingTime = processingTime;
+		}
+
+		/**
+		 * @return Equation
+		 */
+		public InputEquation getEquation()
+		{
+			return equation;
+		}
+
+		/**
+	   * @return Date of conversion
+		 */
+		public long getTime()
+		{
+			return date;
+		}
+
+		/**
+		 * @return Processing time in milliseconds
+		 */
+		public int getProcessingTime()
+		{
+			return processingTime;
+		}
+
+		@Override
+		public int compareTo(EquationDetails o)
+		{
+			if (o.date < date)
+			{
+				return -1;
+			}
+			else if(o.date == date)
+			{
+				return 0;
+			}
+			else
+			{
+				return 1;
+			}
+		}
+	}
 
 	/**
 	 * An error that occurred.
@@ -150,6 +227,14 @@ public class MathJaxNodeExecutable
 		{
 			return count;
 		}
+
+		/**
+		 * @return Equation that caused error
+		 */
+		public InputEquation getEquation()
+		{
+			return equation;
+		}
 	}
 
 	/**
@@ -159,13 +244,38 @@ public class MathJaxNodeExecutable
 	{
 		private int cacheHits, cacheMisses, errorCount;
 		private Error[] errors;
+		private EquationDetails[] recentEquations;
 
-		public Status(int cacheHits, int cacheMisses, int errorCount, Error[] errors)
+		public Status(int cacheHits, int cacheMisses, int errorCount, Error[] errors,
+			EquationDetails[] recentEquations)
 		{
 			this.cacheHits = cacheHits;
 			this.cacheMisses = cacheMisses;
 			this.errorCount = errorCount;
 			this.errors = errors;
+
+			// If the recent equations list has some null values...
+			if(recentEquations[recentEquations.length - 1] == null)
+			{
+				// Find the last non-null.
+				int last;
+				for (last = recentEquations.length - 1; last >= 0; last--)
+				{
+					if(recentEquations[last] != null)
+					{
+						break;
+					}
+				}
+				this.recentEquations = Arrays.copyOfRange(recentEquations, 0, last + 1);
+			}
+			else
+			{
+				// Just use the list directly if full.
+				this.recentEquations = Arrays.copyOf(recentEquations, recentEquations.length);
+			}
+
+			// Sort the recent equations list by time
+			Arrays.sort(this.recentEquations);
 		}
 
 		/**
@@ -193,11 +303,19 @@ public class MathJaxNodeExecutable
 		}
 
 		/**
-		 * @return Array of most recent errors (oldest first)
+		 * @return Array of most recent errors (newest first)
 		 */
 		public Error[] getErrors()
 		{
 			return errors;
+		}
+
+		/**
+		 * @return Array of most recent equations (newest first)
+		 */
+		public EquationDetails[] getRecentEquations()
+		{
+			return recentEquations;
 		}
 	}
 
@@ -249,7 +367,8 @@ public class MathJaxNodeExecutable
 		String folder = servletContext.getInitParameter(PARAM_MATHJAXNODEFOLDER);
 		if(folder == null)
 		{
-			folder = "c:/users/sm449/workspace/MathJax-Node";
+			throw new IllegalArgumentException("Servlet parameter "
+				+ PARAM_MATHJAXNODEFOLDER + " must be set");
 		}
 
 		File executable = new File(servletContext.getRealPath("WEB-INF/ou-mathjax-batchprocessor"));
@@ -263,14 +382,16 @@ public class MathJaxNodeExecutable
 	}
 
 	/**
-	 * Sends a line of text to the application.
-	 * @param text Text to send
-	 * @throws IOException Any error
+	 * Logs a message when extra logging is turned on.
+	 * @param message Message to log
 	 */
-	private synchronized void sendLine(String text) throws IOException
+	void log(String message)
 	{
-		stdin.write((text + "\n").getBytes(Charset.forName("UTF-8")));
-		System.err.println("[SENT] " + text);
+		if(!LOG_COMMUNICATION)
+		{
+			return;
+		}
+		System.err.println("[WebMaths] " + message);
 	}
 
 	private final static Pattern REGEX_BEGIN = Pattern.compile("^<<BEGIN:([A-Z0-9]+)$");
@@ -300,31 +421,117 @@ public class MathJaxNodeExecutable
 			countCacheMisses++;
 		}
 
-		long start = System.currentTimeMillis();
-		synchronized(this)
+		MathJaxNodeInstance instance = null;
+		boolean instanceRemoved = false;
+		synchronized(instances)
 		{
+			// Find a free instance and also count spares.
+			for(MathJaxNodeInstance possible : availableInstances)
+			{
+				instance = possible;
+				availableInstances.remove(instance);
+				break;
+			}
+
+			// If there was no free instance...
+			if(instance == null)
+			{
+				if(instances.size() >= MAX_INSTANCES)
+				{
+					// Wait until one becomes available.
+					while(availableInstances.isEmpty() && instances.size() == MAX_INSTANCES)
+					{
+						try
+						{
+							instances.wait();
+						}
+						catch(InterruptedException e)
+						{
+							throw new IOException("MathJax processing thread interrupted", e);
+						}
+					}
+				}
+				if(!availableInstances.isEmpty())
+				{
+					// Pick an instance.
+					for(MathJaxNodeInstance possible : availableInstances)
+					{
+						instance = possible;
+						availableInstances.remove(instance);
+						break;
+					}
+				}
+				if(instance == null)
+				{
+					// If we get here it must be because size < MAX_INSTANCES.
+					instance = new MathJaxNodeInstance(executableParams, this);
+					instances.add(instance);
+				}
+			}
+
+			// If there are spares, see if that's been the case for some time.
+			if(!availableInstances.isEmpty())
+			{
+				int spares = availableInstances.size();
+				if(sparesSince == 0)
+				{
+					sparesSince = System.currentTimeMillis();
+					sparesMin = spares;
+				}
+				else
+				{
+					if(spares < sparesMin)
+					{
+						sparesMin = spares;
+					}
+					// Get rid of spare processes after a while.
+					if(System.currentTimeMillis() - sparesSince > FLUSH_SPARES_AFTER)
+					{
+						int flush = sparesMin;
+						List<MathJaxNodeInstance> forTheChop = new ArrayList<MathJaxNodeInstance>(MAX_INSTANCES);
+						for(MathJaxNodeInstance spare : availableInstances)
+						{
+							forTheChop.add(spare);
+							flush--;
+							if(flush <= 0)
+							{
+								break;
+							}
+						}
+						for(MathJaxNodeInstance spare : forTheChop)
+						{
+							spare.closeInstance();
+							availableInstances.remove(spare);
+							instances.remove(spare);
+						}
+					}
+				}
+			}
+			else
+			{
+				sparesSince = 0L;
+			}
+		}
+
+		try
+		{
+			long start = System.currentTimeMillis();
 			try
 			{
-				// Start executable if needed.
-				if(process == null)
-				{
-					startExecutable();
-				}
-
 				// Send the type value.
-				sendLine(eq.getFormat());
+				instance.sendLine(eq.getFormat());
 
 				// Strip CRs from value, and ensure there aren't two LFs in a row or any the end.
 				String value = eq.getContent().trim().replaceAll("\r", "").replaceAll("\n\n+", "\n");
 
 				// Send value.
-				sendLine(value);
-				sendLine("");
-				stdin.flush();
+				instance.sendLine(value);
+				instance.sendLine("");
+				instance.flush();
 
 				// Start reading lines from output.
-				String first = stdout.getNextLine(PROCESSING_TIMEOUT);
-				System.err.println("[READ] " + first);
+				String first = instance.readLine();
+				log("[READ] " + first);
 				if(!first.equals("<<BEGIN:RESULT"))
 				{
 					throw new IOException("Expecting result start: " + first);
@@ -332,14 +539,14 @@ public class MathJaxNodeExecutable
 
 				// Read the rest of it, splitting it into sections.
 				Map<String, String> result = new HashMap<String, String>();
-				result.put("ERROR", "");
+				result.put("ERRORS", "");
 				result.put("SVG", "");
 				result.put("MATHML", "");
 				String section = null;
 				while(true)
 				{
-					String line = stdout.getNextLine(PROCESSING_TIMEOUT);
-					System.err.println("[READ] " + line);
+					String line = instance.readLine();
+					log("[READ] " + line);
 					if(section == null)
 					{
 						if(line.equals("<<END:RESULT"))
@@ -376,7 +583,27 @@ public class MathJaxNodeExecutable
 					}
 				}
 
-				String error = result.get("ERROR");
+				String error = result.get("ERRORS");
+				if(FAKE_ERRORS)
+				{
+					if(Math.random() < 0.7)
+					{
+						if(Math.random() < 0.5)
+						{
+							error = "Error caused by random number";
+						}
+						else
+						{
+							throw new IOException("Error for testing");
+						}
+					}
+				}
+
+				// If no error is reported but there's no SVG either, it's an error.
+				if(error.isEmpty() && result.get("SVG").isEmpty())
+				{
+					error = "Empty result";
+				}
 				if(!error.isEmpty())
 				{
 					trackError(new Error(eq, error));
@@ -386,42 +613,51 @@ public class MathJaxNodeExecutable
 			}
 			catch(IOException e)
 			{
-				trackError(new Error(eq, e));
+				log("[FAILURE] " + e.getMessage());
 
 				// If an IO exception occurs, stop the processor and read any text from
 				// stderr.
-				TimeoutReader stderr = new TimeoutReader(process.getErrorStream());
-				System.err.println("webmaths: MathJax-node failure (" + e.getMessage() + ")");
-				boolean gotStderr = false;
-				try
+				String stderr = instance.closeWithStderr();
+				instanceRemoved = true;
+				log("[STDERR DUMP]\n" + stderr);
+
+				// Add stderr information to error if present.
+				if(!stderr.isEmpty())
 				{
-					for(int i=0; i<100; i++)
-					{
-						System.err.println("webmaths: " + stderr.getNextLine(1000) + "\n");
-						gotStderr = true;
-					}
+					IOException combined = new IOException(e.getMessage() + "\n" + stderr);
+					combined.initCause(e);
+					e = combined;
 				}
-				catch(IOException e2)
-				{
-				}
-				if(gotStderr)
-				{
-					System.err.println("webmaths: (end stderr)");
-				}
-				stderr.requestExit();
-				close();
-				stderr.waitForExit();
+
+				// Record the error.
+				trackError(new Error(eq, e));
 				throw e;
 			}
-		}
 
-		synchronized(equationTimes)
-		{
-			equationTimes[equationTimeIndex] = (int)(System.currentTimeMillis() - start);
-			equationTimeIndex++;
-			if(equationTimeIndex >= STATS_SIZE)
+			synchronized(equationTimes)
 			{
-				equationTimeIndex = 0;
+				equationTimes[equationTimeIndex] = new EquationDetails(eq,
+					(int)(System.currentTimeMillis() - start));
+				equationTimeIndex++;
+				if(equationTimeIndex >= STATS_SIZE)
+				{
+					equationTimeIndex = 0;
+				}
+			}
+		}
+		finally
+		{
+			synchronized(instances)
+			{
+				if(instanceRemoved)
+				{
+					instances.remove(instance);
+				}
+				else
+				{
+					availableInstances.add(instance);
+				}
+				instances.notifyAll();
 			}
 		}
 
@@ -440,35 +676,18 @@ public class MathJaxNodeExecutable
 	}
 
 	/**
-	 * Starts the executable.
-	 * @throws IOException Any problem launching it
-	 */
-	private synchronized void startExecutable() throws IOException
-	{
-		if(process != null)
-		{
-			throw new IllegalStateException("Already running");
-		}
-		process = Runtime.getRuntime().exec(executableParams);
-		stdout = new TimeoutReader(process.getInputStream());
-		stdin = process.getOutputStream();
-	}
-
-	/**
 	 * Stops the executable.
 	 */
-	public synchronized void close()
+	public void close()
 	{
-		if(process == null)
+		synchronized(instances)
 		{
-			return;
+			while(!instances.isEmpty())
+			{
+				MathJaxNodeInstance instance = instances.remove(0);
+				instance.closeInstance();
+			}
 		}
-		stdout.requestExit();
-		process.destroy();
-		process = null;
-		stdout.waitForExit();
-		stdout = null;
-		stdin = null;
 	}
 
 	/**
@@ -487,7 +706,7 @@ public class MathJaxNodeExecutable
 		synchronized(errors)
 		{
 			return new Status(hits, misses, countErrors,
-				errors.toArray(new Error[errors.size()]));
+				errors.toArray(new Error[errors.size()]), equationTimes);
 		}
 	}
 
@@ -501,17 +720,20 @@ public class MathJaxNodeExecutable
 		{
 			countErrors++;
 
-			Error last = errors.getLast();
-			if(last != null && last.isBasicallyTheSame(error))
+			if(!errors.isEmpty())
 			{
-				last.increaseCount();
-				return;
+				Error first = errors.getFirst();
+				if(first != null && first.isBasicallyTheSame(error))
+				{
+					first.increaseCount();
+					return;
+				}
 			}
 
-			errors.addLast(error);
+			errors.addFirst(error);
 			if(errors.size() > ERROR_COUNT)
 			{
-				errors.removeFirst();
+				errors.removeLast();
 			}
 		}
 	}
