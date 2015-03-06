@@ -37,10 +37,26 @@ class DelayedInputStream extends InputStream
 				long start = System.currentTimeMillis();
 				for(int i = 0; i < data.length; i++)
 				{
-					long now = System.currentTimeMillis();
-					if (now - start < (i + 1) * msPerByte)
+					while(true)
 					{
-						add(data[i]);
+						long now = System.currentTimeMillis();
+						long wait = (start + (i + 1) * msPerByte) - now;
+						if(wait <= 0)
+						{
+							add(data[i]);
+							break;
+						}
+						else
+						{
+							try
+							{
+								Thread.sleep(wait);
+							}
+							catch(InterruptedException e)
+							{
+								e.printStackTrace();
+							}
+						}
 					}
 				}
 			}

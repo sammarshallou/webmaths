@@ -44,14 +44,14 @@ public class TestTimeoutReader
 	public void testSlow() throws IOException
 	{
 		DelayedInputStream input = new DelayedInputStream(
-			"Line A\nLine B\nLast line".getBytes(), 5);
+			"Line A\nLine B\nLast line".getBytes(), 50);
 		TimeoutReader reader = new TimeoutReader(input);
 
-		assertEquals("Line A", reader.getNextLine(100));
-		assertEquals("Line B", reader.getNextLine(100));
+		assertEquals("Line A", reader.getNextLine(500));
+		assertEquals("Line B", reader.getNextLine(500));
 		try
 		{
-			reader.getNextLine(10);
+			reader.getNextLine(100);
 			fail();
 		}
 		catch(IOException e)

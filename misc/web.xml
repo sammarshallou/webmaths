@@ -121,4 +121,13 @@
         <param-value>c:/users/sm449/workspace/MathJax-Node</param-value>
     </context-param>
 
+    <context-param>
+        <description>Maximum number of Node instances to launch when the
+            service is busy. (These will be closed if it doesn't need that
+            many for at least 2 minutes.) Each instance appears to require
+            about 200MB RAM.</description>
+        <param-name>mathjaxnode-instances</param-name>
+        <param-value>4</param-value>
+    </context-param>
+
 </web-app>

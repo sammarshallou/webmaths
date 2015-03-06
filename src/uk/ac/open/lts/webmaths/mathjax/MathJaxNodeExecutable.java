@@ -2,14 +2,20 @@ package uk.ac.open.lts.webmaths.mathjax;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.*;
 import java.util.regex.*;
 
 import javax.servlet.ServletContext;
 
 public class MathJaxNodeExecutable
 {
+	private final static Logger LOGGER = Logger.getLogger(MathJaxNodeExecutable.class.getName());
+
 	/** Servlet parameter used to specify location of MathJax-node folder. */
 	private static final String PARAM_MATHJAXNODEFOLDER = "mathjaxnode-folder";
+
+	/** Servlet parameter used to indicate maximum number of Node instances. */
+	private static final String PARAM_MATHJAXNODEINSTANCES = "mathjaxnode-instances";
 
 	/** If true, logs content sent/retrieved to executable to stderr */
 	private final static boolean LOG_COMMUNICATION = false;
@@ -38,13 +44,13 @@ public class MathJaxNodeExecutable
 	private final static boolean FAKE_ERRORS = false;
 
 	/** Maximum number of instances of MathJax.node to run at once. */
-	private final static int MAX_INSTANCES = 4;
+	private int maxInstances = 4;
 
 	private String[] executableParams;
 
 	/** Current instances. */
-	private ArrayList<MathJaxNodeInstance> instances = new ArrayList<MathJaxNodeInstance>(MAX_INSTANCES);
-	private Set<MathJaxNodeInstance> availableInstances = new HashSet<MathJaxNodeInstance>();
+	private ArrayList<MathJaxNodeInstance> instances;
+	private Set<MathJaxNodeInstance> availableInstances = new TreeSet<MathJaxNodeInstance>();
 
 	/** Cache of recent conversion results. */
 	private Map<InputEquation, ConversionResults> cache =
@@ -76,11 +82,11 @@ public class MathJaxNodeExecutable
 	private LinkedList<Error> errors = new LinkedList<Error>();
 
 	/** Time at which we started having spare processes */
-	private long sparesSince = 0L;
+	protected long sparesSince = 0L;
 	/** Min spare processes (since the time we started having spares) */
 	private int sparesMin = 0;
-	/** Flush spares after 5 minutes. */
-	private final static long FLUSH_SPARES_AFTER = 5 * 60 * 1000L;
+	/** Flush spares after 2 minutes. */
+	private final static long FLUSH_SPARES_AFTER = 2 * 60 * 1000L;
 
 	/**
 	 * Details about an equation that was processed recently.
@@ -355,6 +361,8 @@ public class MathJaxNodeExecutable
 	 */
 	protected MathJaxNodeExecutable()
 	{
+		maxInstances = 4;
+		instances = new ArrayList<MathJaxNodeInstance>(maxInstances);
 	}
 
 	/**
@@ -379,6 +387,21 @@ public class MathJaxNodeExecutable
 			executable.getAbsolutePath(),
 			folder
 		};
+
+		try
+		{
+			maxInstances = Integer.parseInt(servletContext.getInitParameter(PARAM_MATHJAXNODEINSTANCES));
+		}
+		catch(NumberFormatException e)
+		{
+			throw new IllegalArgumentException("Incorrect value of " + PARAM_MATHJAXNODEINSTANCES + " (must be integer)");
+		}
+		catch(NullPointerException e)
+		{
+			throw new IllegalArgumentException("Required parameter " + PARAM_MATHJAXNODEINSTANCES + " missing");
+		}
+
+		instances = new ArrayList<MathJaxNodeInstance>(maxInstances);
 	}
 
 	/**
@@ -391,7 +414,7 @@ public class MathJaxNodeExecutable
 		{
 			return;
 		}
-		System.err.println("[WebMaths] " + message);
+		LOGGER.log(Level.INFO, "[WebMaths] " + message);
 	}
 
 	private final static Pattern REGEX_BEGIN = Pattern.compile("^<<BEGIN:([A-Z0-9]+)$");
@@ -436,10 +459,10 @@ public class MathJaxNodeExecutable
 			// If there was no free instance...
 			if(instance == null)
 			{
-				if(instances.size() >= MAX_INSTANCES)
+				if(instances.size() >= maxInstances)
 				{
 					// Wait until one becomes available.
-					while(availableInstances.isEmpty() && instances.size() == MAX_INSTANCES)
+					while(availableInstances.isEmpty() && instances.size() == maxInstances)
 					{
 						try
 						{
@@ -464,7 +487,7 @@ public class MathJaxNodeExecutable
 				if(instance == null)
 				{
 					// If we get here it must be because size < MAX_INSTANCES.
-					instance = new MathJaxNodeInstance(executableParams, this);
+					instance = createInstance();
 					instances.add(instance);
 				}
 			}
@@ -488,7 +511,7 @@ public class MathJaxNodeExecutable
 					if(System.currentTimeMillis() - sparesSince > FLUSH_SPARES_AFTER)
 					{
 						int flush = sparesMin;
-						List<MathJaxNodeInstance> forTheChop = new ArrayList<MathJaxNodeInstance>(MAX_INSTANCES);
+						List<MathJaxNodeInstance> forTheChop = new ArrayList<MathJaxNodeInstance>(maxInstances);
 						for(MathJaxNodeInstance spare : availableInstances)
 						{
 							forTheChop.add(spare);
@@ -673,6 +696,16 @@ public class MathJaxNodeExecutable
 		}
 
 		return got;
+	}
+
+	/**
+	 * Creates a new instance. (Included for unit testing.)
+	 * @return New instance
+	 * @throws IOException Any error
+	 */
+	protected MathJaxNodeInstance createInstance() throws IOException
+	{
+		return new MathJaxNodeInstance(executableParams, this);
 	}
 
 	/**

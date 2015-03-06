@@ -33,7 +33,7 @@ public class TestMathJax
 	/**
 	 * SVG returned by MathJax.Node (with --speech option) for TeX 'x'.
 	 */
-	private final static String SVG_X =
+	final static String SVG_X =
 		"<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" "
 		+ "style=\"vertical-align: -0.167ex; margin-left: 0ex; margin-right: 0ex; "
 		+ "margin-bottom: 1px; margin-top: 1px;\" width=\"1.333ex\" "
@@ -64,7 +64,7 @@ public class TestMathJax
 	/**
 	 * An excerpt (just the view box etc) from q^{z^y}, which had rounding issues
 	 */
-	private final static String SVG_QZY_EXCERPT =
+	final static String SVG_QZY_EXCERPT =
 		"<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" "
 		+ "style=\"vertical-align: -0.5ex; margin-left: 0ex; margin-right: 0ex; "
 		+ "margin-bottom: 1px; margin-top: 1px;\" width=\"3ex\" height=\"2.667ex\" "
@@ -75,7 +75,7 @@ public class TestMathJax
 	/**
 	 * MathML return by MathJax.Node (with --speech) for TeX 'x'.
 	 */
-	private final static String MATHML_X =
+	final static String MATHML_X =
 		"<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" "
 		+ "alttext=\"x\">\n"
 		+ "  <semantics>"

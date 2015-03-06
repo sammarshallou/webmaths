@@ -6,9 +6,13 @@ import java.util.logging.*;
 
 /**
  * A single instance of the MathJax process.
+ * <p>
+ * Sorted by start date - the reason for this is so that we can close them
+ * starting from the older ones first.
  */
-class MathJaxNodeInstance
+class MathJaxNodeInstance implements Comparable<MathJaxNodeInstance>
 {
+	private long started;
 	private TimeoutReader stdout;
 	private OutputStream stdin;
 	private Process process;
@@ -16,8 +20,18 @@ class MathJaxNodeInstance
 
 	private final static Logger LOGGER = Logger.getLogger(MathJaxNodeInstance.class.getName());
 
+	/**
+	 * Constructor for unit testing only (does nothing).
+	 * @param started Time started
+	 */
+	protected MathJaxNodeInstance(long started)
+	{
+		this.started = started;
+	}
+
 	MathJaxNodeInstance(String[] executableParams, MathJaxNodeExecutable parent) throws IOException
 	{
+		started = System.currentTimeMillis();
 		process = Runtime.getRuntime().exec(executableParams);
 		stdout = new TimeoutReader(process.getInputStream());
 		stdin = process.getOutputStream();
@@ -92,5 +106,22 @@ class MathJaxNodeInstance
 		closeInstance();
 		stderr.waitForExit();
 		return out.toString();
+	}
+
+	@Override
+	public int compareTo(MathJaxNodeInstance o)
+	{
+		if(started < o.started)
+		{
+			return 1;
+		}
+		else if(started > o.started)
+		{
+			return -1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }
