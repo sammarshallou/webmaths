@@ -14,22 +14,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with OU webmaths. If not, see <http://www.gnu.org/licenses/>.
 
-Copyright 2011 The Open University
+Copyright 2015 The Open University
 */
-package uk.ac.open.lts.webmaths.tex;
+package uk.ac.open.lts.webmaths.mathjax;
 
+import java.io.IOException;
+
+import javax.annotation.Resource;
 import javax.jws.WebService;
+import javax.xml.ws.WebServiceContext;
 
-import org.w3c.dom.Document;
-
-import uk.ac.open.lts.webmaths.*;
+import uk.ac.open.lts.webmaths.WebMathsService;
+import uk.ac.open.lts.webmaths.tex.*;
 
 @WebService(endpointInterface="uk.ac.open.lts.webmaths.tex.MathsTexPort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
 	serviceName="MathsTex", portName="MathsTexPort")
-public class WebMathsTex extends WebMathsService implements MathsTexPort
+public class WebMathsMjTex extends WebMathsService implements MathsTexPort
 {
-	private MathmlToLatex texConverter;
+	@Resource
+	private WebServiceContext context;
 
 	@Override
 	public MathsTexReturn getMathml(MathsTexParams params)
@@ -39,19 +43,21 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 		result.setOk(false);
 		result.setError("");
 		result.setMathml("");
+
 		try
 		{
-			// Convert TeX to MathML
-			TokenInput input = new TokenInput(params.getTex());
-			String mathml = input.toMathml(params.isDisplay());
-
-			result.setMathml(mathml);
+			result.setMathml(MathJax.get(context).getMathml(
+				params.isDisplay() ? new InputTexDisplayEquation(params.getTex()) :
+					new InputTexInlineEquation(params.getTex())));
 			result.setOk(true);
 		}
-		catch(Throwable t)
+		catch(MathJaxException e)
 		{
-			t.printStackTrace(); // TODO Get rid of this or log somehow
-			result.setError(t.getMessage());
+			result.setError("MathJax failure: " + e.getMessage());
+		}
+		catch(IOException e)
+		{
+			result.setError("Unexpected error: " + e.getMessage());
 		}
 
 		return result;
@@ -63,32 +69,8 @@ public class WebMathsTex extends WebMathsService implements MathsTexPort
 		// Set up default return values
 		GetTexReturn result = new GetTexReturn();
 		result.setOk(false);
-		result.setError("");
+		result.setError("MathML to TeX conversion not available");
 		result.setTex("");
-
-		// Set up the converter if we didn't already
-		synchronized(this)
-		{
-			if(texConverter == null)
-			{
-				texConverter = new MathmlToLatex(getFixer());
-			}
-		}
-
-		try
-		{
-			// Parse MathML
-			Document doc = parseMathml(params.getMathml());
-			// Convert MathML to TeX
-			result.setTex(texConverter.convert(doc, params.isLenient()));
-			result.setOk(true);
-		}
-		catch(Throwable t)
-		{
-			t.printStackTrace(); // TODO Get rid of this or log somehow
-			result.setError("Error converting MathML to TeX: " + t.getMessage());
-		}
-
 		return result;
 	}
 }

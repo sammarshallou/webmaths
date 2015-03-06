@@ -10,6 +10,10 @@ as images in a user-selected size and colour, or directly to the browser as
 MathML if they have a supported browser, regardless of whether the equations
 were initially entered as TeX or MathML.
 
+The latest version of this system uses the MathJax.node project (server-side
+MathJax) to render equations. At present it also includes older methods, but
+we may phase these out.
+
 
 Services
 --------
@@ -30,22 +34,43 @@ ImageTex:  For MathML that was originally converted from TeX using the above
            converter, renders it using latex and dvipng software. For other
            MathML, uses JEuclid as above.
 
+MathJax:   Uses MathJax.node backend to render both TeX and MathML. Can convert
+           multiple equations at once and can provide SVG as well as PNG format
+           files.
+
+           The MjEnglish, MjTex, and MjImage servlets are implementations of the
+           above contracts using this MathJax backend.
+
+
 Image and ImageTex are plug-in compatible (they use the same WSDL, so you can
 use a different one by changing the URL in your service client). ImageTeX can
 produce prettier images, but requires 'latex' and 'dvipng' to be installed on
 the server. Image is pure Java; it requires no extra installation, and also
 performs better, but the images can be a bit ugly.
 
+MathJax and the Mj* servlets requires MathJax.node to be installed in the
+server; the default location is /opt/mathjax_node, or you can configure it
+(see web.xml).
+
 
 Licensing
 ---------
 
 All contents of this repository including code and data are copyright
-2012 The Open University and are released under the GNU Public License
+2012-2015 The Open University and are released under the GNU Public License
 version 3 (see LICENSE), except:
 
 * JEuclid and dependencies in lib/jeuclid folder:
   http://jeuclid.sourceforge.net/
+  Released under Apache Software License version 2.
+
+* Apache FOP, Batik, and dependencies in lib/fop folder:
+  http://xmlgraphics.apache.org/fop/
+  http://xmlgraphics.apache.org/batik/
+  Released under Apache Software License version 2.
+
+* Apache Commons libraries in lib/commons folder:
+  http://commons.apache.org/
   Released under Apache Software License version 2.
   
 * TeX to MathML conversion code (two Java files in uk.ac.open.lts.webmaths.tex)
@@ -82,22 +107,8 @@ Basic build/setup instructions for testing
 
 1) Run the ant build script with the 'wsdlgen' target. This will create the
    'gen' folder based on the WSDL files.
-
-   In order for this to work you will need to set the Ant property
-   jaxws.home to point to the folder of JAX-WS 2.1 install; get this from
-   Oracle if you don't already have it.
-
-   *** WARNING: YOU MUST USE JAX-WS 2.1 AND NOT ANY LATER VERSION ***
-
-   2.2 cannot be made to work with a standard Tomcat install because it is
-   not compatible with the built-in version included in Java 6. In order not
-   to require complex Tomcat configuration, I decided to use 2.1. (The
-   situation may be different if you are using Java 7.)
-
    -> In Eclipse, right-click build.xml and choose 'Run as > Ant build...',
-      then select the wsdlgen target and deselect others. On the Properties
-      page, turn off 'use global properties' and click 'Add property' to
-      add jaxws.home, with the correct folder location.
+      then select the wsdlgen target and deselect others.
 
 2) If you want your IDE to compile the project:
    a) Refresh the project if necessary to see the 'gen' folder.
@@ -110,35 +121,39 @@ Basic build/setup instructions for testing
    c) Add all the library .jar files in 'lib' to the IDE's build path.
       -> In Eclipse, right-click and choose Build path / Add to build path.
 
-3) You can now run the services locally on the built-in Java 6 test server
-   by running uk.ac.open.lts.webmaths.DevServer 
+3) You can now run some of the services locally on the built-in Java 6+ test
+   server by running uk.ac.open.lts.webmaths.DevServer 
    -> In Eclipse, right-click this file and choose Run as / Java application.
 
 4) You can also run unit tests by running JUnit on the 'test' folder.
    -> In Eclipse, right-click this folder and choose Run as / JUnit test. 
 
-5) To build the web application, run the ant script with the 'webinf' target.
-   This will create a WEB-INF folder. You will need to set the Ant property
-   webinf.location to the folder where you want to put the WEB-INF folder.
-   Any existing WEB-INF folder at that location will be deleted.
+5) To build the web application to a running Tomcat, run the ant script with the
+   'tomcatdeploy' target. You will need to set the variables tomcat-url,
+   tomcat-username and tomcat-password. The specified username needs to have
+   the manager-script role (note that the default admin user in Tomcat doesn't).
 
 6) To build the web application as a .war file, run ant script with the 'war'
-   target. Again, you can set the Ant property war.location to the folder
-   where you want to put the .war file.
+   target. You can set the Ant property war.location to the folder where you
+   want to put the .war file.
 
-7) Whether you build a WEB-INF folder or a .war file, once you have installed
-   the application, you can test it is running by going to its root URL. If
-   the application is running, a list of services should appear (see below).
+7) Once you have installed the application, you can test it is running by going
+   to its root URL. This will take you to a status page.
 
 
 How to write clients
 --------------------
 
 To get the JAX-WS information page for any service once you have installed it
-on your server, go to http://your.server.example.com/webmaths/ - you'll get
-a list of all four services together with the WSDL files that should be all you
-need in order to write software that uses the services. The WSDL files contain
-documentation for all parameters and return values. 
+on your server, go to http://your.server.example.com/webmaths/ and follow the
+'Web services' link - you'll get a list of all eight services together with the
+WSDL files that should be all you need in order to write software that uses the
+services. The WSDL files contain documentation for all parameters and return
+values. 
 
 The WSDL files are WS-I compliant so should be usable from all programming
 languages.
+
+If you are writing new software and can install node.js and MathJax.node on
+the server, I would recommend using only the 'mathjax' service. The other
+services may be phased out eventually.

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="MathsMathJax"
+    targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://ns.open.ac.uk/lts/vle/filter_maths/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:t="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+
+    <types>
+        <schema targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/types/"
+            xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+            <simpleType name="Rgb">
+                <restriction base="xsd:string">
+                    <pattern value="#[a-z0-9]{6}"/>
+                </restriction>
+            </simpleType>
+
+            <simpleType name="ConversionType">
+              <restriction base="xsd:string">
+                <xsd:enumeration value="SVG_PX"/>
+                <xsd:enumeration value="SVG_EX"/>
+                <xsd:enumeration value="PNG"/>
+                <xsd:enumeration value="TEXT"/>
+                <xsd:enumeration value="PNG_BASELINE"/>
+                <xsd:enumeration value="SVG_PX_BASELINE"/>
+                <xsd:enumeration value="SVG_EX_BASELINE"/>
+              </restriction>
+            </simpleType>
+
+            <complexType name="SourceEquation">
+                <choice>
+                    <element name="mathml" type="xsd:string">
+                        <annotation><documentation>Complete MathML content to convert, as
+                            string. Should begin with &lt;math... and end with &lt;/math>,
+                            omitting XML prolog and doctype. The namespace is required but
+                            must be set using xmlns= on the math element. Namespace prefixes
+                            must not be used.</documentation></annotation>
+                    </element>
+                    <sequence>
+                        <element name="tex" type="xsd:string">
+                            <annotation><documentation>TeX code to convert, as
+                                string.</documentation></annotation>
+                        </element>
+                        <element name="display" type="xsd:boolean">
+                            <annotation><documentation>True if the TeX equation
+                                is a display equation, false if it's
+                                inline.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </choice>
+            </complexType>
+
+            <complexType name="OutputData">
+                <sequence>
+                    <element name="ok" type="xsd:boolean">
+                        <annotation><documentation>True if the equation was ok, false if
+                            not.</documentation></annotation>
+                    </element>
+                    <choice>
+                        <element name="error" type="xsd:string">
+                            <annotation><documentation>Error message
+                            string.</documentation></annotation>
+                        </element>
+                        <sequence>
+                            <element name="svg" type="xsd:string" minOccurs="0">
+                                <annotation><documentation>SVG data as a
+                                    string. Outer dimensions will be specified in pixels
+                                    if svg_px input type was specified, or in ex if
+                                    svg_ex was.</documentation></annotation>
+                            </element>
+                            <element name="png" type="xsd:base64Binary" minOccurs="0">
+                                <annotation><documentation>Image data in PNG format. Service will
+                                    return empty data if error.</documentation></annotation>
+                            </element>
+                            <element name="text" type="xsd:string" minOccurs="0">
+                                <annotation><documentation>Text equivalent,
+                                    for accessibility.</documentation></annotation>
+                            </element>
+                            <element name="pngBaseline" type="xsd:float" minOccurs="0">
+                                <annotation><documentation>Baseline position within image, in pixels
+                                    measured from the BOTTOM of the image. 0 = the bottom pixel of
+                                    the image should line up with the bottom of the text.
+                                    Negative values permitted.</documentation></annotation>
+                            </element>
+                            <element name="svgPxBaseline" type="xsd:float" minOccurs="0">
+                                <annotation><documentation>Baseline position within pixel-based SVG,
+                                    in pixels measured from the BOTTOM of the image.
+                                    0 = the bottom pixel of the image should line up with the
+                                    bottom of the text. Negative values permitted.</documentation></annotation>
+                            </element>
+                            <element name="svgExBaseline" type="xsd:float" minOccurs="0">
+                                <annotation><documentation>Baseline position within image, in ex
+                                    measured from the BOTTOM of the image. 0 = the bottom pixel of
+                                    the image should line up with the bottom of the text.
+                                    Negative values permitted.</documentation></annotation>
+                            </element>
+                        </sequence>
+                    </choice>
+                </sequence>
+            </complexType>
+
+            <element name="ConvertEquationsParams">
+                <complexType>
+                    <sequence>
+                        <element name="equations" type="t:SourceEquation" maxOccurs="unbounded">
+                            <annotation><documentation>Equation.</documentation></annotation>
+                        </element>
+                        <element name="outputs" type="t:ConversionType" maxOccurs="unbounded">
+                            <annotation><documentation>List of desired output data
+                                to be obtained.</documentation></annotation>
+                        </element>
+                        <element name="exSize" type="xsd:float">
+                            <annotation><documentation>Size to render at (used for PNG, SVG_PX,
+                                and BASELINE outputs). This is the number of pixels in one
+                                ex.</documentation></annotation>
+                        </element>
+                        <element name="rgb" type="t:Rgb">
+                            <annotation><documentation>Colour of item as lower-case hex
+                                string #rrggbb.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="ConvertEquationsReturn">
+                <complexType>
+                    <sequence>
+                        <element name="output" type="t:OutputData" maxOccurs="unbounded">
+                            <annotation><documentation>Requested output, in the same order
+                                as the input equations.</documentation></annotation>
+                        </element>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </types>
+
+    <message name="convertEquationsRequest">
+        <part name="params" element="t:ConvertEquationsParams"/>
+    </message>
+
+    <message name="convertEquationsResponse">
+        <part name="result" element="t:ConvertEquationsReturn"/>
+    </message>
+
+    <portType name="MathsMathJaxPort">
+        <operation name="convertEquations">
+            <input message="tns:convertEquationsRequest"></input>
+            <output message="tns:convertEquationsResponse"></output>
+        </operation>
+    </portType>
+
+    <binding name="MathsMathJaxBinding" type="tns:MathsMathJaxPort">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="convertEquations">
+            <soap:operation soapAction="convertEquations"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+
+    <service name="MathsMathJax">
+        <port name="MathsMathJaxPort" binding="tns:MathsMathJaxBinding">
+            <soap:address location="http://www.example.org/" />
+        </port>
+    </service>
+</definitions>
