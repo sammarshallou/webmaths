@@ -103,6 +103,11 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 						MathJax.offsetSvg(pixelSvg, MathJax.PNG_OFFSET)));
 				}
 
+				if(types.contains(MATHML) && eq instanceof InputTexEquation)
+				{
+					out.setMathml(mathJax.getMathml((InputTexEquation)eq));
+				}
+
 				out.setOk(true);
 			}
 			catch(MathJaxException e)
