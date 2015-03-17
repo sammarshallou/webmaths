@@ -87,6 +87,8 @@ public class MathJaxNodeExecutable
 	private int sparesMin = 0;
 	/** Flush spares after 2 minutes. */
 	private final static long FLUSH_SPARES_AFTER = 2 * 60 * 1000L;
+	/** Spin up a new instance after waiting 500ms. */
+	private final static long NEW_INSTANCE_AFTER = 500L;
 
 	/**
 	 * Details about an equation that was processed recently.
@@ -446,19 +448,24 @@ public class MathJaxNodeExecutable
 
 		MathJaxNodeInstance instance = null;
 		boolean instanceRemoved = false;
+		long waitedSince = 0;
 		synchronized(instances)
 		{
-			// Find a free instance and also count spares.
-			for(MathJaxNodeInstance possible : availableInstances)
+			while(instance == null)
 			{
-				instance = possible;
-				availableInstances.remove(instance);
-				break;
-			}
+				// Find a free instance and also count spares.
+				for(MathJaxNodeInstance possible : availableInstances)
+				{
+					instance = possible;
+					availableInstances.remove(instance);
+					break;
+				}
+				if (instance != null)
+				{
+					break;
+				}
 
-			// If there was no free instance...
-			if(instance == null)
-			{
+				// If there was no free instance...
 				if(instances.size() >= maxInstances)
 				{
 					// Wait until one becomes available.
@@ -484,11 +491,43 @@ public class MathJaxNodeExecutable
 						break;
 					}
 				}
-				if(instance == null)
+				if(instance != null)
 				{
-					// If we get here it must be because size < MAX_INSTANCES.
+					break;
+				}
+
+				// If we get here it must be because size < MAX_INSTANCES.
+				long now = System.currentTimeMillis();
+				if(instances.isEmpty() || (waitedSince != 0 && (now - waitedSince >= NEW_INSTANCE_AFTER)))
+				{
+					// If we already waited or there aren't any instances, create an instance.
 					instance = createInstance();
 					instances.add(instance);
+				}
+				else
+				{
+					// Wait for a limited time in case an existing instance becomes free.
+					try
+					{
+						int sizeBefore = instances.size();
+						if(waitedSince == 0)
+						{
+							waitedSince = now;
+						}
+						instances.wait(NEW_INSTANCE_AFTER - (now - waitedSince));
+						// Only count it as having waited if a new instance wasn't created
+						// for somebody else in the interrim. (This prevents the sequence
+						// like, you try to run 4 at once, first one takes 500ms, it
+						// then creates 3 new instances all at the same time.)
+						if(instances.size() > sizeBefore)
+						{
+							waitedSince = System.currentTimeMillis();
+						}
+					}
+					catch(InterruptedException e)
+					{
+						throw new IOException("MathJax processing thread interrupted", e);
+					}
 				}
 			}
 
@@ -771,4 +810,11 @@ public class MathJaxNodeExecutable
 		}
 	}
 
+	/**
+	 * @return Max number of Node instances that can be run at once
+	 */
+	public int getMaxInstances()
+	{
+		return maxInstances;
+	}
 }

@@ -263,9 +263,11 @@ public class TestMathJaxNodeExecutable
 	@Test
 	public void testMultiThreaded() throws Exception
 	{
-		// Create first instance with 200ms delay.
+		// Create first instance with 200ms delays.
 		MathJaxNodeInstanceMock instance1 = new MathJaxNodeInstanceMock(1);
 		executable.addInstance(instance1);
+		instance1.addLine("delay");
+		instance1.addLines(RESULT_SUCCESS);
 		instance1.addLine("delay");
 		instance1.addLines(RESULT_SUCCESS);
 		instance1.addLine("delay");
@@ -274,23 +276,23 @@ public class TestMathJaxNodeExecutable
 		// And second instance.
 		MathJaxNodeInstanceMock instance2 = new MathJaxNodeInstanceMock(2);
 		executable.addInstance(instance2);
-		instance2.addLine("delay");
-		instance2.addLines(RESULT_SUCCESS);
-		instance2.addLine("delay");
-		instance2.addLines(RESULT_SUCCESS);
 
 		// Spin up a couple of threads.
 		final LinkedList<Boolean> list = new LinkedList<Boolean>();
-		Thread thread1 = new Thread()
+		final LinkedList<String> suffix = new LinkedList<String>();
+		suffix.add("1");
+
+		Runnable task1 = new Runnable()
 		{
 			@Override
 			public void run()
 			{
 				try
 				{
-					// Convert 2 equations.
-					executable.convertEquation(new InputTexDisplayEquation("a"));
-					executable.convertEquation(new InputTexDisplayEquation("c"));
+					// Convert 2 equations with 100ms gap.
+					executable.convertEquation(new InputTexDisplayEquation("a" + suffix.getFirst()));
+					Thread.sleep(100);
+					executable.convertEquation(new InputTexDisplayEquation("c" + suffix.getFirst()));
 					synchronized(list)
 					{
 						list.add(true);
@@ -307,7 +309,7 @@ public class TestMathJaxNodeExecutable
 				}
 			}
 		};
-		Thread thread2 = new Thread()
+		Runnable task2 = new Runnable()
 		{
 			@Override
 			public void run()
@@ -316,7 +318,7 @@ public class TestMathJaxNodeExecutable
 				{
 					// Convert 1 equation after 100ms.
 					Thread.sleep(100);
-					executable.convertEquation(new InputTexDisplayEquation("b"));
+					executable.convertEquation(new InputTexDisplayEquation("b" + suffix.getFirst()));
 					synchronized(list)
 					{
 						list.add(true);
@@ -333,8 +335,57 @@ public class TestMathJaxNodeExecutable
 				}
 			}
 		};
-		thread1.start();
-		thread2.start();
+		new Thread(task1, "Task1-1").start();
+		new Thread(task2, "Task2-1").start();
+
+		synchronized(list)
+		{
+			while(list.size() < 2)
+			{
+				list.wait();
+			}
+		}
+
+		// Check all succeeded.
+		assertArrayEquals(new Boolean[] { true, true }, list.toArray(new Boolean[2]));
+
+		// Check instance 1 includes requests for a, b, and c.
+		assertEquals(
+			"*sendLine:TeX\n"
+			+ "*sendLine:a1\n"
+			+ "*sendLine:\n"
+			+ "*flush\n"
+			+ "*sendLine:TeX\n"
+			+ "*sendLine:b1\n"
+			+ "*sendLine:\n"
+			+ "*flush\n"
+			+ "*sendLine:TeX\n"
+			+ "*sendLine:c1\n"
+			+ "*sendLine:\n"
+			+ "*flush\n", instance1.getActions());
+
+		// Check instance 2 hasn't done anything yet.
+		assertEquals("", instance2.getActions());
+
+		// Repeat, but this time make instance 1 delay long enough that instance 2
+		// spins up.
+		instance1.addLine("delay");
+		instance1.addLine("delay");
+		instance1.addLine("delay");
+		instance1.addLine("delay");
+		instance1.addLines(RESULT_SUCCESS); // At 800ms.
+		instance1.addLine("delay");
+		instance1.addLines(RESULT_SUCCESS); // At 1000ms.
+
+		instance2.addLine("delay"); // Starts at approx 600ms.
+		instance2.addLine("delay");
+		instance2.addLines(RESULT_SUCCESS); // At 1000ms.
+
+		suffix.addFirst("2");
+
+		list.clear();
+		new Thread(task1, "Task1-2").start();
+		new Thread(task2, "Task2-2").start();
 
 		synchronized(list)
 		{
@@ -350,18 +401,18 @@ public class TestMathJaxNodeExecutable
 		// Check instance 1 includes requests for a and c.
 		assertEquals(
 			"*sendLine:TeX\n"
-			+ "*sendLine:a\n"
+			+ "*sendLine:a2\n"
 			+ "*sendLine:\n"
 			+ "*flush\n"
 			+ "*sendLine:TeX\n"
-			+ "*sendLine:c\n"
+			+ "*sendLine:c2\n"
 			+ "*sendLine:\n"
 			+ "*flush\n", instance1.getActions());
 
-		// Check instance 2 includes requests for b.
+		// Check instance 2 has request b.
 		assertEquals(
 			"*sendLine:TeX\n"
-			+ "*sendLine:b\n"
+			+ "*sendLine:b2\n"
 			+ "*sendLine:\n"
 			+ "*flush\n", instance2.getActions());
 

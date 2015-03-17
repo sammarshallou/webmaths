@@ -235,6 +235,20 @@ public class TestMathJax
 		assertTrue(svg.contains("viewBox=\"0.0 -1001.2839 1263.3 1236.8802\""));
 		assertTrue(svg.contains("height=\"21px\""));
 		assertTrue(svg.contains("vertical-align: -4px"));
+
+		// Check case with bogus width.
+		mockExecutable.expect(eq, SVG_X.replace(
+			"viewBox=\"0 -465.9 577 500.9\"", "viewBox=\"0 -465.9 1000000.0 500.9\""), MATHML_X);
+		try
+		{
+			svg = mathJax.getSvg(eq, true, 7.26667, null);
+			fail();
+		}
+		catch(MathJaxException e)
+		{
+			// Error is about the \\ in equations which causes this
+			assertTrue(e.getMessage().contains("\\\\"));
+		}
 	}
 
 	@Test

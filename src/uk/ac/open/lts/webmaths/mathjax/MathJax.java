@@ -20,6 +20,7 @@ package uk.ac.open.lts.webmaths.mathjax;
 
 import java.awt.RenderingHints;
 import java.io.*;
+import java.util.concurrent.*;
 import java.util.regex.*;
 
 import javax.servlet.ServletContext;
@@ -104,6 +105,8 @@ public class MathJax
 	private final XPath xpath;
 	private final XPathExpression xpathAnnotation, xpathSvgDesc, xpathNormalizeSpace;
 
+	private ExecutorService threadPool;
+
 	/**
 	 * Constructor.
 	 * @param servletContext Servlet context
@@ -111,8 +114,9 @@ public class MathJax
 	 */
 	protected MathJax(ServletContext servletContext)
 	{
-		// Set up the executable
+		// Set up the executable and thread pool.
 		mjNode = createExecutable(servletContext);
+		threadPool = Executors.newFixedThreadPool(mjNode.getMaxInstances());
 
 		// Precompile the xpath expressions.
 		xpath = XPathFactory.newInstance().newXPath();
@@ -145,6 +149,15 @@ public class MathJax
 	 */
 	public synchronized void close()
 	{
+		try
+		{
+			threadPool.shutdown();
+			threadPool.awaitTermination(10, TimeUnit.SECONDS);
+			threadPool = null;
+		}
+		catch(InterruptedException e)
+		{
+		}
 		mjNode.close();
 		mjNode = null;
 	}
@@ -280,29 +293,35 @@ public class MathJax
 		String svg = mjNode.convertEquation(eq).getSvg();
 
 		double correctedHeight = 0.0, correctedWidth = 0.0, correctedBaseline = 0.0;
-		if(correctBaseline)
+
+		try
 		{
-			// Parse the svg and mess with it.
-			try
+			// Parse SVG.
+			Document svgDom = WebMathsService.parseXml(context, svg);
+
+			// Get the view box.
+			Element root = svgDom.getDocumentElement();
+			String viewBox = root.getAttribute("viewBox");
+			Matcher m = Pattern.compile("(-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+)").matcher(viewBox);
+			if(!m.matches())
 			{
-				// Parse.
-				Document svgDom = WebMathsService.parseXml(context, svg);
+				throw new IOException("Unexpected SVG format (viewBox)");
+			}
 
-				// Get the view box.
-				Element root = svgDom.getDocumentElement();
-				String viewBox = root.getAttribute("viewBox");
-				Matcher m = Pattern.compile("(-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+)").matcher(viewBox);
-				if(!m.matches())
-				{
-					throw new IOException("Unexpected SVG format (viewBox)");
-				}
+			// Get viewbox Y and height.
+			double viewY = Double.parseDouble(m.group(2));
+			double viewHeight = Double.parseDouble(m.group(4));
+			double viewX = Double.parseDouble(m.group(1));
+			double viewWidth = Double.parseDouble(m.group(3));
 
-				// Get viewbox Y and height.
-				double viewY = Double.parseDouble(m.group(2));
-				double viewHeight = Double.parseDouble(m.group(4));
-				double viewX = Double.parseDouble(m.group(1));
-				double viewWidth = Double.parseDouble(m.group(3));
+			// In some cases, this has a bogus width of 1 million units.
+			if(viewWidth >= 999999.9)
+			{
+				throw new MathJaxException("Unbounded equation (use of \\\\ outside suitable environment?)");
+			}
 
+			if(correctBaseline)
+			{
 				// Now get the height in ex - this used to read it from the file but
 				// we now hardcoded it based on drawing units, because MathJax.Node
 				// returns inconsistent results e.g. for the equations "xqx" and "xxx".
@@ -360,10 +379,14 @@ public class MathJax
 				lsSerializer.getDomConfig().setParameter("xml-declaration", false);
 				svg = lsSerializer.writeToString(svgDom);
 			}
-			catch(Exception e)
+		}
+		catch(Exception e)
+		{
+			if(e instanceof MathJaxException)
 			{
-				throw new IOException(e);
+				throw (MathJaxException)e;
 			}
+			throw new IOException(e);
 		}
 
 		if(convertToPixels)
@@ -650,5 +673,14 @@ public class MathJax
 	public Status getStatus()
 	{
 		return mjNode.getStatus();
+	}
+
+	/**
+	 * Executes on the thread pool used for MathJax.Node running.
+	 * @param runnable Command to execute
+	 */
+	public void executeOnThreadPool(Runnable runnable)
+	{
+		threadPool.execute(runnable);
 	}
 }
