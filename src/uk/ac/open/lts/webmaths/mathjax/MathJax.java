@@ -103,7 +103,7 @@ public class MathJax
 	private MathJaxNodeExecutable mjNode;
 
 	private final XPath xpath;
-	private final XPathExpression xpathAnnotation, xpathSvgDesc, xpathNormalizeSpace;
+	private final XPathExpression xpathAnnotation, xpathSvgDesc, xpathSvgTitle, xpathNormalizeSpace;
 
 	private ExecutorService threadPool;
 
@@ -125,6 +125,7 @@ public class MathJax
 		{
 			xpathAnnotation = InputTexEquation.getXPathExpression(xpath);
 			xpathSvgDesc = xpath.compile("/s:svg/s:desc");
+			xpathSvgTitle = xpath.compile("/s:svg/s:title");
 			xpathNormalizeSpace = xpath.compile("normalize-space(.)");
 		}
 		catch(XPathExpressionException e)
@@ -372,13 +373,25 @@ public class MathJax
 				correctedHeight = heightEx;
 				correctedWidth = widthEx;
 				correctedBaseline = -baselineEx;
-
-				// Write back to a file.
-				DOMImplementationLS domImplementation = (DOMImplementationLS)svgDom.getImplementation();
-				LSSerializer lsSerializer = domImplementation.createLSSerializer();
-				lsSerializer.getDomConfig().setParameter("xml-declaration", false);
-				svg = lsSerializer.writeToString(svgDom);
 			}
+
+			// I don't like the way the title is always set to 'Equation' (and it
+			// appears as a popup in Firefox) so we are going to remove it.
+			Node result = (Node)xpathSvgTitle.evaluate(svgDom, XPathConstants.NODE);
+			if(result == null)
+			{
+				throw new IllegalStateException("SVG does not include <title>");
+			}
+			result.getParentNode().removeChild(result);
+
+			// And remove the reference to it in the ARIA attribute.
+			svgDom.getDocumentElement().setAttribute("aria-labelledby", "MathJax-SVG-1-Desc");
+
+			// Write back to the serialized version.
+			DOMImplementationLS domImplementation = (DOMImplementationLS)svgDom.getImplementation();
+			LSSerializer lsSerializer = domImplementation.createLSSerializer();
+			lsSerializer.getDomConfig().setParameter("xml-declaration", false);
+			svg = lsSerializer.writeToString(svgDom);
 		}
 		catch(Exception e)
 		{

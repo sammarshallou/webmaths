@@ -156,7 +156,14 @@ public class TestMathJaxNodeExecutable
 
 		void makeSparesDue()
 		{
-			sparesSince = System.currentTimeMillis() - 100 * 60 * 1000;
+			for(int i = 0; i < lastSimultaneousUsed.length; i++)
+			{
+				lastSimultaneousUsed[i] = System.currentTimeMillis() - 100 * 60 * 1000;
+			}
+			synchronized(checker)
+			{
+				checker.notifyAll();
+			}
 		}
 	}
 

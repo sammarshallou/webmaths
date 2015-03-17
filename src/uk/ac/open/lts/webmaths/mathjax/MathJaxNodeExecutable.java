@@ -81,14 +81,18 @@ public class MathJaxNodeExecutable
 	 */
 	private LinkedList<Error> errors = new LinkedList<Error>();
 
-	/** Time at which we started having spare processes */
-	protected long sparesSince = 0L;
-	/** Min spare processes (since the time we started having spares) */
-	private int sparesMin = 0;
+	/** Time at which N+1 instances were last simultaneously used. */
+	protected long[] lastSimultaneousUsed;
+
+	/** Check whether to flush spares once a minute. */
+	private static long FLUSH_SPARES_CHECK_PERIOD = 60000L;
 	/** Flush spares after 2 minutes. */
 	private final static long FLUSH_SPARES_AFTER = 2 * 60 * 1000L;
 	/** Spin up a new instance after waiting 500ms. */
 	private final static long NEW_INSTANCE_AFTER = 500L;
+
+	/** Checker for flushing spares */
+	protected PeriodicChecker checker;
 
 	/**
 	 * Details about an equation that was processed recently.
@@ -359,12 +363,88 @@ public class MathJaxNodeExecutable
 	}
 
 	/**
+	 * Thread that runs periodically to see if we can close down spare Node instances.
+	 */
+	protected class PeriodicChecker extends Thread
+	{
+		private boolean close, closed;
+
+		/**
+		 * Starts the checker.
+		 */
+		public PeriodicChecker()
+		{
+			super("Node instance shutdown checker");
+			setPriority(Thread.MIN_PRIORITY);
+			start();
+		}
+
+		/**
+		 * Closes the checker.
+		 */
+		public void close()
+		{
+			synchronized(this)
+			{
+				close = true;
+				while(!closed)
+				{
+					try
+					{
+						wait();
+					}
+					catch(InterruptedException e)
+					{
+						return;
+					}
+				}
+			}
+
+		}
+
+		@Override
+		public void run()
+		{
+			try
+			{
+				while(true)
+				{
+					synchronized(this)
+					{
+						try
+						{
+							wait(FLUSH_SPARES_CHECK_PERIOD);
+						}
+						catch(InterruptedException e)
+						{
+						}
+						if(close)
+						{
+							return;
+						}
+					}
+
+					closeSpareInstances();
+				}
+			}
+			finally
+			{
+				synchronized(this)
+				{
+					closed = true;
+					notifyAll();
+				}
+			}
+		}
+	}
+
+	/**
 	 * Empty constructor for unit test.
 	 */
 	protected MathJaxNodeExecutable()
 	{
 		maxInstances = 4;
-		instances = new ArrayList<MathJaxNodeInstance>(maxInstances);
+		basicInit();
 	}
 
 	/**
@@ -403,7 +483,17 @@ public class MathJaxNodeExecutable
 			throw new IllegalArgumentException("Required parameter " + PARAM_MATHJAXNODEINSTANCES + " missing");
 		}
 
+		basicInit();
+	}
+
+	/**
+	 * Shared part of constructor.
+	 */
+	private void basicInit()
+	{
 		instances = new ArrayList<MathJaxNodeInstance>(maxInstances);
+		lastSimultaneousUsed = new long[maxInstances];
+		checker = new PeriodicChecker();
 	}
 
 	/**
@@ -531,48 +621,9 @@ public class MathJaxNodeExecutable
 				}
 			}
 
-			// If there are spares, see if that's been the case for some time.
-			if(!availableInstances.isEmpty())
-			{
-				int spares = availableInstances.size();
-				if(sparesSince == 0)
-				{
-					sparesSince = System.currentTimeMillis();
-					sparesMin = spares;
-				}
-				else
-				{
-					if(spares < sparesMin)
-					{
-						sparesMin = spares;
-					}
-					// Get rid of spare processes after a while.
-					if(System.currentTimeMillis() - sparesSince > FLUSH_SPARES_AFTER)
-					{
-						int flush = sparesMin;
-						List<MathJaxNodeInstance> forTheChop = new ArrayList<MathJaxNodeInstance>(maxInstances);
-						for(MathJaxNodeInstance spare : availableInstances)
-						{
-							forTheChop.add(spare);
-							flush--;
-							if(flush <= 0)
-							{
-								break;
-							}
-						}
-						for(MathJaxNodeInstance spare : forTheChop)
-						{
-							spare.closeInstance();
-							availableInstances.remove(spare);
-							instances.remove(spare);
-						}
-					}
-				}
-			}
-			else
-			{
-				sparesSince = 0L;
-			}
+			// Track how many instances are currently in use.
+			int currentlyUsed = instances.size() - availableInstances.size();
+			lastSimultaneousUsed[currentlyUsed - 1] = System.currentTimeMillis();
 		}
 
 		try
@@ -738,6 +789,54 @@ public class MathJaxNodeExecutable
 	}
 
 	/**
+	 * Called regularly to check for any spare Node instances that we can close.
+	 */
+	private void closeSpareInstances()
+	{
+		synchronized(instances)
+		{
+			// Don't close instances if there's only one left.
+			if(instances.size() <= 1)
+			{
+				return;
+			}
+
+			// Work out the max number simultaneously used at any point in the recent past.
+			int maxUsed = 1;
+			long now = System.currentTimeMillis();
+			for(int i = 1; i < lastSimultaneousUsed.length; i++)
+			{
+				if(lastSimultaneousUsed[i] > now - FLUSH_SPARES_AFTER)
+				{
+					maxUsed = i + 1;
+				}
+			}
+
+			// If it's less than currently active, remove some.
+			if(maxUsed < instances.size())
+			{
+				int flush = instances.size() - maxUsed;
+				List<MathJaxNodeInstance> forTheChop = new ArrayList<MathJaxNodeInstance>(maxInstances);
+				for(MathJaxNodeInstance spare : availableInstances)
+				{
+					forTheChop.add(spare);
+					flush--;
+					if(flush <= 0)
+					{
+						break;
+					}
+				}
+				for(MathJaxNodeInstance spare : forTheChop)
+				{
+					spare.closeInstance();
+					availableInstances.remove(spare);
+					instances.remove(spare);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Creates a new instance. (Included for unit testing.)
 	 * @return New instance
 	 * @throws IOException Any error
@@ -752,6 +851,8 @@ public class MathJaxNodeExecutable
 	 */
 	public void close()
 	{
+		checker.close();
+		checker = null;
 		synchronized(instances)
 		{
 			while(!instances.isEmpty())

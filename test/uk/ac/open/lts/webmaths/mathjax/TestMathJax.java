@@ -70,6 +70,7 @@ public class TestMathJax
 		+ "margin-bottom: 1px; margin-top: 1px;\" width=\"3ex\" height=\"2.667ex\" "
 		+ "viewBox=\"0 -943.5 1263.3 1161.4\" xmlns=\"http://www.w3.org/2000/svg\" "
 		+ "role=\"math\" aria-labelledby=\"MathJax-SVG-1-Title MathJax-SVG-1-Desc\">"
+		+ "<title id=\"MathJax-SVG-1-Title\">Equation</title>\n"
 		+ "</svg>";
 
 	/**
@@ -173,10 +174,24 @@ public class TestMathJax
 	{
 		InputEquation eq = new InputTexDisplayEquation("x");
 
-		// First test with 'don't mess' settings.
+		// First test with 'no change' settings. It still removes the title.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		String svg = mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, null);
-		assertEquals(SVG_X, svg);
+		assertTrue(svg.contains("<desc id=\"MathJax-SVG-1-Desc\">"));
+		assertFalse(svg.contains("<title"));
+		assertTrue(svg.contains("aria-labelledby=\"MathJax-SVG-1-Desc\""));
+
+		// If it already didn't have a title, this causes an error.
+		try
+		{
+			mockExecutable.expect(eq, svg, MATHML_X);
+			mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, null);
+			fail();
+		}
+		catch(IOException e)
+		{
+			assertTrue(e.getMessage().contains("does not include <title>"));
+		}
 
 		// Convert ex to pixels.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
@@ -190,14 +205,16 @@ public class TestMathJax
 		// Change the colour.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		svg = mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, "#ff0000");
-		assertTrue(svg.contains("<g stroke=\"#ff0000\" fill=\"#ff0000\""));
+		assertTrue(svg.contains("fill=\"#ff0000\""));
+		assertTrue(svg.contains("stroke=\"#ff0000\""));
 
 		// Try changing the colour when the colours are the wrong way around.
 		mockExecutable.expect(eq,
 			SVG_X.replace("stroke=\"black\" fill=\"black\"", "fill=\"black\" stroke=\"black\""),
 			MATHML_X);
 		svg = mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, "#ff0000");
-		assertTrue(svg.contains("<g stroke=\"#ff0000\" fill=\"#ff0000\""));
+		assertTrue(svg.contains("stroke=\"#ff0000\""));
+		assertTrue(svg.contains("fill=\"#ff0000\""));
 
 		// Fix the baseline (in ex). This is calculated by the location of 0 in
 		// the co-ordinate system. In this case the view box starts at -465.9
