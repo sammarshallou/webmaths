@@ -187,6 +187,11 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 				out.setMathml(mathJax.getMathml((InputTexEquation)eq));
 			}
 
+			if(types.contains(EPS))
+			{
+				out.setEps(mathJax.getEps(eq, exSize, rgb));
+			}
+
 			out.setOk(true);
 		}
 		catch(MathJaxException e)

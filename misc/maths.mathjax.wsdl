@@ -24,6 +24,7 @@
                 <xsd:enumeration value="SVG_PX"/>
                 <xsd:enumeration value="SVG_EX"/>
                 <xsd:enumeration value="PNG"/>
+                <xsd:enumeration value="EPS"/>
                 <xsd:enumeration value="TEXT"/>
                 <xsd:enumeration value="PNG_BASELINE"/>
                 <xsd:enumeration value="SVG_PX_BASELINE"/>
@@ -81,6 +82,10 @@
                             <element name="png" type="xsd:base64Binary" minOccurs="0">
                                 <annotation><documentation>Image data in PNG format. Service will
                                     return empty data if error.</documentation></annotation>
+                            </element>
+                            <element name="eps" type="xsd:base64Binary" minOccurs="0">
+                                <annotation><documentation>Image data in EPS
+                                    format.</documentation></annotation>
                             </element>
                             <element name="text" type="xsd:string" minOccurs="0">
                                 <annotation><documentation>Text equivalent,

@@ -79,7 +79,7 @@ public class WebMathsMjImage extends WebMathsService implements MathsImagePort
 		try
 		{
 			result.setEps(MathJax.get(context).getEps(
-				InputEquation.getFromMathml(params.getMathml())));
+				InputEquation.getFromMathml(params.getMathml()), 7.26667, null));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)

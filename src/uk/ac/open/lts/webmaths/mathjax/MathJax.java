@@ -655,11 +655,10 @@ public class MathJax
 	 * @throws MathJaxException If there's a MathJax error processing the equation
 	 * @throws IOException Any other problem
 	 */
-	public byte[] getEps(InputEquation eq)
+	public byte[] getEps(InputEquation eq, double ex, String rgb)
 		throws MathJaxException, IOException
 	{
-		double ex = 7.26667;
-		String svg = getSvg(eq, true, ex, null);
+		String svg = getSvg(eq, true, ex, rgb);
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		EPSTranscoder transcoder = new EPSTranscoder();
