@@ -21,7 +21,7 @@
 	<property name="temp.directory" value="/tmp"/>
 
 	<!-- Set location of MathJax.node (on server), will be placed into web.xml -->
-	<property name="mathjax.directory" value="/opt/mathjax-node"/>
+	<property name="mathjax.directory" value="/opt/mathjax_node"/>
 
 		<!-- URL of Tomcat application -->
   <property name="tomcat-url" value="http://localhost:8080/"/>
