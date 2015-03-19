@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Item TextType="BodyMatter" SchemaVersion="2.0" id="X-Supported-Tex-commands"
     Rendering="VLE2 shared (learn1)">
+    <meta name="equations" content="mathjax"/>
     <CourseCode>COMPUTING-GUIDE</CourseCode>
     <CourseTitle>COMPUTING-GUIDE</CourseTitle>
     <ItemID/>
-    <ItemTitle>Supported TeX commands</ItemTitle>
+    <ItemTitle>Supported TeX commands (MathJax pilot)</ItemTitle>
     <FrontMatter>
         <Imprint>
             <Standard>
@@ -35,7 +36,7 @@
         </Imprint>
         <Introduction>
             <Title/>
-            <Paragraph><i>Updated: March 2015.</i></Paragraph>
+            <Paragraph><i>Updated: June 2015 for the MathJax pilot.</i></Paragraph>
             <Paragraph>The equation processing system used in Open
                 University module websites supports two equation languages:
                 MathML (version 2) and TeX.</Paragraph>
@@ -610,10 +611,6 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cap</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\intersect</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \intersect</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\Cap</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Cap</TeX></InlineEquation></td>
                         </tr>
@@ -644,10 +641,6 @@
                         <tr>
                             <td class="TableLeft"><ComputerCode>\cup</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cup</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\union</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \union</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\Cup</ComputerCode></td>
@@ -950,10 +943,6 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sum</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\doublesum</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \doublesum</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\int</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \int</TeX></InlineEquation></td>
                         </tr>
@@ -1181,36 +1170,26 @@
                             <td class="TableLeft"><ComputerCode>\wp</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \wp</TeX></InlineEquation></td>
                         </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\degree</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \degree</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\R</ComputerCode> - <b>do not use</b>
-                                <footnote>This method of entering certain double-struck letters currently works
-                                 but is not supported in standard AMS LaTeX. Please use
-                                 <ComputerCode>\mathbb{R}</ComputerCode> instead.</footnote></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \R</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\Q</ComputerCode> - <b>do not use</b></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Q</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\N</ComputerCode> - <b>do not use</b></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \N</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\C</ComputerCode> - <b>do not use</b></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \C</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\Z</ComputerCode> - <b>do not use</b></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Z</TeX></InlineEquation></td>
-                        </tr>
                     </tbody>
                 </Table>
+                <StudyNote>
+                    <Heading>MathJax changes</Heading>
+                    <Paragraph>MathJax does not support the following symbol names/aliases,
+                        which were included in the previous version of this list:</Paragraph>
+                    <BulletedList>
+                        <ListItem><ComputerCode>\intersect</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\union</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\doublesum</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\degree</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\R</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\Q</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\N</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\C</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\Z</ComputerCode></ListItem>
+                    </BulletedList>
+                </StudyNote>
             </Section>
+
             <Section>
                 <Title><Number>1.3</Number> Relations</Title>
                 <Table class="type 2">
@@ -2131,6 +2110,7 @@
                     </tbody>
                 </Table>
             </Section>
+ 
             <Section>
                 <Title><Number>1.4</Number> Functions and words</Title>
                 <Table class="type 2">
@@ -2162,29 +2142,9 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\Arg</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Arg</TeX></InlineEquation></td>
-                            <td>Argument of a complex number</td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\Corr</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Corr</TeX></InlineEquation></td>
-                            <td>Correlation</td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\cos</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cos</TeX></InlineEquation></td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\cosec</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cosec</TeX></InlineEquation></td>
-                            <td>Reciprocal of the sine of an angle</td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\cosech</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \cosech</TeX></InlineEquation></td>
-                            <td>Hyperbolic cosec; the reciprocal of hyperbolic sine</td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\cosh</ComputerCode></td>
@@ -2200,11 +2160,6 @@
                             <td class="TableLeft"><ComputerCode>\coth</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \coth</TeX></InlineEquation></td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\Cov</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Cov</TeX></InlineEquation></td>
-                            <td>Covariance</td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\csc</ComputerCode></td>
@@ -2257,11 +2212,6 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\lcm</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lcm</TeX></InlineEquation></td>
-                            <td>Lowest common multiple</td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\lg</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \lg</TeX></InlineEquation></td>
                             <td></td>
@@ -2292,11 +2242,6 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\Log</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Log</TeX></InlineEquation></td>
-                            <td>Principle value of logarithm of a complex number</td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\max</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \max</TeX></InlineEquation></td>
                             <td></td>
@@ -2317,24 +2262,9 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\Res</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Res</TeX></InlineEquation></td>
-                            <td>In complex anaylsis, the residue of a contour integral</td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\rot</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \rot</TeX></InlineEquation></td>
-                            <td>Rotation about a point (in the plane) or axis (in higher dimensional space)</td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\sec</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sec</TeX></InlineEquation></td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\sech</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \sech</TeX></InlineEquation></td>
-                            <td>Hyperbolic secant, inverse of hyperbolic sine</td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\sin</ComputerCode></td>
@@ -2361,17 +2291,29 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tanh</TeX></InlineEquation></td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\tr</ComputerCode>*</td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tr</TeX></InlineEquation></td>
-                            <td>Trace of a square matrix</td>
-                        </tr>
                     </tbody>
                 </Table>
                 <Paragraph>
-                    Note: * indicates that the command is not a standard one from AMS LaTeX, but is a custom addition.
-                    The <ComputerUI>Meaning</ComputerUI> column has only been completed for recently-added commands.
+                    Note: The <ComputerUI>Meaning</ComputerUI> column has not yet been completed.
                 </Paragraph>
+                <StudyNote>
+                    <Heading>MathJax changes</Heading>
+                    <Paragraph>MathJax does not support the following commands,
+                        which were included in the previous version of this list:</Paragraph>
+                    <BulletedList>
+                        <ListItem><ComputerCode>\Arg</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\Corr</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\cosec</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\cosech</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\Cov</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\lcm</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\Log</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\Res</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\rot</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\sech</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\tr</ComputerCode></ListItem>
+                    </BulletedList>
+                </StudyNote>
             </Section>
             <Section>
                 <Title><Number>1.5</Number> Miscellaneous</Title>
@@ -2404,21 +2346,9 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \&amp; y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft">QED symbol<footnote>The AMS LaTeX QED symbol is a
-                                hollow rectangle. Many people prefer the <ComputerCode>\blacksquare</ComputerCode>
-                                command.</footnote></td>
-                            <td class="TableLeft"><ComputerCode>x \qedsymbol</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \qedsymbol</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft">Black square</td>
                             <td class="TableLeft"><ComputerCode>x \blacksquare</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \blacksquare</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft">Pound sign</td>
-                            <td class="TableLeft"><ComputerCode>\pounds 300</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \pounds 300</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft">Dollar sign</td>
@@ -2442,10 +2372,6 @@
                         <tr>
                             <td class="TableLeft"><ComputerCode>\vdots</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \vdots</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\hdots</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \hdots</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\ldots</ComputerCode></td>
@@ -2510,13 +2436,13 @@
                         </tr>
                         <tr>
                             <td class="TableLeft">Thick space</td>
-                            <td class="TableLeft"><ComputerCode>x \thickspace y</ComputerCode> or <ComputerCode>x \; y</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \thickspace y</TeX></InlineEquation> or <InlineEquation><TeX>\displaystyle x \; y</TeX></InlineEquation></td>
+                            <td class="TableLeft"><ComputerCode>x \; y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \; y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft">Medium space</td>
-                            <td class="TableLeft"><ComputerCode>x \medspace y</ComputerCode> or <ComputerCode>x \: y</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \medspace y</TeX></InlineEquation> or <InlineEquation><TeX>\displaystyle x \: y</TeX></InlineEquation></td>
+                            <td class="TableLeft"><ComputerCode>x \: y</ComputerCode></td>
+                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle x \: y</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft">Thin space</td>
@@ -2538,8 +2464,21 @@
                         </tr>
                     </tbody>
                 </Table>
+                <StudyNote>
+                    <Heading>MathJax changes</Heading>
+                    <Paragraph>MathJax does not support the following symbols,
+                        which were included in the previous version of this list:</Paragraph>
+                    <BulletedList>
+                        <ListItem><ComputerCode>\qedsymbol</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\pounds</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\hdots</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\thickspace</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\medspace</ComputerCode></ListItem>
+                    </BulletedList>
+                </StudyNote>
             </Section>
         </Session>
+
         <Session>
             <Title><Number>2</Number> TeX commands</Title>
             <Section>
@@ -2598,26 +2537,6 @@
                             <td class="TableLeft"><ComputerCode>\tfrac</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\tfrac{4}{x}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tfrac{4}{x}</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\dsum</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\dsum_{i=1}^x X_i</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dsum_{i=1}^x X_i</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\tsum</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\tsum_{i=1}^x X_i</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tsum_{i=1}^x X_i</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\dint</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\dint_{i=1}^x X_i</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \dint_{i=1}^x X_i</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\tint</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\tint_{i=1}^x X_i</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \tint_{i=1}^x X_i</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\sqrt</ComputerCode></td>
@@ -2813,14 +2732,22 @@
                             <td class="TableLeft"><ComputerCode>\not Q</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \not Q</TeX></InlineEquation></td>
                         </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\char</ComputerCode><footnote>Only character 93 is currently supported.</footnote></td>
-                            <td class="TableLeft"><Paragraph><ComputerCode>\char93</ComputerCode></Paragraph></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \char93</TeX></InlineEquation></td>
-                        </tr>
                     </tbody>
                 </Table>
+                <StudyNote>
+                    <Heading>MathJax changes</Heading>
+                    <Paragraph>MathJax does not support the following commands,
+                        which were included in the previous version of this list:</Paragraph>
+                    <BulletedList>
+                        <ListItem><ComputerCode>\dsum</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\tsum</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\dint</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\tint</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\char</ComputerCode></ListItem>
+                    </BulletedList>
+                </StudyNote>
             </Section>
+
             <Section>
                 <Title><Number>2.2</Number> Text and fonts</Title>
                 <Table class="type 2">
@@ -2942,19 +2869,9 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \text{frog}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\textnormal</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\textnormal{frog}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textnormal{frog}</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\textrm</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\textrm{frog}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textrm{frog}</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\textsl</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\textsl{frog}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \textsl{frog}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\textit</ComputerCode></td>
@@ -3005,11 +2922,6 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \boldsymbol \Gamma</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\bold</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\bold{XY}</ComputerCode>, <ComputerCode>\bold{1}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \bold{XY}</TeX></InlineEquation>, <InlineEquation><TeX>\displaystyle \bold{1}</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\Bbb</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\Bbb{X}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \Bbb{X}</TeX></InlineEquation></td>
@@ -3018,11 +2930,6 @@
                             <td class="TableLeft"><ComputerCode>\mathbb</ComputerCode></td>
                             <td class="TableLeft"><ComputerCode>\mathbb{X}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathbb{X}</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>\mathbbmss</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\mathbbmss{X}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathbbmss{X}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
                             <td class="TableLeft"><ComputerCode>\mathbf</ComputerCode></td>
@@ -3065,11 +2972,6 @@
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \mathtt{X}</TeX></InlineEquation></td>
                         </tr>
                         <tr>
-                            <td class="TableLeft"><ComputerCode>\EuScript</ComputerCode></td>
-                            <td class="TableLeft"><ComputerCode>\EuScript{X}</ComputerCode></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \EuScript{X}</TeX></InlineEquation></td>
-                        </tr>
-                        <tr>
                             <td class="TableLeft"><ComputerCode>\bf</ComputerCode>
                                 <footnote>The \bf and \rm commands have been
                                     <a href="http://www.tex.ac.uk/cgi-bin/texfaq2html?label=2letterfontcmd">deprecated since 1994</a>.</footnote></td>
@@ -3083,7 +2985,20 @@
                         </tr>
                     </tbody>
                 </Table>
+                <StudyNote>
+                    <Heading>MathJax changes</Heading>
+                    <Paragraph>MathJax does not support the following commands,
+                        which were included in the previous version of this list:</Paragraph>
+                    <BulletedList>
+                        <ListItem><ComputerCode>\textnormal</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\textsl</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\bold</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\mathbbmss</ComputerCode></ListItem>
+                        <ListItem><ComputerCode>\EuScript</ComputerCode></ListItem>
+                    </BulletedList>
+                </StudyNote>
             </Section>
+
             <Section>
                 <Title><Number>2.3</Number> Environments</Title>
                 <Table class="type 2">
@@ -3155,17 +3070,16 @@
                             <td class="TableLeft"><ComputerCode>\begin{align*} x &amp; =1 \\ Q_{\text{frog}} &amp; =2 \end{align*}</ComputerCode></td>
                             <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{align*} x &amp; =1 \\ Q_{\textrm{frog}}  &amp; =2 \end{align*}</TeX></InlineEquation></td>
                         </tr>
-                        <tr>
-                            <td class="TableLeft"><ComputerCode>displaymath</ComputerCode> - <b>do not use</b>
-                                <footnote>This environment doesn't really make sense as the equation is already
-                                within a suitable equation environment. To select display style, use
-                                <ComputerCode>\displaystyle</ComputerCode> instead.</footnote></td>
-                            <td class="TableLeft"><Paragraph><ComputerCode>\begin{displaymath} \frac{1}{x}</ComputerCode></Paragraph>
-                                <Paragraph><i>Note: Has no effect because equations created in collaborative tools use display style by default.</i></Paragraph></td>
-                            <td class="TableLeft"><InlineEquation><TeX>\displaystyle \begin{displaymath} \frac{1}{x}</TeX></InlineEquation></td>
-                        </tr>
                     </tbody>
                 </Table>
+                <StudyNote>
+                    <Heading>MathJax changes</Heading>
+                    <Paragraph>MathJax does not support the following commands,
+                        which were included in the previous version of this list:</Paragraph>
+                    <BulletedList>
+                        <ListItem><ComputerCode>\begin{displaymath}</ComputerCode></ListItem>
+                    </BulletedList>
+                </StudyNote>
             </Section>
         </Session>
     </Unit>
