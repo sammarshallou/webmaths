@@ -21,6 +21,7 @@ package uk.ac.open.lts.webmaths;
 import static uk.ac.open.lts.webmaths.StatusServlet.esc;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.nio.charset.Charset;
 
 import javax.servlet.ServletException;
@@ -53,8 +54,9 @@ public class CheckServlet extends HttpServlet
 		StringBuilder out = new StringBuilder();
 		out.append("<h2>MathML conversion</h2>");
 
+		String host = InetAddress.getLocalHost().getHostName();
 		String baseUrl = req.getRequestURL().toString().replaceFirst("check$", "").replaceFirst(
-			"(https?://)[^:/]+", "$1localhost");
+			"(https?://)[^:/]+", "$1" + host);
 		out.append("<p>Base url: " + baseUrl + "</p>");
 
 		// Convert TeX to MathML using service.

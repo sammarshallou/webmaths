@@ -43,6 +43,10 @@ public class MathJaxNodeExecutable
 	/** If true, fakes errors for most responses. */
 	private final static boolean FAKE_ERRORS = false;
 
+	/** Regex used for package version from json file */
+	private final static Pattern REGEX_PACKAGEVERSION = Pattern.compile(
+		"^\\s*\"version\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*$");
+
 	/** Maximum number of instances of MathJax.node to run at once. */
 	private int maxInstances = 4;
 
@@ -454,12 +458,7 @@ public class MathJaxNodeExecutable
 	public MathJaxNodeExecutable(ServletContext servletContext)
 	{
 		// Work out parameters for executable.
-		String folder = servletContext.getInitParameter(PARAM_MATHJAXNODEFOLDER);
-		if(folder == null)
-		{
-			throw new IllegalArgumentException("Servlet parameter "
-				+ PARAM_MATHJAXNODEFOLDER + " must be set");
-		}
+		String folder = getFolder(servletContext);
 
 		File executable = new File(servletContext.getRealPath("WEB-INF/ou-mathjax-batchprocessor"));
 		executable.setExecutable(true);
@@ -484,6 +483,58 @@ public class MathJaxNodeExecutable
 		}
 
 		basicInit();
+	}
+
+	/**
+	 * Gets the folder parameter locating MathJax.node.
+	 * @param servletContext Servlet context
+	 * @return Parameter value
+	 * @throws IllegalArgumentException If not set
+	 */
+	private static String getFolder(ServletContext servletContext)
+		throws IllegalArgumentException
+	{
+		String folder = servletContext.getInitParameter(PARAM_MATHJAXNODEFOLDER);
+		if(folder == null)
+		{
+			throw new IllegalArgumentException("Servlet parameter "
+				+ PARAM_MATHJAXNODEFOLDER + " must be set");
+		}
+		return folder;
+	}
+
+	/**
+	 * Gets the MathJax version by reading package.json.
+	 * @param servletContext Servlet context
+	 * @return MathJax version number
+	 * @throws IOException If any error finding it
+	 */
+	public static String getVersion(ServletContext servletContext) throws IOException
+	{
+		String version = null;
+		File packageJson = new File(getFolder(servletContext), "package.json");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+			new FileInputStream(packageJson), "UTF-8"));
+		while(true)
+		{
+			String line = reader.readLine();
+			if(line == null)
+			{
+				break;
+			}
+			Matcher m = REGEX_PACKAGEVERSION.matcher(line);
+			if(m.matches())
+			{
+				version = m.group(1);
+				break;
+			}
+		}
+		reader.close();
+		if(version == null)
+		{
+			throw new IOException("Unable to find version in package.json");
+		}
+		return version;
 	}
 
 	/**

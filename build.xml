@@ -35,6 +35,9 @@
 	<!-- Tomcat home folder -->
 	<property name="tomcat-home" location="C:/Program Files/Apache Software Foundation/Tomcat 7.0"/>
 	
+	<!-- Set to false after you have managed to deploy it to Tomcat -->
+	<property name="firstrun" value="true"/>
+
 	<target name="wsdlgen" description="Create generated source (gen folder) based on WSDL">
 		<delete dir="gen/uk/ac/open/lts/webmaths/image"/>
 		<delete dir="gen/uk/ac/open/lts/webmaths/english"/>
@@ -42,16 +45,16 @@
 		<delete dir="gen/uk/ac/open/lts/webmaths/mathjax"/>
 		<mkdir dir="gen"/>
 		<exec executable="${java.home}/../bin/wsimport">
-			<arg line="-keep -Xnocompile -s gen misc/maths.tex.wsdl -p uk.ac.open.lts.webmaths.tex"/>
+			<arg line="-keep -Xnocompile -s gen misc/maths.tex.wsdl -p uk.ac.open.lts.webmaths.tex -wsdllocation /wsdl/maths.tex.wsdl"/>
 		</exec>
 		<exec executable="${java.home}/../bin/wsimport">
-			<arg line="-keep -Xnocompile -s gen misc/maths.image.wsdl -p uk.ac.open.lts.webmaths.image"/>
+			<arg line="-keep -Xnocompile -s gen misc/maths.image.wsdl -p uk.ac.open.lts.webmaths.image -wsdllocation /wsdl/maths.image.wsdl"/>
 		</exec>
 		<exec executable="${java.home}/../bin/wsimport">
-			<arg line="-keep -Xnocompile -s gen misc/maths.english.wsdl -p uk.ac.open.lts.webmaths.english"/>
+			<arg line="-keep -Xnocompile -s gen misc/maths.english.wsdl -p uk.ac.open.lts.webmaths.english -wsdllocation /wsdl/maths.english.wsdl"/>
 		</exec>
 		<exec executable="${java.home}/../bin/wsimport">
-			<arg line="-keep -Xnocompile -s gen misc/maths.mathjax.wsdl -p uk.ac.open.lts.webmaths.mathjax"/>
+			<arg line="-keep -Xnocompile -s gen misc/maths.mathjax.wsdl -p uk.ac.open.lts.webmaths.mathjax -wsdllocation /wsdl/maths.mathjax.wsdl"/>
 		</exec>
 	</target>
 
@@ -92,6 +95,12 @@
 		  <fileset dir="src">
 		  	<exclude name="**/*.java" />
 		  </fileset>
+		</copy>
+		<mkdir dir="${build}/classes/wsdl"/>
+		<copy todir="${build}/classes/wsdl">
+			<fileset dir="misc">
+				<include name="*.wsdl"/>
+			</fileset>
 		</copy>
 	</target>
 
@@ -142,6 +151,10 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
+		<!-- 
+			There are two copies of the WSDL files. This one is for the sun-jaxws.xml
+			versions. The other copy in code is for the stubs to load.
+			--> 
 		<mkdir dir="${build}/WEB-INF/wsdl"/>
 	  <copy todir="${build}/WEB-INF/wsdl">
 	  	<fileset dir="misc">
@@ -179,12 +192,15 @@
 	<taskdef name="tomcatstop" classname="org.apache.catalina.ant.StopTask">
 		<classpath refid="catalina-ant-classpath"/>
 	</taskdef>
-	
-	<target name="tomcatdeploy" depends="war" description="Deploy to Tomcat server">
+
+	<target name="tomcatundeploy" unless="${firstrun}">
 		<tomcatstop url="${tomcat-url}/manager/text" username="${tomcat-username}" password="${tomcat-password}"
 			path="/webmaths"/>
 		<tomcatundeploy url="${tomcat-url}/manager/text" username="${tomcat-username}" password="${tomcat-password}"
 			path="/webmaths"/>
+	</target>
+
+	<target name="tomcatdeploy" depends="war, tomcatundeploy" description="Deploy to Tomcat server">
 		<tomcatdeploy url="${tomcat-url}/manager/text" username="${tomcat-username}" password="${tomcat-password}"
 			path="/webmaths" war="${war.location}/webmaths.war"/>
   </target>

@@ -19,6 +19,7 @@ Copyright 2015 The Open University
 package uk.ac.open.lts.webmaths;
 
 import java.io.*;
+import java.net.*;
 import java.nio.charset.Charset;
 import java.text.*;
 import java.util.*;
@@ -59,7 +60,16 @@ public class StatusServlet extends HttpServlet
 		Map<String, String> values = new HashMap<String, String>();
 
 		// Fill basic data.
-		values.put("SERVER", esc(getComputerName()));
+		values.put("SERVER", esc(getHostName()));
+		String mathJaxVersion = "(Unknown)";
+		try
+		{
+			mathJaxVersion = MathJaxNodeExecutable.getVersion(getServletContext());
+		}
+		catch(IOException e)
+		{
+		}
+		values.put("MATHJAXVERSION", esc(mathJaxVersion));
 		values.put("STARTEDAT", formatTime(started));
 
 		// Fill MathJax stats.
@@ -162,19 +172,16 @@ public class StatusServlet extends HttpServlet
 	/**
 	 * @return Computer name
 	 */
-	private static String getComputerName()
+	private static String getHostName()
 	{
-		String name = System.getenv("HOSTNAME");
-		if(name != null)
+		try
 		{
-			return name;
+			return InetAddress.getLocalHost().getHostName();
 		}
-		name = System.getenv("COMPUTERNAME");
-		if(name != null)
+		catch(UnknownHostException e)
 		{
-			return name;
+			throw new Error(e);
 		}
-		return "(Unknown)";
 	}
 
 	/**
