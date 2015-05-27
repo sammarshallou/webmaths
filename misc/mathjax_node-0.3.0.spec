@@ -4,14 +4,14 @@
 Summary: Server-side implementation of MathJax equation system
 Name: mathjax_node
 Version: 0.3.0
-Release: 1
+Release: 2
 License: Apache License
 Group: System Environment/Libraries
 Source: https://github.com/mathjax/MathJax-node/archive/master.tar.gz
 URL: https://github.com/mathjax/MathJax-node/
 Vendor: MathJax Consortium
 Packager: sam marshall
-Requires: nodejs
+Requires: nodejs, http-parser, libuv
 
 %description
 MathJax.node package.
