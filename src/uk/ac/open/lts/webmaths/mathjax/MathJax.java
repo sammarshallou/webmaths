@@ -662,9 +662,10 @@ public class MathJax
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		EPSTranscoder transcoder = new EPSTranscoder();
-		// This arbitrary size makes it appear with the same x height as text font.
+		// There's no logical reason for this size but by trial and error, we found
+		// that it matched the size of some PNGs.
 		transcoder.addTranscodingHint(EPSTranscoder.KEY_PIXEL_UNIT_TO_MILLIMETER,
-			new Float(0.30900239f));
+			new Float(0.247f));
 		try
 		{
 			transcoder.transcode(new TranscoderInput(new StringReader(svg)),
