@@ -9,7 +9,7 @@
 	<property name="build" location="${java.io.tmpdir}/build/webmaths" />
 
 	<!-- Version number -->
-	<property name="version" value="1.2"/>
+	<property name="version" value="3.1"/>
 
 	<!-- Set location you want to build the WEB-INF folder inside -->
 	<property name="webinf.location" location="${user.home}/Desktop"/>

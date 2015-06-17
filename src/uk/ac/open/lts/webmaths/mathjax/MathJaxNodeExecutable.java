@@ -50,11 +50,19 @@ public class MathJaxNodeExecutable
 	/** Maximum number of instances of MathJax.node to run at once. */
 	private int maxInstances = 4;
 
-	private String[] executableParams;
+	/** Path to executable script */
+	private String executablePath;
+
+	/** Folder path to MathJax.node */
+	private String mathJaxFolder;
 
 	/** Current instances. */
 	private ArrayList<MathJaxNodeInstance> instances;
+	/** Available instances (subset of Instances) */
 	private Set<MathJaxNodeInstance> availableInstances = new TreeSet<MathJaxNodeInstance>();
+
+	/** Time at which an instance was last created (so we don't create too fast) */
+	private long lastCreatedInstance;
 
 	/** Cache of recent conversion results. */
 	private Map<InputEquation, ConversionResults> cache =
@@ -92,8 +100,12 @@ public class MathJaxNodeExecutable
 	private static long FLUSH_SPARES_CHECK_PERIOD = 60000L;
 	/** Flush spares after 2 minutes. */
 	private final static long FLUSH_SPARES_AFTER = 2 * 60 * 1000L;
-	/** Spin up a new instance after waiting 500ms. */
-	private final static long NEW_INSTANCE_AFTER = 500L;
+	/** Spin up a new instance only once per 1000ms. */
+	private final static long INSTANCE_CREATION_DELAY = 1000L;
+	/** Time it will wait for an instance to become available (if one exists) */
+	private final static long INSTANCE_WAIT_TIME = 500L;
+	/** Arbitrary long time for waiting forever */
+	private final static long LONG_TIME = 100000L;
 
 	/** Checker for flushing spares */
 	protected PeriodicChecker checker;
@@ -462,12 +474,8 @@ public class MathJaxNodeExecutable
 
 		File executable = new File(servletContext.getRealPath("WEB-INF/ou-mathjax-batchprocessor"));
 		executable.setExecutable(true);
-		executableParams = new String[]
-		{
-			"node",
-			executable.getAbsolutePath(),
-			folder
-		};
+		executablePath = executable.getAbsolutePath();
+		mathJaxFolder = folder;
 
 		try
 		{
@@ -588,88 +596,101 @@ public class MathJaxNodeExecutable
 		}
 
 		MathJaxNodeInstance instance = null;
-		boolean instanceRemoved = false;
-		long waitedSince = 0;
+		long startedWaiting = System.currentTimeMillis();
 		synchronized(instances)
 		{
-			while(instance == null)
+			outer: while(instance == null)
 			{
-				// Find a free instance and also count spares.
+				// Find a free instance with the correct font.
 				for(MathJaxNodeInstance possible : availableInstances)
 				{
-					instance = possible;
-					availableInstances.remove(instance);
-					break;
-				}
-				if (instance != null)
-				{
-					break;
-				}
-
-				// If there was no free instance...
-				if(instances.size() >= maxInstances)
-				{
-					// Wait until one becomes available.
-					while(availableInstances.isEmpty() && instances.size() == maxInstances)
-					{
-						try
-						{
-							instances.wait();
-						}
-						catch(InterruptedException e)
-						{
-							throw new IOException("MathJax processing thread interrupted", e);
-						}
-					}
-				}
-				if(!availableInstances.isEmpty())
-				{
-					// Pick an instance.
-					for(MathJaxNodeInstance possible : availableInstances)
+					if(possible.getFont().equals(eq.getFont()))
 					{
 						instance = possible;
 						availableInstances.remove(instance);
+						break outer;
+					}
+				}
+
+				// Check if there are ANY instances with the correct font.
+				boolean some = false;
+				for(MathJaxNodeInstance possible : instances)
+				{
+					if(possible.getFont().equals(eq.getFont()))
+					{
+						some = true;
 						break;
 					}
 				}
-				if(instance != null)
+
+				// If there is already at least one instance dealing with this font,
+				// give it a little while before creating another.
+				if(some)
 				{
-					break;
+					long delay = (startedWaiting + INSTANCE_WAIT_TIME) - System.currentTimeMillis();
+					if (delay > 0)
+					{
+						// Wait up to the delay limit.
+						instancesWait(delay);
+
+						// After waiting, retry outer loop to see if one is available now.
+						continue outer;
+					}
 				}
 
-				// If we get here it must be because size < MAX_INSTANCES.
-				long now = System.currentTimeMillis();
-				if(instances.isEmpty() || (waitedSince != 0 && (now - waitedSince >= NEW_INSTANCE_AFTER)))
+				// Check if we've already created the maximum number.
+				if(instances.size() >= maxInstances)
 				{
-					// If we already waited or there aren't any instances, create an instance.
-					instance = createInstance();
-					instances.add(instance);
+					// We are already at max instances so can't create another one.
+					// Instead, grab another available instance.
+					MathJaxNodeInstance available = null;
+					for(MathJaxNodeInstance possible : availableInstances)
+					{
+						available = possible;
+						break;
+					}
+					if(available != null)
+					{
+						// Close this instance.
+						available.closeInstance();
+						availableInstances.remove(available);
+						instances.remove(available);
+
+						// Replace it with a new one with this font.
+						instance = createInstance(eq.getFont());
+						instances.add(instance);
+						break;
+					}
+
+					// Wait indefinitely until something becomes available.
+					instancesWait(LONG_TIME);
+
+					// Retry outer loop so we can recheck if there are any of our
+					// font after waiting. Otherwise we could potentially be doing this
+					// code branch (where there are supposed to be none of that font)
+					// twice at once.
+					continue;
 				}
-				else
+
+				// We are not at max instances. Create another instance of the right
+				// font, provided we aren't creating instances too quickly.
+				long delay = (lastCreatedInstance + INSTANCE_CREATION_DELAY) - System.currentTimeMillis();
+				if (delay > 0)
 				{
-					// Wait for a limited time in case an existing instance becomes free.
-					try
-					{
-						int sizeBefore = instances.size();
-						if(waitedSince == 0)
-						{
-							waitedSince = now;
-						}
-						instances.wait(NEW_INSTANCE_AFTER - (now - waitedSince));
-						// Only count it as having waited if a new instance wasn't created
-						// for somebody else in the interrim. (This prevents the sequence
-						// like, you try to run 4 at once, first one takes 500ms, it
-						// then creates 3 new instances all at the same time.)
-						if(instances.size() > sizeBefore)
-						{
-							waitedSince = System.currentTimeMillis();
-						}
-					}
-					catch(InterruptedException e)
-					{
-						throw new IOException("MathJax processing thread interrupted", e);
-					}
+					// Wait up to the delay limit.
+					instancesWait(delay);
+
+					// After waiting, retry outer loop in case something else created an
+					// instance etc.
+					continue outer;
 				}
+
+				// If we get here then we haven't added an instance lately, so add one
+				// now.
+				lastCreatedInstance = System.currentTimeMillis();
+				instance = createInstance(eq.getFont());
+				instances.add(instance);
+				break;
 			}
 
 			// Track how many instances are currently in use.
@@ -677,6 +698,7 @@ public class MathJaxNodeExecutable
 			lastSimultaneousUsed[currentlyUsed - 1] = System.currentTimeMillis();
 		}
 
+		boolean instanceRemoved = false;
 		try
 		{
 			long start = System.currentTimeMillis();
@@ -840,6 +862,23 @@ public class MathJaxNodeExecutable
 	}
 
 	/**
+	 * Waits on the instances object. Must be called inside synchronization.
+	 * @param delay Time to wait
+	 * @throws IOException If waiting is interrupted
+	 */
+	private void instancesWait(long delay) throws IOException
+	{
+		try
+		{
+			instances.wait(delay);
+		}
+		catch(InterruptedException e)
+		{
+			throw new IOException("MathJax processing thread interrupted", e);
+		}
+	}
+
+	/**
 	 * Called regularly to check for any spare Node instances that we can close.
 	 */
 	private void closeSpareInstances()
@@ -868,13 +907,30 @@ public class MathJaxNodeExecutable
 			{
 				int flush = instances.size() - maxUsed;
 				List<MathJaxNodeInstance> forTheChop = new ArrayList<MathJaxNodeInstance>(maxInstances);
+				// First remove anything using a non-default font.
 				for(MathJaxNodeInstance spare : availableInstances)
 				{
-					forTheChop.add(spare);
-					flush--;
-					if(flush <= 0)
+					if(!spare.getFont().equals(InputEquation.DEFAULT_FONT))
 					{
-						break;
+						forTheChop.add(spare);
+						flush--;
+						if(flush <= 0)
+						{
+							break;
+						}
+					}
+				}
+				// Now remove default-font instances too.
+				if(flush > 0)
+				{
+					for(MathJaxNodeInstance spare : availableInstances)
+					{
+						forTheChop.add(spare);
+						flush--;
+						if(flush <= 0)
+						{
+							break;
+						}
 					}
 				}
 				for(MathJaxNodeInstance spare : forTheChop)
@@ -889,12 +945,13 @@ public class MathJaxNodeExecutable
 
 	/**
 	 * Creates a new instance. (Included for unit testing.)
+	 * @param font Font to use
 	 * @return New instance
 	 * @throws IOException Any error
 	 */
-	protected MathJaxNodeInstance createInstance() throws IOException
+	protected MathJaxNodeInstance createInstance(String font) throws IOException
 	{
-		return new MathJaxNodeInstance(executableParams, this);
+		return new MathJaxNodeInstance(executablePath, mathJaxFolder, font, this);
 	}
 
 	/**

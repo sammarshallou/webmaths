@@ -71,6 +71,8 @@ public class StatusServlet extends HttpServlet
 		}
 		values.put("MATHJAXVERSION", esc(mathJaxVersion));
 		values.put("STARTEDAT", formatTime(started));
+		File versionFile = new File(getServletContext().getRealPath("WEB-INF/version.txt"));
+		values.put("VERSION", loadFile(versionFile).trim());
 
 		// Fill MathJax stats.
 		MathJax mj = MathJax.get(getServletContext());
@@ -202,27 +204,49 @@ public class StatusServlet extends HttpServlet
 	 */
 	private String loadTemplate(String filename) throws IllegalArgumentException
 	{
-		char[] buffer = new char[65536];
-		StringWriter writer = new StringWriter();
 		try
 		{
-			InputStreamReader reader = new InputStreamReader(
-				getClass().getResourceAsStream(filename), Charset.forName("UTF-8"));
-			while(true)
-			{
-				int read = reader.read(buffer);
-				if(read == -1)
-				{
-					break;
-				}
-				writer.write(buffer, 0, read);
-			}
-			reader.close();
+			return loadFromReader(new InputStreamReader(
+				getClass().getResourceAsStream(filename), Charset.forName("UTF-8")));
 		}
 		catch(IOException e)
 		{
 			throw new IllegalArgumentException("Failed to read template " + filename);
 		}
+	}
+
+	/**
+	 * Reads a string from a Reader character stream.
+	 * @param reader Input stream
+	 * @return String
+	 * @throws IOException Any error
+	 */
+	private String loadFromReader(Reader reader) throws IOException
+	{
+		char[] buffer = new char[65536];
+		StringWriter writer = new StringWriter();
+		while(true)
+		{
+			int read = reader.read(buffer);
+			if(read == -1)
+			{
+				break;
+			}
+			writer.write(buffer, 0, read);
+		}
+		reader.close();
 		return writer.toString();
+	}
+
+	/**
+	 * Reads a string from a file.
+	 * @param path Path
+	 * @return String
+	 * @throws IOException Error loading
+	 */
+	private String loadFile(File path) throws IOException
+	{
+		return loadFromReader(new InputStreamReader(
+			new FileInputStream(path), Charset.forName("UTF-8")));
 	}
 }

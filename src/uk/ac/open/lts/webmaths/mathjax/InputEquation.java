@@ -24,15 +24,32 @@ package uk.ac.open.lts.webmaths.mathjax;
  */
 public abstract class InputEquation
 {
-	private String content;
+	/** Default font used for equations */
+	public final static String DEFAULT_FONT = "TeX";
+
+	private String content, font;
 
 	/**
 	 * Constructs with content.
 	 * @param content Content
+	 * @param font Font or null for default
 	 */
-	protected InputEquation(String content)
+	protected InputEquation(String content, String font)
 	{
 		this.content = content;
+		if (font == null)
+		{
+			font = DEFAULT_FONT;
+		}
+		this.font = font;
+	}
+
+	public boolean isFontValid()
+	{
+		// Font list from http://docs.mathjax.org/en/latest/options/SVG.html#configure-svg
+		return font.equals("TeX") || font.equals("STIX-Web") || font.equals("Asana-Math") ||
+			font.equals("Neo-Euler") || font.equals("Gyre-Pagella") || font.equals("Gyre-Termes") ||
+			font.equals("Latin-Modern");
 	}
 
 	/**
@@ -50,10 +67,18 @@ public abstract class InputEquation
 		return content;
 	}
 
+	/**
+	 * @return Font name (default is "TeX")
+	 */
+	public String getFont()
+	{
+		return font;
+	}
+
 	@Override
 	public int hashCode()
 	{
-		return (getFormat() + "\n" + content).hashCode();
+		return (getFormat() + "\n" + content + "\n" + font).hashCode();
 	}
 
 	@Override
@@ -78,16 +103,17 @@ public abstract class InputEquation
 	 * actually include a TeX alternative, then a TeX equation will be created
 	 * instead of a MathML one.
 	 * @param mathml MathML string
+	 * @param font Font or null for default
 	 * @return Equation
 	 */
-	public static InputEquation getFromMathml(String mathml)
+	public static InputEquation getFromMathml(String mathml, String font)
 	{
-		InputTexEquation eq = InputTexEquation.getFromMathml(mathml);
+		InputTexEquation eq = InputTexEquation.getFromMathml(mathml, font);
 		if(eq != null)
 		{
 			return eq;
 		}
-		return new InputMathmlEquation(mathml);
+		return new InputMathmlEquation(mathml, font);
 	}
 
 	/**
@@ -99,17 +125,17 @@ public abstract class InputEquation
 	{
 		if(eq.getMathml() != null)
 		{
-			return InputMathmlEquation.getFromMathml(eq.getMathml());
+			return InputMathmlEquation.getFromMathml(eq.getMathml(), eq.getFont());
 		}
 		else
 		{
 			if(eq.isDisplay())
 			{
-				return new InputTexDisplayEquation(eq.getTex());
+				return new InputTexDisplayEquation(eq.getTex(), eq.getFont());
 			}
 			else
 			{
-				return new InputTexInlineEquation(eq.getTex());
+				return new InputTexInlineEquation(eq.getTex(), eq.getFont());
 			}
 		}
 	}

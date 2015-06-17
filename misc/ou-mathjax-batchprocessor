@@ -6,11 +6,14 @@ var fs = require('fs');
 // MathJax folder from command line.
 var mj = require(process.argv[2] + "/lib/mj-single.js");
 
+// Font from command line.
+var equationfont = process.argv[3];
+
 // Set up MathJax.
 mj.config({
   MathJax: {
     SVG: {
-      font: 'TeX'
+      font: equationfont
     },
     menuSettings: {
       semantics: true

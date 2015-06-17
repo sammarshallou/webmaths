@@ -35,10 +35,11 @@ public abstract class InputTexEquation extends InputEquation
 
 	/**
 	 * @param content TeX string
+	 * @param font Font or null for default
 	 */
-	protected InputTexEquation(String content)
+	protected InputTexEquation(String content, String font)
 	{
-		super(content);
+		super(content, font);
 	}
 
 	/**
@@ -58,9 +59,11 @@ public abstract class InputTexEquation extends InputEquation
 	 * Gets a TeX equation from parsed MathML.
 	 * @param doc MathML document
 	 * @param xpathAnnotation XPath expression from {@link #getXPathExpression()}
+	 * @param font Font or null for default
 	 * @return TeX equation or null if none included
 	 */
-	public static InputTexEquation getFromMathml(Document doc, XPathExpression xpathAnnotation)
+	public static InputTexEquation getFromMathml(Document doc,
+		XPathExpression xpathAnnotation, String font)
 	{
 		try
 		{
@@ -74,7 +77,7 @@ public abstract class InputTexEquation extends InputEquation
 				return null;
 			}
 			boolean display = "block".equals(doc.getDocumentElement().getAttribute("display"));
-			return display ? new InputTexDisplayEquation(tex) : new InputTexInlineEquation(tex);
+			return display ? new InputTexDisplayEquation(tex, font) : new InputTexInlineEquation(tex, font);
 		}
 		catch(XPathExpressionException e)
 		{
@@ -85,16 +88,17 @@ public abstract class InputTexEquation extends InputEquation
 	/**
 	 * Gets a TeX equation from MathML as a string.
 	 * @param mathml MathML string
+	 * @param font Font or null for default
 	 * @return TeX equation or null if none included
 	 */
-	public static InputTexEquation getFromMathml(String mathml)
+	public static InputTexEquation getFromMathml(String mathml, String font)
 	{
 		Matcher m = REGEX_MATHML_TEXANNOTATION.matcher(mathml);
 		if(m.find())
 		{
 			String tex = m.group(2).trim();
-			return m.group(1) != null ? new InputTexDisplayEquation(tex) :
-				new InputTexInlineEquation(tex);
+			return m.group(1) != null ? new InputTexDisplayEquation(tex, font) :
+				new InputTexInlineEquation(tex, font);
 		}
 		else
 		{

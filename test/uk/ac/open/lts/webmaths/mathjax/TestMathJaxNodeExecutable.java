@@ -50,10 +50,22 @@ public class TestMathJaxNodeExecutable
 		StringBuilder out = new StringBuilder();
 		LinkedList<String> lines = new LinkedList<String>();
 		String stderr = null;
+		String hackedFont = null;
 
 		protected MathJaxNodeInstanceMock(long started)
 		{
-			super(started);
+			super(started, InputEquation.DEFAULT_FONT);
+		}
+
+		public void hackFont(String font)
+		{
+			hackedFont = font;
+		}
+
+		@Override
+		public String getFont()
+		{
+			return hackedFont != null ? hackedFont : super.getFont();
 		}
 
 		@Override
@@ -140,13 +152,15 @@ public class TestMathJaxNodeExecutable
 	 */
 	private class MathJaxNodeExecutableTester extends MathJaxNodeExecutable
 	{
-		private LinkedList<MathJaxNodeInstance> instances = new LinkedList<MathJaxNodeInstance>();
+		private LinkedList<MathJaxNodeInstanceMock> instances = new LinkedList<MathJaxNodeInstanceMock>();
 
 		@Override
-		protected synchronized MathJaxNodeInstance createInstance()
+		protected synchronized MathJaxNodeInstance createInstance(String font)
 		{
 			assertTrue(!instances.isEmpty());
-			return instances.removeFirst();
+			MathJaxNodeInstanceMock instance = instances.removeFirst();
+			instance.hackFont(font);
+			return instance;
 		}
 
 		synchronized void addInstance(MathJaxNodeInstanceMock instance)
@@ -184,7 +198,7 @@ public class TestMathJaxNodeExecutable
 		// Mock up result that would come from real executable.
 		instance.addLines(RESULT_SUCCESS);
 		ConversionResults results = executable.convertEquation(
-			new InputTexDisplayEquation("x"));
+			new InputTexDisplayEquation("x", null));
 		assertEquals(
 			"*sendLine:TeX\n"
 			+ "*sendLine:x\n"
@@ -195,7 +209,7 @@ public class TestMathJaxNodeExecutable
 
 		// Check that repeats use the cache (nothing required in instance).
 		results = executable.convertEquation(
-			new InputTexDisplayEquation("x"));
+			new InputTexDisplayEquation("x", null));
 		assertEquals(TestMathJax.MATHML_X, results.getMathml());
 		assertEquals(TestMathJax.SVG_X, results.getSvg());
 	}
@@ -218,7 +232,7 @@ public class TestMathJaxNodeExecutable
 		try
 		{
 			executable.convertEquation(
-				new InputTexDisplayEquation("x"));
+				new InputTexDisplayEquation("x", null));
 			fail();
 		}
 		catch(MathJaxException e)
@@ -238,7 +252,7 @@ public class TestMathJaxNodeExecutable
 
 		try
 		{
-			executable.convertEquation(new InputTexDisplayEquation("x"));
+			executable.convertEquation(new InputTexDisplayEquation("x", null));
 			fail();
 		}
 		catch(IOException e)
@@ -259,7 +273,7 @@ public class TestMathJaxNodeExecutable
 		MathJaxNodeInstanceMock instance2 = new MathJaxNodeInstanceMock(2);
 		executable.addInstance(instance2);
 		instance2.addLines(RESULT_SUCCESS);
-		executable.convertEquation(new InputTexDisplayEquation("x"));
+		executable.convertEquation(new InputTexDisplayEquation("x", null));
 		assertEquals(
 			"*sendLine:TeX\n"
 			+ "*sendLine:x\n"
@@ -297,9 +311,9 @@ public class TestMathJaxNodeExecutable
 				try
 				{
 					// Convert 2 equations with 100ms gap.
-					executable.convertEquation(new InputTexDisplayEquation("a" + suffix.getFirst()));
+					executable.convertEquation(new InputTexDisplayEquation("a" + suffix.getFirst(), null));
 					Thread.sleep(100);
-					executable.convertEquation(new InputTexDisplayEquation("c" + suffix.getFirst()));
+					executable.convertEquation(new InputTexDisplayEquation("c" + suffix.getFirst(), null));
 					synchronized(list)
 					{
 						list.add(true);
@@ -325,7 +339,7 @@ public class TestMathJaxNodeExecutable
 				{
 					// Convert 1 equation after 100ms.
 					Thread.sleep(100);
-					executable.convertEquation(new InputTexDisplayEquation("b" + suffix.getFirst()));
+					executable.convertEquation(new InputTexDisplayEquation("b" + suffix.getFirst(), null));
 					synchronized(list)
 					{
 						list.add(true);
@@ -427,7 +441,7 @@ public class TestMathJaxNodeExecutable
 		// single equation uses the other one.
 		executable.makeSparesDue();
 		instance2.addLines(RESULT_SUCCESS);
-		executable.convertEquation(new InputTexDisplayEquation("d"));
+		executable.convertEquation(new InputTexDisplayEquation("d", null));
 		assertEquals("*closeInstance\n", instance1.getActions());
 		assertEquals(
 			"*sendLine:TeX\n"
@@ -436,5 +450,134 @@ public class TestMathJaxNodeExecutable
 			+ "*flush\n", instance2.getActions());
 	}
 
+	@Test
+	public void testMultiThreadedFonts() throws Exception
+	{
+		// Try similar to the above but with different fonts so that it has to create
+		// 2 even though they're quite quick.
+		// Create first instance with 200ms delays.
+		MathJaxNodeInstanceMock instance1 = new MathJaxNodeInstanceMock(1);
+		executable.addInstance(instance1);
+		instance1.addLine("delay");
+		instance1.addLines(RESULT_SUCCESS);
+		instance1.addLine("delay");
+		instance1.addLines(RESULT_SUCCESS);
+
+		// And second instance.
+		MathJaxNodeInstanceMock instance2 = new MathJaxNodeInstanceMock(2);
+		executable.addInstance(instance2);
+		instance2.addLine("delay");
+		instance2.addLines(RESULT_SUCCESS);
+
+		// Spin up a couple of threads.
+		final LinkedList<Boolean> list = new LinkedList<Boolean>();
+		final LinkedList<String> suffix = new LinkedList<String>();
+		suffix.add("1");
+
+		Runnable task1 = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					// Convert 2 equations with 100ms gap.
+					executable.convertEquation(new InputTexDisplayEquation(
+						"a" + suffix.getFirst(), "STIX-Web"));
+					Thread.sleep(100);
+					executable.convertEquation(new InputTexDisplayEquation(
+						"c" + suffix.getFirst(), "STIX-Web"));
+					synchronized(list)
+					{
+						list.add(true);
+						list.notifyAll();
+					}
+				}
+				catch(Exception e)
+				{
+					synchronized(list)
+					{
+						list.add(false);
+						list.notifyAll();
+					}
+				}
+			}
+		};
+		Runnable task2 = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					// Convert 1 equation after 100ms.
+					Thread.sleep(100);
+					executable.convertEquation(new InputTexDisplayEquation(
+						"b" + suffix.getFirst(), null));
+					synchronized(list)
+					{
+						list.add(true);
+						list.notifyAll();
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					synchronized(list)
+					{
+						list.add(false);
+						list.notifyAll();
+					}
+				}
+			}
+		};
+		new Thread(task1, "Task1-1").start();
+		new Thread(task2, "Task2-1").start();
+
+		synchronized(list)
+		{
+			while(list.size() < 2)
+			{
+				list.wait();
+			}
+		}
+
+		// Check all succeeded.
+		assertArrayEquals(new Boolean[] { true, true }, list.toArray(new Boolean[2]));
+
+		// Check the instances have been set up with the right fonts.
+		assertEquals("STIX-Web", instance1.getFont());
+		assertEquals("TeX", instance2.getFont());
+
+		// Check instance 1 includes requests for a and c.
+		assertEquals(
+			"*sendLine:TeX\n"
+			+ "*sendLine:a1\n"
+			+ "*sendLine:\n"
+			+ "*flush\n"
+			+ "*sendLine:TeX\n"
+			+ "*sendLine:c1\n"
+			+ "*sendLine:\n"
+			+ "*flush\n", instance1.getActions());
+
+		// Check instance 2 has done b.
+		assertEquals(
+			"*sendLine:TeX\n"
+			+ "*sendLine:b1\n"
+			+ "*sendLine:\n"
+			+ "*flush\n", instance2.getActions());
+
+		// Also check that the one with default font is left when flushing spares,
+		// even though it's not oldest.
+		executable.makeSparesDue();
+		instance2.addLines(RESULT_SUCCESS);
+		executable.convertEquation(new InputTexDisplayEquation("d", null));
+		assertEquals("*closeInstance\n", instance1.getActions());
+		assertEquals(
+			"*sendLine:TeX\n"
+			+ "*sendLine:d\n"
+			+ "*sendLine:\n"
+			+ "*flush\n", instance2.getActions());
+	}
 
 }

@@ -25,10 +25,11 @@ public class InputTexDisplayEquation extends InputTexEquation
 {
 	/**
 	 * @param content TeX string
+	 * @param font Font or null for default
 	 */
-	public InputTexDisplayEquation(String content)
+	public InputTexDisplayEquation(String content, String font)
 	{
-		super(content);
+		super(content, font);
 	}
 
 	@Override

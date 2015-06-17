@@ -47,8 +47,8 @@ public class WebMathsMjTex extends WebMathsService implements MathsTexPort
 		try
 		{
 			result.setMathml(MathJax.get(context).getMathml(
-				params.isDisplay() ? new InputTexDisplayEquation(params.getTex()) :
-					new InputTexInlineEquation(params.getTex())));
+				params.isDisplay() ? new InputTexDisplayEquation(params.getTex(), null) :
+					new InputTexInlineEquation(params.getTex(), null)));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)

@@ -30,7 +30,7 @@ public class TestInputEquation
 	public void testGetFromMathmlNotTex() throws IOException
 	{
 		String empty = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"></math>";
-		InputEquation eq = InputEquation.getFromMathml(empty);
+		InputEquation eq = InputEquation.getFromMathml(empty, null);
 		assertTrue(eq instanceof InputMathmlEquation);
 		assertEquals(empty, eq.getContent());
 	}
@@ -42,7 +42,7 @@ public class TestInputEquation
 			"<math xmlns=\"http://www.w3.org/1998/Math/MathML\">\n" +
 			"<semantics><mi>x</mi><annotation encoding=\"application/x-tex\">\n" +
 			"x\n</annotation></semantics>\n" +
-			"</math>");
+			"</math>", null);
 		assertTrue(eq instanceof InputTexInlineEquation);
 		assertEquals("x", eq.getContent());
 	}

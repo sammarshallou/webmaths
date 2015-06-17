@@ -46,7 +46,7 @@ public class WebMathsMjEnglish extends WebMathsService implements MathsEnglishPo
 		try
 		{
 			result.setEnglish(MathJax.get(context).getEnglish(
-				new InputMathmlEquation(params.getMathml())));
+				new InputMathmlEquation(params.getMathml(), null)));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)

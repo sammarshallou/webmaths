@@ -17,31 +17,56 @@ class MathJaxNodeInstance implements Comparable<MathJaxNodeInstance>
 	private OutputStream stdin;
 	private Process process;
 	private MathJaxNodeExecutable parent;
+	private String font;
 
 	private final static Logger LOGGER = Logger.getLogger(MathJaxNodeInstance.class.getName());
 
 	/**
 	 * Constructor for unit testing only (does nothing).
 	 * @param started Time started
+	 * @param font Font
 	 */
-	protected MathJaxNodeInstance(long started)
+	protected MathJaxNodeInstance(long started, String font)
 	{
 		this.started = started;
+		this.font = font;
 	}
 
-	MathJaxNodeInstance(String[] executableParams, MathJaxNodeExecutable parent) throws IOException
+	/**
+	 * @param executablePath Path to executable script
+	 * @param mathJaxFolder Path to MathJax folder
+	 * @param font Font to use
+	 * @param parent Parent object
+	 * @throws IOException Any error
+	 */
+	MathJaxNodeInstance(String executablePath, String mathJaxFolder, String font,
+		MathJaxNodeExecutable parent) throws IOException
 	{
 		started = System.currentTimeMillis();
+		String[] executableParams = new String[]
+		{
+			"node",
+			executablePath,
+			mathJaxFolder,
+			font
+		};
 		process = Runtime.getRuntime().exec(executableParams);
 		stdout = new TimeoutReader(process.getInputStream());
 		stdin = process.getOutputStream();
+		this.font = font;
 		this.parent = parent;
-		LOGGER.log(Level.WARNING, "Opened: " + this);
+	}
+
+	/**
+	 * @return The font being used by this instance
+	 */
+	public String getFont()
+	{
+		return font;
 	}
 
 	synchronized void closeInstance()
 	{
-		LOGGER.log(Level.WARNING, "Closing: " + this, new Exception("here"));
 		checkNotClosed();
 		stdout.requestExit();
 		process.destroy();

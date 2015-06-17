@@ -50,7 +50,7 @@ public class WebMathsMjImage extends WebMathsService implements MathsImagePort
 		try
 		{
 			MathJax mathJax = MathJax.get(context);
-			String svg = mathJax.getSvg(InputEquation.getFromMathml(params.getMathml()),
+			String svg = mathJax.getSvg(InputEquation.getFromMathml(params.getMathml(), null),
 				true, params.getSize() * MathJax.DEFAULT_EX_SIZE, params.getRgb());
 			result.setImage(mathJax.getPngFromSvg(svg));
 			result.setBaseline(BigInteger.valueOf(Math.round(mathJax.getPxBaselineFromSvg(svg))));
@@ -79,7 +79,7 @@ public class WebMathsMjImage extends WebMathsService implements MathsImagePort
 		try
 		{
 			result.setEps(MathJax.get(context).getEps(
-				InputEquation.getFromMathml(params.getMathml()), 7.26667, null));
+				InputEquation.getFromMathml(params.getMathml(), null), 7.26667, null));
 			result.setOk(true);
 		}
 		catch(MathJaxException e)

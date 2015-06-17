@@ -25,10 +25,11 @@ public class InputMathmlEquation extends InputEquation
 {
 	/**
 	 * @param content MathML as string
+	 * @param font Font or null for default
 	 */
-	public InputMathmlEquation(String content)
+	public InputMathmlEquation(String content, String font)
 	{
-		super(content);
+		super(content, font);
 	}
 
 	/**

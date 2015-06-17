@@ -146,8 +146,7 @@ public class TestMathJax
 		}
 
 		@Override
-		protected MathJaxNodeExecutable createExecutable(
-			ServletContext servletContext)
+		protected MathJaxNodeExecutable createExecutable(ServletContext servletContext)
 		{
 			return mockExecutable;
 		}
@@ -172,7 +171,7 @@ public class TestMathJax
 	@Test
 	public void testGetSvg() throws Exception
 	{
-		InputEquation eq = new InputTexDisplayEquation("x");
+		InputEquation eq = new InputTexDisplayEquation("x", null);
 
 		// First test with 'no change' settings. It still removes the title.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
@@ -283,7 +282,7 @@ public class TestMathJax
 		}
 
 		// Convert to pixels.
-		InputEquation eq = new InputTexDisplayEquation("x");
+		InputEquation eq = new InputTexDisplayEquation("x", null);
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		String svg = mathJax.getSvg(eq, true, 10.0, null);
 
@@ -319,23 +318,23 @@ public class TestMathJax
 	public void testGetEnglish() throws Exception
 	{
 		// Try basic case with TeX equation.
-		InputEquation eq = new InputTexDisplayEquation("x");
+		InputEquation eq = new InputTexDisplayEquation("x", null);
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		assertEquals("x", mathJax.getEnglish(eq));
 
 		// Try with MathML equation (does not need to use the executable).
-		eq = new InputMathmlEquation(MATHML_X);
+		eq = new InputMathmlEquation(MATHML_X, null);
 		assertEquals("x", mathJax.getEnglish(eq));
 
 		// MathML equation without alt text but with TeX (will use executable again).
 		String mathmlWithoutAlt = MATHML_X.replaceFirst("alttext=\"[^\"]+\"", "");
-		eq = new InputMathmlEquation(mathmlWithoutAlt);
-		mockExecutable.expect(new InputTexDisplayEquation("x"), SVG_X, MATHML_X);
+		eq = new InputMathmlEquation(mathmlWithoutAlt, null);
+		mockExecutable.expect(new InputTexDisplayEquation("x", null), SVG_X, MATHML_X);
 		assertEquals("x", mathJax.getEnglish(eq));
 
 		// MathML equation without alt text or TeX.
 		String mathmlWithoutTeX = mathmlWithoutAlt.replaceFirst("<annotation.*?</annotation>", "");
-		eq = new InputMathmlEquation(mathmlWithoutTeX);
+		eq = new InputMathmlEquation(mathmlWithoutTeX, null);
 		mockExecutable.expect(eq, SVG_X, "");
 		assertEquals("x", mathJax.getEnglish(eq));
 	}
@@ -365,7 +364,7 @@ public class TestMathJax
 	@Test
 	public void testGetEps() throws Exception
 	{
-		InputEquation eq = new InputTexDisplayEquation("x");
+		InputEquation eq = new InputTexDisplayEquation("x", null);
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		byte[] eps = mathJax.getEps(eq, 7.26667, null);
 		String header = new String(Arrays.copyOfRange(eps, 0, 10),
@@ -383,7 +382,7 @@ public class TestMathJax
 		try
 		{
 			// Get pixel SVG.
-			InputEquation eq = new InputTexDisplayEquation("x");
+			InputEquation eq = new InputTexDisplayEquation("x", null);
 			mockExecutable.expect(eq, SVG_X, MATHML_X);
 			String svg = mathJax.getSvg(eq, true, 10.0, null);
 
@@ -401,7 +400,7 @@ public class TestMathJax
 	public void testGetPxBaselineFromSvg() throws Exception
 	{
 		// Get pixel SVG.
-		InputEquation eq = new InputTexDisplayEquation("x");
+		InputEquation eq = new InputTexDisplayEquation("x", null);
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		String svg = mathJax.getSvg(eq, true, 10.0, null);
 
@@ -423,7 +422,7 @@ public class TestMathJax
 	@Test
 	public void testGetMathml() throws Exception
 	{
-		InputTexEquation eq = new InputTexDisplayEquation("x");
+		InputTexEquation eq = new InputTexDisplayEquation("x", null);
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		assertEquals(MATHML_X, mathJax.getMathml(eq));
 	}
@@ -432,7 +431,7 @@ public class TestMathJax
 	public void testGetPngFromSvg() throws Exception
 	{
 		// Get pixel SVG.
-		InputEquation eq = new InputTexDisplayEquation("x");
+		InputEquation eq = new InputTexDisplayEquation("x", null);
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		String svg = mathJax.getSvg(eq, true, 10.0, null);
 

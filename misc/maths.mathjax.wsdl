@@ -34,26 +34,32 @@
             </simpleType>
 
             <complexType name="SourceEquation">
-                <choice>
-                    <element name="mathml" type="xsd:string">
-                        <annotation><documentation>Complete MathML content to convert, as
-                            string. Should begin with &lt;math... and end with &lt;/math>,
-                            omitting XML prolog and doctype. The namespace is required but
-                            must be set using xmlns= on the math element. Namespace prefixes
-                            must not be used.</documentation></annotation>
+                <sequence>
+                    <choice>
+                        <element name="mathml" type="xsd:string">
+                            <annotation><documentation>Complete MathML content to convert, as
+                                string. Should begin with &lt;math... and end with &lt;/math>,
+                                omitting XML prolog and doctype. The namespace is required but
+                                must be set using xmlns= on the math element. Namespace prefixes
+                                must not be used.</documentation></annotation>
+                        </element>
+                        <sequence>
+                            <element name="tex" type="xsd:string">
+                                <annotation><documentation>TeX code to convert, as
+                                    string.</documentation></annotation>
+                            </element>
+                            <element name="display" type="xsd:boolean">
+                                <annotation><documentation>True if the TeX equation
+                                    is a display equation, false if it's
+                                    inline.</documentation></annotation>
+                            </element>
+                        </sequence>
+                    </choice>
+                    <element name="font" type="xsd:string" minOccurs="0">
+                        <annotation><documentation>MathJax font name (optional, uses default if not
+                            provided).</documentation></annotation>
                     </element>
-                    <sequence>
-                        <element name="tex" type="xsd:string">
-                            <annotation><documentation>TeX code to convert, as
-                                string.</documentation></annotation>
-                        </element>
-                        <element name="display" type="xsd:boolean">
-                            <annotation><documentation>True if the TeX equation
-                                is a display equation, false if it's
-                                inline.</documentation></annotation>
-                        </element>
-                    </sequence>
-                </choice>
+                </sequence>
             </complexType>
 
             <complexType name="OutputData">

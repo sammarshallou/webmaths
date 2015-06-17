@@ -198,7 +198,8 @@ public class MathJax
 			}
 
 			// If we can get a TeX equation from the MathML, better use that for conversion.
-			InputTexEquation tex = InputTexEquation.getFromMathml(doc, xpathAnnotation);
+			InputTexEquation tex = InputTexEquation.getFromMathml(doc,
+				xpathAnnotation, eq.getFont());
 			if(tex != null)
 			{
 				return getEnglish(tex);
