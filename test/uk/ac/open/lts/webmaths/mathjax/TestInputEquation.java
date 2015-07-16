@@ -36,6 +36,17 @@ public class TestInputEquation
 	}
 
 	@Test
+	public void testIsEmpty() throws IOException
+	{
+		InputEquation eq = new InputTexInlineEquation("whatever", "font");
+		assertFalse(eq.isEmpty());
+		eq = new InputTexInlineEquation("", "font");
+		assertTrue(eq.isEmpty());
+		eq = new InputTexInlineEquation("  ", "font");
+		assertTrue(eq.isEmpty());
+	}
+
+	@Test
 	public void testGetFromMathmlTex() throws IOException
 	{
 		InputEquation eq = InputEquation.getFromMathml(

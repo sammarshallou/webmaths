@@ -137,6 +137,11 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 			out.setError("Unsupported font: " + eq.getFont());
 			return out;
 		}
+		else if(eq.isEmpty())
+		{
+			out.setError("Empty equation");
+			return out;
+		}
 		try
 		{
 			// We need the pixel SVG for lots of things.

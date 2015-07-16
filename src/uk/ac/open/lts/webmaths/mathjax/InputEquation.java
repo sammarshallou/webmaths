@@ -53,6 +53,14 @@ public abstract class InputEquation
 	}
 
 	/**
+	 * @return True if the equation source is blank
+	 */
+	public boolean isEmpty()
+	{
+		return content.trim().equals("");
+	}
+
+	/**
 	 * Gets the format code used by the MathJax systems for this type of equation.
 	 * @return Format code e.g. "TeX"
 	 */
