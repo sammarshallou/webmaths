@@ -46,6 +46,13 @@ function processInput(input) {
     width: 100,
     linebreaks: false
   };
+  // Line breaks do not work the way I'd like in display math; they result in it
+  // becoming the default width (100ex as above) rather than being sized to fit.
+  // To resolve this, use inline math with displaystyle instead. 
+  if (data.format === 'TeX') {
+    data.format = 'inline-TeX';
+    data.math = '\\displaystyle{' + data.math + '}';
+  }
   if (input.format === 'TeX' || input.format === 'inline-TeX') {
     data.mml = true;
   }
