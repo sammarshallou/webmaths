@@ -24,7 +24,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
 
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.xml.ws.BindingProvider;
 
@@ -39,6 +39,17 @@ import uk.ac.open.lts.webmaths.tex.*;
  */
 public class CheckServlet extends HttpServlet
 {
+	/** Current or previous MathJax check thread (null if none) */
+	private MathJaxChecker mathJaxCheck;
+
+	/** Length of time the check must take before counting as failed */
+	private final static long MATHJAX_CHECK_LIMIT = 60000;
+	/** Length of time we wait for the check within the initial request */
+	private final static long MATHJAX_CHECK_WAIT = 3000;
+
+	/** Object used to synch the MathJax checks */
+	private Object mathJaxCheckSynch = new Object();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException
@@ -144,25 +155,10 @@ public class CheckServlet extends HttpServlet
 
 			// Obtain image (MathJax - blueish).
 			out.append("<h2>Image display (<tt>mj-image</tt> service; MathJax.node)</h2>");
-			try
+			imageParams.setRgb("#8888aa");
+			if(mathJaxCheck(out, baseUrl, imageParams))
 			{
-				MathsImagePort mathsImagePort = new MathsImage().getMathsImagePort();
-				setUrl(mathsImagePort, baseUrl + "mj-image");
-				imageParams.setRgb("#8888aa");
-				MathsImageReturn imageResult = mathsImagePort.getImage(imageParams);
-				if(imageResult.isOk())
-				{
-					out.append("<p>" + getPngImage(imageResult.getImage()) + "</p>");
-				}
-				else
-				{
-					out.append("<p>Service reports error: " + esc(imageResult.getError()) + "</p>");
-					failed = true;
-				}
-			}
-			catch(Throwable t)
-			{
-				out.append(getExceptionText(t));
+				failed = true;
 			}
 		}
 
@@ -184,6 +180,236 @@ public class CheckServlet extends HttpServlet
 		pw.print("<!doctype html><html><head><title>WebMaths check</title></head>"
 			+ "<body>" + heading + out +"</body></html>");
 		pw.close();
+	}
+
+	/**
+	 * Checks MathJax to see if it is failing. Includes logic so that if it takes
+	 * a while because the server is busy, it doesn't fail immediately or take
+	 * ages to report, but instead comes back after 3 seconds with a 'pending'
+	 * result that will be checked on the next attempt.
+	 *
+	 * @param out StringBuilder for the output HTML
+	 * @param baseUrl Base URL for equation service
+	 * @param imageParams Image paramters for the equation
+	 * @return True if it failed, false if it is OK (or OK for now)
+	 */
+	private boolean mathJaxCheck(StringBuilder out, String baseUrl, MathsImageParams imageParams)
+	{
+		synchronized(mathJaxCheckSynch)
+		{
+			if(mathJaxCheck != null)
+			{
+				if(mathJaxCheck.isRunning())
+				{
+					long time = mathJaxCheck.getRunTime();
+					if (time < MATHJAX_CHECK_LIMIT)
+					{
+						out.append("<p>Request in progress (" + time + "ms)</p>");
+						return false;
+					}
+					else
+					{
+						out.append("<p>Request took too long (" + time + "ms)</p>");
+						mathJaxCheck = null;
+						return true;
+					}
+				}
+				if(mathJaxCheck.isError())
+				{
+					out.append("<p>Previous request failed (" + mathJaxCheck.getError() + ")</p>");
+					mathJaxCheck = null;
+					return true;
+				}
+				if(mathJaxCheck.isSuccessful())
+				{
+					out.append("<p>Previous request successful (" + mathJaxCheck.getSuccessfulTime() + "ms):<br />" +
+						mathJaxCheck.getSuccessfulResult() + "</p>");
+					mathJaxCheck = null;
+					// Don't do another check yet, maybe it's been heavily loaded.
+					return false;
+				}
+				throw new Error("Unexpected status");
+			}
+
+			// Now that we've dealt with the previous check we will start a new one!
+			mathJaxCheck = new MathJaxChecker(baseUrl, imageParams);
+			try
+			{
+				mathJaxCheckSynch.wait(MATHJAX_CHECK_WAIT);
+			}
+			catch(InterruptedException e)
+			{
+			}
+			if(mathJaxCheck.isRunning())
+			{
+				out.append("<p>Request in progress (taking a while, will confirm next time).</p>");
+				return false;
+			}
+			else
+			{
+				if(mathJaxCheck.isError())
+				{
+					out.append("<p>Request failed (" + mathJaxCheck.getError() + ")</p>");
+					mathJaxCheck = null;
+					return true;
+				}
+				if(mathJaxCheck.isSuccessful())
+				{
+					out.append("<p>Request successful (" + mathJaxCheck.getSuccessfulTime() + "ms): " +
+						mathJaxCheck.getSuccessfulResult() + "</p>");
+					mathJaxCheck = null;
+					return false;
+				}
+				out.append("<p>Status unknown (unexpected)</p>");
+				mathJaxCheck = null;
+				return true;
+			}
+		}
+	}
+
+	/**
+	 * Checker thread that makes a MathJax request.
+	 */
+	private class MathJaxChecker extends Thread
+	{
+		private String baseUrl;
+		private MathsImageParams imageParams;
+
+		private long started;
+		private long time;
+		private String result, error;
+
+		/**
+		 * @param baseUrl Base URL for server
+		 * @param imageParams Parameters for equation request
+		 */
+		public MathJaxChecker(String baseUrl, MathsImageParams imageParams)
+		{
+			super("MathJax checker");
+			this.baseUrl = baseUrl;
+			this.imageParams = imageParams;
+			start();
+		}
+
+		/**
+		 * (Must call from within synch.)
+		 * @return True if check is currently in progress
+		 */
+		boolean isRunning()
+		{
+			return started != 0;
+		}
+
+		/**
+		 * (Must call from within synch.)
+		 * @return True if check ended in error
+		 */
+		boolean isError()
+		{
+			return error != null;
+		}
+
+		/**
+		 * (Must call from within synch.)
+		 * @return True if check ended successfully
+		 */
+		boolean isSuccessful()
+		{
+			return started == 0 && result != null;
+		}
+
+		/**
+		 * (Must call from within synch.)
+		 * @return Error HTML
+		 */
+		String getError()
+		{
+			if(!isError())
+			{
+				throw new Error("Not an error");
+			}
+			return error;
+		}
+
+		/**
+		 * (Must call from within synch.)
+		 * @return Runtime so far in milliseconds
+		 */
+		long getRunTime()
+		{
+			if(!isRunning())
+			{
+				throw new Error("Not running");
+			}
+			return System.currentTimeMillis() - started;
+		}
+
+		/**
+		 * (Must call from within synch.)
+		 * @return Time taken for successful check
+		 */
+		long getSuccessfulTime()
+		{
+			if(!isSuccessful())
+			{
+				throw new Error("Not successful");
+			}
+			return time;
+		}
+
+		/**
+		 * (Must call from within synch.)
+		 * @return Successful result HTML
+		 */
+		String getSuccessfulResult()
+		{
+			if(!isSuccessful())
+			{
+				throw new Error("Not successful");
+			}
+			return result;
+		}
+
+		@Override
+		public void run()
+		{
+			synchronized(mathJaxCheckSynch)
+			{
+				started = System.currentTimeMillis();
+			}
+
+			try
+			{
+				MathsImagePort mathsImagePort = new MathsImage().getMathsImagePort();
+				setUrl(mathsImagePort, baseUrl + "mj-image");
+				imageParams.setRgb("#8888aa");
+				MathsImageReturn imageResult = mathsImagePort.getImage(imageParams);
+				synchronized(mathJaxCheckSynch)
+				{
+					if(imageResult.isOk())
+					{
+						time = System.currentTimeMillis() - started;
+						result = getPngImage(imageResult.getImage());
+					}
+					else
+					{
+						error = esc(imageResult.getError());
+					}
+				}
+			}
+			catch(Throwable t)
+			{
+				synchronized(mathJaxCheckSynch)
+				{
+					error = getExceptionText(t);
+				}
+			}
+			synchronized(mathJaxCheckSynch)
+			{
+				started = 0;
+				mathJaxCheckSynch.notifyAll();
+			}
+		}
 	}
 
 	private static void setUrl(Object port, String url)

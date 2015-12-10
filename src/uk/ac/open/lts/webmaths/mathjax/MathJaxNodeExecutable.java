@@ -21,7 +21,7 @@ public class MathJaxNodeExecutable
 	private final static boolean LOG_COMMUNICATION = false;
 
 	/** Time allowed for MathJax to process an equation or return a line of text. */
-	final static int PROCESSING_TIMEOUT = 10000;
+	final static int PROCESSING_TIMEOUT = 30000;
 
 	/**
 	 * Number of recent results to cache - quite low as we mainly only expect this
