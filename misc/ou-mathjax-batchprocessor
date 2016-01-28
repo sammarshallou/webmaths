@@ -40,8 +40,8 @@ function processInput(input) {
     format: input.format,
     svg: true,
     speakText: true,
-    speakRuleset: 'mathspeak',
-    speakStyle: 'default',
+    speakRuleset: 'chromevox',
+    speakStyle: 'brief',
     ex: 6,
     width: 100,
     linebreaks: false
