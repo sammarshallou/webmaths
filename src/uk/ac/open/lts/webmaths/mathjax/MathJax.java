@@ -633,6 +633,7 @@ public class MathJax
 	{
 		// Offset the SVG slightly, as it renders a fraction lower down than I'd like.
 		svg = offsetSvg(svg, PNG_OFFSET);
+		svg = makeThin(svg);
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		PNGTranscoder transcoder = createTranscoder();
@@ -647,6 +648,17 @@ public class MathJax
 			e.printStackTrace();
 			throw new IOException("Transcoder failed", e);
 		}
+	}
+
+	/**
+	 * Makes an SVG thinner by removing the stroke width.
+	 *
+	 * @param svg SVG input
+	 * @return SVG without any stroke-width 10s
+	 */
+	private static String makeThin(String svg)
+	{
+		return svg.replaceAll("stroke-width=\"10\"", "");
 	}
 
 	/**
