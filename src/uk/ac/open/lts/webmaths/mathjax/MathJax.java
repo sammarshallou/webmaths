@@ -672,6 +672,7 @@ public class MathJax
 		throws MathJaxException, IOException
 	{
 		String svg = getSvg(eq, true, ex, rgb);
+		svg = makeThin(svg);
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		EPSTranscoder transcoder = new EPSTranscoder();
