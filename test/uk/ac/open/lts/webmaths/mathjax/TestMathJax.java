@@ -31,19 +31,17 @@ import org.junit.*;
 public class TestMathJax
 {
 	/**
-	 * SVG returned by MathJax.Node (with --speech option) for TeX 'x'.
+	 * SVG returned by MathJax-node-sre for TeX 'x'.
 	 */
 	final static String SVG_X =
 		"<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" "
-		+ "style=\"vertical-align: -0.167ex; margin-left: 0ex; margin-right: 0ex; "
-		+ "margin-bottom: 1px; margin-top: 1px;\" width=\"1.333ex\" "
-		+ "height=\"1.167ex\" viewBox=\"0 -465.9 577 500.9\" "
-		+ "xmlns=\"http://www.w3.org/2000/svg\" role=\"math\" "
-		+ "aria-labelledby=\"MathJax-SVG-1-Title MathJax-SVG-1-Desc\">\n"
-		+ "<title id=\"MathJax-SVG-1-Title\">Equation</title>\n"
-		+ "<desc id=\"MathJax-SVG-1-Desc\">x</desc>\n"
-		+ "<defs aria-hidden=\"true\">\n"
-		+ "<path stroke-width=\"10\" id=\"E1-MJMATHI-78\" d=\"M52 289Q59 331 106 "
+		+ "width=\"1.33ex\" height=\"1.676ex\" style=\"vertical-align: -0.338ex;\" "
+		+ "viewBox=\"0 -576.1 572.5 721.6\" role=\"img\" focusable=\"false\" "
+		+ "xmlns=\"http://www.w3.org/2000/svg\" "
+		+ "aria-labelledby=\"MathJax-SVG-1-Title\">\n" 
+		+ "<title id=\"MathJax-SVG-1-Title\">x</title>\n" 
+		+ "<defs aria-hidden=\"true\">\n" 
+		+ "<path stroke-width=\"1\" id=\"E1-MJMATHI-78\" d=\"M52 289Q59 331 106 "
 		+ "386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 "
 		+ "420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 "
 		+ "328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 "
@@ -55,9 +53,9 @@ public class TestMathJax
 		+ "340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 "
 		+ "280T72 278H58Q52 284 52 289Z\"></path>\n"
 		+ "</defs>\n"
-		+ "<g stroke=\"black\" fill=\"black\" stroke-width=\"0\" "
+		+ "<g stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" "
 		+ "transform=\"matrix(1 0 0 -1 0 0)\" aria-hidden=\"true\">\n"
-		+ " <use xlink:href=\"#E1-MJMATHI-78\"></use>\n"
+		+ " <use xlink:href=\"#E1-MJMATHI-78\" x=\"0\" y=\"0\"></use>\n"
 		+ "</g>\n"
 		+ "</svg>";
 
@@ -74,7 +72,7 @@ public class TestMathJax
 		+ "</svg>";
 
 	/**
-	 * MathML return by MathJax.Node (with --speech) for TeX 'x'.
+	 * MathML return by MathJax-node-sre (with --semantics) for TeX 'x'.
 	 */
 	final static String MATHML_X =
 		"<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" "
@@ -176,30 +174,18 @@ public class TestMathJax
 		// First test with 'no change' settings. It still removes the title.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		String svg = mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, null);
-		assertTrue(svg.contains("<desc id=\"MathJax-SVG-1-Desc\">"));
-		assertFalse(svg.contains("<title"));
-		assertTrue(svg.contains("aria-labelledby=\"MathJax-SVG-1-Desc\""));
-
-		// If it already didn't have a title, this causes an error.
-		try
-		{
-			mockExecutable.expect(eq, svg, MATHML_X);
-			mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, null);
-			fail();
-		}
-		catch(IOException e)
-		{
-			assertTrue(e.getMessage().contains("does not include <title>"));
-		}
+		assertTrue(svg.contains("<title id=\"MathJax-SVG-1-Title\">"));
+		assertFalse(svg.contains("<desc"));
+		assertTrue(svg.contains("aria-labelledby=\"MathJax-SVG-1-Title\""));
 
 		// Convert ex to pixels.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		svg = mathJax.getSvg(eq, false, 10.0, null);
 
 		// Check that vertical-align, width, and height were all converted (*10).
-		assertTrue(svg.contains("vertical-align: -1.6700px"));
-		assertTrue(svg.contains("width=\"13.3300px\""));
-		assertTrue(svg.contains("height=\"11.6700px\""));
+		assertTrue(svg.contains("vertical-align: -3.3800px"));
+		assertTrue(svg.contains("width=\"13.3000px\""));
+		assertTrue(svg.contains("height=\"16.7600px\""));
 
 		// Change the colour.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
@@ -216,37 +202,29 @@ public class TestMathJax
 		assertTrue(svg.contains("fill=\"#ff0000\""));
 
 		// Fix the baseline (in ex). This is calculated by the location of 0 in
-		// the co-ordinate system. In this case the view box starts at -465.9
-		// with height of 500.9 (meaning the difference between zero and bottom is
-		// 35 units => negative vertical align of -35 units), and the ex height is
-		// recalculated to 428 units per ex (1.170ex). -35 / 500.9 * 1.170 = about -0.08.
+		// the co-ordinate system. In this case the view box starts at -576.1
+		// with height of 721.6 (meaning the difference between zero and bottom is
+		// 145.5 units => negative vertical align of -145.5 units), and the ex height is
+		// recalculated to 428 units per ex. -145.5 / 428 = about -0.3ex.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		svg = mathJax.getSvg(eq, true, MathJax.SIZE_IN_EX, null);
-		assertTrue(svg.contains("vertical-align: -0.0818ex"));
-
-		// Also the margins are removed as these confuse the vertical-align.
-		assertTrue(svg.contains("margin-bottom: 0px;"));
-		assertTrue(svg.contains("margin-top: 0px;"));
+		assertTrue(svg.contains("vertical-align: -0.3400ex"));
 
 		// Now fix the baseline in pixels. Same as above except that it adjusts
 		// the size above and below the baseline to be an integer number of pixels
 		// by changing the view box.
 		mockExecutable.expect(eq, SVG_X, MATHML_X);
 		svg = mathJax.getSvg(eq, true, 10.0, null);
-		assertTrue(svg.contains("margin-bottom: 0px;"));
-		assertTrue(svg.contains("margin-top: 0px;"));
 
 		// I calculated the correct sizes in Excel (it's quite complicated) to
 		// verify that they match.
-		assertTrue(svg.contains("viewBox=\"0.0 -470.8000 577.0 513.6000\""));
-		assertTrue(svg.contains("height=\"12px\""));
-		assertTrue(svg.contains("vertical-align: -1px"));
+		assertTrue(svg.contains("viewBox=\"0.0 -599.2000 572.5 770.4000\""));
+		assertTrue(svg.contains("height=\"18px\""));
+		assertTrue(svg.contains("vertical-align: -4px"));
 
 		// Now try for q^{z^y}, which had rounding problems.
 		mockExecutable.expect(eq, SVG_QZY_EXCERPT, MATHML_X);
 		svg = mathJax.getSvg(eq, true, 7.26667, null);
-		assertTrue(svg.contains("margin-bottom: 0px;"));
-		assertTrue(svg.contains("margin-top: 0px;"));
 
 		assertTrue(svg.contains("viewBox=\"0.0 -1001.2839 1263.3 1236.8802\""));
 		assertTrue(svg.contains("height=\"21px\""));
@@ -254,7 +232,7 @@ public class TestMathJax
 
 		// Check case with bogus width.
 		mockExecutable.expect(eq, SVG_X.replace(
-			"viewBox=\"0 -465.9 577 500.9\"", "viewBox=\"0 -465.9 1000000.0 500.9\""), MATHML_X);
+			"viewBox=\"0 -576.1 572.5 721.6\"", "viewBox=\"0 -476.1 1000000.0 721.6\""), MATHML_X);
 		try
 		{
 			svg = mathJax.getSvg(eq, true, 7.26667, null);
@@ -298,20 +276,20 @@ public class TestMathJax
 			assertTrue(e.getMessage().contains("no viewBox"));
 		}
 
-		// Original viewBox: 0.0 -470.8000 577.0 513.6000 (12px).
+		// Original viewbox: 0.0 -599.2000 572.5 770.4000 (18px)
 		// 1 pixel is 42.8 units, 0.1 pixels is 4.28.
 
 		// Try moving it UP 0.1 pixels.
 		String up = MathJax.offsetSvg(svg, 0.1);
-		assertTrue(up.contains("viewBox=\"0.0 -509.3200 577.0 556.4000\""));
-		assertTrue(up.contains("height=\"13px"));
-		assertTrue(up.contains("vertical-align: -1px"));
+		assertTrue(up.contains("viewBox=\"0.0 -637.7200 572.5 813.2000\""));
+		assertTrue(up.contains("height=\"19px"));
+		assertTrue(up.contains("vertical-align: -4px"));
 
 		// Move it DOWN 0.1 pixels. The baseline should change.
 		String down = MathJax.offsetSvg(svg, -0.1);
-		assertTrue(down.contains("viewBox=\"0.0 -475.0800 577.0 556.4000\""));
-		assertTrue(down.contains("height=\"13px"));
-		assertTrue(down.contains("vertical-align: 0px"));
+		assertTrue(down.contains("viewBox=\"0.0 -603.4800 572.5 813.2000\""));
+		assertTrue(down.contains("height=\"19px"));
+		assertTrue(down.contains("vertical-align: -3px"));
 	}
 
 	@Test
@@ -344,21 +322,21 @@ public class TestMathJax
 	{
 		assertEquals("x", mathJax.getEnglishFromSvg(SVG_X));
 
-		// If there is no description then this should fail.
-		String svgNoDesc = SVG_X.replaceFirst("<desc.*?</desc>", "");
+		// If there is no title then this should fail.
+		String svgNoTitle = SVG_X.replaceFirst("<title.*?</title>", "");
 		try
 		{
-			mathJax.getEnglishFromSvg(svgNoDesc);
+			mathJax.getEnglishFromSvg(svgNoTitle);
 			fail();
 		}
 		catch(IllegalArgumentException e)
 		{
-			assertTrue(e.getMessage().contains("does not include <desc>"));
+			assertTrue(e.getMessage().contains("does not include <title>"));
 		}
 
-		// If there is a description but empty, it should still work.
-		String svgEmptyDesc = SVG_X.replaceFirst("(<desc[^>]*>).*?(</desc>)", "$1$2");
-		assertEquals("", mathJax.getEnglishFromSvg(svgEmptyDesc));
+		// If there is a title but empty, it should still work.
+		String svgEmptyTitle = SVG_X.replaceFirst("(<title[^>]*>).*?(</title>)", "$1$2");
+		assertEquals("", mathJax.getEnglishFromSvg(svgEmptyTitle));
 	}
 
 	@Test
@@ -376,7 +354,7 @@ public class TestMathJax
 	public void testGetExBaselineFromSvg() throws Exception
 	{
 		// Get baseline from ex SVG.
-		assertEquals(0.167, mathJax.getExBaselineFromSvg(SVG_X), 0.000001);
+		assertEquals(0.338, mathJax.getExBaselineFromSvg(SVG_X), 0.000001);
 
 		// Check we get an error if it's a pixel SVG (no ex).
 		try
@@ -405,7 +383,7 @@ public class TestMathJax
 		String svg = mathJax.getSvg(eq, true, 10.0, null);
 
 		// Get baseline from it.
-		assertEquals(1, mathJax.getPxBaselineFromSvg(svg), 0.000001);
+		assertEquals(4.0, mathJax.getPxBaselineFromSvg(svg), 0.000001);
 
 		// Check we get an error if it's not a pixel SVG.
 		try

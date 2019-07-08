@@ -103,7 +103,7 @@ public class MathJax
 	private MathJaxNodeExecutable mjNode;
 
 	private final XPath xpath;
-	private final XPathExpression xpathAnnotation, xpathSvgDesc, xpathSvgTitle, xpathNormalizeSpace;
+	private final XPathExpression xpathAnnotation, xpathSvgTitle, xpathNormalizeSpace;
 
 	private ExecutorService threadPool;
 
@@ -124,7 +124,6 @@ public class MathJax
 		try
 		{
 			xpathAnnotation = InputTexEquation.getXPathExpression(xpath);
-			xpathSvgDesc = xpath.compile("/s:svg/s:desc");
 			xpathSvgTitle = xpath.compile("/s:svg/s:title");
 			xpathNormalizeSpace = xpath.compile("normalize-space(.)");
 		}
@@ -224,10 +223,10 @@ public class MathJax
 		Document svgDoc = WebMathsService.parseXml(context, svg);
 		try
 		{
-			Node result = (Node)xpathSvgDesc.evaluate(svgDoc, XPathConstants.NODE);
+			Node result = (Node)xpathSvgTitle.evaluate(svgDoc, XPathConstants.NODE);
 			if(result == null)
 			{
-				throw new IllegalArgumentException("SVG does not include <desc>");
+				throw new IllegalArgumentException("SVG does not include <title>");
 			}
 
 			return (String)xpathNormalizeSpace.evaluate(result, XPathConstants.STRING);
@@ -254,7 +253,7 @@ public class MathJax
 	private final static Pattern REGEX_HEIGHT_PX = Pattern.compile(
 		"^<svg[^>]* height=\"(([0-9]+(?:\\.[0-9]+)?)px)\"");
 	private final static Pattern REGEX_COLOUR = Pattern.compile(
-		"(<[^>]+ )(stroke=\"black\" fill=\"black\"|fill=\"black\" stroke=\"black\")");
+		"(<[^>]+ )(stroke=\"currentColor\" fill=\"currentColor\"|fill=\"currentColor\" stroke=\"currentColor\")");
 
 	/**
 	 * Rounds numbers suitable for use in SVG. They are rounded to 4 digits but
@@ -274,9 +273,8 @@ public class MathJax
 	 * You can optionally convert size from 'ex' into pixels. If no conversion
 	 * is required, use SIZE_IN_EX for the float parameter.
 	 * <p>
-	 * Note that the returned SVG contains two IDs MathJax-SVG-1-Title and
-	 * MathJax-SVG-1-Desc. If included on a web page, these should be string
-	 * replaced with suitable unique IDs.
+	 * Note that the returned SVG contains an ID MathJax-SVG-1-Title. If included on a web page, 
+	 * this should be string replaced with a suitable unique ID.
 	 * <p>
 	 * When correcting the baseline, width and height are also corrected. (MathJax
 	 * sometimes uses an incorrect ratio of drawing units to ex.)
@@ -366,8 +364,6 @@ public class MathJax
 				String style = root.getAttribute("style");
 				style = style.replaceFirst("vertical-align: -?[0-9.]+",
 					"vertical-align: " + round(-baselineEx));
-				// Get rid of the 1px margin, it throws off the calculation.
-				style = style.replaceAll("margin-(top|bottom): 1px", "margin-$1: 0px");
 				root.setAttribute("style", style);
 
 				// Remember the precise figures for next calculation.
@@ -375,18 +371,6 @@ public class MathJax
 				correctedWidth = widthEx;
 				correctedBaseline = -baselineEx;
 			}
-
-			// I don't like the way the title is always set to 'Equation' (and it
-			// appears as a popup in Firefox) so we are going to remove it.
-			Node result = (Node)xpathSvgTitle.evaluate(svgDom, XPathConstants.NODE);
-			if(result == null)
-			{
-				throw new IllegalStateException("SVG does not include <title>");
-			}
-			result.getParentNode().removeChild(result);
-
-			// And remove the reference to it in the ARIA attribute.
-			svgDom.getDocumentElement().setAttribute("aria-labelledby", "MathJax-SVG-1-Desc");
 
 			// Write back to the serialized version.
 			DOMImplementationLS domImplementation = (DOMImplementationLS)svgDom.getImplementation();
@@ -654,11 +638,11 @@ public class MathJax
 	 * Makes an SVG thinner by removing the stroke width.
 	 *
 	 * @param svg SVG input
-	 * @return SVG without any stroke-width 10s
+	 * @return SVG without any stroke-width 1s
 	 */
 	private static String makeThin(String svg)
 	{
-		return svg.replaceAll("stroke-width=\"10\"", "");
+		return svg.replaceAll("stroke-width=\"1\"", "");
 	}
 
 	/**
