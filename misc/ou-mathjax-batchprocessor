@@ -4,7 +4,7 @@ var readline = require('readline');
 var fs = require('fs');
 
 // MathJax folder from command line.
-var mj = require(process.argv[2] + "/lib/mj-single.js");
+var mj = require(process.argv[2] + "/lib/main.js");
 
 // Font from command line.
 var equationfont = process.argv[3];

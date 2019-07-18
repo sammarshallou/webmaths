@@ -58,8 +58,9 @@ public class MathJaxNodeExecutable
 
 	/** Current instances. */
 	private ArrayList<MathJaxNodeInstance> instances;
+	
 	/** Available instances (subset of Instances) */
-	private Set<MathJaxNodeInstance> availableInstances = new TreeSet<MathJaxNodeInstance>();
+	private NavigableSet<MathJaxNodeInstance> availableInstances = new TreeSet<MathJaxNodeInstance>();
 
 	/** Time at which an instance was last created (so we don't create too fast) */
 	private long lastCreatedInstance;
@@ -441,6 +442,11 @@ public class MathJaxNodeExecutable
 					}
 
 					closeSpareInstances();
+					
+					synchronized(this)
+					{
+						notifyAll();
+					}
 				}
 			}
 			finally
@@ -907,8 +913,12 @@ public class MathJaxNodeExecutable
 			{
 				int flush = instances.size() - maxUsed;
 				List<MathJaxNodeInstance> forTheChop = new ArrayList<MathJaxNodeInstance>(maxInstances);
+				
+				// use a reverse order view to remove oldest instances first
+				NavigableSet<MathJaxNodeInstance> availableReversed = availableInstances.descendingSet();
+				
 				// First remove anything using a non-default font.
-				for(MathJaxNodeInstance spare : availableInstances)
+				for(MathJaxNodeInstance spare : availableReversed)
 				{
 					if(!spare.getFont().equals(InputEquation.DEFAULT_FONT))
 					{
@@ -923,7 +933,7 @@ public class MathJaxNodeExecutable
 				// Now remove default-font instances too.
 				if(flush > 0)
 				{
-					for(MathJaxNodeInstance spare : availableInstances)
+					for(MathJaxNodeInstance spare : availableReversed)
 					{
 						forTheChop.add(spare);
 						flush--;
@@ -933,6 +943,7 @@ public class MathJaxNodeExecutable
 						}
 					}
 				}
+				
 				for(MathJaxNodeInstance spare : forTheChop)
 				{
 					spare.closeInstance();

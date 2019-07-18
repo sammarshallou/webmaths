@@ -177,6 +177,14 @@ public class TestMathJaxNodeExecutable
 			synchronized(checker)
 			{
 				checker.notifyAll();
+				try 
+				{
+					checker.wait();
+				} 
+				catch (InterruptedException e) 
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -483,10 +491,10 @@ public class TestMathJaxNodeExecutable
 				{
 					// Convert 2 equations with 100ms gap.
 					executable.convertEquation(new InputTexDisplayEquation(
-						"a" + suffix.getFirst(), "STIX-Web"));
+						"a" + suffix.getFirst(), null));
 					Thread.sleep(100);
 					executable.convertEquation(new InputTexDisplayEquation(
-						"c" + suffix.getFirst(), "STIX-Web"));
+						"c" + suffix.getFirst(), null));
 					synchronized(list)
 					{
 						list.add(true);
@@ -513,7 +521,7 @@ public class TestMathJaxNodeExecutable
 					// Convert 1 equation after 100ms.
 					Thread.sleep(100);
 					executable.convertEquation(new InputTexDisplayEquation(
-						"b" + suffix.getFirst(), null));
+						"b" + suffix.getFirst(), "STIX-Web"));
 					synchronized(list)
 					{
 						list.add(true);
@@ -546,8 +554,8 @@ public class TestMathJaxNodeExecutable
 		assertArrayEquals(new Boolean[] { true, true }, list.toArray(new Boolean[2]));
 
 		// Check the instances have been set up with the right fonts.
-		assertEquals("STIX-Web", instance1.getFont());
-		assertEquals("TeX", instance2.getFont());
+		assertEquals("TeX", instance1.getFont());
+		assertEquals("STIX-Web", instance2.getFont());
 
 		// Check instance 1 includes requests for a and c.
 		assertEquals(
@@ -568,16 +576,16 @@ public class TestMathJaxNodeExecutable
 			+ "*flush\n", instance2.getActions());
 
 		// Also check that the one with default font is left when flushing spares,
-		// even though it's not oldest.
+		// even though it's oldest.
 		executable.makeSparesDue();
-		instance2.addLines(RESULT_SUCCESS);
+		instance1.addLines(RESULT_SUCCESS);
 		executable.convertEquation(new InputTexDisplayEquation("d", null));
-		assertEquals("*closeInstance\n", instance1.getActions());
+		assertEquals("*closeInstance\n", instance2.getActions());
 		assertEquals(
 			"*sendLine:TeX\n"
 			+ "*sendLine:d\n"
 			+ "*sendLine:\n"
-			+ "*flush\n", instance2.getActions());
+			+ "*flush\n", instance1.getActions());
 	}
 
 }

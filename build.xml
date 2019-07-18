@@ -9,7 +9,7 @@
 	<property name="build" location="${java.io.tmpdir}/build/webmaths" />
 
 	<!-- Version number -->
-	<property name="version" value="3.15"/>
+	<property name="version" value="3.16"/>
 
 	<!-- Set location you want to build the WEB-INF folder inside -->
 	<property name="webinf.location" location="${user.home}/Desktop"/>
@@ -20,17 +20,17 @@
 	<!-- Set default temp directory (on server), will be placed into web.xml -->
 	<property name="temp.directory" value="/tmp"/>
 
-	<!-- Set location of MathJax.node (on server), will be placed into web.xml -->
-	<property name="mathjax.directory" value="/opt/mathjax_node"/>
+	<!-- Set location of mathjax-node-sre (on server), will be placed into web.xml -->
+	<property name="mathjax.directory" value="/opt/mathjax_node_sre"/>
 
-		<!-- URL of Tomcat application -->
-  <property name="tomcat-url" value="http://localhost:8080/"/>
+	<!-- URL of Tomcat application -->
+  	<property name="tomcat-url" value="http://localhost:8080/"/>
 	
 	<!-- Tomcat admin username -->
-  <property name="tomcat-username" value="admin"/>
+  	<property name="tomcat-username" value="admin"/>
   	
-  <!-- Tomcat admin password -->
-  <property name="tomcat-password" value=""/>
+  	<!-- Tomcat admin password -->
+  	<property name="tomcat-password" value=""/>
  	
 	<!-- Tomcat home folder -->
 	<property name="tomcat-home" location="C:/Program Files/Apache Software Foundation/Tomcat 7.0"/>
