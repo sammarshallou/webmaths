@@ -638,11 +638,11 @@ public class MathJax
 	 * Makes an SVG thinner by removing the stroke width.
 	 *
 	 * @param svg SVG input
-	 * @return SVG without any stroke-width 1s
+	 * @return SVG without any stroke-width 10s
 	 */
 	private static String makeThin(String svg)
 	{
-		return svg.replaceAll("stroke-width=\"1\"", "");
+		return svg.replaceAll("stroke-width=\"10\"", "");
 	}
 
 	/**
