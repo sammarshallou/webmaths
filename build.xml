@@ -131,10 +131,7 @@
 	  	  <include name="webmaths.jar"/>
 	  	</fileset>
 	  	<fileset dir="${jaxws.home}/lib">
-		    <include name="jaxws-rt.jar"/>
-		    <include name="streambuffer.jar"/>
-		    <include name="stax-ex.jar"/>
-		    <include name="jaxb-impl.jar"/>
+		    <include name="*.jar"/>
 	  	</fileset>
 		</copy>
 		<copy todir="${build}/WEB-INF">
