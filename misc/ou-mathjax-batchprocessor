@@ -13,7 +13,8 @@ var equationfont = process.argv[3];
 mj.config({
   MathJax: {
     SVG: {
-      font: equationfont
+      font: equationfont,
+      blacker: 10
     },
     menuSettings: {
       semantics: true
