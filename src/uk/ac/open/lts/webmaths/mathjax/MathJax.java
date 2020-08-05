@@ -364,6 +364,9 @@ public class MathJax
 				String style = root.getAttribute("style");
 				style = style.replaceFirst("vertical-align: -?[0-9.]+",
 					"vertical-align: " + round(-baselineEx));
+
+				// Reset margin to 0.
+				style = style.concat("margin: 0px");
 				root.setAttribute("style", style);
 
 				// Remember the precise figures for next calculation.
