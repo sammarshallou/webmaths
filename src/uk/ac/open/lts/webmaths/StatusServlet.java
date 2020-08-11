@@ -142,6 +142,10 @@ public class StatusServlet extends HttpServlet
 				{
 					out.append("<div class='error'>Rendering failed</div>");
 				}
+				catch(IOException ex)
+				{
+					out.append("<div class='error'>Rendering failed</div>");
+				}
 				out.append("</div>");
 				out.append("<div class='equation'>" + esc(details.getEquation().getContent()) + "</div>");
 				out.append("</li>");
