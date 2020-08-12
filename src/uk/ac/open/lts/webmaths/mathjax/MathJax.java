@@ -245,7 +245,7 @@ public class MathJax
 	private final static Pattern REGEX_BASELINE_PIXELS = Pattern.compile(
 		"^<svg[^>]* style=\"vertical-align: ((-?[0-9]+(?:\\.[0-9]+)?)px)");
 	private final static Pattern REGEX_WIDTH = Pattern.compile(
-		"^<svg[^>]* width=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
+		"^<svg[^>]* width=\"(([0-9]+(?:\\.[0-9]+)?)(ex)?)\"");
 	private final static Pattern REGEX_HEIGHT = Pattern.compile(
 		"^<svg[^>]* height=\"(([0-9]+(?:\\.[0-9]+)?)ex)\"");
 	private final static Pattern REGEX_VIEWBOX = Pattern.compile(
