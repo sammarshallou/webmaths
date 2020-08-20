@@ -24,7 +24,7 @@ rm -rf batik
 rm -rf test-files
 
 %build
-npm install
+npm ci
 
 %install
 # remove this file because rpmbuild can't handle files with spaces

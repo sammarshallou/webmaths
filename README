@@ -10,7 +10,7 @@ as images in a user-selected size and colour, or directly to the browser as
 MathML if they have a supported browser, regardless of whether the equations
 were initially entered as TeX or MathML.
 
-The latest version of this system uses the MathJax.node project (server-side
+The latest version of this system uses the mathjax-node-sre project (server-side
 MathJax) to render equations. At present it also includes older methods, but
 we may phase these out.
 
@@ -34,7 +34,7 @@ ImageTex:  For MathML that was originally converted from TeX using the above
            converter, renders it using latex and dvipng software. For other
            MathML, uses JEuclid as above.
 
-MathJax:   Uses MathJax.node backend to render both TeX and MathML. Can convert
+MathJax:   Uses mathjax-node-sre backend to render both TeX and MathML. Can convert
            multiple equations at once and can provide SVG as well as PNG format
            files.
 
@@ -48,8 +48,8 @@ produce prettier images, but requires 'latex' and 'dvipng' to be installed on
 the server. Image is pure Java; it requires no extra installation, and also
 performs better, but the images can be a bit ugly.
 
-MathJax and the Mj* servlets requires MathJax.node to be installed in the
-server; the default location is /opt/mathjax_node, or you can configure it
+MathJax and the Mj* servlets requires mathjax-node-sre to be installed in the
+server; the default location is /opt/mathjax_node_sre, or you can configure it
 (see web.xml).
 
 
