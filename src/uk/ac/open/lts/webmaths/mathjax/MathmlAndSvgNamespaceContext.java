@@ -39,7 +39,7 @@ public final class MathmlAndSvgNamespaceContext implements NamespaceContext
 	}
 
 	@Override
-	public Iterator<?> getPrefixes(String uri)
+	public Iterator<String> getPrefixes(String uri)
 	{
 		LinkedList<String> list = new LinkedList<String>();
 		list.add(getPrefix(uri));

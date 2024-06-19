@@ -317,38 +317,40 @@ public class TestLatexToMathml extends TestCase
 			"misc/forum.tex.samples");
 
 		// There are 10,000+ samples in the forum samples file, so it takes a while
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-			new FileInputStream(samplesFile), "UTF-8"));
-		int errors = 0;
-		while(true)
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+			new FileInputStream(samplesFile), "UTF-8")))
 		{
-			String line = reader.readLine();
-			if(line == null)
+			int errors = 0;
+			while(true)
 			{
-				break;
-			}
-			if(line.equals("") || line.startsWith("#"))
-			{
-				continue;
-			}
-			String result;
-			try
-			{
-				result = new TokenInput(line).toMathml(true);
-				if(result.contains("</xerror>"))
+				String line = reader.readLine();
+				if(line == null)
+				{
+					break;
+				}
+				if(line.equals("") || line.startsWith("#"))
+				{
+					continue;
+				}
+				String result;
+				try
+				{
+					result = new TokenInput(line).toMathml(true);
+					if(result.contains("</xerror>"))
+					{
+						System.err.println(line);
+						errors++;
+					}
+				}
+				catch(Throwable t)
 				{
 					System.err.println(line);
+					t.printStackTrace();
 					errors++;
 				}
 			}
-			catch(Throwable t)
-			{
-				System.err.println(line);
-				t.printStackTrace();
-				errors++;
-			}
+			assertEquals(0, errors);
 		}
-		assertEquals(0, errors);
 	}
 
 	private void assertMath(String expected, String input)

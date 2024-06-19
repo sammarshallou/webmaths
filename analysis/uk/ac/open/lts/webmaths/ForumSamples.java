@@ -42,16 +42,18 @@ public class ForumSamples
 			getParentFile().getParentFile().getParentFile().getParentFile(),
 			"misc/forum.tex.samples");
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-			new FileInputStream(samplesFile), "UTF-8"));
-		while(true)
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+			new FileInputStream(samplesFile), "UTF-8")))
 		{
-			String line = reader.readLine();
-			if(line == null)
+			while(true)
 			{
-				break;
+				String line = reader.readLine();
+				if(line == null)
+				{
+					break;
+				}
+				samples.add(line);
 			}
-			samples.add(line);
 		}
 		System.err.println("Loaded " + samples.size() + " samples.");
 		System.err.println();

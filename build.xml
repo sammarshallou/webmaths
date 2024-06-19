@@ -1,4 +1,4 @@
-<project name="webmaths" default="tomcatdeploy" basedir=".">
+<project name="webmaths" default="war" basedir=".">
 
 	<description>
 		Builds web maths services and related items. If your project doesn't have
@@ -34,9 +34,19 @@
  	
 	<!-- Tomcat home folder -->
 	<property name="tomcat-home" location="C:/Program Files/Apache Software Foundation/Tomcat 7.0"/>
-	
+
+	<!-- Location of a Java 8 compiler so we can actually get this geriatric built -->
+	<property name="java8home" location="C:\tools\openjdk-8u312-b07"/>
+	<property name="javac8" location="${java8home}/bin/javac.exe"/>
+
+	<!-- JAXWS-RI location (download from https://repo1.maven.org/maven2/com/sun/xml/ws/jaxws-ri/, I used version 2.2.10 which is old and supposed to work with Tomcat 7) -->
+	<property name="jaxws-ri-home" location="c:/tools/jaxws-ri"/>
+
 	<!-- Set to false after you have managed to deploy it to Tomcat -->
 	<property name="firstrun" value="true"/>
+	
+	<!-- If not using LaTeX, set blank. Otherwise set to 'latex' or full path -->
+	<property name="latexruntime" value=""/>
 
 	<target name="wsdlgen" description="Create generated source (gen folder) based on WSDL">
 		<delete dir="gen/uk/ac/open/lts/webmaths/image"/>
@@ -44,16 +54,20 @@
 		<delete dir="gen/uk/ac/open/lts/webmaths/tex"/>
 		<delete dir="gen/uk/ac/open/lts/webmaths/mathjax"/>
 		<mkdir dir="gen"/>
-		<exec executable="${java.home}/../bin/wsimport">
+		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.tex.wsdl -p uk.ac.open.lts.webmaths.tex -wsdllocation /wsdl/maths.tex.wsdl"/>
 		</exec>
-		<exec executable="${java.home}/../bin/wsimport">
+		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.image.wsdl -p uk.ac.open.lts.webmaths.image -wsdllocation /wsdl/maths.image.wsdl"/>
 		</exec>
-		<exec executable="${java.home}/../bin/wsimport">
+		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.english.wsdl -p uk.ac.open.lts.webmaths.english -wsdllocation /wsdl/maths.english.wsdl"/>
 		</exec>
-		<exec executable="${java.home}/../bin/wsimport">
+		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.mathjax.wsdl -p uk.ac.open.lts.webmaths.mathjax -wsdllocation /wsdl/maths.mathjax.wsdl"/>
 		</exec>
 	</target>
@@ -81,8 +95,8 @@
 	<!-- Compile Java source -->
 	<target name="compile" depends="init">
 		<mkdir dir="${build}/classes" />
-		<javac destdir="${build}/classes"
-			source="1.6" target="1.6" encoding="UTF-8" debug="true">
+		<javac destdir="${build}/classes" fork="yes" executable="${javac8}"
+			source="1.8" target="1.8" encoding="UTF-8" debug="true">
 			<src>
 			  <pathelement path="gen"/>
 			</src>
@@ -121,18 +135,21 @@
 	  	<fileset dir="lib/fop">
 	  		<include name="*.jar"/>
 	  	</fileset>
-			<fileset dir="lib/extrafonts">
-				<include name="*.jar"/>
-			</fileset>
-			<fileset dir="lib/commons">
-				<include name="*.jar"/>
-			</fileset>
-	  	<fileset dir="${build}">
-	  	  <include name="webmaths.jar"/>
-	  	</fileset>
-	  	<fileset dir="${jaxws.home}/lib">
-		    <include name="*.jar"/>
-	  	</fileset>
+		<fileset dir="lib/extrafonts">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/commons">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/jaxws-ri">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="lib/misc">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${build}">
+			<include name="webmaths.jar"/>
+		</fileset>
 		</copy>
 		<copy todir="${build}/WEB-INF">
 	  	<fileset dir="misc">
@@ -145,6 +162,7 @@
 				<replacetokens>
 					<token key="TEMP" value="${temp.directory}"/>
 					<token key="MATHJAXFOLDER" value="${mathjax.directory}"/>
+					<token key="LATEX" value="${latexruntime}"/>
 				</replacetokens>
 			</filterchain>
 		</copy>
@@ -169,10 +187,12 @@
 			</fileset>
 		</jar>
 	</target>
-	
+
+	<!-- TOMCATSTART Comment this section out if you don't have Tomcat installed -->
 	<path id="catalina-ant-classpath">
 	    <fileset dir="${tomcat-home}/lib">
 	        <include name="catalina-ant.jar"/>
+	        <include name="catalina.jar"/>
 	        <include name="tomcat-coyote.jar"/>
 	        <include name="tomcat-util.jar"/>
 	    </fileset>
@@ -201,5 +221,6 @@
 		<tomcatdeploy url="${tomcat-url}/manager/text" username="${tomcat-username}" password="${tomcat-password}"
 			path="/webmaths" war="${war.location}/webmaths.war"/>
   </target>
-	
+  <!-- TOMCATSTOP Comment this section out if you don't have Tomcat installed -->
+
 </project>

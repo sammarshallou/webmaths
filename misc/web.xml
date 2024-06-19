@@ -87,10 +87,10 @@
     </context-param>
 
     <context-param>
-        <description>Use to set path to latex (if it is on path, you can leave
-            default). (ImageTex service only.)</description>
+        <description>Use to set path to latex (if it is on path, you can just
+            set to 'latex'). (ImageTex service only.)</description>
         <param-name>latex-executable</param-name>
-        <param-value>latex</param-value>
+        <param-value>@LATEX@</param-value>
     </context-param>
 
     <context-param>

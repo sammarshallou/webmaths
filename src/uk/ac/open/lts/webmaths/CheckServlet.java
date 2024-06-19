@@ -129,28 +129,32 @@ public class CheckServlet extends HttpServlet
 				failed = true;
 			}
 
-			// Obtain image (LaTeX - greenish).
-			out.append("<h2>Image display (<tt>imagetex</tt> service; LaTeX)</h2>");
-			try
+			// Obtain image (LaTeX - greenish) if enabled.
+			String latex = getServletContext().getInitParameter("latex-executable");
+			if (latex == null || !latex.equals(""))
 			{
-				MathsImagePort mathsImagePort = new MathsImage().getMathsImagePort();
-				setUrl(mathsImagePort, baseUrl + "imagetex");
-				imageParams.setRgb("#88aa88");
-				MathsImageReturn imageResult = mathsImagePort.getImage(imageParams);
-				if(imageResult.isOk())
+				out.append("<h2>Image display (<tt>imagetex</tt> service; LaTeX)</h2>");
+				try
 				{
-					out.append("<p>" + getPngImage(imageResult.getImage()) + "</p>");
+					MathsImagePort mathsImagePort = new MathsImage().getMathsImagePort();
+					setUrl(mathsImagePort, baseUrl + "imagetex");
+					imageParams.setRgb("#88aa88");
+					MathsImageReturn imageResult = mathsImagePort.getImage(imageParams);
+					if(imageResult.isOk())
+					{
+						out.append("<p>" + getPngImage(imageResult.getImage()) + "</p>");
+					}
+					else
+					{
+						out.append("<p>Service reports error: " + esc(imageResult.getError()) + "</p>");
+						failed = true;
+					}
 				}
-				else
+				catch(Throwable t)
 				{
-					out.append("<p>Service reports error: " + esc(imageResult.getError()) + "</p>");
+					out.append(getExceptionText(t));
 					failed = true;
 				}
-			}
-			catch(Throwable t)
-			{
-				out.append(getExceptionText(t));
-				failed = true;
 			}
 
 			// Obtain image (MathJax - blueish).
