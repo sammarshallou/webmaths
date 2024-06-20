@@ -25,6 +25,8 @@ rm -rf test-files
 
 %build
 npm ci
+# remove this file because it adds a dependency on node-bench
+rm node_modules/xml-mapping/node_modules/sax/examples/switch-bench.js
 
 %install
 # remove this file because rpmbuild can't handle files with spaces
