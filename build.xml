@@ -36,7 +36,7 @@
 	<property name="tomcat-home" location="C:/Program Files/Apache Software Foundation/Tomcat 7.0"/>
 
 	<!-- Location of a Java 8 compiler so we can actually get this geriatric built -->
-	<property name="java8home" location="C:\tools\openjdk-8u312-b07"/>
+	<property name="java8home" location="${java.home}"/>
 	<property name="javac8" location="${java8home}/bin/javac.exe"/>
 
 	<!-- JAXWS-RI location (download from https://repo1.maven.org/maven2/com/sun/xml/ws/jaxws-ri/, I used version 2.2.10 which is old and supposed to work with Tomcat 7) -->
@@ -47,6 +47,9 @@
 	
 	<!-- If not using LaTeX, set blank. Otherwise set to 'latex' or full path -->
 	<property name="latexruntime" value=""/>
+	
+	<!-- Set to wsimport.sh if building on Unix -->
+	<property name="wsimportscript" value="wsimport.bat"/>
 
 	<target name="wsdlgen" description="Create generated source (gen folder) based on WSDL">
 		<delete dir="gen/uk/ac/open/lts/webmaths/image"/>
@@ -54,19 +57,19 @@
 		<delete dir="gen/uk/ac/open/lts/webmaths/tex"/>
 		<delete dir="gen/uk/ac/open/lts/webmaths/mathjax"/>
 		<mkdir dir="gen"/>
-		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+		<exec executable="${jaxws-ri-home}/bin/${wsimportscript}">
 			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.tex.wsdl -p uk.ac.open.lts.webmaths.tex -wsdllocation /wsdl/maths.tex.wsdl"/>
 		</exec>
-		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+		<exec executable="${jaxws-ri-home}/bin/${wsimportscript}">
 			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.image.wsdl -p uk.ac.open.lts.webmaths.image -wsdllocation /wsdl/maths.image.wsdl"/>
 		</exec>
-		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+		<exec executable="${jaxws-ri-home}/bin/${wsimportscript}">
 			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.english.wsdl -p uk.ac.open.lts.webmaths.english -wsdllocation /wsdl/maths.english.wsdl"/>
 		</exec>
-		<exec executable="${jaxws-ri-home}/bin/wsimport.bat">
+		<exec executable="${jaxws-ri-home}/bin/${wsimportscript}">
 			<env key="JAVA_HOME" value="${java8home}" />
 			<arg line="-keep -Xnocompile -s gen misc/maths.mathjax.wsdl -p uk.ac.open.lts.webmaths.mathjax -wsdllocation /wsdl/maths.mathjax.wsdl"/>
 		</exec>
