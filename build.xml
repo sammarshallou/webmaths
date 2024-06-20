@@ -37,7 +37,7 @@
 
 	<!-- Location of a Java 8 compiler so we can actually get this geriatric built -->
 	<property name="java8home" location="${java.home}"/>
-	<property name="javac8" location="${java8home}/bin/javac.exe"/>
+	<property name="javac8" location="${java8home}/bin/javac"/>
 
 	<!-- JAXWS-RI location (download from https://repo1.maven.org/maven2/com/sun/xml/ws/jaxws-ri/, I used version 2.2.10 which is old and supposed to work with Tomcat 7) -->
 	<property name="jaxws-ri-home" location="c:/tools/jaxws-ri"/>
