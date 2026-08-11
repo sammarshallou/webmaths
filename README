@@ -11,72 +11,28 @@ MathML if they have a supported browser, regardless of whether the equations
 were initially entered as TeX or MathML.
 
 The latest version of this system uses the mathjax-node-sre project (server-side
-MathJax) to render equations. At present it also includes older methods, but
-we may phase these out.
+MathJax) to render equations. If you need the older services (using LaTeX and 
+JEuclid), try the old branch STABLE_1.
 
 
-Services
---------
+Service
+-------
 
-The service names all begin with WebMaths. They are:
+The service is called WebMathsMathJax.
 
-Tex:       Converts a subset of AMS LaTeX to MathML 2.
-           Converts the same subset back from MathML 2 to AMS LaTeX.
-           (The subset is documented in misc/supported.tex.commands.xml.)
+It uses mathjax-node-sre backend to render both TeX and MathML. Can convert
+multiple equations at once and can provide SVG as well as PNG format files.
 
-English:   Converts MathML 2 into English text suitable for using as 'alt' text.
-           Warning: The results of this service are presently not very good.
-
-Image:     Renders MathML 2 using the JEuclid library. Size and colour can
-           be selected.
-
-ImageTex:  For MathML that was originally converted from TeX using the above
-           converter, renders it using latex and dvipng software. For other
-           MathML, uses JEuclid as above.
-
-MathJax:   Uses mathjax-node-sre backend to render both TeX and MathML. Can convert
-           multiple equations at once and can provide SVG as well as PNG format
-           files.
-
-           The MjEnglish, MjTex, and MjImage servlets are implementations of the
-           above contracts using this MathJax backend.
-
-
-Image and ImageTex are plug-in compatible (they use the same WSDL, so you can
-use a different one by changing the URL in your service client). ImageTeX can
-produce prettier images, but requires 'latex' and 'dvipng' to be installed on
-the server. Image is pure Java; it requires no extra installation, and also
-performs better, but the images can be a bit ugly.
-
-MathJax and the Mj* servlets requires mathjax-node-sre to be installed in the
-server; the default location is /opt/mathjax_node_sre, or you can configure it
-(see web.xml).
+This requires mathjax-node-sre to be installed in the server; the default location 
+is /opt/mathjax_node_sre, or you can configure it (see web.xml).
 
 
 Licensing
 ---------
 
 All contents of this repository including code and data are copyright
-2012-2015 The Open University and are released under the GNU Public License
+2012-2026 The Open University and are released under the GNU Public License
 version 3 (see LICENSE), except:
-
-* JEuclid and dependencies in lib/jeuclid folder:
-  http://jeuclid.sourceforge.net/
-  Released under Apache Software License version 2.
-
-* Apache FOP, Batik, and dependencies in lib/fop folder:
-  http://xmlgraphics.apache.org/fop/
-  http://xmlgraphics.apache.org/batik/
-  Released under Apache Software License version 2.
-
-* Apache Commons libraries in lib/commons folder:
-  http://commons.apache.org/
-  Released under Apache Software License version 2.
-  
-* TeX to MathML conversion code (two Java files in uk.ac.open.lts.webmaths.tex)
-  Modified and ported-to-Java version of code by Steve Cheng:
-  http://www.gold-saucer.org/mathml/greasemonkey/dist/display-latex
-  Released under custom license (see relevant source files).
 
 * UTF-8 converter (misc/utf8.inc)
   Henri Sivonen, Netscape Communications Corporation
@@ -89,56 +45,29 @@ version 3 (see LICENSE), except:
       conforming SGML systems and applications as defined in
       ISO 8879, provided this notice is included in all copies.
 
-* Quivira font in lib/extrafonts
-  http://www.quivira-font.com/
-  'Quivira is free to use for any purpose, including commercial usage. You may
-  also redistribute Quivira freely, but please do not alter it and do not claim
-  it to be your own work'.
-  (C) Alexander Lange
-
-* Allura font in lib/extrafonts
-  http://code.google.com/p/googlefontdirectory/source/browse/allura/
-  This Font Software is licensed under the SIL Open Font License, Version 1.1.
-  Copyright (c) 2011 TypeSETit, LLC (typesetit@att.net)
-
+* MathJax-node (currently packed in here as a .rpm, not sure why)
+  MathJax Consortium
+  https://github.com/pkra/mathjax-node-sre/
+  
+* NodeJS (currently packed in here as a .rpm, not sure why)
+  OpenJS Foundation and Node.js contributors
+  https://nodejs.org/  
 
 Basic build/setup instructions for testing
 ------------------------------------------
 
-1) Run the ant build script with the 'wsdlgen' target. This will create the
-   'gen' folder based on the WSDL files.
-   -> In Eclipse, right-click build.xml and choose 'Run as > Ant build...',
-      then select the wsdlgen target and deselect others.
+1) Run 'maven install'. The .war file webmaths.war will be generated inside the 
+   'target' folder. 
 
-2) If you want your IDE to compile the project:
-   a) Refresh the project if necessary to see the 'gen' folder.
-      -> In Eclipse, right-click the project root and choose Refresh. 
-   b) Add the 'gen' and 'test' folders to your IDE's source path. (The 'src'
-      folder has probably been included by default, but if not, add that too.)
-      You can also add 'analysis' if you like.
-      -> In Eclipse, right-click the folder and choose Build path /
-         Use as source folder.
-   c) Add all the library .jar files in 'lib' to the IDE's build path.
-      -> In Eclipse, right-click and choose Build path / Add to build path.
+2) Eclipse IDE will automatically compile the project assuming it is recognised
+   as a Maven project.
 
-3) You can now run some of the services locally on the built-in Java 6+ test
-   server by running uk.ac.open.lts.webmaths.DevServer 
-   -> In Eclipse, right-click this file and choose Run as / Java application.
+3) To deploy to Tomcat 9, please install or upload the war file manually.
 
-4) You can also run unit tests by running JUnit on the 'test' folder.
-   -> In Eclipse, right-click this folder and choose Run as / JUnit test. 
-
-5) To build the web application to a running Tomcat, run the ant script with the
-   'tomcatdeploy' target. You will need to set the variables tomcat-url,
-   tomcat-username and tomcat-password. The specified username needs to have
-   the manager-script role (note that the default admin user in Tomcat doesn't).
-
-6) To build the web application as a .war file, run ant script with the 'war'
-   target. You can set the Ant property war.location to the folder where you
-   want to put the .war file.
-
-7) Once you have installed the application, you can test it is running by going
+4) Once you have installed the application, you can test it is running by going
    to its root URL. This will take you to a status page.
+
+NOTE: This app currently requires Tomcat 9.x.
 
 
 How to write clients
@@ -153,7 +82,3 @@ values.
 
 The WSDL files are WS-I compliant so should be usable from all programming
 languages.
-
-If you are writing new software and can install node.js and MathJax.node on
-the server, I would recommend using only the 'mathjax' service. The other
-services may be phased out eventually.

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+     xmlns="http://java.sun.com/xml/ns/j2ee"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+                         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+     version="2.4">
+    <listener>
+        <listener-class>
+            com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            uk.ac.open.lts.webmaths.WebMathsServletContextListener
+        </listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>WS</servlet-name>
+        <servlet-class>
+            com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Status</servlet-name>
+        <servlet-class>
+            uk.ac.open.lts.webmaths.StatusServlet
+        </servlet-class>
+        <!-- Load this on startup just so the start time is correct. -->
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>Check</servlet-name>
+        <servlet-class>
+            uk.ac.open.lts.webmaths.CheckServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>WS</servlet-name>
+        <url-pattern>/mathjax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Check</servlet-name>
+        <url-pattern>/check</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Status</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <description>Home folder of MathJax-Node installation.
+            (MathJax service only.)
+        </description>
+        <param-name>mathjaxnode-folder</param-name>
+        <param-value>/opt/mathjax_node_sre</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Maximum number of Node instances to launch when the
+            service is busy. (These will be closed if it doesn't need that
+            many for at least 2 minutes.) Each instance appears to require
+            about 200MB RAM.</description>
+        <param-name>mathjaxnode-instances</param-name>
+        <param-value>4</param-value>
+    </context-param>
+
+</web-app>
