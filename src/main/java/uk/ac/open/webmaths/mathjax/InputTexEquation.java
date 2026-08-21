@@ -52,7 +52,7 @@ public abstract class InputTexEquation extends InputEquation
 		throws XPathExpressionException
 	{
 		return xpath.compile(
-			"normalize-space(/m:math/m:semantics/m:annotation[@encoding='application/x-tex'])");
+			"normalize-space(/m:math/m:semantics/m:annotation[@encoding='application/x-tex'] | /m:math/@data-latex)");
 	}
 
 	/**

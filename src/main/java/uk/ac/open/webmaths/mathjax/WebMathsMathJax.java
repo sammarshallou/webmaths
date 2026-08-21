@@ -29,7 +29,7 @@ import javax.xml.ws.WebServiceContext;
 
 import uk.ac.open.webmaths.WebMathsService;
 
-@WebService(endpointInterface="uk.ac.open.lts.webmaths.mathjax.MathsMathJaxPort",
+@WebService(endpointInterface="uk.ac.open.webmaths.mathjax.MathsMathJaxPort",
 	targetNamespace="http://ns.open.ac.uk/lts/vle/filter_maths/",
 	serviceName="MathsMathJax", portName="MathsMathJaxPort")
 public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort

@@ -21,12 +21,18 @@
       <scope>provided</scope>
       <version>4.0.1</version>
     </dependency>
-    <dependency>
-	<groupId>junit</groupId>
-	  <artifactId>junit</artifactId>
-	  <version>4.12</version>
+	<dependency>
+	  <groupId>org.junit.jupiter</groupId>
+	  <artifactId>junit-jupiter-engine</artifactId>
+	  <version>6.1.3</version>
 	  <scope>test</scope>
-    </dependency>
+	</dependency>
+	<dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>6.0.3</version>
+      <scope>test</scope>
+	</dependency>
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
@@ -50,7 +56,8 @@
     <dependency>
     <groupId>com.sun.xml.ws</groupId>
       <artifactId>jaxws-rt</artifactId>
-      <version>4.0.5</version>
+      <!-- Note 2.3.x is the last version to support Tomcat 9 (java.* rather than jakarta.* packages) -->
+      <version>2.3.7</version>
 	</dependency>
 	<dependency>
       <groupId>org.apache.xmlgraphics</groupId>
@@ -89,6 +96,7 @@
 	    <version>2.6</version>
 	    <configuration>
 	        <wsdlDirectory>${project.basedir}/src/main/resources/wsdl</wsdlDirectory>
+	        <wsdlLocation>/wsdl/maths.mathjax.wsdl</wsdlLocation>
 	        <packageName>uk.ac.open.webmaths.mathjax</packageName>
 	        <keep>true</keep>
 	        <sourceDestDir>${project.build.directory}/generated/src/main/java</sourceDestDir>
@@ -102,5 +110,11 @@
 	</plugin>
 
 	  </plugins>
+	  <resources>
+	  <resource>
+	  <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+	  </resource>
+	  </resources>
   </build>
 </project>

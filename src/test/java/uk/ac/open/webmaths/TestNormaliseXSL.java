@@ -23,16 +23,15 @@ import java.io.*;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.*;
-
-public class TestNormaliseXSL extends TestCase
+public class TestNormaliseXSL
 {
 	private TransformerPool pool;
 
-	@Override
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception
 	{
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
@@ -172,9 +171,9 @@ public class TestNormaliseXSL extends TestCase
 	private void assertEqualsIgnoringWhitespace(String expected, String value)
 	{
 		assertTrue(
-			"Unexpected result:\n" + value + "\nExpecting:\n" + expected,
 			expected.replaceAll("\\s+", "").replace('"', '\'').equals(
-				value.replaceAll("\\s+", "").replace('"', '\'')));
+				value.replaceAll("\\s+", "").replace('"', '\'')),
+			"Unexpected result:\n" + value + "\nExpecting:\n" + expected);
 	}
 
 	@Test

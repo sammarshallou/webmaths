@@ -1,10 +1,8 @@
-package uk.ac.open.lts.webmaths;
+package uk.ac.open.webmaths;
 
 import java.util.*;
 
 import javax.xml.ws.BindingProvider;
-
-import uk.ac.open.lts.webmaths.image.*;
 
 /**
  * Does bulk test of the image rendering to ensure it is reliable and check

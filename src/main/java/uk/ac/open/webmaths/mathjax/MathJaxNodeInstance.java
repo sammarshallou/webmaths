@@ -39,15 +39,14 @@ class MathJaxNodeInstance implements Comparable<MathJaxNodeInstance>
 	 * @param parent Parent object
 	 * @throws IOException Any error
 	 */
-	MathJaxNodeInstance(String executablePath, String mathJaxFolder, String font,
+	MathJaxNodeInstance(File executablePath, String font,
 		MathJaxNodeExecutable parent) throws IOException
 	{
 		started = System.currentTimeMillis();
 		String[] executableParams = new String[]
 		{
 			"node",
-			executablePath,
-			mathJaxFolder,
+			executablePath.getAbsolutePath(),
 			font
 		};
 		process = Runtime.getRuntime().exec(executableParams);

@@ -20,7 +20,6 @@ package uk.ac.open.webmaths;
 
 import java.io.*;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.text.*;
 import java.util.*;
 import java.util.regex.*;
@@ -46,6 +45,14 @@ public class StatusServlet extends HttpServlet
 	{
 		super.init();
 		started = System.currentTimeMillis();
+		try
+		{
+			Installation.startInstallIfNecessary();
+		}
+		catch(IOException e)
+		{
+			throw new ServletException(e);
+		}
 	}
 
 	@Override
@@ -56,26 +63,38 @@ public class StatusServlet extends HttpServlet
 		resp.setStatus(HttpServletResponse.SC_OK);
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter pw = resp.getWriter();
-
+		
 		// Load template.
-		String template = loadTemplate("status.html");
+		String template = Util.loadFromClasspath("status.html");
 		Map<String, String> values = new HashMap<String, String>();
 
 		// Fill basic data.
 		values.put("SERVER", esc(getHostName()));
-		String mathJaxVersion = "(Unknown)";
+		String mathJaxVersion = null;
 		try
 		{
-			mathJaxVersion = MathJaxNodeExecutable.getVersion(getServletContext());
+			switch (Installation.getInstallStatus())
+			{
+			case INSTALLING:
+				mathJaxVersion = "(Installation in progress)";
+				break;
+			case FAILED:
+				mathJaxVersion = "(Installation failed, see log)";
+				break;
+			case INSTALLED:
+				mathJaxVersion = Installation.getExpectedVersion();
+				break;
+			}
 		}
 		catch(IOException e)
 		{
+			mathJaxVersion = "(Unknown due to error)";
 		}
 		values.put("MATHJAXVERSION", esc(mathJaxVersion));
 		values.put("STARTEDAT", formatTime(started));
 		
-		try (InputStream versionStream = ClassLoader.getSystemResourceAsStream("version.txt")) {
-			values.put("VERSION", loadFromReader(new InputStreamReader(versionStream)).trim());
+		try (InputStream versionStream = StatusServlet.class.getResourceAsStream("/version.txt")) {
+			values.put("VERSION", Util.loadFromReader(new InputStreamReader(versionStream)).trim());
 		}
 
 		// Fill MathJax stats.
@@ -202,59 +221,5 @@ public class StatusServlet extends HttpServlet
 	{
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z", Locale.UK).format(
 			new Date(time));
-	}
-
-	/**
-	 * Loads a template from classpath.
-	 * @param filename Filename of template
-	 * @return Template file as string
-	 * @throws IllegalArgumentException If template of that name can't be loaded
-	 */
-	private String loadTemplate(String filename) throws IllegalArgumentException
-	{
-		try
-		{
-			return loadFromReader(new InputStreamReader(
-				getClass().getResourceAsStream(filename), Charset.forName("UTF-8")));
-		}
-		catch(IOException e)
-		{
-			throw new IllegalArgumentException("Failed to read template " + filename);
-		}
-	}
-
-	/**
-	 * Reads a string from a Reader character stream.
-	 * @param reader Input stream
-	 * @return String
-	 * @throws IOException Any error
-	 */
-	private String loadFromReader(Reader reader) throws IOException
-	{
-		char[] buffer = new char[65536];
-		StringWriter writer = new StringWriter();
-		while(true)
-		{
-			int read = reader.read(buffer);
-			if(read == -1)
-			{
-				break;
-			}
-			writer.write(buffer, 0, read);
-		}
-		reader.close();
-		return writer.toString();
-	}
-
-	/**
-	 * Reads a string from a file.
-	 * @param path Path
-	 * @return String
-	 * @throws IOException Error loading
-	 */
-	private String loadFile(File path) throws IOException
-	{
-		return loadFromReader(new InputStreamReader(
-			new FileInputStream(path), Charset.forName("UTF-8")));
 	}
 }

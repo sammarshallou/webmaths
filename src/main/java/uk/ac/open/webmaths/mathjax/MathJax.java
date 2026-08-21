@@ -21,6 +21,8 @@ package uk.ac.open.webmaths.mathjax;
 import java.awt.RenderingHints;
 import java.io.*;
 import java.util.concurrent.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.*;
 
 import javax.servlet.ServletContext;
@@ -35,6 +37,7 @@ import org.apache.fop.render.ps.EPSTranscoder;
 import org.w3c.dom.*;
 import org.w3c.dom.ls.*;
 
+import jdk.jfr.internal.LogLevel;
 import uk.ac.open.webmaths.WebMathsService;
 import uk.ac.open.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
 import uk.ac.open.webmaths.mathjax.MathJaxNodeExecutable.Status;
@@ -45,6 +48,8 @@ import uk.ac.open.webmaths.mathjax.MathJaxNodeExecutable.Status;
  */
 public class MathJax
 {
+	private final static Logger LOGGER = Logger.getLogger(MathJax.class.getName());
+
 	/** When rendering PNGs, we offset the SVG by this many pixels first. */
 	public static final double PNG_OFFSET = 0.5;
 
@@ -52,7 +57,7 @@ public class MathJax
 	public static final double DEFAULT_EX_SIZE = 7.26667;
 
 	/** Name of attribute in ServletContext that stores singleton value. */
-	private static final String ATTRIBUTE_NAME = "uk.ac.open.lts.webmaths.MathJax";
+	private static final String ATTRIBUTE_NAME = "uk.ac.open.webmaths.MathJax";
 
 	/** Ratio to use for converting size to ex */
 	private static final double CORRECT_DRAWING_UNITS_PER_EX = 428;
@@ -293,6 +298,7 @@ public class MathJax
 		String svg = mjNode.convertEquation(eq).getSvg();
 
 		double correctedHeight = 0.0, correctedWidth = 0.0, correctedBaseline = 0.0;
+		
 
 		try
 		{
@@ -305,7 +311,7 @@ public class MathJax
 			Matcher m = Pattern.compile("(-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+) (-?[0-9.]+)").matcher(viewBox);
 			if(!m.matches())
 			{
-				throw new IOException("Unexpected SVG format (viewBox)");
+				throw new IOException("Unexpected SVG format (viewBox): " + viewBox);
 			}
 
 			// Get viewbox Y and height.
@@ -395,7 +401,7 @@ public class MathJax
 			Matcher m = REGEX_BASELINE_EX.matcher(svg);
 			if(!m.find())
 			{
-				throw new IOException("MathJax SVG does not match expected baseline pattern");
+				throw new IOException("MathJax SVG does not match expected baseline pattern: " + svg);
 			}
 			double baseline = correctBaseline ? correctedBaseline : Double.parseDouble(m.group(2));
 			baseline *= exSize;
@@ -405,7 +411,7 @@ public class MathJax
 			m = REGEX_WIDTH.matcher(svg);
 			if(!m.find())
 			{
-				throw new IOException("MathJax SVG does not match expected width pattern");
+				throw new IOException("MathJax SVG does not match expected width pattern: " + svg);
 			}
 			double width = correctBaseline ? correctedWidth : Double.parseDouble(m.group(2));
 			svg = svg.substring(0, m.start(1)) + round(width * exSize) + "px" +
@@ -414,7 +420,7 @@ public class MathJax
 			m = REGEX_HEIGHT.matcher(svg);
 			if(!m.find())
 			{
-				throw new IOException("MathJax SVG does not match expected height pattern");
+				throw new IOException("MathJax SVG does not match expected height pattern: " + svg);
 			}
 			double height = correctBaseline ? correctedHeight : Double.parseDouble(m.group(2));
 			svg = svg.substring(0, m.start(1)) + round(height * exSize) + "px" +

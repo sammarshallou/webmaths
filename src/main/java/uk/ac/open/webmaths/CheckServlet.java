@@ -72,12 +72,22 @@ public class CheckServlet extends HttpServlet
 		// Get source equation.
 		SourceEquation equation = new SourceEquation();
 		equation.setTex(tex);
+		equation.setDisplay(true);
 
-		// Obtain image (MathJax - blueish).
-		out.append("<h2>Image display (<tt>mathjax</tt> service; MathJax.node)</h2>");
-		if(mathJaxCheck(out, baseUrl, equation))
+		if(!Installation.isInstalled())
 		{
+			out.append("<h2>Installation not complete, status: " + Installation.getInstallStatus() + "</h2>");
 			failed = true;
+		}
+
+		if (!failed)
+		{
+			// Obtain image (MathJax - blueish).
+			out.append("<h2>Image display (<tt>mathjax</tt> service; MathJax.node)</h2>");
+			if(mathJaxCheck(out, baseUrl, equation))
+			{
+				failed = true;
+			}			
 		}
 
 		out.append("<h2>More information</h2>");
@@ -304,6 +314,7 @@ public class CheckServlet extends HttpServlet
 				params.getEquations().add(sourceEquation);
 				params.getOutputs().add(ConversionType.PNG);
 				params.setRgb("#8888aa");
+				params.setExSize(10.0f);
 				ConvertEquationsReturn serviceResult = port.convertEquations(params);
 				synchronized(mathJaxCheckSynch)
 				{

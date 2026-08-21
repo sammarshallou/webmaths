@@ -25,7 +25,7 @@ package uk.ac.open.webmaths.mathjax;
 public abstract class InputEquation
 {
 	/** Default font used for equations */
-	public final static String DEFAULT_FONT = "TeX";
+	public final static String DEFAULT_FONT = "mathjax-tex";
 
 	private String content, font;
 
@@ -49,7 +49,9 @@ public abstract class InputEquation
 		// Font list from http://docs.mathjax.org/en/latest/options/SVG.html#configure-svg
 		return font.equals("TeX") || font.equals("STIX-Web") || font.equals("Asana-Math") ||
 			font.equals("Neo-Euler") || font.equals("Gyre-Pagella") || font.equals("Gyre-Termes") ||
-			font.equals("Latin-Modern");
+			font.equals("Latin-Modern") || font.equals("mathjax-tex")  || font.equals("mathjax-stix2") ||
+			font.equals("mathjax-asana") || font.equals("mathjax-pagella")  || font.equals("mathjax-termes") ||
+			font.equals("mathjax-modern") || font.equals("mathjax-newcm");
 	}
 
 	/**

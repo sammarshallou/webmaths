@@ -1,4 +1,4 @@
-package uk.ac.open.lts.webmaths;
+package uk.ac.open.webmaths;
 
 import java.io.*;
 import java.net.*;
@@ -9,9 +9,6 @@ import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
 import org.xml.sax.*;
-
-import uk.ac.open.lts.webmaths.imagetex.*;
-import uk.ac.open.lts.webmaths.tex.*;
 
 /**
  * Class to do analysis on the forum samples corpus (this is a list of TeX

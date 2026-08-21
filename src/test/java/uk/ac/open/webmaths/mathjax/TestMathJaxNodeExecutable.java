@@ -18,13 +18,15 @@ Copyright 2015 The Open University
 */
 package uk.ac.open.webmaths.mathjax;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.util.*;
 
-import org.junit.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
+import uk.ac.open.webmaths.Installation;
+import uk.ac.open.webmaths.Installation.InstallStatus;
 import uk.ac.open.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
 
 public class TestMathJaxNodeExecutable
@@ -191,10 +193,11 @@ public class TestMathJaxNodeExecutable
 
 	private MathJaxNodeExecutableTester executable;
 
-	@Before
+	@BeforeEach
 	public void before()
 	{
 		executable = new MathJaxNodeExecutableTester();
+		Installation.fakeInstallStatus(InstallStatus.INSTALLED);
 	}
 
 	@Test
@@ -554,7 +557,7 @@ public class TestMathJaxNodeExecutable
 		assertArrayEquals(new Boolean[] { true, true }, list.toArray(new Boolean[2]));
 
 		// Check the instances have been set up with the right fonts.
-		assertEquals("TeX", instance1.getFont());
+		assertEquals("mathjax-tex", instance1.getFont());
 		assertEquals("STIX-Web", instance2.getFont());
 
 		// Check instance 1 includes requests for a and c.

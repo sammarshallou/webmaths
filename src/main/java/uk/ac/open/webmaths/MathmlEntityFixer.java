@@ -329,7 +329,7 @@ public class MathmlEntityFixer
 		{
 			synchronized(servletContext)
 			{
-				String key = "uk.ac.open.lts.webmaths.Fixer";
+				String key = "uk.ac.open.webmaths.Fixer";
 				MathmlEntityFixer fixer = (MathmlEntityFixer)servletContext.getAttribute(key);
 				if(fixer == null)
 				{

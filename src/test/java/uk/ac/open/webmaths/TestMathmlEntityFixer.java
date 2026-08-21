@@ -18,13 +18,12 @@ Copyright 2011 The Open University
 */
 package uk.ac.open.webmaths;
 
-import junit.framework.TestCase;
-
 import static uk.ac.open.webmaths.MathmlEntityFixer.getWithHexEntities;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class TestMathmlEntityFixer extends TestCase
+public class TestMathmlEntityFixer
 {
 	@Test
 	public void testHexNothing()

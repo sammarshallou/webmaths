@@ -18,11 +18,10 @@ Copyright 2015 The Open University
 */
 package uk.ac.open.webmaths.mathjax;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestInputEquation
 {

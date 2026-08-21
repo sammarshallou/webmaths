@@ -12,7 +12,7 @@
     </listener>
     <listener>
         <listener-class>
-            uk.ac.open.lts.webmaths.WebMathsServletContextListener
+            uk.ac.open.webmaths.WebMathsServletContextListener
         </listener-class>
     </listener>
 
@@ -25,7 +25,7 @@
     <servlet>
         <servlet-name>Status</servlet-name>
         <servlet-class>
-            uk.ac.open.lts.webmaths.StatusServlet
+            uk.ac.open.webmaths.StatusServlet
         </servlet-class>
         <!-- Load this on startup just so the start time is correct. -->
         <load-on-startup>0</load-on-startup>
@@ -33,7 +33,7 @@
     <servlet>
         <servlet-name>Check</servlet-name>
         <servlet-class>
-            uk.ac.open.lts.webmaths.CheckServlet
+            uk.ac.open.webmaths.CheckServlet
         </servlet-class>
     </servlet>
 
@@ -49,14 +49,6 @@
         <servlet-name>Status</servlet-name>
         <url-pattern></url-pattern>
     </servlet-mapping>
-
-    <context-param>
-        <description>Home folder of MathJax-Node installation.
-            (MathJax service only.)
-        </description>
-        <param-name>mathjaxnode-folder</param-name>
-        <param-value>/opt/mathjax_node_sre</param-value>
-    </context-param>
 
     <context-param>
         <description>Maximum number of Node instances to launch when the

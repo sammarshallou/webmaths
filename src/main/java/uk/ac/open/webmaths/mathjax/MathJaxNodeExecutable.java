@@ -7,12 +7,12 @@ import java.util.regex.*;
 
 import javax.servlet.ServletContext;
 
+import uk.ac.open.webmaths.Installation;
+import uk.ac.open.webmaths.Installation.InstallStatus;
+
 public class MathJaxNodeExecutable
 {
 	private final static Logger LOGGER = Logger.getLogger(MathJaxNodeExecutable.class.getName());
-
-	/** Servlet parameter used to specify location of MathJax-node folder. */
-	private static final String PARAM_MATHJAXNODEFOLDER = "mathjaxnode-folder";
 
 	/** Servlet parameter used to indicate maximum number of Node instances. */
 	private static final String PARAM_MATHJAXNODEINSTANCES = "mathjaxnode-instances";
@@ -51,10 +51,7 @@ public class MathJaxNodeExecutable
 	private int maxInstances = 4;
 
 	/** Path to executable script */
-	private String executablePath;
-
-	/** Folder path to MathJax.node */
-	private String mathJaxFolder;
+	private File executablePath;
 
 	/** Current instances. */
 	private ArrayList<MathJaxNodeInstance> instances;
@@ -476,12 +473,7 @@ public class MathJaxNodeExecutable
 	public MathJaxNodeExecutable(ServletContext servletContext)
 	{
 		// Work out parameters for executable.
-		String folder = getFolder(servletContext);
-
-		File executable = new File(servletContext.getRealPath("WEB-INF/ou-mathjax-batchprocessor"));
-		executable.setExecutable(true);
-		executablePath = executable.getAbsolutePath();
-		mathJaxFolder = folder;
+		executablePath = Installation.getExecutablePath();
 
 		try
 		{
@@ -497,58 +489,6 @@ public class MathJaxNodeExecutable
 		}
 
 		basicInit();
-	}
-
-	/**
-	 * Gets the folder parameter locating MathJax.node.
-	 * @param servletContext Servlet context
-	 * @return Parameter value
-	 * @throws IllegalArgumentException If not set
-	 */
-	private static String getFolder(ServletContext servletContext)
-		throws IllegalArgumentException
-	{
-		String folder = servletContext.getInitParameter(PARAM_MATHJAXNODEFOLDER);
-		if(folder == null)
-		{
-			throw new IllegalArgumentException("Servlet parameter "
-				+ PARAM_MATHJAXNODEFOLDER + " must be set");
-		}
-		return folder;
-	}
-
-	/**
-	 * Gets the MathJax version by reading package.json.
-	 * @param servletContext Servlet context
-	 * @return MathJax version number
-	 * @throws IOException If any error finding it
-	 */
-	public static String getVersion(ServletContext servletContext) throws IOException
-	{
-		String version = null;
-		File packageJson = new File(getFolder(servletContext), "package.json");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-			new FileInputStream(packageJson), "UTF-8"));
-		while(true)
-		{
-			String line = reader.readLine();
-			if(line == null)
-			{
-				break;
-			}
-			Matcher m = REGEX_PACKAGEVERSION.matcher(line);
-			if(m.matches())
-			{
-				version = m.group(1);
-				break;
-			}
-		}
-		reader.close();
-		if(version == null)
-		{
-			throw new IOException("Unable to find version in package.json");
-		}
-		return version;
 	}
 
 	/**
@@ -599,6 +539,12 @@ public class MathJaxNodeExecutable
 				return got;
 			}
 			countCacheMisses++;
+		}
+		
+		// If the installation hasn't happened yet then throw exception.
+		if (!Installation.isInstalled())
+		{
+			throw new IOException("ou-mathjax application has not installed yet");
 		}
 
 		MathJaxNodeInstance instance = null;
@@ -962,7 +908,7 @@ public class MathJaxNodeExecutable
 	 */
 	protected MathJaxNodeInstance createInstance(String font) throws IOException
 	{
-		return new MathJaxNodeInstance(executablePath, mathJaxFolder, font, this);
+		return new MathJaxNodeInstance(executablePath, font, this);
 	}
 
 	/**
