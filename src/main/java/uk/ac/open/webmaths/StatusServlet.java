@@ -65,7 +65,7 @@ public class StatusServlet extends HttpServlet
 		PrintWriter pw = resp.getWriter();
 		
 		// Load template.
-		String template = Util.loadFromClasspath("status.html");
+		String template = Util.loadFromClasspath("/data/status.html");
 		Map<String, String> values = new HashMap<String, String>();
 
 		// Fill basic data.

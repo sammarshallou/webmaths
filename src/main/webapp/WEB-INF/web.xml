@@ -59,4 +59,12 @@
         <param-value>4</param-value>
     </context-param>
 
+    <context-param>
+        <description>Path to folder that contains ou-mathjax.mjs. If left 
+            blank, server will install files into the user.home directory
+            and try to run 'npm install' itself to build.</description>
+        <param-name>ou-mathjax-location</param-name>
+        <param-value>${ou-mathjax-location}</param-value>
+    </context-param>
+
 </web-app>

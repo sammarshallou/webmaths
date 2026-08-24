@@ -35,7 +35,7 @@ public class TestNormaliseXSL
 	public void setUp() throws Exception
 	{
 		MathmlEntityFixer fixer = new MathmlEntityFixer();
-		pool = new TransformerPool(fixer, WebMathsService.class, "normalise.xsl");
+		pool = new TransformerPool(fixer, WebMathsService.class, "/data/normalise.xsl");
 	}
 
 	@Test

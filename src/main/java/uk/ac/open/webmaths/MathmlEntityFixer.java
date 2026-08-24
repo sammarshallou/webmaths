@@ -51,7 +51,7 @@ public class MathmlEntityFixer
 	public MathmlEntityFixer() throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
-			MathmlEntityFixer.class.getResourceAsStream("mathml.entities.txt"), "UTF-8"));
+			MathmlEntityFixer.class.getResourceAsStream("/data/mathml.entities.txt"), "UTF-8"));
 		while(true)
 		{
 			String line = reader.readLine();
@@ -76,8 +76,8 @@ public class MathmlEntityFixer
 		entityToChar.put("apos", "&apos;");
 		entityToChar.put("quot", "&quot;");
 
-		readDescriptions(WebMathsService.class.getResourceAsStream("mathml.descriptions.txt"));
-		readDescriptions(WebMathsService.class.getResourceAsStream("override.descriptions.txt"));
+		readDescriptions(WebMathsService.class.getResourceAsStream("/data/mathml.descriptions.txt"));
+		readDescriptions(WebMathsService.class.getResourceAsStream("/data/override.descriptions.txt"));
 	}
 
 	/**
