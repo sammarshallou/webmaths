@@ -20,6 +20,8 @@ ou-mathjax package.
 %setup -c -n ou-mathjax-%%VERSION%%
 
 %build
+pwd
+ls -l
 npm ci
 
 %install
