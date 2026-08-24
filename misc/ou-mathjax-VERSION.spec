@@ -22,7 +22,7 @@ ou-mathjax package.
 %build
 pwd
 ls -l
-npm ci
+npm install
 
 %install
 rm -rf $RPM_BUILD_ROOT/opt/ou-mathjax
