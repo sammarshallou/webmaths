@@ -387,22 +387,6 @@ public class TestMathJax
 		}
 	}
 
-	/**
-	 * We had a problem with the system check images using MathJax 4.
-	 * @throws Exception
-	 */
-	@Test
-	public void testGetSvgSystemCheckMj4() throws Exception
-	{
-		String originalSvg = Util.loadFromClasspath("/uk/ac/open/webmaths/mathjax/systemcheck-example.svg");
-		InputEquation eq = new InputTexDisplayEquation("sqrt{\\frac{\\textrm{System check}}{1787319348523}}", null);
-		mockExecutable.expect(eq, originalSvg, MATHML_X_MJ4);
-//		String svg = mathJax.getSvg(eq, false, MathJax.SIZE_IN_EX, null);
-		String svg = mathJax.getSvg(eq, true, 10.0, "#ff0000");
-		System.err.println(svg);
-		
-	}
-
 	@ParameterizedTest
 	@MethodSource("svgAndMathmlParameters")
 	public void testOffsetSvg(String svgX, String mathmlX) throws Exception

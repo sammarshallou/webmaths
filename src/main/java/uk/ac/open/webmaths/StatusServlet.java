@@ -70,27 +70,29 @@ public class StatusServlet extends HttpServlet
 
 		// Fill basic data.
 		values.put("SERVER", esc(getHostName()));
-		String mathJaxVersion = null;
+		String ouMathJaxVersion = null, actualMathJaxVersion = "-";
 		try
 		{
 			switch (Installation.getInstallStatus())
 			{
 			case INSTALLING:
-				mathJaxVersion = "(Installation in progress)";
+				ouMathJaxVersion = "(Installation in progress)";
 				break;
 			case FAILED:
-				mathJaxVersion = "(Installation failed, see log)";
+				ouMathJaxVersion = "(Installation failed, see log)";
 				break;
 			case INSTALLED:
-				mathJaxVersion = Installation.getExpectedVersion();
+				ouMathJaxVersion = Installation.getExpectedVersion();
+				actualMathJaxVersion = Installation.getInstalledMathJaxVersion();
 				break;
 			}
 		}
 		catch(IOException e)
 		{
-			mathJaxVersion = "(Unknown due to error)";
+			ouMathJaxVersion = "(Unknown due to error)";
 		}
-		values.put("MATHJAXVERSION", esc(mathJaxVersion));
+		values.put("OUMATHJAXVERSION", esc(ouMathJaxVersion));
+		values.put("ACTUALMATHJAXVERSION", esc(actualMathJaxVersion));
 		values.put("STARTEDAT", formatTime(started));
 		
 		try (InputStream versionStream = StatusServlet.class.getResourceAsStream("/version.txt")) {

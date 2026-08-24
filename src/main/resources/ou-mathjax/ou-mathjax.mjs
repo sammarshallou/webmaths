@@ -14,7 +14,7 @@ let actualFont, extensionFont;
 switch (specifiedFont) {
   case 'TeX':
     actualFont = 'mathjax-tex';
-    break;    
+    break;
   case 'STIX-Web':
     actualFont = 'mathjax-stix2';
     break;
@@ -64,7 +64,7 @@ const config = {
       mathjax: mjBase,
       // Override SRE path so it uses the path not file URL.
       'sre': mjBasePath + '/sre',
-    }, 
+    },
     load: [
       'input/tex',
       'input/mml',
@@ -82,7 +82,7 @@ const config = {
     },
     a11y: {
       speech: true,
-      braille: false,  
+      braille: false,
     },
     compileError(document, math, error) {
       mathjaxErrors.push(error.message);
@@ -90,15 +90,17 @@ const config = {
   },
   svg: {
     blacker: 10,
-    displayOverflow: 'overflow', 
+    displayOverflow: 'overflow',
     linebreaks: {
-      inline: false 
+      inline: false
     },
-    //internalSpeechTitles: true,
   },
   tex: {
     formatError(jax, error) {
-      mathjaxErrors.push(error.message);
+      // Sometimes errors get reported twice, I don't know why but make sure it's only listed once.
+      if (!mathjaxErrors.includes(error.message)) {
+        mathjaxErrors.push(error.message);
+      }
       return jax.formatError(error);
     }
   },
@@ -123,7 +125,7 @@ async function processInput(input) {
   };
   // Line breaks do not work the way I'd like in display math; they result in it
   // becoming the default width (100ex as above) rather than being sized to fit.
-  // To resolve this, use inline math with displaystyle instead. 
+  // To resolve this, use inline math with displaystyle instead.
   let inputFormat = input.format;
   let inputValue = input.value;
   if (inputFormat === 'TeX') {
@@ -131,7 +133,7 @@ async function processInput(input) {
     inputValue = '\\displaystyle{' + inputValue + '}';
   }
   let svg, mml;
-    
+
   try {
     let svgContainer;
     if (inputFormat === 'MathML') {
@@ -140,14 +142,16 @@ async function processInput(input) {
       svgContainer = await MathJax.tex2svgPromise(inputValue, options);
       mml = await MathJax.tex2mmlPromise(inputValue, options);
     }
-    
+
     // Find the speech text and put it as an SVG title.
     const speech = adaptor.getAttribute(svgContainer, 'data-semantic-speech-none');
     const svgElement = adaptor.getElement('svg', svgContainer);
-    const title = adaptor.create('title', {}, [], 'http://www.w3.org/2000/svg');
-    adaptor.insert(title, adaptor.firstChild(svgElement));
-    adaptor.append(title, adaptor.text(speech));
-    
+    if (speech) {
+      const title = adaptor.create('title', {}, [], 'http://www.w3.org/2000/svg');
+      adaptor.insert(title, adaptor.firstChild(svgElement));
+      adaptor.append(title, adaptor.text(speech));
+    }
+
     // Remove all the data attributes, we don't need them and they make it way bigger.
     const removeDataAttributes = (root) => {
         const attributes = adaptor.allAttributes(root);
@@ -159,35 +163,36 @@ async function processInput(input) {
         const children = adaptor.childNodes(root);
         for (const child of children) {
           if(adaptor.kind(child) !== '#text') {
-            removeDataAttributes(child);        
+            removeDataAttributes(child);
           }
-        }                
+        }
     };
     removeDataAttributes(svgElement);
-    
-    svg = adaptor.serializeXML(svgElement);
-	
-	// Bodge up the root level data-latex to the original value (without displaystyle).    
-	// Stick speech into the MathML as 'alttext' as well.
-	const escapeXml = s => s
-	  .replaceAll("&", "&amp;")
-	  .replaceAll("<", "&lt;")
-	  .replaceAll(">", "&gt;")
-	  .replaceAll('"', "&quot;")
-	  .replaceAll("'", "&apos;");
 
-	const re = /(<math[^>]+)(>)/;
-	mml = mml.replace(re, (match, g1, g2) => {
-	  let fixedG1 = g1;
-	  if (input.format === 'TeX') {
-	    fixedG1 = fixedG1.replace(/ data-latex="[^"]*"/, ' data-latex="' + escapeXml(input.value.trim()) + '"');
-	  }
-	  return fixedG1 + ' alttext="' + escapeXml(speech) + '"' + g2;
-	});
+    svg = adaptor.serializeXML(svgElement);
+
+    // Bodge up the root level data-latex to the original value (without displaystyle).
+    // Stick speech into the MathML as 'alttext' as well.
+    const escapeXml = s => s
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&apos;");
+
+    const re = /(<math[^>]+)(>)/;
+    mml = mml.replace(re, (match, g1, g2) => {
+      let fixedG1 = g1;
+      if (input.format === 'TeX') {
+        fixedG1 = fixedG1.replace(/ data-latex="[^"]*"/, ' data-latex="' + escapeXml(input.value.trim()) + '"');
+      }
+      return fixedG1 + (speech ? ' alttext="' + escapeXml(speech) + '"' : '') + g2;
+    });
+
   } catch(exception) {
     mathjaxErrors.push(exception.message);
   }
-  
+
   process.stdout.write('<<BEGIN:RESULT\n');
   if (mathjaxErrors.length > 0) {
     process.stdout.write('<<BEGIN:ERRORS\n');
@@ -200,7 +205,7 @@ async function processInput(input) {
         process.stdout.write('Too many errors\n');
         break;
       }
-    }    
+    }
     process.stdout.write('<<END:ERRORS\n');
   } else {
     // Output SVG (which includes speech text and baseline info).

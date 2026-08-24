@@ -17,7 +17,7 @@ public class Installation {
 	private final static Logger LOGGER = Logger.getLogger(Installation.class.getName());
 
 	private final static Pattern REGEX_PACKAGEVERSION = Pattern.compile(
-			"(?:^|\n)\\s*\"version\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*(?:\n|$)");
+			"(?:^|\n)\\s*\"version\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*(?:\n|$)");	
 	
 	/** If true, currently installing the app */
 	private static boolean installing = false;
@@ -65,6 +65,24 @@ public class Installation {
 			return matcher.group(1);
 		}
 		throw new IOException("Unable to parse version from package.json");	
+	}
+	
+	/**
+	 * Gets the version for the MathJax dependency that is actually installed.
+	 * (Only works when app is installed.)
+	 * @return Version string
+	 * @throws IOException Any error reading package.json
+	 */
+	protected static String getInstalledMathJaxVersion() throws IOException
+	{
+		File mathJaxPackage = new File(getInstallLocation(), "node_modules/@mathjax/src/package.json");
+		String packageJson = Util.loadFile(mathJaxPackage);
+		Matcher matcher = REGEX_PACKAGEVERSION.matcher(packageJson);
+		if (matcher.find())
+		{
+			return matcher.group(1);
+		}
+		throw new IOException("Unable to parse version from @mathjax/src/package.json");	
 	}
 	
 	/**
