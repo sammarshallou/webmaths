@@ -28,11 +28,10 @@ npm install
 rm -rf $RPM_BUILD_ROOT/opt/ou-mathjax
 mkdir -p $RPM_BUILD_ROOT/opt/ou-mathjax
 cp -r * $RPM_BUILD_ROOT/opt/ou-mathjax
-find $RPM_BUILD_ROOT '(' -type d -o -type l -o -type f ')' -print | sed "s@^$RPM_BUILD_ROOT@@g" > /tmp/tmp-filelist
-echo '----start---'
-cat /tmp/tmp-filelist
-echo '----end---'
-exit 1
+#find $RPM_BUILD_ROOT '(' -type d -o -type l -o -type f ')' -print | sed "s@^$RPM_BUILD_ROOT@@g" > /tmp/tmp-filelist
+#cat /tmp/tmp-filelist
+#exit 1
 
-%files -f /tmp/tmp-filelist
+%files
 %defattr(-,root,root,-)
+/opt/ou-mathjax
