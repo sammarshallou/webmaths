@@ -30,8 +30,9 @@ mkdir -p $RPM_BUILD_ROOT/opt/ou-mathjax
 cp -r * $RPM_BUILD_ROOT/opt/ou-mathjax
 find $RPM_BUILD_ROOT '(' -type d -o -type l -o -type f ')' -print | sed "s@^$RPM_BUILD_ROOT@@g" > /tmp/tmp-filelist
 echo '----start---'
-ls -lR $RPM_BUILD_ROOT
+cat /tmp/tmp-filelist
 echo '----end---'
+exit 1
 
 %files -f /tmp/tmp-filelist
 %defattr(-,root,root,-)
