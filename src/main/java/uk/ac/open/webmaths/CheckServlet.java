@@ -318,7 +318,7 @@ public class CheckServlet extends HttpServlet
 				ConvertEquationsReturn serviceResult = port.convertEquations(params);
 				synchronized(mathJaxCheckSynch)
 				{
-					OutputData first = serviceResult.getOutput().getFirst();
+					OutputData first = serviceResult.getOutput().get(0);
 					if(first.isOk())
 					{
 						time = System.currentTimeMillis() - started;
