@@ -171,24 +171,25 @@ async function processInput(input) {
 
     svg = adaptor.serializeXML(svgElement);
 
-    // Bodge up the root level data-latex to the original value (without displaystyle).
-    // Stick speech into the MathML as 'alttext' as well.
-    const escapeXml = s => s
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&apos;");
+	if (mml) {		
+		// Bodge up the root level data-latex to the original value (without displaystyle).
+		// Stick speech into the MathML as 'alttext' as well.
+		const escapeXml = s => s
+		  .replaceAll("&", "&amp;")
+		  .replaceAll("<", "&lt;")
+		  .replaceAll(">", "&gt;")
+		  .replaceAll('"', "&quot;")
+		  .replaceAll("'", "&apos;");
 
-    const re = /(<math[^>]+)(>)/;
-    mml = mml.replace(re, (match, g1, g2) => {
-      let fixedG1 = g1;
-      if (input.format === 'TeX') {
-        fixedG1 = fixedG1.replace(/ data-latex="[^"]*"/, ' data-latex="' + escapeXml(input.value.trim()) + '"');
-      }
-      return fixedG1 + (speech ? ' alttext="' + escapeXml(speech) + '"' : '') + g2;
-    });
-
+		const re = /(<math[^>]+)(>)/;
+		mml = mml.replace(re, (match, g1, g2) => {
+		  let fixedG1 = g1;
+		  if (input.format === 'TeX') {
+		    fixedG1 = fixedG1.replace(/ data-latex="[^"]*"/, ' data-latex="' + escapeXml(input.value.trim()) + '"');
+		  }
+		  return fixedG1 + (speech ? ' alttext="' + escapeXml(speech) + '"' : '') + g2;
+		});
+	}
   } catch(exception) {
     mathjaxErrors.push(exception.message);
   }

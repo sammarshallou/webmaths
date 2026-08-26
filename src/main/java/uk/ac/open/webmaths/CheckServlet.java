@@ -314,7 +314,7 @@ public class CheckServlet extends HttpServlet
 				params.getEquations().add(sourceEquation);
 				params.getOutputs().add(ConversionType.PNG);
 				params.setRgb("#8888aa");
-				params.setExSize(10.0f);
+				params.setExSize(7.26667f);
 				ConvertEquationsReturn serviceResult = port.convertEquations(params);
 				synchronized(mathJaxCheckSynch)
 				{
