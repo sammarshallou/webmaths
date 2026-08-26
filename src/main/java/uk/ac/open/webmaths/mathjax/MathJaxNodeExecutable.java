@@ -8,7 +8,6 @@ import java.util.regex.*;
 import javax.servlet.ServletContext;
 
 import uk.ac.open.webmaths.Installation;
-import uk.ac.open.webmaths.Installation.InstallStatus;
 
 public class MathJaxNodeExecutable
 {
@@ -42,10 +41,6 @@ public class MathJaxNodeExecutable
 
 	/** If true, fakes errors for most responses. */
 	private final static boolean FAKE_ERRORS = false;
-
-	/** Regex used for package version from json file */
-	private final static Pattern REGEX_PACKAGEVERSION = Pattern.compile(
-		"^\\s*\"version\"\\s*:\\s*\"([^\"]+)\"\\s*,\\s*$");
 
 	/** Maximum number of instances of MathJax.node to run at once. */
 	private int maxInstances = 4;

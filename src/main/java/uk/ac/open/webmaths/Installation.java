@@ -139,7 +139,7 @@ public class Installation implements ServletContextListener {
 			}
 			else
 			{
-				 // Check the correction version is installed in the provided location
+				// Check the correction version is installed in the provided location
 				File ouMathJaxPackage = new File(getInstallLocation(), "package.json");
 				try 
 				{
@@ -147,12 +147,22 @@ public class Installation implements ServletContextListener {
 					Matcher matcher = REGEX_PACKAGEVERSION.matcher(packageJson);
 					if (matcher.find())
 					{
-						isInstalled = matcher.group(1).equals(getExpectedVersion());
+						String actualVersion = matcher.group(1); 
+						isInstalled = actualVersion.equals(getExpectedVersion());
+						if (!isInstalled)
+						{
+							LOGGER.log(Level.WARNING, "ou-mathjac package.json has version " + 
+								actualVersion + ", expecting" + getExpectedVersion());							
+						}
 					}
-					throw new IOException("Unable to parse version from @mathjax/src/package.json");	
+					else
+					{
+						throw new IOException("Unable to parse version from @mathjax/src/package.json");	
+					}
 				}
 				catch (IOException e)
 				{
+					LOGGER.log(Level.WARNING, "Unable to load ou-mathjax package.json", e);
 					// If we can't load the file, it isn't installed.
 					isInstalled = false;
 				}				
@@ -292,7 +302,7 @@ public class Installation implements ServletContextListener {
 	{
 		synchronized(Installation.class)
 		{
-			if (isInstalled())
+			if (fixedLocation != null || isInstalled())
 			{
 				return;
 			}

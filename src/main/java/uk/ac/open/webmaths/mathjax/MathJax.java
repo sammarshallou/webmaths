@@ -21,7 +21,6 @@ package uk.ac.open.webmaths.mathjax;
 import java.awt.RenderingHints;
 import java.io.*;
 import java.util.concurrent.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.*;
 
@@ -37,7 +36,6 @@ import org.apache.fop.render.ps.EPSTranscoder;
 import org.w3c.dom.*;
 import org.w3c.dom.ls.*;
 
-import jdk.jfr.internal.LogLevel;
 import uk.ac.open.webmaths.WebMathsService;
 import uk.ac.open.webmaths.mathjax.MathJaxNodeExecutable.ConversionResults;
 import uk.ac.open.webmaths.mathjax.MathJaxNodeExecutable.Status;
