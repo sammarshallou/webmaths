@@ -134,6 +134,9 @@ async function processInput(input) {
     inputFormat = 'inline-TeX';
     inputValue = '\\displaystyle{' + inputValue + '}';
   }
+  if (inputFormat === 'inline-TeX') {
+	options.dislay = false; 
+  }
   let svg, mml;
 
   try {
