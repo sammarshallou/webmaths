@@ -125,16 +125,17 @@ async function processInput(input) {
     ex: 6,
     containerWidth: 100 * 6,
   };
-  // Line breaks do not work the way I'd like in display math; they result in it
-  // becoming the default width (100ex as above) rather than being sized to fit.
-  // To resolve this, use inline math with displaystyle instead.
+  // Line breaks do not work the way I'd like in inline math; they result in it
+  // becoming specified as width 100% with no viewBox which breaks the Java
+  // processing. To resolve this, use display math with displaystyle instead.
   let inputFormat = input.format;
   let inputValue = input.value;
-  if (inputFormat === 'TeX') {
-    inputFormat = 'inline-TeX';
-    inputValue = '\\displaystyle{' + inputValue + '}';
+  if (inputFormat === 'inline-TeX') {
+	inputValue = '\\inlinestyle{' + inputValue + '}';
+	inputFormat='TeX';
   }
   if (inputFormat === 'inline-TeX') {
+	// This code never runs now, but I left it in just in case needed later.
 	options.display = false; 
   }
   let svg, mml;
@@ -177,7 +178,7 @@ async function processInput(input) {
     svg = adaptor.serializeXML(svgElement);
 
 	if (mml) {		
-		// Bodge up the root level data-latex to the original value (without displaystyle).
+		// Bodge up the root level data-latex to the original value (without inputstyle).
 		// Stick speech into the MathML as 'alttext' as well.
 		const escapeXml = s => s
 		  .replaceAll("&", "&amp;")
