@@ -135,7 +135,7 @@ async function processInput(input) {
     inputValue = '\\displaystyle{' + inputValue + '}';
   }
   if (inputFormat === 'inline-TeX') {
-	options.dislay = false; 
+	options.display = false; 
   }
   let svg, mml;
 
