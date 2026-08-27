@@ -131,7 +131,7 @@ async function processInput(input) {
   let inputFormat = input.format;
   let inputValue = input.value;
   if (inputFormat === 'inline-TeX') {
-	inputValue = '\\inlinestyle{' + inputValue + '}';
+	inputValue = '\\textstyle{' + inputValue + '}';
 	inputFormat='TeX';
   }
   if (inputFormat === 'inline-TeX') {
@@ -178,7 +178,7 @@ async function processInput(input) {
     svg = adaptor.serializeXML(svgElement);
 
 	if (mml) {		
-		// Bodge up the root level data-latex to the original value (without inputstyle).
+		// Bodge up the root level data-latex to the original value (without textstyle).
 		// Stick speech into the MathML as 'alttext' as well.
 		const escapeXml = s => s
 		  .replaceAll("&", "&amp;")
