@@ -49,11 +49,11 @@ switch (specifiedFont) {
 
 // On Windows, we need to specifically use file URLs not paths or the ES6 loader doesn't work.
 const baseUrl = url.pathToFileURL(import.meta.dirname);
-const mjBase = baseUrl + '/node_modules/@mathjax/src/bundle';
+const mjBundleUrl = baseUrl + '/node_modules/@mathjax/src/bundle';
 
 // But then for some reason, we also need to use the full absolute path for SRE.
 const dirName = import.meta.dirname.replaceAll('\\', '/');
-const mjBasePath = dirName + '/node_modules/@mathjax/src/bundle';
+const mjBundlePath = dirName + '/node_modules/@mathjax/src/bundle';
 
 // Track errors in this array.
 const mathjaxErrors = [];
@@ -61,9 +61,9 @@ const mathjaxErrors = [];
 const config = {
   loader: {
     paths: {
-      mathjax: mjBase,
+      mathjax: mjBundleUrl,
       // Override SRE path so it uses the path not file URL.
-      'sre': mjBasePath + '/sre',
+      'sre': mjBundlePath + '/sre',
     },
     load: [
       'input/tex',
@@ -71,6 +71,7 @@ const config = {
       'output/svg',
       'ui/safe',
       'a11y/speech',
+	  '[tex]/mhchem',
     ],
   },
   options: {
