@@ -76,8 +76,8 @@ const config = {
   options: {
     enableSpeech: true,
     sre: {
-      domain: 'clearspeak',
-      style: 'brief',
+      domain: 'mathspeak',
+      style: 'default',
       locale: 'en',
     },
     a11y: {
@@ -106,6 +106,7 @@ const config = {
   },
   output: {
     font: actualFont,
+	displayAlign: 'left'
   },
 };
 if (extensionFont) {
