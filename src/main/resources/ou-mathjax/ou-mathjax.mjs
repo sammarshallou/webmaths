@@ -90,7 +90,9 @@ const config = {
     },
   },
   svg: {
-    blacker: 20,
+	// Note the 'blacker' option, which can be specified here, works by injecting style into
+	// a CSS which is associated to the SVG but is not included within it, so it does nothing.
+	// Super helpful.
     displayOverflow: 'overflow',
     linebreaks: {
       inline: false
@@ -107,8 +109,8 @@ const config = {
   },
   output: {
     font: actualFont,
-	displayAlign: 'left'
-  },
+	displayAlign: 'left',
+ },
 };
 if (extensionFont) {
   config.output.fontExtension = 'mathjax-euler';
@@ -158,11 +160,12 @@ async function processInput(input) {
       adaptor.append(title, adaptor.text(speech));
     }
 
-    // Remove all the data attributes, we don't need them and they make it way bigger.
+    // Remove all the data attributes except data-c, we don't need them and they make
+	// it way bigger.
     const removeDataAttributes = (root) => {
         const attributes = adaptor.allAttributes(root);
         for (const attribute of attributes) {
-           if(attribute.name.startsWith('data-')) {
+           if(attribute.name.startsWith('data-') && attribute.name != 'data-c') {
              adaptor.removeAttribute(root, attribute.name);
            }
         }
@@ -174,6 +177,13 @@ async function processInput(input) {
         }
     };
     removeDataAttributes(svgElement);
+
+	// Insert CSS into the SVG so we can do the same thing as 'blacker'. This is based on MathJax
+	// css which you can get by calling MathJax.svgStylesheet(), but that styling only works
+	// within an mjx-container tag; this one is generic within the SVG.
+	const styleText = 'path[data-c], use[data-c] { stroke-width: 10; }';
+	const styleElement = adaptor.node('style', {}, [adaptor.text(styleText)]);
+	adaptor.insert(styleElement, adaptor.firstChild(svgElement));
 
     svg = adaptor.serializeXML(svgElement);
 
@@ -240,6 +250,8 @@ const rl = readlinePromises.createInterface({
 // Process input lines.
 let mode = 'format';
 let input = null;
+let processingPromise = Promise.resolve();
+
 rl.on('line', function(line) {
         process.stderr.write('Line read: [' + line + ']\n');
 
@@ -248,6 +260,14 @@ rl.on('line', function(line) {
       if (line === 'TeX' || line === 'inline-TeX' || line === 'MathML') {
         input = { value: '', format: line };
         mode = 'input';
+	  } else if (line ==='QUIT') {
+		// Note this only works on the format line, so service callers can't make it exit by
+		// writing QUIT into an equation.
+
+		// Wait for the last line to actually finish processing before we quit.
+		processingPromise.then(() => {
+			process.exit(0);
+		});
       } else {
         process.stderr.write('Invalid format: ' + line + '\n');
       }
@@ -255,7 +275,7 @@ rl.on('line', function(line) {
 
     case 'input' :
       if (line === '') {
-        processInput(input);
+        processingPromise = processInput(input);
         mode = 'format';
       } else {
         input.value += line + '\n';
