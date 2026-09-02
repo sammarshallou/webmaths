@@ -90,7 +90,7 @@ const config = {
     },
   },
   svg: {
-    blacker: 10,
+    blacker: 20,
     displayOverflow: 'overflow',
     linebreaks: {
       inline: false
