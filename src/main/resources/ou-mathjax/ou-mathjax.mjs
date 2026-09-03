@@ -71,7 +71,8 @@ const config = {
       'output/svg',
       'ui/safe',
       'a11y/speech',
-	  '[tex]/mhchem',
+      '[tex]/mhchem',
+	  'input/mml/entities',
     ],
   },
   options: {
@@ -90,9 +91,9 @@ const config = {
     },
   },
   svg: {
-	// Note the 'blacker' option, which can be specified here, works by injecting style into
-	// a CSS which is associated to the SVG but is not included within it, so it does nothing.
-	// Super helpful.
+    // Note the 'blacker' option, which can be specified here, works by injecting style into
+    // a CSS which is associated to the SVG but is not included within it, so it does nothing.
+    // Super helpful.
     displayOverflow: 'overflow',
     linebreaks: {
       inline: false
@@ -109,7 +110,7 @@ const config = {
   },
   output: {
     font: actualFont,
-	displayAlign: 'left',
+    displayAlign: 'left',
  },
 };
 if (extensionFont) {
@@ -117,7 +118,11 @@ if (extensionFont) {
 }
 
 // Load MathJax.
-await MathJax.init(config);
+const mathjaxLoaded = await MathJax.init(config);
+if (!mathjaxLoaded) {
+    process.stderr.write('Fatal error: MathJax init failed\n');
+    process.exit(1);
+}
 
 const document = MathJax.startup.document;
 const adaptor = MathJax.startup.adaptor;
@@ -133,12 +138,12 @@ async function processInput(input) {
   let inputFormat = input.format;
   let inputValue = input.value;
   if (inputFormat === 'inline-TeX') {
-	inputValue = '\\textstyle{' + inputValue + '}';
-	inputFormat='TeX';
+    inputValue = '\\textstyle{' + inputValue + '}';
+    inputFormat='TeX';
   }
   if (inputFormat === 'inline-TeX') {
-	// This code never runs now, but I left it in just in case needed later.
-	options.display = false; 
+    // This code never runs now, but I left it in just in case needed later.
+    options.display = false;
   }
   let svg, mml;
 
@@ -161,7 +166,7 @@ async function processInput(input) {
     }
 
     // Remove all the data attributes except data-c, we don't need them and they make
-	// it way bigger.
+    // it way bigger.
     const removeDataAttributes = (root) => {
         const attributes = adaptor.allAttributes(root);
         for (const attribute of attributes) {
@@ -178,36 +183,36 @@ async function processInput(input) {
     };
     removeDataAttributes(svgElement);
 
-	// Insert CSS into the SVG so we can do the same thing as 'blacker'. This is based on MathJax
-	// css which you can get by calling MathJax.svgStylesheet(), but that styling only works
-	// within an mjx-container tag; this one is generic within the SVG.
-	const styleText = 'path[data-c], use[data-c] { stroke-width: 10; }';
-	const styleElement = adaptor.node('style', {}, [adaptor.text(styleText)]);
-	adaptor.insert(styleElement, adaptor.firstChild(svgElement));
+    // Insert CSS into the SVG so we can do the same thing as 'blacker'. This is based on MathJax
+    // css which you can get by calling MathJax.svgStylesheet(), but that styling only works
+    // within an mjx-container tag; this one is generic within the SVG.
+    const styleText = 'path[data-c], use[data-c] { stroke-width: 10; }';
+    const styleElement = adaptor.node('style', {}, [adaptor.text(styleText)]);
+    adaptor.insert(styleElement, adaptor.firstChild(svgElement));
 
     svg = adaptor.serializeXML(svgElement);
 
-	if (mml) {		
-		// Bodge up the root level data-latex to the original value (without textstyle).
-		// Stick speech into the MathML as 'alttext' as well.
-		const escapeXml = s => s
-		  .replaceAll("&", "&amp;")
-		  .replaceAll("<", "&lt;")
-		  .replaceAll(">", "&gt;")
-		  .replaceAll('"', "&quot;")
-		  .replaceAll("'", "&apos;");
+    if (mml) {
+        // Bodge up the root level data-latex to the original value (without textstyle).
+        // Stick speech into the MathML as 'alttext' as well.
+        const escapeXml = s => s
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&apos;");
 
-		const re = /(<math[^>]+)(>)/;
-		mml = mml.replace(re, (match, g1, g2) => {
-		  let fixedG1 = g1;
-		  if (input.format === 'TeX') {
-		    fixedG1 = fixedG1.replace(/ data-latex="[^"]*"/, ' data-latex="' + escapeXml(input.value.trim()) + '"');
-		  }
-		  return fixedG1 + (speech ? ' alttext="' + escapeXml(speech) + '"' : '') + g2;
-		});
-	}
+        const re = /(<math[^>]+)(>)/;
+        mml = mml.replace(re, (match, g1, g2) => {
+          let fixedG1 = g1;
+          if (input.format === 'TeX') {
+            fixedG1 = fixedG1.replace(/ data-latex="[^"]*"/, ' data-latex="' + escapeXml(input.value.trim()) + '"');
+          }
+          return fixedG1 + (speech ? ' alttext="' + escapeXml(speech) + '"' : '') + g2;
+        });
+    }
   } catch(exception) {
-    mathjaxErrors.push(exception.message);
+    mathjaxErrors.push(exception.stack);
   }
 
   process.stdout.write('<<BEGIN:RESULT\n');
@@ -241,33 +246,34 @@ async function processInput(input) {
 }
 
 // Prepare to read lines from stdin.
-const rl = readlinePromises.createInterface({
-  input: process.stdin,
-  output: null,
-  terminal: false
-});
+if (mathjaxLoaded) {
+  const rl = readlinePromises.createInterface({
+    input: process.stdin,
+    output: null,
+    terminal: false
+  });
 
-// Process input lines.
-let mode = 'format';
-let input = null;
-let processingPromise = Promise.resolve();
+  // Process input lines.
+  let mode = 'format';
+  let input = null;
+  let processingPromise = Promise.resolve();
 
-rl.on('line', function(line) {
-        process.stderr.write('Line read: [' + line + ']\n');
+  rl.on('line', function(line) {
+    process.stderr.write('Line read: [' + line + ']\n');
 
-  switch (mode) {
-    case 'format':
-      if (line === 'TeX' || line === 'inline-TeX' || line === 'MathML') {
-        input = { value: '', format: line };
-        mode = 'input';
-	  } else if (line ==='QUIT') {
-		// Note this only works on the format line, so service callers can't make it exit by
-		// writing QUIT into an equation.
+    switch (mode) {
+      case 'format':
+        if (line === 'TeX' || line === 'inline-TeX' || line === 'MathML') {
+          input = { value: '', format: line };
+          mode = 'input';
+        } else if (line ==='QUIT') {
+          // Note this only works on the format line, so service callers can't make it exit by
+          // writing QUIT into an equation.
 
-		// Wait for the last line to actually finish processing before we quit.
-		processingPromise.then(() => {
-			process.exit(0);
-		});
+		  // Wait for the last line to actually finish processing before we quit.
+          processingPromise.then(() => {
+              process.exit(0);
+          });
       } else {
         process.stderr.write('Invalid format: ' + line + '\n');
       }
@@ -281,5 +287,6 @@ rl.on('line', function(line) {
         input.value += line + '\n';
       }
       break;
-  }
-});
+    }
+  });
+}
