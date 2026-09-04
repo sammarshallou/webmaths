@@ -97,7 +97,7 @@ const config = {
     displayOverflow: 'overflow',
     linebreaks: {
       inline: false,
-	  lineleading: .5,
+	  lineleading: .46,
     },
   },
   tex: {
