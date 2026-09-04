@@ -10,9 +10,9 @@ as images in a user-selected size and colour, or directly to the browser as
 MathML if they have a supported browser, regardless of whether the equations
 were initially entered as TeX or MathML.
 
-The latest version of this system uses the mathjax-node-sre project (server-side
-MathJax) to render equations. If you need the older services (using LaTeX and 
-JEuclid), try the old branch STABLE_1.
+The latest version of this system uses MathJax via Node.js to render equations.
+ If you need the older services (using LaTeX and JEuclid), try the old branch
+ STABLE_3.
 
 
 Service
@@ -20,11 +20,10 @@ Service
 
 The service is called WebMathsMathJax.
 
-It uses mathjax-node-sre backend to render both TeX and MathML. Can convert
-multiple equations at once and can provide SVG as well as PNG format files.
+It uses MathJax in Node.js to render both TeX and MathML. Can convert multiple
+equations at once and can provide SVG as well as PNG format files.
 
-This requires mathjax-node-sre to be installed in the server; the default location 
-is /opt/mathjax_node_sre, or you can configure it (see web.xml).
+This requires Node.js (probably about v20+) on the server.
 
 
 Licensing
@@ -48,16 +47,16 @@ version 3 (see LICENSE), except:
 * MathJax-node (currently packed in here as a .rpm, not sure why)
   MathJax Consortium
   https://github.com/pkra/mathjax-node-sre/
-  
+
 * NodeJS (currently packed in here as a .rpm, not sure why)
   OpenJS Foundation and Node.js contributors
-  https://nodejs.org/  
+  https://nodejs.org/
 
 Basic build/setup instructions for testing
 ------------------------------------------
 
-1) Run 'maven install'. The .war file webmaths.war will be generated inside the 
-   'target' folder. 
+1) Run 'mvn install'. The .war file webmaths.war will be generated inside the
+   'target' folder.
 
 2) Eclipse IDE will automatically compile the project assuming it is recognised
    as a Maven project.
@@ -69,6 +68,28 @@ Basic build/setup instructions for testing
 
 NOTE: This app currently requires Tomcat 9.x.
 
+Manually providing the Node.js app
+----------------------------------
+
+Using the basic setup, the app will install its own Node.js application in the
+Tomcat user's home directory when it starts up, and update the app if necessary.
+This may not be appropriate, especially on production servers, where the Tomcat
+user might not have the necessary permissions to run 'npm install' and download
+software etc.
+
+You can build the Node.js app manually:
+
+* Copy the files from src/main/resources/ou-mathjax into any suitable directory.
+* In that directory, run 'npm install'
+* Build the .war file using the command:
+
+  mvn install -Dou-mathjax-location=/opt/ou-mathjax
+
+  (Where /opt/ou-mathjax is replaced by whatever directory you built the app in.)
+
+The included .spec file can be used if you want to build a .rpm to install
+ou-mathjax, which is how we deploy it (you will need to make minor modifications
+to the file which our build pipeline does).
 
 How to write clients
 --------------------
@@ -78,7 +99,7 @@ on your server, go to http://your.server.example.com/webmaths/ and follow the
 'Web services' link - you'll get a list of all eight services together with the
 WSDL files that should be all you need in order to write software that uses the
 services. The WSDL files contain documentation for all parameters and return
-values. 
+values.
 
 The WSDL files are WS-I compliant so should be usable from all programming
 languages.
