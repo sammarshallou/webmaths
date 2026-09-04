@@ -96,7 +96,8 @@ const config = {
     // Super helpful.
     displayOverflow: 'overflow',
     linebreaks: {
-      inline: false
+      inline: false,
+	  lineleading: .5,
     },
   },
   tex: {
