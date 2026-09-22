@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>uk.ac.open.webmaths</groupId>
   <artifactId>webmaths</artifactId>
-  <version>4.0.1</version>
+  <version>4.0.2</version>
   <packaging>war</packaging>
   <name>Open University webmaths</name>
   <properties>

@@ -148,7 +148,7 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 			String pixelSvg = null, exSvg = null;
 			if(types.contains(SVG_PX) || types.contains(PNG) ||
 				types.contains(PNG_BASELINE) || types.contains(SVG_PX_BASELINE) ||
-				types.contains(TEXT))
+				types.contains(TEXT) || types.contains(EPS))
 			{
 				pixelSvg = mathJax.getSvg(eq, true, exSize, rgb, true);
 			}
@@ -198,7 +198,23 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 
 			if(types.contains(EPS))
 			{
-				out.setEps(mathJax.getEps(eq, exSize, rgb, true));
+				// There is a special workaround to avoid problems in our print templates. When
+				// generating an EPS, and requesting the pixel baseline, if it is zero, we will
+				// offset the (pixel) SVG so that the baseline turns into 1.
+				if(types.contains(SVG_PX_BASELINE) && out.getSvgPxBaseline() == 0f)
+				{
+					// Change baseline to 1.
+					out.setSvgPxBaseline(1f);
+					// Offset the SVG by one pixel.
+					pixelSvg = MathJax.adjustSvgBaseline(MathJax.offsetSvg(pixelSvg, 1.0), -1.0);
+					// Updated returned SVG if any.
+					if (types.contains(SVG_PX))
+					{
+						out.setSvg(pixelSvg);
+					}
+				}
+
+				out.setEps(mathJax.getEps(pixelSvg));
 			}
 
 			out.setOk(true);

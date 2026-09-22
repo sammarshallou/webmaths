@@ -628,15 +628,7 @@ public class MathJax
 			viewY += pixels * viewHeight / height;
 
 			// Adjust the baseline.
-			Matcher baselineMatcher = REGEX_BASELINE_PIXELS.matcher(svg);
-			if(!baselineMatcher.find())
-			{
-				throw new IllegalArgumentException("Unexpected SVG format (no baseline)");
-			}
-			double baseline = Double.parseDouble(baselineMatcher.group(2));
-			baseline += newHeightOffset;
-			svg = svg.substring(0, baselineMatcher.start(2)) + round(baseline) +
-				svg.substring(baselineMatcher.end(2));
+			svg = adjustSvgBaseline(svg, newHeightOffset);
 
 			// Update location of viewbox matcher.
 			viewBoxMatcher = REGEX_VIEWBOX.matcher(svg);
@@ -658,6 +650,25 @@ public class MathJax
 				svg.substring(heightMatcher.end(2));
 
 		return svg;
+	}
+
+	/**
+	 * Changes the baseline (vertical-align) of a pixel SVG.
+	 * @param svg Pixel SVG string
+	 * @param offset Offset in pixels
+	 * @return New SVG
+	 */
+	public static String adjustSvgBaseline(String svg, double offset)
+	{
+		Matcher baselineMatcher = REGEX_BASELINE_PIXELS.matcher(svg);
+		if(!baselineMatcher.find())
+		{
+			throw new IllegalArgumentException("Unexpected SVG format (no baseline)");
+		}
+		double baseline = Double.parseDouble(baselineMatcher.group(2));
+		baseline += offset;
+		return svg.substring(0, baselineMatcher.start(2)) + round(baseline) +
+			svg.substring(baselineMatcher.end(2));
 	}
 
 	/**
@@ -700,19 +711,15 @@ public class MathJax
 	}
 
 	/**
-	 * Gets EPS from an input equation.
-	 * @param eq Equation
-	 * @param ex Size of ex
-	 * @param rgb Colour
-	 * @param compatibilityScale If true, scales up ex size of equation slightly
+	 * Gets EPS from a pixel-sized SVG.
+	 * @param svg Equation
 	 * @return EPS data
 	 * @throws MathJaxException If there's a MathJax error processing the equation
 	 * @throws IOException Any other problem
 	 */
-	public byte[] getEps(InputEquation eq, double ex, String rgb, boolean compatibilityScale)
+	public byte[] getEps(String svg)
 		throws MathJaxException, IOException
 	{
-		String svg = getSvg(eq, true, ex, rgb, compatibilityScale);
 		svg = makeThin(svg);
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();

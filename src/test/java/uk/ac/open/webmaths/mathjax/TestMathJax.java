@@ -552,7 +552,8 @@ public class TestMathJax
 	{
 		InputEquation eq = new InputTexDisplayEquation("x", null);
 		mockExecutable.expect(eq, svgX, mathmlX);
-		byte[] eps = mathJax.getEps(eq, 7.26667, null, true);
+		String pixelSvg = mathJax.getSvg(eq, true, 7.26667, null, true);
+		byte[] eps = mathJax.getEps(pixelSvg);
 		String header = new String(Arrays.copyOfRange(eps, 0, 10),
 			Charset.forName("ISO-8859-1"));
 		assertEquals("%!PS-Adobe", header);
