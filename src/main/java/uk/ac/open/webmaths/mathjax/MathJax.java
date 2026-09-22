@@ -695,12 +695,15 @@ public class MathJax
 	 */
 	private static String makeThin(String svg)
 	{
-		return svg.replaceAll("stroke-width=\"10\"", "");
+		// Remove the inline stylesheet we added in ou-mathjax.mjs to make the strokes thinner.
+		return svg.replaceAll("<style>.*?</style>", "");
 	}
 
 	/**
 	 * Gets EPS from an input equation.
 	 * @param eq Equation
+	 * @param ex Size of ex
+	 * @param rgb Colour
 	 * @param compatibilityScale If true, scales up ex size of equation slightly
 	 * @return EPS data
 	 * @throws MathJaxException If there's a MathJax error processing the equation
