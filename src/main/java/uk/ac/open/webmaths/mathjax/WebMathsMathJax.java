@@ -157,6 +157,16 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 				exSvg = mathJax.getSvg(eq, true, MathJax.SIZE_IN_EX, rgb, true);
 			}
 
+			// There is a special workaround to avoid problems in our print templates. When
+			// generating an EPS, and requesting the pixel baseline, if it is zero, we will
+			// offset the (pixel) SVG so that the baseline turns into 1.
+			if(types.contains(EPS) && (types.contains(SVG_PX_BASELINE) || types.contains(SVG_EX_BASELINE)) &&
+				(float)mathJax.getPxBaselineFromSvg(pixelSvg) == 0f)
+			{
+				// Offset the SVG by one pixel.
+				pixelSvg = MathJax.adjustSvgBaseline(MathJax.offsetSvg(pixelSvg, 1.0), -1.0);
+			}
+
 			// If SVG was turned on, store it.
 			if(types.contains(SVG_EX))
 			{
@@ -187,6 +197,10 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 			}
 			if(types.contains(PNG_BASELINE))
 			{
+				// Note: The OU print PDF generation uses this PNG baseline, in combination with
+				// the provided EPS. I am doubtful about the offset when used for this purpose (as
+				// opposed to, you know, displaying the PNG), but as it does not appear completely
+				// broken, we can leave it.
 				out.setPngBaseline((float)mathJax.getPxBaselineFromSvg(
 					MathJax.offsetSvg(pixelSvg, MathJax.PNG_OFFSET)));
 			}
@@ -198,22 +212,6 @@ public class WebMathsMathJax extends WebMathsService implements MathsMathJaxPort
 
 			if(types.contains(EPS))
 			{
-				// There is a special workaround to avoid problems in our print templates. When
-				// generating an EPS, and requesting the pixel baseline, if it is zero, we will
-				// offset the (pixel) SVG so that the baseline turns into 1.
-				if(types.contains(SVG_PX_BASELINE) && out.getSvgPxBaseline() == 0f)
-				{
-					// Change baseline to 1.
-					out.setSvgPxBaseline(1f);
-					// Offset the SVG by one pixel.
-					pixelSvg = MathJax.adjustSvgBaseline(MathJax.offsetSvg(pixelSvg, 1.0), -1.0);
-					// Updated returned SVG if any.
-					if (types.contains(SVG_PX))
-					{
-						out.setSvg(pixelSvg);
-					}
-				}
-
 				out.setEps(mathJax.getEps(pixelSvg));
 			}
 
