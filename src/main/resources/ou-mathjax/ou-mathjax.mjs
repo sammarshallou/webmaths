@@ -159,7 +159,7 @@ async function processInput(input) {
 	// if you do \begin{align*} inside the \textstyle) we are using a loop to bin it off and go
 	// back to the original TeX. (It probably doesn't make sense to have these be inline, but it
 	// should work since it did in older versions.)
-	let attemptedPadding = false;
+	let attemptedPadding = false, attemptedConvertLFs = false;
 	while (true) {
 		let innerException = null;
 		try {
@@ -184,37 +184,45 @@ async function processInput(input) {
 					break;
 				}
 
+				// For 100% width, try replacing \n with space in MAthML input. When there is an
+				// <mspace> somewhere, if there is also any \n, it causes this problem.
+				if (!attemptedConvertLFs) {
+					attemptedConvertLFs = true;
+					inputValue = inputValue.replace(/\n/g, ' ');
+					continue;
+				}
+
 				// For 100% width, try adding <mpadded> to mathml and \vtop to TeX.
 				// This occurs when an equation has more than one line;
 				// MathJax gives it width 100% so that it never appears inline and
 				// potentially confuses the reader. See discussion on this issue:
 				// https://github.com/mathjax/MathJax/issues/3607
-				if (attemptedPadding) {
-					// We already tried this and it didn't help.
-					mathjaxErrors.push('Equation converted to SVG has unspecified width (even after trying to add padding)');
-					break;
+				if (!attemptedPadding) {
+					// Let's try again by adding a padding command.
+					attemptedPadding = true;
+					if (inputFormat === 'MathML') {
+						// This regex works to insert <mpadded as the first child of <math...>...</math>
+						// and also of <xyz:math...>...</xyz:math> in which case it inserts the prefix too.
+						// Not sure anyone ever does that but just in case.
+						inputValue = inputValue.replace(/^\s*(<([^>]+:)?math[^>]*>)(.*)(<\/([^>]+:)?math>)\s*/,
+							'$1<$2mpadded>$3</$2mpadded>$4');
+					} else {
+						// For TeX we just add \vtop{...} around everything and cross our fingers.
+						inputValue = '\\vtop{' + inputValue + '}';
+					}
+
+					// For some reason I don't understand (maybe it is because the <mpadded> makes this
+					// count as one very tall line?), line leading tends to make these equations
+					// look bad by adding extra space at the bottom, so set it back to default value.
+					MathJax.startup.output.options.linebreaks.lineleading = 0.2;
+
+					// Now retry the loop.
+					continue;
 				}
 
-				// Let's try again by adding a padding command.
-				attemptedPadding = true;
-				if (inputFormat === 'MathML') {
-					// This regex works to insert <mpadded as the first child of <math...>...</math>
-					// and also of <xyz:math...>...</xyz:math> in which case it inserts the prefix too.
-					// Not sure anyone ever does that but just in case.
-					inputValue = inputValue.replace(/^\s*(<([^>]+:)?math[^>]*>)(.*)(<\/([^>]+:)?math>)\s*/,
-						'$1<$2mpadded>$3</$2mpadded>$4');
-				} else {
-					// For TeX we just add \vtop{...} around everything and cross our fingers.
-					inputValue = '\\vtop{' + inputValue + '}';
-				}
-
-				// For some reason I don't understand (maybe it is because the <mpadded> makes this
-				// count as one very tall line?), line leading tends to make these equations
-				// look bad by adding extra space at the bottom, so set it back to default value.
-				MathJax.startup.output.options.linebreaks.lineleading = 0.2;
-
-				// Now retry the loop.
-				continue;
+				// We already tried both hacks and it didn't help.
+				mathjaxErrors.push('Equation converted to SVG has unspecified width (even after trying to convert LFs and add padding)');
+				break;
 			}
 		} catch (exception) {
 			innerException = exception;
